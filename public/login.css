@@ -1,0 +1,96 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Share Tech Mono', monospace;
+    background: #000;
+    color: #33b0de;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .login-box {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #33b0de;
+    padding: 2.5rem;
+    width: 320px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 0 25px #33b0de;
+    position: relative;
+    animation: fadeIn 1.5s ease;
+  }
+
+  .glitch {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #ff1f9c;
+    text-shadow: 0 0 5px #ff1f9c, 0 0 10px #ff1f9c;
+    letter-spacing: 1px;
+  }
+
+  .login-box p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: #888;
+  }
+
+  .login-box input {
+    background: #000;
+    border: 1px solid #33b0de;
+    color: #33b0de;
+    padding: 12px;
+    margin: 10px 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+  }
+
+  .login-box input:focus {
+    border-color: #ff1f9c;
+    outline: none;
+  }
+
+  .login-box button {
+    background: #ff1f9c;
+    color: black;
+    padding: 12px;
+    margin-top: 15px;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .login-box button:hover {
+    background: #ff55b3;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 12px;
+    font-size: 0.75rem;
+    text-align: center;
+    width: 100%;
+    color: #555;
+    letter-spacing: 1px;
+  }

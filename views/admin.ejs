@@ -1,0 +1,396 @@
+<!-- views/admin-panel.ejs (clean base structure) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="/admin.css">
+</head>
+  
+<body>
+
+  <div style="text-align: right; margin: 10px 30px;">
+    <form action="/logout" method="GET" style="display: inline;">
+      <button type="submit" style="
+        background: crimson;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+      ">
+         Logout
+      </button>
+    </form>
+    <a href="/" class="home-btn">⟵ Back to Home</a>
+  </div>
+
+
+  <div class="container">
+    <h1 class="title">Chapters</h1>
+
+    <table class="chapter-table">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Edit</th>
+          <th> Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% chapters.forEach(ch => { %>
+          <tr>
+            <td>Chapter <%= ch._id %></td>
+            <td><%= ch.chapterName %></td>
+            <td>
+              <button onclick="openEditChapterModal(<%= ch._id %>, '<%= ch.chapterName %>')">Edit</button>
+            </td>
+            <td>
+              <button onclick="openDeleteChapterModal(<%= ch._id %>)" style="background-color: crimson;">Delete</button>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ✅ Edit Chapter Modal -->
+  <div class="modal" id="edit-chapter-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('edit-chapter-modal')">&times;</span>
+      <h3>Edit Chapter Name</h3>
+      <form action="/admin/edit-chapter" method="POST">
+        <input type="hidden" name="oldChapterIndex" id="edit-old-chapter-index">
+        <input type="text" name="newChapterName" id="edit-new-chapter-name" placeholder="New chapter name" required>
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ✅ Delete Chapter Modal -->
+  <div class="modal" id="delete-chapter-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('delete-chapter-modal')">&times;</span>
+      <h3>Are you sure you want to delete Chapter <span id="delete-chapter-number"></span>?</h3>
+      <form action="/admin/delete-chapter" method="POST">
+        <input type="hidden" name="chapterIndex" id="delete-chapter-index">
+        <button type="submit" style="background-color: crimson;">Yes, Delete</button>
+      </form>
+    </div>
+  </div>
+
+  
+
+
+
+
+
+<div class="container">
+  <h1 class="title">Topics by Chapter</h1>
+
+  <% 
+    let currentChapter = null;
+    topics.forEach(tp => {
+      if (currentChapter !== tp._id.chapterIndex) {
+        if (currentChapter !== null) { 
+  %>
+        </ul>
+      <% } %>
+
+      <h2>Chapter <%= tp._id.chapterIndex %>: <%= tp.chapterName %></h2>
+      <ul class="topic-list">
+  <%
+        currentChapter = tp._id.chapterIndex;
+      } 
+  %>
+      <li class="topic-item">
+        <strong>Topic <%= tp._id.topicIndex %>: <%= tp.topicName %></strong>
+
+        <!-- ✏️ Edit -->
+        <button onclick="openTopicEditModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName %>')">Edit</button>
+
+        <!-- 🗑️ Delete -->
+        <button onclick="openDeleteTopicModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName %>')" style="background-color: crimson;">
+          Delete
+        </button>
+      </li>
+  <% }) %>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+   <!-- ✏️ Edit Topic Modal -->
+<div class="modal" id="edit-topic-modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('edit-topic-modal')">&times;</span>
+    <h3>Edit Topic Name</h3>
+    <form action="/admin/edit-topic" method="POST">
+      <input type="hidden" id="edit-topic-chapter" name="chapterIndex">
+      <input type="hidden" id="edit-topic-index" name="topicIndex">
+      <input type="text" id="edit-topic-name" name="newTopicName" placeholder="New topic name" required>
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</div>
+
+<!-- 🗑️ Delete Topic Modal -->
+<div class="modal" id="delete-topic-modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('delete-topic-modal')">&times;</span>
+    <h3>Are you sure you want to delete topic <span id="delete-topic-name"></span>?</h3>
+    <form action="/admin/delete-topic" method="POST">
+      <input type="hidden" name="chapterIndex" id="delete-topic-chapter">
+      <input type="hidden" name="topicIndex" id="delete-topic-index">
+      <button type="submit" style="background-color: crimson;">Yes, Delete</button>
+    </form>
+  </div>
+</div>     
+
+
+   
+        
+
+
+
+
+
+
+
+    <div class="container">
+      <h2 class="title">➕ Add Flashcard</h2>
+    
+    <form action="/admin/add-flashcard" method="POST">
+
+      <!-- Existing Chapter -->
+      <label>Select Chapter:</label>
+      <select id="chapterIndex" name="chapterIndex" onchange="fillChapterName()">
+        <option value="">-- Select --</option>
+        <% chapters.forEach(ch => { %>
+          <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
+        <% }) %>
+      </select>
+      <input type="text" id="chapterName" name="chapterName" placeholder="Auto-filled chapter name" readonly>
+
+      <!-- New Chapter -->
+      <label>Or New Chapter:</label>
+      <input type="text" name="newChapterName" id="newChapterName">
+      <input type="hidden" name="newChapterIndex" id="newChapterIndex">
+
+      <!-- Existing Topic -->
+      <label>Select Topic:</label>
+      <select id="topicIndex" name="topicIndex" onchange="fillTopicName()">
+        <option value="">-- Select --</option>
+        <% topics.forEach(tp => { %>
+          <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
+            Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
+          </option>
+        <% }) %>
+      </select>
+      <input type="text" id="topicName" name="topicName" placeholder="Auto-filled topic name" readonly >
+
+      <!-- New Topic -->
+      <label>Or New Topic:</label>
+      <input type="text" name="newTopicName" id="newTopicName">
+      <input type="hidden" name="newTopicIndex" id="newTopicIndex">
+
+      <!-- Flashcard -->
+      <label>Question:</label>
+      <textarea name="question" required></textarea>
+      <label>Answer:</label>
+      <textarea name="answer" required></textarea>
+
+      <button type="submit">Add Flashcard</button>
+    </form>
+        </div>
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+
+
+
+
+
+<div class="container">
+  <h2>Bulk Upload Flashcards</h2>
+  <form action="/admin/bulk-upload" method="POST" enctype="multipart/form-data">
+    
+    <!-- Existing Chapter -->
+    <label>Select Chapter:</label>
+    <select id="bulkChapterIndex" name="chapterIndex" onchange="fillBulkChapterName()">
+      <option value="">-- Select Chapter --</option>
+      <% chapters.forEach(ch => { %>
+        <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
+      <% }) %>
+    </select>
+    <input type="text" name="chapterName" id="bulkChapterName" readonly required>
+
+    <!-- New Chapter -->
+    <label>Or Create New Chapter:</label>
+    <input type="text" name="newChapterName" id="bulknewChapterName">
+    <input type="hidden" name="newChapterIndex" id="bulknewChapterIndex">
+
+    <!-- Existing Topic -->
+    <label>Select Topic:</label>
+    <select id="bulkTopicIndex" name="topicIndex" onchange="fillBulkTopicName()">
+      <option value="">-- Select Topic --</option>
+      <% topics.forEach(tp => { %>
+        <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
+          Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
+        </option>
+      <% }) %>
+    </select>
+    <input type="text" name="topicName" id="bulkTopicName" readonly required>
+
+    <!-- New Topic -->
+    <label>Or Create New Topic:</label>
+    <input type="text" name="newTopicName" id="bulknewTopicName">
+    <input type="hidden" name="newTopicIndex" id="bulknewTopicIndex">
+
+    <!-- Upload JSON -->
+    <label>Upload JSON File:</label>
+    <input type="file" name="file" accept=".json" required>
+
+    <button type="submit">Upload Flashcards</button>
+  </form>
+</div>
+          <div class="container">
+            <h2> Users</h2>
+            <table class="chapter-table">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Username</th>
+                  <th>Role</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% users.forEach(user => { %>
+                  <tr>
+                    <td><%= user.userId %></td>
+                    <td><%= user.username %></td>
+                    <td><%= user.role %></td>
+                    <td>
+                      <button 
+                        onclick="openDeleteUserModal('<%= user.userId %>', '<%= user.username %>')" 
+                        style="background-color: crimson;">
+                        Delete
+                      </button>
+
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+
+
+                  <!-- 🗑️ Delete User Modal -->
+                  <div class="modal" id="delete-user-modal">
+                    <div class="modal-content">
+                      <span class="close" onclick="closeModal('delete-user-modal')">&times;</span>
+                      <h3>Are you sure you want to delete user <span id="delete-user-name"></span>?</h3>
+                      <form action="/admin/delete-user" method="POST">
+                        <input type="hidden" name="userId" id="delete-user-id">
+                        <button type="submit" style="background-color: crimson;">Yes, Delete</button>
+                      </form>
+                    </div>
+                  </div>
+
+                  
+
+
+
+
+                  
+
+
+
+
+                  <div class="container">
+                    <h2>Add New User</h2>
+                    <form action="/admin/add-user" method="POST">
+                      <label>User ID:</label>
+                      <input type="text" name="userId" required>
+
+                      <label>Username:</label>
+                      <input type="text" name="username" required>
+
+                      <label>Password:</label>
+                      <input type="password" name="password" required>
+
+                      <label>Role:</label>
+                      <select name="role" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                      </select>
+
+                      <button type="submit">Add User</button>
+                    </form>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  
+        
+        <script>
+          window.chapters = <%- JSON.stringify(chapters) %>;
+          window.topics = <%- JSON.stringify(topics) %>;
+        </script>
+
+        <script src="/clientadmin.js"></script>
+
+      
+
+</body>
+</html>

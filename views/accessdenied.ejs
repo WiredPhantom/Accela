@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Access Denied</title>
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .glitch-image {
+      max-width: 80vw;
+      max-height: 50vh;
+      margin-bottom: 2rem;
+      filter: brightness(1.1) contrast(1.1);
+    }
+
+    .notice {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+    }
+
+    .home-link {
+      margin-top: 2rem;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      text-shadow: 0 0 5px #ff69b4;
+      border: 2px solid #ff69b4;
+      padding: 0.5rem 1rem;
+      transition: background 0.3s;
+    }
+
+    .home-link:hover {
+      background-color: #ff69b4;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://files.catbox.moe/oipf06.gif" alt="Glitched Lain" class="glitch-image" />
+  <div class="notice">
+    ACCESS DENIED<br><br>
+    This space is invitation-only.<br>
+    If you weren't chosen, you weren’t meant to find it.<br><br>
+    There’s nothing more to say.<br><br>
+    <strong>Return quietly.</strong>
+  </div>
+  <a href="/" class="home-link">Return </a>
+</body>
+</html>

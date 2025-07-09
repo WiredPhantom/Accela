@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards - Chapter <%= chapterId %> Topic <%= topicId %></title>
+  <link rel="stylesheet" href="/flashcards.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <h1><%= chapterId %>.<%= topicId %>-Topic</h1>
+
+  <!-- Toggle Buttons -->
+  <div class="toggle-container">
+    <button class="toggle-button" id="flashcardToggle" onclick="toggleMode()">Switch to Flashcard Mode</button>
+  </div>
+  <div style="text-align:center; margin-top:20px;">
+    <button onclick="toggleStudyMode()" id="modeToggleBtn" class="toggle-button">
+      🧠 Switch to Focus Mode
+    </button>
+  </div>
+
+  <!-- List Mode -->
+  <div id="list-mode">
+    <% flashcards.forEach(f => {
+         const isUrdu = /[\u0600-\u06FF]/.test(f.question + f.answer);
+    %>
+      <div class="flashcard <%= isUrdu ? 'ur' : 'en' %>">
+        <div class="question <%= isUrdu ? 'ur' : 'en' %>">Q<%= f.flashcardIndex %>: <%= f.question %></div>
+        <div class="answer <%= isUrdu ? 'ur' : 'en' %>">A: <%= f.answer %></div>
+      </div>
+    <% }) %>
+  </div>
+
+  <!-- Flashcard Mode -->
+  <div id="flashcard-mode" style="display:none;">
+    <div class="card-wrapper" onclick="flipCard()">
+      <div class="card" id="card">
+        <div class="face front" id="card-front"></div>
+        <div class="face back" id="card-back"></div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button onclick="prevCard()" id="prevBtn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+      <button onclick="nextCard()" id="nextBtn">Next <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+    <div class="progress" id="progressText"></div>
+  </div>
+
+  <!-- Script Logic -->
+  <script>
+    const flashcards = <%- JSON.stringify(flashcards) %>;
+    let current = 0;
+    let flipped = false;
+
+    function toggleMode() {
+      const list = document.getElementById("list-mode");
+      const flashcard = document.getElementById("flashcard-mode");
+      const toggleBtn = document.getElementById("flashcardToggle");
+
+      if (list.style.display === "none") {
+        list.style.display = "block";
+        flashcard.style.display = "none";
+        toggleBtn.textContent = "Switch to Flashcard Mode";
+      } else {
+        list.style.display = "none";
+        flashcard.style.display = "block";
+        toggleBtn.textContent = "Switch to List Mode";
+        current = 0;
+        flipped = false;
+        renderCard();
+      }
+    }
+
+    function renderCard() {
+      if (!flashcards.length) return;
+
+      const card = document.getElementById("card");
+      const front = document.getElementById("card-front");
+      const back = document.getElementById("card-back");
+      const progress = document.getElementById("progressText");
+
+      const curr = flashcards[current];
+      const isUrdu = /[\u0600-\u06FF]/.test(curr.question + curr.answer);
+      const langClass = isUrdu ? 'ur' : 'en';
+
+      front.textContent = `Q${curr.flashcardIndex}: ${curr.question}`;
+      back.textContent = `A${curr.flashcardIndex}: ${curr.answer}`;
+
+      front.className = `face front ${langClass}`;
+      back.className = `face back ${langClass}`;
+
+      progress.textContent = `${current + 1} / ${flashcards.length}`;
+
+      document.getElementById("prevBtn").disabled = current === 0;
+      document.getElementById("nextBtn").disabled = current === flashcards.length - 1;
+
+      card.classList.remove("flipped", "slide-left", "slide-right");
+      flipped = false;
+    }
+
+    function flipCard() {
+      const card = document.getElementById("card");
+      flipped = !flipped;
+      card.classList.toggle("flipped");
+    }
+
+    function nextCard() {
+      if (current < flashcards.length - 1) {
+        const card = document.getElementById("card");
+        card.classList.add("slide-left");
+        setTimeout(() => {
+          current++;
+          renderCard();
+        }, 300);
+      }
+    }
+
+    function prevCard() {
+      if (current > 0) {
+        const card = document.getElementById("card");
+        card.classList.add("slide-right");
+        setTimeout(() => {
+          current--;
+          renderCard();
+        }, 300);
+      }
+    }
+
+    function toggleStudyMode() {
+      const body = document.body;
+      const btn = document.getElementById("modeToggleBtn");
+
+      if (body.classList.contains("focus-mode")) {
+        body.classList.remove("focus-mode");
+        body.classList.add("expressive-mode");
+        btn.textContent = "🧠 Switch to Focus Mode";
+      } else {
+        body.classList.remove("expressive-mode");
+        body.classList.add("focus-mode");
+        btn.textContent = "🎨 Switch to Expressive Mode";
+      }
+    }
+
+    // Default mode
+    document.body.classList.add("expressive-mode");
+  </script>
+</body>
+</html>

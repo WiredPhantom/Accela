@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'VT323', monospace;
+  background-color: #0a0a0f;
+  color: #ffffff;
+  padding: 40px 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #ffffff;
+  text-shadow: 2px 2px #33b0de, -2px -2px #ff1f9c;
+  margin-bottom: 30px;
+}
+
+.toggle-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.toggle-button {
+  padding: 12px 30px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #33b0de, #ff1f9c);
+  color: white;
+  transition: transform 0.2s, box-shadow 0.3s;
+  font-family: "VT323", monospace;
+  box-shadow: 0 0 12px rgba(255, 31, 156, 0.2);
+}
+
+.toggle-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 31, 156, 0.4);
+}
+
+#list-mode .flashcard {
+  background: linear-gradient(145deg, #13131b, #1c1c29);
+  border-left: 4px solid #33b0de;
+  border-radius: 14px;
+  box-shadow: 0 0 12px rgba(51, 176, 222, 0.1), 0 0 6px rgba(255, 31, 156, 0.1);
+  padding: 24px;
+  margin: 24px auto;
+  max-width: 800px;
+  transition: transform 0.3s ease;
+}
+
+#list-mode .flashcard:hover {
+  transform: scale(1.02);
+}
+
+.question {
+  font-weight: bold;
+  color: #ff1f9c;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  text-shadow: 1px 1px 2px #1a1a1a;
+}
+
+.answer {
+  color: #eaeaea;
+  font-size: 0.9rem;
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  line-height: 1.9;
+}
+
+#flashcard-mode .card-wrapper {
+  perspective: 1200px;
+  margin: 40px auto;
+  height:90vh;
+width:90vw;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  cursor: pointer;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height:100%;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  backface-visibility: hidden;
+  background: #121218;
+  border-radius: 14px;
+  box-shadow: 0 0 15px rgba(51, 176, 222, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #f0f0f5;
+  border-left: 5px solid #33b0de;
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', serif;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.nav-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.nav-buttons button {
+  margin: 0 12px;
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #33b0de, #ff1f9c);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: "VT323", monospace;
+  transition: transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 0 12px rgba(255, 31, 156, 0.2);
+}
+
+.nav-buttons button:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 31, 156, 0.4);
+}
+
+.nav-buttons button:disabled {
+  background: #444;
+  cursor: default;
+  opacity: 0.5;
+}
+
+.progress {
+  margin-top: 10px;
+  font-size: 1rem;
+  text-align: center;
+  color: #aaa;
+  font-family: "VT323", monospace;
+}
+
+.slide-left {
+  animation: slideLeft 0.4s ease forwards;
+}
+
+.slide-right {
+  animation: slideRight 0.4s ease forwards;
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes slideRight {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+body.light-mode {
+  background-color: #f9f9f9;
+  color: #121212;
+}
+
+body.light-mode h1 {
+  color: #121212;
+  text-shadow: none;
+}
+
+body.light-mode .flashcard {
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  border-left: 4px solid #33b0de;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .question {
+  color: #006ba6;
+  text-shadow: none;
+}
+
+body.light-mode .answer {
+  color: #333333;
+  text-shadow: none;
+}
+
+body.light-mode .face {
+  background: #ffffff;
+  color: #121212;
+  border-left: 5px solid #33b0de;
+  text-shadow: none;
+}
+
+body.light-mode .toggle-button,
+body.light-mode .nav-buttons button {
+  background: linear-gradient(135deg, #0a84ff, #00c4ff);
+  color: white;
+}
+
+body.focus-mode {
+  background-color: #1c1c2e;
+  color: #f4f4f4;
+}
+
+body.focus-mode h1 {
+  color: #f4f4f4;
+  text-shadow: none;
+}
+
+body.focus-mode .flashcard {
+  background: #2d3142;
+  border: none;
+  box-shadow: none;
+}
+
+body.focus-mode .question,
+body.focus-mode .answer {
+  color: #f4f4f4;
+  text-shadow: none;
+}
+
+body.focus-mode .face {
+  background: #2d3142;
+  color: #f4f4f4;
+  text-shadow: none;
+  border: none;
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+body.focus-mode .toggle-button,
+body.focus-mode .nav-buttons button {
+  background: linear-gradient(135deg, #555c77, #2d3142);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.focus-mode .toggle-button:hover,
+body.focus-mode .nav-buttons button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #666c88, #3a3e55);
+  transform: scale(1.05);
+}
+
+body.expressive-mode {
+  background-color: #0a0a0f;
+  color: #ffffff;
+}
+
+body.expressive-mode h1 {
+  color: #ffffff;
+  text-shadow: 2px 2px #33b0de, -2px -2px #ff1f9c;
+}
+
+body.expressive-mode .flashcard {
+  background: linear-gradient(145deg, #13131b, #1c1c29);
+  border-left: 4px solid #33b0de;
+  box-shadow: 0 0 12px rgba(51, 176, 222, 0.1), 0 0 6px rgba(255, 31, 156, 0.1);
+}
+
+body.expressive-mode .question {
+  color: #33b0de;
+  text-shadow: 1px 1px 2px #ff1f9c;
+}
+
+body.expressive-mode .answer {
+  color: #eaeaea;
+  text-shadow: 1px 1px 2px #33b0de;
+}
+
+body.expressive-mode .face {
+  background: #1e1e24;
+  color: #f0f0f5;
+  border-left: 5px solid #ff1f9c;
+  text-shadow: 1px 1px 2px #33b0de;
+}
+
+body.expressive-mode .toggle-button,
+body.expressive-mode .nav-buttons button {
+  background: linear-gradient(135deg, #33b0de, #ff1f9c);
+  color: white;
+  box-shadow: 0 0 12px rgba(255, 31, 156, 0.2);
+}
+
+body.expressive-mode .toggle-button:hover,
+body.expressive-mode .nav-buttons button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 31, 156, 0.4);
+}
+/* Urdu */
+.ur {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', serif;
+}
+
+/* English */
+.en {
+  direction: ltr;
+  text-align: left;
+  font-family:inter, monospace;
+}
