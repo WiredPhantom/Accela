@@ -97,19 +97,20 @@ app.post("/login", async (req, res) => {
     if (!user) return res.render("accessdenied");
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.render("accessdenied");
+    if (!isMatch) return res.render("accessdenied");   
+const token = jwt.sign(
+  { username, role: user.role },
+  process.env.jwtkey,
+  { expiresIn: "528h" } // JWT valid for 22 days
+);
 
-    const token = jwt.sign({ username, role: user.role }, process.env.jwtkey, {
-      expiresIn: "24h"
-    });
-
-    res.cookie("token", token, {
-      httpOnly: true,
-      path: "/",
-      sameSite: "lax",
-      secure: false
-    });
-
+res.cookie("token", token, {
+  httpOnly: true,
+  path: "/",
+  sameSite: "lax",
+  secure: false,
+  maxAge: 22 * 24 * 60 * 60 * 1000 // Cookie valid for 22 days
+});
     res.redirect("/chapters");
   } catch (err) {
     console.error("Login error:", err);
