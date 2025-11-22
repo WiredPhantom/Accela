@@ -1,7 +1,6 @@
 module.exports = (User, Flashcard) => {
   const router = require('express').Router();
 
-
   router.get('/', async (req, res) => {
     try {
       const chapters = await Flashcard.aggregate([
@@ -27,7 +26,7 @@ module.exports = (User, Flashcard) => {
         },
         { $sort: { "_id.chapterIndex": 1, "_id.topicIndex": 1 } }
       ]);
-      const users = await User.find({}, { password: 0 }); // don't expose password
+      const users = await User.find({}, { password: 0 });
 
       res.render("admin", { chapters, topics, users });
 
@@ -37,57 +36,44 @@ module.exports = (User, Flashcard) => {
     }
   });
 
- 
-
-
-
-  
   router.get('/users', async (req, res) => {
     const users = await User.find();
     res.json(users);
   });
- router.get('/flashcards', async (req, res) =>{
+
+  router.get('/flashcards', async (req, res) =>{
     const flashcards = await Flashcard.find();
     res.json(flashcards);
- });
+  });
 
-  
   router.post("/edit-chapter", async (req, res) => {
     const { oldChapterIndex, newChapterName } = req.body;
-      console.log(req.body)
+    console.log(req.body)
     try {
       const result = await Flashcard.updateMany(
         { chapterIndex: oldChapterIndex },
         { $set: { chapterName: newChapterName } }
       );
-console.log(result)
-      res.redirect("/admin"); // or res.send("success") if using AJAX
-
+      console.log(result)
+      res.redirect("/admin");
     } catch (err) {
       res.status(500).send("Error updating chapter name");
     }
   });
 
-
   router.post("/delete-chapter", async (req, res) => {
     const { chapterIndex } = req.body;
-
     try {
       await Flashcard.deleteMany({ chapterIndex: parseInt(chapterIndex) });
-      res.redirect("/admin"); // or JSON if using AJAX
+      res.redirect("/admin");
     } catch (err) {
       console.error("❌ Error deleting chapter:", err);
       res.status(500).send("Failed to delete chapter");
     }
   });
 
-
-
-
-
   router.post("/edit-topic", async (req, res) => {
     const { chapterIndex, topicIndex, newTopicName } = req.body;
-
     try {
       await Flashcard.updateMany(
         { chapterIndex: parseInt(chapterIndex), topicIndex: parseInt(topicIndex) },
@@ -101,7 +87,6 @@ console.log(result)
 
   router.post("/delete-topic", async (req, res) => {
     const { chapterIndex, topicIndex } = req.body;
-
     try {
       await Flashcard.deleteMany({
         chapterIndex: parseInt(chapterIndex),
@@ -113,140 +98,118 @@ console.log(result)
     }
   });
 
-
-
-
-
-
-
-
   router.post("/add-flashcard", async (req, res) => {
-  let {
-    chapterIndex,
-    chapterName,
-    newChapterIndex,
-    newChapterName,
-    topicIndex,
-    topicName,
-    newTopicIndex,
-    newTopicName,
-    question,
-    answer
-  } = req.body;
-console.log(req.body)
-  try {
-    // Use new chapter if given
-    if (newChapterName?.trim()) {
-      chapterIndex = +newChapterIndex;
-      chapterName = newChapterName.trim();
-    } else {
-      chapterIndex = +chapterIndex;
-    }
-
-    // Use new topic if given
-    if (newTopicName?.trim()) {
-      topicIndex = +newTopicIndex;
-      topicName = newTopicName.trim();
-    } else {
-      topicIndex = +topicIndex;
-    }
-
-    if (!chapterName || !topicName) throw new Error("Missing chapter or topic name");
-
-    const flashcardIndex = await Flashcard.countDocuments({
-      chapterIndex,
-      topicIndex
-    }) + 1;
-
-    const newFlashcard = new Flashcard({
+    let {
       chapterIndex,
       chapterName,
+      newChapterIndex,
+      newChapterName,
       topicIndex,
       topicName,
-      flashcardIndex,
+      newTopicIndex,
+      newTopicName,
       question,
       answer
-    });
+    } = req.body;
+    console.log(req.body)
+    try {
+      if (newChapterName?.trim()) {
+        chapterIndex = +newChapterIndex;
+        chapterName = newChapterName.trim();
+      } else {
+        chapterIndex = +chapterIndex;
+      }
 
-    await newFlashcard.save();
-    res.redirect("/admin");
-  } catch (err) {
-    console.error("Error adding flashcard:", err.message);
-    res.status(500).send("Failed to add flashcard");
-  }
-});
+      if (newTopicName?.trim()) {
+        topicIndex = +newTopicIndex;
+        topicName = newTopicName.trim();
+      } else {
+        topicIndex = +topicIndex;
+      }
 
-    
+      if (!chapterName || !topicName) throw new Error("Missing chapter or topic name");
 
+      const flashcardIndex = await Flashcard.countDocuments({
+        chapterIndex,
+        topicIndex
+      }) + 1;
 
+      const newFlashcard = new Flashcard({
+        chapterIndex,
+        chapterName,
+        topicIndex,
+        topicName,
+        flashcardIndex,
+        question,
+        answer
+      });
 
-
-
-  
-      
-
-
-  
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
-const fs = require("fs");
-
-router.post("/bulk-upload", upload.single("file"), async (req, res) => {
-  let {
-    chapterIndex,
-    chapterName,
-    newChapterIndex,
-    newChapterName,
-    topicIndex,
-    topicName,
-    newTopicIndex,
-    newTopicName
-  } = req.body;
-console.log(req.body)
-  try {
-    if (newChapterName?.trim()) {
-      chapterIndex = +newChapterIndex;
-      chapterName = newChapterName.trim();
-    } else {
-      chapterIndex = +chapterIndex;
+      await newFlashcard.save();
+      res.redirect("/admin");
+    } catch (err) {
+      console.error("Error adding flashcard:", err.message);
+      res.status(500).send("Failed to add flashcard");
     }
+  });
 
-    if (newTopicName?.trim()) {
-      topicIndex = +newTopicIndex;
-      topicName = newTopicName.trim();
-    } else {
-      topicIndex = +topicIndex;
-    }
-
-    if (!chapterName || !topicName) throw new Error("Chapter or topic name missing.");
-
-    const raw = fs.readFileSync(req.file.path);
-    const flashcardsData = JSON.parse(raw);
-
-    const existingCount = await Flashcard.countDocuments({ chapterIndex, topicIndex });
-
-    const flashcards = flashcardsData.map((fc, i) => ({
+  // UPDATED: Changed from file upload to textarea
+  router.post("/bulk-upload", async (req, res) => {
+    let {
       chapterIndex,
       chapterName,
+      newChapterIndex,
+      newChapterName,
       topicIndex,
       topicName,
-      flashcardIndex: existingCount + i + 1,
-      question: fc.question,
-      answer: fc.answer
-    }));
+      newTopicIndex,
+      newTopicName,
+      jsonData  // Changed from file to jsonData
+    } = req.body;
+    console.log(req.body)
+    try {
+      if (newChapterName?.trim()) {
+        chapterIndex = +newChapterIndex;
+        chapterName = newChapterName.trim();
+      } else {
+        chapterIndex = +chapterIndex;
+      }
 
-    await Flashcard.insertMany(flashcards);
-    fs.unlinkSync(req.file.path);
-    res.redirect("/admin");
-  } catch (err) {
-    console.error("❌ Upload Error:", err.message);
-    res.status(400).send("❌ " + err.message);
-  }
-});
+      if (newTopicName?.trim()) {
+        topicIndex = +newTopicIndex;
+        topicName = newTopicName.trim();
+      } else {
+        topicIndex = +topicIndex;
+      }
 
+      if (!chapterName || !topicName) throw new Error("Chapter or topic name missing.");
+      if (!jsonData || !jsonData.trim()) throw new Error("JSON data is required.");
 
+      // Parse the JSON from textarea
+      const flashcardsData = JSON.parse(jsonData);
 
+      if (!Array.isArray(flashcardsData)) {
+        throw new Error("JSON must be an array of flashcard objects.");
+      }
 
+      const existingCount = await Flashcard.countDocuments({ chapterIndex, topicIndex });
+
+      const flashcards = flashcardsData.map((fc, i) => ({
+        chapterIndex,
+        chapterName,
+        topicIndex,
+        topicName,
+        flashcardIndex: existingCount + i + 1,
+        question: fc.question,
+        answer: fc.answer
+      }));
+
+      await Flashcard.insertMany(flashcards);
+      res.redirect("/admin");
+    } catch (err) {
+      console.error("❌ Upload Error:", err.message);
+      res.status(400).send("❌ " + err.message);
+    }
+  });
 
   router.post("/delete-user", async (req, res) => {
     try {
@@ -258,15 +221,11 @@ console.log(req.body)
     }
   });
 
-
-
-
   const bcrypt = require("bcrypt");
 
   router.post("/add-user", async (req, res) => {
     const { userId, username, password, role } = req.body;
     try {
-      // Hash password
       const hashedPassword = await bcrypt.hash(password, 10);
 
       const newUser = new User({
@@ -284,16 +243,5 @@ console.log(req.body)
     }
   });
 
-
-
-
-
-  
-  
-
-
-
-  
   return router;
-  
 };
