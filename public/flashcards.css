@@ -1,88 +1,141 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap');
+
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
+
 body {
-  margin: 0;
-  font-family: 'VT323', monospace;
-  background-color: #0a0a0f;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  background: #0a092d;
   color: #ffffff;
-  padding: 40px 20px;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
-h1 {
+/* Header */
+.header {
+  background: #0a092d;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.header-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
   text-align: center;
-  font-size: 2.2rem;
-  color: #ffffff;
-  text-shadow: 2px 2px #33b0de, -2px -2px #ff1f9c;
-  margin-bottom: 30px;
+  flex: 1;
 }
 
+.back-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(-2px);
+}
+
+.spacer {
+  width: 100px;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Toggle Container */
 .toggle-container {
   text-align: center;
-  margin-bottom: 30px;
+  margin: 30px 0;
 }
 
 .toggle-button {
   padding: 12px 30px;
-  font-size: 0.9rem;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 600;
   border: none;
-  border-radius: 30px;
+  border-radius: 12px;
   cursor: pointer;
-  background: linear-gradient(135deg, #33b0de, #ff1f9c);
+  background: #4f46e5;
   color: white;
-  transition: transform 0.2s, box-shadow 0.3s;
-  font-family: "VT323", monospace;
-  box-shadow: 0 0 12px rgba(255, 31, 156, 0.2);
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .toggle-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(255, 31, 156, 0.4);
+  background: #4338ca;
+  transform: translateY(-1px);
 }
 
-#list-mode .flashcard {
-  background: linear-gradient(145deg, #13131b, #1c1c29);
-  border-left: 4px solid #33b0de;
-  border-radius: 14px;
-  box-shadow: 0 0 12px rgba(51, 176, 222, 0.1), 0 0 6px rgba(255, 31, 156, 0.1);
+/* List Mode - Flashcard Items */
+.flashcard-item {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
   padding: 24px;
-  margin: 24px auto;
-  max-width: 800px;
-  transition: transform 0.3s ease;
+  margin-bottom: 20px;
+  transition: all 0.3s;
 }
 
-#list-mode .flashcard:hover {
-  transform: scale(1.02);
+.flashcard-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .question {
-  font-weight: bold;
-  color: #ff1f9c;
-  font-size: 1rem;
-  margin-bottom: 12px;
-  direction: rtl;
-  text-align: right;
-  font-family: 'Noto Nastaliq Urdu', serif;
-  text-shadow: 1px 1px 2px #1a1a1a;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .answer {
-  color: #eaeaea;
-  font-size: 0.9rem;
-  direction: rtl;
-  text-align: right;
-  font-family: 'Noto Nastaliq Urdu', serif;
-  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  line-height: 1.8;
 }
 
-#flashcard-mode .card-wrapper {
+/* Flashcard Mode */
+#flashcard-mode {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-wrapper {
   perspective: 1200px;
   margin: 40px auto;
-  height:90vh;
-width:90vw;
+  max-width: 800px;
+  height: 500px;
 }
 
 .card {
@@ -101,68 +154,66 @@ width:90vw;
 .face {
   position: absolute;
   width: 100%;
-  height:100%;
-  padding: 30px;
+  height: 100%;
+  padding: 40px;
   box-sizing: border-box;
   overflow-y: auto;
   backface-visibility: hidden;
-  background: #121218;
-  border-radius: 14px;
-  box-shadow: 0 0 15px rgba(51, 176, 222, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
-  color: #f0f0f5;
-  border-left: 5px solid #33b0de;
-  direction: rtl;
-  text-align: right;
-  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 20px;
+  color: #ffffff;
+  transition: all 0.3s;
 }
 
 .back {
   transform: rotateY(180deg);
 }
 
+/* Navigation Buttons */
 .nav-buttons {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .nav-buttons button {
   margin: 0 12px;
-  padding: 12px 25px;
-  background: linear-gradient(135deg, #33b0de, #ff1f9c);
+  padding: 12px 28px;
+  background: #4f46e5;
   color: white;
   border: none;
-  border-radius: 30px;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 1rem;
-  font-family: "VT323", monospace;
-  transition: transform 0.2s, box-shadow 0.3s;
-  box-shadow: 0 0 12px rgba(255, 31, 156, 0.2);
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav-buttons button:hover:not(:disabled) {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 31, 156, 0.4);
+  background: #4338ca;
+  transform: translateY(-1px);
 }
 
 .nav-buttons button:disabled {
-  background: #444;
+  background: rgba(255, 255, 255, 0.1);
   cursor: default;
   opacity: 0.5;
 }
 
 .progress {
-  margin-top: 10px;
-  font-size: 1rem;
+  margin-top: 20px;
+  font-size: 16px;
   text-align: center;
-  color: #aaa;
-  font-family: "VT323", monospace;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
 }
 
+/* Slide Animations */
 .slide-left {
   animation: slideLeft 0.4s ease forwards;
 }
@@ -181,144 +232,91 @@ width:90vw;
   to { transform: translateX(100%); opacity: 0; }
 }
 
-body.light-mode {
-  background-color: #f9f9f9;
-  color: #121212;
-}
-
-body.light-mode h1 {
-  color: #121212;
-  text-shadow: none;
-}
-
-body.light-mode .flashcard {
-  background: linear-gradient(145deg, #ffffff, #f0f0f0);
-  border-left: 4px solid #33b0de;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-body.light-mode .question {
-  color: #006ba6;
-  text-shadow: none;
-}
-
-body.light-mode .answer {
-  color: #333333;
-  text-shadow: none;
-}
-
-body.light-mode .face {
-  background: #ffffff;
-  color: #121212;
-  border-left: 5px solid #33b0de;
-  text-shadow: none;
-}
-
-body.light-mode .toggle-button,
-body.light-mode .nav-buttons button {
-  background: linear-gradient(135deg, #0a84ff, #00c4ff);
-  color: white;
-}
-
-body.focus-mode {
-  background-color: #1c1c2e;
-  color: #f4f4f4;
-}
-
-body.focus-mode h1 {
-  color: #f4f4f4;
-  text-shadow: none;
-}
-
-body.focus-mode .flashcard {
-  background: #2d3142;
-  border: none;
-  box-shadow: none;
-}
-
-body.focus-mode .question,
-body.focus-mode .answer {
-  color: #f4f4f4;
-  text-shadow: none;
-}
-
-body.focus-mode .face {
-  background: #2d3142;
-  color: #f4f4f4;
-  text-shadow: none;
-  border: none;
-  border-radius: 14px;
-  box-shadow: none;
-}
-
-body.focus-mode .toggle-button,
-body.focus-mode .nav-buttons button {
-  background: linear-gradient(135deg, #555c77, #2d3142);
-  color: #ffffff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-body.focus-mode .toggle-button:hover,
-body.focus-mode .nav-buttons button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #666c88, #3a3e55);
-  transform: scale(1.05);
-}
-
-body.expressive-mode {
-  background-color: #0a0a0f;
-  color: #ffffff;
-}
-
-body.expressive-mode h1 {
-  color: #ffffff;
-  text-shadow: 2px 2px #33b0de, -2px -2px #ff1f9c;
-}
-
-body.expressive-mode .flashcard {
-  background: linear-gradient(145deg, #13131b, #1c1c29);
-  border-left: 4px solid #33b0de;
-  box-shadow: 0 0 12px rgba(51, 176, 222, 0.1), 0 0 6px rgba(255, 31, 156, 0.1);
-}
-
-body.expressive-mode .question {
-  color: #33b0de;
-  text-shadow: 1px 1px 2px #ff1f9c;
-}
-
-body.expressive-mode .answer {
-  color: #eaeaea;
-  text-shadow: 1px 1px 2px #33b0de;
-}
-
-body.expressive-mode .face {
-  background: #1e1e24;
-  color: #f0f0f5;
-  border-left: 5px solid #ff1f9c;
-  text-shadow: 1px 1px 2px #33b0de;
-}
-
-body.expressive-mode .toggle-button,
-body.expressive-mode .nav-buttons button {
-  background: linear-gradient(135deg, #33b0de, #ff1f9c);
-  color: white;
-  box-shadow: 0 0 12px rgba(255, 31, 156, 0.2);
-}
-
-body.expressive-mode .toggle-button:hover,
-body.expressive-mode .nav-buttons button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(255, 31, 156, 0.4);
-}
-/* Urdu */
+/* Language Classes */
 .ur {
   direction: rtl;
   text-align: right;
   font-family: 'Noto Nastaliq Urdu', serif;
 }
 
-/* English */
 .en {
   direction: ltr;
   text-align: left;
-  font-family:inter, monospace;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+  }
+
+  .back-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .spacer {
+    width: 60px;
+  }
+
+  .card-wrapper {
+    height: 400px;
+  }
+
+  .face {
+    padding: 30px;
+    font-size: 18px;
+  }
+
+  .flashcard-item {
+    padding: 20px;
+  }
+
+  .question {
+    font-size: 16px;
+  }
+
+  .answer {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    gap: 10px;
+  }
+
+  .header h1 {
+    font-size: 16px;
+  }
+
+  .back-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  .card-wrapper {
+    height: 350px;
+  }
+
+  .face {
+    padding: 20px;
+    font-size: 16px;
+  }
+
+  .nav-buttons button {
+    padding: 10px 20px;
+    font-size: 14px;
+    margin: 0 6px;
+  }
+}
+```
