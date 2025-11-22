@@ -3,20 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Topics - Chapter <%= chapterId %></title>
   <link rel="stylesheet" href="/topics.css">
-<link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
 </head>
 <body>
-<h1>Chapter <%= chapterId %></h1>
-  
-  <% topics.forEach(t => { %>
-    <div class="topic">
-      <a href="/chapter/<%= chapterId %>/topic/<%= t._id %>">
-        <%= t._id %>: <%= t.topicName %>
-      </a>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="/chapters" class="back-btn">← Back</a>
+      <h1>Chapter <%= chapterId %></h1>
+      <div class="spacer"></div>
     </div>
-  <% }) %>
+  </header>
+
+  <!-- Topics Container -->
+  <div class="container">
+    <% topics.forEach(t => { %>
+      <a href="/chapter/<%= chapterId %>/topic/<%= t._id %>" class="topic-card">
+        <div class="topic-number">Topic <%= t._id %></div>
+        <div class="topic-name"><%= t.topicName %></div>
+      </a>
+    <% }) %>
+  </div>
+
 </body>
 </html>
