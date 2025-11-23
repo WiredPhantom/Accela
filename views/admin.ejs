@@ -94,12 +94,50 @@
         <li class="topic-item">
           <strong>Topic <%= tp._id.topicIndex %>: <%= tp.topicName %></strong>
           <div>
+            <button onclick="viewFlashcards(<%= tp._id.chapterIndex %>, <%= tp._id.topicIndex %>, '<%= tp.topicName %>')">📋 View Cards</button>
             <button onclick="openTopicEditModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName %>')">Edit</button>
             <button onclick="openDeleteTopicModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName %>')" class="danger">Delete</button>
           </div>
         </li>
     <% }) %>
     </ul>
+  </div>
+
+  <!-- View Flashcards Modal -->
+  <div class="modal" id="view-flashcards-modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <span class="close" onclick="closeModal('view-flashcards-modal')">&times;</span>
+      <h3 id="flashcards-modal-title">Flashcards</h3>
+      <div id="flashcards-list" style="max-height: 500px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
+  <!-- Edit Flashcard Modal -->
+  <div class="modal" id="edit-flashcard-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('edit-flashcard-modal')">&times;</span>
+      <h3>Edit Flashcard</h3>
+      <form id="edit-flashcard-form">
+        <input type="hidden" id="edit-flashcard-id">
+        <label>Question:</label>
+        <textarea id="edit-flashcard-question" required></textarea>
+        <label>Answer:</label>
+        <textarea id="edit-flashcard-answer" required></textarea>
+        <button type="submit">Update Flashcard</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Flashcard Modal -->
+  <div class="modal" id="delete-flashcard-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('delete-flashcard-modal')">&times;</span>
+      <h3>Are you sure you want to delete this flashcard?</h3>
+      <p id="delete-flashcard-preview" style="color: #888; margin: 16px 0;"></p>
+      <input type="hidden" id="delete-flashcard-id">
+      <button onclick="confirmDeleteFlashcard()" class="danger">Yes, Delete</button>
+      <button onclick="closeModal('delete-flashcard-modal')" style="margin-left: 8px;">Cancel</button>
+    </div>
   </div>
 
   <!-- Edit Topic Modal -->
