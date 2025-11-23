@@ -152,13 +152,132 @@ function openDeleteUserModal(userId, username) {
   openModal("delete-user-modal");
 }
 
+// NEW: View flashcards for a topic
+async function viewFlashcards(chapterIndex, topicIndex, topicName) {
+  try {
+    const response = await fetch(`/admin/flashcards/${chapterIndex}/${topicIndex}`);
+    const flashcards = await response.json();
+    
+    const modalTitle = document.getElementById('flashcards-modal-title');
+    modalTitle.textContent = `Flashcards - Topic ${topicIndex}: ${topicName}`;
+    
+    const listContainer = document.getElementById('flashcards-list');
+    
+    if (flashcards.length === 0) {
+      listContainer.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">No flashcards found for this topic.</p>';
+    } else {
+      listContainer.innerHTML = flashcards.map((card, index) => `
+        <div style="
+          background: rgba(40, 40, 60, 0.5);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          border-radius: 10px;
+          padding: 16px;
+          margin-bottom: 12px;
+        ">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+            <strong style="color: #a8b3ff;">Card ${card.flashcardIndex}</strong>
+            <div>
+              <button onclick="openEditFlashcardModal('${card._id}', \`${card.question.replace(/`/g, '\\`')}\`, \`${card.answer.replace(/`/g, '\\`')}\`)" 
+                style="padding: 6px 12px; font-size: 13px; margin-right: 8px;">
+                ✏️ Edit
+              </button>
+              <button onclick="openDeleteFlashcardModal('${card._id}', \`${card.question.replace(/`/g, '\\`')}\`)" 
+                class="danger" style="padding: 6px 12px; font-size: 13px;">
+                🗑️ Delete
+              </button>
+            </div>
+          </div>
+          <div style="margin-bottom: 8px;">
+            <strong style="color: #b8bec8;">Q:</strong> 
+            <span style="color: #e8eaed;">${card.question}</span>
+          </div>
+          <div>
+            <strong style="color: #b8bec8;">A:</strong> 
+            <span style="color: #e8eaed;">${card.answer}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    openModal('view-flashcards-modal');
+  } catch (error) {
+    console.error('Error fetching flashcards:', error);
+    alert('Failed to load flashcards');
+  }
+}
 
+// NEW: Open edit flashcard modal
+function openEditFlashcardModal(flashcardId, question, answer) {
+  document.getElementById('edit-flashcard-id').value = flashcardId;
+  document.getElementById('edit-flashcard-question').value = question;
+  document.getElementById('edit-flashcard-answer').value = answer;
+  openModal('edit-flashcard-modal');
+}
 
+// NEW: Handle edit flashcard form submission
+document.getElementById('edit-flashcard-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const flashcardId = document.getElementById('edit-flashcard-id').value;
+  const question = document.getElementById('edit-flashcard-question').value;
+  const answer = document.getElementById('edit-flashcard-answer').value;
+  
+  try {
+    const response = await fetch('/admin/edit-flashcard', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ flashcardId, question, answer })
+    });
+    
+    if (response.ok) {
+      closeModal('edit-flashcard-modal');
+      // Reload the flashcards view if it's open
+      const modalTitle = document.getElementById('flashcards-modal-title').textContent;
+      if (modalTitle.includes('Topic')) {
+        // Extract topic info from modal and refresh
+        alert('Flashcard updated successfully! Close and reopen the topic to see changes.');
+      } else {
+        alert('Flashcard updated successfully!');
+      }
+    } else {
+      alert('Failed to update flashcard');
+    }
+  } catch (error) {
+    console.error('Error updating flashcard:', error);
+    alert('Failed to update flashcard');
+  }
+});
 
+// NEW: Open delete flashcard modal
+function openDeleteFlashcardModal(flashcardId, question) {
+  document.getElementById('delete-flashcard-id').value = flashcardId;
+  document.getElementById('delete-flashcard-preview').textContent = `Question: ${question}`;
+  openModal('delete-flashcard-modal');
+}
 
-
-
-
-                              
-
-      
+// NEW: Confirm delete flashcard
+async function confirmDeleteFlashcard() {
+  const flashcardId = document.getElementById('delete-flashcard-id').value;
+  
+  try {
+    const response = await fetch('/admin/delete-flashcard', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ flashcardId })
+    });
+    
+    if (response.ok) {
+      closeModal('delete-flashcard-modal');
+      alert('Flashcard deleted successfully! Close and reopen the topic to see changes.');
+    } else {
+      alert('Failed to delete flashcard');
+    }
+  } catch (error) {
+    console.error('Error deleting flashcard:', error);
+    alert('Failed to delete flashcard');
+  }
+}
