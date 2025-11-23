@@ -8,46 +8,362 @@
 </head>
   
 <body>
+  <div class="admin-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>📚 Admin Panel</h2>
+      </div>
+      <nav>
+        <a class="nav-item active" onclick="showSection('dashboard')" data-section="dashboard">
+          <span class="icon">📊</span>
+          Dashboard
+        </a>
+        <a class="nav-item" onclick="showSection('chapters')" data-section="chapters">
+          <span class="icon">📚</span>
+          Chapters
+        </a>
+        <a class="nav-item" onclick="showSection('topics')" data-section="topics">
+          <span class="icon">📝</span>
+          Topics
+        </a>
+        <a class="nav-item" onclick="showSection('flashcards')" data-section="flashcards">
+          <span class="icon">🎴</span>
+          All Flashcards
+        </a>
+        <a class="nav-item" onclick="showSection('add-content')" data-section="add-content">
+          <span class="icon">➕</span>
+          Add Content
+        </a>
+        <a class="nav-item" onclick="showSection('bulk-upload')" data-section="bulk-upload">
+          <span class="icon">📦</span>
+          Bulk Upload
+        </a>
+        <a class="nav-item" onclick="showSection('users')" data-section="users">
+          <span class="icon">👥</span>
+          Users
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="/" class="home-btn" style="width: 100%; text-align: center; display: block; margin-bottom: 12px;">← Back to Home</a>
+        <form action="/logout" method="GET">
+          <button type="submit" class="danger" style="width: 100%;">Logout</button>
+        </form>
+      </div>
+    </aside>
 
-  <div class="top-bar">
-    <h1 style="font-size: 24px; font-weight: 700; color: #fff;">Admin Panel</h1>
-    <div class="actions">
-      <a href="/" class="home-btn">← Back to Home</a>
-      <form action="/logout" method="GET" style="display: inline; margin: 0;">
-        <button type="submit" class="danger">Logout</button>
-      </form>
-    </div>
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Search Bar -->
+      <div class="search-section">
+        <div class="search-bar">
+          <input type="text" class="search-input" id="globalSearch" placeholder="🔍 Search chapters, topics, or flashcards..." oninput="performSearch()">
+          <button onclick="clearSearch()">Clear</button>
+        </div>
+      </div>
+
+      <!-- Dashboard Section -->
+      <div class="section active" id="dashboard-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h1 class="title">Dashboard</h1>
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="icon">📚</div>
+              <div class="number" id="stat-chapters"><%= chapters.length %></div>
+              <div class="label">Total Chapters</div>
+            </div>
+            <div class="stat-card">
+              <div class="icon">📝</div>
+              <div class="number" id="stat-topics"><%= topics.length %></div>
+              <div class="label">Total Topics</div>
+            </div>
+            <div class="stat-card">
+              <div class="icon">🎴</div>
+              <div class="number" id="stat-flashcards"><span class="loading"></span></div>
+              <div class="label">Total Flashcards</div>
+            </div>
+            <div class="stat-card">
+              <div class="icon">👥</div>
+              <div class="number" id="stat-users"><%= users.length %></div>
+              <div class="label">Total Users</div>
+            </div>
+          </div>
+
+          <div class="container">
+            <h2>Quick Actions</h2>
+            <div class="quick-actions">
+              <button onclick="showSection('add-content')">➕ Add Flashcard</button>
+              <button onclick="showSection('bulk-upload')">📦 Bulk Upload</button>
+              <button onclick="exportAllData()">📤 Export All Data</button>
+              <button onclick="showSection('users')">👥 Manage Users</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapters Section -->
+      <div class="section" id="chapters-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h1 class="title">Chapters Management</h1>
+          <div class="container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Name</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% chapters.forEach(ch => { %>
+                  <tr>
+                    <td>Chapter <%= ch._id %></td>
+                    <td><%= ch.chapterName %></td>
+                    <td>
+                      <button onclick="openEditChapterModal(<%= ch._id %>, '<%= ch.chapterName.replace(/'/g, "\\'") %>')">✏️ Edit</button>
+                      <button onclick="openDeleteChapterModal(<%= ch._id %>)" class="danger">🗑️ Delete</button>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topics Section -->
+      <div class="section" id="topics-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h1 class="title">Topics by Chapter</h1>
+          <% 
+            let currentChapter = null;
+            topics.forEach((tp, index) => {
+              if (currentChapter !== tp._id.chapterIndex) {
+                if (currentChapter !== null) { 
+          %>
+                  </ul>
+                </div>
+              </div>
+            <% } %>
+            
+            <div class="container">
+              <div class="collapsible-header" onclick="toggleCollapse(this)">
+                <h2>Chapter <%= tp._id.chapterIndex %>: <%= tp.chapterName %></h2>
+                <span class="collapse-icon">▼</span>
+              </div>
+              <div class="collapsible-content">
+                <ul class="topic-list">
+          <%
+                currentChapter = tp._id.chapterIndex;
+              } 
+          %>
+                  <li class="topic-item">
+                    <div>
+                      <strong>Topic <%= tp._id.topicIndex %>: <%= tp.topicName %></strong>
+                      <span class="card-count" id="count-<%= tp._id.chapterIndex %>-<%= tp._id.topicIndex %>">...</span>
+                    </div>
+                    <div>
+                      <button onclick="viewFlashcards(<%= tp._id.chapterIndex %>, <%= tp._id.topicIndex %>, '<%= tp.topicName.replace(/'/g, "\\'") %>')">📋 View Cards</button>
+                      <button onclick="openTopicEditModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName.replace(/'/g, "\\'") %>')">✏️ Edit</button>
+                      <button onclick="openDeleteTopicModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName.replace(/'/g, "\\'") %>')" class="danger">🗑️ Delete</button>
+                    </div>
+                  </li>
+          <% 
+              if (index === topics.length - 1) { 
+          %>
+                </ul>
+              </div>
+            </div>
+          <% 
+              } 
+            }) 
+          %>
+        </div>
+      </div>
+
+      <!-- All Flashcards Section -->
+      <div class="section" id="flashcards-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h1 class="title">All Flashcards</h1>
+          <div class="container">
+            <div style="margin-bottom: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+              <select id="filterChapter" onchange="filterFlashcards()">
+                <option value="">All Chapters</option>
+                <% chapters.forEach(ch => { %>
+                  <option value="<%= ch._id %>">Chapter <%= ch._id %>: <%= ch.chapterName %></option>
+                <% }) %>
+              </select>
+              <select id="filterTopic" onchange="filterFlashcards()" disabled>
+                <option value="">All Topics</option>
+              </select>
+              <button onclick="loadAllFlashcards()">🔄 Refresh</button>
+            </div>
+            <div id="all-flashcards-list">
+              <p style="color: #888; text-align: center; padding: 40px;">
+                <span class="loading"></span> Loading flashcards...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Content Section -->
+      <div class="section" id="add-content-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h1 class="title">➕ Add Flashcard</h1>
+          <div class="container">
+            <form action="/admin/add-flashcard" method="POST" id="add-flashcard-form">
+              <label>Select Chapter:</label>
+              <select id="chapterIndex" name="chapterIndex" onchange="fillChapterName()">
+                <option value="">-- Select Chapter --</option>
+                <% chapters.forEach(ch => { %>
+                  <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
+                <% }) %>
+              </select>
+              <input type="text" id="chapterName" name="chapterName" placeholder="Auto-filled chapter name" readonly>
+
+              <label>Or Create New Chapter:</label>
+              <input type="text" name="newChapterName" id="newChapterName" placeholder="Enter new chapter name">
+              <input type="hidden" name="newChapterIndex" id="newChapterIndex">
+
+              <label>Select Topic:</label>
+              <select id="topicIndex" name="topicIndex" onchange="fillTopicName()">
+                <option value="">-- Select Topic --</option>
+                <% topics.forEach(tp => { %>
+                  <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
+                    Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
+                  </option>
+                <% }) %>
+              </select>
+              <input type="text" id="topicName" name="topicName" placeholder="Auto-filled topic name" readonly>
+
+              <label>Or Create New Topic:</label>
+              <input type="text" name="newTopicName" id="newTopicName" placeholder="Enter new topic name">
+              <input type="hidden" name="newTopicIndex" id="newTopicIndex">
+
+              <label>Question: <span style="color: #ff6b6b;">*</span></label>
+              <textarea name="question" required placeholder="Enter the question here"></textarea>
+              
+              <label>Answer: <span style="color: #ff6b6b;">*</span></label>
+              <textarea name="answer" required placeholder="Enter the answer here"></textarea>
+
+              <button type="submit" id="submit-flashcard-btn">Add Flashcard</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bulk Upload Section -->
+      <div class="section" id="bulk-upload-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h1 class="title">📦 Bulk Upload Flashcards</h1>
+          <div class="container">
+            <form action="/admin/bulk-upload" method="POST" id="bulk-upload-form">
+              <label>Select Chapter:</label>
+              <select id="bulkChapterIndex" name="chapterIndex" onchange="fillBulkChapterName()">
+                <option value="">-- Select Chapter --</option>
+                <% chapters.forEach(ch => { %>
+                  <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
+                <% }) %>
+              </select>
+              <input type="text" name="chapterName" id="bulkChapterName" readonly placeholder="Auto-filled chapter name">
+
+              <label>Or Create New Chapter:</label>
+              <input type="text" name="newChapterName" id="bulknewChapterName" placeholder="Enter new chapter name">
+              <input type="hidden" name="newChapterIndex" id="bulknewChapterIndex">
+
+              <label>Select Topic:</label>
+              <select id="bulkTopicIndex" name="topicIndex" onchange="fillBulkTopicName()">
+                <option value="">-- Select Topic --</option>
+                <% topics.forEach(tp => { %>
+                  <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
+                    Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
+                  </option>
+                <% }) %>
+              </select>
+              <input type="text" name="topicName" id="bulkTopicName" readonly placeholder="Auto-filled topic name">
+
+              <label>Or Create New Topic:</label>
+              <input type="text" name="newTopicName" id="bulknewTopicName" placeholder="Enter new topic name">
+              <input type="hidden" name="newTopicIndex" id="bulknewTopicIndex">
+
+              <label>Paste JSON Data: <span style="color: #ff6b6b;">*</span></label>
+              <textarea name="jsonData" required placeholder='[{"question": "Q1", "answer": "A1"}, {"question": "Q2", "answer": "A2"}]' style="min-height: 250px;"></textarea>
+              <small style="display: block; margin-top: -10px; margin-bottom: 16px;">
+                Format: Array of objects with "question" and "answer" keys. Example shown above.
+              </small>
+
+              <button type="submit">Upload Flashcards</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users Section -->
+      <div class="section" id="users-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h1 class="title">👥 User Management</h1>
+          
+          <div class="container">
+            <h2>Current Users</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Username</th>
+                  <th>Role</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% users.forEach(user => { %>
+                  <tr>
+                    <td><%= user.userId %></td>
+                    <td><%= user.username %></td>
+                    <td><span style="text-transform: capitalize;"><%= user.role %></span></td>
+                    <td>
+                      <button onclick="openDeleteUserModal('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>')" class="danger">🗑️ Delete</button>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="container">
+            <h2>➕ Add New User</h2>
+            <form action="/admin/add-user" method="POST">
+              <label>User ID: <span style="color: #ff6b6b;">*</span></label>
+              <input type="text" name="userId" required placeholder="Enter unique user ID">
+
+              <label>Username: <span style="color: #ff6b6b;">*</span></label>
+              <input type="text" name="username" required placeholder="Enter username">
+
+              <label>Password: <span style="color: #ff6b6b;">*</span></label>
+              <input type="password" name="password" required placeholder="Enter password">
+
+              <label>Role: <span style="color: #ff6b6b;">*</span></label>
+              <select name="role" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+
+              <button type="submit">Add User</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 
-  <div class="container">
-    <h1 class="title">Chapters</h1>
+  <!-- Mobile Menu Button -->
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
 
-    <table class="chapter-table">
-      <thead>
-        <tr>
-          <th>Index</th>
-          <th>Name</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% chapters.forEach(ch => { %>
-          <tr>
-            <td>Chapter <%= ch._id %></td>
-            <td><%= ch.chapterName %></td>
-            <td>
-              <button onclick="openEditChapterModal(<%= ch._id %>, '<%= ch.chapterName %>')">Edit</button>
-            </td>
-            <td>
-              <button onclick="openDeleteChapterModal(<%= ch._id %>)" class="danger">Delete</button>
-            </td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
 
+  <!-- Modals -->
   <!-- Edit Chapter Modal -->
   <div class="modal" id="edit-chapter-modal">
     <div class="modal-content">
@@ -55,8 +371,9 @@
       <h3>Edit Chapter Name</h3>
       <form action="/admin/edit-chapter" method="POST">
         <input type="hidden" name="oldChapterIndex" id="edit-old-chapter-index">
+        <label>New Chapter Name:</label>
         <input type="text" name="newChapterName" id="edit-new-chapter-name" placeholder="New chapter name" required>
-        <button type="submit">Update</button>
+        <button type="submit">Update Chapter</button>
       </form>
     </div>
   </div>
@@ -65,42 +382,50 @@
   <div class="modal" id="delete-chapter-modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('delete-chapter-modal')">&times;</span>
-      <h3>Are you sure you want to delete Chapter <span id="delete-chapter-number"></span>?</h3>
+      <h3>⚠️ Delete Chapter</h3>
+      <p style="color: #ff9999; margin-bottom: 20px;">
+        Are you sure you want to delete Chapter <span id="delete-chapter-number"></span>? 
+        This will delete ALL topics and flashcards in this chapter!
+      </p>
       <form action="/admin/delete-chapter" method="POST">
         <input type="hidden" name="chapterIndex" id="delete-chapter-index">
-        <button type="submit" class="danger">Yes, Delete</button>
+        <button type="submit" class="danger">Yes, Delete Chapter</button>
+        <button type="button" onclick="closeModal('delete-chapter-modal')" style="margin-left: 8px;">Cancel</button>
       </form>
     </div>
   </div>
 
-  <div class="container">
-    <h1 class="title">Topics by Chapter</h1>
+  <!-- Edit Topic Modal -->
+  <div class="modal" id="edit-topic-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('edit-topic-modal')">&times;</span>
+      <h3>Edit Topic Name</h3>
+      <form action="/admin/edit-topic" method="POST">
+        <input type="hidden" id="edit-topic-chapter" name="chapterIndex">
+        <input type="hidden" id="edit-topic-index" name="topicIndex">
+        <label>New Topic Name:</label>
+        <input type="text" id="edit-topic-name" name="newTopicName" placeholder="New topic name" required>
+        <button type="submit">Update Topic</button>
+      </form>
+    </div>
+  </div>
 
-    <% 
-      let currentChapter = null;
-      topics.forEach(tp => {
-        if (currentChapter !== tp._id.chapterIndex) {
-          if (currentChapter !== null) { 
-    %>
-          </ul>
-        <% } %>
-
-        <h2>Chapter <%= tp._id.chapterIndex %>: <%= tp.chapterName %></h2>
-        <ul class="topic-list">
-    <%
-          currentChapter = tp._id.chapterIndex;
-        } 
-    %>
-        <li class="topic-item">
-          <strong>Topic <%= tp._id.topicIndex %>: <%= tp.topicName %></strong>
-          <div>
-            <button onclick="viewFlashcards(<%= tp._id.chapterIndex %>, <%= tp._id.topicIndex %>, '<%= tp.topicName %>')">📋 View Cards</button>
-            <button onclick="openTopicEditModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName %>')">Edit</button>
-            <button onclick="openDeleteTopicModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName %>')" class="danger">Delete</button>
-          </div>
-        </li>
-    <% }) %>
-    </ul>
+  <!-- Delete Topic Modal -->
+  <div class="modal" id="delete-topic-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('delete-topic-modal')">&times;</span>
+      <h3>⚠️ Delete Topic</h3>
+      <p style="color: #ff9999; margin-bottom: 20px;">
+        Are you sure you want to delete topic "<span id="delete-topic-name"></span>"? 
+        This will delete ALL flashcards in this topic!
+      </p>
+      <form action="/admin/delete-topic" method="POST">
+        <input type="hidden" name="chapterIndex" id="delete-topic-chapter">
+        <input type="hidden" name="topicIndex" id="delete-topic-index">
+        <button type="submit" class="danger">Yes, Delete Topic</button>
+        <button type="button" onclick="closeModal('delete-topic-modal')" style="margin-left: 8px;">Cancel</button>
+      </form>
+    </div>
   </div>
 
   <!-- View Flashcards Modal -->
@@ -132,192 +457,5 @@
   <div class="modal" id="delete-flashcard-modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('delete-flashcard-modal')">&times;</span>
-      <h3>Are you sure you want to delete this flashcard?</h3>
-      <p id="delete-flashcard-preview" style="color: #888; margin: 16px 0;"></p>
-      <input type="hidden" id="delete-flashcard-id">
-      <button onclick="confirmDeleteFlashcard()" class="danger">Yes, Delete</button>
-      <button onclick="closeModal('delete-flashcard-modal')" style="margin-left: 8px;">Cancel</button>
-    </div>
-  </div>
-
-  <!-- Edit Topic Modal -->
-  <div class="modal" id="edit-topic-modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('edit-topic-modal')">&times;</span>
-      <h3>Edit Topic Name</h3>
-      <form action="/admin/edit-topic" method="POST">
-        <input type="hidden" id="edit-topic-chapter" name="chapterIndex">
-        <input type="hidden" id="edit-topic-index" name="topicIndex">
-        <input type="text" id="edit-topic-name" name="newTopicName" placeholder="New topic name" required>
-        <button type="submit">Update</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Delete Topic Modal -->
-  <div class="modal" id="delete-topic-modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('delete-topic-modal')">&times;</span>
-      <h3>Are you sure you want to delete topic <span id="delete-topic-name"></span>?</h3>
-      <form action="/admin/delete-topic" method="POST">
-        <input type="hidden" name="chapterIndex" id="delete-topic-chapter">
-        <input type="hidden" name="topicIndex" id="delete-topic-index">
-        <button type="submit" class="danger">Yes, Delete</button>
-      </form>
-    </div>
-  </div>     
-
-  <div class="container">
-    <h2 class="title">➕ Add Flashcard</h2>
-  
-    <form action="/admin/add-flashcard" method="POST">
-
-      <label>Select Chapter:</label>
-      <select id="chapterIndex" name="chapterIndex" onchange="fillChapterName()">
-        <option value="">-- Select --</option>
-        <% chapters.forEach(ch => { %>
-          <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
-        <% }) %>
-      </select>
-      <input type="text" id="chapterName" name="chapterName" placeholder="Auto-filled chapter name" readonly>
-
-      <label>Or New Chapter:</label>
-      <input type="text" name="newChapterName" id="newChapterName" placeholder="Enter new chapter name">
-      <input type="hidden" name="newChapterIndex" id="newChapterIndex">
-
-      <label>Select Topic:</label>
-      <select id="topicIndex" name="topicIndex" onchange="fillTopicName()">
-        <option value="">-- Select --</option>
-        <% topics.forEach(tp => { %>
-          <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
-            Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
-          </option>
-        <% }) %>
-      </select>
-      <input type="text" id="topicName" name="topicName" placeholder="Auto-filled topic name" readonly>
-
-      <label>Or New Topic:</label>
-      <input type="text" name="newTopicName" id="newTopicName" placeholder="Enter new topic name">
-      <input type="hidden" name="newTopicIndex" id="newTopicIndex">
-
-      <label>Question:</label>
-      <textarea name="question" required placeholder="Enter question here"></textarea>
-      
-      <label>Answer:</label>
-      <textarea name="answer" required placeholder="Enter answer here"></textarea>
-
-      <button type="submit">Add Flashcard</button>
-    </form>
-  </div>
-
-  <div class="container">
-    <h2>📦 Bulk Upload Flashcards</h2>
-    <form action="/admin/bulk-upload" method="POST">
-      
-      <label>Select Chapter:</label>
-      <select id="bulkChapterIndex" name="chapterIndex" onchange="fillBulkChapterName()">
-        <option value="">-- Select Chapter --</option>
-        <% chapters.forEach(ch => { %>
-          <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
-        <% }) %>
-      </select>
-      <input type="text" name="chapterName" id="bulkChapterName" readonly required>
-
-      <label>Or Create New Chapter:</label>
-      <input type="text" name="newChapterName" id="bulknewChapterName" placeholder="Enter new chapter name">
-      <input type="hidden" name="newChapterIndex" id="bulknewChapterIndex">
-
-      <label>Select Topic:</label>
-      <select id="bulkTopicIndex" name="topicIndex" onchange="fillBulkTopicName()">
-        <option value="">-- Select Topic --</option>
-        <% topics.forEach(tp => { %>
-          <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
-            Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
-          </option>
-        <% }) %>
-      </select>
-      <input type="text" name="topicName" id="bulkTopicName" readonly required>
-
-      <label>Or Create New Topic:</label>
-      <input type="text" name="newTopicName" id="bulknewTopicName" placeholder="Enter new topic name">
-      <input type="hidden" name="newTopicIndex" id="bulknewTopicIndex">
-
-      <label>Paste JSON Data:</label>
-      <textarea name="jsonData" required placeholder='[{"question": "Q1", "answer": "A1"}, {"question": "Q2", "answer": "A2"}]' style="min-height: 200px;"></textarea>
-      <small style="color: #888; display: block; margin-top: -10px; margin-bottom: 16px;">
-        Format: Array of objects with "question" and "answer" keys
-      </small>
-
-      <button type="submit">Upload Flashcards</button>
-    </form>
-  </div>
-
-  <div class="container">
-    <h2>👥 Users</h2>
-    <table class="chapter-table">
-      <thead>
-        <tr>
-          <th>User ID</th>
-          <th>Username</th>
-          <th>Role</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% users.forEach(user => { %>
-          <tr>
-            <td><%= user.userId %></td>
-            <td><%= user.username %></td>
-            <td><%= user.role %></td>
-            <td>
-              <button onclick="openDeleteUserModal('<%= user.userId %>', '<%= user.username %>')" class="danger">Delete</button>
-            </td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Delete User Modal -->
-  <div class="modal" id="delete-user-modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('delete-user-modal')">&times;</span>
-      <h3>Are you sure you want to delete user <span id="delete-user-name"></span>?</h3>
-      <form action="/admin/delete-user" method="POST">
-        <input type="hidden" name="userId" id="delete-user-id">
-        <button type="submit" class="danger">Yes, Delete</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="container">
-    <h2>➕ Add New User</h2>
-    <form action="/admin/add-user" method="POST">
-      <label>User ID:</label>
-      <input type="text" name="userId" required placeholder="Enter user ID">
-
-      <label>Username:</label>
-      <input type="text" name="username" required placeholder="Enter username">
-
-      <label>Password:</label>
-      <input type="password" name="password" required placeholder="Enter password">
-
-      <label>Role:</label>
-      <select name="role" required>
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-      </select>
-
-      <button type="submit">Add User</button>
-    </form>
-  </div>
-
-  <script>
-    window.chapters = <%- JSON.stringify(chapters) %>;
-    window.topics = <%- JSON.stringify(topics) %>;
-  </script>
-
-  <script src="/clientadmin.js"></script>
-
-</body>
-</html>
+      <h3>⚠️ Delete Flashcard</h3>
+      <p style="color: #ff9999; margin-bottom: 16px;">Are you sure you want to delete
