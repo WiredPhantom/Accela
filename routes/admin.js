@@ -46,6 +46,21 @@ module.exports = (User, Flashcard) => {
     res.json(flashcards);
   });
 
+  // NEW: Get flashcards for a specific topic
+  router.get('/flashcards/:chapterIndex/:topicIndex', async (req, res) => {
+    try {
+      const { chapterIndex, topicIndex } = req.params;
+      const flashcards = await Flashcard.find({
+        chapterIndex: parseInt(chapterIndex),
+        topicIndex: parseInt(topicIndex)
+      }).sort({ flashcardIndex: 1 });
+      res.json(flashcards);
+    } catch (err) {
+      console.error("❌ Error fetching flashcards:", err);
+      res.status(500).json({ error: "Failed to fetch flashcards" });
+    }
+  });
+
   router.post("/edit-chapter", async (req, res) => {
     const { oldChapterIndex, newChapterName } = req.body;
     console.log(req.body)
@@ -95,6 +110,33 @@ module.exports = (User, Flashcard) => {
       res.redirect("/admin");
     } catch (err) {
       res.status(500).send("Failed to delete topic");
+    }
+  });
+
+  // NEW: Edit individual flashcard
+  router.post("/edit-flashcard", async (req, res) => {
+    const { flashcardId, question, answer } = req.body;
+    try {
+      await Flashcard.findByIdAndUpdate(flashcardId, {
+        question,
+        answer
+      });
+      res.json({ success: true });
+    } catch (err) {
+      console.error("❌ Error editing flashcard:", err);
+      res.status(500).json({ error: "Failed to edit flashcard" });
+    }
+  });
+
+  // NEW: Delete individual flashcard
+  router.post("/delete-flashcard", async (req, res) => {
+    const { flashcardId } = req.body;
+    try {
+      await Flashcard.findByIdAndDelete(flashcardId);
+      res.json({ success: true });
+    } catch (err) {
+      console.error("❌ Error deleting flashcard:", err);
+      res.status(500).json({ error: "Failed to delete flashcard" });
     }
   });
 
@@ -152,7 +194,6 @@ module.exports = (User, Flashcard) => {
     }
   });
 
-  // UPDATED: Changed from file upload to textarea
   router.post("/bulk-upload", async (req, res) => {
     let {
       chapterIndex,
@@ -163,7 +204,7 @@ module.exports = (User, Flashcard) => {
       topicName,
       newTopicIndex,
       newTopicName,
-      jsonData  // Changed from file to jsonData
+      jsonData
     } = req.body;
     console.log(req.body)
     try {
@@ -184,7 +225,6 @@ module.exports = (User, Flashcard) => {
       if (!chapterName || !topicName) throw new Error("Chapter or topic name missing.");
       if (!jsonData || !jsonData.trim()) throw new Error("JSON data is required.");
 
-      // Parse the JSON from textarea
       const flashcardsData = JSON.parse(jsonData);
 
       if (!Array.isArray(flashcardsData)) {
