@@ -458,4 +458,71 @@
     <div class="modal-content">
       <span class="close" onclick="closeModal('delete-flashcard-modal')">&times;</span>
       <h3>⚠️ Delete Flashcard</h3>
-      <p style="color: #ff9999; margin-bottom: 16px;">Are you sure you want to delete
+      <p style="color: #ff9999; margin-bottom: 16px;">Are you sure you want to delete this flashcard?</p>
+
+<p id="delete-flashcard-preview" style="color: #888;
+
+margin-bottom: 20px; font-style: italic;"></p>
+
+<input type="hidden" id="delete-flashcard-id">
+
+<button onclick="confirmDeleteFlashcard()"
+
+class="danger">Yes, Delete</button>
+
+<button onclick="closeModal('delete-flashcard-modal')"
+
+style="margin-left: 8px;">Cancel</button>
+
+</div>
+
+</div>
+
+<!-- Delete User Modal -->
+
+<div class="modal" id="delete-user-modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeModal('delete-user-
+
+modal')">&times;</span>
+
+<h3> Delete User</h3>
+
+<p style="color: #ff9999; margin-bottom: 20px;">
+
+Are you sure you want to delete user "<span
+
+id="delete-user-name"></span>"?
+
+<form action="/admin/delete-user" method="POST">
+
+id"> <input type="hidden" name="userId" id="delete-user-
+
+</p>
+
+<button type="submit" class="danger">Yes, Delete
+
+User</button>
+<button type="button" onclick="closeModal('delete-user-modal')" style="margin-left: 8px; ">Cancel</button>
+
+</form>
+
+</div>
+
+</div>
+
+<script>
+
+window.chapters <%- JSON.stringify(chapters) %>;
+
+window.topics <%- JSON.stringify(topics) %>;
+
+</script>
+
+<script src="/clientadmin.js"></script>
+
+</body>
+
+</html>
