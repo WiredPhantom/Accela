@@ -512,6 +512,170 @@ User</button>
 </div>
 
 </div>
+<!-- Add this section to your admin.ejs after the Users section -->
+
+<!-- Premium Management Section -->
+<div class="section" id="premium-section">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h1 class="title">⭐ Premium Management</h1>
+    
+    <!-- Manage Chapter Premium Status -->
+    <div class="container">
+      <h2>Chapter Premium Status</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Chapter</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% chapters.forEach(ch => { %>
+            <tr>
+              <td>Chapter <%= ch._id %></td>
+              <td><%= ch.chapterName %></td>
+              <td>
+                <% if (ch.isPremium) { %>
+                  <span style="color: #ffd700; font-weight: 600;">🔒 Premium</span>
+                <% } else { %>
+                  <span style="color: #00ff88;">🔓 Free</span>
+                <% } %>
+              </td>
+              <td>
+                <button onclick="toggleChapterPremium(<%= ch._id %>, <%= !ch.isPremium %>)" 
+                        style="<%= ch.isPremium ? 'background: rgba(0,255,136,0.2); border-color: rgba(0,255,136,0.3);' : 'background: rgba(255,215,0,0.2); border-color: rgba(255,215,0,0.3);' %>">
+                  <%= ch.isPremium ? '🔓 Make Free' : '🔒 Make Premium' %>
+                </button>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Manage User Subscriptions -->
+    <div class="container">
+      <h2>User Subscriptions</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Subscription</th>
+            <th>Expiry</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(user => { %>
+            <tr>
+              <td><%= user.userId %></td>
+              <td><%= user.username %></td>
+              <td style="text-transform: capitalize;"><%= user.role %></td>
+              <td>
+                <% if (user.subscriptionStatus === 'premium') { %>
+                  <span style="color: #ffd700; font-weight: 600;">⭐ Premium</span>
+                <% } else { %>
+                  <span style="color: #888;">Free</span>
+                <% } %>
+              </td>
+              <td>
+                <% if (user.subscriptionExpiry) { %>
+                  <%= new Date(user.subscriptionExpiry).toLocaleDateString() %>
+                <% } else if (user.subscriptionStatus === 'premium') { %>
+                  <span style="color: #00ff88;">Lifetime</span>
+                <% } else { %>
+                  -
+                <% } %>
+              </td>
+              <td>
+                <button onclick="openSubscriptionModal('<%= user.userId %>', '<%= user.username %>', '<%= user.subscriptionStatus %>')">
+                  ✏️ Manage
+                </button>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Subscription Management Modal -->
+<div class="modal" id="subscription-modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('subscription-modal')">&times;</span>
+    <h3>Manage User Subscription</h3>
+    <p style="color: #888; margin-bottom: 20px;">
+      User: <strong id="sub-username"></strong>
+    </p>
+    
+    <form action="/admin/update-subscription" method="POST">
+      <input type="hidden" name="userId" id="sub-userId">
+      
+      <label>Subscription Status: <span style="color: #ff6b6b;">*</span></label>
+      <select name="subscriptionStatus" id="sub-status" required>
+        <option value="free">Free</option>
+        <option value="premium">Premium</option>
+      </select>
+      
+      <label>Expiry Date (Optional - leave empty for lifetime):</label>
+      <input type="date" name="subscriptionExpiry" id="sub-expiry" placeholder="YYYY-MM-DD">
+      <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
+        Leave empty for lifetime premium access
+      </small>
+      
+      <button type="submit">Update Subscription</button>
+    </form>
+  </div>
+</div>
+
+<!-- Add to your existing JavaScript section -->
+<script>
+function toggleChapterPremium(chapterIndex, isPremium) {
+  if (!confirm(`Are you sure you want to make Chapter ${chapterIndex} ${isPremium ? 'PREMIUM' : 'FREE'}?`)) {
+    return;
+  }
+  
+  fetch('/admin/toggle-chapter-premium', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chapterIndex, isPremium })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      showToast(`Chapter ${chapterIndex} is now ${isPremium ? 'PREMIUM' : 'FREE'}`, 'success');
+      setTimeout(() => location.reload(), 1000);
+    }
+  })
+  .catch(err => {
+    showToast('Failed to update chapter status', 'error');
+    console.error(err);
+  });
+}
+
+function openSubscriptionModal(userId, username, currentStatus) {
+  document.getElementById('sub-userId').value = userId;
+  document.getElementById('sub-username').textContent = username;
+  document.getElementById('sub-status').value = currentStatus || 'free';
+  document.getElementById('subscription-modal').style.display = 'flex';
+}
+
+// Add Premium section to navigation
+document.addEventListener('DOMContentLoaded', function() {
+  const nav = document.querySelector('nav');
+  const premiumNav = document.createElement('a');
+  premiumNav.className = 'nav-item';
+  premiumNav.setAttribute('onclick', "showSection('premium')");
+  premiumNav.setAttribute('data-section', 'premium');
+  premiumNav.innerHTML = '<span class="icon">⭐</span>Premium Management';
+  nav.insertBefore(premiumNav, nav.children[nav.children.length - 1]);
+});
+</script>
 
 <script>
 
