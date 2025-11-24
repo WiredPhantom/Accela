@@ -1,32 +1,126 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapters</title>
+  <title>Chapters - Accela</title>
   <link rel="stylesheet" href="/chapters.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <style>
+    .premium-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+      color: #0a092d;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+
+    .lock-icon {
+      font-size: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .chapter-box.premium {
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      background: rgba(255, 215, 0, 0.03);
+    }
+
+    .chapter-box.premium:hover {
+      border-color: rgba(255, 215, 0, 0.5);
+      background: rgba(255, 215, 0, 0.06);
+    }
+
+    .user-status {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .user-status.premium {
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: #ffd700;
+    }
+
+    @media (max-width: 768px) {
+      .user-status {
+        position: static;
+        margin: 16px auto;
+        text-align: center;
+        max-width: 200px;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <!-- Header -->
-  <header class="header">
+  <header class="header" style="position: relative;">
     <div class="logo-title">
       <img src="https://files.catbox.moe/bpi1je.gif" alt="Animated Accela Logo" class="logo" />
       <h1 id="accela">Accela</h1>
     </div>
+    
+    <% if (isAuthenticated) { %>
+      <div class="user-status <%= hasPremium ? 'premium' : '' %>">
+        <% if (hasPremium) { %>
+          ⭐ Premium User
+        <% } else { %>
+          👤 <%= user.username %>
+        <% } %>
+      </div>
+    <% } %>
   </header>
 
   <!-- Chapters Section -->
   <section id="chapters" class="section">
     <h1 class="title">Chapters</h1>
+    
+    <% if (!isAuthenticated) { %>
+      <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
+        <p style="color: #ffd700; font-weight: 600; margin: 0;">
+          🔓 Some chapters are free, others require premium access. 
+          <a href="/login" style="color: #ffd700; text-decoration: underline;">Login</a> to unlock premium content.
+        </p>
+      </div>
+    <% } else if (!hasPremium) { %>
+      <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
+        <p style="color: #ffd700; font-weight: 600; margin: 0;">
+          🌟 Upgrade to Premium to unlock all chapters and topics!
+        </p>
+      </div>
+    <% } %>
+    
     <% chapters.forEach(ch => { %>
-      <div class="chapter-box">
-        <h2>Chapter <%= ch._id %></h2>
+      <div class="chapter-box <%= ch.isPremium ? 'premium' : '' %>">
+        <h2>
+          Chapter <%= ch._id %>
+          <% if (ch.isPremium) { %>
+            <span class="premium-badge">
+              <span class="lock-icon">🔒</span>PREMIUM
+            </span>
+          <% } %>
+        </h2>
         <p><%= ch.chapterName %></p>
-        <a href="/chapter/<%= ch._id %>" class="btn">View Topics</a>
+        
+        <% if (ch.isPremium && !hasPremium) { %>
+          <a href="/login" class="btn" style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); color: #0a092d;">
+            🔒 Unlock Premium
+          </a>
+        <% } else { %>
+          <a href="/chapter/<%= ch._id %>" class="btn">View Topics</a>
+        <% } %>
       </div>
     <% }) %>
   </section>
@@ -40,11 +134,9 @@
         ACCELA was not born from inspiration — it was born from necessity. There wasn't a tool aligned with the structure that was needed. So the webmaster stopped waiting. And started building.
         <br><br>
         <strong>🚀 Currently: Core topics are <span style="color: #00ffcc;">free to access</span>.</strong><br>
-        <strong>🔒 Full access will become premium soon.</strong><br>
-        <em>You're early — use it while it's free.</em><br>
+        <strong>🔒 Premium content unlocks advanced chapters and topics.</strong><br>
+        <em>You're here early — explore what resonates.</em><br>
         <br>
-        ⏳ <u>Free trial ends on <strong>10 August 2025</strong>.</u> After that, access will be locked unless upgraded.
-        <br><br>
         This is not a traditional study site. It's a system shaped around <em>Active Recall</em>. You won't remember what you just read. You'll remember what your memory was forced to retrieve. That's the rule — we remember what we remembered, not what we read.
         <br><br>
         There's a Cbox. It's more than a chat — it's a bridge. Questions, suggestion, appreciation — everything is signal. And all signal reaches the webmaster.
@@ -67,19 +159,26 @@
   <section id="updates" class="section">
     <h2 id="siteupdate">Site Updates</h2>
     <ul class="updates">
-      <li>About section rewritten — ACCELA now speaks with intention.</li>
-      <li>Chapters UI refined — smoother interface, cleaner flow.</li>
-      <li>Chapters page deployed — structure initialized.</li>
+      <li>✨ Freemium model launched — Free and Premium content available!</li>
+      <li>🔒 Premium chapters now marked with lock icons.</li>
+      <li>👤 User authentication updated for better experience.</li>
+      <li>📚 Chapters page refined — cleaner flow and better navigation.</li>
     </ul>
   </section>
 
-  <!-- Logout/Admin Buttons -->
+  <!-- Buttons Container -->
   <div class="buttons-container">
     <div class="button-row">
-      <form action="/logout" method="GET">
-        <button type="submit" class="logout-btn">Logout</button>
-      </form>
-      <a href="/admin" class="admin-btn">Admin Panel</a>
+      <% if (isAuthenticated) { %>
+        <form action="/logout" method="GET">
+          <button type="submit" class="logout-btn">Logout</button>
+        </form>
+        <% if (user && user.role === 'admin') { %>
+          <a href="/admin" class="admin-btn">Admin Panel</a>
+        <% } %>
+      <% } else { %>
+        <a href="/login" class="admin-btn">Login / Sign Up</a>
+      <% } %>
     </div>
   </div>
 
