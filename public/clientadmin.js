@@ -1,4 +1,4 @@
-console.log("✅ Enhanced clientadmin.js loaded (Premium Edition)");
+console.log("Enhanced clientadmin.js loaded (Premium Edition)");
 
 const chapters = window.chapters;
 const topics = window.topics;
@@ -78,7 +78,7 @@ function openDeleteChapterModal(index) {
   openModal('delete-chapter-modal');
 }
 
-// ==================== ✨ PREMIUM MANAGEMENT ✨ ====================
+// ==================== âœ¨ PREMIUM MANAGEMENT âœ¨ ====================
 
 // Toggle Chapter Premium Status
 async function toggleChapterPremium(chapterIndex, isPremium) {
@@ -97,14 +97,14 @@ async function toggleChapterPremium(chapterIndex, isPremium) {
     const data = await response.json();
     
     if (data.success) {
-      showToast(`✅ Chapter ${chapterIndex} is now ${action}!`, 'success');
+      showToast(`âœ… Chapter ${chapterIndex} is now ${action}!`, 'success');
       setTimeout(() => location.reload(), 1500);
     } else {
-      showToast('❌ Failed to update chapter status', 'error');
+      showToast('âŒ Failed to update chapter status', 'error');
     }
   } catch (err) {
     console.error('Error toggling chapter premium:', err);
-    showToast('❌ Failed to update chapter status', 'error');
+    showToast('âŒ Failed to update chapter status', 'error');
   }
 }
 
@@ -125,14 +125,14 @@ async function toggleTopicPremium(chapterIndex, topicIndex, isPremium) {
     const data = await response.json();
     
     if (data.success) {
-      showToast(`✅ Topic ${topicIndex} is now ${action}!`, 'success');
+      showToast(`âœ… Topic ${topicIndex} is now ${action}!`, 'success');
       setTimeout(() => location.reload(), 1500);
     } else {
-      showToast('❌ Failed to update topic status', 'error');
+      showToast('âŒ Failed to update topic status', 'error');
     }
   } catch (err) {
     console.error('Error toggling topic premium:', err);
-    showToast('❌ Failed to update topic status', 'error');
+    showToast('âŒ Failed to update topic status', 'error');
   }
 }
 
@@ -196,7 +196,7 @@ async function viewFlashcards(chapterIndex, topicIndex, topicName) {
     const flashcards = await response.json();
     
     const modalTitle = document.getElementById('flashcards-modal-title');
-    modalTitle.textContent = `📋 Topic ${topicIndex}: ${topicName}`;
+    modalTitle.textContent = `ðŸ“‹ Topic ${topicIndex}: ${topicName}`;
     
     const listContainer = document.getElementById('flashcards-list');
     
@@ -208,14 +208,14 @@ async function viewFlashcards(chapterIndex, topicIndex, topicName) {
           <div class="flashcard-header">
             <div>
               <strong>Card ${card.flashcardIndex}</strong>
-              ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">🔒 Premium</span>' : ''}
+              ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">ðŸ”’ Premium</span>' : ''}
             </div>
             <div>
               <button onclick="openEditFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`, \`${escapeHtml(card.answer)}\`)">
-                ✏️ Edit
+                âœï¸ Edit
               </button>
               <button onclick="openDeleteFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`)" class="danger">
-                🗑️ Delete
+                ðŸ—‘ï¸ Delete
               </button>
             </div>
           </div>
@@ -333,7 +333,7 @@ async function loadAllFlashcards() {
     updateFilterOptions();
   } catch (err) {
     console.error('Error loading flashcards:', err);
-    listContainer.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 40px;">❌ Failed to load flashcards</p>';
+    listContainer.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 40px;">âŒ Failed to load flashcards</p>';
   }
 }
 
@@ -350,15 +350,15 @@ function displayFlashcards(flashcards) {
       <div class="flashcard-header">
         <div>
           <strong>Chapter ${card.chapterIndex}, Topic ${card.topicIndex}, Card ${card.flashcardIndex}</strong>
-          ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">🔒 Premium</span>' : '<span style="color: #00ff88; margin-left: 8px;">🔓 Free</span>'}
-          <br><small style="color: #888;">${card.chapterName} → ${card.topicName}</small>
+          ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">ðŸ”’ Premium</span>' : '<span style="color: #00ff88; margin-left: 8px;">ðŸ”“ Free</span>'}
+          <br><small style="color: #888;">${card.chapterName} â†’ ${card.topicName}</small>
         </div>
         <div>
           <button onclick="openEditFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`, \`${escapeHtml(card.answer)}\`)">
-            ✏️ Edit
+            âœï¸ Edit
           </button>
           <button onclick="openDeleteFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`)" class="danger">
-            🗑️ Delete
+            ðŸ—‘ï¸ Delete
           </button>
         </div>
       </div>
@@ -453,8 +453,8 @@ function clearSearch() {
 function fillChapterName() {
   const sel = document.getElementById("chapterIndex");
   const text = sel.options[sel.selectedIndex]?.text;
-  if (text?.includes("—")) {
-    const name = text.split("—")[1].trim();
+  if (text?.includes("â€”")) {
+    const name = text.split("â€”")[1].trim();
     document.getElementById("chapterName").value = name;
   }
   document.getElementById("newChapterName").value = "";
@@ -512,8 +512,8 @@ if (flashcardForm) {
 function fillBulkChapterName() {
   const sel = document.getElementById("bulkChapterIndex");
   const selected = sel.options[sel.selectedIndex];
-  if (selected?.text.includes("—")) {
-    document.getElementById("bulkChapterName").value = selected.text.split("—")[1].trim();
+  if (selected?.text.includes("â€”")) {
+    document.getElementById("bulkChapterName").value = selected.text.split("â€”")[1].trim();
   }
 }
 
@@ -542,142 +542,74 @@ document.getElementById("bulknewTopicName").addEventListener("input", () => {
 });
 
 // ==================== USER MANAGEMENT ====================
-function openDeleteUserModal (userId, username) {
-
-document.getElementById("delete-user-id").value userId;
-
-document.getElementById("delete-user-name").textContent =
-
-username;
-
-openModal("delete-user-modal");
-
+function openDeleteUserModal(userId, username) {
+  document.getElementById("delete-user-id").value = userId;
+  document.getElementById("delete-user-name").textContent = username;
+  openModal("delete-user-modal");
 }
+
+// ==================== EXPORT ====================
 async function exportAllData() {
-
-try {
-
-const response await fetch('/admin/flashcards');
-
-const flashcards await response.json();
-
-const dataStr = JSON.stringify(flashcards, null, 2);
-
-const dataBlob new Blob([dataStr], { type:
-
-'application/json' });
-
-const url URL.createObjectURL(dataBlob);
-
-const link document.createElement('a');
-
-link.href url;
-
-link.download flashcards_export_${new Date().toISOString().split('T')[0]}.json;
-
-link.click();
-
-URL.revokeObjectURL(url);
-
-showToast('Data exported successfully!', 'success');
-
-} catch (err) {
-
-console.error('Export error:', err);
-
-showToast('Failed to export data', 'error');
-}
-}
-
-
-
-//===== UTILITIES ====
-
-function escapeHtml(text) {
-
-const div document.createElement('div');
-
-div.textContent = text;
-
-return div.innerHTML;
-
-}
-
-//======== DASHBOARD STATS
-
-async function loadFlashcardCount() {
-
-try {
-
-const response await fetch('/admin/flashcards');
-
-const flashcards await response.json();
-
-document.getElementById('stat-flashcards').textContent =
-
-flashcards.length;
-
-allFlashcards flashcards; // Cache for search
-
-} catch (err) {
-
-console.error('Error loading flashcard count:', err);
-
-document.getElementById('stat-flashcards').textContent =
-
-'0';
-
-}
-
+  try {
+    const response = await fetch('/admin/flashcards');
+    const flashcards = await response.json();
+    
+    const dataStr = JSON.stringify(flashcards, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `flashcards_export_${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    
+    URL.revokeObjectURL(url);
+    showToast('Data exported successfully!', 'success');
+  } catch (err) {
+    console.error('Export error:', err);
+    showToast('Failed to export data', 'error');
   }
+}
 
+// ==================== UTILITIES ====================
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
 
+// ==================== DASHBOARD STATS ====================
+async function loadFlashcardCount() {
+  try {
+    const response = await fetch('/admin/flashcards');
+    const flashcards = await response.json();
+    document.getElementById('stat-flashcards').textContent = flashcards.length;
+    allFlashcards = flashcards; // Cache for search
+  } catch (err) {
+    console.error('Error loading flashcard count:', err);
+    document.getElementById('stat-flashcards').textContent = '0';
+  }
+}
 
-
+// ==================== INIT ====================
 document.addEventListener('DOMContentLoaded', () => {
-
-loadFlashcardCount();
-
-// Add Premium section to navigation if not already present
-
-const nav document.querySelector('nav');
-
-if (nav && !document.querySelector('[data-section="premium"]')) {
-
-const premiumNav document.createElement('a');
-
-premiumNav.className = 'nav-item';
-
-premiumNav.setAttribute('onclick',
-
-"showSection('premium')");
-
-premiumNav.setAttribute('data-section', 'premium');
-
-premiumNav.innerHTML = '<span
-
-class="icon"> </span>Premium Management';
-
-// Insert before Users section
-
-const usersNav document.querySelector('[data-
-
-section="users"]');
-
-if (usersNav) {
-
-nav.insertBefore(premiumNav, usersNav);
-
-}
-
-}
-
-console.log('✔ Admin panel initialized with Premium
-
-features');
-
+  loadFlashcardCount();
+  
+  // Add Premium section to navigation if not already present
+  const nav = document.querySelector('nav');
+  if (nav && !document.querySelector('[data-section="premium"]')) {
+    const premiumNav = document.createElement('a');
+    premiumNav.className = 'nav-item';
+    premiumNav.setAttribute('onclick', "showSection('premium')");
+    premiumNav.setAttribute('data-section', 'premium');
+    premiumNav.innerHTML = '<span class="icon">â­</span>Premium Management';
+    
+    // Insert before Users section
+    const usersNav = document.querySelector('[data-section="users"]');
+    if (usersNav) {
+      nav.insertBefore(premiumNav, usersNav);
+    }
+  }
+  
+  console.log(' Admin panel initialized with Premium features');
 });
-
-
-
-                      
