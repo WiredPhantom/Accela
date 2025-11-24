@@ -1,5 +1,6 @@
 module.exports = (User, Flashcard) => {
   const router = require('express').Router();
+  const bcrypt = require("bcrypt");
 
   router.get('/', async (req, res) => {
     try {
@@ -7,7 +8,8 @@ module.exports = (User, Flashcard) => {
         {
           $group: {
             _id: "$chapterIndex",
-            chapterName: { $first: "$chapterName" }
+            chapterName: { $first: "$chapterName" },
+            isPremium: { $first: "$isPremium" }
           }
         },
         { $sort: { _id: 1 } }
@@ -21,11 +23,13 @@ module.exports = (User, Flashcard) => {
               topicIndex: "$topicIndex"
             },
             chapterName: { $first: "$chapterName" },
-            topicName: { $first: "$topicName" }
+            topicName: { $first: "$topicName" },
+            isPremium: { $first: "$isPremium" }
           }
         },
         { $sort: { "_id.chapterIndex": 1, "_id.topicIndex": 1 } }
       ]);
+      
       const users = await User.find({}, { password: 0 });
 
       res.render("admin", { chapters, topics, users });
@@ -46,7 +50,6 @@ module.exports = (User, Flashcard) => {
     res.json(flashcards);
   });
 
-  // NEW: Get flashcards for a specific topic
   router.get('/flashcards/:chapterIndex/:topicIndex', async (req, res) => {
     try {
       const { chapterIndex, topicIndex } = req.params;
@@ -61,15 +64,68 @@ module.exports = (User, Flashcard) => {
     }
   });
 
+  // ✅ NEW: Toggle premium status for chapter
+  router.post("/toggle-chapter-premium", async (req, res) => {
+    const { chapterIndex, isPremium } = req.body;
+    try {
+      await Flashcard.updateMany(
+        { chapterIndex: parseInt(chapterIndex) },
+        { $set: { isPremium: isPremium === 'true' } }
+      );
+      res.json({ success: true });
+    } catch (err) {
+      console.error("❌ Error toggling chapter premium:", err);
+      res.status(500).json({ error: "Failed to toggle premium status" });
+    }
+  });
+
+  // ✅ NEW: Toggle premium status for topic
+  router.post("/toggle-topic-premium", async (req, res) => {
+    const { chapterIndex, topicIndex, isPremium } = req.body;
+    try {
+      await Flashcard.updateMany(
+        { 
+          chapterIndex: parseInt(chapterIndex),
+          topicIndex: parseInt(topicIndex)
+        },
+        { $set: { isPremium: isPremium === 'true' } }
+      );
+      res.json({ success: true });
+    } catch (err) {
+      console.error("❌ Error toggling topic premium:", err);
+      res.status(500).json({ error: "Failed to toggle premium status" });
+    }
+  });
+
+  // ✅ NEW: Update user subscription
+  router.post("/update-subscription", async (req, res) => {
+    const { userId, subscriptionStatus, subscriptionExpiry } = req.body;
+    try {
+      const updateData = { subscriptionStatus };
+      
+      if (subscriptionExpiry) {
+        updateData.subscriptionExpiry = new Date(subscriptionExpiry);
+      }
+      
+      await User.findOneAndUpdate(
+        { userId },
+        { $set: updateData }
+      );
+      
+      res.redirect("/admin");
+    } catch (err) {
+      console.error("❌ Error updating subscription:", err);
+      res.status(500).send("Failed to update subscription");
+    }
+  });
+
   router.post("/edit-chapter", async (req, res) => {
     const { oldChapterIndex, newChapterName } = req.body;
-    console.log(req.body)
     try {
-      const result = await Flashcard.updateMany(
-        { chapterIndex: oldChapterIndex },
+      await Flashcard.updateMany(
+        { chapterIndex: parseInt(oldChapterIndex) },
         { $set: { chapterName: newChapterName } }
       );
-      console.log(result)
       res.redirect("/admin");
     } catch (err) {
       res.status(500).send("Error updating chapter name");
@@ -113,7 +169,6 @@ module.exports = (User, Flashcard) => {
     }
   });
 
-  // NEW: Edit individual flashcard
   router.post("/edit-flashcard", async (req, res) => {
     const { flashcardId, question, answer } = req.body;
     try {
@@ -128,7 +183,6 @@ module.exports = (User, Flashcard) => {
     }
   });
 
-  // NEW: Delete individual flashcard
   router.post("/delete-flashcard", async (req, res) => {
     const { flashcardId } = req.body;
     try {
@@ -151,9 +205,10 @@ module.exports = (User, Flashcard) => {
       newTopicIndex,
       newTopicName,
       question,
-      answer
+      answer,
+      isPremium
     } = req.body;
-    console.log(req.body)
+    
     try {
       if (newChapterName?.trim()) {
         chapterIndex = +newChapterIndex;
@@ -183,7 +238,8 @@ module.exports = (User, Flashcard) => {
         topicName,
         flashcardIndex,
         question,
-        answer
+        answer,
+        isPremium: isPremium === 'on' || isPremium === 'true'
       });
 
       await newFlashcard.save();
@@ -204,9 +260,10 @@ module.exports = (User, Flashcard) => {
       topicName,
       newTopicIndex,
       newTopicName,
-      jsonData
+      jsonData,
+      isPremium
     } = req.body;
-    console.log(req.body)
+    
     try {
       if (newChapterName?.trim()) {
         chapterIndex = +newChapterIndex;
@@ -240,7 +297,8 @@ module.exports = (User, Flashcard) => {
         topicName,
         flashcardIndex: existingCount + i + 1,
         question: fc.question,
-        answer: fc.answer
+        answer: fc.answer,
+        isPremium: isPremium === 'on' || isPremium === 'true'
       }));
 
       await Flashcard.insertMany(flashcards);
@@ -261,10 +319,8 @@ module.exports = (User, Flashcard) => {
     }
   });
 
-  const bcrypt = require("bcrypt");
-
   router.post("/add-user", async (req, res) => {
-    const { userId, username, password, role } = req.body;
+    const { userId, username, password, role, subscriptionStatus } = req.body;
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -272,7 +328,8 @@ module.exports = (User, Flashcard) => {
         userId,
         username,
         password: hashedPassword,
-        role
+        role,
+        subscriptionStatus: subscriptionStatus || 'free'
       });
 
       await newUser.save();
