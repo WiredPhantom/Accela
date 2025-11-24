@@ -8,7 +8,8 @@ module.exports = (connection) => {
     topicName: String,
     flashcardIndex: Number,
     question: String,
-    answer: String
+    answer: String,
+    isPremium: { type: Boolean, default: false } // ✅ NEW: Premium flag
   }, { collection: "flashcard" });
 
   return connection.model("Flashcard", flashcardSchema);
