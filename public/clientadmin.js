@@ -1,4 +1,4 @@
-console.log("✅ Enhanced clientadmin.js loaded");
+console.log("✅ Enhanced clientadmin.js loaded (Premium Edition)");
 
 const chapters = window.chapters;
 const topics = window.topics;
@@ -78,6 +78,76 @@ function openDeleteChapterModal(index) {
   openModal('delete-chapter-modal');
 }
 
+// ==================== ✨ PREMIUM MANAGEMENT ✨ ====================
+
+// Toggle Chapter Premium Status
+async function toggleChapterPremium(chapterIndex, isPremium) {
+  const action = isPremium ? 'PREMIUM' : 'FREE';
+  if (!confirm(`Are you sure you want to make Chapter ${chapterIndex} ${action}?\n\nThis will affect ALL topics and flashcards in this chapter.`)) {
+    return;
+  }
+  
+  try {
+    const response = await fetch('/admin/toggle-chapter-premium', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chapterIndex, isPremium })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      showToast(`✅ Chapter ${chapterIndex} is now ${action}!`, 'success');
+      setTimeout(() => location.reload(), 1500);
+    } else {
+      showToast('❌ Failed to update chapter status', 'error');
+    }
+  } catch (err) {
+    console.error('Error toggling chapter premium:', err);
+    showToast('❌ Failed to update chapter status', 'error');
+  }
+}
+
+// Toggle Topic Premium Status
+async function toggleTopicPremium(chapterIndex, topicIndex, isPremium) {
+  const action = isPremium ? 'PREMIUM' : 'FREE';
+  if (!confirm(`Are you sure you want to make Topic ${topicIndex} ${action}?\n\nThis will affect ALL flashcards in this topic.`)) {
+    return;
+  }
+  
+  try {
+    const response = await fetch('/admin/toggle-topic-premium', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chapterIndex, topicIndex, isPremium })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      showToast(`✅ Topic ${topicIndex} is now ${action}!`, 'success');
+      setTimeout(() => location.reload(), 1500);
+    } else {
+      showToast('❌ Failed to update topic status', 'error');
+    }
+  } catch (err) {
+    console.error('Error toggling topic premium:', err);
+    showToast('❌ Failed to update topic status', 'error');
+  }
+}
+
+// Open Subscription Management Modal
+function openSubscriptionModal(userId, username, currentStatus) {
+  document.getElementById('sub-userId').value = userId;
+  document.getElementById('sub-username').textContent = username;
+  document.getElementById('sub-status').value = currentStatus || 'free';
+  
+  // Clear expiry date field
+  document.getElementById('sub-expiry').value = '';
+  
+  openModal('subscription-modal');
+}
+
 // ==================== TOPIC FUNCTIONS ====================
 function openTopicEditModal(chapterIndex, topicIndex, topicName) {
   document.getElementById('edit-topic-chapter').value = chapterIndex;
@@ -136,7 +206,10 @@ async function viewFlashcards(chapterIndex, topicIndex, topicName) {
       listContainer.innerHTML = flashcards.map(card => `
         <div class="flashcard-item">
           <div class="flashcard-header">
-            <strong>Card ${card.flashcardIndex}</strong>
+            <div>
+              <strong>Card ${card.flashcardIndex}</strong>
+              ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">🔒 Premium</span>' : ''}
+            </div>
             <div>
               <button onclick="openEditFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`, \`${escapeHtml(card.answer)}\`)">
                 ✏️ Edit
@@ -273,10 +346,11 @@ function displayFlashcards(flashcards) {
   }
   
   listContainer.innerHTML = flashcards.map(card => `
-    <div class="flashcard-item">
+    <div class="flashcard-item ${card.isPremium ? 'premium' : ''}">
       <div class="flashcard-header">
         <div>
           <strong>Chapter ${card.chapterIndex}, Topic ${card.topicIndex}, Card ${card.flashcardIndex}</strong>
+          ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">🔒 Premium</span>' : '<span style="color: #00ff88; margin-left: 8px;">🔓 Free</span>'}
           <br><small style="color: #888;">${card.chapterName} → ${card.topicName}</small>
         </div>
         <div>
@@ -468,57 +542,142 @@ document.getElementById("bulknewTopicName").addEventListener("input", () => {
 });
 
 // ==================== USER MANAGEMENT ====================
-function openDeleteUserModal(userId, username) {
-  document.getElementById("delete-user-id").value = userId;
-  document.getElementById("delete-user-name").textContent = username;
-  openModal("delete-user-modal");
-}
+function openDeleteUserModal (userId, username) {
 
-// ==================== EXPORT ====================
+document.getElementById("delete-user-id").value userId;
+
+document.getElementById("delete-user-name").textContent =
+
+username;
+
+openModal("delete-user-modal");
+
+}
 async function exportAllData() {
-  try {
-    const response = await fetch('/admin/flashcards');
-    const flashcards = await response.json();
-    
-    const dataStr = JSON.stringify(flashcards, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(dataBlob);
-    
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `flashcards_export_${new Date().toISOString().split('T')[0]}.json`;
-    link.click();
-    
-    URL.revokeObjectURL(url);
-    showToast('Data exported successfully!', 'success');
-  } catch (err) {
-    console.error('Export error:', err);
-    showToast('Failed to export data', 'error');
-  }
+
+try {
+
+const response await fetch('/admin/flashcards');
+
+const flashcards await response.json();
+
+const dataStr = JSON.stringify(flashcards, null, 2);
+
+const dataBlob new Blob([dataStr], { type:
+
+'application/json' });
+
+const url URL.createObjectURL(dataBlob);
+
+const link document.createElement('a');
+
+link.href url;
+
+link.download flashcards_export_${new Date().toISOString().split('T')[0]}.json;
+
+link.click();
+
+URL.revokeObjectURL(url);
+
+showToast('Data exported successfully!', 'success');
+
+} catch (err) {
+
+console.error('Export error:', err);
+
+showToast('Failed to export data', 'error');
+}
 }
 
-// ==================== UTILITIES ====================
+
+
+//===== UTILITIES ====
+
 function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
+
+const div document.createElement('div');
+
+div.textContent = text;
+
+return div.innerHTML;
+
 }
 
-// ==================== DASHBOARD STATS ====================
+//======== DASHBOARD STATS
+
 async function loadFlashcardCount() {
-  try {
-    const response = await fetch('/admin/flashcards');
-    const flashcards = await response.json();
-    document.getElementById('stat-flashcards').textContent = flashcards.length;
-    allFlashcards = flashcards; // Cache for search
-  } catch (err) {
-    console.error('Error loading flashcard count:', err);
-    document.getElementById('stat-flashcards').textContent = '0';
-  }
+
+try {
+
+const response await fetch('/admin/flashcards');
+
+const flashcards await response.json();
+
+document.getElementById('stat-flashcards').textContent =
+
+flashcards.length;
+
+allFlashcards flashcards; // Cache for search
+
+} catch (err) {
+
+console.error('Error loading flashcard count:', err);
+
+document.getElementById('stat-flashcards').textContent =
+
+'0';
+
 }
 
-// ==================== INIT ====================
+  }
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
-  loadFlashcardCount();
-  console.log('✅ Admin panel initialized');
+
+loadFlashcardCount();
+
+// Add Premium section to navigation if not already present
+
+const nav document.querySelector('nav');
+
+if (nav && !document.querySelector('[data-section="premium"]')) {
+
+const premiumNav document.createElement('a');
+
+premiumNav.className = 'nav-item';
+
+premiumNav.setAttribute('onclick',
+
+"showSection('premium')");
+
+premiumNav.setAttribute('data-section', 'premium');
+
+premiumNav.innerHTML = '<span
+
+class="icon"> </span>Premium Management';
+
+// Insert before Users section
+
+const usersNav document.querySelector('[data-
+
+section="users"]');
+
+if (usersNav) {
+
+nav.insertBefore(premiumNav, usersNav);
+
+}
+
+}
+
+console.log('✔ Admin panel initialized with Premium
+
+features');
+
 });
+
+
+
+                      
