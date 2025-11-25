@@ -1,4 +1,4 @@
-console.log("Enhanced clientadmin.js loaded (Premium Edition)");
+console.log("✅ Enhanced clientadmin.js loaded (Premium Edition)");
 
 const chapters = window.chapters;
 const topics = window.topics;
@@ -13,10 +13,8 @@ function showSection(sectionName) {
   const navItem = document.querySelector(`[data-section="${sectionName}"]`);
   if (navItem) navItem.classList.add('active');
   
-  // Close mobile menu
   document.getElementById('sidebar').classList.remove('mobile-open');
   
-  // Load data for specific sections
   if (sectionName === 'flashcards') {
     loadAllFlashcards();
   } else if (sectionName === 'topics') {
@@ -51,7 +49,6 @@ function closeModal(id) {
   document.getElementById(id).style.display = 'none';
 }
 
-// Close modal when clicking outside
 window.onclick = function(event) {
   if (event.target.classList.contains('modal')) {
     event.target.style.display = 'none';
@@ -78,72 +75,94 @@ function openDeleteChapterModal(index) {
   openModal('delete-chapter-modal');
 }
 
-// ==================== âœ¨ PREMIUM MANAGEMENT âœ¨ ====================
+// ==================== ✨ PREMIUM MANAGEMENT ✨ ====================
 
-// Toggle Chapter Premium Status
-async function toggleChapterPremium(chapterIndex, isPremium) {
-  const action = isPremium ? 'PREMIUM' : 'FREE';
-  if (!confirm(`Are you sure you want to make Chapter ${chapterIndex} ${action}?\n\nThis will affect ALL topics and flashcards in this chapter.`)) {
-    return;
-  }
+function toggleChapterPremium(chapterIndex, isPremium) {
+  console.log("🔧 Toggle called with:", { chapterIndex, isPremium, type: typeof isPremium });
   
-  try {
-    const response = await fetch('/admin/toggle-chapter-premium', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chapterIndex, isPremium })
-    });
-    
-    const data = await response.json();
-    
+  const action = isPremium ? 'PREMIUM' : 'FREE';
+  const confirmation = confirm(
+    `Are you sure you want to make Chapter ${chapterIndex} ${action}?\n\n` +
+    `This will affect ALL topics and flashcards in this chapter.`
+  );
+  
+  if (!confirmation) return;
+  
+  showToast('Updating chapter status...', 'info');
+  
+  fetch('/admin/toggle-chapter-premium', {
+    method: 'POST',
+    headers: { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({ 
+      chapterIndex: parseInt(chapterIndex), 
+      isPremium: String(isPremium)
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
     if (data.success) {
-      showToast(`âœ… Chapter ${chapterIndex} is now ${action}!`, 'success');
+      showToast(`✅ Chapter ${chapterIndex} is now ${action}!`, 'success');
       setTimeout(() => location.reload(), 1500);
     } else {
-      showToast('âŒ Failed to update chapter status', 'error');
+      throw new Error('Update failed');
     }
-  } catch (err) {
-    console.error('Error toggling chapter premium:', err);
-    showToast('âŒ Failed to update chapter status', 'error');
-  }
+  })
+  .catch(err => {
+    console.error('❌ Error toggling chapter premium:', err);
+    showToast('❌ Failed to update chapter status', 'error');
+  });
 }
 
-// Toggle Topic Premium Status
-async function toggleTopicPremium(chapterIndex, topicIndex, isPremium) {
+function toggleTopicPremium(chapterIndex, topicIndex, isPremium) {
   const action = isPremium ? 'PREMIUM' : 'FREE';
-  if (!confirm(`Are you sure you want to make Topic ${topicIndex} ${action}?\n\nThis will affect ALL flashcards in this topic.`)) {
-    return;
-  }
+  if (!confirm(`Make Topic ${topicIndex} ${action}?`)) return;
   
-  try {
-    const response = await fetch('/admin/toggle-topic-premium', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chapterIndex, topicIndex, isPremium })
-    });
-    
-    const data = await response.json();
-    
+  showToast('Updating topic status...', 'info');
+  
+  fetch('/admin/toggle-topic-premium', {
+    method: 'POST',
+    headers: { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({ 
+      chapterIndex: parseInt(chapterIndex),
+      topicIndex: parseInt(topicIndex),
+      isPremium: String(isPremium)
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
     if (data.success) {
-      showToast(`âœ… Topic ${topicIndex} is now ${action}!`, 'success');
+      showToast(`✅ Topic ${topicIndex} is now ${action}!`, 'success');
       setTimeout(() => location.reload(), 1500);
-    } else {
-      showToast('âŒ Failed to update topic status', 'error');
     }
-  } catch (err) {
-    console.error('Error toggling topic premium:', err);
-    showToast('âŒ Failed to update topic status', 'error');
-  }
+  })
+  .catch(err => {
+    console.error('Error:', err);
+    showToast('❌ Failed to update topic status', 'error');
+  });
 }
 
-// Open Subscription Management Modal
-function openSubscriptionModal(userId, username, currentStatus) {
+function openSubscriptionModal(userId, username, currentStatus, currentExpiry) {
   document.getElementById('sub-userId').value = userId;
   document.getElementById('sub-username').textContent = username;
   document.getElementById('sub-status').value = currentStatus || 'free';
   
-  // Clear expiry date field
-  document.getElementById('sub-expiry').value = '';
+  if (currentExpiry) {
+    const date = new Date(currentExpiry);
+    document.getElementById('sub-expiry').value = date.toISOString().split('T')[0];
+  } else {
+    document.getElementById('sub-expiry').value = '';
+  }
   
   openModal('subscription-modal');
 }
@@ -169,14 +188,12 @@ async function loadFlashcardCounts() {
     const response = await fetch('/admin/flashcards');
     const flashcards = await response.json();
     
-    // Count flashcards per topic
     const counts = {};
     flashcards.forEach(fc => {
       const key = `${fc.chapterIndex}-${fc.topicIndex}`;
       counts[key] = (counts[key] || 0) + 1;
     });
     
-    // Update badges
     topics.forEach(tp => {
       const key = `${tp._id.chapterIndex}-${tp._id.topicIndex}`;
       const badge = document.getElementById(`count-${key}`);
@@ -196,7 +213,7 @@ async function viewFlashcards(chapterIndex, topicIndex, topicName) {
     const flashcards = await response.json();
     
     const modalTitle = document.getElementById('flashcards-modal-title');
-    modalTitle.textContent = `ðŸ“‹ Topic ${topicIndex}: ${topicName}`;
+    modalTitle.textContent = `📋 Topic ${topicIndex}: ${topicName}`;
     
     const listContainer = document.getElementById('flashcards-list');
     
@@ -208,14 +225,14 @@ async function viewFlashcards(chapterIndex, topicIndex, topicName) {
           <div class="flashcard-header">
             <div>
               <strong>Card ${card.flashcardIndex}</strong>
-              ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">ðŸ”’ Premium</span>' : ''}
+              ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">🔒 Premium</span>' : ''}
             </div>
             <div>
               <button onclick="openEditFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`, \`${escapeHtml(card.answer)}\`)">
-                âœï¸ Edit
+                ✏️ Edit
               </button>
               <button onclick="openDeleteFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`)" class="danger">
-                ðŸ—‘ï¸ Delete
+                🗑️ Delete
               </button>
             </div>
           </div>
@@ -236,7 +253,7 @@ async function viewFlashcards(chapterIndex, topicIndex, topicName) {
   }
 }
 
-// ==================== EDIT FLASHCARD ====================
+// ==================== EDIT/DELETE FLASHCARD ====================
 function openEditFlashcardModal(flashcardId, question, answer) {
   document.getElementById('edit-flashcard-id').value = flashcardId;
   document.getElementById('edit-flashcard-question').value = question;
@@ -262,12 +279,10 @@ document.getElementById('edit-flashcard-form').addEventListener('submit', async 
       closeModal('edit-flashcard-modal');
       showToast('Flashcard updated successfully!', 'success');
       
-      // Refresh if viewing flashcards
       if (document.getElementById('view-flashcards-modal').style.display === 'flex') {
         closeModal('view-flashcards-modal');
       }
       
-      // Reload if on all flashcards page
       if (document.getElementById('flashcards-section').classList.contains('active')) {
         loadAllFlashcards();
       }
@@ -280,7 +295,6 @@ document.getElementById('edit-flashcard-form').addEventListener('submit', async 
   }
 });
 
-// ==================== DELETE FLASHCARD ====================
 function openDeleteFlashcardModal(flashcardId, question) {
   document.getElementById('delete-flashcard-id').value = flashcardId;
   document.getElementById('delete-flashcard-preview').textContent = `"${question}"`;
@@ -301,7 +315,6 @@ async function confirmDeleteFlashcard() {
       closeModal('delete-flashcard-modal');
       showToast('Flashcard deleted successfully!', 'success');
       
-      // Refresh views
       if (document.getElementById('view-flashcards-modal').style.display === 'flex') {
         closeModal('view-flashcards-modal');
       }
@@ -333,7 +346,7 @@ async function loadAllFlashcards() {
     updateFilterOptions();
   } catch (err) {
     console.error('Error loading flashcards:', err);
-    listContainer.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 40px;">âŒ Failed to load flashcards</p>';
+    listContainer.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 40px;">❌ Failed to load flashcards</p>';
   }
 }
 
@@ -346,19 +359,19 @@ function displayFlashcards(flashcards) {
   }
   
   listContainer.innerHTML = flashcards.map(card => `
-    <div class="flashcard-item ${card.isPremium ? 'premium' : ''}">
+    <div class="flashcard-item">
       <div class="flashcard-header">
         <div>
           <strong>Chapter ${card.chapterIndex}, Topic ${card.topicIndex}, Card ${card.flashcardIndex}</strong>
-          ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">ðŸ”’ Premium</span>' : '<span style="color: #00ff88; margin-left: 8px;">ðŸ”“ Free</span>'}
-          <br><small style="color: #888;">${card.chapterName} â†’ ${card.topicName}</small>
+          ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">🔒 Premium</span>' : '<span style="color: #00ff88; margin-left: 8px;">🔓 Free</span>'}
+          <br><small style="color: #888;">${card.chapterName} → ${card.topicName}</small>
         </div>
         <div>
           <button onclick="openEditFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`, \`${escapeHtml(card.answer)}\`)">
-            âœï¸ Edit
+            ✏️ Edit
           </button>
           <button onclick="openDeleteFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`)" class="danger">
-            ðŸ—‘ï¸ Delete
+            🗑️ Delete
           </button>
         </div>
       </div>
@@ -421,7 +434,6 @@ function performSearch() {
       return;
     }
     
-    // Search in all flashcards
     if (allFlashcards.length === 0) return;
     
     const results = allFlashcards.filter(f => 
@@ -453,10 +465,12 @@ function clearSearch() {
 function fillChapterName() {
   const sel = document.getElementById("chapterIndex");
   const text = sel.options[sel.selectedIndex]?.text;
-  if (text?.includes("â€”")) {
-    const name = text.split("â€”")[1].trim();
+  if (text?.includes("—")) {
+    const name = text.split("—")[1].trim();
     document.getElementById("chapterName").value = name;
   }
+  
+  // ✅ CLEAR new chapter fields when selecting existing chapter
   document.getElementById("newChapterName").value = "";
   document.getElementById("newChapterIndex").value = "";
 }
@@ -467,26 +481,58 @@ function fillTopicName() {
   if (name) {
     document.getElementById("topicName").value = name;
   }
+  
+  // ✅ CLEAR new topic fields when selecting existing topic
   document.getElementById("newTopicName").value = "";
   document.getElementById("newTopicIndex").value = "";
 }
 
+// ✅ FIXED: New Chapter Name Input Handler
 document.getElementById("newChapterName").addEventListener("input", (e) => {
   const name = e.target.value.trim();
-  const index = chapters.length ? Math.max(...chapters.map(c => c._id)) + 1 : 1;
-  document.getElementById("newChapterIndex").value = name ? index : "";
-  document.getElementById("chapterIndex").selectedIndex = 0;
-  document.getElementById("chapterName").value = name;
+  
+  if (name) {
+    // Calculate new chapter index
+    const maxIndex = chapters.length ? Math.max(...chapters.map(c => c._id)) : 0;
+    document.getElementById("newChapterIndex").value = maxIndex + 1;
+    document.getElementById("chapterName").value = name;
+    
+    // Clear chapter selection
+    document.getElementById("chapterIndex").selectedIndex = 0;
+  } else {
+    document.getElementById("newChapterIndex").value = "";
+    document.getElementById("chapterName").value = "";
+  }
 });
 
+// ✅ FIXED: New Topic Name Input Handler
 document.getElementById("newTopicName").addEventListener("input", (e) => {
   const name = e.target.value.trim();
-  const chIdx = +document.getElementById("newChapterIndex").value || +document.getElementById("chapterIndex").value;
-  const relatedTopics = topics.filter(t => t._id.chapterIndex === chIdx);
-  const index = relatedTopics.length ? Math.max(...relatedTopics.map(t => t._id.topicIndex)) + 1 : 1;
-  document.getElementById("newTopicIndex").value = name ? index : "";
-  document.getElementById("topicIndex").selectedIndex = 0;
-  document.getElementById("topicName").value = name;
+  
+  if (name) {
+    // Get selected or new chapter index
+    const chIdx = parseInt(document.getElementById("newChapterIndex").value) || 
+                   parseInt(document.getElementById("chapterIndex").value);
+    
+    if (chIdx) {
+      // Find topics in this chapter
+      const relatedTopics = topics.filter(t => t._id.chapterIndex === chIdx);
+      const maxIndex = relatedTopics.length ? Math.max(...relatedTopics.map(t => t._id.topicIndex)) : 0;
+      
+      document.getElementById("newTopicIndex").value = maxIndex + 1;
+      document.getElementById("topicName").value = name;
+      
+      // Clear topic selection
+      document.getElementById("topicIndex").selectedIndex = 0;
+    } else {
+      // No chapter selected yet
+      showToast("Please select or create a chapter first", "error");
+      e.target.value = "";
+    }
+  } else {
+    document.getElementById("newTopicIndex").value = "";
+    document.getElementById("topicName").value = "";
+  }
 });
 
 // Form validation
@@ -508,6 +554,7 @@ if (flashcardForm) {
   });
 }
 
+
 // ==================== BULK UPLOAD ====================
 function fillBulkChapterName() {
   const sel = document.getElementById("bulkChapterIndex");
@@ -515,6 +562,10 @@ function fillBulkChapterName() {
   if (selected?.text.includes("â€”")) {
     document.getElementById("bulkChapterName").value = selected.text.split("â€”")[1].trim();
   }
+  
+  // Clear new chapter fields
+  document.getElementById("bulknewChapterName").value = "";
+  document.getElementById("bulknewChapterIndex").value = "";
 }
 
 function fillBulkTopicName() {
@@ -523,22 +574,48 @@ function fillBulkTopicName() {
   if (selected) {
     document.getElementById("bulkTopicName").value = selected.dataset.name;
   }
+  
+  // Clear new topic fields
+  document.getElementById("bulknewTopicName").value = "";
+  document.getElementById("bulknewTopicIndex").value = "";
 }
 
-document.getElementById("bulknewChapterName").addEventListener("input", () => {
-  const max = chapters.length ? Math.max(...chapters.map(c => c._id)) : 0;
-  document.getElementById("bulknewChapterIndex").value = max + 1;
-  document.getElementById("bulkChapterIndex").selectedIndex = 0;
-  document.getElementById("bulkChapterName").value = document.getElementById("bulknewChapterName").value.trim();
+document.getElementById("bulknewChapterName").addEventListener("input", (e) => {
+  const name = e.target.value.trim();
+  
+  if (name) {
+    const maxIndex = chapters.length ? Math.max(...chapters.map(c => c._id)) : 0;
+    document.getElementById("bulknewChapterIndex").value = maxIndex + 1;
+    document.getElementById("bulkChapterName").value = name;
+    document.getElementById("bulkChapterIndex").selectedIndex = 0;
+  } else {
+    document.getElementById("bulknewChapterIndex").value = "";
+    document.getElementById("bulkChapterName").value = "";
+  }
 });
 
-document.getElementById("bulknewTopicName").addEventListener("input", () => {
-  const chapterIndex = +document.getElementById("bulknewChapterIndex").value || +document.getElementById("bulkChapterIndex").value;
-  const filtered = topics.filter(tp => tp._id.chapterIndex === chapterIndex);
-  const max = filtered.length ? Math.max(...filtered.map(tp => tp._id.topicIndex)) : 0;
-  document.getElementById("bulknewTopicIndex").value = max + 1;
-  document.getElementById("bulkTopicIndex").selectedIndex = 0;
-  document.getElementById("bulkTopicName").value = document.getElementById("bulknewTopicName").value.trim();
+document.getElementById("bulknewTopicName").addEventListener("input", (e) => {
+  const name = e.target.value.trim();
+  
+  if (name) {
+    const chapterIndex = parseInt(document.getElementById("bulknewChapterIndex").value) || 
+                         parseInt(document.getElementById("bulkChapterIndex").value);
+    
+    if (chapterIndex) {
+      const filtered = topics.filter(tp => tp._id.chapterIndex === chapterIndex);
+      const maxIndex = filtered.length ? Math.max(...filtered.map(tp => tp._id.topicIndex)) : 0;
+      
+      document.getElementById("bulknewTopicIndex").value = maxIndex + 1;
+      document.getElementById("bulkTopicName").value = name;
+      document.getElementById("bulkTopicIndex").selectedIndex = 0;
+    } else {
+      showToast("Please select or create a chapter first", "error");
+      e.target.value = "";
+    }
+  } else {
+    document.getElementById("bulknewTopicIndex").value = "";
+    document.getElementById("bulkTopicName").value = "";
+  }
 });
 
 // ==================== USER MANAGEMENT ====================
@@ -584,7 +661,7 @@ async function loadFlashcardCount() {
     const response = await fetch('/admin/flashcards');
     const flashcards = await response.json();
     document.getElementById('stat-flashcards').textContent = flashcards.length;
-    allFlashcards = flashcards; // Cache for search
+    allFlashcards = flashcards;
   } catch (err) {
     console.error('Error loading flashcard count:', err);
     document.getElementById('stat-flashcards').textContent = '0';
@@ -594,22 +671,5 @@ async function loadFlashcardCount() {
 // ==================== INIT ====================
 document.addEventListener('DOMContentLoaded', () => {
   loadFlashcardCount();
-  
-  // Add Premium section to navigation if not already present
-  const nav = document.querySelector('nav');
-  if (nav && !document.querySelector('[data-section="premium"]')) {
-    const premiumNav = document.createElement('a');
-    premiumNav.className = 'nav-item';
-    premiumNav.setAttribute('onclick', "showSection('premium')");
-    premiumNav.setAttribute('data-section', 'premium');
-    premiumNav.innerHTML = '<span class="icon">â­</span>Premium Management';
-    
-    // Insert before Users section
-    const usersNav = document.querySelector('[data-section="users"]');
-    if (usersNav) {
-      nav.insertBefore(premiumNav, usersNav);
-    }
-  }
-  
   console.log(' Admin panel initialized with Premium features');
 });
