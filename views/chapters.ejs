@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapters - Accela</title>
+  <title>Flashcard Chapters - Accela</title>
   <link rel="stylesheet" href="/chapters.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
@@ -53,12 +53,41 @@
       color: #ffd700;
     }
 
+    .breadcrumb {
+      max-width: 900px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .breadcrumb a {
+      color: #4f46e5;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: #6366f1;
+    }
+
+    .breadcrumb-separator {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
     @media (max-width: 768px) {
       .user-status {
         position: static;
         margin: 16px auto;
         text-align: center;
         max-width: 200px;
+      }
+
+      .breadcrumb {
+        margin-top: 12px;
       }
     }
   </style>
@@ -83,88 +112,56 @@
     <% } %>
   </header>
 
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb">
+    <a href="/">🏠 Home</a>
+    <span class="breadcrumb-separator">/</span>
+    <span>Flashcard Chapters</span>
+  </nav>
+
   <!-- Chapters Section -->
-  <section id="chapters" class="section">
-    <h1 class="title">Chapters</h1>
-    
-    <% if (!isAuthenticated) { %>
-      <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
-        <p style="color: #ffd700; font-weight: 600; margin: 0;">
-          🔓 Some chapters are free, others require premium access. 
-          <a href="/login" style="color: #ffd700; text-decoration: underline;">Login</a> to unlock premium content.
-        </p>
-      </div>
-    <% } else if (!hasPremium) { %>
-      <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
-        <p style="color: #ffd700; font-weight: 600; margin: 0;">
-          🌟 Upgrade to Premium to unlock all chapters and topics!
-        </p>
-      </div>
-    <% } %>
-    
-    <% chapters.forEach(ch => { %>
-      <div class="chapter-box <%= ch.isPremium ? 'premium' : '' %>">
-        <h2>
-          Chapter <%= ch._id %>
-          <% if (ch.isPremium) { %>
-            <span class="premium-badge">
-              <span class="lock-icon">🔒</span>PREMIUM
-            </span>
+  <div class="container">
+    <section id="chapters" class="section">
+      <h1 class="title">Flashcard Chapters</h1>
+      
+      <% if (!isAuthenticated) { %>
+        <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
+          <p style="color: #ffd700; font-weight: 600; margin: 0;">
+            🔓 Some chapters are free, others require premium access. 
+            <a href="/login" style="color: #ffd700; text-decoration: underline;">Login</a> to unlock premium content.
+          </p>
+        </div>
+      <% } else if (!hasPremium) { %>
+        <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
+          <p style="color: #ffd700; font-weight: 600; margin: 0;">
+            🌟 Upgrade to Premium to unlock all chapters and topics!
+          </p>
+        </div>
+      <% } %>
+      
+      <% chapters.forEach(ch => { %>
+        <div class="chapter-box <%= ch.isPremium ? 'premium' : '' %>">
+          <h2>
+            Chapter <%= ch._id %>
+            <% if (ch.isPremium) { %>
+              <span class="premium-badge">
+                <span class="lock-icon">🔒</span>PREMIUM
+              </span>
+            <% } %>
+          </h2>
+          <p><%= ch.chapterName %></p>
+          
+          <% if (ch.isPremium && !hasPremium) { %>
+            <a href="/login" class="btn" style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); color: #0a092d;">
+              🔒 Unlock Premium
+            </a>
+          <% } else { %>
+            <a href="/chapter/<%= ch._id %>" class="btn">View Topics</a>
           <% } %>
-        </h2>
-        <p><%= ch.chapterName %></p>
-        
-        <% if (ch.isPremium && !hasPremium) { %>
-          <a href="/login" class="btn" style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); color: #0a092d;">
-            🔒 Unlock Premium
-          </a>
-        <% } else { %>
-          <a href="/chapter/<%= ch._id %>" class="btn">View Topics</a>
-        <% } %>
-      </div>
-    <% }) %>
-  </section>
-
-  <!-- About the Site -->
-  <section id="lain" class="section lain-section">
-    <h2 id="aboutsite">About the Site</h2>
-    <div class="lain-container">
-      <img src="https://files.catbox.moe/bpi1je.gif" alt="Glitched image of Lain representing site ethos" class="lain-img" />
-      <p class="text">
-        ACCELA was not born from inspiration — it was born from necessity. There wasn't a tool aligned with the structure that was needed. So the webmaster stopped waiting. And started building.
-        <br><br>
-        <strong>🚀 Currently: Core topics are <span style="color: #00ffcc;">free to access</span>.</strong><br>
-        <strong>🔒 Premium content unlocks advanced chapters and topics.</strong><br>
-        <em>You're here early — explore what resonates.</em><br>
-        <br>
-        This is not a traditional study site. It's a system shaped around <em>Active Recall</em>. You won't remember what you just read. You'll remember what your memory was forced to retrieve. That's the rule — we remember what we remembered, not what we read.
-        <br><br>
-        There's a Cbox. It's more than a chat — it's a bridge. Questions, suggestion, appreciation — everything is signal. And all signal reaches the webmaster.
-        <br><br>
-        You've entered a space shaped by need, refined by memory, and held together by obsession.  
-        <br><br>
-        Thank you for entering. If you have something to say, leave a trace in the Cbox.
-      </p>
-    </div>
-  </section>
-
-  <!-- Cbox -->
-  <section id="cbox" class="section">
-    <h2>Cbox</h2>
-    <iframe src="https://www5.cbox.ws/box/?boxid=957561&boxtag=IZAjsP"
-      allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>	
-  </section>
-
-  <!-- Updates -->
-  <section id="updates" class="section">
-    <h2 id="siteupdate">Site Updates</h2>
-    <ul class="updates">
-      <li>✨ Freemium model launched — Free and Premium content available!</li>
-      <li>🔒 Premium chapters now marked with lock icons.</li>
-      <li>👤 User authentication updated for better experience.</li>
-      <li>📚 Chapters page refined — cleaner flow and better navigation.</li>
-    </ul>
-  </section>
+        </div>
+      <% }) %>
+    </section>
+  </div>
 
   <!-- Buttons Container -->
   <div class="buttons-container">
