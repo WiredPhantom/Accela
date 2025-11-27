@@ -1,8 +1,11 @@
-console.log("âœ… Enhanced clientadmin.js loaded (Premium Edition)");
+console.log("✅ Enhanced clientadmin.js loaded (Premium + Notes Edition)");
 
 const chapters = window.chapters;
 const topics = window.topics;
+const noteChapters = window.noteChapters || [];
+const noteTopics = window.noteTopics || [];
 let allFlashcards = [];
+let allNotes = [];
 
 // ==================== SECTION NAVIGATION ====================
 function showSection(sectionName) {
@@ -21,6 +24,8 @@ function showSection(sectionName) {
     loadAllFlashcards();
   } else if (sectionName === 'topics') {
     loadFlashcardCounts();
+  } else if (sectionName === 'notes') {
+    loadAllNotes();
   }
 }
 
@@ -29,12 +34,11 @@ function toggleMobileMenu() {
 }
 
 // ==================== TOAST NOTIFICATIONS ====================
-const MAX_TOASTS = 4; // limit to 4 on screen
+const MAX_TOASTS = 4;
 function showToast(message, type = 'success') {
   const container = document.getElementById('toast-container');
   if (!container) return;
 
-  // Remove old toasts if over limit
   while (container.childNodes.length >= MAX_TOASTS) {
     container.firstChild?.remove();
   }
@@ -91,8 +95,6 @@ function openDeleteChapterModal(index) {
 
 // ==================== PREMIUM MANAGEMENT ====================
 function toggleChapterPremium(chapterIndex, isPremium) {
-  console.log("ðŸ”§ Toggle called with:", { chapterIndex, isPremium, type: typeof isPremium });
-
   const action = isPremium ? 'PREMIUM' : 'FREE';
   const confirmation = confirm(
     `Are you sure you want to make Chapter ${chapterIndex} ${action}?\n\nThis will affect ALL topics and flashcards in this chapter.`
@@ -114,15 +116,15 @@ function toggleChapterPremium(chapterIndex, isPremium) {
     })
     .then(data => {
       if (data.success) {
-        showToast(`âœ… Chapter ${chapterIndex} is now ${action}!`, 'success');
+        showToast(`✅ Chapter ${chapterIndex} is now ${action}!`, 'success');
         setTimeout(() => location.reload(), 1500);
       } else {
         throw new Error('Update failed');
       }
     })
     .catch(err => {
-      console.error('âŒ Error toggling chapter premium:', err);
-      showToast('âŒ Failed to update chapter status', 'error');
+      console.error('❌ Error toggling chapter premium:', err);
+      showToast('❌ Failed to update chapter status', 'error');
     });
 }
 
@@ -143,13 +145,47 @@ function toggleTopicPremium(chapterIndex, topicIndex, isPremium) {
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        showToast(`âœ… Topic ${topicIndex} is now ${action}!`, 'success');
+        showToast(`✅ Topic ${topicIndex} is now ${action}!`, 'success');
         setTimeout(() => location.reload(), 1500);
       }
     })
     .catch(err => {
       console.error('Error:', err);
-      showToast('âŒ Failed to update topic status', 'error');
+      showToast('❌ Failed to update topic status', 'error');
+    });
+}
+
+function toggleNoteChapterPremium(chapterIndex, isPremium) {
+  const action = isPremium ? 'PREMIUM' : 'FREE';
+  const confirmation = confirm(
+    `Are you sure you want to make Note Chapter ${chapterIndex} ${action}?\n\nThis will affect ALL notes in this chapter.`
+  );
+  if (!confirmation) return;
+
+  showToast('Updating note chapter status...', 'info');
+  fetch('/admin/toggle-note-chapter-premium', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      chapterIndex: parseInt(chapterIndex),
+      isPremium: String(isPremium)
+    })
+  })
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        showToast(`✅ Note Chapter ${chapterIndex} is now ${action}!`, 'success');
+        setTimeout(() => location.reload(), 1500);
+      } else {
+        throw new Error('Update failed');
+      }
+    })
+    .catch(err => {
+      console.error('❌ Error toggling note chapter premium:', err);
+      showToast('❌ Failed to update note chapter status', 'error');
     });
 }
 
@@ -219,7 +255,7 @@ async function viewFlashcards(chapterIndex, topicIndex, topicName) {
     const flashcards = await response.json();
 
     const modalTitle = document.getElementById('flashcards-modal-title');
-    if (modalTitle) modalTitle.textContent = `ðŸ“‹ Topic ${topicIndex}: ${topicName}`;
+    if (modalTitle) modalTitle.textContent = `📋 Topic ${topicIndex}: ${topicName}`;
 
     const listContainer = document.getElementById('flashcards-list');
     if (!listContainer) return;
@@ -232,14 +268,14 @@ async function viewFlashcards(chapterIndex, topicIndex, topicName) {
           <div class="flashcard-header">
             <div>
               <strong>Card ${card.flashcardIndex}</strong>
-              ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">ðŸ”’ Premium</span>' : ''}
+              ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">🔒 Premium</span>' : ''}
             </div>
             <div>
               <button onclick="openEditFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`, \`${escapeHtml(card.answer)}\`)">
-                âœï¸ Edit
+                ✏️ Edit
               </button>
               <button onclick="openDeleteFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`)" class="danger">
-                ðŸ—‘ï¸ Delete
+                🗑️ Delete
               </button>
             </div>
           </div>
@@ -352,7 +388,7 @@ async function loadAllFlashcards() {
   } catch (err) {
     console.error('Error loading flashcards:', err);
     if (listContainer)
-      listContainer.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 40px;">âŒ Failed to load flashcards</p>';
+      listContainer.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 40px;">❌ Failed to load flashcards</p>';
   }
 }
 
@@ -369,15 +405,15 @@ function displayFlashcards(flashcards) {
       <div class="flashcard-header">
         <div>
           <strong>Chapter ${card.chapterIndex}, Topic ${card.topicIndex}, Card ${card.flashcardIndex}</strong>
-          ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">ðŸ”’ Premium</span>' : '<span style="color: #00ff88; margin-left: 8px;">ðŸ”“ Free</span>'}
-          <br><small style="color: #888;">${escapeHtml(card.chapterName)} â†’ ${escapeHtml(card.topicName)}</small>
+          ${card.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">🔒 Premium</span>' : '<span style="color: #00ff88; margin-left: 8px;">🔓 Free</span>'}
+          <br><small style="color: #888;">${escapeHtml(card.chapterName)} → ${escapeHtml(card.topicName)}</small>
         </div>
         <div>
           <button onclick="openEditFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`, \`${escapeHtml(card.answer)}\`)">
-            âœï¸ Edit
+            ✏️ Edit
           </button>
           <button onclick="openDeleteFlashcardModal('${card._id}', \`${escapeHtml(card.question)}\`)" class="danger">
-            ðŸ—‘ï¸ Delete
+            🗑️ Delete
           </button>
         </div>
       </div>
@@ -427,6 +463,221 @@ function filterFlashcards() {
   updateFilterOptions();
 }
 
+// ==================== NOTES MANAGEMENT ====================
+
+async function loadAllNotes() {
+  const listContainer = document.getElementById('all-notes-list');
+  if (listContainer)
+    listContainer.innerHTML = '<p style="color: #888; text-align: center; padding: 40px;"><span class="loading"></span> Loading notes...</p>';
+
+  try {
+    const response = await fetch('/admin/notes');
+    allNotes = await response.json();
+    displayNotes(allNotes);
+  } catch (err) {
+    console.error('Error loading notes:', err);
+    if (listContainer)
+      listContainer.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 40px;">❌ Failed to load notes</p>';
+  }
+}
+
+function displayNotes(notes) {
+  const listContainer = document.getElementById('all-notes-list');
+  if (!listContainer) return;
+
+  if (notes.length === 0) {
+    listContainer.innerHTML = '<p style="color: #888; text-align: center; padding: 40px;">No notes found. Add your first note!</p>';
+    return;
+  }
+  
+  listContainer.innerHTML = notes.map(note => `
+    <div class="flashcard-item" style="background: rgba(255,215,0,0.03);">
+      <div class="flashcard-header">
+        <div>
+          <strong>Chapter ${note.chapterIndex}, Topic ${note.topicIndex}</strong>
+          ${note.isPremium ? '<span style="color: #ffd700; margin-left: 8px;">🔒 Premium</span>' : '<span style="color: #00ff88; margin-left: 8px;">🔓 Free</span>'}
+          <br><small style="color: #888;">${escapeHtml(note.chapterName)} → ${escapeHtml(note.topicName)}</small>
+          <br><strong style="color: #ffd700;">📝 ${escapeHtml(note.noteTitle)}</strong>
+        </div>
+        <div>
+          <a href="/notes/chapter/${note.chapterIndex}/topic/${note.topicIndex}" target="_blank" style="display: inline-block; padding: 8px 16px; background: rgba(79,70,229,0.2); border: 1px solid rgba(79,70,229,0.3); border-radius: 8px; color: #fff; text-decoration: none; margin-right: 8px;">
+            👁️ View
+          </a>
+          <button onclick="openEditNoteModal('${note._id}', \`${escapeHtml(note.noteTitle)}\`, \`${escapeHtml(note.htmlContent)}\`, ${note.isPremium})">
+            ✏️ Edit
+          </button>
+          <button onclick="openDeleteNoteModal('${note._id}', \`${escapeHtml(note.noteTitle)}\`)" class="danger">
+            🗑️ Delete
+          </button>
+        </div>
+      </div>
+      <div class="flashcard-content">
+        <strong>Created:</strong> ${new Date(note.createdAt).toLocaleDateString()}
+        ${note.updatedAt !== note.createdAt ? ` | <strong>Updated:</strong> ${new Date(note.updatedAt).toLocaleDateString()}` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterNotes() {
+  const chapterFilter = document.getElementById('filterNoteChapter')?.value;
+  let filtered = allNotes;
+
+  if (chapterFilter) {
+    filtered = filtered.filter(n => n.chapterIndex == chapterFilter);
+  }
+  displayNotes(filtered);
+}
+
+function openEditNoteModal(noteId, title, htmlContent, isPremium) {
+  const id = document.getElementById('edit-note-id');
+  const titleEl = document.getElementById('edit-note-title');
+  const content = document.getElementById('edit-note-content');
+  const premium = document.getElementById('edit-note-premium');
+  
+  if (id) id.value = noteId;
+  if (titleEl) titleEl.value = title;
+  if (content) content.value = htmlContent;
+  if (premium) premium.checked = isPremium;
+  
+  openModal('edit-note-modal');
+}
+
+const editNoteForm = document.getElementById('edit-note-form');
+if (editNoteForm) {
+  editNoteForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('edit-note-id');
+    const title = document.getElementById('edit-note-title');
+    const content = document.getElementById('edit-note-content');
+    const premium = document.getElementById('edit-note-premium');
+    
+    if (!id || !title || !content) return;
+
+    try {
+      const response = await fetch('/admin/edit-note', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          noteId: id.value, 
+          noteTitle: title.value, 
+          htmlContent: content.value,
+          isPremium: premium.checked
+        })
+      });
+
+      if (response.ok) {
+        closeModal('edit-note-modal');
+        showToast('Note updated successfully!', 'success');
+        loadAllNotes();
+      } else {
+        showToast('Failed to update note', 'error');
+      }
+    } catch (error) {
+      console.error('Error updating note:', error);
+      showToast('Failed to update note', 'error');
+    }
+  });
+}
+
+function openDeleteNoteModal(noteId, title) {
+  const deleteId = document.getElementById('delete-note-id');
+  const preview = document.getElementById('delete-note-preview');
+  if (deleteId) deleteId.value = noteId;
+  if (preview) preview.textContent = `"${title}"`;
+  openModal('delete-note-modal');
+}
+
+async function confirmDeleteNote() {
+  const deleteId = document.getElementById('delete-note-id');
+  if (!deleteId) return;
+
+  try {
+    const response = await fetch('/admin/delete-note', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ noteId: deleteId.value })
+    });
+    if (response.ok) {
+      closeModal('delete-note-modal');
+      showToast('Note deleted successfully!', 'success');
+      loadAllNotes();
+    } else {
+      showToast('Failed to delete note', 'error');
+    }
+  } catch (error) {
+    console.error('Error deleting note:', error);
+    showToast('Failed to delete note', 'error');
+  }
+}
+
+// ==================== NOTE FORM HELPERS ====================
+
+function fillNoteChapterName() {
+  const sel = document.getElementById("noteChapterIndex");
+  if (!sel) return;
+  const text = sel.options[sel.selectedIndex]?.text;
+  document.getElementById("noteChapterName").value = chapterTextToName(text);
+  document.getElementById("noteNewChapterName").value = "";
+  document.getElementById("noteNewChapterIndex").value = "";
+}
+
+function fillNoteTopicName() {
+  const sel = document.getElementById("noteTopicIndex");
+  if (!sel) return;
+  const option = sel.options[sel.selectedIndex];
+  document.getElementById("noteTopicName").value = topicOptionToName(option);
+  document.getElementById("noteNewTopicName").value = "";
+  document.getElementById("noteNewTopicIndex").value = "";
+}
+
+const noteNewChapterNameEl = document.getElementById("noteNewChapterName");
+if (noteNewChapterNameEl) {
+  noteNewChapterNameEl.addEventListener("input", (e) => {
+    const name = e.target.value.trim();
+    const newIndexEl = document.getElementById("noteNewChapterIndex");
+    const chapterNameEl = document.getElementById("noteChapterName");
+    const chapterSel = document.getElementById("noteChapterIndex");
+    if (name) {
+      const maxIndex = noteChapters.length ? Math.max(...noteChapters.map(c => c._id)) : 0;
+      if (newIndexEl) newIndexEl.value = maxIndex + 1;
+      if (chapterNameEl) chapterNameEl.value = name;
+      if (chapterSel) chapterSel.selectedIndex = 0;
+    } else {
+      if (newIndexEl) newIndexEl.value = "";
+      if (chapterNameEl) chapterNameEl.value = "";
+    }
+  });
+}
+
+const noteNewTopicNameEl = document.getElementById("noteNewTopicName");
+if (noteNewTopicNameEl) {
+  noteNewTopicNameEl.addEventListener("input", (e) => {
+    const name = e.target.value.trim();
+    const newIndexEl = document.getElementById("noteNewTopicIndex");
+    const topicNameEl = document.getElementById("noteTopicName");
+    const newChIdxEl = document.getElementById("noteNewChapterIndex");
+    const chapterSel = document.getElementById("noteChapterIndex");
+    const topicSel = document.getElementById("noteTopicIndex");
+    if (name) {
+      const chIdx = parseInt(newChIdxEl?.value) || parseInt(chapterSel?.value);
+      if (chIdx) {
+        const relatedTopics = noteTopics.filter(t => t._id.chapterIndex === chIdx);
+        const maxIndex = relatedTopics.length ? Math.max(...relatedTopics.map(t => t._id.topicIndex)) : 0;
+        if (newIndexEl) newIndexEl.value = maxIndex + 1;
+        if (topicNameEl) topicNameEl.value = name;
+        if (topicSel) topicSel.selectedIndex = 0;
+      } else {
+        showToast("Please select or create a chapter first", "error");
+        e.target.value = "";
+      }
+    } else {
+      if (newIndexEl) newIndexEl.value = "";
+      if (topicNameEl) topicNameEl.value = "";
+    }
+  });
+      }
+  
 // ==================== SEARCH ====================
 let searchTimeout;
 function performSearch() {
@@ -439,43 +690,65 @@ function performSearch() {
       clearSearch();
       return;
     }
-    if (allFlashcards.length === 0) return;
-    const results = allFlashcards.filter(f =>
-      f.question.toLowerCase().includes(query) ||
-      f.answer.toLowerCase().includes(query) ||
-      f.chapterName.toLowerCase().includes(query) ||
-      f.topicName.toLowerCase().includes(query)
-    );
-    showSection('flashcards');
-    displayFlashcards(results);
-    if (results.length > 0) {
-      showToast(`Found ${results.length} result(s)`, 'info');
-    } else {
-      showToast('No results found', 'info');
+    
+    // Search in both flashcards and notes
+    if (allFlashcards.length > 0) {
+      const flashcardResults = allFlashcards.filter(f =>
+        f.question.toLowerCase().includes(query) ||
+        f.answer.toLowerCase().includes(query) ||
+        f.chapterName.toLowerCase().includes(query) ||
+        f.topicName.toLowerCase().includes(query)
+      );
+      if (flashcardResults.length > 0) {
+        showSection('flashcards');
+        displayFlashcards(flashcardResults);
+        showToast(`Found ${flashcardResults.length} flashcard(s)`, 'info');
+        return;
+      }
     }
+    
+    if (allNotes.length > 0) {
+      const noteResults = allNotes.filter(n =>
+        n.noteTitle.toLowerCase().includes(query) ||
+        n.chapterName.toLowerCase().includes(query) ||
+        n.topicName.toLowerCase().includes(query) ||
+        n.htmlContent.toLowerCase().includes(query)
+      );
+      if (noteResults.length > 0) {
+        showSection('notes');
+        displayNotes(noteResults);
+        showToast(`Found ${noteResults.length} note(s)`, 'info');
+        return;
+      }
+    }
+    
+    showToast('No results found', 'info');
   }, 300);
 }
+
 function clearSearch() {
   const input = document.getElementById('globalSearch');
   if (input) input.value = '';
-  if (document.getElementById('flashcards-section')?.classList.contains('active')) {
+  const flashcardsSection = document.getElementById('flashcards-section');
+  const notesSection = document.getElementById('notes-section');
+  if (flashcardsSection?.classList.contains('active')) {
     displayFlashcards(allFlashcards);
+  }
+  if (notesSection?.classList.contains('active')) {
+    displayNotes(allNotes);
   }
 }
 
 // ==================== CHAPTER/TOPIC SELECTION HELPERS ===============
-// These are the new robust versions which always set the value correctly
 
 function chapterTextToName(text) {
   if (!text) return "";
-  // Accepts hyphen, en dash, em dash, or borked dash
-  const dash = text.match(/[â€”â€“-]|Ã¢â‚¬â€/);
+  const dash = text.match(/[â€”â€“-]|Ã¢â‚¬"Ã¢â‚¬"|ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬/);
   if (dash) return text.split(dash[0])[1]?.trim() || "";
-  // fallback to text if no dash (should never happen)
   return text.trim();
 }
+
 function topicOptionToName(option) {
-  // Try to use data-name attribute for topic name
   return option?.dataset?.name || option?.text?.trim() || "";
 }
 
@@ -507,6 +780,7 @@ function fillBulkChapterName() {
   document.getElementById("bulknewChapterName").value = "";
   document.getElementById("bulknewChapterIndex").value = "";
 }
+
 function fillBulkTopicName() {
   const sel = document.getElementById("bulkTopicIndex");
   if (!sel) return;
@@ -611,7 +885,9 @@ if (bulkNewTopicNameEl) {
       if (topicNameEl) topicNameEl.value = "";
     }
   });
-}
+  }
+    
+  
 
 // ==================== FORM VALIDATION ====================
 const flashcardForm = document.getElementById('add-flashcard-form');
@@ -630,9 +906,6 @@ if (flashcardForm) {
     }
   });
 }
-
-// ==================== BULK UPLOAD ====================
-// (Handlers above)
 
 // ==================== USER MANAGEMENT ====================
 function openDeleteUserModal(userId, username) {
@@ -688,11 +961,15 @@ async function loadFlashcardCount() {
 // ==================== INIT ====================
 document.addEventListener('DOMContentLoaded', () => {
   loadFlashcardCount();
-  console.log(' Admin panel initialized with Premium features');
+  console.log('âœ… Admin panel initialized with Premium + Notes features');
 
   // Attach dropdown change handlers for correct name filling
   document.getElementById("chapterIndex")?.addEventListener("change", fillChapterName);
   document.getElementById("topicIndex")?.addEventListener("change", fillTopicName);
   document.getElementById("bulkChapterIndex")?.addEventListener("change", fillBulkChapterName);
   document.getElementById("bulkTopicIndex")?.addEventListener("change", fillBulkTopicName);
+  
+  // Notes form handlers
+  document.getElementById("noteChapterIndex")?.addEventListener("change", fillNoteChapterName);
+  document.getElementById("noteTopicIndex")?.addEventListener("change", fillNoteTopicName);
 });
