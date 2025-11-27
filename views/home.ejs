@@ -72,27 +72,6 @@
       line-height: 1.6;
     }
 
-    .home-card.coming-soon {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .home-card.coming-soon:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    .coming-soon-badge {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 0.6);
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-top: 12px;
-    }
-
     @media (max-width: 768px) {
       .user-status {
         position: static;
@@ -138,13 +117,12 @@
 
   <!-- Home Grid -->
   <div class="home-grid">
-    <!-- Notes Card (Coming Soon) -->
-    <div class="home-card coming-soon">
+    <!-- Notes Card (NOW ACTIVE) -->
+    <a href="/notes" class="home-card">
       <span class="home-card-icon">📝</span>
       <h2>Notes</h2>
       <p>Comprehensive study notes organized by chapters and topics</p>
-      <span class="coming-soon-badge">Coming Soon</span>
-    </div>
+    </a>
 
     <!-- Flashcards Card (Active) -->
     <a href="/chapters" class="home-card">
@@ -188,6 +166,7 @@
   <section id="updates" class="section">
     <h2 id="siteupdate">Site Updates</h2>
     <ul class="updates">
+      <li>📝 Notes section now LIVE! Add your study notes easily.</li>
       <li>🏠 New home page with Notes and Flashcards sections!</li>
       <li>✨ Freemium model launched — Free and Premium content available!</li>
       <li>🔒 Premium chapters now marked with lock icons.</li>
