@@ -520,7 +520,20 @@ function displayNotes(notes) {
     </div>
   `).join('');
 }
-
+// Keep the existing openEditNoteModal function as is
+function openEditNoteModal(noteId, title, htmlContent, isPremium) {
+  const id = document.getElementById('edit-note-id');
+  const titleEl = document.getElementById('edit-note-title');
+  const content = document.getElementById('edit-note-content');
+  const premium = document.getElementById('edit-note-premium');
+  
+  if (id) id.value = noteId;
+  if (titleEl) titleEl.value = title;
+  if (content) content.value = htmlContent;
+  if (premium) premium.checked = isPremium;
+  
+  openModal('edit-note-modal');
+                           }
 // Add this new helper function to fetch and open the note modal
 async function openEditNoteModalById(noteId) {
   try {
@@ -540,20 +553,7 @@ async function openEditNoteModalById(noteId) {
   }
 }
 
-// Keep the existing openEditNoteModal function as is
-function openEditNoteModal(noteId, title, htmlContent, isPremium) {
-  const id = document.getElementById('edit-note-id');
-  const titleEl = document.getElementById('edit-note-title');
-  const content = document.getElementById('edit-note-content');
-  const premium = document.getElementById('edit-note-premium');
-  
-  if (id) id.value = noteId;
-  if (titleEl) titleEl.value = title;
-  if (content) content.value = htmlContent;
-  if (premium) premium.checked = isPremium;
-  
-  openModal('edit-note-modal');
-                      }
+
 
 function filterNotes() {
   const chapterFilter = document.getElementById('filterNoteChapter')?.value;
