@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes Chapters - Accela</title>
+  <link rel="stylesheet" href="/chapters.css">
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <style>
+    .premium-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+      color: #0a092d;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+
+    .lock-icon {
+      font-size: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .chapter-box.premium {
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      background: rgba(255, 215, 0, 0.03);
+    }
+
+    .chapter-box.premium:hover {
+      border-color: rgba(255, 215, 0, 0.5);
+      background: rgba(255, 215, 0, 0.06);
+    }
+
+    .user-status {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .user-status.premium {
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: #ffd700;
+    }
+
+    .breadcrumb {
+      max-width: 900px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .breadcrumb a {
+      color: #4f46e5;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: #6366f1;
+    }
+
+    .breadcrumb-separator {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .user-status {
+        position: static;
+        margin: 16px auto;
+        text-align: center;
+        max-width: 200px;
+      }
+
+      .breadcrumb {
+        margin-top: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" style="position: relative;">
+    <div class="logo-title">
+      <img src="https://files.catbox.moe/bpi1je.gif" alt="Animated Accela Logo" class="logo" />
+      <h1 id="accela">Accela</h1>
+    </div>
+    
+    <% if (isAuthenticated) { %>
+      <div class="user-status <%= hasPremium ? 'premium' : '' %>">
+        <% if (hasPremium) { %>
+          ⭐ Premium User
+        <% } else { %>
+          👤 <%= user.username %>
+        <% } %>
+      </div>
+    <% } %>
+  </header>
+
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb">
+    <a href="/">🏠 Home</a>
+    <span class="breadcrumb-separator">/</span>
+    <span>Notes Chapters</span>
+  </nav>
+
+  <!-- Chapters Section -->
+  <div class="container">
+    <section id="chapters" class="section">
+      <h1 class="title">📝 Notes Chapters</h1>
+      
+      <% if (!isAuthenticated) { %>
+        <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
+          <p style="color: #ffd700; font-weight: 600; margin: 0;">
+            🔓 Some chapters are free, others require premium access. 
+            <a href="/login" style="color: #ffd700; text-decoration: underline;">Login</a> to unlock premium content.
+          </p>
+        </div>
+      <% } else if (!hasPremium) { %>
+        <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
+          <p style="color: #ffd700; font-weight: 600; margin: 0;">
+            🌟 Upgrade to Premium to unlock all chapters and notes!
+          </p>
+        </div>
+      <% } %>
+      
+      <% if (chapters.length === 0) { %>
+        <div class="chapter-box">
+          <p style="text-align: center; color: rgba(255, 255, 255, 0.5);">No notes available yet. Check back soon!</p>
+        </div>
+      <% } else { %>
+        <% chapters.forEach(ch => { %>
+          <div class="chapter-box <%= ch.isPremium ? 'premium' : '' %>">
+            <h2>
+              Chapter <%= ch._id %>
+              <% if (ch.isPremium) { %>
+                <span class="premium-badge">
+                  <span class="lock-icon">🔒</span>PREMIUM
+                </span>
+              <% } %>
+            </h2>
+            <p><%= ch.chapterName %></p>
+            
+            <% if (ch.isPremium && !hasPremium) { %>
+              <a href="/login" class="btn" style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); color: #0a092d;">
+                🔒 Unlock Premium
+              </a>
+            <% } else { %>
+              <a href="/notes/chapter/<%= ch._id %>" class="btn">View Topics</a>
+            <% } %>
+          </div>
+        <% }) %>
+      <% } %>
+    </section>
+  </div>
+
+  <!-- Buttons Container -->
+  <div class="buttons-container">
+    <div class="button-row">
+      <% if (isAuthenticated) { %>
+        <form action="/logout" method="GET">
+          <button type="submit" class="logout-btn">Logout</button>
+        </form>
+        <% if (user && user.role === 'admin') { %>
+          <a href="/admin" class="admin-btn">Admin Panel</a>
+        <% } %>
+      <% } else { %>
+        <a href="/login" class="admin-btn">Login / Sign Up</a>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>
