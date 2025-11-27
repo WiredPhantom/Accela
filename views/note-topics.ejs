@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topics - Accela Notes</title>
+  <link rel="stylesheet" href="/chapters.css">
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <style>
+    .breadcrumb {
+      max-width: 900px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .breadcrumb a {
+      color: #4f46e5;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: #6366f1;
+    }
+
+    .breadcrumb-separator {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .premium-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+      color: #0a092d;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+
+    .chapter-box.premium {
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      background: rgba(255, 215, 0, 0.03);
+    }
+
+    .chapter-box.premium:hover {
+      border-color: rgba(255, 215, 0, 0.5);
+      background: rgba(255, 215, 0, 0.06);
+    }
+
+    @media (max-width: 768px) {
+      .breadcrumb {
+        margin-top: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo-title">
+      <img src="https://files.catbox.moe/bpi1je.gif" alt="Animated Accela Logo" class="logo" />
+      <h1 id="accela">Accela</h1>
+    </div>
+  </header>
+
+  <!-- Breadcrumb Navigation -->
+  <nav class="breadcrumb">
+    <a href="/">🏠 Home</a>
+    <span class="breadcrumb-separator">/</span>
+    <a href="/notes">Notes</a>
+    <span class="breadcrumb-separator">/</span>
+    <span>Chapter <%= chapterId %></span>
+  </nav>
+
+  <!-- Topics Section -->
+  <div class="container">
+    <section id="topics" class="section">
+      <h1 class="title">📚 Topics in Chapter <%= chapterId %></h1>
+      
+      <% if (topics.length === 0) { %>
+        <div class="chapter-box">
+          <p style="text-align: center; color: rgba(255, 255, 255, 0.5);">No topics available in this chapter yet.</p>
+        </div>
+      <% } else { %>
+        <% topics.forEach(topic => { %>
+          <div class="chapter-box <%= topic.isPremium ? 'premium' : '' %>">
+            <h2>
+              Topic <%= topic._id %>
+              <% if (topic.isPremium) { %>
+                <span class="premium-badge">🔒 PREMIUM</span>
+              <% } %>
+            </h2>
+            <p><%= topic.topicName %></p>
+            <a href="/notes/chapter/<%= chapterId %>/topic/<%= topic._id %>" class="btn">Read Note</a>
+          </div>
+        <% }) %>
+      <% } %>
+    </section>
+  </div>
+
+  <!-- Buttons Container -->
+  <div class="buttons-container">
+    <div class="button-row">
+      <% if (isAuthenticated) { %>
+        <form action="/logout" method="GET">
+          <button type="submit" class="logout-btn">Logout</button>
+        </form>
+      <% } else { %>
+        <a href="/login" class="admin-btn">Login / Sign Up</a>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>
