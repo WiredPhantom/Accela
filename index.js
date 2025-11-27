@@ -41,7 +41,7 @@ const User = getUserModel(userConnection);
 const Flashcard = getFlashcardModel(flashcardConnection);
 
 // --------- 4. AUTH MIDDLEWARE ---------
-// ✅ NEW: Optional auth - doesn't block if not logged in
+// ✅ Optional auth - doesn't block if not logged in
 function optionalAuth(req, res, next) {
   try {
     const token = req.cookies.token;
@@ -76,7 +76,7 @@ function checkRole(role) {
   };
 }
 
-// ✅ NEW: Check if user has premium access
+// ✅ Check if user has premium access
 async function checkPremiumAccess(req, res, next) {
   if (!req.isAuthenticated) {
     return res.render("premiumrequired", { 
@@ -131,9 +131,33 @@ app.use("/admin", checkAuth, checkRole("admin"), adminRoutes);
 
 // --------- 6. MAIN ROUTES ---------
 
-// Root: redirect to chapters (now public)
-app.get("/", (req, res) => {
-  res.redirect("/chapters");
+// ✅ NEW HOME PAGE (Root)
+app.get("/", optionalAuth, async (req, res) => {
+  try {
+    // Get user's premium status if logged in
+    let hasPremium = false;
+    if (req.isAuthenticated) {
+      const user = await User.findOne({ username: req.user.username });
+      if (user && (user.role === "admin" || 
+          (user.subscriptionStatus === "premium" && 
+           (!user.subscriptionExpiry || user.subscriptionExpiry > new Date())))) {
+        hasPremium = true;
+      }
+    }
+
+    res.render("home", { 
+      isAuthenticated: req.isAuthenticated,
+      hasPremium,
+      user: req.user 
+    });
+  } catch (err) {
+    console.error("❌ Home page error:", err);
+    res.render("home", { 
+      isAuthenticated: false, 
+      hasPremium: false,
+      user: null 
+    });
+  }
 });
 
 // Login page
@@ -141,7 +165,7 @@ app.get("/login", (req, res) => {
   try {
     const token = req.cookies.token;
     const decoded = jwt.verify(token, process.env.jwtkey);
-    if (decoded) return res.redirect("/chapters");
+    if (decoded) return res.redirect("/");
   } catch {}
   res.render("login");
 });
@@ -169,7 +193,7 @@ app.post("/login", async (req, res) => {
       secure: false,
       maxAge: 22 * 24 * 60 * 60 * 1000
     });
-    res.redirect("/chapters");
+    res.redirect("/");
   } catch (err) {
     console.error("Login error:", err);
     res.render("accessdenied");
@@ -179,7 +203,7 @@ app.post("/login", async (req, res) => {
 // Logout
 app.get("/logout", (req, res) => {
   res.clearCookie("token");
-  res.redirect("/chapters");
+  res.redirect("/");
 });
 
 // --------- 7. FLASHCARD ROUTES (PUBLIC + PREMIUM) ---------
