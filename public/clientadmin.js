@@ -481,6 +481,8 @@ async function loadAllNotes() {
   }
 }
 
+// Replace the displayNotes function in clientadmin.js with this fixed version:
+
 function displayNotes(notes) {
   const listContainer = document.getElementById('all-notes-list');
   if (!listContainer) return;
@@ -503,7 +505,7 @@ function displayNotes(notes) {
           <a href="/notes/chapter/${note.chapterIndex}/topic/${note.topicIndex}" target="_blank" style="display: inline-block; padding: 8px 16px; background: rgba(79,70,229,0.2); border: 1px solid rgba(79,70,229,0.3); border-radius: 8px; color: #fff; text-decoration: none; margin-right: 8px;">
             👁️ View
           </a>
-          <button onclick="openEditNoteModal('${note._id}', \`${escapeHtml(note.noteTitle)}\`, \`${escapeHtml(note.htmlContent)}\`, ${note.isPremium})">
+          <button onclick="openEditNoteModalById('${note._id}')">
             ✏️ Edit
           </button>
           <button onclick="openDeleteNoteModal('${note._id}', \`${escapeHtml(note.noteTitle)}\`)" class="danger">
@@ -519,16 +521,26 @@ function displayNotes(notes) {
   `).join('');
 }
 
-function filterNotes() {
-  const chapterFilter = document.getElementById('filterNoteChapter')?.value;
-  let filtered = allNotes;
-
-  if (chapterFilter) {
-    filtered = filtered.filter(n => n.chapterIndex == chapterFilter);
+// Add this new helper function to fetch and open the note modal
+async function openEditNoteModalById(noteId) {
+  try {
+    // Find the note in the allNotes array
+    const note = allNotes.find(n => n._id === noteId);
+    
+    if (!note) {
+      showToast('Note not found', 'error');
+      return;
+    }
+    
+    // Now call the existing modal function with the data
+    openEditNoteModal(note._id, note.noteTitle, note.htmlContent, note.isPremium);
+  } catch (error) {
+    console.error('Error opening note modal:', error);
+    showToast('Failed to open note editor', 'error');
   }
-  displayNotes(filtered);
 }
 
+// Keep the existing openEditNoteModal function as is
 function openEditNoteModal(noteId, title, htmlContent, isPremium) {
   const id = document.getElementById('edit-note-id');
   const titleEl = document.getElementById('edit-note-title');
@@ -541,7 +553,19 @@ function openEditNoteModal(noteId, title, htmlContent, isPremium) {
   if (premium) premium.checked = isPremium;
   
   openModal('edit-note-modal');
+                      }
+
+function filterNotes() {
+  const chapterFilter = document.getElementById('filterNoteChapter')?.value;
+  let filtered = allNotes;
+
+  if (chapterFilter) {
+    filtered = filtered.filter(n => n.chapterIndex == chapterFilter);
+  }
+  displayNotes(filtered);
 }
+
+
 
 const editNoteForm = document.getElementById('edit-note-form');
 if (editNoteForm) {
