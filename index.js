@@ -8,6 +8,17 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// --------- VALIDATE ENVIRONMENT VARIABLES ---------
+if (!process.env.jwtkey) {
+  console.error("❌ FATAL: JWT secret key (jwtkey) is not configured in .env");
+  process.exit(1);
+}
+
+if (!process.env.useruri || !process.env.flashcarduri) {
+  console.error("❌ FATAL: Database URIs not configured");
+  process.exit(1);
+}
+
 // --------- 1. MIDDLEWARE ---------
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,7 +29,7 @@ app.set("view engine", "ejs");
 // --------- 2. MONGOOSE MULTI-CONNECTION SETUP ---------
 const useruri = process.env.useruri;
 const flashcarduri = process.env.flashcarduri;
-const noteuri = process.env.noteuri || flashcarduri; // Use same DB or separate
+const noteuri = process.env.noteuri || flashcarduri;
 
 const userConnection = mongoose.createConnection(useruri, {
   serverSelectionTimeoutMS: 5000,
@@ -36,9 +47,19 @@ const noteConnection = mongoose.createConnection(noteuri, {
 userConnection.on("connected", () => console.log("✅ User DB connected"));
 flashcardConnection.on("connected", () => console.log("✅ Flashcard DB connected"));
 noteConnection.on("connected", () => console.log("✅ Note DB connected"));
-userConnection.on("error", err => console.error("❌ User DB Error:", err));
-flashcardConnection.on("error", err => console.error("❌ Flashcard DB Error:", err));
-noteConnection.on("error", err => console.error("❌ Note DB Error:", err));
+
+userConnection.on("error", err => {
+  console.error("❌ User DB Error:", err);
+  process.exit(1);
+});
+flashcardConnection.on("error", err => {
+  console.error("❌ Flashcard DB Error:", err);
+  process.exit(1);
+});
+noteConnection.on("error", err => {
+  console.error("❌ Note DB Error:", err);
+  process.exit(1);
+});
 
 // --------- 3. LOAD MODELS ---------
 const getUserModel = require("./models/user");
@@ -49,10 +70,32 @@ const User = getUserModel(userConnection);
 const Flashcard = getFlashcardModel(flashcardConnection);
 const Note = getNoteModel(noteConnection);
 
-// --------- 4. AUTH MIDDLEWARE ---------
+// --------- 4. HELPER FUNCTIONS ---------
+async function checkUserPremium(username) {
+  if (!username) return false;
+  try {
+    const user = await User.findOne({ username });
+    if (!user) return false;
+    
+    return user.role === "admin" || 
+      (user.subscriptionStatus === "premium" && 
+       (!user.subscriptionExpiry || user.subscriptionExpiry > new Date()));
+  } catch (err) {
+    console.error("Error checking premium status:", err);
+    return false;
+  }
+}
+
+// --------- 5. AUTH MIDDLEWARE ---------
 function optionalAuth(req, res, next) {
   try {
     const token = req.cookies.token;
+    if (!token) {
+      req.user = null;
+      req.isAuthenticated = false;
+      return next();
+    }
+    
     const decoded = jwt.verify(token, process.env.jwtkey);
     req.user = decoded;
     req.isAuthenticated = true;
@@ -66,17 +109,22 @@ function optionalAuth(req, res, next) {
 function checkAuth(req, res, next) {
   try {
     const token = req.cookies.token;
+    if (!token) {
+      return res.render("accessdenied");
+    }
+    
     const decoded = jwt.verify(token, process.env.jwtkey);
     req.user = decoded;
     next();
   } catch (err) {
+    console.error("Auth error:", err.message);
     res.render("accessdenied");
   }
 }
 
 function checkRole(role) {
   return (req, res, next) => {
-    if (req.user.role !== role) {
+    if (!req.user || req.user.role !== role) {
       return res.render("unauthorized");
     }
     next();
@@ -126,24 +174,16 @@ async function checkPremiumAccess(req, res, next) {
   }
 }
 
-// --------- 5. ADMIN ROUTES ---------
+// --------- 6. ADMIN ROUTES ---------
 const adminRoutes = require("./routes/admin")(User, Flashcard, Note);
 app.use("/admin", checkAuth, checkRole("admin"), adminRoutes);
 
-// --------- 6. MAIN ROUTES ---------
+// --------- 7. MAIN ROUTES ---------
 
 // ✅ HOME PAGE
 app.get("/", optionalAuth, async (req, res) => {
   try {
-    let hasPremium = false;
-    if (req.isAuthenticated) {
-      const user = await User.findOne({ username: req.user.username });
-      if (user && (user.role === "admin" || 
-          (user.subscriptionStatus === "premium" && 
-           (!user.subscriptionExpiry || user.subscriptionExpiry > new Date())))) {
-        hasPremium = true;
-      }
-    }
+    const hasPremium = await checkUserPremium(req.user?.username);
 
     res.render("home", { 
       isAuthenticated: req.isAuthenticated,
@@ -164,9 +204,13 @@ app.get("/", optionalAuth, async (req, res) => {
 app.get("/login", (req, res) => {
   try {
     const token = req.cookies.token;
-    const decoded = jwt.verify(token, process.env.jwtkey);
-    if (decoded) return res.redirect("/");
-  } catch {}
+    if (token) {
+      const decoded = jwt.verify(token, process.env.jwtkey);
+      if (decoded) return res.redirect("/");
+    }
+  } catch (err) {
+    // Invalid token, continue to login page
+  }
   res.render("login");
 });
 
@@ -174,11 +218,20 @@ app.get("/login", (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
+    
+    if (!username || !password) {
+      return res.render("accessdenied", { message: "Username and password required" });
+    }
+    
     const user = await User.findOne({ username });
-    if (!user) return res.render("accessdenied");
+    if (!user) {
+      return res.render("accessdenied", { message: "Invalid credentials" });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.render("accessdenied");
+    if (!isMatch) {
+      return res.render("accessdenied", { message: "Invalid credentials" });
+    }
 
     const token = jwt.sign(
       { username, role: user.role, subscriptionStatus: user.subscriptionStatus },
@@ -186,17 +239,19 @@ app.post("/login", async (req, res) => {
       { expiresIn: "528h" }
     );
 
+    const isProduction = process.env.NODE_ENV === 'production';
+
     res.cookie("token", token, {
       httpOnly: true,
       path: "/",
       sameSite: "lax",
-      secure: false,
+      secure: isProduction,
       maxAge: 22 * 24 * 60 * 60 * 1000
     });
     res.redirect("/");
   } catch (err) {
     console.error("Login error:", err);
-    res.render("accessdenied");
+    res.render("accessdenied", { message: "An error occurred during login" });
   }
 });
 
@@ -206,7 +261,7 @@ app.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-// --------- 7. FLASHCARD ROUTES ---------
+// --------- 8. FLASHCARD ROUTES ---------
 
 app.get("/chapters", optionalAuth, async (req, res) => {
   try {
@@ -221,15 +276,7 @@ app.get("/chapters", optionalAuth, async (req, res) => {
       { $sort: { _id: 1 } }
     ]);
 
-    let hasPremium = false;
-    if (req.isAuthenticated) {
-      const user = await User.findOne({ username: req.user.username });
-      if (user && (user.role === "admin" || 
-          (user.subscriptionStatus === "premium" && 
-           (!user.subscriptionExpiry || user.subscriptionExpiry > new Date())))) {
-        hasPremium = true;
-      }
-    }
+    const hasPremium = await checkUserPremium(req.user?.username);
 
     res.render("chapters", { 
       chapters, 
@@ -251,6 +298,10 @@ app.get("/chapters", optionalAuth, async (req, res) => {
 app.get("/chapter/:id", optionalAuth, async (req, res) => {
   const chapterId = parseInt(req.params.id);
   
+  if (isNaN(chapterId) || chapterId < 0) {
+    return res.status(400).render("404");
+  }
+  
   try {
     const chapterCheck = await Flashcard.findOne({ chapterIndex: chapterId });
     
@@ -261,10 +312,7 @@ app.get("/chapter/:id", optionalAuth, async (req, res) => {
         });
       }
 
-      const user = await User.findOne({ username: req.user.username });
-      const hasPremium = user && (user.role === "admin" || 
-        (user.subscriptionStatus === "premium" && 
-         (!user.subscriptionExpiry || user.subscriptionExpiry > new Date())));
+      const hasPremium = await checkUserPremium(req.user.username);
 
       if (!hasPremium) {
         return res.render("premiumrequired", { 
@@ -304,6 +352,10 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
   const chapterId = parseInt(req.params.chapterId);
   const topicId = parseInt(req.params.topicId);
 
+  if (isNaN(chapterId) || isNaN(topicId) || chapterId < 0 || topicId < 0) {
+    return res.status(400).render("404");
+  }
+
   try {
     const topicCheck = await Flashcard.findOne({ 
       chapterIndex: chapterId, 
@@ -317,10 +369,7 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
         });
       }
 
-      const user = await User.findOne({ username: req.user.username });
-      const hasPremium = user && (user.role === "admin" || 
-        (user.subscriptionStatus === "premium" && 
-         (!user.subscriptionExpiry || user.subscriptionExpiry > new Date())));
+      const hasPremium = await checkUserPremium(req.user.username);
 
       if (!hasPremium) {
         return res.render("premiumrequired", { 
@@ -351,7 +400,7 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
   }
 });
 
-// --------- 8. NOTES ROUTES ---------
+// --------- 9. NOTES ROUTES ---------
 
 // Notes chapters list
 app.get("/notes", optionalAuth, async (req, res) => {
@@ -367,15 +416,7 @@ app.get("/notes", optionalAuth, async (req, res) => {
       { $sort: { _id: 1 } }
     ]);
 
-    let hasPremium = false;
-    if (req.isAuthenticated) {
-      const user = await User.findOne({ username: req.user.username });
-      if (user && (user.role === "admin" || 
-          (user.subscriptionStatus === "premium" && 
-           (!user.subscriptionExpiry || user.subscriptionExpiry > new Date())))) {
-        hasPremium = true;
-      }
-    }
+    const hasPremium = await checkUserPremium(req.user?.username);
 
     res.render("note-chapters", { 
       chapters, 
@@ -398,6 +439,10 @@ app.get("/notes", optionalAuth, async (req, res) => {
 app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
   const chapterId = parseInt(req.params.id);
   
+  if (isNaN(chapterId) || chapterId < 0) {
+    return res.status(400).render("404");
+  }
+  
   try {
     const chapterCheck = await Note.findOne({ chapterIndex: chapterId });
     
@@ -408,10 +453,7 @@ app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
         });
       }
 
-      const user = await User.findOne({ username: req.user.username });
-      const hasPremium = user && (user.role === "admin" || 
-        (user.subscriptionStatus === "premium" && 
-         (!user.subscriptionExpiry || user.subscriptionExpiry > new Date())));
+      const hasPremium = await checkUserPremium(req.user.username);
 
       if (!hasPremium) {
         return res.render("premiumrequired", { 
@@ -452,6 +494,10 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
   const chapterId = parseInt(req.params.chapterId);
   const topicId = parseInt(req.params.topicId);
 
+  if (isNaN(chapterId) || isNaN(topicId) || chapterId < 0 || topicId < 0) {
+    return res.status(400).render("404");
+  }
+
   try {
     const note = await Note.findOne({ 
       chapterIndex: chapterId, 
@@ -469,10 +515,7 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
         });
       }
 
-      const user = await User.findOne({ username: req.user.username });
-      const hasPremium = user && (user.role === "admin" || 
-        (user.subscriptionStatus === "premium" && 
-         (!user.subscriptionExpiry || user.subscriptionExpiry > new Date())));
+      const hasPremium = await checkUserPremium(req.user.username);
 
       if (!hasPremium) {
         return res.render("premiumrequired", { 
@@ -491,17 +534,34 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
   }
 });
 
-// --------- 9. ERROR HANDLING ---------
+// --------- 10. ERROR HANDLING ---------
 app.use((req, res) => {
   res.status(404).render("404");
 });
 
 app.use((err, req, res, next) => {
   console.error("🔥 Unhandled error:", err);
-  res.render("404");
+  res.status(500).render("404");
 });
 
-// --------- 10. START SERVER ---------
+// --------- 11. GRACEFUL SHUTDOWN ---------
+process.on('SIGTERM', async () => {
+  console.log('SIGTERM received, closing connections...');
+  await userConnection.close();
+  await flashcardConnection.close();
+  await noteConnection.close();
+  process.exit(0);
+});
+
+process.on('SIGINT', async () => {
+  console.log('SIGINT received, closing connections...');
+  await userConnection.close();
+  await flashcardConnection.close();
+  await noteConnection.close();
+  process.exit(0);
+});
+
+// --------- 12. START SERVER ---------
 app.listen(port, "0.0.0.0", () => {
   console.log(`✅ Server running on port ${port}`);
   console.log(`✅ Server accessible at http://0.0.0.0:${port}`);
