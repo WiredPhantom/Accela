@@ -723,4 +723,333 @@
     noteNewTopicNameEl.addEventListener("input", (e) => {
       const name = e.target.value.trim();
       const newIndexEl = document.getElementById("noteNewTopicIndex");
-      const topicNameEl = 
+      const topicNameEl = document.getElementById("noteTopicName");
+      const newChIdxEl = document.getElementById("noteNewChapterIndex");
+      const chapterSel = document.getElementById("noteChapterIndex");
+      const topicSel = document.getElementById("noteTopicIndex");
+      
+      if (name) {
+        const chIdx = parseInt(newChIdxEl?.value) || parseInt(chapterSel?.value);
+        if (chIdx) {
+          const relatedTopics = noteTopics.filter(t => t._id.chapterIndex === chIdx);
+          const maxIndex = relatedTopics.length ? Math.max(...relatedTopics.map(t => t._id.topicIndex)) : 0;
+          if (newIndexEl) newIndexEl.value = maxIndex + 1;
+          if (topicNameEl) topicNameEl.value = name;
+          if (topicSel) topicSel.selectedIndex = 0;
+        } else {
+          showToast("Please select or create a chapter first", "error");
+          e.target.value = "";
+        }
+      } else {
+        if (newIndexEl) newIndexEl.value = "";
+        if (topicNameEl) topicNameEl.value = "";
+      }
+    });
+  }
+
+  // ==================== SEARCH ====================
+  window.performSearch = function() {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      const input = document.getElementById('globalSearch');
+      if (!input) return;
+      const query = input.value.toLowerCase().trim();
+      
+      if (!query) {
+        clearSearch();
+        return;
+      }
+      
+      if (allFlashcards.length > 0) {
+        const flashcardResults = allFlashcards.filter(f =>
+          f.question.toLowerCase().includes(query) ||
+          f.answer.toLowerCase().includes(query) ||
+          f.chapterName.toLowerCase().includes(query) ||
+          f.topicName.toLowerCase().includes(query)
+        );
+        if (flashcardResults.length > 0) {
+          showSection('flashcards');
+          displayFlashcards(flashcardResults);
+          showToast(`Found ${flashcardResults.length} flashcard(s)`, 'info');
+          return;
+        }
+      }
+      
+      if (allNotes.length > 0) {
+        const noteResults = allNotes.filter(n =>
+          n.noteTitle.toLowerCase().includes(query) ||
+          n.chapterName.toLowerCase().includes(query) ||
+          n.topicName.toLowerCase().includes(query) ||
+          n.htmlContent.toLowerCase().includes(query)
+        );
+        if (noteResults.length > 0) {
+          showSection('notes');
+          displayNotes(noteResults);
+          showToast(`Found ${noteResults.length} note(s)`, 'info');
+          return;
+        }
+      }
+      
+      showToast('No results found', 'info');
+    }, 300);
+  };
+
+  window.clearSearch = function() {
+    const input = document.getElementById('globalSearch');
+    if (input) input.value = '';
+    const flashcardsSection = document.getElementById('flashcards-section');
+    const notesSection = document.getElementById('notes-section');
+    if (flashcardsSection?.classList.contains('active')) {
+      displayFlashcards(allFlashcards);
+    }
+    if (notesSection?.classList.contains('active')) {
+      displayNotes(allNotes);
+    }
+  };
+
+  // ==================== CHAPTER/TOPIC SELECTION HELPERS ====================
+
+  function chapterTextToName(text) {
+    if (!text) return "";
+    const dash = text.match(/[—–-]/);
+    if (dash) return text.split(dash[0])[1]?.trim() || "";
+    return text.trim();
+  }
+
+  function topicOptionToName(option) {
+    return option?.dataset?.name || option?.text?.trim() || "";
+  }
+
+  // --- REGULAR FLASHCARD FORM ---
+  window.fillChapterName = function() {
+    const sel = document.getElementById("chapterIndex");
+    if (!sel) return;
+    const text = sel.options[sel.selectedIndex]?.text;
+    document.getElementById("chapterName").value = chapterTextToName(text);
+    document.getElementById("newChapterName").value = "";
+    document.getElementById("newChapterIndex").value = "";
+  };
+
+  window.fillTopicName = function() {
+    const sel = document.getElementById("topicIndex");
+    if (!sel) return;
+    const option = sel.options[sel.selectedIndex];
+    document.getElementById("topicName").value = topicOptionToName(option);
+    document.getElementById("newTopicName").value = "";
+    document.getElementById("newTopicIndex").value = "";
+  };
+
+  // --- BULK FORM ---
+  window.fillBulkChapterName = function() {
+    const sel = document.getElementById("bulkChapterIndex");
+    if (!sel) return;
+    const text = sel.options[sel.selectedIndex]?.text;
+    document.getElementById("bulkChapterName").value = chapterTextToName(text);
+    document.getElementById("bulknewChapterName").value = "";
+    document.getElementById("bulknewChapterIndex").value = "";
+  };
+
+  window.fillBulkTopicName = function() {
+    const sel = document.getElementById("bulkTopicIndex");
+    if (!sel) return;
+    const option = sel.options[sel.selectedIndex];
+    document.getElementById("bulkTopicName").value = topicOptionToName(option);
+    document.getElementById("bulknewTopicName").value = "";
+    document.getElementById("bulknewTopicIndex").value = "";
+  };
+
+  // ==================== INPUT HANDLERS ====================
+  // --- REGULAR ---
+  const newChapterNameEl = document.getElementById("newChapterName");
+  if (newChapterNameEl) {
+    newChapterNameEl.addEventListener("input", (e) => {
+      const name = e.target.value.trim();
+      const newIndexEl = document.getElementById("newChapterIndex");
+      const chapterNameEl = document.getElementById("chapterName");
+      const chapterSel = document.getElementById("chapterIndex");
+      
+      if (name) {
+        const maxIndex = chapters.length ? Math.max(...chapters.map(c => c._id)) : 0;
+        if (newIndexEl) newIndexEl.value = maxIndex + 1;
+        if (chapterNameEl) chapterNameEl.value = name;
+        if (chapterSel) chapterSel.selectedIndex = 0;
+      } else {
+        if (newIndexEl) newIndexEl.value = "";
+        if (chapterNameEl) chapterNameEl.value = "";
+      }
+    });
+  }
+
+  const newTopicNameEl = document.getElementById("newTopicName");
+  if (newTopicNameEl) {
+    newTopicNameEl.addEventListener("input", (e) => {
+      const name = e.target.value.trim();
+      const newIndexEl = document.getElementById("newTopicIndex");
+      const topicNameEl = document.getElementById("topicName");
+      const newChIdxEl = document.getElementById("newChapterIndex");
+      const chapterSel = document.getElementById("chapterIndex");
+      const topicSel = document.getElementById("topicIndex");
+      
+      if (name) {
+        const chIdx = parseInt(newChIdxEl?.value) || parseInt(chapterSel?.value);
+        if (chIdx) {
+          const relatedTopics = topics.filter(t => t._id.chapterIndex === chIdx);
+          const maxIndex = relatedTopics.length ? Math.max(...relatedTopics.map(t => t._id.topicIndex)) : 0;
+          if (newIndexEl) newIndexEl.value = maxIndex + 1;
+          if (topicNameEl) topicNameEl.value = name;
+          if (topicSel) topicSel.selectedIndex = 0;
+        } else {
+          showToast("Please select or create a chapter first", "error");
+          e.target.value = "";
+        }
+      } else {
+        if (newIndexEl) newIndexEl.value = "";
+        if (topicNameEl) topicNameEl.value = "";
+      }
+    });
+  }
+
+  // --- BULK ---
+  const bulkNewChapterNameEl = document.getElementById("bulknewChapterName");
+  if (bulkNewChapterNameEl) {
+    bulkNewChapterNameEl.addEventListener("input", (e) => {
+      const name = e.target.value.trim();
+      const newIndexEl = document.getElementById("bulknewChapterIndex");
+      const bulkChapterName = document.getElementById("bulkChapterName");
+      const bulkChapterSel = document.getElementById("bulkChapterIndex");
+      
+      if (name) {
+        const maxIndex = chapters.length ? Math.max(...chapters.map(c => c._id)) : 0;
+        if (newIndexEl) newIndexEl.value = maxIndex + 1;
+        if (bulkChapterName) bulkChapterName.value = name;
+        if (bulkChapterSel) bulkChapterSel.selectedIndex = 0;
+      } else {
+        if (newIndexEl) newIndexEl.value = "";
+        if (bulkChapterName) bulkChapterName.value = "";
+      }
+    });
+  }
+
+  const bulkNewTopicNameEl = document.getElementById("bulknewTopicName");
+  if (bulkNewTopicNameEl) {
+    bulkNewTopicNameEl.addEventListener("input", (e) => {
+      const name = e.target.value.trim();
+      const newIndexEl = document.getElementById("bulknewTopicIndex");
+      const topicNameEl = document.getElementById("bulkTopicName");
+      const newChIdxEl = document.getElementById("bulknewChapterIndex");
+      const chapterSel = document.getElementById("bulkChapterIndex");
+      const topicSel = document.getElementById("bulkTopicIndex");
+      
+      if (name) {
+        const chIdx = parseInt(newChIdxEl?.value) || parseInt(chapterSel?.value);
+        if (chIdx) {
+          const related = topics.filter(tp => tp._id.chapterIndex === chIdx);
+          const maxIndex = related.length ? Math.max(...related.map(tp => tp._id.topicIndex)) : 0;
+          if (newIndexEl) newIndexEl.value = maxIndex + 1;
+          if (topicNameEl) topicNameEl.value = name;
+          if (topicSel) topicSel.selectedIndex = 0;
+        } else {
+          showToast("Please select or create a chapter first", "error");
+          e.target.value = "";
+        }
+      } else {
+        if (newIndexEl) newIndexEl.value = "";
+        if (topicNameEl) topicNameEl.value = "";
+      }
+    });
+  }
+
+  // ==================== FORM VALIDATION ====================
+  const flashcardForm = document.getElementById('add-flashcard-form');
+  if (flashcardForm) {
+    flashcardForm.addEventListener("submit", (e) => {
+      const submitBtn = flashcardForm.querySelector('button[type="submit"]');
+      const chapterName = document.getElementById("chapterName")?.value.trim();
+      const topicName = document.getElementById("topicName")?.value.trim();
+      const newChapterName = document.getElementById("newChapterName")?.value.trim();
+      const newTopicName = document.getElementById("newTopicName")?.value.trim();
+
+      const chapterOk = chapterName || newChapterName;
+      const topicOk = topicName || newTopicName;
+      
+      if (!chapterOk || !topicOk) {
+        e.preventDefault();
+        showToast("Please select or enter both a Chapter and a Topic", "error");
+        return;
+      }
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Adding...';
+    });
+  }
+
+  // ==================== USER MANAGEMENT ====================
+  window.openDeleteUserModal = function(userId, username) {
+    const userIdEl = document.getElementById("delete-user-id");
+    const userNameEl = document.getElementById("delete-user-name");
+    if (userIdEl) userIdEl.value = userId;
+    if (userNameEl) userNameEl.textContent = username;
+    openModal("delete-user-modal");
+  };
+
+  // ==================== EXPORT ====================
+  window.exportAllData = async function() {
+    try {
+      const response = await fetch('/admin/flashcards');
+      const flashcards = await response.json();
+      const dataStr = JSON.stringify(flashcards, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `flashcards_export_${new Date().toISOString().split('T')[0]}.json`;
+      link.click();
+      URL.revokeObjectURL(url);
+      showToast('Data exported successfully!', 'success');
+    } catch (err) {
+      console.error('Export error:', err);
+      showToast('Failed to export data', 'error');
+    }
+  };
+
+  // ==================== DASHBOARD STATS ====================
+  async function loadFlashcardCount() {
+    try {
+      const response = await fetch('/admin/flashcards');
+      const flashcards = await response.json();
+      const statEl = document.getElementById('stat-flashcards');
+      if (statEl) statEl.textContent = flashcards.length;
+      allFlashcards = flashcards;
+    } catch (err) {
+      console.error('Error loading flashcard count:', err);
+      const statEl = document.getElementById('stat-flashcards');
+      if (statEl) statEl.textContent = '0';
+    }
+  }
+
+  // ==================== INIT ====================
+  document.addEventListener('DOMContentLoaded', () => {
+    loadFlashcardCount();
+    console.log('✅ Admin panel initialized with Premium + Notes features');
+
+    // Attach dropdown change handlers
+    const chapterIndexEl = document.getElementById("chapterIndex");
+    if (chapterIndexEl) chapterIndexEl.addEventListener("change", fillChapterName);
+    
+    const topicIndexEl = document.getElementById("topicIndex");
+    if (topicIndexEl) topicIndexEl.addEventListener("change", fillTopicName);
+    
+    const bulkChapterIndexEl = document.getElementById("bulkChapterIndex");
+    if (bulkChapterIndexEl) bulkChapterIndexEl.addEventListener("change", fillBulkChapterName);
+    
+    const bulkTopicIndexEl = document.getElementById("bulkTopicIndex");
+    if (bulkTopicIndexEl) bulkTopicIndexEl.addEventListener("change", fillBulkTopicName);
+    
+    const noteChapterIndexEl = document.getElementById("noteChapterIndex");
+    if (noteChapterIndexEl) noteChapterIndexEl.addEventListener("change", fillNoteChapterName);
+    
+    const noteTopicIndexEl = document.getElementById("noteTopicIndex");
+    if (noteTopicIndexEl) noteTopicIndexEl.addEventListener("change", fillNoteTopicName);
+  });
+
+})();
