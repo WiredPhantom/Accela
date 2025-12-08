@@ -72,6 +72,63 @@
       line-height: 1.6;
     }
 
+    .contact-section {
+      background: rgba(79, 70, 229, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .contact-section h3 {
+      font-size: 20px;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .contact-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 15px;
+    }
+
+    .contact-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .highlight {
+      color: #00ffcc;
+      font-weight: 600;
+    }
+
+    .warning-box {
+      background: rgba(255, 59, 48, 0.1);
+      border: 1px solid rgba(255, 59, 48, 0.3);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 20px;
+      color: #ff6b6b;
+      font-size: 15px;
+    }
+
     @media (max-width: 768px) {
       .user-status {
         position: static;
@@ -91,6 +148,16 @@
 
       .home-card-icon {
         font-size: 48px;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .contact-btn {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
@@ -117,14 +184,14 @@
 
   <!-- Home Grid -->
   <div class="home-grid">
-    <!-- Notes Card (NOW ACTIVE) -->
+    <!-- Notes Card -->
     <a href="/notes" class="home-card">
       <span class="home-card-icon">📝</span>
       <h2>Notes</h2>
       <p>Comprehensive study notes organized by chapters and topics</p>
     </a>
 
-    <!-- Flashcards Card (Active) -->
+    <!-- Flashcards Card -->
     <a href="/chapters" class="home-card">
       <span class="home-card-icon">🗂️</span>
       <h2>Flashcards</h2>
@@ -134,24 +201,46 @@
 
   <!-- About the Site -->
   <section id="lain" class="section lain-section">
-    <h2 id="aboutsite">About the Site</h2>
+    <h2 id="aboutsite">Why ACCELA Works (When Everything Else Fails)</h2>
     <div class="lain-container">
-      <img src="https://files.catbox.moe/bpi1je.gif" alt="Glitched image of Lain representing site ethos" class="lain-img" />
+      <img src="https://files.catbox.moe/bpi1je.gif" alt="ACCELA Logo" class="lain-img" />
       <p class="text">
-        ACCELA was not born from inspiration — it was born from necessity. There wasn't a tool aligned with the structure that was needed. So the webmaster stopped waiting. And started building.
+        You've tried other study tools. You've highlighted textbooks until they looked like rainbow disasters. You've made notes you never looked at again. And when exam day came? Panic. Blank mind. "I swear I studied this..."
         <br><br>
-        <strong>🚀 Currently: Core topics are <span style="color: #00ffcc;">free to access</span>.</strong><br>
-        <strong>🔒 Premium content unlocks advanced chapters and topics.</strong><br>
-        <em>You're here early — explore what resonates.</em><br>
-        <br>
-        This is not a traditional study site. It's a system shaped around <em>Active Recall</em>. You won't remember what you just read. You'll remember what your memory was forced to retrieve. That's the rule — we remember what we remembered, not what we read.
+        <strong>Here's the truth nobody tells you:</strong> Reading doesn't equal remembering. Your brain doesn't store information just because your eyes scanned it. Memory works through <em>retrieval</em>, not repetition.
         <br><br>
-        There's a Cbox. It's more than a chat — it's a bridge. Questions, suggestion, appreciation — everything is signal. And all signal reaches the webmaster.
+        ACCELA is built on one principle: <span class="highlight">You remember what you actively recall, not what you passively review.</span>
         <br><br>
-        You've entered a space shaped by need, refined by memory, and held together by obsession.  
+        That's why we use flashcards. That's why we force your brain to work. Because the struggle to remember IS what creates the memory. No shortcuts. No illusions. Just results.
         <br><br>
-        Thank you for entering. If you have something to say, leave a trace in the Cbox.
+        <strong>🚀 Right now: Core content is completely free.</strong><br>
+        <strong>🔓 Premium unlocks advanced chapters for serious learners.</strong>
+        <br><br>
+        You're not "trying another study app." You're upgrading how your brain actually learns. Most students don't discover this until it's too late. You're here early.
+        <br><br>
+        <strong>Got questions? Ideas? Gratitude?</strong> Drop it in the Cbox below. Every message reaches me directly. I read everything. I respond to what matters.
+        <br><br>
+        Welcome to a system that actually works. Start with the free content. See the difference yourself.
       </p>
+
+      <!-- Contact Section -->
+      <div class="contact-section">
+        <h3>📬 Need Direct Support?</h3>
+        <p style="font-size: 14px; color: rgba(255, 255, 255, 0.7); margin-bottom: 12px;">
+          Premium support, custom content requests, or technical issues
+        </p>
+        <div class="contact-links">
+          <a href="mailto:support@accela.com" class="contact-btn">
+            📧 Email Support
+          </a>
+          <a href="https://t.me/yourusername" class="contact-btn" target="_blank" rel="noopener">
+            💬 Telegram
+          </a>
+        </div>
+        <p style="font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-top: 12px;">
+          Average response time: 12 hours
+        </p>
+      </div>
     </div>
   </section>
 
@@ -164,15 +253,19 @@
 
   <!-- Updates -->
   <section id="updates" class="section">
-    <h2 id="siteupdate">Site Updates</h2>
+    <h2 id="siteupdate">Recent Updates</h2>
     <ul class="updates">
-      <li>📝 Notes section now LIVE! Add your study notes easily.</li>
-      <li>🏠 New home page with Notes and Flashcards sections!</li>
-      <li>✨ Freemium model launched — Free and Premium content available!</li>
-      <li>🔒 Premium chapters now marked with lock icons.</li>
-      <li>👤 User authentication updated for better experience.</li>
-      <li>📚 Chapters page refined — cleaner flow and better navigation.</li>
+      <li>📝 <strong>Notes Section Launched</strong> — Create, organize, and access your study notes alongside flashcards</li>
+      <li>🔒 <strong>Enhanced Security</strong> — Upgraded encryption and authentication to protect your account and data</li>
+      <li>⚡ <strong>Performance Boost</strong> — Faster loading times and smoother transitions across all devices</li>
+      <li>✨ <strong>Freemium Model Live</strong> — Core content free forever. Premium unlocks advanced chapters</li>
+      <li>🎨 <strong>UI Refinements</strong> — Cleaner navigation, better mobile experience, improved readability</li>
+      <li>👥 <strong>User Dashboard</strong> — Track your progress and manage your subscription in one place</li>
     </ul>
+
+    <div class="warning-box">
+      <strong>⚠️ Important Notice:</strong> Sharing premium accounts, attempting to bypass payments, or violating terms of service will result in immediate subscription cancellation without refund. We monitor suspicious activity. Play fair, keep access.
+    </div>
   </section>
 
   <!-- Buttons Container -->
@@ -192,4 +285,4 @@
   </div>
 
 </body>
-</html>
+      </html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upgrade to Premium - Accela</title>
+  <link rel="stylesheet" href="/chapters.css">
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    .upgrade-container {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .pricing-card {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1));
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 12px;
+      padding: 32px;
+      margin: 24px 0;
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 700;
+      color: #ffd700;
+      margin: 16px 0;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0;
+      text-align: left;
+    }
+
+    .features li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .features li:before {
+      content: "✓ ";
+      color: #00ffcc;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .pay-btn {
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
+      color: #000;
+      border: none;
+      padding: 16px 48px;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 24px;
+    }
+
+    .pay-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 215, 0, 0.4);
+    }
+
+    .skip-btn {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 12px 32px;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: all 0.3s;
+    }
+
+    .skip-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.9);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo-title">
+      <img src="https://files.catbox.moe/bpi1je.gif" alt="Animated Accela Logo" class="logo" />
+      <h1 id="accela">Accela</h1>
+    </div>
+  </header>
+
+  <div class="upgrade-container">
+    <h1 style="color: #ffd700; margin-bottom: 16px;">Unlock Premium Access</h1>
+    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 32px;">
+      Get unlimited access to all chapters, topics, and advanced content
+    </p>
+
+    <div class="pricing-card">
+      <h2 style="color: #ffd700;">Premium Membership</h2>
+      <div class="price">₹49</div>
+      <p style="color: rgba(255, 255, 255, 0.6);">One-time payment • 1 Month Access</p>
+
+      <ul class="features">
+        <li>Access to all premium chapters</li>
+        <li>Advanced flashcard topics</li>
+        <li>Comprehensive study notes</li>
+        <li>Priority support via Cbox</li>
+        <li>Ad-free experience</li>
+        <li>Future updates included</li>
+      </ul>
+
+      <button class="pay-btn" onclick="initiatePayment()">
+        🔒 Proceed to Payment
+      </button>
+
+      <br>
+      <button class="skip-btn" onclick="skipToFree()">
+        Continue with Free Access
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+
+    if (!username) {
+      alert('Invalid session. Please login again.');
+      window.location.href = '/login';
+    }
+
+    async function initiatePayment() {
+      try {
+        // Create order
+        const orderResponse = await fetch('/payment/create-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username })
+        });
+
+        const orderData = await orderResponse.json();
+
+        if (!orderData.success) {
+          alert(orderData.message || 'Failed to create order');
+          return;
+        }
+
+        // Razorpay options
+        const options = {
+          key: orderData.key,
+          amount: orderData.amount,
+          currency: orderData.currency,
+          name: 'Accela Premium',
+          description: '1 Month Premium Membership',
+          order_id: orderData.orderId,
+          handler: async function (response) {
+            // Verify payment
+            const verifyResponse = await fetch('/payment/verify-payment', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                username: username
+              })
+            });
+
+            const verifyData = await verifyResponse.json();
+
+            if (verifyData.success) {
+              // Refresh token to include premium status
+              const refreshResponse = await fetch('/payment/refresh-token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: username })
+              });
+
+              const refreshData = await refreshResponse.json();
+
+              if (refreshData.success && refreshData.token) {
+                // Set the new token
+                document.cookie = `token=${refreshData.token}; path=/; max-age=${30 * 24 * 60 * 60}; samesite=lax`;
+              }
+
+              alert('🎉 Payment successful! Premium activated for 1 month.');
+              window.location.href = '/';
+            } else {
+              alert('Payment verification failed. Please contact support.');
+            }
+          },
+          prefill: {
+            name: username
+          },
+          theme: {
+            color: '#ffd700'
+          }
+        };
+
+        const razorpay = new Razorpay(options);
+        razorpay.open();
+
+      } catch (error) {
+        console.error('Payment error:', error);
+        alert('An error occurred. Please try again.');
+      }
+    }
+
+    function skipToFree() {
+      window.location.href = '/';
+    }
+  </script>
+
+</body>
+</html>

@@ -288,57 +288,91 @@
           </div>
         </div>
       </div>
+<!-- ============= BULK UPLOAD SECTION (UPDATED) ============= -->
+<div class="section" id="bulk-upload-section">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h1 class="title">📦 Bulk Upload Flashcards</h1>
+    <div class="container">
+      <form action="/admin/bulk-upload" method="POST" id="bulk-upload-form" enctype="multipart/form-data">
+        <label>Select Chapter:</label>
+        <select id="bulkChapterIndex" name="chapterIndex" onchange="fillBulkChapterName()">
+          <option value="">-- Select Chapter --</option>
+          <% chapters.forEach(ch => { %>
+            <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
+          <% }) %>
+        </select>
+        <input type="text" name="chapterName" id="bulkChapterName" readonly placeholder="Auto-filled chapter name">
 
-      <!-- Bulk Upload Section -->
-      <div class="section" id="bulk-upload-section">
-        <div style="max-width: 1200px; margin: 0 auto;">
-          <h1 class="title">📦 Bulk Upload Flashcards</h1>
-          <div class="container">
-            <form action="/admin/bulk-upload" method="POST" id="bulk-upload-form">
-              <label>Select Chapter:</label>
-              <select id="bulkChapterIndex" name="chapterIndex" onchange="fillBulkChapterName()">
-                <option value="">-- Select Chapter --</option>
-                <% chapters.forEach(ch => { %>
-                  <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
-                <% }) %>
-              </select>
-              <input type="text" name="chapterName" id="bulkChapterName" readonly placeholder="Auto-filled chapter name">
+        <label>Or Create New Chapter:</label>
+        <input type="text" name="newChapterName" id="bulknewChapterName" placeholder="Enter new chapter name">
+        <input type="hidden" name="newChapterIndex" id="bulknewChapterIndex">
 
-              <label>Or Create New Chapter:</label>
-              <input type="text" name="newChapterName" id="bulknewChapterName" placeholder="Enter new chapter name">
-              <input type="hidden" name="newChapterIndex" id="bulknewChapterIndex">
+        <label>Select Topic:</label>
+        <select id="bulkTopicIndex" name="topicIndex" onchange="fillBulkTopicName()">
+          <option value="">-- Select Topic --</option>
+          <% topics.forEach(tp => { %>
+            <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
+              Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
+            </option>
+          <% }) %>
+        </select>
+        <input type="text" name="topicName" id="bulkTopicName" readonly placeholder="Auto-filled topic name">
 
-              <label>Select Topic:</label>
-              <select id="bulkTopicIndex" name="topicIndex" onchange="fillBulkTopicName()">
-                <option value="">-- Select Topic --</option>
-                <% topics.forEach(tp => { %>
-                  <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
-                    Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
-                  </option>
-                <% }) %>
-              </select>
-              <input type="text" name="topicName" id="bulkTopicName" readonly placeholder="Auto-filled topic name">
+        <label>Or Create New Topic:</label>
+        <input type="text" name="newTopicName" id="bulknewTopicName" placeholder="Enter new topic name">
+        <input type="hidden" name="newTopicIndex" id="bulknewTopicIndex">
 
-              <label>Or Create New Topic:</label>
-              <input type="text" name="newTopicName" id="bulknewTopicName" placeholder="Enter new topic name">
-              <input type="hidden" name="newTopicIndex" id="bulknewTopicIndex">
+        <!-- ============= UPLOAD METHOD TOGGLE ============= -->
+        <div style="margin: 24px 0; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+          <label style="font-size: 16px; font-weight: 600; margin-bottom: 12px; display: block;">Upload Method:</label>
+          <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1; padding: 12px; background: rgba(79,70,229,0.2); border: 2px solid rgba(79,70,229,0.5); border-radius: 8px; transition: all 0.3s;">
+              <input type="radio" name="bulkUploadMethod" value="file" id="bulkMethodFile" checked style="width: auto; margin: 0;">
+              <span style="font-weight: 500;">📁 Upload JSON File</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1; padding: 12px; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.2); border-radius: 8px; transition: all 0.3s;">
+              <input type="radio" name="bulkUploadMethod" value="text" id="bulkMethodText" style="width: auto; margin: 0;">
+              <span style="font-weight: 500;">✍️ Paste JSON Text</span>
+            </label>
+          </div>
 
-              <label>Paste JSON Data: <span style="color: #ff6b6b;">*</span></label>
-              <textarea name="jsonData" required placeholder='[{"question": "Q1", "answer": "A1"}, {"question": "Q2", "answer": "A2"}]' style="min-height: 250px;"></textarea>
-              <small style="display: block; margin-top: -10px; margin-bottom: 16px;">
-                Format: Array of objects with "question" and "answer" keys. Example shown above.
-              </small>
+          <!-- FILE UPLOAD SECTION -->
+          <div id="bulkFileUploadSection">
+            <label>Upload JSON File: <span style="color: #ff6b6b;">*</span></label>
+            <input type="file" name="jsonFile" id="bulkJsonFile" accept=".json,application/json" style="padding: 12px; background: rgba(0,0,0,0.3); border: 2px dashed rgba(79,70,229,0.5); cursor: pointer;">
+            <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
+              📄 Upload a .json file with flashcard data
+            </small>
+            <div id="bulkFilePreview" style="display: none; margin-top: 12px; padding: 12px; background: rgba(0,255,136,0.1); border-left: 3px solid #00ff88; border-radius: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 20px;">✅</span>
+                <strong id="bulkFileName" style="color: #00ff88;"></strong>
+              </div>
+              <small id="bulkFileInfo" style="color: #888;"></small>
+            </div>
+          </div>
 
-              <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
-                <input type="checkbox" name="isPremium" id="bulkIsPremium" style="width: auto; margin: 0;">
-                <span>🔒 Mark ALL uploaded flashcards as Premium</span>
-              </label>
-
-              <button type="submit">Upload Flashcards</button>
-            </form>
+          <!-- TEXT PASTE SECTION -->
+          <div id="bulkTextUploadSection" style="display: none;">
+            <label>Paste JSON Data: <span style="color: #ff6b6b;">*</span></label>
+            <textarea name="jsonData" id="bulkJsonData" placeholder='[{"question": "Q1", "answer": "A1"}, {"question": "Q2", "answer": "A2"}]' style="min-height: 250px; font-family: monospace;"></textarea>
+            <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
+              Format: Array of objects with "question" and "answer" keys. Example shown above.
+            </small>
           </div>
         </div>
-      </div>
+
+        <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
+          <input type="checkbox" name="isPremium" id="bulkIsPremium" style="width: auto; margin: 0;">
+          <span>🔒 Mark ALL uploaded flashcards as Premium</span>
+        </label>
+
+        <button type="submit" id="bulk-submit-btn">Upload Flashcards</button>
+      </form>
+    </div>
+  </div>
+          </div>
+            
 
       <!-- ============= NOTES SECTIONS ============= -->
 
@@ -365,59 +399,95 @@
         </div>
       </div>
 
-      <!-- Add Note Section -->
-      <div class="section" id="add-note-section">
-        <div style="max-width: 1200px; margin: 0 auto;">
-          <h1 class="title">📝 Add New Note</h1>
-          <div class="container">
-            <form action="/admin/add-note" method="POST" id="add-note-form">
-              <label>Select Chapter:</label>
-              <select id="noteChapterIndex" name="chapterIndex" onchange="fillNoteChapterName()">
-                <option value="">-- Select Chapter --</option>
-                <% noteChapters.forEach(ch => { %>
-                  <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
-                <% }) %>
-              </select>
-              <input type="text" id="noteChapterName" name="chapterName" placeholder="Auto-filled chapter name" readonly>
 
-              <label>Or Create New Chapter:</label>
-              <input type="text" name="newChapterName" id="noteNewChapterName" placeholder="Enter new chapter name">
-              <input type="hidden" name="newChapterIndex" id="noteNewChapterIndex">
 
-              <label>Select Topic:</label>
-              <select id="noteTopicIndex" name="topicIndex" onchange="fillNoteTopicName()">
-                <option value="">-- Select Topic --</option>
-                <% noteTopics.forEach(tp => { %>
-                  <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
-                    Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
-                  </option>
-                <% }) %>
-              </select>
-              <input type="text" id="noteTopicName" name="topicName" placeholder="Auto-filled topic name" readonly>
+                  <!-- ============= ADD NOTE SECTION (UPDATED) ============= -->
+<div class="section" id="add-note-section">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h1 class="title">📝 Add New Note</h1>
+    <div class="container">
+      <form action="/admin/add-note" method="POST" id="add-note-form" enctype="multipart/form-data">
+        <label>Select Chapter:</label>
+        <select id="noteChapterIndex" name="chapterIndex" onchange="fillNoteChapterName()">
+          <option value="">-- Select Chapter --</option>
+          <% noteChapters.forEach(ch => { %>
+            <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
+          <% }) %>
+        </select>
+        <input type="text" id="noteChapterName" name="chapterName" placeholder="Auto-filled chapter name" readonly>
 
-              <label>Or Create New Topic:</label>
-              <input type="text" name="newTopicName" id="noteNewTopicName" placeholder="Enter new topic name">
-              <input type="hidden" name="newTopicIndex" id="noteNewTopicIndex">
+        <label>Or Create New Chapter:</label>
+        <input type="text" name="newChapterName" id="noteNewChapterName" placeholder="Enter new chapter name">
+        <input type="hidden" name="newChapterIndex" id="noteNewChapterIndex">
 
-              <label>Note Title: <span style="color: #ff6b6b;">*</span></label>
-              <input type="text" name="noteTitle" required placeholder="e.g., ہندی طب - آیوروید">
+        <label>Select Topic:</label>
+        <select id="noteTopicIndex" name="topicIndex" onchange="fillNoteTopicName()">
+          <option value="">-- Select Topic --</option>
+          <% noteTopics.forEach(tp => { %>
+            <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
+              Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
+            </option>
+          <% }) %>
+        </select>
+        <input type="text" id="noteTopicName" name="topicName" placeholder="Auto-filled topic name" readonly>
 
-              <label>HTML Content: <span style="color: #ff6b6b;">*</span></label>
-              <textarea name="htmlContent" required placeholder="Paste your complete HTML here (including <!DOCTYPE html>, <html>, <head>, <body>, etc.)" style="min-height: 400px; font-family: monospace;"></textarea>
-              <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
-                💡 Tip: Paste your entire HTML file content here. It will be displayed as-is to users.
-              </small>
+        <label>Or Create New Topic:</label>
+        <input type="text" name="newTopicName" id="noteNewTopicName" placeholder="Enter new topic name">
+        <input type="hidden" name="newTopicIndex" id="noteNewTopicIndex">
 
-              <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
-                <input type="checkbox" name="isPremium" id="noteIsPremium" style="width: auto; margin: 0;">
-                <span>🔒 Mark as Premium Content</span>
-              </label>
+        <label>Note Title: <span style="color: #ff6b6b;">*</span></label>
+        <input type="text" name="noteTitle" id="noteTitle" required placeholder="e.g., ہندی طب - آیوروید">
 
-              <button type="submit">Add Note</button>
-            </form>
+        <!-- ============= UPLOAD METHOD TOGGLE ============= -->
+        <div style="margin: 24px 0; padding: 16px; background: rgba(255,215,0,0.05); border-radius: 12px; border: 1px solid rgba(255,215,0,0.2);">
+          <label style="font-size: 16px; font-weight: 600; margin-bottom: 12px; display: block;">Upload Method:</label>
+          <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1; padding: 12px; background: rgba(255,215,0,0.2); border: 2px solid rgba(255,215,0,0.5); border-radius: 8px; transition: all 0.3s;">
+              <input type="radio" name="noteUploadMethod" value="file" id="noteMethodFile" checked style="width: auto; margin: 0;">
+              <span style="font-weight: 500;">📁 Upload HTML File</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1; padding: 12px; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.2); border-radius: 8px; transition: all 0.3s;">
+              <input type="radio" name="noteUploadMethod" value="text" id="noteMethodText" style="width: auto; margin: 0;">
+              <span style="font-weight: 500;">✍️ Paste HTML Text</span>
+            </label>
+          </div>
+
+          <!-- FILE UPLOAD SECTION -->
+          <div id="noteFileUploadSection">
+            <label>Upload HTML File: <span style="color: #ff6b6b;">*</span></label>
+            <input type="file" name="htmlFile" id="noteHtmlFile" accept=".html,.htm,text/html" style="padding: 12px; background: rgba(0,0,0,0.3); border: 2px dashed rgba(255,215,0,0.5); cursor: pointer;">
+            <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
+              📄 Upload a .html file with your note content
+            </small>
+            <div id="noteFilePreview" style="display: none; margin-top: 12px; padding: 12px; background: rgba(0,255,136,0.1); border-left: 3px solid #00ff88; border-radius: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 20px;">✅</span>
+                <strong id="noteFileName" style="color: #00ff88;"></strong>
+              </div>
+              <small id="noteFileInfo" style="color: #888;"></small>
+            </div>
+          </div>
+
+          <!-- TEXT PASTE SECTION -->
+          <div id="noteTextUploadSection" style="display: none;">
+            <label>HTML Content: <span style="color: #ff6b6b;">*</span></label>
+            <textarea name="htmlContent" id="noteHtmlContent" placeholder="Paste your complete HTML here (including <!DOCTYPE html>, <html>, <head>, <body>, etc.)" style="min-height: 400px; font-family: monospace;"></textarea>
+            <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
+              💡 Tip: Paste your entire HTML file content here. It will be displayed as-is to users.
+            </small>
           </div>
         </div>
-      </div>
+
+        <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
+          <input type="checkbox" name="isPremium" id="noteIsPremium" style="width: auto; margin: 0;">
+          <span>🔒 Mark as Premium Content</span>
+        </label>
+
+        <button type="submit" id="note-submit-btn">Add Note</button>
+      </form>
+    </div>
+  </div>
+</div>
 
       <!-- Premium Management Section -->
       <div class="section" id="premium-section">

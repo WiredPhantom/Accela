@@ -1,53 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Page Not Found</title>
+  <title>404 - Page Not Found | Accela</title>
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #111;
-      color: #fff;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+      background: #0a092d;
+      color: #ffffff;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 50%);
+      animation: rotate 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .error-container {
       text-align: center;
-      background: radial-gradient(#222, #000);
+      max-width: 600px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      z-index: 10;
     }
-    h1 {
-      font-size: 6rem;
-      margin-bottom: 0.5rem;
-      color: #ff007f;
-      text-shadow: 0 0 20px #ff007f, 0 0 40px #ff007f55;
+
+    .error-icon {
+      font-size: 80px;
+      margin-bottom: 24px;
+      animation: float 3s ease-in-out infinite;
     }
-    p {
-      font-size: 1.5rem;
-      color: #ccc;
-      margin-bottom: 2rem;
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
-    a {
+
+    .error-code {
+      font-size: 96px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      letter-spacing: 4px;
+    }
+
+    .error-title {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    .error-message {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 32px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
       text-decoration: none;
-      color: #fff;
-      background-color: #ff007f;
-      padding: 0.8rem 1.5rem;
-      border-radius: 5px;
-      box-shadow: 0 0 10px #ff007f;
-      transition: 0.3s ease;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
     }
-    a:hover {
-      background-color: #e6006e;
-      box-shadow: 0 0 20px #ff007f;
+
+    .btn-primary {
+      background: #4f46e5;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #4338ca;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .suggestions {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .suggestions h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .suggestions ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .suggestions li {
+      margin-bottom: 8px;
+    }
+
+    .suggestions a {
+      color: #4f46e5;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 15px;
+    }
+
+    .suggestions a:hover {
+      color: #6366f1;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .error-container {
+        padding: 32px 24px;
+        margin: 20px;
+      }
+
+      .error-icon {
+        font-size: 64px;
+      }
+
+      .error-code {
+        font-size: 72px;
+      }
+
+      .error-title {
+        font-size: 24px;
+      }
+
+      .error-message {
+        font-size: 15px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
     }
   </style>
-<link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
 </head>
 <body>
-  <h1>404</h1>
-  <p>Oops... the page you're looking for doesn't exist.</p>
-  <a href="/">← Go Back </a>
+  <div class="error-container">
+    <div class="error-icon">🔍</div>
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-message">
+      The page you're looking for doesn't exist or has been moved. It might have been deleted or the URL might be incorrect.
+    </p>
+    <div class="btn-group">
+      <a href="/" class="btn btn-primary">Go Home</a>
+      <a href="/chapters" class="btn btn-secondary">Browse Flashcards</a>
+    </div>
+
+    <div class="suggestions">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="/">🏠 Home</a></li>
+        <li><a href="/chapters">🗂️ Flashcards</a></li>
+        <li><a href="/notes">📝 Notes</a></li>
+        <li><a href="/login">🔐 Login</a></li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>

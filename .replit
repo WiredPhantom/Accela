@@ -14,6 +14,14 @@ run = ["npm", "run", "start"]
 localPort = 5000
 externalPort = 80
 
+[[ports]]
+localPort = 41753
+externalPort = 3000
+
+[[ports]]
+localPort = 44243
+externalPort = 3001
+
 [workflows]
 runButton = "Project"
 
@@ -45,3 +53,10 @@ expertMode = true
 
 [userenv.shared]
 PORT = "5000"
+useruri = "mongodb+srv://practice:practice123@cluster0.wjn7kvt.mongodb.net/practice?retryWrites=true&w=majority&appName=Cluster0"
+flashcarduri = "mongodb+srv://practice:practice123@cluster0.wjn7kvt.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0"
+jwtkey = "iamgonnabeabillinoreinshallah"
+RAZORPAY_KEY_ID = "rzp_test_RlaWeM1APi1E1M"
+RAZORPAY_KEY_SECRET = "5E4VnaEzMj6DakZfhKRcA320"
+PREMIUM_PRICE = "4900"
+PREMIUM_CURRENCY = "INR"

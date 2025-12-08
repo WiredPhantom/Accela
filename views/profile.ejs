@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Profile - Accela</title>
+  <link rel="stylesheet" href="/chapters.css">
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo-title">
+      <img src="https://files.catbox.moe/bpi1je.gif" alt="Logo" class="logo" />
+      <h1>Accela</h1>
+    </div>
+  </header>
+
+  <div style="max-width: 800px; margin: 40px auto; padding: 32px; background: rgba(255, 255, 255, 0.05); border-radius: 16px;">
+    <h1 style="text-align: center;"><%= user.username %></h1>
+    
+    <div style="text-align: center; margin: 20px 0;">
+      <span style="padding: 8px 24px; border-radius: 20px; background: <%= hasPremium ? 'linear-gradient(135deg, #ffd700, #ffaa00)' : 'rgba(255,255,255,0.1)' %>; color: <%= hasPremium ? '#000' : 'rgba(255,255,255,0.7)' %>;">
+        <%= hasPremium ? '⭐ Premium' : '🆓 Free' %>
+      </span>
+    </div>
+
+    <div style="margin: 24px 0; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 8px;">
+      <p>Email: <%= user.email %></p>
+      <p>Status: <%= user.subscriptionStatus.toUpperCase() %></p>
+      <% if (hasPremium && user.subscriptionExpiry) { %>
+        <p>Expires: <%= new Date(user.subscriptionExpiry).toLocaleDateString() %></p>
+      <% } %>
+    </div>
+
+    <% if (!hasPremium) { %>
+      <button onclick="window.location.href='/upgrade'" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #ffd700, #ffaa00); color: #000; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer;">
+        🚀 Upgrade to Premium - ₹49/month
+      </button>
+    <% } %>
+
+    <div style="text-align: center; margin-top: 24px;">
+      <a href="/" style="color: #00ffcc; text-decoration: none; padding: 10px 20px; border: 1px solid #00ffcc; border-radius: 6px;">← Back to Home</a>
+    </div>
+  </div>
+
+</body>
+</html>

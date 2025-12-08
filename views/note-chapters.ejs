@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notes Chapters - Accela</title>
   <link rel="stylesheet" href="/chapters.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
   <style>
     .premium-badge {
@@ -77,6 +78,20 @@
       color: rgba(255, 255, 255, 0.3);
     }
 
+    /* Urdu text styling */
+    .chapter-name-urdu {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      direction: rtl;
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .chapter-name-english {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+      direction: ltr;
+      text-align: left;
+    }
+
     @media (max-width: 768px) {
       .user-status {
         position: static;
@@ -121,12 +136,12 @@
   <!-- Chapters Section -->
   <div class="container">
     <section id="chapters" class="section">
-      <h1 class="title">📝 Notes Chapters</h1>
+      <h1 class="title">📖 Notes Chapters</h1>
       
       <% if (!isAuthenticated) { %>
         <div style="background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
           <p style="color: #ffd700; font-weight: 600; margin: 0;">
-            🔓 Some chapters are free, others require premium access. 
+            🔐 Some chapters are free, others require premium access. 
             <a href="/login" style="color: #ffd700; text-decoration: underline;">Login</a> to unlock premium content.
           </p>
         </div>
@@ -144,6 +159,11 @@
         </div>
       <% } else { %>
         <% chapters.forEach(ch => { %>
+          <% 
+            // Check if chapter name contains Urdu characters
+            const urduRegex = /[\u0600-\u06FF]/;
+            const isUrdu = urduRegex.test(ch.chapterName);
+          %>
           <div class="chapter-box <%= ch.isPremium ? 'premium' : '' %>">
             <h2>
               Chapter <%= ch._id %>
@@ -153,11 +173,13 @@
                 </span>
               <% } %>
             </h2>
-            <p><%= ch.chapterName %></p>
+            <p class="<%= isUrdu ? 'chapter-name-urdu' : 'chapter-name-english' %>">
+              <%= ch.chapterName %>
+            </p>
             
             <% if (ch.isPremium && !hasPremium) { %>
               <a href="/login" class="btn" style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); color: #0a092d;">
-                🔒 Unlock Premium
+                🔓 Unlock Premium
               </a>
             <% } else { %>
               <a href="/notes/chapter/<%= ch._id %>" class="btn">View Topics</a>

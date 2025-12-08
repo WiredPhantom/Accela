@@ -5,21 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accela - Login</title>
   <link rel="stylesheet" href="/login.css">
-<link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <style>
+    .error-message {
+      color: #ff4444;
+      background-color: rgba(255, 68, 68, 0.1);
+      border: 1px solid #ff4444;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      font-size: 14px;
+      display: none;
+      animation: shake 0.3s;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    button[type="submit"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
   <div class="login-box">
     <div class="glitch" data-text="ACCELA">ACCELA</div>
-    <p>Initiating Instrumentality</p>
+    <p>Premium notes. Peak performance</p>
 
-    <!-- ✅ Pure form-based login -->
-    <form action="/login" method="POST">
-      <input name="username" type="text" placeholder="user.id" required />
-      <input name="password" type="password" placeholder="access.key" required />
-      <button type="submit">Enter Wired</button>
+    <div id="error-message" class="error-message"></div>
+
+    <form id="login-form" action="/login" method="POST">
+      <input id="username" name="username" type="text" placeholder="username" required />
+      <input id="password" name="password" type="password" placeholder="password" required />
+      <button type="submit" id="submit-btn">Enter</button>
     </form>
+
+    <p style="margin-top: 20px; font-size: 14px;">
+      New to Accela? <a href="/signup" style="color: #00ffcc;">Sign up here</a>
+    </p>
   </div>
 
   <div class="footer">Project E:Unit-00</div>
+
+  <script>
+    const form = document.getElementById('login-form');
+    const errorDiv = document.getElementById('error-message');
+    const submitBtn = document.getElementById('submit-btn');
+
+    function showError(message) {
+      errorDiv.textContent = message;
+      errorDiv.classList.add('show');
+      
+      // Remove shake animation and re-add it
+      errorDiv.style.animation = 'none';
+      setTimeout(() => {
+        errorDiv.style.animation = 'shake 0.3s';
+      }, 10);
+    }
+
+    function hideError() {
+      errorDiv.classList.remove('show');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      hideError();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Logging in...';
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password }),
+          credentials: 'include'
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          window.location.href = '/';
+        } else {
+          showError(data.message || 'Login failed');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enter';
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        showError('An error occurred. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enter';
+      }
+    });
+
+    // Hide error when user starts typing
+    document.getElementById('username').addEventListener('input', hideError);
+    document.getElementById('password').addEventListener('input', hideError);
+  </script>
 </body>
 </html>

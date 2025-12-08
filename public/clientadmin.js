@@ -1052,4 +1052,292 @@
     if (noteTopicIndexEl) noteTopicIndexEl.addEventListener("change", fillNoteTopicName);
   });
 
+
+
+
+
+
+// ADD THESE FUNCTIONS TO THE END OF YOUR clientadmin.js file (before the closing })() )
+
+// ==================== BULK UPLOAD FILE/TEXT TOGGLE ====================
+document.addEventListener('DOMContentLoaded', () => {
+  // Bulk Upload Method Toggle
+  const bulkMethodFile = document.getElementById('bulkMethodFile');
+  const bulkMethodText = document.getElementById('bulkMethodText');
+  const bulkFileSection = document.getElementById('bulkFileUploadSection');
+  const bulkTextSection = document.getElementById('bulkTextUploadSection');
+  const bulkJsonFile = document.getElementById('bulkJsonFile');
+  const bulkJsonData = document.getElementById('bulkJsonData');
+
+  if (bulkMethodFile && bulkMethodText) {
+    bulkMethodFile.addEventListener('change', () => {
+      if (bulkFileSection) bulkFileSection.style.display = 'block';
+      if (bulkTextSection) bulkTextSection.style.display = 'none';
+      if (bulkJsonData) bulkJsonData.removeAttribute('required');
+      if (bulkJsonFile) bulkJsonFile.setAttribute('required', 'required');
+      
+      // Update label styles
+      bulkMethodFile.parentElement.style.background = 'rgba(79,70,229,0.2)';
+      bulkMethodFile.parentElement.style.borderColor = 'rgba(79,70,229,0.5)';
+      bulkMethodText.parentElement.style.background = 'rgba(255,255,255,0.05)';
+      bulkMethodText.parentElement.style.borderColor = 'rgba(255,255,255,0.2)';
+    });
+
+    bulkMethodText.addEventListener('change', () => {
+      if (bulkFileSection) bulkFileSection.style.display = 'none';
+      if (bulkTextSection) bulkTextSection.style.display = 'block';
+      if (bulkJsonFile) bulkJsonFile.removeAttribute('required');
+      if (bulkJsonData) bulkJsonData.setAttribute('required', 'required');
+      
+      // Update label styles
+      bulkMethodText.parentElement.style.background = 'rgba(79,70,229,0.2)';
+      bulkMethodText.parentElement.style.borderColor = 'rgba(79,70,229,0.5)';
+      bulkMethodFile.parentElement.style.background = 'rgba(255,255,255,0.05)';
+      bulkMethodFile.parentElement.style.borderColor = 'rgba(255,255,255,0.2)';
+    });
+  }
+
+  // Bulk File Upload Preview
+  if (bulkJsonFile) {
+    bulkJsonFile.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      const preview = document.getElementById('bulkFilePreview');
+      const fileName = document.getElementById('bulkFileName');
+      const fileInfo = document.getElementById('bulkFileInfo');
+
+      if (file) {
+        if (!file.name.endsWith('.json')) {
+          showToast('⚠️ Please select a valid JSON file', 'error');
+          e.target.value = '';
+          if (preview) preview.style.display = 'none';
+          return;
+        }
+
+        if (fileName) fileName.textContent = file.name;
+        if (fileInfo) fileInfo.textContent = `Size: ${(file.size / 1024).toFixed(2)} KB | Type: ${file.type || 'application/json'}`;
+        if (preview) preview.style.display = 'block';
+
+        // Optional: Preview content
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const jsonData = JSON.parse(event.target.result);
+            if (Array.isArray(jsonData)) {
+              showToast(`✅ Valid JSON with ${jsonData.length} flashcard(s)`, 'success');
+            } else {
+              showToast('⚠️ JSON must be an array of objects', 'error');
+            }
+          } catch (err) {
+            showToast('⚠️ Invalid JSON format', 'error');
+            console.error('JSON parse error:', err);
+          }
+        };
+        reader.readAsText(file);
+      } else {
+        if (preview) preview.style.display = 'none';
+      }
+    });
+  }
+
+  // ==================== NOTE UPLOAD FILE/TEXT TOGGLE ====================
+  const noteMethodFile = document.getElementById('noteMethodFile');
+  const noteMethodText = document.getElementById('noteMethodText');
+  const noteFileSection = document.getElementById('noteFileUploadSection');
+  const noteTextSection = document.getElementById('noteTextUploadSection');
+  const noteHtmlFile = document.getElementById('noteHtmlFile');
+  const noteHtmlContent = document.getElementById('noteHtmlContent');
+
+  if (noteMethodFile && noteMethodText) {
+    noteMethodFile.addEventListener('change', () => {
+      if (noteFileSection) noteFileSection.style.display = 'block';
+      if (noteTextSection) noteTextSection.style.display = 'none';
+      if (noteHtmlContent) noteHtmlContent.removeAttribute('required');
+      if (noteHtmlFile) noteHtmlFile.setAttribute('required', 'required');
+      
+      // Update label styles
+      noteMethodFile.parentElement.style.background = 'rgba(255,215,0,0.2)';
+      noteMethodFile.parentElement.style.borderColor = 'rgba(255,215,0,0.5)';
+      noteMethodText.parentElement.style.background = 'rgba(255,255,255,0.05)';
+      noteMethodText.parentElement.style.borderColor = 'rgba(255,255,255,0.2)';
+    });
+
+    noteMethodText.addEventListener('change', () => {
+      if (noteFileSection) noteFileSection.style.display = 'none';
+      if (noteTextSection) noteTextSection.style.display = 'block';
+      if (noteHtmlFile) noteHtmlFile.removeAttribute('required');
+      if (noteHtmlContent) noteHtmlContent.setAttribute('required', 'required');
+      
+      // Update label styles
+      noteMethodText.parentElement.style.background = 'rgba(255,215,0,0.2)';
+      noteMethodText.parentElement.style.borderColor = 'rgba(255,215,0,0.5)';
+      noteMethodFile.parentElement.style.background = 'rgba(255,255,255,0.05)';
+      noteMethodFile.parentElement.style.borderColor = 'rgba(255,255,255,0.2)';
+    });
+  }
+
+  // Note File Upload Preview
+  if (noteHtmlFile) {
+    noteHtmlFile.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      const preview = document.getElementById('noteFilePreview');
+      const fileName = document.getElementById('noteFileName');
+      const fileInfo = document.getElementById('noteFileInfo');
+
+      if (file) {
+        if (!file.name.match(/\.(html|htm)$/i)) {
+          showToast('⚠️ Please select a valid HTML file', 'error');
+          e.target.value = '';
+          if (preview) preview.style.display = 'none';
+          return;
+        }
+
+        if (fileName) fileName.textContent = file.name;
+        if (fileInfo) fileInfo.textContent = `Size: ${(file.size / 1024).toFixed(2)} KB | Type: ${file.type || 'text/html'}`;
+        if (preview) preview.style.display = 'block';
+
+        // Optional: Basic HTML validation
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const content = event.target.result;
+          if (content.toLowerCase().includes('<html') && content.toLowerCase().includes('<body')) {
+            showToast('✅ Valid HTML file detected', 'success');
+          } else {
+            showToast('⚠️ HTML file may be incomplete (missing <html> or <body> tags)', 'error');
+          }
+        };
+        reader.readAsText(file);
+      } else {
+        if (preview) preview.style.display = 'none';
+      }
+    });
+  }
+
+  // ==================== FORM SUBMISSION HANDLERS ====================
+  
+  // Bulk Upload Form Validation
+  const bulkUploadForm = document.getElementById('bulk-upload-form');
+  if (bulkUploadForm) {
+    bulkUploadForm.addEventListener('submit', (e) => {
+      const submitBtn = document.getElementById('bulk-submit-btn');
+      const method = document.querySelector('input[name="bulkUploadMethod"]:checked')?.value;
+      const fileInput = document.getElementById('bulkJsonFile');
+      const textInput = document.getElementById('bulkJsonData');
+      
+      // Check if chapter and topic are selected
+      const chapterName = document.getElementById("bulkChapterName")?.value.trim();
+      const topicName = document.getElementById("bulkTopicName")?.value.trim();
+      const newChapterName = document.getElementById("bulknewChapterName")?.value.trim();
+      const newTopicName = document.getElementById("bulknewTopicName")?.value.trim();
+
+      const chapterOk = chapterName || newChapterName;
+      const topicOk = topicName || newTopicName;
+      
+      if (!chapterOk || !topicOk) {
+        e.preventDefault();
+        showToast("Please select or enter both a Chapter and a Topic", "error");
+        return;
+      }
+
+      // Validate based on method
+      if (method === 'file') {
+        if (!fileInput?.files?.length) {
+          e.preventDefault();
+          showToast('⚠️ Please select a JSON file to upload', 'error');
+          return;
+        }
+        // Clear text input to avoid confusion
+        if (textInput) textInput.value = '';
+      } else if (method === 'text') {
+        if (!textInput?.value.trim()) {
+          e.preventDefault();
+          showToast('⚠️ Please paste JSON data', 'error');
+          return;
+        }
+        // Clear file input
+        if (fileInput) fileInput.value = '';
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Uploading...';
+      }
+    });
+  }
+
+  // Add Note Form Validation
+  const addNoteForm = document.getElementById('add-note-form');
+  if (addNoteForm) {
+    addNoteForm.addEventListener('submit', (e) => {
+      const submitBtn = document.getElementById('note-submit-btn');
+      const method = document.querySelector('input[name="noteUploadMethod"]:checked')?.value;
+      const fileInput = document.getElementById('noteHtmlFile');
+      const textInput = document.getElementById('noteHtmlContent');
+      const titleInput = document.getElementById('noteTitle');
+      
+      // Check title
+      if (!titleInput?.value.trim()) {
+        e.preventDefault();
+        showToast('⚠️ Please enter a note title', 'error');
+        return;
+      }
+
+      // Check if chapter and topic are selected
+      const chapterName = document.getElementById("noteChapterName")?.value.trim();
+      const topicName = document.getElementById("noteTopicName")?.value.trim();
+      const newChapterName = document.getElementById("noteNewChapterName")?.value.trim();
+      const newTopicName = document.getElementById("noteNewTopicName")?.value.trim();
+
+      const chapterOk = chapterName || newChapterName;
+      const topicOk = topicName || newTopicName;
+      
+      if (!chapterOk || !topicOk) {
+        e.preventDefault();
+        showToast("Please select or enter both a Chapter and a Topic", "error");
+        return;
+      }
+
+      // Validate based on method
+      if (method === 'file') {
+        if (!fileInput?.files?.length) {
+          e.preventDefault();
+          showToast('⚠️ Please select an HTML file to upload', 'error');
+          return;
+        }
+        // Clear text input
+        if (textInput) textInput.value = '';
+      } else if (method === 'text') {
+        if (!textInput?.value.trim()) {
+          e.preventDefault();
+          showToast('⚠️ Please paste HTML content', 'error');
+          return;
+        }
+        // Clear file input
+        if (fileInput) fileInput.value = '';
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Adding Note...';
+      }
+    });
+  }
+});
+
+// ==================== FILE SIZE FORMATTER ====================
+function formatFileSize(bytes) {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+}
+
+console.log('✅ File upload handlers initialized');
+
+
+
+
+
+
+  
 })();

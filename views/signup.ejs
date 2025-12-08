@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accela - Sign Up</title>
+  <link rel="stylesheet" href="/login.css">
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+</head>
+<body>
+  <div class="login-box">
+    <div class="glitch" data-text="ACCELA">ACCELA</div>
+    <p> Premium notes. Peak performance</p>
+
+    <form id="signupForm">
+      <input name="username" type="text" placeholder="username" required />
+      <input name="email" type="email" placeholder="email" required />
+      <input name="password" type="password" placeholder="password" required />
+      <button type="submit">Initialize User</button>
+    </form>
+
+    <p style="margin-top: 20px; font-size: 14px; opacity: 0.7;">
+      Already have an account? <a href="/login" style="color: #00ffcc;">Login</a>
+    </p>
+  </div>
+
+  <div class="footer">Project E:Unit-00</div>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const data = {
+        username: formData.get('username'),
+        email: formData.get('email'),
+        password: formData.get('password')
+      };
+
+      try {
+        const response = await fetch('/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          alert('Account created! Redirecting to payment...');
+          window.location.href = `/upgrade?username=${result.username}`;
+        } else {
+          alert(result.message || 'Signup failed');
+        }
+      } catch (error) {
+        console.error('Signup error:', error);
+        alert('An error occurred during signup');
+      }
+    });
+  </script>
+</body>
+</html>

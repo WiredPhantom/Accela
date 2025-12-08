@@ -1,96 +1,242 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
 
-  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  background: #0a092d;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Subtle background gradient effect */
+body::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 50%);
+  animation: rotate 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
   }
-
-  body {
-    font-family: 'Share Tech Mono', monospace;
-    background: #000;
-    color: #33b0de;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+  100% {
+    transform: rotate(360deg);
   }
+}
 
+/* Login box container */
+.login-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 440px;
+  max-width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+/* Title with glitch effect */
+.glitch {
+  font-size: 42px;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #4f46e5;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #06b6d4;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0%, 100% {
+    clip: rect(42px, 9999px, 44px, 0);
+  }
+  50% {
+    clip: rect(12px, 9999px, 59px, 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0%, 100% {
+    clip: rect(65px, 9999px, 119px, 0);
+  }
+  50% {
+    clip: rect(10px, 9999px, 105px, 0);
+  }
+}
+
+/* Subtitle text */
+.login-box p {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Button styling */
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background: #4f46e5;
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+button[type="submit"]:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* Links */
+a {
+  color: #4f46e5;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+a:hover {
+  color: #6366f1;
+}
+
+/* Footer text */
+.footer {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 12px;
+  letter-spacing: 2px;
+  z-index: 10;
+  text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
   .login-box {
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid #33b0de;
-    padding: 2.5rem;
-    width: 320px;
-    text-align: center;
-    border-radius: 12px;
-    box-shadow: 0 0 25px #33b0de;
-    position: relative;
-    animation: fadeIn 1.5s ease;
+    padding: 40px 32px;
+    width: 95%;
   }
 
   .glitch {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: #ff1f9c;
-    text-shadow: 0 0 5px #ff1f9c, 0 0 10px #ff1f9c;
-    letter-spacing: 1px;
+    font-size: 36px;
+    letter-spacing: 3px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  button[type="submit"] {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    padding: 32px 24px;
+  }
+
+  .glitch {
+    font-size: 32px;
+    letter-spacing: 2px;
   }
 
   .login-box p {
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    color: #888;
+    font-size: 13px;
   }
-
-  .login-box input {
-    background: #000;
-    border: 1px solid #33b0de;
-    color: #33b0de;
-    padding: 12px;
-    margin: 10px 0;
-    width: 100%;
-    font-family: inherit;
-    font-size: 0.95rem;
-    border-radius: 6px;
-    transition: border-color 0.3s ease;
-  }
-
-  .login-box input:focus {
-    border-color: #ff1f9c;
-    outline: none;
-  }
-
-  .login-box button {
-    background: #ff1f9c;
-    color: black;
-    padding: 12px;
-    margin-top: 15px;
-    width: 100%;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-
-  .login-box button:hover {
-    background: #ff55b3;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  .footer {
-    position: absolute;
-    bottom: 12px;
-    font-size: 0.75rem;
-    text-align: center;
-    width: 100%;
-    color: #555;
-    letter-spacing: 1px;
-  }
+}

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Topics - Accela Notes</title>
   <link rel="stylesheet" href="/chapters.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
   <style>
     .breadcrumb {
@@ -54,6 +55,20 @@
       background: rgba(255, 215, 0, 0.06);
     }
 
+    /* Urdu text styling */
+    .topic-name-urdu {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      direction: rtl;
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .topic-name-english {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+      direction: ltr;
+      text-align: left;
+    }
+
     @media (max-width: 768px) {
       .breadcrumb {
         margin-top: 12px;
@@ -91,6 +106,11 @@
         </div>
       <% } else { %>
         <% topics.forEach(topic => { %>
+          <% 
+            // Check if topic name contains Urdu characters
+            const urduRegex = /[\u0600-\u06FF]/;
+            const isUrdu = urduRegex.test(topic.topicName);
+          %>
           <div class="chapter-box <%= topic.isPremium ? 'premium' : '' %>">
             <h2>
               Topic <%= topic._id %>
@@ -98,7 +118,9 @@
                 <span class="premium-badge">🔒 PREMIUM</span>
               <% } %>
             </h2>
-            <p><%= topic.topicName %></p>
+            <p class="<%= isUrdu ? 'topic-name-urdu' : 'topic-name-english' %>">
+              <%= topic.topicName %>
+            </p>
             <a href="/notes/chapter/<%= chapterId %>/topic/<%= topic._id %>" class="btn">Read Note</a>
           </div>
         <% }) %>
@@ -120,4 +142,4 @@
   </div>
 
 </body>
-</html>
+      </html>

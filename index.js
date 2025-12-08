@@ -215,22 +215,32 @@ app.get("/login", (req, res) => {
 });
 
 // Login handler
+// Login handler
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
     
     if (!username || !password) {
-      return res.render("accessdenied", { message: "Username and password required" });
+      return res.status(400).json({ 
+        success: false, 
+        message: "Username and password required" 
+      });
     }
     
     const user = await User.findOne({ username });
     if (!user) {
-      return res.render("accessdenied", { message: "Invalid credentials" });
+      return res.status(401).json({ 
+        success: false, 
+        message: "Wrong username or password" 
+      });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.render("accessdenied", { message: "Invalid credentials" });
+      return res.status(401).json({ 
+        success: false, 
+        message: "Wrong username or password" 
+      });
     }
 
     const token = jwt.sign(
@@ -248,10 +258,15 @@ app.post("/login", async (req, res) => {
       secure: isProduction,
       maxAge: 22 * 24 * 60 * 60 * 1000
     });
-    res.redirect("/");
+    
+    // Make sure to set Content-Type header
+    return res.status(200).json({ success: true });
   } catch (err) {
     console.error("Login error:", err);
-    res.render("accessdenied", { message: "An error occurred during login" });
+    return res.status(500).json({ 
+      success: false, 
+      message: "An error occurred during login" 
+    });
   }
 });
 
@@ -260,6 +275,185 @@ app.get("/logout", (req, res) => {
   res.clearCookie("token");
   res.redirect("/");
 });
+
+
+
+// --------- SIGNUP ROUTES ---------
+
+app.get("/signup", (req, res) => {
+  try {
+    const token = req.cookies.token;
+    if (token) {
+      const decoded = jwt.verify(token, process.env.jwtkey);
+      if (decoded) return res.redirect("/");
+    }
+  } catch (err) {
+    // Invalid token, continue to signup page
+  }
+  res.render("signup");
+});
+
+app.post("/signup", async (req, res) => {
+  try {
+    const { username, password, email } = req.body;
+    
+    if (!username || !password || !email) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "All fields required" 
+      });
+    }
+
+    const existingUser = await User.findOne({ 
+      $or: [{ username }, { email }] 
+    });
+    
+    if (existingUser) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "Username or email already exists" 
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({
+      userId: `user_${Date.now()}`,
+      username,
+      email,
+      password: hashedPassword,
+      role: "user",
+      subscriptionStatus: "free"
+    });
+
+    await newUser.save();
+
+    res.json({ 
+      success: true, 
+      message: "Account created successfully",
+      username: username
+    });
+
+  } catch (err) {
+    console.error("Signup error:", err);
+    res.status(500).json({ 
+      success: false, 
+      message: "Registration failed" 
+    });
+  }
+});
+
+app.post("/create-free-session", async (req, res) => {
+  try {
+    const { username } = req.body;
+
+    if (!username) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "Username required" 
+      });
+    }
+
+    const user = await User.findOne({ username });
+    
+    if (!user) {
+      return res.status(404).json({ 
+        success: false, 
+        message: "User not found" 
+      });
+    }
+
+    const token = jwt.sign(
+      { 
+        username: user.username, 
+        role: user.role, 
+        subscriptionStatus: user.subscriptionStatus 
+      },
+      process.env.jwtkey,
+      { expiresIn: "720h" }
+    );
+
+    const isProduction = process.env.NODE_ENV === 'production';
+
+    res.json({
+      success: true,
+      token: token,
+      cookieOptions: {
+        httpOnly: true,
+        path: "/",
+        sameSite: "lax",
+        secure: isProduction,
+        maxAge: 30 * 24 * 60 * 60 * 1000
+      }
+    });
+
+  } catch (err) {
+    console.error("Free session error:", err);
+    res.status(500).json({ 
+      success: false, 
+      message: "Failed to create session" 
+    });
+  }
+});
+
+app.get("/upgrade", optionalAuth, async (req, res) => {
+  const username = req.query.username || req.user?.username;
+  
+  if (!username) {
+    return res.redirect("/login");
+  }
+
+  try {
+    const user = await User.findOne({ username });
+    
+    if (!user) {
+      return res.redirect("/signup");
+    }
+
+    if (user.subscriptionStatus === "premium" && 
+        user.subscriptionExpiry && 
+        user.subscriptionExpiry > new Date()) {
+      return res.redirect("/");
+    }
+
+    res.render("upgrade", { username });
+  } catch (err) {
+    console.error("Upgrade page error:", err);
+    res.redirect("/");
+  }
+});
+
+app.get("/profile", checkAuth, async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.user.username })
+      .select('-password');
+
+    if (!user) {
+      return res.redirect("/login");
+    }
+
+    const hasPremium = await checkUserPremium(user.username);
+
+    res.render("profile", { 
+      user,
+      hasPremium,
+      isAuthenticated: true 
+    });
+  } catch (err) {
+    console.error("Profile error:", err);
+    res.redirect("/");
+  }
+});
+
+// Payment routes
+const paymentRoutes = require("./routes/payment")(User);
+app.use("/payment", paymentRoutes);
+
+
+
+
+
+
 
 // --------- 8. FLASHCARD ROUTES ---------
 

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session Expired - Accela</title>
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+      background: #0a092d;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 550px;
+      width: 100%;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .icon {
+      font-size: 72px;
+      margin-bottom: 24px;
+      animation: bounce 1s ease-in-out;
+      filter: drop-shadow(0 0 20px rgba(255, 100, 100, 0.5));
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .reason {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      padding: 20px;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .message {
+      font-size: 16px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .btn {
+      display: inline-block;
+      background: #4f46e5;
+      color: #ffffff;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #4338ca;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
+    }
+
+    .info {
+      margin-top: 32px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.8;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .info strong {
+      display: block;
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 15px;
+    }
+
+    .info-list {
+      text-align: left;
+      display: inline-block;
+      margin: 0 auto;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .info-item::before {
+      content: "•";
+      color: #4f46e5;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 32px 24px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .icon {
+        font-size: 64px;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🔒</div>
+    <h1>Session Expired</h1>
+    
+    <div class="reason">
+      <%= message || "Your session has been terminated." %>
+    </div>
+
+    <div class="message">
+      Only one device can be logged in at a time for security reasons.
+    </div>
+
+    <a href="/login" class="btn">Login Again</a>
+
+    <div class="info">
+      <strong>Why did this happen?</strong>
+      <div class="info-list">
+        <div class="info-item">Someone logged into your account from another device</div>
+        <div class="info-item">Your session expired due to inactivity</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
