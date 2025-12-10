@@ -1,6 +1,33 @@
 module.exports = (User, Flashcard, Note) => {
   const router = require('express').Router();
   const bcrypt = require("bcrypt");
+  const multer = require('multer');
+  
+  // Configure multer for file uploads
+  const storage = multer.memoryStorage();
+  const upload = multer({
+    storage: storage,
+    limits: {
+      fileSize: 5 * 1024 * 1024 // 5MB limit
+    },
+    fileFilter: (req, file, cb) => {
+      // Accept JSON files for flashcards
+      if (file.fieldname === 'jsonFile' && file.mimetype === 'application/json') {
+        cb(null, true);
+      }
+      // Accept HTML files for notes
+      else if (file.fieldname === 'htmlFile' && file.mimetype === 'text/html') {
+        cb(null, true);
+      }
+      // Accept text files as fallback
+      else if (file.mimetype === 'text/plain') {
+        cb(null, true);
+      }
+      else {
+        cb(new Error('Invalid file type. Please upload JSON for flashcards or HTML for notes.'));
+      }
+    }
+  });
 
   // ==================== MAIN ADMIN PAGE ====================
   router.get('/', async (req, res) => {
@@ -134,8 +161,8 @@ module.exports = (User, Flashcard, Note) => {
 
   // ==================== NOTES MANAGEMENT ====================
 
-  // Add new note
-  router.post("/add-note", async (req, res) => {
+  // Add new note (WITH FILE UPLOAD SUPPORT)
+  router.post("/add-note", upload.single('htmlFile'), async (req, res) => {
     let {
       chapterIndex,
       chapterName,
@@ -151,6 +178,12 @@ module.exports = (User, Flashcard, Note) => {
     } = req.body;
 
     try {
+      // If file was uploaded, use its content
+      if (req.file) {
+        htmlContent = req.file.buffer.toString('utf-8');
+        console.log("✅ HTML file uploaded, size:", req.file.size, "bytes");
+      }
+
       // Handle chapter selection/creation
       if (newChapterName?.trim()) {
         chapterIndex = +newChapterIndex;
@@ -531,7 +564,8 @@ module.exports = (User, Flashcard, Note) => {
     }
   });
 
-  router.post("/bulk-upload", async (req, res) => {
+  // BULK UPLOAD WITH FILE SUPPORT
+  router.post("/bulk-upload", upload.single('jsonFile'), async (req, res) => {
     let {
       chapterIndex,
       chapterName,
@@ -546,6 +580,12 @@ module.exports = (User, Flashcard, Note) => {
     } = req.body;
     
     try {
+      // If file was uploaded, use its content
+      if (req.file) {
+        jsonData = req.file.buffer.toString('utf-8');
+        console.log("✅ JSON file uploaded, size:", req.file.size, "bytes");
+      }
+
       if (newChapterName?.trim()) {
         chapterIndex = +newChapterIndex;
         chapterName = newChapterName.trim();
