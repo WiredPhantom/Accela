@@ -215,7 +215,6 @@ app.get("/login", (req, res) => {
 });
 
 // Login handler
-// Login handler
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -259,7 +258,6 @@ app.post("/login", async (req, res) => {
       maxAge: 22 * 24 * 60 * 60 * 1000
     });
     
-    // Make sure to set Content-Type header
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error("Login error:", err);
@@ -275,8 +273,6 @@ app.get("/logout", (req, res) => {
   res.clearCookie("token");
   res.redirect("/");
 });
-
-
 
 // --------- SIGNUP ROUTES ---------
 
@@ -449,12 +445,6 @@ app.get("/profile", checkAuth, async (req, res) => {
 const paymentRoutes = require("./routes/payment")(User);
 app.use("/payment", paymentRoutes);
 
-
-
-
-
-
-
 // --------- 8. FLASHCARD ROUTES ---------
 
 app.get("/chapters", optionalAuth, async (req, res) => {
@@ -489,6 +479,7 @@ app.get("/chapters", optionalAuth, async (req, res) => {
   }
 });
 
+// ✅ FIXED: Topics route with proper premium handling
 app.get("/chapter/:id", optionalAuth, async (req, res) => {
   const chapterId = parseInt(req.params.id);
   
@@ -497,24 +488,29 @@ app.get("/chapter/:id", optionalAuth, async (req, res) => {
   }
   
   try {
+    // Check if user has premium access FIRST
+    const hasPremium = await checkUserPremium(req.user?.username);
+    
+    // Check chapter premium status
     const chapterCheck = await Flashcard.findOne({ chapterIndex: chapterId });
     
-    if (chapterCheck && chapterCheck.isPremium) {
+    if (!chapterCheck) {
+      return res.status(404).render("404");
+    }
+    
+    // If chapter is premium and user doesn't have premium, block access
+    if (chapterCheck.isPremium && !hasPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
           message: "Login required to access premium content" 
         });
       }
-
-      const hasPremium = await checkUserPremium(req.user.username);
-
-      if (!hasPremium) {
-        return res.render("premiumrequired", { 
-          message: "Upgrade to premium to access this chapter" 
-        });
-      }
+      return res.render("premiumrequired", { 
+        message: "Upgrade to premium to access this chapter" 
+      });
     }
 
+    // Fetch all topics for this chapter (with premium status)
     const topics = await Flashcard.aggregate([
       { $match: { chapterIndex: chapterId } },
       {
@@ -527,21 +523,27 @@ app.get("/chapter/:id", optionalAuth, async (req, res) => {
       { $sort: { _id: 1 } }
     ]);
 
+    // Pass ALL required data to template
     res.render("topics", { 
       chapterId, 
       topics,
-      isAuthenticated: req.isAuthenticated 
+      isAuthenticated: req.isAuthenticated,
+      hasPremium,
+      user: req.user
     });
   } catch (err) {
     console.error("❌ Topic fetch error:", err);
     res.render("topics", { 
       chapterId, 
       topics: [],
-      isAuthenticated: false 
+      isAuthenticated: false,
+      hasPremium: false,
+      user: null
     });
   }
 });
 
+// ✅ FIXED: Flashcards route with proper premium handling
 app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => {
   const chapterId = parseInt(req.params.chapterId);
   const topicId = parseInt(req.params.topicId);
@@ -551,27 +553,32 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
   }
 
   try {
+    // Check if user has premium access
+    const hasPremium = await checkUserPremium(req.user?.username);
+    
+    // Check topic premium status
     const topicCheck = await Flashcard.findOne({ 
       chapterIndex: chapterId, 
       topicIndex: topicId 
     });
     
-    if (topicCheck && topicCheck.isPremium) {
+    if (!topicCheck) {
+      return res.status(404).render("404");
+    }
+    
+    // If topic is premium and user doesn't have premium
+    if (topicCheck.isPremium && !hasPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
           message: "Login required to access premium content" 
         });
       }
-
-      const hasPremium = await checkUserPremium(req.user.username);
-
-      if (!hasPremium) {
-        return res.render("premiumrequired", { 
-          message: "Upgrade to premium to access this topic" 
-        });
-      }
+      return res.render("premiumrequired", { 
+        message: "Upgrade to premium to access this topic" 
+      });
     }
 
+    // Fetch flashcards for this topic
     const flashcards = await Flashcard.find({
       chapterIndex: chapterId,
       topicIndex: topicId
@@ -581,7 +588,9 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
       chapterId, 
       topicId, 
       flashcards,
-      isAuthenticated: req.isAuthenticated 
+      isAuthenticated: req.isAuthenticated,
+      hasPremium,
+      user: req.user
     });
   } catch (err) {
     console.error("❌ Flashcard fetch error:", err);
@@ -589,7 +598,9 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
       chapterId, 
       topicId, 
       flashcards: [],
-      isAuthenticated: false 
+      isAuthenticated: false,
+      hasPremium: false,
+      user: null
     });
   }
 });
@@ -638,22 +649,25 @@ app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
   }
   
   try {
+    // Check premium status FIRST
+    const hasPremium = await checkUserPremium(req.user?.username);
+    
     const chapterCheck = await Note.findOne({ chapterIndex: chapterId });
     
-    if (chapterCheck && chapterCheck.isPremium) {
+    if (!chapterCheck) {
+      return res.status(404).render("404");
+    }
+    
+    // Block premium chapters for non-premium users
+    if (chapterCheck.isPremium && !hasPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
           message: "Login required to access premium content" 
         });
       }
-
-      const hasPremium = await checkUserPremium(req.user.username);
-
-      if (!hasPremium) {
-        return res.render("premiumrequired", { 
-          message: "Upgrade to premium to access this chapter" 
-        });
-      }
+      return res.render("premiumrequired", { 
+        message: "Upgrade to premium to access this chapter" 
+      });
     }
 
     const topics = await Note.aggregate([
@@ -668,17 +682,22 @@ app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
       { $sort: { _id: 1 } }
     ]);
 
+    // Pass ALL required data
     res.render("note-topics", { 
       chapterId, 
       topics,
-      isAuthenticated: req.isAuthenticated 
+      isAuthenticated: req.isAuthenticated,
+      hasPremium,
+      user: req.user
     });
   } catch (err) {
     console.error("❌ Note topics error:", err);
     res.render("note-topics", { 
       chapterId, 
       topics: [],
-      isAuthenticated: false 
+      isAuthenticated: false,
+      hasPremium: false,
+      user: null
     });
   }
 });
@@ -693,6 +712,8 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
   }
 
   try {
+    const hasPremium = await checkUserPremium(req.user?.username);
+    
     const note = await Note.findOne({ 
       chapterIndex: chapterId, 
       topicIndex: topicId 
@@ -702,25 +723,22 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
       return res.status(404).render("404");
     }
     
-    if (note.isPremium) {
+    if (note.isPremium && !hasPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
           message: "Login required to access premium content" 
         });
       }
-
-      const hasPremium = await checkUserPremium(req.user.username);
-
-      if (!hasPremium) {
-        return res.render("premiumrequired", { 
-          message: "Upgrade to premium to access this note" 
-        });
-      }
+      return res.render("premiumrequired", { 
+        message: "Upgrade to premium to access this note" 
+      });
     }
 
     res.render("note-view", { 
       note,
-      isAuthenticated: req.isAuthenticated 
+      isAuthenticated: req.isAuthenticated,
+      hasPremium,
+      user: req.user
     });
   } catch (err) {
     console.error("❌ Note view error:", err);
