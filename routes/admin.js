@@ -28,7 +28,14 @@ module.exports = (User, Flashcard, Note) => {
       }
     }
   });
-
+function findNextAvailableIndex(existingIndices) {
+  if (existingIndices.length === 0) return 1;
+  const sorted = [...existingIndices].sort((a, b) => a - b);
+  for (let i = 0; i < sorted.length; i++) {
+    if (sorted[i] !== i + 1) return i + 1;
+  }
+  return sorted[sorted.length - 1] + 1;
+    }
   // ==================== MAIN ADMIN PAGE ====================
   router.get('/', async (req, res) => {
     try {
@@ -162,93 +169,103 @@ module.exports = (User, Flashcard, Note) => {
   // ==================== NOTES MANAGEMENT ====================
 
   // Add new note (WITH FILE UPLOAD SUPPORT)
-  router.post("/add-note", upload.single('htmlFile'), async (req, res) => {
-    let {
+  
+router.post("/add-note", upload.single('htmlFile'), async (req, res) => {
+  let {
+    chapterIndex,
+    chapterName,
+    newChapterIndex,
+    newChapterName,
+    topicIndex,
+    topicName,
+    newTopicIndex,
+    newTopicName,
+    noteTitle,
+    htmlContent,
+    isPremium
+  } = req.body;
+
+  try {
+    // Handle file upload
+    if (req.file) {
+      htmlContent = req.file.buffer.toString('utf-8');
+      console.log("âœ… HTML file uploaded, size:", req.file.size, "bytes");
+    }
+
+    // Handle chapter
+    if (newChapterName?.trim()) {
+      chapterIndex = +newChapterIndex;
+      chapterName = newChapterName.trim();
+    } else {
+      chapterIndex = +chapterIndex;
+    }
+
+    // Handle topic
+    if (newTopicName?.trim()) {
+      topicName = newTopicName.trim();
+      
+      // Check if manual index was provided
+      if (newTopicIndex && newTopicIndex.trim() !== '') {
+        topicIndex = +newTopicIndex;
+        
+        // Check if note already exists at this index
+        const existingNote = await Note.findOne({
+          chapterIndex,
+          topicIndex
+        });
+
+        if (existingNote) {
+          return res.status(400).send(
+            `âŒ A note already exists at Chapter ${chapterIndex}, Topic ${topicIndex}.\n\n` +
+            `Title: "${existingNote.noteTitle}"\n\n` +
+            `Choose a different topic index.`
+          );
+        }
+      } else {
+        // Auto-calculate
+        const existingIndices = await Note.find({ 
+          chapterIndex 
+        }).distinct('topicIndex');
+        
+        topicIndex = findNextAvailableIndex(existingIndices);
+        console.log(`âœ… Auto-assigned note topic index ${topicIndex}`);
+      }
+    } else {
+      topicIndex = +topicIndex;
+    }
+
+    if (!chapterName || !topicName || !noteTitle || !htmlContent) {
+      throw new Error("Missing required fields");
+    }
+
+    // Final check: one note per chapter/topic combination
+    const existingNote = await Note.findOne({
+      chapterIndex,
+      topicIndex
+    });
+
+    if (existingNote) {
+      throw new Error(`A note already exists for Chapter ${chapterIndex}, Topic ${topicIndex}`);
+    }
+
+    const newNote = new Note({
       chapterIndex,
       chapterName,
-      newChapterIndex,
-      newChapterName,
       topicIndex,
       topicName,
-      newTopicIndex,
-      newTopicName,
       noteTitle,
       htmlContent,
-      isPremium
-    } = req.body;
+      isPremium: isPremium === 'on' || isPremium === 'true' || isPremium === true
+    });
 
-    try {
-      // If file was uploaded, use its content
-      if (req.file) {
-        htmlContent = req.file.buffer.toString('utf-8');
-        console.log("✅ HTML file uploaded, size:", req.file.size, "bytes");
-      }
-
-      // Handle chapter selection/creation
-      if (newChapterName?.trim()) {
-        chapterIndex = +newChapterIndex;
-        chapterName = newChapterName.trim();
-      } else {
-        chapterIndex = +chapterIndex;
-      }
-
-      // Handle topic selection/creation
-      if (newTopicName?.trim()) {
-        topicIndex = +newTopicIndex;
-        topicName = newTopicName.trim();
-      } else {
-        topicIndex = +topicIndex;
-      }
-
-      if (!chapterName || !topicName || !noteTitle || !htmlContent) {
-        throw new Error("Missing required fields");
-      }
-
-      // Check if note already exists for this chapter/topic
-      const existingNote = await Note.findOne({
-        chapterIndex,
-        topicIndex
-      });
-
-      if (existingNote) {
-        throw new Error("A note already exists for this chapter/topic combination");
-      }
-
-      const newNote = new Note({
-        chapterIndex,
-        chapterName,
-        topicIndex,
-        topicName,
-        noteTitle,
-        htmlContent,
-        isPremium: isPremium === 'on' || isPremium === 'true' || isPremium === true
-      });
-
-      await newNote.save();
-      res.redirect("/admin");
-    } catch (err) {
-      console.error("❌ Error adding note:", err.message);
-      res.status(500).send("Failed to add note: " + err.message);
-    }
-  });
-
-  // Edit note
-  router.post("/edit-note", async (req, res) => {
-    const { noteId, noteTitle, htmlContent, isPremium } = req.body;
-    
-    try {
-      await Note.findByIdAndUpdate(noteId, {
-        noteTitle,
-        htmlContent,
-        isPremium: isPremium === 'on' || isPremium === 'true' || isPremium === true,
-        updatedAt: new Date()
-      });
-      res.json({ success: true });
-    } catch (err) {
-      console.error("❌ Error editing note:", err);
-      res.status(500).json({ error: "Failed to edit note" });
-    }
-  });
+    await newNote.save();
+    console.log(`âœ… Added note to Chapter ${chapterIndex}, Topic ${topicIndex}`);
+    res.redirect("/admin");
+  } catch (err) {
+    console.error("âŒ Error adding note:", err.message);
+    res.status(500).send("Failed to add note: " + err.message);
+  }
+});
 
   // Delete note
   router.post("/delete-note", async (req, res) => {
@@ -508,128 +525,194 @@ module.exports = (User, Flashcard, Note) => {
     }
   });
 
-  router.post("/add-flashcard", async (req, res) => {
-    let {
+          
+router.post("/add-flashcard", async (req, res) => {
+  let {
+    chapterIndex,
+    chapterName,
+    newChapterIndex,
+    newChapterName,
+    topicIndex,
+    topicName,
+    newTopicIndex,
+    newTopicName,
+    question,
+    answer,
+    isPremium
+  } = req.body;
+  
+  try {
+    // Handle chapter selection/creation
+    if (newChapterName?.trim()) {
+      chapterIndex = +newChapterIndex;
+      chapterName = newChapterName.trim();
+    } else {
+      chapterIndex = +chapterIndex;
+    }
+
+    // Handle topic selection/creation
+    if (newTopicName?.trim()) {
+      topicName = newTopicName.trim();
+      
+      // Check if manual index was provided
+      if (newTopicIndex && newTopicIndex.trim() !== '') {
+        topicIndex = +newTopicIndex;
+        
+        // Validate: Check if this index already exists with a DIFFERENT name
+        const existingTopic = await Flashcard.findOne({ 
+          chapterIndex, 
+          topicIndex 
+        });
+        
+        if (existingTopic) {
+          if (existingTopic.topicName !== topicName) {
+            return res.status(400).send(
+              `âŒ Topic ${topicIndex} already exists in Chapter ${chapterIndex} with name "${existingTopic.topicName}".\n\n` +
+              `Choose a different index or use the existing topic name.`
+            );
+          }
+          // Same name = OK, user is adding to existing topic
+        }
+      } else {
+        // Auto-calculate next available index
+        const existingIndices = await Flashcard.find({ 
+          chapterIndex 
+        }).distinct('topicIndex');
+        
+        topicIndex = findNextAvailableIndex(existingIndices);
+        console.log(`âœ… Auto-assigned topic index ${topicIndex} for chapter ${chapterIndex}`);
+      }
+    } else {
+      topicIndex = +topicIndex;
+    }
+
+    if (!chapterName || !topicName) {
+      throw new Error("Missing chapter or topic name");
+    }
+
+    // Get next flashcard index for this topic
+    const flashcardIndex = await Flashcard.countDocuments({
+      chapterIndex,
+      topicIndex
+    }) + 1;
+
+    const newFlashcard = new Flashcard({
       chapterIndex,
       chapterName,
-      newChapterIndex,
-      newChapterName,
       topicIndex,
       topicName,
-      newTopicIndex,
-      newTopicName,
+      flashcardIndex,
       question,
       answer,
-      isPremium
-    } = req.body;
-    
-    try {
-      if (newChapterName?.trim()) {
-        chapterIndex = +newChapterIndex;
-        chapterName = newChapterName.trim();
-      } else {
-        chapterIndex = +chapterIndex;
-      }
+      isPremium: isPremium === 'on' || isPremium === 'true' || isPremium === true
+    });
 
-      if (newTopicName?.trim()) {
-        topicIndex = +newTopicIndex;
-        topicName = newTopicName.trim();
-      } else {
-        topicIndex = +topicIndex;
-      }
-
-      if (!chapterName || !topicName) throw new Error("Missing chapter or topic name");
-
-      const flashcardIndex = await Flashcard.countDocuments({
-        chapterIndex,
-        topicIndex
-      }) + 1;
-
-      const newFlashcard = new Flashcard({
-        chapterIndex,
-        chapterName,
-        topicIndex,
-        topicName,
-        flashcardIndex,
-        question,
-        answer,
-        isPremium: isPremium === 'on' || isPremium === 'true' || isPremium === true
-      });
-
-      await newFlashcard.save();
-      res.redirect("/admin");
-    } catch (err) {
-      console.error("Error adding flashcard:", err.message);
-      res.status(500).send("Failed to add flashcard");
-    }
-  });
+    await newFlashcard.save();
+    console.log(`âœ… Added flashcard to Chapter ${chapterIndex}, Topic ${topicIndex}`);
+    res.redirect("/admin");
+  } catch (err) {
+    console.error("âŒ Error adding flashcard:", err.message);
+    res.status(500).send("Failed to add flashcard: " + err.message);
+  }
+});
 
   // BULK UPLOAD WITH FILE SUPPORT
   router.post("/bulk-upload", upload.single('jsonFile'), async (req, res) => {
-    let {
+  let {
+    chapterIndex,
+    chapterName,
+    newChapterIndex,
+    newChapterName,
+    topicIndex,
+    topicName,
+    newTopicIndex,
+    newTopicName,
+    jsonData,
+    isPremium
+  } = req.body;
+  
+  try {
+    // Handle file upload
+    if (req.file) {
+      jsonData = req.file.buffer.toString('utf-8');
+      console.log("âœ… JSON file uploaded, size:", req.file.size, "bytes");
+    }
+
+    // Handle chapter
+    if (newChapterName?.trim()) {
+      chapterIndex = +newChapterIndex;
+      chapterName = newChapterName.trim();
+    } else {
+      chapterIndex = +chapterIndex;
+    }
+
+    // Handle topic
+    if (newTopicName?.trim()) {
+      topicName = newTopicName.trim();
+      
+      // Check if manual index was provided
+      if (newTopicIndex && newTopicIndex.trim() !== '') {
+        topicIndex = +newTopicIndex;
+        
+        // Validate existing topic
+        const existingTopic = await Flashcard.findOne({ 
+          chapterIndex, 
+          topicIndex 
+        });
+        
+        if (existingTopic && existingTopic.topicName !== topicName) {
+          return res.status(400).send(
+            `âŒ Topic ${topicIndex} already exists with name "${existingTopic.topicName}"`
+          );
+        }
+      } else {
+        // Auto-calculate
+        const existingIndices = await Flashcard.find({ 
+          chapterIndex 
+        }).distinct('topicIndex');
+        
+        topicIndex = findNextAvailableIndex(existingIndices);
+        console.log(`âœ… Auto-assigned topic index ${topicIndex}`);
+      }
+    } else {
+      topicIndex = +topicIndex;
+    }
+
+    if (!chapterName || !topicName) {
+      throw new Error("Chapter or topic name missing.");
+    }
+    if (!jsonData || !jsonData.trim()) {
+      throw new Error("JSON data is required.");
+    }
+
+    const flashcardsData = JSON.parse(jsonData);
+
+    if (!Array.isArray(flashcardsData)) {
+      throw new Error("JSON must be an array of flashcard objects.");
+    }
+
+    const existingCount = await Flashcard.countDocuments({ chapterIndex, topicIndex });
+
+    const flashcards = flashcardsData.map((fc, i) => ({
       chapterIndex,
       chapterName,
-      newChapterIndex,
-      newChapterName,
       topicIndex,
       topicName,
-      newTopicIndex,
-      newTopicName,
-      jsonData,
-      isPremium
-    } = req.body;
-    
-    try {
-      // If file was uploaded, use its content
-      if (req.file) {
-        jsonData = req.file.buffer.toString('utf-8');
-        console.log("✅ JSON file uploaded, size:", req.file.size, "bytes");
-      }
+      flashcardIndex: existingCount + i + 1,
+      question: fc.question,
+      answer: fc.answer,
+      isPremium: isPremium === 'on' || isPremium === 'true' || isPremium === true
+    }));
 
-      if (newChapterName?.trim()) {
-        chapterIndex = +newChapterIndex;
-        chapterName = newChapterName.trim();
-      } else {
-        chapterIndex = +chapterIndex;
-      }
-
-      if (newTopicName?.trim()) {
-        topicIndex = +newTopicIndex;
-        topicName = newTopicName.trim();
-      } else {
-        topicIndex = +topicIndex;
-      }
-
-      if (!chapterName || !topicName) throw new Error("Chapter or topic name missing.");
-      if (!jsonData || !jsonData.trim()) throw new Error("JSON data is required.");
-
-      const flashcardsData = JSON.parse(jsonData);
-
-      if (!Array.isArray(flashcardsData)) {
-        throw new Error("JSON must be an array of flashcard objects.");
-      }
-
-      const existingCount = await Flashcard.countDocuments({ chapterIndex, topicIndex });
-
-      const flashcards = flashcardsData.map((fc, i) => ({
-        chapterIndex,
-        chapterName,
-        topicIndex,
-        topicName,
-        flashcardIndex: existingCount + i + 1,
-        question: fc.question,
-        answer: fc.answer,
-        isPremium: isPremium === 'on' || isPremium === 'true' || isPremium === true
-      }));
-
-      await Flashcard.insertMany(flashcards);
-      res.redirect("/admin");
-    } catch (err) {
-      console.error("❌ Upload Error:", err.message);
-      res.status(400).send("❌ " + err.message);
-    }
-  });
-
+    await Flashcard.insertMany(flashcards);
+    console.log(`âœ… Bulk uploaded ${flashcards.length} flashcards to Topic ${topicIndex}`);
+    res.redirect("/admin");
+  } catch (err) {
+    console.error("âŒ Upload Error:", err.message);
+    res.status(400).send("âŒ " + err.message);
+  }
+});
+          
   // ==================== USER MANAGEMENT ====================
 
   router.post("/delete-user", async (req, res) => {
