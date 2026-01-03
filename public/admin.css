@@ -713,3 +713,198 @@ small {
     width: 100%;
   }
   }
+/* ==================== IMPROVED TOPIC INDEX UI ==================== */
+
+/* Modern dual-input container */
+.topic-index-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 16px;
+  align-items: start;
+  margin: 16px 0 24px 0;
+  padding: 20px;
+  background: rgba(100, 100, 255, 0.05);
+  border: 1px solid rgba(100, 100, 255, 0.15);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.topic-index-grid:hover {
+  background: rgba(100, 100, 255, 0.08);
+  border-color: rgba(100, 100, 255, 0.25);
+}
+
+/* Input wrapper styling */
+.topic-input-wrapper {
+  position: relative;
+}
+
+.topic-input-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #a8b3ff;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Topic index input - special styling */
+input[type="number"].topic-index-input {
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 16px 12px;
+  background: rgba(20, 20, 35, 0.8);
+  border: 2px solid rgba(100, 100, 255, 0.3);
+  border-radius: 10px;
+  color: #888;
+  transition: all 0.3s ease;
+}
+
+input[type="number"].topic-index-input:focus {
+  outline: none;
+  border-color: #6464ff;
+  background: rgba(20, 20, 35, 1);
+  box-shadow: 0 0 0 4px rgba(100, 100, 255, 0.15);
+  color: #fff;
+}
+
+/* Manual mode - white bold text */
+input[type="number"].topic-index-input.manual {
+  color: #ffffff;
+  font-weight: 900;
+  border-color: #ffd700;
+  background: rgba(255, 215, 0, 0.1);
+}
+
+input[type="number"].topic-index-input.manual:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.15);
+}
+
+/* Auto mode - gray text */
+input[type="number"].topic-index-input.auto {
+  color: #888;
+  font-weight: 400;
+  border-color: rgba(100, 100, 255, 0.3);
+}
+
+/* Topic name input */
+input[type="text"].topic-name-input {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  background: rgba(20, 20, 35, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+input[type="text"].topic-name-input:focus {
+  outline: none;
+  border-color: #6464ff;
+  background: rgba(20, 20, 35, 0.9);
+  box-shadow: 0 0 0 4px rgba(100, 100, 255, 0.15);
+}
+
+/* Hint box - redesigned */
+.topic-hint {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(100, 100, 255, 0.1) 0%, rgba(100, 100, 255, 0.05) 100%);
+  border-left: 4px solid #6464ff;
+  border-radius: 10px;
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #b8bec8;
+}
+
+.topic-hint-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.topic-hint-content {
+  flex: 1;
+}
+
+.topic-hint strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.topic-hint-mode {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.topic-hint-mode:last-child {
+  margin-bottom: 0;
+}
+
+/* Status badge */
+.topic-index-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+  animation: fadeIn 0.3s ease;
+}
+
+.topic-index-status.auto {
+  background: rgba(0, 255, 136, 0.15);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  color: #00ff88;
+}
+
+.topic-index-status.manual {
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+}
+
+/* Remove spinner arrows from number input */
+input[type="number"].topic-index-input::-webkit-inner-spin-button,
+input[type="number"].topic-index-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"].topic-index-input {
+  -moz-appearance: textfield;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .topic-index-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px;
+  }
+  
+  input[type="number"].topic-index-input {
+    font-size: 20px;
+    padding: 14px;
+  }
+  
+  input[type="text"].topic-name-input {
+    font-size: 15px;
+    padding: 14px;
+  }
+  
+  .topic-hint {
+    font-size: 13px;
+    padding: 14px;
+  }
+    }
