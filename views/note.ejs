@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Note</title>
+  <link rel="stylesheet" href="/css/watermark.css" />
+</head>
+<body class="no-select">
+  <div class="note-container">
+    <div class="watermark-overlay" id="watermarkOverlay"></div>
+
+    <div class="note-content">
+      <h2><%= note.title %></h2>
+      <div class="body">
+        <%- note.body %>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.__ACCELA_USER = {
+      username: "<%= user ? (user.username || user.email || '') : '' %>",
+      email: "<%= user ? (user.email || '') : '' %>"
+    };
+  </script>
+
+  <script src="/js/watermark.js"></script>
+  <script src="/js/protect.js"></script>
+</body>
+</html>

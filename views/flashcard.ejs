@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Flashcard</title>
+  <link rel="stylesheet" href="/css/watermark.css" />
+</head>
+<body class="no-select">
+  <div class="flashcard-container">
+    <div class="watermark-overlay" id="watermarkOverlay"></div>
+
+    <div class="flashcard-content">
+      <h2><%= flashcard.title %></h2>
+      <div class="front">
+        <%- flashcard.front %>
+      </div>
+      <div class="back" style="display:none;">
+        <%- flashcard.back %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expose minimal user info to client (username + email) -->
+  <script>
+    window.__ACCELA_USER = {
+      username: "<%= user ? (user.username || user.email || '') : '' %>",
+      email: "<%= user ? (user.email || '') : '' %>"
+    };
+  </script>
+
+  <script src="/js/watermark.js"></script>
+  <script src="/js/protect.js"></script>
+</body>
+</html>
