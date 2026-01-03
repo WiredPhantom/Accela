@@ -269,8 +269,35 @@
               <input type="text" id="topicName" name="topicName" placeholder="Auto-filled topic name" readonly>
 
               <label>Or Create New Topic:</label>
-              <input type="text" name="newTopicName" id="newTopicName" placeholder="Enter new topic name">
-              <input type="hidden" name="newTopicIndex" id="newTopicIndex">
+<div style="display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: end;">
+  <div>
+    <label style="font-size: 12px; color: #888; margin-bottom: 4px; display: block;">
+      Topic Index:
+    </label>
+    <input 
+      type="number" 
+      name="newTopicIndex" 
+      id="newTopicIndex" 
+      min="1" 
+      placeholder="Auto"
+      title="Leave empty for auto-numbering or enter a specific number"
+      style="text-align: center; font-weight: 600;">
+  </div>
+  <div>
+    <label style="font-size: 12px; color: #888; margin-bottom: 4px; display: block;">
+      Topic Name:
+    </label>
+    <input 
+      type="text" 
+      name="newTopicName" 
+      id="newTopicName" 
+      placeholder="Enter new topic name">
+  </div>
+</div>
+<small style="display: block; margin-top: 8px; color: #888; background: rgba(255,255,255,0.03); padding: 8px; border-radius: 6px; border-left: 3px solid #4f46e5;">
+  💡 <strong>Auto Mode:</strong> Leave index empty for smart numbering (fills gaps)<br>
+  🎯 <strong>Manual Mode:</strong> Enter a specific number to create Topic 4, 5, 6, etc.
+</small>
 
               <label>Question: <span style="color: #ff6b6b;">*</span></label>
               <textarea name="question" required placeholder="Enter the question here"></textarea>
@@ -319,8 +346,35 @@
         <input type="text" name="topicName" id="bulkTopicName" readonly placeholder="Auto-filled topic name">
 
         <label>Or Create New Topic:</label>
-        <input type="text" name="newTopicName" id="bulknewTopicName" placeholder="Enter new topic name">
-        <input type="hidden" name="newTopicIndex" id="bulknewTopicIndex">
+<div style="display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: end;">
+  <div>
+    <label style="font-size: 12px; color: #888; margin-bottom: 4px; display: block;">
+      Topic Index:
+    </label>
+    <input 
+      type="number" 
+      name="newTopicIndex" 
+      id="bulknewTopicIndex" 
+      min="1" 
+      placeholder="Auto"
+      title="Leave empty for auto-numbering"
+      style="text-align: center; font-weight: 600;">
+  </div>
+  <div>
+    <label style="font-size: 12px; color: #888; margin-bottom: 4px; display: block;">
+      Topic Name:
+    </label>
+    <input 
+      type="text" 
+      name="newTopicName" 
+      id="bulknewTopicName" 
+      placeholder="Enter new topic name">
+  </div>
+</div>
+<small style="display: block; margin-top: 8px; color: #888; background: rgba(255,255,255,0.03); padding: 8px; border-radius: 6px; border-left: 3px solid #4f46e5;">
+  💡 Leave index empty for smart auto-numbering
+</small>
+
 
         <!-- ============= UPLOAD METHOD TOGGLE ============= -->
         <div style="margin: 24px 0; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
@@ -432,9 +486,34 @@
         <input type="text" id="noteTopicName" name="topicName" placeholder="Auto-filled topic name" readonly>
 
         <label>Or Create New Topic:</label>
-        <input type="text" name="newTopicName" id="noteNewTopicName" placeholder="Enter new topic name">
-        <input type="hidden" name="newTopicIndex" id="noteNewTopicIndex">
-
+<div style="display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: end;">
+  <div>
+    <label style="font-size: 12px; color: #ffd700; margin-bottom: 4px; display: block;">
+      Topic Index:
+    </label>
+    <input 
+      type="number" 
+      name="newTopicIndex" 
+      id="noteNewTopicIndex" 
+      min="1" 
+      placeholder="Auto"
+      title="Leave empty for auto-numbering"
+      style="text-align: center; font-weight: 600; border-color: rgba(255,215,0,0.3);">
+  </div>
+  <div>
+    <label style="font-size: 12px; color: #ffd700; margin-bottom: 4px; display: block;">
+      Topic Name:
+    </label>
+    <input 
+      type="text" 
+      name="newTopicName" 
+      id="noteNewTopicName" 
+      placeholder="Enter new topic name">
+  </div>
+</div>
+<small style="display: block; margin-top: 8px; color: #888; background: rgba(255,215,0,0.03); padding: 8px; border-radius: 6px; border-left: 3px solid #ffd700;">
+  💡 Leave index empty for smart auto-numbering
+</small>
         <label>Note Title: <span style="color: #ff6b6b;">*</span></label>
         <input type="text" name="noteTitle" id="noteTitle" required placeholder="e.g., ہندی طب - آیوروید">
 
@@ -999,7 +1078,16 @@
   window.topics = <%- JSON.stringify(topics) %>;
   window.noteChapters = <%- JSON.stringify(noteChapters) %>;
   window.noteTopics = <%- JSON.stringify(noteTopics) %>;
-  </script>
+ // ADD THIS HELPER FUNCTION:
+function findNextAvailableIndex(existingIndices) {
+  if (existingIndices.length === 0) return 1;
+  const sorted = [...existingIndices].sort((a, b) => a - b);
+  for (let i = 0; i < sorted.length; i++) {
+    if (sorted[i] !== i + 1) return i + 1;
+  }
+  return sorted[sorted.length - 1] + 1;
+}
+</script>
 
   <script src="/clientadmin.js"></script>
 
