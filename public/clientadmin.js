@@ -1,5 +1,13 @@
 (function() {
   'use strict';
+  function findNextAvailableIndex(existingIndices) {
+  if (existingIndices.length === 0) return 1;
+  const sorted = [...existingIndices].sort((a, b) => a - b);
+  for (let i = 0; i < sorted.length; i++) {
+    if (sorted[i] !== i + 1) return i + 1;
+  }
+  return sorted[sorted.length - 1] + 1;
+  }
 
   console.log("✅ Enhanced clientadmin.js loaded (Premium + Notes Edition)");
 
@@ -719,33 +727,63 @@
   }
 
   const noteNewTopicNameEl = document.getElementById("noteNewTopicName");
-  if (noteNewTopicNameEl) {
-    noteNewTopicNameEl.addEventListener("input", (e) => {
-      const name = e.target.value.trim();
-      const newIndexEl = document.getElementById("noteNewTopicIndex");
-      const topicNameEl = document.getElementById("noteTopicName");
-      const newChIdxEl = document.getElementById("noteNewChapterIndex");
-      const chapterSel = document.getElementById("noteChapterIndex");
-      const topicSel = document.getElementById("noteTopicIndex");
-      
-      if (name) {
-        const chIdx = parseInt(newChIdxEl?.value) || parseInt(chapterSel?.value);
-        if (chIdx) {
-          const relatedTopics = noteTopics.filter(t => t._id.chapterIndex === chIdx);
-          const maxIndex = relatedTopics.length ? Math.max(...relatedTopics.map(t => t._id.topicIndex)) : 0;
-          if (newIndexEl) newIndexEl.value = maxIndex + 1;
-          if (topicNameEl) topicNameEl.value = name;
-          if (topicSel) topicSel.selectedIndex = 0;
-        } else {
-          showToast("Please select or create a chapter first", "error");
-          e.target.value = "";
+if (noteNewTopicNameEl) {
+  noteNewTopicNameEl.addEventListener("input", (e) => {
+    const name = e.target.value.trim();
+    const newIndexEl = document.getElementById("noteNewTopicIndex");
+    const topicNameEl = document.getElementById("noteTopicName");
+    const newChIdxEl = document.getElementById("noteNewChapterIndex");
+    const chapterSel = document.getElementById("noteChapterIndex");
+    const topicSel = document.getElementById("noteTopicIndex");
+    
+    if (name) {
+      const chIdx = parseInt(newChIdxEl?.value) || parseInt(chapterSel?.value);
+      if (chIdx) {
+        const relatedTopics = noteTopics.filter(t => t._id.chapterIndex === chIdx);
+        
+        // Only auto-fill if empty
+        if (newIndexEl) {
+          const currentValue = newIndexEl.value;
+          if (!currentValue || currentValue === '') {
+            const existingIndices = relatedTopics.map(t => t._id.topicIndex);
+            const nextIndex = findNextAvailableIndex(existingIndices);
+            newIndexEl.value = nextIndex;
+            newIndexEl.placeholder = `Suggested: ${nextIndex}`;
+            newIndexEl.style.color = '#888';
+          }
         }
+        
+        if (topicNameEl) topicNameEl.value = name;
+        if (topicSel) topicSel.selectedIndex = 0;
       } else {
-        if (newIndexEl) newIndexEl.value = "";
-        if (topicNameEl) topicNameEl.value = "";
+        showToast("Please select or create a chapter first", "error");
+        e.target.value = "";
       }
-    });
-  }
+    } else {
+      if (newIndexEl && newIndexEl.style.color === 'rgb(136, 136, 136)') {
+        newIndexEl.value = "";
+        newIndexEl.placeholder = "Auto";
+      }
+      if (topicNameEl) topicNameEl.value = "";
+    }
+  });
+}
+
+// Add manual input detection for notes
+const noteNewTopicIndexEl = document.getElementById("noteNewTopicIndex");
+if (noteNewTopicIndexEl) {
+  noteNewTopicIndexEl.addEventListener("input", (e) => {
+    if (e.target.value) {
+      e.target.style.color = '#fff';
+      e.target.style.fontWeight = '700';
+      e.target.placeholder = "Manual";
+    } else {
+      e.target.style.color = '#888';
+      e.target.style.fontWeight = '400';
+      e.target.placeholder = "Auto";
+    }
+  });
+}
 
   // ==================== SEARCH ====================
   window.performSearch = function() {
@@ -880,34 +918,76 @@
     });
   }
 
-  const newTopicNameEl = document.getElementById("newTopicName");
-  if (newTopicNameEl) {
-    newTopicNameEl.addEventListener("input", (e) => {
-      const name = e.target.value.trim();
-      const newIndexEl = document.getElementById("newTopicIndex");
-      const topicNameEl = document.getElementById("topicName");
-      const newChIdxEl = document.getElementById("newChapterIndex");
-      const chapterSel = document.getElementById("chapterIndex");
-      const topicSel = document.getElementById("topicIndex");
-      
-      if (name) {
-        const chIdx = parseInt(newChIdxEl?.value) || parseInt(chapterSel?.value);
-        if (chIdx) {
-          const relatedTopics = topics.filter(t => t._id.chapterIndex === chIdx);
-          const maxIndex = relatedTopics.length ? Math.max(...relatedTopics.map(t => t._id.topicIndex)) : 0;
-          if (newIndexEl) newIndexEl.value = maxIndex + 1;
-          if (topicNameEl) topicNameEl.value = name;
-          if (topicSel) topicSel.selectedIndex = 0;
-        } else {
-          showToast("Please select or create a chapter first", "error");
-          e.target.value = "";
+
+const newTopicNameEl = document.getElementById("newTopicName");
+if (newTopicNameEl) {
+  newTopicNameEl.addEventListener("input", (e) => {
+    const name = e.target.value.trim();
+    const newIndexEl = document.getElementById("newTopicIndex");
+    const topicNameEl = document.getElementById("topicName");
+    const newChIdxEl = document.getElementById("newChapterIndex");
+    const chapterSel = document.getElementById("chapterIndex");
+    const topicSel = document.getElementById("topicIndex");
+    
+    if (name) {
+      const chIdx = parseInt(newChIdxEl?.value) || parseInt(chapterSel?.value);
+      if (chIdx) {
+        const relatedTopics = topics.filter(t => t._id.chapterIndex === chIdx);
+        
+        // Only auto-fill if the index field is empty (not manually set)
+        if (newIndexEl) {
+          const currentValue = newIndexEl.value;
+          if (!currentValue || currentValue === '') {
+            const existingIndices = relatedTopics.map(t => t._id.topicIndex);
+            const nextIndex = findNextAvailableIndex(existingIndices);
+            newIndexEl.value = nextIndex;
+            newIndexEl.placeholder = `Suggested: ${nextIndex}`;
+            newIndexEl.style.color = '#888'; // Gray = auto-filled
+          }
         }
+        
+        if (topicNameEl) topicNameEl.value = name;
+        if (topicSel) topicSel.selectedIndex = 0;
       } else {
-        if (newIndexEl) newIndexEl.value = "";
-        if (topicNameEl) topicNameEl.value = "";
+        showToast("Please select or create a chapter first", "error");
+        e.target.value = "";
       }
-    });
-  }
+    } else {
+      // Only clear if it was auto-filled (gray text)
+      if (newIndexEl && newIndexEl.style.color === 'rgb(136, 136, 136)') {
+        newIndexEl.value = "";
+        newIndexEl.placeholder = "Auto";
+      }
+      if (topicNameEl) topicNameEl.value = "";
+    }
+  });
+}
+
+// Add manual index input detection
+const newTopicIndexEl = document.getElementById("newTopicIndex");
+if (newTopicIndexEl) {
+  newTopicIndexEl.addEventListener("input", (e) => {
+    // User manually typed something
+    if (e.target.value) {
+      e.target.style.color = '#fff'; // White = manual
+      e.target.style.fontWeight = '700';
+      e.target.placeholder = "Manual";
+    } else {
+      e.target.style.color = '#888'; // Gray = auto
+      e.target.style.fontWeight = '400';
+      e.target.placeholder = "Auto";
+    }
+  });
+  
+  // Allow clearing with backspace
+  newTopicIndexEl.addEventListener("keydown", (e) => {
+    if (e.key === 'Backspace' && e.target.value.length === 1) {
+      e.target.value = "";
+      e.target.style.color = '#888';
+      e.target.placeholder = "Auto";
+    }
+  });
+              }
 
   // --- BULK ---
   const bulkNewChapterNameEl = document.getElementById("bulknewChapterName");
@@ -931,33 +1011,63 @@
   }
 
   const bulkNewTopicNameEl = document.getElementById("bulknewTopicName");
-  if (bulkNewTopicNameEl) {
-    bulkNewTopicNameEl.addEventListener("input", (e) => {
-      const name = e.target.value.trim();
-      const newIndexEl = document.getElementById("bulknewTopicIndex");
-      const topicNameEl = document.getElementById("bulkTopicName");
-      const newChIdxEl = document.getElementById("bulknewChapterIndex");
-      const chapterSel = document.getElementById("bulkChapterIndex");
-      const topicSel = document.getElementById("bulkTopicIndex");
-      
-      if (name) {
-        const chIdx = parseInt(newChIdxEl?.value) || parseInt(chapterSel?.value);
-        if (chIdx) {
-          const related = topics.filter(tp => tp._id.chapterIndex === chIdx);
-          const maxIndex = related.length ? Math.max(...related.map(tp => tp._id.topicIndex)) : 0;
-          if (newIndexEl) newIndexEl.value = maxIndex + 1;
-          if (topicNameEl) topicNameEl.value = name;
-          if (topicSel) topicSel.selectedIndex = 0;
-        } else {
-          showToast("Please select or create a chapter first", "error");
-          e.target.value = "";
+if (bulkNewTopicNameEl) {
+  bulkNewTopicNameEl.addEventListener("input", (e) => {
+    const name = e.target.value.trim();
+    const newIndexEl = document.getElementById("bulknewTopicIndex");
+    const topicNameEl = document.getElementById("bulkTopicName");
+    const newChIdxEl = document.getElementById("bulknewChapterIndex");
+    const chapterSel = document.getElementById("bulkChapterIndex");
+    const topicSel = document.getElementById("bulkTopicIndex");
+    
+    if (name) {
+      const chIdx = parseInt(newChIdxEl?.value) || parseInt(chapterSel?.value);
+      if (chIdx) {
+        const related = topics.filter(tp => tp._id.chapterIndex === chIdx);
+        
+        // Only auto-fill if empty
+        if (newIndexEl) {
+          const currentValue = newIndexEl.value;
+          if (!currentValue || currentValue === '') {
+            const existingIndices = related.map(t => t._id.topicIndex);
+            const nextIndex = findNextAvailableIndex(existingIndices);
+            newIndexEl.value = nextIndex;
+            newIndexEl.placeholder = `Suggested: ${nextIndex}`;
+            newIndexEl.style.color = '#888';
+          }
         }
+        
+        if (topicNameEl) topicNameEl.value = name;
+        if (topicSel) topicSel.selectedIndex = 0;
       } else {
-        if (newIndexEl) newIndexEl.value = "";
-        if (topicNameEl) topicNameEl.value = "";
+        showToast("Please select or create a chapter first", "error");
+        e.target.value = "";
       }
-    });
-  }
+    } else {
+      if (newIndexEl && newIndexEl.style.color === 'rgb(136, 136, 136)') {
+        newIndexEl.value = "";
+        newIndexEl.placeholder = "Auto";
+      }
+      if (topicNameEl) topicNameEl.value = "";
+    }
+  });
+}
+
+// Add manual input detection for bulk
+const bulkNewTopicIndexEl = document.getElementById("bulknewTopicIndex");
+if (bulkNewTopicIndexEl) {
+  bulkNewTopicIndexEl.addEventListener("input", (e) => {
+    if (e.target.value) {
+      e.target.style.color = '#fff';
+      e.target.style.fontWeight = '700';
+      e.target.placeholder = "Manual";
+    } else {
+      e.target.style.color = '#888';
+      e.target.style.fontWeight = '400';
+      e.target.placeholder = "Auto";
+    }
+  });
+                                          }
 
   // ==================== FORM VALIDATION ====================
   const flashcardForm = document.getElementById('add-flashcard-form');
