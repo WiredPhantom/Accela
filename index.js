@@ -115,7 +115,22 @@ function checkAuth(req, res, next) {
     
     const decoded = jwt.verify(token, process.env.jwtkey);
     req.user = decoded;
-    next();
+    
+    // STRICT CHECK: Validate against DB session to enforce 1-month lock
+    User.findOne({ username: req.user.username }).then(user => {
+        if (!user || !user.isSessionValid(token)) {
+             res.clearCookie("token");
+             return res.render("accessdenied", { message: "Session invalid or expired" });
+        }
+        // Update activity timestamp
+        user.updateSessionActivity();
+        user.save().catch(e => console.error("Session update error", e));
+        next();
+    }).catch(err => {
+        console.error("Session check error", err);
+        res.render("accessdenied");
+    });
+
   } catch (err) {
     console.error("Auth error:", err.message);
     res.render("accessdenied");
@@ -242,11 +257,41 @@ app.post("/login", async (req, res) => {
       });
     }
 
+    // --- START: SINGLE DEVICE LOGIN ENFORCEMENT ---
+    const currentUserAgent = req.headers['user-agent'] || 'unknown';
+    const currentIP = req.ip;
+
+    if (user.currentSession && user.currentSession.expiresAt > new Date()) {
+      // Session is active. Check if it's the SAME device (using User-Agent as proxy)
+      if (user.currentSession.deviceInfo !== currentUserAgent) {
+         return res.status(403).json({ 
+           success: false, 
+           message: "Login blocked. You are already logged in on another device. Your session is locked to that device for 1 month." 
+         });
+      }
+      
+      // If same device, we proceed to issue a token, but we DO NOT reset the 1-month timer.
+      // We use the NEW method refreshSessionToken()
+    }
+    // --- END: SINGLE DEVICE LOGIN ENFORCEMENT ---
+
+    // Token logic - 30 days (720h)
     const token = jwt.sign(
       { username, role: user.role, subscriptionStatus: user.subscriptionStatus },
       process.env.jwtkey,
-      { expiresIn: "528h" }
+      { expiresIn: "720h" } 
     );
+
+    // Update Session in DB
+    if (user.currentSession && user.currentSession.expiresAt > new Date()) {
+        // Same device re-login: update token, keep original expiry
+        user.refreshSessionToken(token, currentUserAgent, currentIP);
+    } else {
+        // New session (or expired session): set new 30-day expiry
+        user.setSession(token, currentUserAgent, currentIP);
+    }
+    
+    await user.save();
 
     const isProduction = process.env.NODE_ENV === 'production';
 
@@ -255,7 +300,7 @@ app.post("/login", async (req, res) => {
       path: "/",
       sameSite: "lax",
       secure: isProduction,
-      maxAge: 22 * 24 * 60 * 60 * 1000
+      maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
     });
     
     return res.status(200).json({ success: true });
@@ -269,7 +314,10 @@ app.post("/login", async (req, res) => {
 });
 
 // Logout
-app.get("/logout", (req, res) => {
+app.get("/logout", async (req, res) => {
+  // We ONLY clear the cookie. The session in DB remains valid and locked to this device/UA until expiry.
+  // This enforces the "1 month on one phone" rule strictly. 
+  // If the user clears cookies or logs out, they can only log back in on the SAME browser/device.
   res.clearCookie("token");
   res.redirect("/");
 });
@@ -366,7 +414,7 @@ app.post("/create-free-session", async (req, res) => {
         subscriptionStatus: user.subscriptionStatus 
       },
       process.env.jwtkey,
-      { expiresIn: "720h" }
+      { expiresIn: "720h" } // Updated to 30 days
     );
 
     const isProduction = process.env.NODE_ENV === 'production';
@@ -379,7 +427,7 @@ app.post("/create-free-session", async (req, res) => {
         path: "/",
         sameSite: "lax",
         secure: isProduction,
-        maxAge: 30 * 24 * 60 * 60 * 1000
+        maxAge: 30 * 24 * 60 * 60 * 1000 // Updated to 30 days
       }
     });
 
@@ -479,7 +527,6 @@ app.get("/chapters", optionalAuth, async (req, res) => {
   }
 });
 
-// ✅ FIXED: Topics route with proper premium handling
 app.get("/chapter/:id", optionalAuth, async (req, res) => {
   const chapterId = parseInt(req.params.id);
   
@@ -543,7 +590,6 @@ app.get("/chapter/:id", optionalAuth, async (req, res) => {
   }
 });
 
-// ✅ FIXED: Flashcards route with proper premium handling
 app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => {
   const chapterId = parseInt(req.params.chapterId);
   const topicId = parseInt(req.params.topicId);
