@@ -44,7 +44,7 @@ module.exports = (connection) => {
   // Set/Update current session (replaces any existing session)
   userSchema.methods.setSession = function(sessionToken, deviceInfo, ipAddress) {
     const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + 22); // 22 days
+    expiresAt.setDate(expiresAt.getDate() + 30); // Changed to 30 days
     
     this.currentSession = {
       sessionToken,
@@ -54,6 +54,17 @@ module.exports = (connection) => {
       lastActivity: new Date(),
       expiresAt
     };
+  };
+
+  // NEW: Refresh token without extending session life (for same-device re-login)
+  userSchema.methods.refreshSessionToken = function(sessionToken, deviceInfo, ipAddress) {
+    if (this.currentSession) {
+      this.currentSession.sessionToken = sessionToken;
+      this.currentSession.deviceInfo = deviceInfo;
+      this.currentSession.ipAddress = ipAddress;
+      this.currentSession.lastActivity = new Date();
+      // Do NOT update expiresAt to maintain the original 30-day window
+    }
   };
 
   // Clear current session
