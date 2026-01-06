@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 require("dotenv").config();
 
 const app = express();
@@ -86,10 +87,32 @@ async function checkUserPremium(username) {
   }
 }
 
-// --------- 5. AUTH MIDDLEWARE ---------
-function optionalAuth(req, res, next) {
+// --------- DEVICE FINGERPRINT HELPER ---------
+function generateDeviceFingerprint(req) {
+  const userAgent = req.headers['user-agent'] || 'unknown';
+  const acceptLanguage = req.headers['accept-language'] || 'unknown';
+  const ip = getClientIP(req);
+  
+  // Create a hash of device characteristics
+  const fingerprintData = `${userAgent}|${acceptLanguage}|${ip}`;
+  return crypto.createHash('sha256').update(fingerprintData).digest('hex').substring(0, 32);
+}
+
+function getClientIP(req) {
+  return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 
+         req.headers['x-real-ip'] || 
+         req.ip || 
+         req.connection.remoteAddress || 
+         'unknown';
+}
+
+// --------- 5. AUTH MIDDLEWARE WITH SESSION VALIDATION ---------
+
+async function optionalAuth(req, res, next) {
   try {
     const token = req.cookies.token;
+    const sessionToken = req.cookies.sessionToken;
+    
     if (!token) {
       req.user = null;
       req.isAuthenticated = false;
@@ -97,6 +120,41 @@ function optionalAuth(req, res, next) {
     }
     
     const decoded = jwt.verify(token, process.env.jwtkey);
+    const user = await User.findOne({ username: decoded.username });
+    
+    if (!user) {
+      req.user = null;
+      req.isAuthenticated = false;
+      res.clearCookie("token");
+      res.clearCookie("sessionToken");
+      return next();
+    }
+    
+    // Admin bypass - no session validation needed
+    if (user.role === 'admin') {
+      req.user = decoded;
+      req.isAuthenticated = true;
+      return next();
+    }
+    
+    // Validate session for regular users
+    const deviceFingerprint = generateDeviceFingerprint(req);
+    const sessionValidation = user.validateSession(sessionToken, deviceFingerprint);
+    
+    if (!sessionValidation.valid) {
+      req.user = null;
+      req.isAuthenticated = false;
+      res.clearCookie("token");
+      res.clearCookie("sessionToken");
+      
+      // Auto-clear expired sessions
+      if (sessionValidation.reason === 'SESSION_EXPIRED') {
+        user.clearSession();
+        await user.save();
+      }
+      return next();
+    }
+    
     req.user = decoded;
     req.isAuthenticated = true;
   } catch (err) {
@@ -106,33 +164,65 @@ function optionalAuth(req, res, next) {
   next();
 }
 
-function checkAuth(req, res, next) {
+async function checkAuth(req, res, next) {
   try {
     const token = req.cookies.token;
+    const sessionToken = req.cookies.sessionToken;
+    
     if (!token) {
       return res.render("accessdenied");
     }
     
     const decoded = jwt.verify(token, process.env.jwtkey);
-    req.user = decoded;
+    const deviceFingerprint = generateDeviceFingerprint(req);
     
-    // STRICT CHECK: Validate against DB session to enforce 1-month lock
-    User.findOne({ username: req.user.username }).then(user => {
-        if (!user || !user.isSessionValid(token)) {
-             res.clearCookie("token");
-             return res.render("accessdenied", { message: "Session invalid or expired" });
-        }
-        // Update activity timestamp
-        user.updateSessionActivity();
-        user.save().catch(e => console.error("Session update error", e));
-        next();
-    }).catch(err => {
-        console.error("Session check error", err);
-        res.render("accessdenied");
-    });
-
+    // Find user and validate session
+    const user = await User.findOne({ username: decoded.username });
+    
+    if (!user) {
+      res.clearCookie("token");
+      res.clearCookie("sessionToken");
+      return res.render("accessdenied");
+    }
+    
+    // Admin bypass - no session validation needed
+    if (user.role === 'admin') {
+      req.user = decoded;
+      return next();
+    }
+    
+    // Validate session for regular users
+    const sessionValidation = user.validateSession(sessionToken, deviceFingerprint);
+    
+    if (!sessionValidation.valid) {
+      console.log(`❌ Session invalid for ${user.username}: ${sessionValidation.reason}`);
+      
+      // Clear cookies if session is invalid
+      res.clearCookie("token");
+      res.clearCookie("sessionToken");
+      
+      if (sessionValidation.reason === 'SESSION_EXPIRED') {
+        // Clear the expired session from DB
+        user.clearSession();
+        await user.save();
+        return res.render("sessionexpired", { 
+          message: "Your session has expired after 30 days. Please login again." 
+        });
+      }
+      
+      return res.render("accessdenied");
+    }
+    
+    // Update last activity
+    user.updateActivity();
+    await user.save();
+    
+    req.user = decoded;
+    next();
   } catch (err) {
     console.error("Auth error:", err.message);
+    res.clearCookie("token");
+    res.clearCookie("sessionToken");
     res.render("accessdenied");
   }
 }
@@ -195,7 +285,7 @@ app.use("/admin", checkAuth, checkRole("admin"), adminRoutes);
 
 // --------- 7. MAIN ROUTES ---------
 
-// ✅ HOME PAGE
+// HOME PAGE
 app.get("/", optionalAuth, async (req, res) => {
   try {
     const hasPremium = await checkUserPremium(req.user?.username);
@@ -229,10 +319,13 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-// Login handler
+// ========== LOGIN HANDLER WITH SINGLE DEVICE ENFORCEMENT ==========
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
+    const deviceFingerprint = generateDeviceFingerprint(req);
+    const userAgent = req.headers['user-agent'] || 'unknown';
+    const ipAddress = getClientIP(req);
     
     if (!username || !password) {
       return res.status(400).json({ 
@@ -242,6 +335,7 @@ app.post("/login", async (req, res) => {
     }
     
     const user = await User.findOne({ username });
+    
     if (!user) {
       return res.status(401).json({ 
         success: false, 
@@ -250,58 +344,66 @@ app.post("/login", async (req, res) => {
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
+    
     if (!isMatch) {
+      // Log failed attempt
+      user.logLoginAttempt(ipAddress, userAgent, false, 'WRONG_PASSWORD');
+      await user.save();
+      
       return res.status(401).json({ 
         success: false, 
         message: "Wrong username or password" 
       });
     }
 
-    // --- START: SINGLE DEVICE LOGIN ENFORCEMENT ---
-    const currentUserAgent = req.headers['user-agent'] || 'unknown';
-    const currentIP = req.ip;
-
-    if (user.currentSession && user.currentSession.expiresAt > new Date()) {
-      // Session is active. Check if it's the SAME device (using User-Agent as proxy)
-      if (user.currentSession.deviceInfo !== currentUserAgent) {
-         return res.status(403).json({ 
-           success: false, 
-           message: "Login blocked. You are already logged in on another device. Your session is locked to that device for 1 month." 
-         });
-      }
-      
-      // If same device, we proceed to issue a token, but we DO NOT reset the 1-month timer.
-      // We use the NEW method refreshSessionToken()
-    }
-    // --- END: SINGLE DEVICE LOGIN ENFORCEMENT ---
-
-    // Token logic - 30 days (720h)
-    const token = jwt.sign(
-      { username, role: user.role, subscriptionStatus: user.subscriptionStatus },
-      process.env.jwtkey,
-      { expiresIn: "720h" } 
-    );
-
-    // Update Session in DB
-    if (user.currentSession && user.currentSession.expiresAt > new Date()) {
-        // Same device re-login: update token, keep original expiry
-        user.refreshSessionToken(token, currentUserAgent, currentIP);
-    } else {
-        // New session (or expired session): set new 30-day expiry
-        user.setSession(token, currentUserAgent, currentIP);
-    }
+    // ========== SINGLE DEVICE CHECK (SKIP FOR ADMIN) ==========
+    const loginCheck = user.canLoginFromDevice(deviceFingerprint);
     
+    if (!loginCheck.allowed) {
+      // Log blocked attempt
+      user.logLoginAttempt(ipAddress, userAgent, false, loginCheck.reason);
+      await user.save();
+      
+      console.log(`🚫 Login blocked for ${username}: ${loginCheck.reason}`);
+      
+      return res.status(403).json({ 
+        success: false, 
+        message: loginCheck.message,
+        reason: 'DEVICE_LOCKED',
+        expiresAt: loginCheck.expiresAt
+      });
+    }
+
+    // ========== CREATE NEW SESSION ==========
+    const sessionToken = user.createSession(deviceFingerprint, userAgent, ipAddress);
+    user.logLoginAttempt(ipAddress, userAgent, true);
     await user.save();
 
-    const isProduction = process.env.NODE_ENV === 'production';
+    // Create JWT token
+    const jwtToken = jwt.sign(
+      { 
+        username, 
+        role: user.role, 
+        subscriptionStatus: user.subscriptionStatus 
+      },
+      process.env.jwtkey,
+      { expiresIn: "720h" } // 30 days
+    );
 
-    res.cookie("token", token, {
+    const isProduction = process.env.NODE_ENV === 'production';
+    const cookieOptions = {
       httpOnly: true,
       path: "/",
       sameSite: "lax",
       secure: isProduction,
       maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
-    });
+    };
+
+    // Set both JWT and session token cookies
+    res.cookie("token", jwtToken, cookieOptions);
+    res.cookie("sessionToken", sessionToken, cookieOptions);
+    
+    console.log(`✅ Login successful for ${username} from device ${deviceFingerprint.substring(0, 8)}...`);
     
     return res.status(200).json({ success: true });
   } catch (err) {
@@ -313,12 +415,27 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Logout
+// ========== LOGOUT - CLEARS SESSION FROM DB ==========
 app.get("/logout", async (req, res) => {
-  // We ONLY clear the cookie. The session in DB remains valid and locked to this device/UA until expiry.
-  // This enforces the "1 month on one phone" rule strictly. 
-  // If the user clears cookies or logs out, they can only log back in on the SAME browser/device.
+  try {
+    const token = req.cookies.token;
+    
+    if (token) {
+      const decoded = jwt.verify(token, process.env.jwtkey);
+      const user = await User.findOne({ username: decoded.username });
+      
+      if (user) {
+        user.clearSession();
+        await user.save();
+        console.log(`✅ Session cleared for ${user.username}`);
+      }
+    }
+  } catch (err) {
+    console.error("Logout error:", err.message);
+  }
+  
   res.clearCookie("token");
+  res.clearCookie("sessionToken");
   res.redirect("/");
 });
 
@@ -390,6 +507,9 @@ app.post("/signup", async (req, res) => {
 app.post("/create-free-session", async (req, res) => {
   try {
     const { username } = req.body;
+    const deviceFingerprint = generateDeviceFingerprint(req);
+    const userAgent = req.headers['user-agent'] || 'unknown';
+    const ipAddress = getClientIP(req);
 
     if (!username) {
       return res.status(400).json({ 
@@ -407,6 +527,10 @@ app.post("/create-free-session", async (req, res) => {
       });
     }
 
+    // Create session in database
+    const sessionToken = user.createSession(deviceFingerprint, userAgent, ipAddress);
+    await user.save();
+
     const token = jwt.sign(
       { 
         username: user.username, 
@@ -414,7 +538,7 @@ app.post("/create-free-session", async (req, res) => {
         subscriptionStatus: user.subscriptionStatus 
       },
       process.env.jwtkey,
-      { expiresIn: "720h" } // Updated to 30 days
+      { expiresIn: "720h" }
     );
 
     const isProduction = process.env.NODE_ENV === 'production';
@@ -422,12 +546,13 @@ app.post("/create-free-session", async (req, res) => {
     res.json({
       success: true,
       token: token,
+      sessionToken: sessionToken,
       cookieOptions: {
         httpOnly: true,
         path: "/",
         sameSite: "lax",
         secure: isProduction,
-        maxAge: 30 * 24 * 60 * 60 * 1000 // Updated to 30 days
+        maxAge: 30 * 24 * 60 * 60 * 1000
       }
     });
 
@@ -535,17 +660,14 @@ app.get("/chapter/:id", optionalAuth, async (req, res) => {
   }
   
   try {
-    // Check if user has premium access FIRST
     const hasPremium = await checkUserPremium(req.user?.username);
     
-    // Check chapter premium status
     const chapterCheck = await Flashcard.findOne({ chapterIndex: chapterId });
     
     if (!chapterCheck) {
       return res.status(404).render("404");
     }
     
-    // If chapter is premium and user doesn't have premium, block access
     if (chapterCheck.isPremium && !hasPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
@@ -557,7 +679,6 @@ app.get("/chapter/:id", optionalAuth, async (req, res) => {
       });
     }
 
-    // Fetch all topics for this chapter (with premium status)
     const topics = await Flashcard.aggregate([
       { $match: { chapterIndex: chapterId } },
       {
@@ -570,7 +691,6 @@ app.get("/chapter/:id", optionalAuth, async (req, res) => {
       { $sort: { _id: 1 } }
     ]);
 
-    // Pass ALL required data to template
     res.render("topics", { 
       chapterId, 
       topics,
@@ -599,10 +719,8 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
   }
 
   try {
-    // Check if user has premium access
     const hasPremium = await checkUserPremium(req.user?.username);
     
-    // Check topic premium status
     const topicCheck = await Flashcard.findOne({ 
       chapterIndex: chapterId, 
       topicIndex: topicId 
@@ -612,7 +730,6 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
       return res.status(404).render("404");
     }
     
-    // If topic is premium and user doesn't have premium
     if (topicCheck.isPremium && !hasPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
@@ -624,7 +741,6 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
       });
     }
 
-    // Fetch flashcards for this topic
     const flashcards = await Flashcard.find({
       chapterIndex: chapterId,
       topicIndex: topicId
@@ -653,7 +769,6 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
 
 // --------- 9. NOTES ROUTES ---------
 
-// Notes chapters list
 app.get("/notes", optionalAuth, async (req, res) => {
   try {
     const chapters = await Note.aggregate([
@@ -686,7 +801,6 @@ app.get("/notes", optionalAuth, async (req, res) => {
   }
 });
 
-// Topics in a note chapter
 app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
   const chapterId = parseInt(req.params.id);
   
@@ -695,7 +809,6 @@ app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
   }
   
   try {
-    // Check premium status FIRST
     const hasPremium = await checkUserPremium(req.user?.username);
     
     const chapterCheck = await Note.findOne({ chapterIndex: chapterId });
@@ -704,7 +817,6 @@ app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
       return res.status(404).render("404");
     }
     
-    // Block premium chapters for non-premium users
     if (chapterCheck.isPremium && !hasPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
@@ -728,7 +840,6 @@ app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
       { $sort: { _id: 1 } }
     ]);
 
-    // Pass ALL required data
     res.render("note-topics", { 
       chapterId, 
       topics,
@@ -748,7 +859,6 @@ app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
   }
 });
 
-// Display the actual note
 app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => {
   const chapterId = parseInt(req.params.chapterId);
   const topicId = parseInt(req.params.topicId);
