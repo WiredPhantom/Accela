@@ -6,17 +6,56 @@
   <title>Accela - Sign Up</title>
   <link rel="stylesheet" href="/login.css">
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <style>
+    .error-message {
+      color: #ff4444;
+      background-color: rgba(255, 68, 68, 0.1);
+      border: 1px solid #ff4444;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .success-message {
+      color: #00ffcc;
+      background-color: rgba(0, 255, 204, 0.1);
+      border: 1px solid #00ffcc;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    button[type="submit"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
   <div class="login-box">
     <div class="glitch" data-text="ACCELA">ACCELA</div>
-    <p> Premium notes. Peak performance</p>
+    <p>Premium notes. Peak performance</p>
+
+    <div id="error-message" class="error-message"></div>
+    <div id="success-message" class="success-message"></div>
 
     <form id="signupForm">
-      <input name="username" type="text" placeholder="username" required />
-      <input name="email" type="email" placeholder="email" required />
-      <input name="password" type="password" placeholder="password" required />
-      <button type="submit">Initialize User</button>
+      <input id="username" name="username" type="text" placeholder="username" required />
+      <input id="email" name="email" type="email" placeholder="email" required />
+      <input id="password" name="password" type="password" placeholder="password" required />
+      <button type="submit" id="submit-btn">Initialize User</button>
     </form>
 
     <p style="margin-top: 20px; font-size: 14px; opacity: 0.7;">
@@ -27,9 +66,62 @@
   <div class="footer">Project E:Unit-00</div>
 
   <script>
-    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+    const form = document.getElementById('signupForm');
+    const errorDiv = document.getElementById('error-message');
+    const successDiv = document.getElementById('success-message');
+    const submitBtn = document.getElementById('submit-btn');
+
+    function showError(message) {
+      errorDiv.textContent = message;
+      errorDiv.classList.add('show');
+      successDiv.classList.remove('show');
+    }
+
+    function showSuccess(message) {
+      successDiv.textContent = message;
+      successDiv.classList.add('show');
+      errorDiv.classList.remove('show');
+    }
+
+    function hideMessages() {
+      errorDiv.classList.remove('show');
+      successDiv.classList.remove('show');
+    }
+
+    // Create session after signup (sets both token and sessionToken cookies)
+    async function createSessionAfterSignup(username) {
+      try {
+        const response = await fetch('/create-free-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username }),
+          credentials: 'include'
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Set both cookies for single-device session
+          const maxAge = 30 * 24 * 60 * 60; // 30 days
+          document.cookie = `token=${data.token}; path=/; max-age=${maxAge}`;
+          document.cookie = `sessionToken=${data.sessionToken}; path=/; max-age=${maxAge}`;
+          
+          return true;
+        }
+        return false;
+      } catch (err) {
+        console.error('Session creation error:', err);
+        return false;
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
+      hideMessages();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Creating account...';
+
       const formData = new FormData(e.target);
       const data = {
         username: formData.get('username'),
@@ -38,6 +130,7 @@
       };
 
       try {
+        // Step 1: Create the account
         const response = await fetch('/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -47,16 +140,40 @@
         const result = await response.json();
 
         if (result.success) {
-          alert('Account created! Redirecting to payment...');
-          window.location.href = `/upgrade?username=${result.username}`;
+          showSuccess('Account created! Setting up your session...');
+          
+          // Step 2: Create session with device fingerprint
+          const sessionCreated = await createSessionAfterSignup(result.username);
+          
+          if (sessionCreated) {
+            showSuccess('Success! Redirecting to payment...');
+            setTimeout(() => {
+              window.location.href = `/upgrade?username=${result.username}`;
+            }, 1000);
+          } else {
+            // Session failed but account created - redirect to login
+            showSuccess('Account created! Please login.');
+            setTimeout(() => {
+              window.location.href = '/login';
+            }, 1500);
+          }
         } else {
-          alert(result.message || 'Signup failed');
+          showError(result.message || 'Signup failed');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Initialize User';
         }
       } catch (error) {
         console.error('Signup error:', error);
-        alert('An error occurred during signup');
+        showError('An error occurred during signup');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Initialize User';
       }
     });
+
+    // Hide messages when user starts typing
+    document.getElementById('username').addEventListener('input', hideMessages);
+    document.getElementById('email').addEventListener('input', hideMessages);
+    document.getElementById('password').addEventListener('input', hideMessages);
   </script>
 </body>
 </html>
