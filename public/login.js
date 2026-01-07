@@ -1,10 +1,10 @@
-// Updated login.js with session notification
+// public/login.js - Single Device Login Handler
 const form = document.getElementById('login-form');
 const errorDiv = document.getElementById('error-message');
 const submitBtn = document.getElementById('submit-btn');
 
 function showError(message) {
-  errorDiv.textContent = message;
+  errorDiv.innerHTML = message;
   errorDiv.classList.add('show');
   
   errorDiv.style.animation = 'none';
@@ -13,8 +13,27 @@ function showError(message) {
   }, 10);
 }
 
+function showDeviceLocked(message, expiresAt) {
+  const expiryDate = new Date(expiresAt).toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  
+  errorDiv.innerHTML = `
+    <div class="device-locked">
+      <div class="lock-icon">🔒</div>
+      <div class="lock-title">Device Locked</div>
+      <div class="lock-message">${message}</div>
+      <div class="lock-expiry">You can login from a new device after: ${expiryDate}</div>
+    </div>
+  `;
+  errorDiv.classList.add('show');
+}
+
 function showSuccess(message) {
-  errorDiv.textContent = message;
+  errorDiv.innerHTML = message;
   errorDiv.style.backgroundColor = 'rgba(0, 255, 204, 0.1)';
   errorDiv.style.borderColor = '#00ffcc';
   errorDiv.style.color = '#00ffcc';
@@ -52,7 +71,7 @@ form.addEventListener('submit', async (e) => {
     const data = await response.json();
 
     if (data.success) {
-      // Show notification if previous session was terminated
+      // Check if there was a previous session message
       if (data.message && data.message.includes('Previous session')) {
         showSuccess('⚠️ Previous device logged out. Redirecting...');
         setTimeout(() => {
@@ -61,6 +80,11 @@ form.addEventListener('submit', async (e) => {
       } else {
         window.location.href = '/';
       }
+    } else if (data.reason === 'DEVICE_LOCKED') {
+      // Special handling for device lock - user is trying from different device
+      showDeviceLocked(data.message, data.expiresAt);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enter';
     } else {
       showError(data.message || 'Login failed');
       submitBtn.disabled = false;
