@@ -23,6 +23,38 @@
       display: block;
     }
 
+    .device-locked {
+      background-color: rgba(255, 107, 107, 0.15);
+      border: 1px solid #ff6b6b;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .device-locked .lock-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .device-locked .lock-title {
+      color: #ff6b6b;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .device-locked .lock-message {
+      color: #ffaaaa;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .device-locked .lock-expiry {
+      color: #888;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(-10px); }
@@ -61,14 +93,32 @@
     const submitBtn = document.getElementById('submit-btn');
 
     function showError(message) {
-      errorDiv.textContent = message;
+      errorDiv.innerHTML = message;
       errorDiv.classList.add('show');
       
-      // Remove shake animation and re-add it
       errorDiv.style.animation = 'none';
       setTimeout(() => {
         errorDiv.style.animation = 'shake 0.3s';
       }, 10);
+    }
+
+    function showDeviceLocked(message, expiresAt) {
+      const expiryDate = new Date(expiresAt).toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      
+      errorDiv.innerHTML = `
+        <div class="device-locked">
+          <div class="lock-icon">🔒</div>
+          <div class="lock-title">Device Locked</div>
+          <div class="lock-message">${message}</div>
+          <div class="lock-expiry">You can login from a new device after: ${expiryDate}</div>
+        </div>
+      `;
+      errorDiv.classList.add('show');
     }
 
     function hideError() {
@@ -99,6 +149,11 @@
 
         if (data.success) {
           window.location.href = '/';
+        } else if (data.reason === 'DEVICE_LOCKED') {
+          // Special handling for device lock
+          showDeviceLocked(data.message, data.expiresAt);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enter';
         } else {
           showError(data.message || 'Login failed');
           submitBtn.disabled = false;
