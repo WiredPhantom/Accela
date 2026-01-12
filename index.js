@@ -9,6 +9,10 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// --------- CONSISTENT PRICING (FIX: Use single source of truth) ---------
+const PREMIUM_PRICE = parseInt(process.env.PREMIUM_PRICE) || 4900; // ₹49 in paise
+const PREMIUM_CURRENCY = process.env.PREMIUM_CURRENCY || "INR";
+
 // --------- VALIDATE ENVIRONMENT VARIABLES ---------
 if (!process.env.jwtkey) {
   console.error("❌ FATAL: JWT secret key (jwtkey) is not configured in .env");
@@ -26,6 +30,48 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static("public"));
 app.set("view engine", "ejs");
+
+// --------- RATE LIMITING (Simple in-memory implementation) ---------
+const loginAttempts = new Map();
+
+function rateLimitLogin(req, res, next) {
+  const ip = getClientIP(req);
+  const now = Date.now();
+  const windowMs = 15 * 60 * 1000; // 15 minutes
+  const maxAttempts = 5;
+
+  if (!loginAttempts.has(ip)) {
+    loginAttempts.set(ip, []);
+  }
+
+  const attempts = loginAttempts.get(ip).filter(time => now - time < windowMs);
+  loginAttempts.set(ip, attempts);
+
+  if (attempts.length >= maxAttempts) {
+    const oldestAttempt = attempts[0];
+    const retryAfter = Math.ceil((oldestAttempt + windowMs - now) / 1000 / 60);
+    return res.status(429).json({
+      success: false,
+      message: `Too many login attempts. Try again in ${retryAfter} minutes.`
+    });
+  }
+
+  next();
+}
+
+// Clean up old entries every hour
+setInterval(() => {
+  const now = Date.now();
+  const windowMs = 15 * 60 * 1000;
+  for (const [ip, attempts] of loginAttempts.entries()) {
+    const validAttempts = attempts.filter(time => now - time < windowMs);
+    if (validAttempts.length === 0) {
+      loginAttempts.delete(ip);
+    } else {
+      loginAttempts.set(ip, validAttempts);
+    }
+  }
+}, 60 * 60 * 1000);
 
 // --------- 2. MONGOOSE MULTI-CONNECTION SETUP ---------
 const useruri = process.env.useruri;
@@ -73,28 +119,42 @@ const Note = getNoteModel(noteConnection);
 
 // --------- 4. HELPER FUNCTIONS ---------
 async function checkUserPremium(username) {
-  if (!username) return false;
+  if (!username) return { isPremium: false, daysLeft: 0 };
   try {
     const user = await User.findOne({ username });
-    if (!user) return false;
+    if (!user) return { isPremium: false, daysLeft: 0 };
     
-    return user.role === "admin" || 
-      (user.subscriptionStatus === "premium" && 
-       (!user.subscriptionExpiry || user.subscriptionExpiry > new Date()));
+    if (user.role === "admin") {
+      return { isPremium: true, daysLeft: Infinity, isAdmin: true };
+    }
+    
+    if (user.subscriptionStatus === "premium") {
+      if (!user.subscriptionExpiry) {
+        return { isPremium: true, daysLeft: Infinity };
+      }
+      
+      const now = new Date();
+      if (user.subscriptionExpiry > now) {
+        const daysLeft = Math.ceil((user.subscriptionExpiry - now) / (1000 * 60 * 60 * 24));
+        return { isPremium: true, daysLeft };
+      }
+    }
+    
+    return { isPremium: false, daysLeft: 0 };
   } catch (err) {
     console.error("Error checking premium status:", err);
-    return false;
+    return { isPremium: false, daysLeft: 0 };
   }
 }
 
-// --------- DEVICE FINGERPRINT HELPER ---------
+// --------- DEVICE FINGERPRINT HELPER (FIX: Removed IP address) ---------
 function generateDeviceFingerprint(req) {
   const userAgent = req.headers['user-agent'] || 'unknown';
   const acceptLanguage = req.headers['accept-language'] || 'unknown';
-  const ip = getClientIP(req);
+  const acceptEncoding = req.headers['accept-encoding'] || 'unknown';
   
-  // Create a hash of device characteristics
-  const fingerprintData = `${userAgent}|${acceptLanguage}|${ip}`;
+  // FIX: Don't use IP - it changes too frequently!
+  const fingerprintData = `${userAgent}|${acceptLanguage}|${acceptEncoding}`;
   return crypto.createHash('sha256').update(fingerprintData).digest('hex').substring(0, 32);
 }
 
@@ -102,8 +162,20 @@ function getClientIP(req) {
   return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 
          req.headers['x-real-ip'] || 
          req.ip || 
-         req.connection.remoteAddress || 
+         req.connection?.remoteAddress || 
          'unknown';
+}
+
+// --------- COOKIE OPTIONS HELPER ---------
+function getCookieOptions() {
+  const isProduction = process.env.NODE_ENV === 'production';
+  return {
+    httpOnly: true,
+    path: "/",
+    sameSite: "lax",
+    secure: isProduction,
+    maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+  };
 }
 
 // --------- 5. AUTH MIDDLEWARE WITH SESSION VALIDATION ---------
@@ -288,11 +360,13 @@ app.use("/admin", checkAuth, checkRole("admin"), adminRoutes);
 // HOME PAGE
 app.get("/", optionalAuth, async (req, res) => {
   try {
-    const hasPremium = await checkUserPremium(req.user?.username);
+    const premiumStatus = await checkUserPremium(req.user?.username);
 
     res.render("home", { 
       isAuthenticated: req.isAuthenticated,
-      hasPremium,
+      hasPremium: premiumStatus.isPremium,
+      daysLeft: premiumStatus.daysLeft,
+      isAdmin: premiumStatus.isAdmin || false,
       user: req.user 
     });
   } catch (err) {
@@ -300,6 +374,8 @@ app.get("/", optionalAuth, async (req, res) => {
     res.render("home", { 
       isAuthenticated: false, 
       hasPremium: false,
+      daysLeft: 0,
+      isAdmin: false,
       user: null 
     });
   }
@@ -320,12 +396,18 @@ app.get("/login", (req, res) => {
 });
 
 // ========== LOGIN HANDLER WITH SINGLE DEVICE ENFORCEMENT ==========
-app.post("/login", async (req, res) => {
+app.post("/login", rateLimitLogin, async (req, res) => {
   try {
     const { username, password } = req.body;
     const deviceFingerprint = generateDeviceFingerprint(req);
     const userAgent = req.headers['user-agent'] || 'unknown';
     const ipAddress = getClientIP(req);
+    
+    // Track this attempt for rate limiting
+    if (!loginAttempts.has(ipAddress)) {
+      loginAttempts.set(ipAddress, []);
+    }
+    loginAttempts.get(ipAddress).push(Date.now());
     
     if (!username || !password) {
       return res.status(400).json({ 
@@ -374,6 +456,9 @@ app.post("/login", async (req, res) => {
       });
     }
 
+    // Clear rate limit on successful login
+    loginAttempts.delete(ipAddress);
+
     // ========== CREATE NEW SESSION ==========
     const sessionToken = user.createSession(deviceFingerprint, userAgent, ipAddress);
     user.logLoginAttempt(ipAddress, userAgent, true);
@@ -390,14 +475,7 @@ app.post("/login", async (req, res) => {
       { expiresIn: "720h" } // 30 days
     );
 
-    const isProduction = process.env.NODE_ENV === 'production';
-    const cookieOptions = {
-      httpOnly: true,
-      path: "/",
-      sameSite: "lax",
-      secure: isProduction,
-      maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
-    };
+    const cookieOptions = getCookieOptions();
 
     // Set both JWT and session token cookies
     res.cookie("token", jwtToken, cookieOptions);
@@ -465,6 +543,29 @@ app.post("/signup", async (req, res) => {
       });
     }
 
+    // Basic validation
+    if (username.length < 3 || username.length > 30) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "Username must be 3-30 characters" 
+      });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "Password must be at least 6 characters" 
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "Invalid email format" 
+      });
+    }
+
     const existingUser = await User.findOne({ 
       $or: [{ username }, { email }] 
     });
@@ -504,6 +605,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+// ========== FIX: Set cookies server-side! ==========
 app.post("/create-free-session", async (req, res) => {
   try {
     const { username } = req.body;
@@ -541,20 +643,13 @@ app.post("/create-free-session", async (req, res) => {
       { expiresIn: "720h" }
     );
 
-    const isProduction = process.env.NODE_ENV === 'production';
+    const cookieOptions = getCookieOptions();
 
-    res.json({
-      success: true,
-      token: token,
-      sessionToken: sessionToken,
-      cookieOptions: {
-        httpOnly: true,
-        path: "/",
-        sameSite: "lax",
-        secure: isProduction,
-        maxAge: 30 * 24 * 60 * 60 * 1000
-      }
-    });
+    // FIX: Set cookies server-side instead of returning them!
+    res.cookie("token", token, cookieOptions);
+    res.cookie("sessionToken", sessionToken, cookieOptions);
+
+    res.json({ success: true });
 
   } catch (err) {
     console.error("Free session error:", err);
@@ -601,11 +696,12 @@ app.get("/profile", checkAuth, async (req, res) => {
       return res.redirect("/login");
     }
 
-    const hasPremium = await checkUserPremium(user.username);
+    const premiumStatus = await checkUserPremium(user.username);
 
     res.render("profile", { 
       user,
-      hasPremium,
+      hasPremium: premiumStatus.isPremium,
+      daysLeft: premiumStatus.daysLeft,
       isAuthenticated: true 
     });
   } catch (err) {
@@ -614,8 +710,8 @@ app.get("/profile", checkAuth, async (req, res) => {
   }
 });
 
-// Payment routes
-const paymentRoutes = require("./routes/payment")(User);
+// Payment routes - Pass PREMIUM_PRICE for consistency
+const paymentRoutes = require("./routes/payment")(User, PREMIUM_PRICE, PREMIUM_CURRENCY);
 app.use("/payment", paymentRoutes);
 
 // --------- 8. FLASHCARD ROUTES ---------
@@ -633,12 +729,12 @@ app.get("/chapters", optionalAuth, async (req, res) => {
       { $sort: { _id: 1 } }
     ]);
 
-    const hasPremium = await checkUserPremium(req.user?.username);
+    const premiumStatus = await checkUserPremium(req.user?.username);
 
     res.render("chapters", { 
       chapters, 
       isAuthenticated: req.isAuthenticated,
-      hasPremium,
+      hasPremium: premiumStatus.isPremium,
       user: req.user 
     });
   } catch (err) {
@@ -660,7 +756,7 @@ app.get("/chapter/:id", optionalAuth, async (req, res) => {
   }
   
   try {
-    const hasPremium = await checkUserPremium(req.user?.username);
+    const premiumStatus = await checkUserPremium(req.user?.username);
     
     const chapterCheck = await Flashcard.findOne({ chapterIndex: chapterId });
     
@@ -668,7 +764,7 @@ app.get("/chapter/:id", optionalAuth, async (req, res) => {
       return res.status(404).render("404");
     }
     
-    if (chapterCheck.isPremium && !hasPremium) {
+    if (chapterCheck.isPremium && !premiumStatus.isPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
           message: "Login required to access premium content" 
@@ -695,7 +791,7 @@ app.get("/chapter/:id", optionalAuth, async (req, res) => {
       chapterId, 
       topics,
       isAuthenticated: req.isAuthenticated,
-      hasPremium,
+      hasPremium: premiumStatus.isPremium,
       user: req.user
     });
   } catch (err) {
@@ -719,7 +815,7 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
   }
 
   try {
-    const hasPremium = await checkUserPremium(req.user?.username);
+    const premiumStatus = await checkUserPremium(req.user?.username);
     
     const topicCheck = await Flashcard.findOne({ 
       chapterIndex: chapterId, 
@@ -730,7 +826,7 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
       return res.status(404).render("404");
     }
     
-    if (topicCheck.isPremium && !hasPremium) {
+    if (topicCheck.isPremium && !premiumStatus.isPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
           message: "Login required to access premium content" 
@@ -751,7 +847,7 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
       topicId, 
       flashcards,
       isAuthenticated: req.isAuthenticated,
-      hasPremium,
+      hasPremium: premiumStatus.isPremium,
       user: req.user
     });
   } catch (err) {
@@ -782,12 +878,12 @@ app.get("/notes", optionalAuth, async (req, res) => {
       { $sort: { _id: 1 } }
     ]);
 
-    const hasPremium = await checkUserPremium(req.user?.username);
+    const premiumStatus = await checkUserPremium(req.user?.username);
 
     res.render("note-chapters", { 
       chapters, 
       isAuthenticated: req.isAuthenticated,
-      hasPremium,
+      hasPremium: premiumStatus.isPremium,
       user: req.user 
     });
   } catch (err) {
@@ -809,7 +905,7 @@ app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
   }
   
   try {
-    const hasPremium = await checkUserPremium(req.user?.username);
+    const premiumStatus = await checkUserPremium(req.user?.username);
     
     const chapterCheck = await Note.findOne({ chapterIndex: chapterId });
     
@@ -817,7 +913,7 @@ app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
       return res.status(404).render("404");
     }
     
-    if (chapterCheck.isPremium && !hasPremium) {
+    if (chapterCheck.isPremium && !premiumStatus.isPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
           message: "Login required to access premium content" 
@@ -844,7 +940,7 @@ app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
       chapterId, 
       topics,
       isAuthenticated: req.isAuthenticated,
-      hasPremium,
+      hasPremium: premiumStatus.isPremium,
       user: req.user
     });
   } catch (err) {
@@ -868,7 +964,7 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
   }
 
   try {
-    const hasPremium = await checkUserPremium(req.user?.username);
+    const premiumStatus = await checkUserPremium(req.user?.username);
     
     const note = await Note.findOne({ 
       chapterIndex: chapterId, 
@@ -879,7 +975,7 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
       return res.status(404).render("404");
     }
     
-    if (note.isPremium && !hasPremium) {
+    if (note.isPremium && !premiumStatus.isPremium) {
       if (!req.isAuthenticated) {
         return res.render("premiumrequired", { 
           message: "Login required to access premium content" 
@@ -893,7 +989,7 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
     res.render("note-view", { 
       note,
       isAuthenticated: req.isAuthenticated,
-      hasPremium,
+      hasPremium: premiumStatus.isPremium,
       user: req.user
     });
   } catch (err) {
