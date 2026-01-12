@@ -26,24 +26,30 @@ module.exports = (connection) => {
       expiresAt: { type: Date, index: true }
     },
     
-    // Track login attempts for security
-    loginAttempts: [{
-      timestamp: Date,
-      ipAddress: String,
-      userAgent: String,
-      success: Boolean,
-      blockedReason: String
-    }],
+    // Track login attempts for security (FIX: Added default empty array)
+    loginAttempts: {
+      type: [{
+        timestamp: Date,
+        ipAddress: String,
+        userAgent: String,
+        success: Boolean,
+        blockedReason: String
+      }],
+      default: []
+    },
     
-    // Payment tracking
-    paymentHistory: [{
-      razorpayOrderId: String,
-      razorpayPaymentId: String,
-      amount: Number,
-      currency: String,
-      status: String,
-      createdAt: { type: Date, default: Date.now }
-    }],
+    // Payment tracking (FIX: Added default empty array)
+    paymentHistory: {
+      type: [{
+        razorpayOrderId: String,
+        razorpayPaymentId: String,
+        amount: Number,
+        currency: String,
+        status: String,
+        createdAt: { type: Date, default: Date.now }
+      }],
+      default: []
+    },
     
     lastPaymentDate: { type: Date },
     totalPaid: { type: Number, default: 0 }
@@ -108,7 +114,10 @@ module.exports = (connection) => {
     }
     
     // Device fingerprint mismatch (different device)
-    if (deviceFingerprint && this.currentSession.deviceFingerprint !== deviceFingerprint) {
+    // FIX: More lenient check - only fail if both exist and don't match
+    if (deviceFingerprint && 
+        this.currentSession.deviceFingerprint && 
+        this.currentSession.deviceFingerprint !== deviceFingerprint) {
       return { valid: false, reason: 'DEVICE_MISMATCH' };
     }
     
@@ -139,7 +148,7 @@ module.exports = (connection) => {
     return { 
       allowed: false, 
       reason: 'DEVICE_LOCKED',
-      message: `Already logged in on another device. Session expires in ${remainingDays} days.`,
+      message: `Already logged in on another device. Session expires in ${remainingDays} days. Logout from other device first.`,
       expiresAt: this.currentSession.expiresAt
     };
   };
@@ -158,9 +167,7 @@ module.exports = (connection) => {
 
   // ========== LOG LOGIN ATTEMPT ==========
   userSchema.methods.logLoginAttempt = function(ipAddress, userAgent, success, blockedReason = null) {
-    if (!this.loginAttempts) {
-      this.loginAttempts = [];
-    }
+    // loginAttempts now has default [], so no need to initialize
     
     // Keep only last 20 attempts
     if (this.loginAttempts.length >= 20) {
@@ -190,6 +197,28 @@ module.exports = (connection) => {
       ipAddress: this.currentSession.ipAddress,
       userAgent: this.currentSession.userAgent
     };
+  };
+
+  // ========== GET DAYS UNTIL PREMIUM EXPIRY ==========
+  userSchema.methods.getDaysUntilExpiry = function() {
+    if (this.role === 'admin') {
+      return Infinity;
+    }
+    
+    if (this.subscriptionStatus !== 'premium') {
+      return 0;
+    }
+    
+    if (!this.subscriptionExpiry) {
+      return Infinity; // Lifetime premium
+    }
+    
+    const now = new Date();
+    if (this.subscriptionExpiry <= now) {
+      return 0;
+    }
+    
+    return Math.ceil((this.subscriptionExpiry - now) / (1000 * 60 * 60 * 24));
   };
 
   return connection.model("User", userSchema);
