@@ -24,6 +24,46 @@
       color: #ffd700;
     }
 
+    .user-status.admin {
+      background: rgba(138, 43, 226, 0.15);
+      border: 1px solid rgba(138, 43, 226, 0.4);
+      color: #da70d6;
+    }
+
+    .user-status.free {
+      background: rgba(100, 100, 100, 0.1);
+      border: 1px solid rgba(100, 100, 100, 0.3);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .days-left {
+      font-size: 12px;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .days-left.warning {
+      color: #ff6b6b;
+    }
+
+    .days-left.good {
+      color: #4ade80;
+    }
+
+    .upgrade-link {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 12px;
+      color: #00ffcc;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .upgrade-link:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
     .home-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -129,6 +169,55 @@
       font-size: 15px;
     }
 
+    /* Premium banner for expiring soon */
+    .premium-banner {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.15));
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      margin: 20px auto;
+      max-width: 900px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .premium-banner.expiring-soon {
+      background: linear-gradient(135deg, rgba(255, 100, 100, 0.15), rgba(255, 50, 50, 0.15));
+      border-color: rgba(255, 100, 100, 0.4);
+    }
+
+    .premium-banner-text {
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .premium-banner-text strong {
+      color: #ffd700;
+    }
+
+    .premium-banner.expiring-soon .premium-banner-text strong {
+      color: #ff6b6b;
+    }
+
+    .renew-btn {
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .renew-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+    }
+
     @media (max-width: 768px) {
       .user-status {
         position: static;
@@ -159,6 +248,11 @@
         width: 100%;
         justify-content: center;
       }
+
+      .premium-banner {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -171,16 +265,40 @@
       <h1 id="accela">Accela</h1>
     </div>
     
-    <% if (isAuthenticated) { %>
-      <div class="user-status <%= hasPremium ? 'premium' : '' %>">
-        <% if (hasPremium) { %>
+    <% if (isAuthenticated && user) { %>
+      <div class="user-status <%= isAdmin ? 'admin' : (hasPremium ? 'premium' : 'free') %>">
+        <% if (isAdmin) { %>
+          👑 Admin
+        <% } else if (hasPremium) { %>
           ⭐ Premium User
+          <% if (daysLeft !== Infinity && daysLeft > 0) { %>
+            <div class="days-left <%= daysLeft <= 7 ? 'warning' : 'good' %>">
+              <% if (daysLeft <= 7) { %>
+                ⚠️ <%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %> left
+              <% } else { %>
+                <%= daysLeft %> days remaining
+              <% } %>
+            </div>
+          <% } else if (daysLeft === Infinity) { %>
+            <div class="days-left good">Lifetime Access</div>
+          <% } %>
         <% } else { %>
           👤 <%= user.username %>
+          <a href="/upgrade?username=<%= user.username %>" class="upgrade-link">⬆️ Upgrade to Premium</a>
         <% } %>
       </div>
     <% } %>
   </header>
+
+  <!-- Premium Expiry Warning Banner (for users with 7 days or less) -->
+  <% if (isAuthenticated && hasPremium && !isAdmin && daysLeft <= 7 && daysLeft > 0 && daysLeft !== Infinity) { %>
+    <div class="premium-banner expiring-soon" style="margin-left: 20px; margin-right: 20px;">
+      <div class="premium-banner-text">
+        ⚠️ Your premium subscription expires in <strong><%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %></strong>. Renew now to keep access!
+      </div>
+      <a href="/upgrade?username=<%= user.username %>" class="renew-btn">Renew Now</a>
+    </div>
+  <% } %>
 
   <!-- Home Grid -->
   <div class="home-grid">
@@ -277,6 +395,7 @@
         <% if (user && user.role === 'admin') { %>
           <a href="/admin" class="admin-btn">Admin Panel</a>
         <% } %>
+        <a href="/profile" class="admin-btn" style="background: rgba(79, 70, 229, 0.3); border-color: rgba(79, 70, 229, 0.5);">Profile</a>
       <% } else { %>
         <a href="/login" class="admin-btn">Login / Sign Up</a>
       <% } %>
@@ -284,4 +403,4 @@
   </div>
 
 </body>
-      </html>
+</html>
