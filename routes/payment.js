@@ -1,8 +1,10 @@
 const express = require("express");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 
-module.exports = (User) => {
+// FIX: Accept PREMIUM_PRICE and PREMIUM_CURRENCY as parameters for consistency
+module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
   const router = express.Router();
 
   // Initialize Razorpay
@@ -10,6 +12,35 @@ module.exports = (User) => {
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_KEY_SECRET,
   });
+
+  // Helper function for device fingerprint (same as in index.js)
+  function generateDeviceFingerprint(req) {
+    const userAgent = req.headers['user-agent'] || 'unknown';
+    const acceptLanguage = req.headers['accept-language'] || 'unknown';
+    const acceptEncoding = req.headers['accept-encoding'] || 'unknown';
+    
+    const fingerprintData = `${userAgent}|${acceptLanguage}|${acceptEncoding}`;
+    return crypto.createHash('sha256').update(fingerprintData).digest('hex').substring(0, 32);
+  }
+
+  function getClientIP(req) {
+    return req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 
+           req.headers['x-real-ip'] || 
+           req.ip || 
+           req.connection?.remoteAddress || 
+           'unknown';
+  }
+
+  function getCookieOptions() {
+    const isProduction = process.env.NODE_ENV === 'production';
+    return {
+      httpOnly: true,
+      path: "/",
+      sameSite: "lax",
+      secure: isProduction,
+      maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+    };
+  }
 
   // Create Razorpay order
   router.post("/create-order", async (req, res) => {
@@ -42,12 +73,10 @@ module.exports = (User) => {
         });
       }
 
-      const amount = parseInt(process.env.PREMIUM_PRICE) || 4900; // ₹49
-      const currency = process.env.PREMIUM_CURRENCY || "INR";
-
+      // FIX: Use consistent PREMIUM_PRICE passed from index.js
       const options = {
-        amount: amount, // amount in smallest currency unit (paise)
-        currency: currency,
+        amount: PREMIUM_PRICE, // amount in smallest currency unit (paise)
+        currency: PREMIUM_CURRENCY,
         receipt: `receipt_${username}_${Date.now()}`,
         notes: {
           username: username,
@@ -115,13 +144,15 @@ module.exports = (User) => {
       user.subscriptionStatus = "premium";
       user.subscriptionExpiry = expiryDate;
       user.lastPaymentDate = new Date();
-      user.totalPaid += parseInt(process.env.PREMIUM_PRICE) || 5000;
+      
+      // FIX: Use consistent PREMIUM_PRICE
+      user.totalPaid += PREMIUM_PRICE;
       
       user.paymentHistory.push({
         razorpayOrderId: razorpay_order_id,
         razorpayPaymentId: razorpay_payment_id,
-        amount: parseInt(process.env.PREMIUM_PRICE) || 5000,
-        currency: process.env.PREMIUM_CURRENCY || "INR",
+        amount: PREMIUM_PRICE,
+        currency: PREMIUM_CURRENCY,
         status: "success",
         createdAt: new Date()
       });
@@ -150,36 +181,50 @@ module.exports = (User) => {
       const user = await User.findOne({ username: req.params.username });
       
       if (!user) {
-        return res.json({ isPremium: false });
+        return res.json({ isPremium: false, daysLeft: 0 });
       }
 
       const isPremium = user.role === "admin" || 
         (user.subscriptionStatus === "premium" && 
          (!user.subscriptionExpiry || user.subscriptionExpiry > new Date()));
 
+      let daysLeft = 0;
+      if (isPremium && user.subscriptionExpiry) {
+        daysLeft = Math.ceil((user.subscriptionExpiry - new Date()) / (1000 * 60 * 60 * 24));
+      } else if (isPremium) {
+        daysLeft = Infinity; // Lifetime or admin
+      }
+
       res.json({ 
         isPremium,
+        daysLeft,
         expiryDate: user.subscriptionExpiry,
         role: user.role
       });
 
     } catch (error) {
       console.error("Premium check error:", error);
-      res.status(500).json({ isPremium: false });
+      res.status(500).json({ isPremium: false, daysLeft: 0 });
     }
   });
 
-  // Refresh token after payment (to update premium status in JWT)
+  // FIX: Refresh token after payment - now also sets sessionToken!
   router.post("/refresh-token", async (req, res) => {
     try {
       const { username } = req.body;
+      const deviceFingerprint = generateDeviceFingerprint(req);
+      const userAgent = req.headers['user-agent'] || 'unknown';
+      const ipAddress = getClientIP(req);
       
       const user = await User.findOne({ username });
       if (!user) {
         return res.status(404).json({ success: false, message: "User not found" });
       }
 
-      const jwt = require("jsonwebtoken");
+      // FIX: Create new session token too!
+      const sessionToken = user.createSession(deviceFingerprint, userAgent, ipAddress);
+      await user.save();
+
       const token = jwt.sign(
         { 
           username: user.username, 
@@ -190,10 +235,13 @@ module.exports = (User) => {
         { expiresIn: "720h" } // 30 days
       );
 
-      res.json({ 
-        success: true, 
-        token: token 
-      });
+      const cookieOptions = getCookieOptions();
+
+      // FIX: Set both cookies server-side!
+      res.cookie("token", token, cookieOptions);
+      res.cookie("sessionToken", sessionToken, cookieOptions);
+
+      res.json({ success: true });
 
     } catch (error) {
       console.error("Token refresh error:", error);
