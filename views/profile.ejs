@@ -5,6 +5,169 @@
   <title>Profile - Accela</title>
   <link rel="stylesheet" href="/chapters.css">
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <style>
+    .profile-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .profile-header h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 8px 24px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .status-badge.premium {
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
+      color: #000;
+    }
+
+    .status-badge.free {
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .status-badge.admin {
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: #fff;
+    }
+
+    .days-remaining {
+      margin-top: 12px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      display: inline-block;
+    }
+
+    .days-remaining.good {
+      background: rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      color: #4ade80;
+    }
+
+    .days-remaining.warning {
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      color: #fbbf24;
+    }
+
+    .days-remaining.critical {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #ef4444;
+    }
+
+    .days-remaining.lifetime {
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: #a78bfa;
+    }
+
+    .info-section {
+      margin: 24px 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .info-section p {
+      margin: 12px 0;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .info-section p strong {
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 400;
+      display: inline-block;
+      width: 100px;
+    }
+
+    .upgrade-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .upgrade-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .renew-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 16px;
+    }
+
+    .renew-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #00ffcc;
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid #00ffcc;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .back-link:hover {
+      background: rgba(0, 255, 204, 0.1);
+    }
+
+    .footer-actions {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .profile-container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      .info-section p strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -15,31 +178,69 @@
     </div>
   </header>
 
-  <div style="max-width: 800px; margin: 40px auto; padding: 32px; background: rgba(255, 255, 255, 0.05); border-radius: 16px;">
-    <h1 style="text-align: center;"><%= user.username %></h1>
-    
-    <div style="text-align: center; margin: 20px 0;">
-      <span style="padding: 8px 24px; border-radius: 20px; background: <%= hasPremium ? 'linear-gradient(135deg, #ffd700, #ffaa00)' : 'rgba(255,255,255,0.1)' %>; color: <%= hasPremium ? '#000' : 'rgba(255,255,255,0.7)' %>;">
-        <%= hasPremium ? '⭐ Premium' : '🆓 Free' %>
-      </span>
+  <div class="profile-container">
+    <div class="profile-header">
+      <h1><%= user.username %></h1>
+      
+      <% if (user.role === 'admin') { %>
+        <span class="status-badge admin">👑 Admin</span>
+      <% } else if (hasPremium) { %>
+        <span class="status-badge premium">⭐ Premium</span>
+      <% } else { %>
+        <span class="status-badge free">🆓 Free</span>
+      <% } %>
+
+      <% if (hasPremium && user.role !== 'admin') { %>
+        <div>
+          <% if (daysLeft === Infinity) { %>
+            <div class="days-remaining lifetime">
+              ♾️ Lifetime Access
+            </div>
+          <% } else if (daysLeft > 14) { %>
+            <div class="days-remaining good">
+              ✓ <%= daysLeft %> days remaining
+            </div>
+          <% } else if (daysLeft > 7) { %>
+            <div class="days-remaining warning">
+              ⚠️ <%= daysLeft %> days remaining
+            </div>
+          <% } else if (daysLeft > 0) { %>
+            <div class="days-remaining critical">
+              🔥 Only <%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %> left! Renew now
+            </div>
+          <% } else { %>
+            <div class="days-remaining critical">
+              ❌ Premium expired
+            </div>
+          <% } %>
+        </div>
+      <% } %>
     </div>
 
-    <div style="margin: 24px 0; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 8px;">
-      <p>Email: <%= user.email %></p>
-      <p>Status: <%= user.subscriptionStatus.toUpperCase() %></p>
+    <div class="info-section">
+      <p><strong>Email:</strong> <%= user.email %></p>
+      <p><strong>Status:</strong> <%= user.subscriptionStatus.charAt(0).toUpperCase() + user.subscriptionStatus.slice(1) %></p>
+      <p><strong>Role:</strong> <%= user.role.charAt(0).toUpperCase() + user.role.slice(1) %></p>
       <% if (hasPremium && user.subscriptionExpiry) { %>
-        <p>Expires: <%= new Date(user.subscriptionExpiry).toLocaleDateString() %></p>
+        <p><strong>Expires:</strong> <%= new Date(user.subscriptionExpiry).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+      <% } %>
+      <% if (user.lastPaymentDate) { %>
+        <p><strong>Last Payment:</strong> <%= new Date(user.lastPaymentDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
       <% } %>
     </div>
 
     <% if (!hasPremium) { %>
-      <button onclick="window.location.href='/upgrade'" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #ffd700, #ffaa00); color: #000; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer;">
+      <button onclick="window.location.href='/upgrade?username=<%= user.username %>'" class="upgrade-btn">
         🚀 Upgrade to Premium - ₹49/month
+      </button>
+    <% } else if (hasPremium && daysLeft <= 7 && daysLeft !== Infinity && user.role !== 'admin') { %>
+      <button onclick="window.location.href='/upgrade?username=<%= user.username %>'" class="renew-btn">
+        🔄 Renew Premium - ₹49/month
       </button>
     <% } %>
 
-    <div style="text-align: center; margin-top: 24px;">
-      <a href="/" style="color: #00ffcc; text-decoration: none; padding: 10px 20px; border: 1px solid #00ffcc; border-radius: 6px;">← Back to Home</a>
+    <div class="footer-actions">
+      <a href="/" class="back-link">← Back to Home</a>
     </div>
   </div>
 
