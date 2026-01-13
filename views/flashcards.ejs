@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flashcards - Chapter <%= chapterId %> Topic <%= topicId %></title>
   <link rel="stylesheet" href="/flashcards.css">
+  <link rel="stylesheet" href="/css/protection.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
 </head>
-<body>
+<body class="no-select">
+
+  <!-- ========== WATERMARK PROTECTION ========== -->
+  <div class="watermark-overlay">
+    <div class="watermark-pattern" id="watermarkPattern"></div>
+  </div>
+  <div class="floating-watermark" id="floatingWatermark"></div>
+  <div class="corner-watermark" id="cornerWatermark" 
+       data-username="<%= user?.username || 'guest' %>" 
+       data-email="<%= user?.email || '' %>"></div>
+  <div class="print-watermark" id="printWatermark" style="display: none;"></div>
+  <!-- ========== END WATERMARK ========== -->
 
   <!-- Header -->
   <header class="header">
@@ -54,7 +65,14 @@
     <div class="progress" id="progressText"></div>
   </div>
 
-  <!-- Script Logic -->
+  <!-- Protection Script -->
+  <script src="/js/protection.js"></script>
+  <script>
+    // Initialize content protection with user info
+    initProtection('<%= user?.username || "guest" %>', '<%= user?.email || "" %>');
+  </script>
+
+  <!-- Flashcard Logic -->
   <script>
     const flashcards = <%- JSON.stringify(flashcards) %>;
     let current = 0;
