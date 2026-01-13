@@ -136,7 +136,7 @@
   
   /* Increase watermark visibility when printing */
   .watermark-pattern {
-    opacity: 0.12 !important;
+    opacity: 0.15 !important;
   }
   
   .watermark-item {
@@ -154,7 +154,7 @@
   
   /* Floating watermark more visible */
   .floating-watermark {
-    color: rgba(0, 0, 0, 0.08) !important;
+    color: rgba(0, 0, 0, 0.1) !important;
   }
   
   /* Large print watermark across page */
@@ -165,7 +165,7 @@
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
     font-size: 60px;
-    color: rgba(0, 0, 0, 0.12) !important;
+    color: rgba(0, 0, 0, 0.15) !important;
     z-index: 99999;
     font-weight: bold;
     font-family: 'Inter', -apple-system, sans-serif;
@@ -248,12 +248,6 @@
 /* Prevent image saving via long-press on mobile */
 img {
   -webkit-touch-callout: none;
-  pointer-events: none;
-}
-
-/* Re-enable pointer events for clickable images if needed */
-img.clickable {
-  pointer-events: auto;
 }
 
 /* Hide print watermark by default (shows only in print) */
