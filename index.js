@@ -842,23 +842,31 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
       topicIndex: topicId
     }).sort({ flashcardIndex: 1 });
 
+    // ========== NEW: Fetch full user with email for watermark ==========
+    let fullUser = null;
+    if (req.user?.username) {
+      fullUser = await User.findOne({ username: req.user.username }).select('username email');
+    }
+
     res.render("flashcards", { 
       chapterId, 
       topicId, 
       flashcards,
       isAuthenticated: req.isAuthenticated,
       hasPremium: premiumStatus.isPremium,
-      user: req.user
+      user: req.user,
+      fullUser: fullUser  // <-- ADDED THIS
     });
   } catch (err) {
-    console.error("❌ Flashcard fetch error:", err);
+    console.error("âŒ Flashcard fetch error:", err);
     res.render("flashcards", { 
       chapterId, 
       topicId, 
       flashcards: [],
       isAuthenticated: false,
       hasPremium: false,
-      user: null
+      user: null,
+      fullUser: null  // <-- ADDED THIS
     });
   }
 });
@@ -986,14 +994,21 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
       });
     }
 
+    // ========== NEW: Fetch full user with email for watermark ==========
+    let fullUser = null;
+    if (req.user?.username) {
+      fullUser = await User.findOne({ username: req.user.username }).select('username email');
+    }
+
     res.render("note-view", { 
       note,
       isAuthenticated: req.isAuthenticated,
       hasPremium: premiumStatus.isPremium,
-      user: req.user
+      user: req.user,
+      fullUser: fullUser  // <-- ADDED THIS
     });
   } catch (err) {
-    console.error("❌ Note view error:", err);
+    console.error("âŒ Note view error:", err);
     res.status(404).render("404");
   }
 });
