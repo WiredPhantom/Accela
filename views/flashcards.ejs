@@ -13,13 +13,11 @@
 <body class="no-select">
 
   <!-- ========== WATERMARK PROTECTION ========== -->
-  <div class="watermark-overlay">
+  <div class="watermark-overlay" id="watermarkOverlay">
     <div class="watermark-pattern" id="watermarkPattern"></div>
   </div>
   <div class="floating-watermark" id="floatingWatermark"></div>
-  <div class="corner-watermark" id="cornerWatermark" 
-       data-username="<%= user?.username || 'guest' %>" 
-       data-email="<%= user?.email || '' %>"></div>
+  <div class="corner-watermark" id="cornerWatermark"></div>
   <div class="print-watermark" id="printWatermark" style="display: none;"></div>
   <!-- ========== END WATERMARK ========== -->
 
@@ -69,19 +67,26 @@
   <script src="/js/protection.js"></script>
   <script>
     // Initialize content protection with user info
-    initProtection('<%= user?.username || "guest" %>', '<%= user?.email || "" %>');
+    (function() {
+      var username = '<%= typeof fullUser !== "undefined" && fullUser ? fullUser.username : (typeof user !== "undefined" && user ? user.username : "guest") %>';
+      var email = '<%= typeof fullUser !== "undefined" && fullUser && fullUser.email ? fullUser.email : "" %>';
+      
+      if (typeof initProtection === 'function') {
+        initProtection(username, email);
+      }
+    })();
   </script>
 
   <!-- Flashcard Logic -->
   <script>
-    const flashcards = <%- JSON.stringify(flashcards) %>;
-    let current = 0;
-    let flipped = false;
+    var flashcards = <%- JSON.stringify(flashcards) %>;
+    var current = 0;
+    var flipped = false;
 
     function toggleMode() {
-      const list = document.getElementById("list-mode");
-      const flashcard = document.getElementById("flashcard-mode");
-      const toggleBtn = document.getElementById("flashcardToggle");
+      var list = document.getElementById("list-mode");
+      var flashcard = document.getElementById("flashcard-mode");
+      var toggleBtn = document.getElementById("flashcardToggle");
 
       if (list.style.display === "none") {
         list.style.display = "block";
@@ -100,22 +105,22 @@
     function renderCard() {
       if (!flashcards.length) return;
 
-      const card = document.getElementById("card");
-      const front = document.getElementById("card-front");
-      const back = document.getElementById("card-back");
-      const progress = document.getElementById("progressText");
+      var card = document.getElementById("card");
+      var front = document.getElementById("card-front");
+      var back = document.getElementById("card-back");
+      var progress = document.getElementById("progressText");
 
-      const curr = flashcards[current];
-      const isUrdu = /[\u0600-\u06FF]/.test(curr.question + curr.answer);
-      const langClass = isUrdu ? 'ur' : 'en';
+      var curr = flashcards[current];
+      var isUrdu = /[\u0600-\u06FF]/.test(curr.question + curr.answer);
+      var langClass = isUrdu ? 'ur' : 'en';
 
-      front.textContent = `Q${curr.flashcardIndex}: ${curr.question}`;
-      back.textContent = `A${curr.flashcardIndex}: ${curr.answer}`;
+      front.textContent = 'Q' + curr.flashcardIndex + ': ' + curr.question;
+      back.textContent = 'A' + curr.flashcardIndex + ': ' + curr.answer;
 
-      front.className = `face front ${langClass}`;
-      back.className = `face back ${langClass}`;
+      front.className = 'face front ' + langClass;
+      back.className = 'face back ' + langClass;
 
-      progress.textContent = `${current + 1} / ${flashcards.length}`;
+      progress.textContent = (current + 1) + ' / ' + flashcards.length;
 
       document.getElementById("prevBtn").disabled = current === 0;
       document.getElementById("nextBtn").disabled = current === flashcards.length - 1;
@@ -125,16 +130,16 @@
     }
 
     function flipCard() {
-      const card = document.getElementById("card");
+      var card = document.getElementById("card");
       flipped = !flipped;
       card.classList.toggle("flipped");
     }
 
     function nextCard() {
       if (current < flashcards.length - 1) {
-        const card = document.getElementById("card");
+        var card = document.getElementById("card");
         card.classList.add("slide-left");
-        setTimeout(() => {
+        setTimeout(function() {
           current++;
           renderCard();
         }, 300);
@@ -143,9 +148,9 @@
 
     function prevCard() {
       if (current > 0) {
-        const card = document.getElementById("card");
+        var card = document.getElementById("card");
         card.classList.add("slide-right");
-        setTimeout(() => {
+        setTimeout(function() {
           current--;
           renderCard();
         }, 300);
