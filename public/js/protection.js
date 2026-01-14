@@ -10,7 +10,7 @@
   var protectionConfig = {
     username: 'guest',
     email: '',
-    copyright: '© Accela 2025',
+    copyright: '© Accela 2026',
     opacity: 0.04,
     showWarnings: true
   };
