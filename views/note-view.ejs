@@ -29,7 +29,14 @@
       left: 20px;
       z-index: 9997;
       opacity: 0.7;
-      transition: opacity 0.3s;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(0);
+    }
+    
+    .minimal-nav.hidden {
+      transform: translateY(-100px);
+      opacity: 0;
+      pointer-events: none;
     }
     
     .minimal-nav:hover {
@@ -95,6 +102,32 @@
       if (typeof initProtection === 'function') {
         initProtection(username, email);
       }
+    })();
+
+    // Hide/show back button on scroll
+    (function() {
+      let lastScroll = 0;
+      const backButton = document.querySelector('.minimal-nav');
+      
+      window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset;
+        
+        // Hide when scrolling down past 50px
+        if (currentScroll > 50 && currentScroll > lastScroll) {
+          backButton.classList.add('hidden');
+        } 
+        // Show when scrolling up
+        else if (currentScroll < lastScroll) {
+          backButton.classList.remove('hidden');
+        }
+        
+        // Always show at the very top
+        if (currentScroll <= 10) {
+          backButton.classList.remove('hidden');
+        }
+        
+        lastScroll = currentScroll;
+      });
     })();
   </script>
 </body>
