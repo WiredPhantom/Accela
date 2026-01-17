@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Accela</title>
+  <title>Home - Accela | BUMS Tareekh-e-Tib Made Easy</title>
   <link rel="stylesheet" href="/chapters.css">
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
   <style>
@@ -64,6 +65,57 @@
       text-decoration: underline;
     }
 
+    /* HERO SECTION - Softer approach */
+    .hero-section {
+      max-width: 900px;
+      margin: 40px auto 20px;
+      padding: 32px 24px;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(236, 72, 153, 0.12));
+      border: 1px solid rgba(79, 70, 229, 0.25);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .hero-headline {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    .hero-subheadline {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: linear-gradient(135deg, #00ffcc, #00cc99);
+      color: #000;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(0, 255, 204, 0.25);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 255, 204, 0.4);
+    }
+
+    .hero-offer {
+      margin-top: 16px;
+      font-size: 15px;
+      color: #ffd700;
+      font-weight: 600;
+    }
+
     .home-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -110,6 +162,23 @@
       font-size: 16px;
       color: rgba(255, 255, 255, 0.7);
       line-height: 1.6;
+    }
+
+    /* TRUST BADGE - Gentler social proof */
+    .trust-badge {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      border-radius: 10px;
+      padding: 16px;
+      margin: 20px auto;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .trust-badge-text {
+      font-size: 15px;
+      color: #4ade80;
+      font-weight: 500;
     }
 
     .contact-section {
@@ -169,7 +238,6 @@
       font-size: 15px;
     }
 
-    /* Premium banner for expiring soon */
     .premium-banner {
       background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.15));
       border: 1px solid rgba(255, 215, 0, 0.3);
@@ -224,6 +292,14 @@
         margin: 16px auto;
         text-align: center;
         max-width: 200px;
+      }
+
+      .hero-headline {
+        font-size: 24px;
+      }
+
+      .hero-subheadline {
+        font-size: 16px;
       }
 
       .home-grid {
@@ -290,7 +366,7 @@
     <% } %>
   </header>
 
-  <!-- Premium Expiry Warning Banner (for users with 7 days or less) -->
+  <!-- Premium Expiry Warning Banner -->
   <% if (isAuthenticated && hasPremium && !isAdmin && daysLeft <= 7 && daysLeft > 0 && daysLeft !== Infinity) { %>
     <div class="premium-banner expiring-soon" style="margin-left: 20px; margin-right: 20px;">
       <div class="premium-banner-text">
@@ -300,52 +376,103 @@
     </div>
   <% } %>
 
+  <!-- HERO SECTION - First Launch Special -->
+  <% if (!isAuthenticated || (!hasPremium && !isAdmin)) { %>
+    <section class="hero-section">
+      <h1 class="hero-headline">آپ کا دماغ دھوکہ دے رہا ہے۔<br>ACCELA اس کو ٹھیک کرتا ہے۔</h1>
+      <p class="hero-subheadline">پڑھا 5 گھنٹے۔ امتحان میں یاد کچھ نہیں۔ یہ مسئلہ ختم کریں۔</p>
+      <a href="#aboutsite" class="hero-cta">دیکھیں یہ کیسے کام کرتا ہے</a>
+      <p class="hero-offer">🎉 First Launch Offer: صرف ₹49 - اگلے 72 گھنٹے</p>
+    </section>
+  <% } %>
+
+  <!-- TRUST BADGE - Softer approach -->
+  <% if (!isAuthenticated || (!hasPremium && !isAdmin)) { %>
+    <div class="trust-badge" style="margin-left: 20px; margin-right: 20px;">
+      <p class="trust-badge-text">✨ Professional notes + Smart flashcards = 10 گھنٹے محنت بچائیں ہر ماہ</p>
+    </div>
+  <% } %>
+
   <!-- Home Grid -->
   <div class="home-grid">
     <!-- Notes Card -->
     <a href="/notes" class="home-card">
       <span class="home-card-icon">📝</span>
-      <h2>Notes</h2>
-      <p>Comprehensive study notes organized by chapters and topics</p>
+      <h2>Professional Notes</h2>
+      <p>Color-coded, organized notes - نوٹس بنانے کی محنت بچائیں</p>
     </a>
 
     <!-- Flashcards Card -->
     <a href="/chapters" class="home-card">
       <span class="home-card-icon">🗂️</span>
-      <h2>Flashcards</h2>
-      <p>Interactive flashcards for active recall and spaced repetition</p>
+      <h2>Smart Flashcards</h2>
+      <p>Active recall system - دماغ کو یاد رکھنے پر مجبور</p>
     </a>
   </div>
 
   <!-- About the Site -->
   <section id="lain" class="section lain-section">
-    <h2 id="aboutsite">Why ACCELA Works (When Everything Else Fails)</h2>
+    <h2 id="aboutsite">آپ کا دماغ دھوکہ دے رہا ہے۔ ACCELA اس کو ٹھیک کرتا ہے۔</h2>
     <div class="lain-container">
       <img src="https://files.catbox.moe/bpi1je.gif" alt="ACCELA Logo" class="lain-img" />
       <p class="text">
-        You've tried other study tools. You've highlighted textbooks until they looked like rainbow disasters. You've made notes you never looked at again. And when exam day came? Panic. Blank mind. "I swear I studied this..."
+        <strong>آپ نے 5 گھنٹے پڑھا۔ امتحان میں بیٹھے۔ سوال دیکھا اور... خالی۔</strong>
         <br><br>
-        <strong>Here's the truth nobody tells you:</strong> Reading doesn't equal remembering. Your brain doesn't store information just because your eyes scanned it. Memory works through <em>retrieval</em>, not repetition.
+        "میں نے تو یہ پڑھا تھا..." - ہر طالب علم کی کہانی۔
         <br><br>
-        ACCELA is built on one principle: <span class="highlight">You remember what you actively recall, not what you passively review.</span>
+        <strong style="color: #ffffff;">اصل مسئلہ کیا ہے؟</strong>
         <br><br>
-        That's why we use flashcards. That's why we force your brain to work. Because the struggle to remember IS what creates the memory. No shortcuts. No illusions. Just results.
+        آپ کی یادداشت کمزور نہیں۔ <span class="highlight">آپ کا طریقہ غلط ہے۔</span>
         <br><br>
-        <strong>🚀 Right now: Core content is completely free.</strong><br>
-        <strong>🔓 Premium unlocks advanced chapters for serious learners.</strong>
+        ✗ کتاب کو 3 بار پڑھنا = وقت ضائع<br>
+        ✗ نوٹس بنانے میں گھنٹوں لگانا = محنت ضائع<br>
+        ✗ رٹا لگانا صبح، بھول جانا شام = نتیجہ صفر
         <br><br>
-        You're not "trying another study app." You're upgrading how your brain actually learns. Most students don't discover this until it's too late. You're here early.
+        <strong style="font-size: 18px; color: #00ffcc;">سچائی:</strong> دماغ اُسے یاد رکھتا ہے جسے آپ <em>نکالنے</em> کی کوشش کرتے ہیں، وہ نہیں جو صرف <em>پڑھ</em> لیا۔
         <br><br>
-        <strong>Got questions? Ideas? Gratitude?</strong> Drop it in the Cbox below. Every message reaches me directly. I read everything. I respond to what matters.
+        <strong>ACCELA فرق کیسے لاتا ہے؟</strong>
         <br><br>
-        Welcome to a system that actually works. Start with the free content. See the difference yourself.
+        ✅ <strong>Professional Color-Coded Notes</strong> - خوبصورت، organized، یاد رہنے والے۔ نوٹس بنانے کی محنت ختم۔<br>
+        ✅ <strong>Smart Flashcards</strong> - ہر سوال آپ کے دماغ کو مجبور کرتا ہے یاد کرنے پر۔<br>
+        ✅ <strong>Pure Urdu</strong> - آسان زبان میں۔ سمجھ آئے تو یاد رہے۔<br>
+        ✅ <strong>Syllabus کے مطابق</strong> - جو امتحان میں آئے گا، صرف وہی۔
+        <br><br>
+        <span class="highlight" style="font-size: 18px;">یہ "مطالعہ کی ایپ" نہیں۔ یہ آپ کے 10 گھنٹے بچاتی ہے اور marks پکے کرتی ہے۔</span>
+        <br><br>
+        <strong style="color: #ffd700; font-size: 20px;">🎉 First Launch Special: ابھی صرف ₹49</strong>
+        <br><br>
+        <div style="background: rgba(255, 215, 0, 0.08); border: 1px solid rgba(255, 215, 0, 0.25); border-radius: 12px; padding: 20px; margin: 20px 0;">
+          <p style="font-size: 16px; line-height: 1.8; margin: 0;">
+            📊 <strong>Regular قیمت:</strong> ₹199/ماہ<br>
+            🎁 <strong>First Launch Offer:</strong> ₹49 (72 گھنٹے کے لیے)<br>
+            ⏰ <strong>بعد میں:</strong> ₹99/ماہ<br><br>
+            <span style="color: #00ffcc; font-size: 17px; font-weight: 600;">ایک دن کی چائے کی قیمت = پورے مہینے کا ذہنی سکون</span>
+          </p>
+        </div>
+        <strong>آپ کو کیا ملتا ہے:</strong>
+        <br><br>
+        ✅ 10 گھنٹے کی note-making محنت بچائیں<br>
+        ✅ Color-coded professional notes<br>
+        ✅ Smart flashcards for better memory<br>
+        ✅ Exam anxiety کم کریں<br>
+        ✅ Pass ہونے کے chances بہتر
+        <br><br>
+        <strong>🚀 Free content سے شروع کریں۔</strong> خود experience کریں کہ یہ کام کرتا ہے۔ جب results نظر آئیں، پھر upgrade کریں۔
+        <br><br>
+        <div style="background: rgba(255, 215, 0, 0.08); border: 1px solid rgba(255, 215, 0, 0.25); border-radius: 12px; padding: 16px; margin: 20px 0; text-align: center;">
+          <strong style="color: #ffd700; font-size: 16px;">⏰ یہ first launch offer صرف 72 گھنٹے کے لیے ہے</strong><br>
+          <span style="font-size: 14px; color: rgba(255, 255, 255, 0.8);">بعد میں قیمت ₹99 ہوگی</span>
+        </div>
+        <strong>سوالات ہیں؟</strong> نیچے Cbox میں پیغام چھوڑیں۔ میں ہر message کا جواب دیتا ہوں۔
+        <br><br>
+        Welcome to ACCELA. یہ سفر یہیں سے شروع ہوتا ہے۔
       </p>
 
       <!-- Contact Section -->
       <div class="contact-section">
-        <h3>📬 Need Direct Support?</h3>
+        <h3>📬 Direct Support</h3>
         <p style="font-size: 14px; color: rgba(255, 255, 255, 0.7); margin-bottom: 12px;">
-          Premium support, custom content requests, or technical issues
+          Premium support, technical issues, یا content requests
         </p>
         <div class="contact-links">
           <a href="mailto:monstern395@gmail.com" class="contact-btn">
@@ -356,7 +483,7 @@
           </a>
         </div>
         <p style="font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-top: 12px;">
-          Average response time: 12 hours
+          Response time: 12 hours
         </p>
       </div>
     </div>
@@ -364,7 +491,7 @@
 
   <!-- Cbox -->
   <section id="cbox" class="section">
-    <h2>Cbox</h2>
+    <h2>Cbox - سوال پوچھیں</h2>
     <iframe src="https://www5.cbox.ws/box/?boxid=957561&boxtag=IZAjsP"
       allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>	
   </section>
@@ -373,15 +500,15 @@
   <section id="updates" class="section">
     <h2 id="siteupdate">Recent Updates</h2>
     <ul class="updates">
-      <li>📝 <strong>Notes Section Launched</strong> — Create, organize, and access your study notes alongside flashcards</li>
-      <li>🔒 <strong>Enhanced Security</strong> — Upgraded encryption and authentication to protect your account and data</li>
-      <li>⚡ <strong>Performance Boost</strong> — Faster loading times and smoother transitions across all devices</li>
-      <li>✨ <strong>Freemium Model Live</strong> — Core content free forever. Premium unlocks advanced chapters</li>
-      <li>🎨 <strong>UI Refinements</strong> — Cleaner navigation, better mobile experience, improved readability</li>
+      <li>📝 <strong>Professional Color-Coded Notes</strong> — خوبصورت notes جو یاد رہیں</li>
+      <li>🗂️ <strong>Smart Flashcards</strong> — Active recall for better memory</li>
+      <li>⚡ <strong>Fast Performance</strong> — تیز loading، smooth experience</li>
+      <li>✨ <strong>Free Content Available</strong> — پہلے try کریں، پھر upgrade</li>
+      <li>🎨 <strong>Urdu Interface</strong> — آسان زبان میں</li>
     </ul>
 
     <div class="warning-box">
-      <strong>⚠️ Important Notice:</strong> Sharing premium accounts, attempting to bypass payments, or violating terms of service will result in immediate subscription cancellation without refund. We monitor suspicious activity. Play fair, keep access.
+      <strong>⚠️ نوٹ:</strong> Premium account share کرنا یا payment bypass کرنا allowed نہیں۔ ایسا کرنے پر subscription cancel ہوگی بغیر refund کے۔
     </div>
   </section>
 
