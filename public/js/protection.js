@@ -1,3 +1,4 @@
+
 /* ========================================
    ACCELA CONTENT PROTECTION SCRIPTS
    File: public/js/protection.js
@@ -30,6 +31,12 @@
     generateWatermarks();
     setupAntiTheft();
     addInvisibleWatermark();
+    
+    // NEW: Enhanced screenshot protection
+    setupFocusBlur();
+    setupVisibilityDetection();
+    setupEnhancedKeyDetection();
+    setupDynamicWatermark();
     
     console.log('%c🛡️ Content Protection Active', 'color: #4f46e5; font-weight: bold; font-size: 12px;');
   };
@@ -81,6 +88,91 @@
     var div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+  }
+
+  // ========== NEW: BLUR ON WINDOW FOCUS LOSS ==========
+  function setupFocusBlur() {
+    window.addEventListener('blur', function() {
+      document.body.style.filter = 'blur(20px)';
+      document.body.style.transition = 'filter 0.1s';
+    });
+    
+    window.addEventListener('focus', function() {
+      setTimeout(function() {
+        document.body.style.filter = 'none';
+      }, 100);
+    });
+  }
+
+  // ========== NEW: VISIBILITY CHANGE DETECTION ==========
+  function setupVisibilityDetection() {
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.body.style.filter = 'blur(20px)';
+        console.log('⚠️ Screenshot attempt detected - User:', protectionConfig.username);
+      } else {
+        setTimeout(function() {
+          document.body.style.filter = 'none';
+        }, 100);
+      }
+    });
+  }
+
+  // ========== NEW: ENHANCED SCREENSHOT KEY DETECTION ==========
+  function setupEnhancedKeyDetection() {
+    document.addEventListener('keydown', function(e) {
+      var key = e.key ? e.key.toLowerCase() : '';
+      
+      // Screenshot shortcuts
+      var isScreenshot = (
+        e.key === 'PrintScreen' ||
+        (e.metaKey && e.shiftKey && ['3','4','5'].includes(key)) ||  // Mac
+        (e.ctrlKey && e.shiftKey && key === 's') ||  // Windows Snip
+        (e.metaKey && e.shiftKey && key === '4')  // Mac area screenshot
+      );
+      
+      if (isScreenshot) {
+        e.preventDefault();
+        
+        // Hide content temporarily
+        document.body.style.opacity = '0';
+        
+        setTimeout(function() {
+          document.body.style.opacity = '1';
+        }, 800);
+        
+        showProtectionWarning('🚨 Screenshot detected! All screenshots are watermarked.');
+        
+        // Log the attempt
+        console.log('%c🚨 SCREENSHOT ATTEMPT', 'color: red; font-size: 16px; font-weight: bold;');
+        console.log('User:', protectionConfig.username);
+        console.log('Email:', protectionConfig.email);
+        console.log('Time:', new Date().toISOString());
+        
+        return false;
+      }
+    });
+  }
+
+  // ========== NEW: DYNAMIC WATERMARK POSITION ==========
+  function setupDynamicWatermark() {
+    setInterval(function() {
+      var corner = document.getElementById('cornerWatermark');
+      if (corner) {
+        var positions = [
+          { bottom: '20px', right: '20px', top: 'auto', left: 'auto' },
+          { top: '20px', right: '20px', bottom: 'auto', left: 'auto' },
+          { bottom: '20px', left: '20px', top: 'auto', right: 'auto' },
+          { top: '20px', left: '20px', bottom: 'auto', right: 'auto' }
+        ];
+        var randomPos = positions[Math.floor(Math.random() * positions.length)];
+        
+        corner.style.bottom = randomPos.bottom;
+        corner.style.right = randomPos.right;
+        corner.style.top = randomPos.top;
+        corner.style.left = randomPos.left;
+      }
+    }, 5000); // Change position every 5 seconds
   }
 
   // ========== ANTI-THEFT MEASURES ==========
@@ -157,11 +249,6 @@
         e.preventDefault();
         showProtectionWarning('View source is disabled.');
         return false;
-      }
-      
-      // PrintScreen key
-      if (e.key === 'PrintScreen') {
-        showProtectionWarning('Screenshots contain your watermark for accountability.');
       }
     });
 
@@ -316,3 +403,4 @@
   };
 
 })();
+     
