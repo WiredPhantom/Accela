@@ -32,11 +32,12 @@
     setupAntiTheft();
     addInvisibleWatermark();
     
-    // NEW: Enhanced screenshot protection
+    // Enhanced screenshot protection
     setupFocusBlur();
     setupVisibilityDetection();
     setupEnhancedKeyDetection();
     setupDynamicWatermark();
+    setupMobileScreenshotDetection(); // NEW for mobile
     
     console.log('%c🛡️ Content Protection Active', 'color: #4f46e5; font-weight: bold; font-size: 12px;');
   };
@@ -90,35 +91,157 @@
     return div.innerHTML;
   }
 
-  // ========== NEW: BLUR ON WINDOW FOCUS LOSS ==========
+  // ========== NEW: MOBILE SCREENSHOT DETECTION ==========
+  function setupMobileScreenshotDetection() {
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (!isMobile) return; // Only run on mobile
+    
+    // Detect screenshot on mobile using multiple methods
+    
+    // Method 1: Detect visibility change (works on most Android devices)
+    var lastVisibility = document.visibilityState;
+    setInterval(function() {
+      var currentVisibility = document.visibilityState;
+      
+      if (lastVisibility === 'visible' && currentVisibility === 'hidden') {
+        // Page became hidden - possible screenshot
+        document.body.style.opacity = '0';
+        document.body.style.filter = 'blur(30px)';
+        
+        setTimeout(function() {
+          document.body.style.opacity = '1';
+          document.body.style.filter = 'none';
+        }, 1000);
+        
+        console.log('📸 Possible screenshot - User:', protectionConfig.username);
+      }
+      
+      lastVisibility = currentVisibility;
+    }, 100); // Check every 100ms
+    
+    // Method 2: Detect power button + volume down (Android screenshot combo)
+    var powerPressed = false;
+    var volumePressed = false;
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Power' || e.keyCode === 26) powerPressed = true;
+      if (e.key === 'VolumeDown' || e.keyCode === 25) volumePressed = true;
+      
+      if (powerPressed && volumePressed) {
+        document.body.style.opacity = '0';
+        setTimeout(function() {
+          document.body.style.opacity = '1';
+        }, 800);
+      }
+    });
+    
+    document.addEventListener('keyup', function(e) {
+      if (e.key === 'Power' || e.keyCode === 26) powerPressed = false;
+      if (e.key === 'VolumeDown' || e.keyCode === 25) volumePressed = false;
+    });
+    
+    // Method 3: Page freeze detection (iOS screenshots freeze briefly)
+    var lastTime = Date.now();
+    setInterval(function() {
+      var currentTime = Date.now();
+      var timeDiff = currentTime - lastTime;
+      
+      // If there's a gap bigger than 300ms, possible screenshot
+      if (timeDiff > 300) {
+        document.body.style.opacity = '0';
+        document.body.style.filter = 'blur(30px)';
+        
+        setTimeout(function() {
+          document.body.style.opacity = '1';
+          document.body.style.filter = 'none';
+        }, 500);
+        
+        console.log('📸 Screenshot freeze detected');
+      }
+      
+      lastTime = currentTime;
+    }, 50);
+    
+    // Method 4: Touch combination detection
+    var touches = [];
+    var screenshotGesture = false;
+    
+    document.addEventListener('touchstart', function(e) {
+      touches = Array.from(e.touches);
+      
+      // 3-finger touch (some Android screenshot gesture)
+      if (touches.length >= 3) {
+        screenshotGesture = true;
+        document.body.style.opacity = '0';
+        document.body.style.filter = 'blur(30px)';
+        
+        setTimeout(function() {
+          document.body.style.opacity = '1';
+          document.body.style.filter = 'none';
+          screenshotGesture = false;
+        }, 800);
+      }
+    });
+    
+    // Method 5: Aggressive visibility monitoring
+    var checkCount = 0;
+    var blurActive = false;
+    
+    setInterval(function() {
+      if (document.hidden && !blurActive) {
+        blurActive = true;
+        document.body.style.opacity = '0';
+        document.body.style.filter = 'blur(50px)';
+        document.body.style.transition = 'none';
+        
+        checkCount++;
+        
+        console.log('🚨 Content hidden - count:', checkCount);
+      } else if (!document.hidden && blurActive) {
+        setTimeout(function() {
+          document.body.style.opacity = '1';
+          document.body.style.filter = 'none';
+          blurActive = false;
+        }, 300);
+      }
+    }, 50); // Check very frequently
+  }
+
+  // ========== BLUR ON WINDOW FOCUS LOSS ==========
   function setupFocusBlur() {
     window.addEventListener('blur', function() {
-      document.body.style.filter = 'blur(20px)';
-      document.body.style.transition = 'filter 0.1s';
+      document.body.style.filter = 'blur(30px)';
+      document.body.style.transition = 'filter 0s'; // Instant blur
+      document.body.style.opacity = '0';
     });
     
     window.addEventListener('focus', function() {
       setTimeout(function() {
         document.body.style.filter = 'none';
-      }, 100);
+        document.body.style.opacity = '1';
+      }, 200);
     });
   }
 
-  // ========== NEW: VISIBILITY CHANGE DETECTION ==========
+  // ========== VISIBILITY CHANGE DETECTION ==========
   function setupVisibilityDetection() {
     document.addEventListener('visibilitychange', function() {
       if (document.hidden) {
-        document.body.style.filter = 'blur(20px)';
+        document.body.style.filter = 'blur(50px)';
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'none'; // Instant
         console.log('⚠️ Screenshot attempt detected - User:', protectionConfig.username);
       } else {
         setTimeout(function() {
           document.body.style.filter = 'none';
-        }, 100);
+          document.body.style.opacity = '1';
+        }, 300);
       }
     });
   }
 
-  // ========== NEW: ENHANCED SCREENSHOT KEY DETECTION ==========
+  // ========== ENHANCED SCREENSHOT KEY DETECTION ==========
   function setupEnhancedKeyDetection() {
     document.addEventListener('keydown', function(e) {
       var key = e.key ? e.key.toLowerCase() : '';
@@ -126,24 +249,26 @@
       // Screenshot shortcuts
       var isScreenshot = (
         e.key === 'PrintScreen' ||
-        (e.metaKey && e.shiftKey && ['3','4','5'].includes(key)) ||  // Mac
-        (e.ctrlKey && e.shiftKey && key === 's') ||  // Windows Snip
-        (e.metaKey && e.shiftKey && key === '4')  // Mac area screenshot
+        (e.metaKey && e.shiftKey && ['3','4','5'].includes(key)) ||
+        (e.ctrlKey && e.shiftKey && key === 's') ||
+        (e.metaKey && e.shiftKey && key === '4')
       );
       
       if (isScreenshot) {
         e.preventDefault();
         
-        // Hide content temporarily
+        // Hide content immediately
         document.body.style.opacity = '0';
+        document.body.style.filter = 'blur(50px)';
+        document.body.style.transition = 'none';
         
         setTimeout(function() {
           document.body.style.opacity = '1';
-        }, 800);
+          document.body.style.filter = 'none';
+        }, 1000);
         
         showProtectionWarning('🚨 Screenshot detected! All screenshots are watermarked.');
         
-        // Log the attempt
         console.log('%c🚨 SCREENSHOT ATTEMPT', 'color: red; font-size: 16px; font-weight: bold;');
         console.log('User:', protectionConfig.username);
         console.log('Email:', protectionConfig.email);
@@ -154,7 +279,7 @@
     });
   }
 
-  // ========== NEW: DYNAMIC WATERMARK POSITION ==========
+  // ========== DYNAMIC WATERMARK POSITION ==========
   function setupDynamicWatermark() {
     setInterval(function() {
       var corner = document.getElementById('cornerWatermark');
@@ -172,7 +297,7 @@
         corner.style.top = randomPos.top;
         corner.style.left = randomPos.left;
       }
-    }, 5000); // Change position every 5 seconds
+    }, 3000); // Change every 3 seconds
   }
 
   // ========== ANTI-THEFT MEASURES ==========
@@ -192,7 +317,6 @@
     document.addEventListener('keydown', function(e) {
       var key = e.key ? e.key.toLowerCase() : '';
       
-      // Ctrl+C, Ctrl+V, Ctrl+X (Copy, Paste, Cut)
       if (e.ctrlKey && (key === 'c' || key === 'v' || key === 'x')) {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
           return true;
@@ -202,14 +326,12 @@
         return false;
       }
       
-      // Ctrl+S (Save)
       if (e.ctrlKey && key === 's') {
         e.preventDefault();
         showProtectionWarning('Saving is disabled to protect content.');
         return false;
       }
       
-      // Ctrl+A (Select All)
       if (e.ctrlKey && key === 'a') {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
           return true;
@@ -219,32 +341,27 @@
         return false;
       }
       
-      // Ctrl+P (Print) - Allow but log it
       if (e.ctrlKey && key === 'p') {
         console.log('Print initiated by:', protectionConfig.username);
       }
       
-      // Ctrl+Shift+I, F12 (Developer Tools)
       if ((e.ctrlKey && e.shiftKey && key === 'i') || e.key === 'F12') {
         e.preventDefault();
         showProtectionWarning('Developer tools are restricted.');
         return false;
       }
       
-      // Ctrl+Shift+C (Inspect Element)
       if (e.ctrlKey && e.shiftKey && key === 'c') {
         e.preventDefault();
         showProtectionWarning('Inspect element is disabled.');
         return false;
       }
       
-      // Ctrl+Shift+J (Console)
       if (e.ctrlKey && e.shiftKey && key === 'j') {
         e.preventDefault();
         return false;
       }
       
-      // Ctrl+U (View Source)
       if (e.ctrlKey && key === 'u') {
         e.preventDefault();
         showProtectionWarning('View source is disabled.');
@@ -280,7 +397,7 @@
       }
     }, 1000);
 
-    // 5. Disable text selection via JavaScript
+    // 5. Disable text selection
     document.addEventListener('selectstart', function(e) {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
         return true;
@@ -330,7 +447,6 @@
   function showProtectionWarning(message) {
     if (!protectionConfig.showWarnings) return;
     
-    // Remove existing warning
     var existing = document.getElementById('protection-warning');
     if (existing) {
       existing.parentNode.removeChild(existing);
@@ -360,7 +476,6 @@
     var data = protectionConfig.username + '-' + protectionConfig.email + '-' + timestamp;
     var uniqueId = btoa(data).substring(0, 24);
     
-    // Create invisible tracking element
     var invisible = document.createElement('div');
     invisible.style.cssText = 'position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0.01; color: transparent; font-size: 1px; pointer-events: none; top: 0; left: 0;';
     invisible.textContent = uniqueId;
@@ -368,14 +483,13 @@
     invisible.setAttribute('data-user', protectionConfig.username);
     document.body.appendChild(invisible);
     
-    // Add as HTML comment
     var comment = document.createComment(' Protected Content - UID: ' + uniqueId + ' - User: ' + protectionConfig.username + ' ');
     document.body.insertBefore(comment, document.body.firstChild);
     
     return uniqueId;
   }
 
-  // ========== UTILITY FUNCTIONS (Global) ==========
+  // ========== UTILITY FUNCTIONS ==========
   window.updateProtectionWatermarks = function(username, email) {
     if (username) protectionConfig.username = username;
     if (email) protectionConfig.email = email;
@@ -403,4 +517,3 @@
   };
 
 })();
-     
