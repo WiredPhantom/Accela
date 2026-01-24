@@ -1,6 +1,6 @@
 /* ========================================
    ACCELA CONTENT PROTECTION STYLES
-   File: public/css/protection.css
+   File: src/styles/protection.css
    ======================================== */
 
 /* ========== WATERMARK OVERLAY ========== */
@@ -17,7 +17,7 @@
   overflow: hidden;
 }
 
-/* Diagonal repeating pattern */
+/* Diagonal repeating pattern - Static, no movement */
 .watermark-pattern {
   position: absolute;
   top: -50%;
@@ -27,7 +27,7 @@
   display: flex;
   flex-wrap: wrap;
   transform: rotate(-30deg);
-  opacity: 0.04;
+  opacity: 1; /* Opacity controlled by child items for better blending */
 }
 
 /* Individual watermark text */
@@ -35,7 +35,8 @@
   padding: 40px 60px;
   font-size: 13px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  color: #fff;
+  /* Very subtle color matching the dark theme (white with very low opacity) */
+  color: rgba(255, 255, 255, 0.03); 
   white-space: nowrap;
   user-select: none;
   font-weight: 500;
@@ -48,27 +49,31 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: rgba(79, 70, 229, 0.9);
-  color: white;
+  /* Matching the flashcard theme: Dark blue background with subtle border */
+  background: rgba(10, 9, 45, 0.85);
+  color: rgba(255, 255, 255, 0.6);
   padding: 10px 16px;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 11px;
   z-index: 10000;
   pointer-events: none;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  /* Ensure it stays in one place (no dynamic movement) */
+  transition: opacity 0.3s ease;
 }
 
 .corner-watermark .wm-username {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
   letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .corner-watermark .wm-email {
-  opacity: 0.85;
+  opacity: 0.5;
   font-size: 10px;
   margin-top: 2px;
 }
@@ -76,9 +81,9 @@
 .corner-watermark .wm-copyright {
   margin-top: 6px;
   padding-top: 6px;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 10px;
-  opacity: 0.9;
+  opacity: 0.4;
 }
 
 /* ========== FLOATING CENTER WATERMARK ========== */
@@ -90,7 +95,8 @@
   transform: translate(-50%, -50%) rotate(-30deg);
   font-size: 42px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.02);
+  /* Extremely subtle, almost invisible until screenshot contrast boost */
+  color: rgba(255, 255, 255, 0.01); 
   pointer-events: none;
   z-index: 9998;
   white-space: nowrap;
@@ -101,7 +107,6 @@
 
 /* ========== ANTI-SELECTION CLASSES ========== */
 
-/* Disable text selection on body/content */
 .no-select {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -109,13 +114,11 @@
   user-select: none;
 }
 
-/* Disable image/element dragging */
 .no-drag {
   -webkit-user-drag: none;
   user-drag: none;
 }
 
-/* Allow selection in input fields (override) */
 .no-select input,
 .no-select textarea,
 .no-select [contenteditable="true"] {
@@ -128,36 +131,32 @@
 /* ========== PRINT STYLES ========== */
 
 @media print {
-  /* Make body printable but with watermarks */
   body {
     background: white !important;
     color: black !important;
   }
   
-  /* Increase watermark visibility when printing */
-  .watermark-pattern {
-    opacity: 0.15 !important;
-  }
-  
   .watermark-item {
-    color: #000 !important;
+    color: rgba(0, 0, 0, 0.05) !important;
   }
   
-  /* Keep corner watermark visible in print */
   .corner-watermark {
     display: block !important;
-    background: rgba(0, 0, 0, 0.85) !important;
-    color: white !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
   
-  /* Floating watermark more visible */
-  .floating-watermark {
-    color: rgba(0, 0, 0, 0.1) !important;
+  .corner-watermark .wm-username {
+    color: black !important;
   }
   
-  /* Large print watermark across page */
+  .floating-watermark {
+    color: rgba(0, 0, 0, 0.05) !important;
+  }
+  
   .print-watermark {
     display: block !important;
     position: fixed;
@@ -165,7 +164,7 @@
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
     font-size: 60px;
-    color: rgba(0, 0, 0, 0.15) !important;
+    color: rgba(0, 0, 0, 0.1) !important;
     z-index: 99999;
     font-weight: bold;
     font-family: 'Inter', -apple-system, sans-serif;
@@ -216,41 +215,3 @@
     padding: 8px 14px;
   }
 }
-
-@media (max-width: 480px) {
-  .watermark-item {
-    padding: 25px 30px;
-    font-size: 10px;
-  }
-  
-  .floating-watermark {
-    font-size: 22px;
-  }
-  
-  .corner-watermark {
-    bottom: 10px;
-    right: 10px;
-    padding: 8px 12px;
-    font-size: 10px;
-  }
-  
-  .corner-watermark .wm-username {
-    font-size: 11px;
-  }
-  
-  .corner-watermark .wm-email {
-    font-size: 9px;
-  }
-}
-
-/* ========== ADDITIONAL SECURITY STYLES ========== */
-
-/* Prevent image saving via long-press on mobile */
-img {
-  -webkit-touch-callout: none;
-}
-
-/* Hide print watermark by default (shows only in print) */
-.print-watermark {
-  display: none;
-  }
