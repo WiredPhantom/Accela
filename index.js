@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // --------- CONSISTENT PRICING (FIX: Use single source of truth) ---------
-const PREMIUM_PRICE = parseInt(process.env.PREMIUM_PRICE) || 4900; // ₹49 in paise
+const PREMIUM_PRICE = parseInt(process.env.PREMIUM_PRICE) || 9900; // ₹99 in paise
 const PREMIUM_CURRENCY = process.env.PREMIUM_CURRENCY || "INR";
 
 // --------- VALIDATE ENVIRONMENT VARIABLES ---------
