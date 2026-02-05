@@ -6,7 +6,7 @@
 // Global config
 const protectionConfig = {
   username: 'guest',
-  email: '',
+  email: 'guestmail',
   copyright: '© Accela 2026',
   opacity: 1, // Let CSS handle opacity
   showWarnings: true
