@@ -1,199 +1,261 @@
 /* ========================================
-   ACCELA CONTENT PROTECTION STYLES
-   STATIC WATERMARK - NO MOVEMENT
-   ======================================== */
+   ACCELA CONTENT PROTECTION STYLES
+   File: public/css/protection.css
+   ======================================== */
 
+/* ========== WATERMARK OVERLAY ========== */
+
+/* Main overlay container - static, no movement */
 .watermark-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
 }
 
+/* Static diagonal repeating pattern - no animation */
 .watermark-pattern {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  display: flex;
-  flex-wrap: wrap;
-  transform: rotate(-30deg);
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  display: flex;
+  flex-wrap: wrap;
+  transform: rotate(-30deg);
+  opacity: 0.03; /* Subtle, eye-friendly opacity */
 }
 
+/* Individual watermark text - matches flashcard.css color scheme */
 .watermark-item {
-  padding: 40px 60px;
-  font-size: 12px;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  color: rgba(255, 255, 255, 0.06);
-  white-space: nowrap;
-  user-select: none;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  padding: 40px 60px;
+  font-size: 12px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: rgba(79, 70, 229, 0.4); /* Matches the #4f46e5 purple from flashcard.css */
+  white-space: nowrap;
+  user-select: none;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
 
+/* ========== CORNER WATERMARK BADGE ========== */
+
+/* Static corner watermark - no position changes */
 .corner-watermark {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(15, 14, 50, 0.9);
-  color: rgba(255, 255, 255, 0.7);
-  padding: 12px 18px;
-  border-radius: 12px;
-  font-size: 11px;
-  z-index: 10000;
-  pointer-events: none;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(79, 70, 229, 0.2);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(79, 70, 229, 0.85); /* Matches flashcard.css button color */
+  color: white;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 10px;
+  z-index: 10000;
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+  transition: opacity 0.3s ease;
 }
 
 .corner-watermark .wm-username {
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.3px;
-  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.3px;
 }
 
 .corner-watermark .wm-email {
-  opacity: 0.6;
-  font-size: 11px;
-  margin-top: 3px;
+  opacity: 0.85;
+  font-size: 9px;
+  margin-top: 2px;
+  font-weight: 400;
 }
 
 .corner-watermark .wm-copyright {
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 10px;
-  opacity: 0.5;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 9px;
+  opacity: 0.8;
 }
 
+/* ========== FLOATING CENTER WATERMARK ========== */
+
+/* Static center watermark - no movement */
 .floating-watermark {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-30deg);
-  font-size: 48px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.025);
-  pointer-events: none;
-  z-index: 9998;
-  white-space: nowrap;
-  user-select: none;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  letter-spacing: 3px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 38px;
+  font-weight: 700;
+  color: rgba(79, 70, 229, 0.015); /* Very subtle, matches theme */
+  pointer-events: none;
+  z-index: 9998;
+  white-space: nowrap;
+  user-select: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 2px;
 }
 
+/* ========== ANTI-SELECTION CLASSES ========== */
+
+/* Disable text selection on body/content */
 .no-select {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
+/* Disable image/element dragging */
 .no-drag {
-  -webkit-user-drag: none;
-  user-drag: none;
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
+/* Allow selection in input fields (override) */
 .no-select input,
 .no-select textarea,
 .no-select [contenteditable="true"] {
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
+
+/* ========== PRINT STYLES ========== */
 
 @media print {
-  .watermark-item {
-    color: rgba(0, 0, 0, 0.08) !important;
-  }
-  
-  .corner-watermark {
-    background: rgba(240, 240, 240, 0.95) !important;
-    color: #333 !important;
-    border: 1px solid #ccc !important;
-  }
-  
-  .corner-watermark .wm-username {
-    color: #000 !important;
-  }
-  
-  .floating-watermark {
-    color: rgba(0, 0, 0, 0.05) !important;
-  }
-  
-  .print-watermark {
-    display: block !important;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    font-size: 60px;
-    color: rgba(0, 0, 0, 0.1) !important;
-    z-index: 99999;
-    font-weight: bold;
-    font-family: 'Inter', sans-serif;
-    white-space: nowrap;
-    pointer-events: none;
-  }
+  /* Make body printable but with watermarks */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  /* Increase watermark visibility when printing */
+  .watermark-pattern {
+    opacity: 0.15 !important;
+  }
+  
+  .watermark-item {
+    color: #000 !important;
+  }
+  
+  /* Keep corner watermark visible in print */
+  .corner-watermark {
+    display: block !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* Floating watermark more visible */
+  .floating-watermark {
+    color: rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Large print watermark across page */
+  .print-watermark {
+    display: block !important;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 60px;
+    color: rgba(0, 0, 0, 0.15) !important;
+    z-index: 99999;
+    font-weight: bold;
+    font-family: 'Inter', -apple-system, sans-serif;
+    white-space: nowrap;
+    pointer-events: none;
+  }
 }
 
+/* ========== WARNING TOAST ANIMATIONS ========== */
+
 @keyframes slideDown {
-  from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
-  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+  from { 
+    transform: translateX(-50%) translateY(-100%); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateX(-50%) translateY(0); 
+    opacity: 1; 
+  }
 }
 
 @keyframes slideUp {
-  from { transform: translateX(-50%) translateY(0); opacity: 1; }
-  to { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+  from { 
+    transform: translateX(-50%) translateY(0); 
+    opacity: 1; 
+  }
+  to { 
+    transform: translateX(-50%) translateY(-100%); 
+    opacity: 0; 
+  }
 }
 
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
+
 @media (max-width: 768px) {
-  .watermark-item {
-    padding: 30px 40px;
-    font-size: 10px;
-  }
-  
-  .floating-watermark {
-    font-size: 32px;
-  }
-  
-  .corner-watermark {
-    bottom: 15px;
-    right: 15px;
-    padding: 10px 14px;
-  }
+  .watermark-item {
+    padding: 30px 40px;
+    font-size: 11px;
+  }
+  
+  .floating-watermark {
+    font-size: 26px;
+  }
+  
+  .corner-watermark {
+    bottom: 15px;
+    right: 15px;
+    padding: 7px 12px;
+    font-size: 9px;
+  }
 }
 
 @media (max-width: 480px) {
-  .watermark-item {
-    padding: 25px 30px;
-    font-size: 9px;
-  }
-  
-  .floating-watermark {
-    font-size: 24px;
-  }
-  
-  .corner-watermark {
-    bottom: 10px;
-    right: 10px;
-    padding: 8px 12px;
-  }
+  .watermark-item {
+    padding: 25px 30px;
+    font-size: 10px;
+  }
+  
+  .floating-watermark {
+    font-size: 20px;
+  }
+  
+  .corner-watermark {
+    bottom: 12px;
+    right: 12px;
+    padding: 6px 10px;
+    font-size: 9px;
+  }
+  
+  .corner-watermark .wm-username {
+    font-size: 10px;
+  }
+  
+  .corner-watermark .wm-email {
+    font-size: 8px;
+  }
 }
 
+/* ========== ADDITIONAL SECURITY STYLES ========== */
+
+/* Prevent image saving via long-press on mobile */
 img {
-  -webkit-touch-callout: none;
+  -webkit-touch-callout: none;
 }
 
+/* Hide print watermark by default (shows only in print) */
 .print-watermark {
-  display: none;
+  display: none;
 }
