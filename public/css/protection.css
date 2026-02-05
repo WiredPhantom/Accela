@@ -27,15 +27,15 @@
   display: flex;
   flex-wrap: wrap;
   transform: rotate(-30deg);
-  opacity: 0.03; /* Subtle, eye-friendly opacity */
+  opacity: 0.08; /* Visible but not overwhelming */
 }
 
-/* Individual watermark text - matches flashcard.css color scheme */
+/* Individual watermark text - white like original */
 .watermark-item {
   padding: 40px 60px;
   font-size: 12px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  color: rgba(79, 70, 229, 0.4); /* Matches the #4f46e5 purple from flashcard.css */
+  color: #fff; /* White like original */
   white-space: nowrap;
   user-select: none;
   font-weight: 400;
@@ -94,7 +94,7 @@
   transform: translate(-50%, -50%) rotate(-30deg);
   font-size: 38px;
   font-weight: 700;
-  color: rgba(79, 70, 229, 0.015); /* Very subtle, matches theme */
+  color: rgba(255, 255, 255, 0.02); /* White like original */
   pointer-events: none;
   z-index: 9998;
   white-space: nowrap;
