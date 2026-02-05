@@ -11,7 +11,7 @@
     username: 'guest',
     email: '',
     copyright: '© Accela 2026',
-    opacity: 0.03,
+    opacity: 0.08,
     showWarnings: true
   };
 
@@ -452,3 +452,4 @@
   };
 
 })();
+ 
