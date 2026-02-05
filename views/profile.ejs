@@ -233,7 +233,7 @@
 
     <% if (!hasPremium) { %>
       <button onclick="window.location.href='/upgrade?username=<%= user.username %>'" class="upgrade-btn">
-        🚀 Upgrade to Premium - ₹49/month
+        🚀 Upgrade to Premium - ₹99/month
       </button>
     <% } else if (hasPremium && daysLeft <= 7 && daysLeft !== Infinity && user.role !== 'admin') { %>
       <button onclick="window.location.href='/upgrade?username=<%= user.username %>'" class="renew-btn">
