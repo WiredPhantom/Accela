@@ -235,11 +235,7 @@
       <button onclick="window.location.href='/upgrade?username=<%= user.username %>'" class="upgrade-btn">
         🚀 Upgrade to Premium - ₹99/month
       </button>
-    <% } else if (hasPremium && daysLeft <= 7 && daysLeft !== Infinity && user.role !== 'admin') { %>
-      <button onclick="window.location.href='/upgrade?username=<%= user.username %>'" class="renew-btn">
-        🔄 Renew Premium - ₹49/month
-      </button>
-    <% } %>
+    <% } 
 
     <div class="footer-actions">
       <a href="/" class="back-link">← Back to Home</a>
