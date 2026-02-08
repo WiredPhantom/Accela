@@ -3,17 +3,14 @@ const Razorpay = require("razorpay");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 
-// FIX: Accept PREMIUM_PRICE and PREMIUM_CURRENCY as parameters for consistency
 module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
   const router = express.Router();
 
-  // Initialize Razorpay
   const razorpay = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_KEY_SECRET,
   });
 
-  // Helper function for device fingerprint (same as in index.js)
   function generateDeviceFingerprint(req) {
     const userAgent = req.headers['user-agent'] || 'unknown';
     const acceptLanguage = req.headers['accept-language'] || 'unknown';
@@ -38,11 +35,10 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
       path: "/",
       sameSite: "lax",
       secure: isProduction,
-      maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+      maxAge: 30 * 24 * 60 * 60 * 1000
     };
   }
 
-  // Create Razorpay order
   router.post("/create-order", async (req, res) => {
     try {
       const { username } = req.body;
@@ -54,7 +50,6 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
         });
       }
 
-      // Check if user exists
       const user = await User.findOne({ username });
       if (!user) {
         return res.status(404).json({ 
@@ -63,7 +58,6 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
         });
       }
 
-      // Check if already premium
       if (user.subscriptionStatus === "premium" && 
           user.subscriptionExpiry && 
           user.subscriptionExpiry > new Date()) {
@@ -73,9 +67,8 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
         });
       }
 
-      // FIX: Use consistent PREMIUM_PRICE passed from index.js
       const options = {
-        amount: PREMIUM_PRICE, // amount in smallest currency unit (paise)
+        amount: PREMIUM_PRICE,
         currency: PREMIUM_CURRENCY,
         receipt: `receipt_${username}_${Date.now()}`,
         notes: {
@@ -104,7 +97,6 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
     }
   });
 
-  // Verify payment and upgrade user
   router.post("/verify-payment", async (req, res) => {
     try {
       const {
@@ -114,7 +106,6 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
         username
       } = req.body;
 
-      // Verify signature
       const sign = razorpay_order_id + "|" + razorpay_payment_id;
       const expectedSign = crypto
         .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
@@ -128,7 +119,6 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
         });
       }
 
-      // Payment is valid, upgrade user
       const user = await User.findOne({ username });
       if (!user) {
         return res.status(404).json({ 
@@ -137,7 +127,6 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
         });
       }
 
-      // Set premium for 1 month
       const expiryDate = new Date();
       expiryDate.setMonth(expiryDate.getMonth() + 1);
 
@@ -145,7 +134,6 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
       user.subscriptionExpiry = expiryDate;
       user.lastPaymentDate = new Date();
       
-      // FIX: Use consistent PREMIUM_PRICE
       user.totalPaid += PREMIUM_PRICE;
       
       user.paymentHistory.push({
@@ -157,13 +145,19 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
         createdAt: new Date()
       });
 
+      // ========== CREATE DEVICE LOCK ON PAYMENT ==========
+      // Lock the device that made the payment
+      const deviceFingerprint = generateDeviceFingerprint(req);
+      user.createDeviceLock(deviceFingerprint);
+      console.log(`🔒 Device lock created for ${username} after payment on device ${deviceFingerprint.substring(0, 8)}...`);
+
       await user.save();
 
       res.json({
         success: true,
         message: "Premium activated successfully!",
         expiryDate: expiryDate,
-        needsTokenRefresh: true // Signal to refresh token
+        needsTokenRefresh: true
       });
 
     } catch (error) {
@@ -175,7 +169,6 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
     }
   });
 
-  // Check payment status
   router.get("/check-premium/:username", async (req, res) => {
     try {
       const user = await User.findOne({ username: req.params.username });
@@ -192,7 +185,7 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
       if (isPremium && user.subscriptionExpiry) {
         daysLeft = Math.ceil((user.subscriptionExpiry - new Date()) / (1000 * 60 * 60 * 24));
       } else if (isPremium) {
-        daysLeft = Infinity; // Lifetime or admin
+        daysLeft = Infinity;
       }
 
       res.json({ 
@@ -208,7 +201,6 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
     }
   });
 
-  // FIX: Refresh token after payment - now also sets sessionToken!
   router.post("/refresh-token", async (req, res) => {
     try {
       const { username } = req.body;
@@ -221,8 +213,14 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
         return res.status(404).json({ success: false, message: "User not found" });
       }
 
-      // FIX: Create new session token too!
       const sessionToken = user.createSession(deviceFingerprint, userAgent, ipAddress);
+      
+      // Device lock should already exist from verify-payment
+      // But if not, create it now for premium users
+      if (user.subscriptionStatus === 'premium' && !user.hasActiveDeviceLock()) {
+        user.createDeviceLock(deviceFingerprint);
+      }
+      
       await user.save();
 
       const token = jwt.sign(
@@ -232,12 +230,11 @@ module.exports = (User, PREMIUM_PRICE, PREMIUM_CURRENCY) => {
           subscriptionStatus: user.subscriptionStatus 
         },
         process.env.jwtkey,
-        { expiresIn: "720h" } // 30 days
+        { expiresIn: "720h" }
       );
 
       const cookieOptions = getCookieOptions();
 
-      // FIX: Set both cookies server-side!
       res.cookie("token", token, cookieOptions);
       res.cookie("sessionToken", sessionToken, cookieOptions);
 
