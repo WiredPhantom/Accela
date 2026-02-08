@@ -9,8 +9,8 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// --------- CONSISTENT PRICING (FIX: Use single source of truth) ---------
-const PREMIUM_PRICE = parseInt(process.env.PREMIUM_PRICE) || 9900; // ₹99 in paise
+// --------- CONSISTENT PRICING ---------
+const PREMIUM_PRICE = parseInt(process.env.PREMIUM_PRICE) || 9900;
 const PREMIUM_CURRENCY = process.env.PREMIUM_CURRENCY || "INR";
 
 // --------- VALIDATE ENVIRONMENT VARIABLES ---------
@@ -31,13 +31,13 @@ app.use(cookieParser());
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
-// --------- RATE LIMITING (Simple in-memory implementation) ---------
+// --------- RATE LIMITING ---------
 const loginAttempts = new Map();
 
 function rateLimitLogin(req, res, next) {
   const ip = getClientIP(req);
   const now = Date.now();
-  const windowMs = 15 * 60 * 1000; // 15 minutes
+  const windowMs = 15 * 60 * 1000;
   const maxAttempts = 5;
 
   if (!loginAttempts.has(ip)) {
@@ -59,7 +59,6 @@ function rateLimitLogin(req, res, next) {
   next();
 }
 
-// Clean up old entries every hour
 setInterval(() => {
   const now = Date.now();
   const windowMs = 15 * 60 * 1000;
@@ -147,13 +146,12 @@ async function checkUserPremium(username) {
   }
 }
 
-// --------- DEVICE FINGERPRINT HELPER (FIX: Removed IP address) ---------
+// --------- DEVICE FINGERPRINT HELPER ---------
 function generateDeviceFingerprint(req) {
   const userAgent = req.headers['user-agent'] || 'unknown';
   const acceptLanguage = req.headers['accept-language'] || 'unknown';
   const acceptEncoding = req.headers['accept-encoding'] || 'unknown';
   
-  // FIX: Don't use IP - it changes too frequently!
   const fingerprintData = `${userAgent}|${acceptLanguage}|${acceptEncoding}`;
   return crypto.createHash('sha256').update(fingerprintData).digest('hex').substring(0, 32);
 }
@@ -166,7 +164,6 @@ function getClientIP(req) {
          'unknown';
 }
 
-// --------- COOKIE OPTIONS HELPER ---------
 function getCookieOptions() {
   const isProduction = process.env.NODE_ENV === 'production';
   return {
@@ -174,7 +171,7 @@ function getCookieOptions() {
     path: "/",
     sameSite: "lax",
     secure: isProduction,
-    maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+    maxAge: 30 * 24 * 60 * 60 * 1000
   };
 }
 
@@ -202,14 +199,12 @@ async function optionalAuth(req, res, next) {
       return next();
     }
     
-    // Admin bypass - no session validation needed
     if (user.role === 'admin') {
       req.user = decoded;
       req.isAuthenticated = true;
       return next();
     }
     
-    // Validate session for regular users
     const deviceFingerprint = generateDeviceFingerprint(req);
     const sessionValidation = user.validateSession(sessionToken, deviceFingerprint);
     
@@ -219,7 +214,6 @@ async function optionalAuth(req, res, next) {
       res.clearCookie("token");
       res.clearCookie("sessionToken");
       
-      // Auto-clear expired sessions
       if (sessionValidation.reason === 'SESSION_EXPIRED') {
         user.clearSession();
         await user.save();
@@ -248,7 +242,6 @@ async function checkAuth(req, res, next) {
     const decoded = jwt.verify(token, process.env.jwtkey);
     const deviceFingerprint = generateDeviceFingerprint(req);
     
-    // Find user and validate session
     const user = await User.findOne({ username: decoded.username });
     
     if (!user) {
@@ -257,24 +250,20 @@ async function checkAuth(req, res, next) {
       return res.render("accessdenied");
     }
     
-    // Admin bypass - no session validation needed
     if (user.role === 'admin') {
       req.user = decoded;
       return next();
     }
     
-    // Validate session for regular users
     const sessionValidation = user.validateSession(sessionToken, deviceFingerprint);
     
     if (!sessionValidation.valid) {
       console.log(`❌ Session invalid for ${user.username}: ${sessionValidation.reason}`);
       
-      // Clear cookies if session is invalid
       res.clearCookie("token");
       res.clearCookie("sessionToken");
       
       if (sessionValidation.reason === 'SESSION_EXPIRED') {
-        // Clear the expired session from DB
         user.clearSession();
         await user.save();
         return res.render("sessionexpired", { 
@@ -285,7 +274,6 @@ async function checkAuth(req, res, next) {
       return res.render("accessdenied");
     }
     
-    // Update last activity
     user.updateActivity();
     await user.save();
     
@@ -357,7 +345,6 @@ app.use("/admin", checkAuth, checkRole("admin"), adminRoutes);
 
 // --------- 7. MAIN ROUTES ---------
 
-// HOME PAGE
 app.get("/", optionalAuth, async (req, res) => {
   try {
     const premiumStatus = await checkUserPremium(req.user?.username);
@@ -381,7 +368,6 @@ app.get("/", optionalAuth, async (req, res) => {
   }
 });
 
-// Login page
 app.get("/login", (req, res) => {
   try {
     const token = req.cookies.token;
@@ -389,13 +375,11 @@ app.get("/login", (req, res) => {
       const decoded = jwt.verify(token, process.env.jwtkey);
       if (decoded) return res.redirect("/");
     }
-  } catch (err) {
-    // Invalid token, continue to login page
-  }
+  } catch (err) {}
   res.render("login");
 });
 
-// ========== LOGIN HANDLER WITH SINGLE DEVICE ENFORCEMENT ==========
+// ========== LOGIN HANDLER WITH DEVICE LOCK ENFORCEMENT ==========
 app.post("/login", rateLimitLogin, async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -403,7 +387,6 @@ app.post("/login", rateLimitLogin, async (req, res) => {
     const userAgent = req.headers['user-agent'] || 'unknown';
     const ipAddress = getClientIP(req);
     
-    // Track this attempt for rate limiting
     if (!loginAttempts.has(ipAddress)) {
       loginAttempts.set(ipAddress, []);
     }
@@ -428,7 +411,6 @@ app.post("/login", rateLimitLogin, async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     
     if (!isMatch) {
-      // Log failed attempt
       user.logLoginAttempt(ipAddress, userAgent, false, 'WRONG_PASSWORD');
       await user.save();
       
@@ -438,33 +420,45 @@ app.post("/login", rateLimitLogin, async (req, res) => {
       });
     }
 
-    // ========== SINGLE DEVICE CHECK (SKIP FOR ADMIN) ==========
+    // ========== DEVICE LOCK CHECK (independent of session) ==========
     const loginCheck = user.canLoginFromDevice(deviceFingerprint);
     
     if (!loginCheck.allowed) {
-      // Log blocked attempt
       user.logLoginAttempt(ipAddress, userAgent, false, loginCheck.reason);
       await user.save();
       
-      console.log(`🚫 Login blocked for ${username}: ${loginCheck.reason}`);
+      console.log(`🚫 Login blocked for ${username}: ${loginCheck.reason} (${loginCheck.remainingDays} days remaining)`);
       
       return res.status(403).json({ 
         success: false, 
         message: loginCheck.message,
         reason: 'DEVICE_LOCKED',
-        expiresAt: loginCheck.expiresAt
+        expiresAt: loginCheck.expiresAt,
+        remainingDays: loginCheck.remainingDays
       });
     }
 
     // Clear rate limit on successful login
     loginAttempts.delete(ipAddress);
 
-    // ========== CREATE NEW SESSION ==========
+    // ========== CREATE SESSION ==========
     const sessionToken = user.createSession(deviceFingerprint, userAgent, ipAddress);
+
+    // ========== CREATE/REFRESH DEVICE LOCK FOR PREMIUM USERS ==========
+    if (user.subscriptionStatus === 'premium' && user.role !== 'admin') {
+      // Only create a new lock if there's no active one, or if it's the same device
+      if (!user.hasActiveDeviceLock()) {
+        // No active lock - create new one
+        user.createDeviceLock(deviceFingerprint);
+        console.log(`🔒 New device lock created for ${username} on device ${deviceFingerprint.substring(0, 8)}...`);
+      }
+      // If there IS an active lock and same device, we don't need to do anything
+      // The lock persists from when it was first created
+    }
+
     user.logLoginAttempt(ipAddress, userAgent, true);
     await user.save();
 
-    // Create JWT token
     const jwtToken = jwt.sign(
       { 
         username, 
@@ -472,12 +466,11 @@ app.post("/login", rateLimitLogin, async (req, res) => {
         subscriptionStatus: user.subscriptionStatus 
       },
       process.env.jwtkey,
-      { expiresIn: "720h" } // 30 days
+      { expiresIn: "720h" }
     );
 
     const cookieOptions = getCookieOptions();
 
-    // Set both JWT and session token cookies
     res.cookie("token", jwtToken, cookieOptions);
     res.cookie("sessionToken", sessionToken, cookieOptions);
     
@@ -493,7 +486,7 @@ app.post("/login", rateLimitLogin, async (req, res) => {
   }
 });
 
-// ========== LOGOUT - CLEARS SESSION FROM DB ==========
+// ========== LOGOUT - CLEARS SESSION BUT NOT DEVICE LOCK ==========
 app.get("/logout", async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -503,9 +496,10 @@ app.get("/logout", async (req, res) => {
       const user = await User.findOne({ username: decoded.username });
       
       if (user) {
+        // clearSession() only clears the session, NOT the deviceLock
         user.clearSession();
         await user.save();
-        console.log(`✅ Session cleared for ${user.username}`);
+        console.log(`✅ Session cleared for ${user.username} (device lock preserved)`);
       }
     }
   } catch (err) {
@@ -526,9 +520,7 @@ app.get("/signup", (req, res) => {
       const decoded = jwt.verify(token, process.env.jwtkey);
       if (decoded) return res.redirect("/");
     }
-  } catch (err) {
-    // Invalid token, continue to signup page
-  }
+  } catch (err) {}
   res.render("signup");
 });
 
@@ -543,7 +535,6 @@ app.post("/signup", async (req, res) => {
       });
     }
 
-    // Basic validation
     if (username.length < 3 || username.length > 30) {
       return res.status(400).json({ 
         success: false, 
@@ -605,7 +596,6 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-// ========== FIX: Set cookies server-side! ==========
 app.post("/create-free-session", async (req, res) => {
   try {
     const { username } = req.body;
@@ -629,8 +619,10 @@ app.post("/create-free-session", async (req, res) => {
       });
     }
 
-    // Create session in database
     const sessionToken = user.createSession(deviceFingerprint, userAgent, ipAddress);
+    
+    // NO device lock for free users - they can login from anywhere
+    
     await user.save();
 
     const token = jwt.sign(
@@ -645,7 +637,6 @@ app.post("/create-free-session", async (req, res) => {
 
     const cookieOptions = getCookieOptions();
 
-    // FIX: Set cookies server-side instead of returning them!
     res.cookie("token", token, cookieOptions);
     res.cookie("sessionToken", sessionToken, cookieOptions);
 
@@ -710,7 +701,6 @@ app.get("/profile", checkAuth, async (req, res) => {
   }
 });
 
-// Payment routes - Pass PREMIUM_PRICE for consistency
 const paymentRoutes = require("./routes/payment")(User, PREMIUM_PRICE, PREMIUM_CURRENCY);
 app.use("/payment", paymentRoutes);
 
@@ -842,7 +832,6 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
       topicIndex: topicId
     }).sort({ flashcardIndex: 1 });
 
-    // ========== NEW: Fetch full user with email for watermark ==========
     let fullUser = null;
     if (req.user?.username) {
       fullUser = await User.findOne({ username: req.user.username }).select('username email');
@@ -855,10 +844,10 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
       isAuthenticated: req.isAuthenticated,
       hasPremium: premiumStatus.isPremium,
       user: req.user,
-      fullUser: fullUser  // <-- ADDED THIS
+      fullUser: fullUser
     });
   } catch (err) {
-    console.error("âŒ Flashcard fetch error:", err);
+    console.error("❌ Flashcard fetch error:", err);
     res.render("flashcards", { 
       chapterId, 
       topicId, 
@@ -866,7 +855,7 @@ app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => 
       isAuthenticated: false,
       hasPremium: false,
       user: null,
-      fullUser: null  // <-- ADDED THIS
+      fullUser: null
     });
   }
 });
@@ -994,7 +983,6 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
       });
     }
 
-    // ========== NEW: Fetch full user with email for watermark ==========
     let fullUser = null;
     if (req.user?.username) {
       fullUser = await User.findOne({ username: req.user.username }).select('username email');
@@ -1005,10 +993,10 @@ app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, re
       isAuthenticated: req.isAuthenticated,
       hasPremium: premiumStatus.isPremium,
       user: req.user,
-      fullUser: fullUser  // <-- ADDED THIS
+      fullUser: fullUser
     });
   } catch (err) {
-    console.error("âŒ Note view error:", err);
+    console.error("❌ Note view error:", err);
     res.status(404).render("404");
   }
 });
