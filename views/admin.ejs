@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Admin Panel</title>
   <link rel="stylesheet" href="/admin.css">
 </head>
   
 <body>
+  <!-- Sidebar overlay for mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileMenu()"></div>
+
   <div class="admin-layout">
     <!-- Sidebar Navigation -->
     <aside class="sidebar" id="sidebar">
@@ -21,8 +24,8 @@
         </a>
         
         <!-- FLASHCARDS SECTION -->
-        <div style="margin: 20px 0; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px;">
-          <div style="color: #888; font-size: 12px; font-weight: 600; margin-bottom: 8px;">FLASHCARDS</div>
+        <div class="nav-section-group">
+          <div class="nav-section-label">FLASHCARDS</div>
           <a class="nav-item" onclick="showSection('chapters')" data-section="chapters">
             <span class="icon">📚</span>
             Chapters
@@ -46,8 +49,8 @@
         </div>
 
         <!-- NOTES SECTION -->
-        <div style="margin: 20px 0; padding: 10px; background: rgba(255,215,0,0.05); border-radius: 8px;">
-          <div style="color: #ffd700; font-size: 12px; font-weight: 600; margin-bottom: 8px;">NOTES</div>
+        <div class="nav-section-group" style="border-left: 2px solid rgba(255,215,0,0.2);">
+          <div class="nav-section-label" style="color: #ffd700;">NOTES</div>
           <a class="nav-item" onclick="showSection('notes')" data-section="notes">
             <span class="icon">📝</span>
             All Notes
@@ -66,7 +69,6 @@
           <span class="icon">👥</span>
           Users
         </a>
-        <!-- NEW: Device Locks Section -->
         <a class="nav-item" onclick="showSection('device-locks')" data-section="device-locks">
           <span class="icon">🔒</span>
           Device Locks
@@ -111,7 +113,7 @@
               <div class="number" id="stat-flashcards"><span class="loading"></span></div>
               <div class="label">Total Flashcards</div>
             </div>
-            <div class="stat-card" style="background: rgba(255,215,0,0.1); border-color: rgba(255,215,0,0.3);">
+            <div class="stat-card" style="background: rgba(255,215,0,0.08); border-color: rgba(255,215,0,0.2);">
               <div class="icon">📝</div>
               <div class="number" id="stat-notes"><%= noteTopics.length %></div>
               <div class="label">Total Notes</div>
@@ -127,12 +129,12 @@
             <h2>Quick Actions</h2>
             <div class="quick-actions">
               <button onclick="showSection('add-content')">➕ Add Flashcard</button>
-              <button onclick="showSection('add-note')" style="background: rgba(255,215,0,0.2); border-color: rgba(255,215,0,0.3);">📝 Add Note</button>
+              <button onclick="showSection('add-note')" style="background: rgba(255,215,0,0.15); border-color: rgba(255,215,0,0.25);">📝 Add Note</button>
               <button onclick="showSection('bulk-upload')">📦 Bulk Upload</button>
               <button onclick="showSection('premium')">⭐ Manage Premium</button>
               <button onclick="exportAllData()">📤 Export All Data</button>
               <button onclick="showSection('users')">👥 Manage Users</button>
-              <button onclick="showSection('device-locks')" style="background: rgba(255,107,107,0.2); border-color: rgba(255,107,107,0.3);">🔒 Device Locks</button>
+              <button onclick="showSection('device-locks')" style="background: rgba(255,107,107,0.15); border-color: rgba(255,107,107,0.25);">🔒 Device Locks</button>
             </div>
           </div>
         </div>
@@ -143,27 +145,29 @@
         <div style="max-width: 1200px; margin: 0 auto;">
           <h1 class="title">Chapters Management</h1>
           <div class="container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Index</th>
-                  <th>Name</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% chapters.forEach(ch => { %>
+            <div class="table-wrapper">
+              <table>
+                <thead>
                   <tr>
-                    <td>Chapter <%= ch._id %></td>
-                    <td><%= ch.chapterName %></td>
-                    <td>
-                      <button onclick="openEditChapterModal(<%= ch._id %>, '<%= ch.chapterName.replace(/'/g, "\\'") %>')">✏️ Edit</button>
-                      <button onclick="openDeleteChapterModal(<%= ch._id %>)" class="danger">🗑️ Delete</button>
-                    </td>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Actions</th>
                   </tr>
-                <% }) %>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <% chapters.forEach(ch => { %>
+                    <tr>
+                      <td>Chapter <%= ch._id %></td>
+                      <td><%= ch.chapterName %></td>
+                      <td>
+                        <button onclick="openEditChapterModal(<%= ch._id %>, '<%= ch.chapterName.replace(/'/g, "\\'") %>')">✏️ Edit</button>
+                        <button onclick="openDeleteChapterModal(<%= ch._id %>)" class="danger">🗑️ Delete</button>
+                      </td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -200,9 +204,9 @@
                       <span class="card-count" id="count-<%= tp._id.chapterIndex %>-<%= tp._id.topicIndex %>">...</span>
                     </div>
                     <div>
-                      <button onclick="viewFlashcards(<%= tp._id.chapterIndex %>, <%= tp._id.topicIndex %>, '<%= tp.topicName.replace(/'/g, "\\'") %>')">📋 View Cards</button>
+                      <button onclick="viewFlashcards(<%= tp._id.chapterIndex %>, <%= tp._id.topicIndex %>, '<%= tp.topicName.replace(/'/g, "\\'") %>')">📋 View</button>
                       <button onclick="openTopicEditModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName.replace(/'/g, "\\'") %>')">✏️ Edit</button>
-                      <button onclick="openDeleteTopicModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName.replace(/'/g, "\\'") %>')" class="danger">🗑️ Delete</button>
+                      <button onclick="openDeleteTopicModal('<%= tp._id.chapterIndex %>', '<%= tp._id.topicIndex %>', '<%= tp.topicName.replace(/'/g, "\\'") %>')" class="danger">🗑️ Del</button>
                     </div>
                   </li>
           <% 
@@ -223,11 +227,11 @@
         <div style="max-width: 1200px; margin: 0 auto;">
           <h1 class="title">All Flashcards</h1>
           <div class="container">
-            <div style="margin-bottom: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <div class="filter-bar">
               <select id="filterChapter" onchange="filterFlashcards()">
                 <option value="">All Chapters</option>
                 <% chapters.forEach(ch => { %>
-                  <option value="<%= ch._id %>">Chapter <%= ch._id %>: <%= ch.chapterName %></option>
+                  <option value="<%= ch._id %>">Ch. <%= ch._id %>: <%= ch.chapterName %></option>
                 <% }) %>
               </select>
               <select id="filterTopic" onchange="filterFlashcards()" disabled>
@@ -268,42 +272,27 @@
                 <option value="">-- Select Topic --</option>
                 <% topics.forEach(tp => { %>
                   <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
-                    Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
+                    Ch. <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
                   </option>
                 <% }) %>
               </select>
               <input type="text" id="topicName" name="topicName" placeholder="Auto-filled topic name" readonly>
 
               <label>Or Create New Topic:</label>
-<div style="display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: end;">
-  <div>
-    <label style="font-size: 12px; color: #888; margin-bottom: 4px; display: block;">
-      Topic Index:
-    </label>
-    <input 
-      type="number" 
-      name="newTopicIndex" 
-      id="newTopicIndex" 
-      min="1" 
-      placeholder="Auto"
-      title="Leave empty for auto-numbering or enter a specific number"
-      style="text-align: center; font-weight: 600;">
-  </div>
-  <div>
-    <label style="font-size: 12px; color: #888; margin-bottom: 4px; display: block;">
-      Topic Name:
-    </label>
-    <input 
-      type="text" 
-      name="newTopicName" 
-      id="newTopicName" 
-      placeholder="Enter new topic name">
-  </div>
-</div>
-<small style="display: block; margin-top: 8px; color: #888; background: rgba(255,255,255,0.03); padding: 8px; border-radius: 6px; border-left: 3px solid #4f46e5;">
-  💡 <strong>Auto Mode:</strong> Leave index empty for smart numbering (fills gaps)<br>
-  🎯 <strong>Manual Mode:</strong> Enter a specific number to create Topic 4, 5, 6, etc.
-</small>
+              <div class="form-grid-2">
+                <div>
+                  <label style="font-size: 12px; color: #888; margin: 0 0 4px 0;">Topic Index:</label>
+                  <input type="number" name="newTopicIndex" id="newTopicIndex" min="1" placeholder="Auto" title="Leave empty for auto-numbering or enter a specific number" style="text-align: center; font-weight: 600;">
+                </div>
+                <div>
+                  <label style="font-size: 12px; color: #888; margin: 0 0 4px 0;">Topic Name:</label>
+                  <input type="text" name="newTopicName" id="newTopicName" placeholder="Enter new topic name">
+                </div>
+              </div>
+              <small class="info-box">
+                💡 <strong>Auto Mode:</strong> Leave index empty for smart numbering (fills gaps)<br>
+                🎯 <strong>Manual Mode:</strong> Enter a specific number to create Topic 4, 5, 6, etc.
+              </small>
 
               <label>Question: <span style="color: #ff6b6b;">*</span></label>
               <textarea name="question" required placeholder="Enter the question here"></textarea>
@@ -321,131 +310,111 @@
           </div>
         </div>
       </div>
-<!-- ============= BULK UPLOAD SECTION (UPDATED) ============= -->
-<div class="section" id="bulk-upload-section">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h1 class="title">📦 Bulk Upload Flashcards</h1>
-    <div class="container">
-      <form action="/admin/bulk-upload" method="POST" id="bulk-upload-form" enctype="multipart/form-data">
-        <label>Select Chapter:</label>
-        <select id="bulkChapterIndex" name="chapterIndex" onchange="fillBulkChapterName()">
-          <option value="">-- Select Chapter --</option>
-          <% chapters.forEach(ch => { %>
-            <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
-          <% }) %>
-        </select>
-        <input type="text" name="chapterName" id="bulkChapterName" readonly placeholder="Auto-filled chapter name">
 
-        <label>Or Create New Chapter:</label>
-        <input type="text" name="newChapterName" id="bulknewChapterName" placeholder="Enter new chapter name">
-        <input type="hidden" name="newChapterIndex" id="bulknewChapterIndex">
+      <!-- BULK UPLOAD SECTION -->
+      <div class="section" id="bulk-upload-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h1 class="title">📦 Bulk Upload Flashcards</h1>
+          <div class="container">
+            <form action="/admin/bulk-upload" method="POST" id="bulk-upload-form" enctype="multipart/form-data">
+              <label>Select Chapter:</label>
+              <select id="bulkChapterIndex" name="chapterIndex" onchange="fillBulkChapterName()">
+                <option value="">-- Select Chapter --</option>
+                <% chapters.forEach(ch => { %>
+                  <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
+                <% }) %>
+              </select>
+              <input type="text" name="chapterName" id="bulkChapterName" readonly placeholder="Auto-filled chapter name">
 
-        <label>Select Topic:</label>
-        <select id="bulkTopicIndex" name="topicIndex" onchange="fillBulkTopicName()">
-          <option value="">-- Select Topic --</option>
-          <% topics.forEach(tp => { %>
-            <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
-              Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
-            </option>
-          <% }) %>
-        </select>
-        <input type="text" name="topicName" id="bulkTopicName" readonly placeholder="Auto-filled topic name">
+              <label>Or Create New Chapter:</label>
+              <input type="text" name="newChapterName" id="bulknewChapterName" placeholder="Enter new chapter name">
+              <input type="hidden" name="newChapterIndex" id="bulknewChapterIndex">
 
-        <label>Or Create New Topic:</label>
-<div style="display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: end;">
-  <div>
-    <label style="font-size: 12px; color: #888; margin-bottom: 4px; display: block;">
-      Topic Index:
-    </label>
-    <input 
-      type="number" 
-      name="newTopicIndex" 
-      id="bulknewTopicIndex" 
-      min="1" 
-      placeholder="Auto"
-      title="Leave empty for auto-numbering"
-      style="text-align: center; font-weight: 600;">
-  </div>
-  <div>
-    <label style="font-size: 12px; color: #888; margin-bottom: 4px; display: block;">
-      Topic Name:
-    </label>
-    <input 
-      type="text" 
-      name="newTopicName" 
-      id="bulknewTopicName" 
-      placeholder="Enter new topic name">
-  </div>
-</div>
-<small style="display: block; margin-top: 8px; color: #888; background: rgba(255,255,255,0.03); padding: 8px; border-radius: 6px; border-left: 3px solid #4f46e5;">
-  💡 Leave index empty for smart auto-numbering
-</small>
+              <label>Select Topic:</label>
+              <select id="bulkTopicIndex" name="topicIndex" onchange="fillBulkTopicName()">
+                <option value="">-- Select Topic --</option>
+                <% topics.forEach(tp => { %>
+                  <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
+                    Ch. <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
+                  </option>
+                <% }) %>
+              </select>
+              <input type="text" name="topicName" id="bulkTopicName" readonly placeholder="Auto-filled topic name">
 
-
-        <!-- ============= UPLOAD METHOD TOGGLE ============= -->
-        <div style="margin: 24px 0; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-          <label style="font-size: 16px; font-weight: 600; margin-bottom: 12px; display: block;">Upload Method:</label>
-          <div style="display: flex; gap: 16px; margin-bottom: 16px;">
-            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1; padding: 12px; background: rgba(79,70,229,0.2); border: 2px solid rgba(79,70,229,0.5); border-radius: 8px; transition: all 0.3s;">
-              <input type="radio" name="bulkUploadMethod" value="file" id="bulkMethodFile" checked style="width: auto; margin: 0;">
-              <span style="font-weight: 500;">📁 Upload JSON File</span>
-            </label>
-            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1; padding: 12px; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.2); border-radius: 8px; transition: all 0.3s;">
-              <input type="radio" name="bulkUploadMethod" value="text" id="bulkMethodText" style="width: auto; margin: 0;">
-              <span style="font-weight: 500;">✍️ Paste JSON Text</span>
-            </label>
-          </div>
-
-          <!-- FILE UPLOAD SECTION -->
-          <div id="bulkFileUploadSection">
-            <label>Upload JSON File: <span style="color: #ff6b6b;">*</span></label>
-            <input type="file" name="jsonFile" id="bulkJsonFile" accept=".json,application/json" style="padding: 12px; background: rgba(0,0,0,0.3); border: 2px dashed rgba(79,70,229,0.5); cursor: pointer;">
-            <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
-              📄 Upload a .json file with flashcard data
-            </small>
-            <div id="bulkFilePreview" style="display: none; margin-top: 12px; padding: 12px; background: rgba(0,255,136,0.1); border-left: 3px solid #00ff88; border-radius: 8px;">
-              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <span style="font-size: 20px;">✅</span>
-                <strong id="bulkFileName" style="color: #00ff88;"></strong>
+              <label>Or Create New Topic:</label>
+              <div class="form-grid-2">
+                <div>
+                  <label style="font-size: 12px; color: #888; margin: 0 0 4px 0;">Topic Index:</label>
+                  <input type="number" name="newTopicIndex" id="bulknewTopicIndex" min="1" placeholder="Auto" title="Leave empty for auto-numbering" style="text-align: center; font-weight: 600;">
+                </div>
+                <div>
+                  <label style="font-size: 12px; color: #888; margin: 0 0 4px 0;">Topic Name:</label>
+                  <input type="text" name="newTopicName" id="bulknewTopicName" placeholder="Enter new topic name">
+                </div>
               </div>
-              <small id="bulkFileInfo" style="color: #888;"></small>
-            </div>
-          </div>
+              <small class="info-box">💡 Leave index empty for smart auto-numbering</small>
 
-          <!-- TEXT PASTE SECTION -->
-          <div id="bulkTextUploadSection" style="display: none;">
-            <label>Paste JSON Data: <span style="color: #ff6b6b;">*</span></label>
-            <textarea name="jsonData" id="bulkJsonData" placeholder='[{"question": "Q1", "answer": "A1"}, {"question": "Q2", "answer": "A2"}]' style="min-height: 250px; font-family: monospace;"></textarea>
-            <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
-              Format: Array of objects with "question" and "answer" keys. Example shown above.
-            </small>
+              <!-- UPLOAD METHOD TOGGLE -->
+              <div class="upload-toggle-container">
+                <label style="font-size: 16px; font-weight: 600; margin-bottom: 12px; display: block;">Upload Method:</label>
+                <div class="upload-toggle-row">
+                  <label class="upload-method-card active" id="bulkFileCard">
+                    <input type="radio" name="bulkUploadMethod" value="file" id="bulkMethodFile" checked style="width: auto; margin: 0;">
+                    <span style="font-weight: 500;">📁 Upload JSON File</span>
+                  </label>
+                  <label class="upload-method-card" id="bulkTextCard">
+                    <input type="radio" name="bulkUploadMethod" value="text" id="bulkMethodText" style="width: auto; margin: 0;">
+                    <span style="font-weight: 500;">✍️ Paste JSON Text</span>
+                  </label>
+                </div>
+
+                <!-- FILE UPLOAD SECTION -->
+                <div id="bulkFileUploadSection">
+                  <label>Upload JSON File: <span style="color: #ff6b6b;">*</span></label>
+                  <input type="file" name="jsonFile" id="bulkJsonFile" accept=".json,application/json" style="padding: 12px; background: rgba(0,0,0,0.3); border: 2px dashed rgba(79,70,229,0.5); cursor: pointer;">
+                  <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
+                    📄 Upload a .json file with flashcard data
+                  </small>
+                  <div id="bulkFilePreview" style="display: none; margin-top: 12px; padding: 12px; background: rgba(0,255,136,0.1); border-left: 3px solid #00ff88; border-radius: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                      <span style="font-size: 20px;">✅</span>
+                      <strong id="bulkFileName" style="color: #00ff88;"></strong>
+                    </div>
+                    <small id="bulkFileInfo" style="color: #888;"></small>
+                  </div>
+                </div>
+
+                <!-- TEXT PASTE SECTION -->
+                <div id="bulkTextUploadSection" style="display: none;">
+                  <label>Paste JSON Data: <span style="color: #ff6b6b;">*</span></label>
+                  <textarea name="jsonData" id="bulkJsonData" placeholder='[{"question": "Q1", "answer": "A1"}, {"question": "Q2", "answer": "A2"}]' style="min-height: 250px; font-family: monospace;"></textarea>
+                  <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
+                    Format: Array of objects with "question" and "answer" keys.
+                  </small>
+                </div>
+              </div>
+
+              <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
+                <input type="checkbox" name="isPremium" id="bulkIsPremium" style="width: auto; margin: 0;">
+                <span>🔒 Mark ALL uploaded flashcards as Premium</span>
+              </label>
+
+              <button type="submit" id="bulk-submit-btn">Upload Flashcards</button>
+            </form>
           </div>
         </div>
-
-        <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
-          <input type="checkbox" name="isPremium" id="bulkIsPremium" style="width: auto; margin: 0;">
-          <span>🔒 Mark ALL uploaded flashcards as Premium</span>
-        </label>
-
-        <button type="submit" id="bulk-submit-btn">Upload Flashcards</button>
-      </form>
-    </div>
-  </div>
-          </div>
-            
-
-      <!-- ============= NOTES SECTIONS ============= -->
+      </div>
 
       <!-- All Notes Section -->
       <div class="section" id="notes-section">
         <div style="max-width: 1200px; margin: 0 auto;">
           <h1 class="title">📝 All Notes</h1>
           <div class="container">
-            <div style="margin-bottom: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <div class="filter-bar">
               <select id="filterNoteChapter" onchange="filterNotes()">
                 <option value="">All Chapters</option>
                 <% noteChapters.forEach(ch => { %>
-                  <option value="<%= ch._id %>">Chapter <%= ch._id %>: <%= ch.chapterName %></option>
+                  <option value="<%= ch._id %>">Ch. <%= ch._id %>: <%= ch.chapterName %></option>
                 <% }) %>
               </select>
               <button onclick="loadAllNotes()">🔄 Refresh</button>
@@ -459,234 +428,202 @@
         </div>
       </div>
 
+      <!-- ADD NOTE SECTION -->
+      <div class="section" id="add-note-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h1 class="title">📝 Add New Note</h1>
+          <div class="container">
+            <form action="/admin/add-note" method="POST" id="add-note-form" enctype="multipart/form-data">
+              <label>Select Chapter:</label>
+              <select id="noteChapterIndex" name="chapterIndex" onchange="fillNoteChapterName()">
+                <option value="">-- Select Chapter --</option>
+                <% noteChapters.forEach(ch => { %>
+                  <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
+                <% }) %>
+              </select>
+              <input type="text" id="noteChapterName" name="chapterName" placeholder="Auto-filled chapter name" readonly>
 
+              <label>Or Create New Chapter:</label>
+              <input type="text" name="newChapterName" id="noteNewChapterName" placeholder="Enter new chapter name">
+              <input type="hidden" name="newChapterIndex" id="noteNewChapterIndex">
 
-                  <!-- ============= ADD NOTE SECTION (UPDATED) ============= -->
-<div class="section" id="add-note-section">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h1 class="title">📝 Add New Note</h1>
-    <div class="container">
-      <form action="/admin/add-note" method="POST" id="add-note-form" enctype="multipart/form-data">
-        <label>Select Chapter:</label>
-        <select id="noteChapterIndex" name="chapterIndex" onchange="fillNoteChapterName()">
-          <option value="">-- Select Chapter --</option>
-          <% noteChapters.forEach(ch => { %>
-            <option value="<%= ch._id %>"><%= ch._id %> — <%= ch.chapterName %></option>
-          <% }) %>
-        </select>
-        <input type="text" id="noteChapterName" name="chapterName" placeholder="Auto-filled chapter name" readonly>
+              <label>Select Topic:</label>
+              <select id="noteTopicIndex" name="topicIndex" onchange="fillNoteTopicName()">
+                <option value="">-- Select Topic --</option>
+                <% noteTopics.forEach(tp => { %>
+                  <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
+                    Ch. <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
+                  </option>
+                <% }) %>
+              </select>
+              <input type="text" id="noteTopicName" name="topicName" placeholder="Auto-filled topic name" readonly>
 
-        <label>Or Create New Chapter:</label>
-        <input type="text" name="newChapterName" id="noteNewChapterName" placeholder="Enter new chapter name">
-        <input type="hidden" name="newChapterIndex" id="noteNewChapterIndex">
-
-        <label>Select Topic:</label>
-        <select id="noteTopicIndex" name="topicIndex" onchange="fillNoteTopicName()">
-          <option value="">-- Select Topic --</option>
-          <% noteTopics.forEach(tp => { %>
-            <option value="<%= tp._id.topicIndex %>" data-chapter="<%= tp._id.chapterIndex %>" data-name="<%= tp.topicName %>">
-              Chapter <%= tp._id.chapterIndex %>, Topic <%= tp._id.topicIndex %> — <%= tp.topicName %>
-            </option>
-          <% }) %>
-        </select>
-        <input type="text" id="noteTopicName" name="topicName" placeholder="Auto-filled topic name" readonly>
-
-        <label>Or Create New Topic:</label>
-<div style="display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: end;">
-  <div>
-    <label style="font-size: 12px; color: #ffd700; margin-bottom: 4px; display: block;">
-      Topic Index:
-    </label>
-    <input 
-      type="number" 
-      name="newTopicIndex" 
-      id="noteNewTopicIndex" 
-      min="1" 
-      placeholder="Auto"
-      title="Leave empty for auto-numbering"
-      style="text-align: center; font-weight: 600; border-color: rgba(255,215,0,0.3);">
-  </div>
-  <div>
-    <label style="font-size: 12px; color: #ffd700; margin-bottom: 4px; display: block;">
-      Topic Name:
-    </label>
-    <input 
-      type="text" 
-      name="newTopicName" 
-      id="noteNewTopicName" 
-      placeholder="Enter new topic name">
-  </div>
-</div>
-<small style="display: block; margin-top: 8px; color: #888; background: rgba(255,215,0,0.03); padding: 8px; border-radius: 6px; border-left: 3px solid #ffd700;">
-  💡 Leave index empty for smart auto-numbering
-</small>
-        <label>Note Title: <span style="color: #ff6b6b;">*</span></label>
-        <input type="text" name="noteTitle" id="noteTitle" required placeholder="e.g., ہندی طب - آیوروید">
-
-        <!-- ============= UPLOAD METHOD TOGGLE ============= -->
-        <div style="margin: 24px 0; padding: 16px; background: rgba(255,215,0,0.05); border-radius: 12px; border: 1px solid rgba(255,215,0,0.2);">
-          <label style="font-size: 16px; font-weight: 600; margin-bottom: 12px; display: block;">Upload Method:</label>
-          <div style="display: flex; gap: 16px; margin-bottom: 16px;">
-            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1; padding: 12px; background: rgba(255,215,0,0.2); border: 2px solid rgba(255,215,0,0.5); border-radius: 8px; transition: all 0.3s;">
-              <input type="radio" name="noteUploadMethod" value="file" id="noteMethodFile" checked style="width: auto; margin: 0;">
-              <span style="font-weight: 500;">📁 Upload HTML File</span>
-            </label>
-            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1; padding: 12px; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.2); border-radius: 8px; transition: all 0.3s;">
-              <input type="radio" name="noteUploadMethod" value="text" id="noteMethodText" style="width: auto; margin: 0;">
-              <span style="font-weight: 500;">✍️ Paste HTML Text</span>
-            </label>
-          </div>
-
-          <!-- FILE UPLOAD SECTION -->
-          <div id="noteFileUploadSection">
-            <label>Upload HTML File: <span style="color: #ff6b6b;">*</span></label>
-            <input type="file" name="htmlFile" id="noteHtmlFile" accept=".html,.htm,text/html" style="padding: 12px; background: rgba(0,0,0,0.3); border: 2px dashed rgba(255,215,0,0.5); cursor: pointer;">
-            <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
-              📄 Upload a .html file with your note content
-            </small>
-            <div id="noteFilePreview" style="display: none; margin-top: 12px; padding: 12px; background: rgba(0,255,136,0.1); border-left: 3px solid #00ff88; border-radius: 8px;">
-              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                <span style="font-size: 20px;">✅</span>
-                <strong id="noteFileName" style="color: #00ff88;"></strong>
+              <label>Or Create New Topic:</label>
+              <div class="form-grid-2">
+                <div>
+                  <label style="font-size: 12px; color: #ffd700; margin: 0 0 4px 0;">Topic Index:</label>
+                  <input type="number" name="newTopicIndex" id="noteNewTopicIndex" min="1" placeholder="Auto" title="Leave empty for auto-numbering" style="text-align: center; font-weight: 600; border-color: rgba(255,215,0,0.3);">
+                </div>
+                <div>
+                  <label style="font-size: 12px; color: #ffd700; margin: 0 0 4px 0;">Topic Name:</label>
+                  <input type="text" name="newTopicName" id="noteNewTopicName" placeholder="Enter new topic name">
+                </div>
               </div>
-              <small id="noteFileInfo" style="color: #888;"></small>
-            </div>
-          </div>
+              <small class="info-box gold">💡 Leave index empty for smart auto-numbering</small>
 
-          <!-- TEXT PASTE SECTION -->
-          <div id="noteTextUploadSection" style="display: none;">
-            <label>HTML Content: <span style="color: #ff6b6b;">*</span></label>
-            <textarea name="htmlContent" id="noteHtmlContent" placeholder="Paste your complete HTML here (including <!DOCTYPE html>, <html>, <head>, <body>, etc.)" style="min-height: 400px; font-family: monospace;"></textarea>
-            <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
-              💡 Tip: Paste your entire HTML file content here. It will be displayed as-is to users.
-            </small>
+              <label>Note Title: <span style="color: #ff6b6b;">*</span></label>
+              <input type="text" name="noteTitle" id="noteTitle" required placeholder="e.g., ہندی طب - آیوروید">
+
+              <!-- UPLOAD METHOD TOGGLE -->
+              <div class="upload-toggle-container gold">
+                <label style="font-size: 16px; font-weight: 600; margin-bottom: 12px; display: block;">Upload Method:</label>
+                <div class="upload-toggle-row">
+                  <label class="upload-method-card active" id="noteFileCard" style="border-color: rgba(255,215,0,0.5); background: rgba(255,215,0,0.15);">
+                    <input type="radio" name="noteUploadMethod" value="file" id="noteMethodFile" checked style="width: auto; margin: 0;">
+                    <span style="font-weight: 500;">📁 Upload HTML File</span>
+                  </label>
+                  <label class="upload-method-card" id="noteTextCard">
+                    <input type="radio" name="noteUploadMethod" value="text" id="noteMethodText" style="width: auto; margin: 0;">
+                    <span style="font-weight: 500;">✍️ Paste HTML Text</span>
+                  </label>
+                </div>
+
+                <!-- FILE UPLOAD SECTION -->
+                <div id="noteFileUploadSection">
+                  <label>Upload HTML File: <span style="color: #ff6b6b;">*</span></label>
+                  <input type="file" name="htmlFile" id="noteHtmlFile" accept=".html,.htm,text/html" style="padding: 12px; background: rgba(0,0,0,0.3); border: 2px dashed rgba(255,215,0,0.5); cursor: pointer;">
+                  <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
+                    📄 Upload a .html file with your note content
+                  </small>
+                  <div id="noteFilePreview" style="display: none; margin-top: 12px; padding: 12px; background: rgba(0,255,136,0.1); border-left: 3px solid #00ff88; border-radius: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                      <span style="font-size: 20px;">✅</span>
+                      <strong id="noteFileName" style="color: #00ff88;"></strong>
+                    </div>
+                    <small id="noteFileInfo" style="color: #888;"></small>
+                  </div>
+                </div>
+
+                <!-- TEXT PASTE SECTION -->
+                <div id="noteTextUploadSection" style="display: none;">
+                  <label>HTML Content: <span style="color: #ff6b6b;">*</span></label>
+                  <textarea name="htmlContent" id="noteHtmlContent" placeholder="Paste your complete HTML here..." style="min-height: 300px; font-family: monospace;"></textarea>
+                  <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
+                    💡 Paste your entire HTML file content here. It will be displayed as-is to users.
+                  </small>
+                </div>
+              </div>
+
+              <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
+                <input type="checkbox" name="isPremium" id="noteIsPremium" style="width: auto; margin: 0;">
+                <span>🔒 Mark as Premium Content</span>
+              </label>
+
+              <button type="submit" id="note-submit-btn">Add Note</button>
+            </form>
           </div>
         </div>
-
-        <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
-          <input type="checkbox" name="isPremium" id="noteIsPremium" style="width: auto; margin: 0;">
-          <span>🔒 Mark as Premium Content</span>
-        </label>
-
-        <button type="submit" id="note-submit-btn">Add Note</button>
-      </form>
-    </div>
-  </div>
-</div>
+      </div>
 
       <!-- Premium Management Section -->
       <div class="section" id="premium-section">
         <div style="max-width: 1200px; margin: 0 auto;">
           <h1 class="title">⭐ Premium Management</h1>
-                    <!-- Manage Chapter Premium Status -->
+
+          <!-- Flashcard Chapter Premium Status -->
           <div class="container">
             <h2>Flashcard Chapter Premium Status</h2>
-            <p style="color: #888; margin-bottom: 20px;">
+            <p style="color: #888; margin-bottom: 16px; font-size: 13px;">
               Toggle flashcard chapters between Free and Premium. When you mark a chapter as premium, 
               ALL topics and flashcards in that chapter become premium.
             </p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Chapter</th>
-                  <th>Name</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% chapters.forEach(ch => { %>
+            <div class="table-wrapper">
+              <table>
+                <thead>
                   <tr>
-                    <td>Chapter <%= ch._id %></td>
-                    <td><%= ch.chapterName %></td>
-                    <td>
-                      <% if (ch.isPremium) { %>
-                        <span style="color: #ffd700; font-weight: 600;">🔒 Premium</span>
-                      <% } else { %>
-                        <span style="color: #00ff88; font-weight: 600;">🔓 Free</span>
-                      <% } %>
-                    </td>
-                    <td>
-                      <% if (ch.isPremium) { %>
-                        <button 
-                          onclick="toggleChapterPremium(<%= ch._id %>, false)" 
-                          style="background: rgba(0,255,136,0.2); border-color: rgba(0,255,136,0.3);">
-                          🔓 Make Free
-                        </button>
-                      <% } else { %>
-                        <button 
-                          onclick="toggleChapterPremium(<%= ch._id %>, true)" 
-                          style="background: rgba(255,215,0,0.2); border-color: rgba(255,215,0,0.3);">
-                          🔒 Make Premium
-                        </button>
-                      <% } %>
-                    </td>
+                    <th>Chapter</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                   </tr>
-                <% }) %>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Manage Notes Chapter Premium Status -->
-          <div class="container">
-            <h2>Notes Chapter Premium Status</h2>
-            <p style="color: #888; margin-bottom: 20px;">
-              Toggle note chapters between Free and Premium.
-            </p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Chapter</th>
-                  <th>Name</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% if (noteChapters.length === 0) { %>
-                  <tr>
-                    <td colspan="4" style="text-align: center; color: #888;">No note chapters yet</td>
-                  </tr>
-                <% } else { %>
-                  <% noteChapters.forEach(ch => { %>
+                </thead>
+                <tbody>
+                  <% chapters.forEach(ch => { %>
                     <tr>
-                      <td>Chapter <%= ch._id %></td>
+                      <td>Ch. <%= ch._id %></td>
                       <td><%= ch.chapterName %></td>
                       <td>
                         <% if (ch.isPremium) { %>
-                          <span style="color: #ffd700; font-weight: 600;">🔒 Premium</span>
+                          <span class="badge badge-premium">🔒 Premium</span>
                         <% } else { %>
-                          <span style="color: #00ff88; font-weight: 600;">🔓 Free</span>
+                          <span class="badge badge-free">🔓 Free</span>
                         <% } %>
                       </td>
                       <td>
                         <% if (ch.isPremium) { %>
-                          <button 
-                            onclick="toggleNoteChapterPremium(<%= ch._id %>, false)" 
-                            style="background: rgba(0,255,136,0.2); border-color: rgba(0,255,136,0.3);">
-                            🔓 Make Free
-                          </button>
+                          <button onclick="toggleChapterPremium(<%= ch._id %>, false)" style="background: rgba(0,255,136,0.15); border-color: rgba(0,255,136,0.25);">🔓 Make Free</button>
                         <% } else { %>
-                          <button 
-                            onclick="toggleNoteChapterPremium(<%= ch._id %>, true)" 
-                            style="background: rgba(255,215,0,0.2); border-color: rgba(255,215,0,0.3);">
-                            🔒 Make Premium
-                          </button>
+                          <button onclick="toggleChapterPremium(<%= ch._id %>, true)" style="background: rgba(255,215,0,0.15); border-color: rgba(255,215,0,0.25);">🔒 Make Premium</button>
                         <% } %>
                       </td>
                     </tr>
                   <% }) %>
-                <% } %>
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <!-- Manage Topic Premium Status -->
+          <!-- Notes Chapter Premium Status -->
           <div class="container">
-            <h2>Flashcard Topic Premium Status (By Chapter)</h2>
-            <p style="color: #888; margin-bottom: 20px;">
-              Toggle individual topics between Free and Premium. 
-              This affects all flashcards within the topic.
+            <h2>Notes Chapter Premium Status</h2>
+            <p style="color: #888; margin-bottom: 16px; font-size: 13px;">Toggle note chapters between Free and Premium.</p>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Chapter</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (noteChapters.length === 0) { %>
+                    <tr>
+                      <td colspan="4" style="text-align: center; color: #888;">No note chapters yet</td>
+                    </tr>
+                  <% } else { %>
+                    <% noteChapters.forEach(ch => { %>
+                      <tr>
+                        <td>Ch. <%= ch._id %></td>
+                        <td><%= ch.chapterName %></td>
+                        <td>
+                          <% if (ch.isPremium) { %>
+                            <span class="badge badge-premium">🔒 Premium</span>
+                          <% } else { %>
+                            <span class="badge badge-free">🔓 Free</span>
+                          <% } %>
+                        </td>
+                        <td>
+                          <% if (ch.isPremium) { %>
+                            <button onclick="toggleNoteChapterPremium(<%= ch._id %>, false)" style="background: rgba(0,255,136,0.15); border-color: rgba(0,255,136,0.25);">🔓 Make Free</button>
+                          <% } else { %>
+                            <button onclick="toggleNoteChapterPremium(<%= ch._id %>, true)" style="background: rgba(255,215,0,0.15); border-color: rgba(255,215,0,0.25);">🔒 Make Premium</button>
+                          <% } %>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Topic Premium Status -->
+          <div class="container">
+            <h2>Flashcard Topic Premium Status</h2>
+            <p style="color: #888; margin-bottom: 16px; font-size: 13px;">
+              Toggle individual topics between Free and Premium.
             </p>
             
             <% 
@@ -695,125 +632,120 @@
                 if (premiumCurrentChapter !== tp._id.chapterIndex) {
                   if (premiumCurrentChapter !== null) { 
             %>
-                    </tbody>
-                  </table>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             <% } %>
             
-            <div style="background: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+            <div style="background: rgba(255, 255, 255, 0.02); border-radius: 12px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.04);">
               <div class="collapsible-header" onclick="toggleCollapse(this)">
-                <h3>Chapter <%= tp._id.chapterIndex %>: <%= tp.chapterName %></h3>
+                <h3 style="margin-bottom: 0;">Ch. <%= tp._id.chapterIndex %>: <%= tp.chapterName %></h3>
                 <span class="collapse-icon">▼</span>
               </div>
               <div class="collapsible-content">
-                <table style="margin-top: 16px;">
-                  <thead>
-                    <tr>
-                      <th>Topic</th>
-                      <th>Name</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                <div class="table-wrapper">
+                  <table style="margin-top: 12px;">
+                    <thead>
+                      <tr>
+                        <th>Topic</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
             <%
                   premiumCurrentChapter = tp._id.chapterIndex;
                 } 
             %>
-                    <tr>
-                      <td>Topic <%= tp._id.topicIndex %></td>
-                      <td><%= tp.topicName %></td>
-                      <td>
-                        <% if (tp.isPremium) { %>
-                          <span style="color: #ffd700; font-weight: 600;">🔒 Premium</span>
-                        <% } else { %>
-                          <span style="color: #00ff88; font-weight: 600;">🔓 Free</span>
-                        <% } %>
-                      </td>
-                      <td>
-                        <% if (tp.isPremium) { %>
-                          <button 
-                            onclick="toggleTopicPremium(<%= tp._id.chapterIndex %>, <%= tp._id.topicIndex %>, false)" 
-                            style="background: rgba(0,255,136,0.2); border-color: rgba(0,255,136,0.3);">
-                            🔓 Make Free
-                          </button>
-                        <% } else { %>
-                          <button 
-                            onclick="toggleTopicPremium(<%= tp._id.chapterIndex %>, <%= tp._id.topicIndex %>, true)" 
-                            style="background: rgba(255,215,0,0.2); border-color: rgba(255,215,0,0.3);">
-                            🔒 Make Premium
-                          </button>
-                        <% } %>
-                      </td>
-                    </tr>
+                      <tr>
+                        <td>Topic <%= tp._id.topicIndex %></td>
+                        <td><%= tp.topicName %></td>
+                        <td>
+                          <% if (tp.isPremium) { %>
+                            <span class="badge badge-premium">🔒 Premium</span>
+                          <% } else { %>
+                            <span class="badge badge-free">🔓 Free</span>
+                          <% } %>
+                        </td>
+                        <td>
+                          <% if (tp.isPremium) { %>
+                            <button onclick="toggleTopicPremium(<%= tp._id.chapterIndex %>, <%= tp._id.topicIndex %>, false)" style="background: rgba(0,255,136,0.15); border-color: rgba(0,255,136,0.25);">🔓 Free</button>
+                          <% } else { %>
+                            <button onclick="toggleTopicPremium(<%= tp._id.chapterIndex %>, <%= tp._id.topicIndex %>, true)" style="background: rgba(255,215,0,0.15); border-color: rgba(255,215,0,0.25);">🔒 Premium</button>
+                          <% } %>
+                        </td>
+                      </tr>
             <% 
                 if (index === topics.length - 1) { 
             %>
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-                 <% 
+            <% 
                 } 
               }) 
             %>
           </div>
 
-          <!-- Manage User Subscriptions -->
+          <!-- User Subscriptions -->
           <div class="container">
             <h2>User Subscriptions</h2>
-            <p style="color: #888; margin-bottom: 20px;">
+            <p style="color: #888; margin-bottom: 16px; font-size: 13px;">
               Manage user subscription status and expiry dates. Admins automatically have full access.
             </p>
-            <table>
-              <thead>
-                <tr>
-                  <th>User ID</th>
-                  <th>Username</th>
-                  <th>Role</th>
-                  <th>Subscription</th>
-                  <th>Expiry</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% users.forEach(user => { %>
+            <div class="table-wrapper">
+              <table>
+                <thead>
                   <tr>
-                    <td><%= user.userId %></td>
-                    <td><%= user.username %></td>
-                    <td style="text-transform: capitalize;">
-                      <% if (user.role === 'admin') { %>
-                        <span style="color: #ff6b9d;">👑 <%= user.role %></span>
-                      <% } else { %>
-                        <%= user.role %>
-                      <% } %>
-                    </td>
-                    <td>
-                      <% if (user.subscriptionStatus === 'premium') { %>
-                        <span style="color: #ffd700; font-weight: 600;">⭐ Premium</span>
-                      <% } else { %>
-                        <span style="color: #888;">Free</span>
-                      <% } %>
-                    </td>
-                    <td>
-                      <% if (user.subscriptionExpiry) { %>
-                        <%= new Date(user.subscriptionExpiry).toLocaleDateString() %>
-                      <% } else if (user.subscriptionStatus === 'premium') { %>
-                        <span style="color: #00ff88;">Lifetime</span>
-                      <% } else { %>
-                        -
-                      <% } %>
-                    </td>
-                    <td>
-                      <button onclick="openSubscriptionModal('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>', '<%= user.subscriptionStatus %>', '<%= user.subscriptionExpiry || "" %>')">
-                        ✏️ Manage
-                      </button>
-                    </td>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Subscription</th>
+                    <th>Expiry</th>
+                    <th>Actions</th>
                   </tr>
-                <% }) %>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <% users.forEach(user => { %>
+                    <tr>
+                      <td><%= user.userId %></td>
+                      <td><%= user.username %></td>
+                      <td>
+                        <% if (user.role === 'admin') { %>
+                          <span class="badge badge-admin">👑 <%= user.role %></span>
+                        <% } else { %>
+                          <span style="text-transform: capitalize;"><%= user.role %></span>
+                        <% } %>
+                      </td>
+                      <td>
+                        <% if (user.subscriptionStatus === 'premium') { %>
+                          <span class="badge badge-premium">⭐ Premium</span>
+                        <% } else { %>
+                          <span style="color: #888;">Free</span>
+                        <% } %>
+                      </td>
+                      <td>
+                        <% if (user.subscriptionExpiry) { %>
+                          <%= new Date(user.subscriptionExpiry).toLocaleDateString() %>
+                        <% } else if (user.subscriptionStatus === 'premium') { %>
+                          <span style="color: #00ff88;">Lifetime</span>
+                        <% } else { %>
+                          -
+                        <% } %>
+                      </td>
+                      <td>
+                        <button onclick="openSubscriptionModal('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>', '<%= user.subscriptionStatus %>', '<%= user.subscriptionExpiry || "" %>')">✏️ Manage</button>
+                      </td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -825,49 +757,51 @@
           
           <div class="container">
             <h2>Current Users</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>User ID</th>
-                  <th>Username</th>
-                  <th>Role</th>
-                  <th>Subscription</th>
-                  <th>Device Lock</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% users.forEach(user => { %>
+            <div class="table-wrapper">
+              <table>
+                <thead>
                   <tr>
-                    <td><%= user.userId %></td>
-                    <td><%= user.username %></td>
-                    <td><span style="text-transform: capitalize;"><%= user.role %></span></td>
-                    <td>
-                      <% if (user.subscriptionStatus === 'premium') { %>
-                        <span style="color: #ffd700;">⭐ Premium</span>
-                      <% } else { %>
-                        <span style="color: #888;">Free</span>
-                      <% } %>
-                    </td>
-                    <td>
-                      <% if (user.deviceLock && user.deviceLock.deviceFingerprint && user.deviceLock.expiresAt > new Date()) { %>
-                        <span style="color: #ff6b6b;">🔒 Locked</span>
-                        <br><small style="color: #888;">Expires: <%= new Date(user.deviceLock.expiresAt).toLocaleDateString() %></small>
-                      <% } else { %>
-                        <span style="color: #00ff88;">🔓 None</span>
-                      <% } %>
-                    </td>
-                    <td>
-                      <button onclick="forceLogout('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>')">🚪 Force Logout</button>
-                      <% if (user.deviceLock && user.deviceLock.deviceFingerprint && user.deviceLock.expiresAt > new Date()) { %>
-                        <button onclick="clearDeviceLock('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>')" style="background: rgba(255,165,0,0.2); border-color: rgba(255,165,0,0.3);">🔓 Clear Lock</button>
-                      <% } %>
-                      <button onclick="openDeleteUserModal('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>')" class="danger">🗑️ Delete</button>
-                    </td>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Subscription</th>
+                    <th>Device Lock</th>
+                    <th>Actions</th>
                   </tr>
-                <% }) %>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <% users.forEach(user => { %>
+                    <tr>
+                      <td><%= user.userId %></td>
+                      <td><%= user.username %></td>
+                      <td><span style="text-transform: capitalize;"><%= user.role %></span></td>
+                      <td>
+                        <% if (user.subscriptionStatus === 'premium') { %>
+                          <span class="badge badge-premium">⭐ Premium</span>
+                        <% } else { %>
+                          <span style="color: #888;">Free</span>
+                        <% } %>
+                      </td>
+                      <td>
+                        <% if (user.deviceLock && user.deviceLock.deviceFingerprint && user.deviceLock.expiresAt > new Date()) { %>
+                          <span class="badge badge-locked">🔒 Locked</span>
+                          <br><small style="color: #888;">Exp: <%= new Date(user.deviceLock.expiresAt).toLocaleDateString() %></small>
+                        <% } else { %>
+                          <span class="badge badge-free">🔓 None</span>
+                        <% } %>
+                      </td>
+                      <td>
+                        <button onclick="forceLogout('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>')">🚪 Logout</button>
+                        <% if (user.deviceLock && user.deviceLock.deviceFingerprint && user.deviceLock.expiresAt > new Date()) { %>
+                          <button onclick="clearDeviceLock('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>')" style="background: rgba(255,165,0,0.15); border-color: rgba(255,165,0,0.25);">🔓 Unlock</button>
+                        <% } %>
+                        <button onclick="openDeleteUserModal('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>')" class="danger">🗑️ Del</button>
+                      </td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <div class="container">
@@ -900,15 +834,15 @@
         </div>
       </div>
 
-      <!-- ==================== NEW: DEVICE LOCKS SECTION ==================== -->
+      <!-- Device Locks Section -->
       <div class="section" id="device-locks-section">
         <div style="max-width: 1200px; margin: 0 auto;">
           <h1 class="title">🔒 Device Lock Management</h1>
           
           <div class="container">
-            <div style="background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.3); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
-              <h3 style="color: #ff6b6b; margin-bottom: 8px;">ℹ️ How Device Locks Work</h3>
-              <ul style="color: #ccc; font-size: 14px; line-height: 1.8; padding-left: 20px;">
+            <div class="info-panel">
+              <h3>ℹ️ How Device Locks Work</h3>
+              <ul>
                 <li><strong>Premium users</strong> are locked to one device for 30 days after login</li>
                 <li><strong>Free users</strong> have NO device lock — they can login from anywhere</li>
                 <li><strong>Admins</strong> are exempt from all device locks</li>
@@ -917,7 +851,7 @@
               </ul>
             </div>
 
-            <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+            <div class="filter-bar">
               <button onclick="loadDeviceLocks()">🔄 Refresh Locks</button>
               <button onclick="loadActiveSessions()">📊 View Active Sessions</button>
             </div>
@@ -941,15 +875,15 @@
 
           <div class="container">
             <h2>🔓 Quick Clear Device Lock</h2>
-            <p style="color: #888; margin-bottom: 16px;">
+            <p style="color: #888; margin-bottom: 16px; font-size: 13px;">
               Enter a username to quickly clear their device lock. Use this when a user contacts you saying they bought a new phone.
             </p>
-            <div style="display: flex; gap: 12px; align-items: end;">
-              <div style="flex: 1;">
-                <label>Username:</label>
+            <div class="quick-clear-row">
+              <div>
+                <label style="margin-top: 0;">Username:</label>
                 <input type="text" id="quickClearUsername" placeholder="Enter username" style="margin-bottom: 0;">
               </div>
-              <button onclick="quickClearDeviceLock()" style="background: rgba(255,165,0,0.2); border-color: rgba(255,165,0,0.3); white-space: nowrap; margin-bottom: 0;">
+              <button onclick="quickClearDeviceLock()" style="background: rgba(255,165,0,0.15); border-color: rgba(255,165,0,0.25); white-space: nowrap;">
                 🔓 Clear Lock
               </button>
             </div>
@@ -961,7 +895,7 @@
   </div>
 
   <!-- Mobile Menu Button -->
-  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
 
   <!-- Toast Container -->
   <div id="toast-container"></div>
@@ -993,8 +927,10 @@
       </p>
       <form action="/admin/delete-chapter" method="POST">
         <input type="hidden" name="chapterIndex" id="delete-chapter-index">
-        <button type="submit" class="danger">Yes, Delete Chapter</button>
-        <button type="button" onclick="closeModal('delete-chapter-modal')" style="margin-left: 8px;">Cancel</button>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="submit" class="danger">Yes, Delete Chapter</button>
+          <button type="button" onclick="closeModal('delete-chapter-modal')">Cancel</button>
+        </div>
       </form>
     </div>
   </div>
@@ -1026,8 +962,10 @@
       <form action="/admin/delete-topic" method="POST">
         <input type="hidden" name="chapterIndex" id="delete-topic-chapter">
         <input type="hidden" name="topicIndex" id="delete-topic-index">
-        <button type="submit" class="danger">Yes, Delete Topic</button>
-        <button type="button" onclick="closeModal('delete-topic-modal')" style="margin-left: 8px;">Cancel</button>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="submit" class="danger">Yes, Delete Topic</button>
+          <button type="button" onclick="closeModal('delete-topic-modal')">Cancel</button>
+        </div>
       </form>
     </div>
   </div>
@@ -1037,7 +975,7 @@
     <div class="modal-content" style="max-width: 800px;">
       <span class="close" onclick="closeModal('view-flashcards-modal')">&times;</span>
       <h3 id="flashcards-modal-title">Flashcards</h3>
-      <div id="flashcards-list" style="max-height: 500px; overflow-y: auto;"></div>
+      <div id="flashcards-list" style="max-height: 60vh; overflow-y: auto;"></div>
     </div>
   </div>
 
@@ -1065,8 +1003,10 @@
       <p style="color: #ff9999; margin-bottom: 16px;">Are you sure you want to delete this flashcard?</p>
       <p id="delete-flashcard-preview" style="color: #888; margin-bottom: 20px; font-style: italic;"></p>
       <input type="hidden" id="delete-flashcard-id">
-      <button onclick="confirmDeleteFlashcard()" class="danger">Yes, Delete</button>
-      <button onclick="closeModal('delete-flashcard-modal')" style="margin-left: 8px;">Cancel</button>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button onclick="confirmDeleteFlashcard()" class="danger">Yes, Delete</button>
+        <button onclick="closeModal('delete-flashcard-modal')">Cancel</button>
+      </div>
     </div>
   </div>
 
@@ -1082,7 +1022,7 @@
         <input type="text" id="edit-note-title" required placeholder="Note title">
         
         <label>HTML Content:</label>
-        <textarea id="edit-note-content" required style="min-height: 400px; font-family: monospace;" placeholder="Paste HTML content here"></textarea>
+        <textarea id="edit-note-content" required style="min-height: 300px; font-family: monospace;" placeholder="Paste HTML content here"></textarea>
         
         <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
           <input type="checkbox" id="edit-note-premium" style="width: auto; margin: 0;">
@@ -1102,8 +1042,10 @@
       <p style="color: #ff9999; margin-bottom: 16px;">Are you sure you want to delete this note?</p>
       <p id="delete-note-preview" style="color: #888; margin-bottom: 20px; font-style: italic;"></p>
       <input type="hidden" id="delete-note-id">
-      <button onclick="confirmDeleteNote()" class="danger">Yes, Delete</button>
-      <button onclick="closeModal('delete-note-modal')" style="margin-left: 8px;">Cancel</button>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button onclick="confirmDeleteNote()" class="danger">Yes, Delete</button>
+        <button onclick="closeModal('delete-note-modal')">Cancel</button>
+      </div>
     </div>
   </div>
 
@@ -1117,8 +1059,10 @@
       </p>
       <form action="/admin/delete-user" method="POST">
         <input type="hidden" name="userId" id="delete-user-id">
-        <button type="submit" class="danger">Yes, Delete User</button>
-        <button type="button" onclick="closeModal('delete-user-modal')" style="margin-left: 8px;">Cancel</button>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="submit" class="danger">Yes, Delete User</button>
+          <button type="button" onclick="closeModal('delete-user-modal')">Cancel</button>
+        </div>
       </form>
     </div>
   </div>
@@ -1143,17 +1087,15 @@
         
         <label>Expiry Date (Optional):</label>
         <input type="date" name="subscriptionExpiry" id="sub-expiry" placeholder="YYYY-MM-DD">
-        <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
+        <small class="info-box">
           Leave empty for lifetime premium access. Only applies if status is Premium.
           <br>⚠️ Downgrading to Free will also clear the user's device lock.
         </small>
         
-        <button type="submit" style="background: rgba(255,215,0,0.2); border-color: rgba(255,215,0,0.3);">
-          ⭐ Update Subscription
-        </button>
-        <button type="button" onclick="closeModal('subscription-modal')" style="margin-left: 8px; background: rgba(255,255,255,0.1);">
-          Cancel
-        </button>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;">
+          <button type="submit" style="background: rgba(255,215,0,0.15); border-color: rgba(255,215,0,0.25);">⭐ Update Subscription</button>
+          <button type="button" onclick="closeModal('subscription-modal')" style="background: rgba(255,255,255,0.08);">Cancel</button>
+        </div>
       </form>
     </div>
   </div>
@@ -1164,16 +1106,75 @@
   window.topics = <%- JSON.stringify(topics) %>;
   window.noteChapters = <%- JSON.stringify(noteChapters) %>;
   window.noteTopics = <%- JSON.stringify(noteTopics) %>;
- // ADD THIS HELPER FUNCTION:
-function findNextAvailableIndex(existingIndices) {
-  if (existingIndices.length === 0) return 1;
-  const sorted = [...existingIndices].sort((a, b) => a - b);
-  for (let i = 0; i < sorted.length; i++) {
-    if (sorted[i] !== i + 1) return i + 1;
+
+  function findNextAvailableIndex(existingIndices) {
+    if (existingIndices.length === 0) return 1;
+    const sorted = [...existingIndices].sort((a, b) => a - b);
+    for (let i = 0; i < sorted.length; i++) {
+      if (sorted[i] !== i + 1) return i + 1;
+    }
+    return sorted[sorted.length - 1] + 1;
   }
-  return sorted[sorted.length - 1] + 1;
-}
-</script>
+
+  // Enhanced mobile menu with overlay
+  function toggleMobileMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const btn = document.getElementById('mobileMenuBtn');
+    const isOpen = sidebar.classList.toggle('mobile-open');
+    overlay.classList.toggle('active', isOpen);
+    btn.textContent = isOpen ? '✕' : '☰';
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  function closeMobileMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const btn = document.getElementById('mobileMenuBtn');
+    sidebar.classList.remove('mobile-open');
+    overlay.classList.remove('active');
+    btn.textContent = '☰';
+    document.body.style.overflow = '';
+  }
+
+  // Close mobile menu when nav item clicked
+  const originalShowSection = window.showSection;
+  const navItems = document.querySelectorAll('.nav-item');
+  navItems.forEach(item => {
+    const originalOnclick = item.getAttribute('onclick');
+    if (originalOnclick) {
+      item.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          closeMobileMenu();
+        }
+      });
+    }
+  });
+
+  // Close sidebar on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMobileMenu();
+      // Also close any open modals
+      document.querySelectorAll('.modal').forEach(m => {
+        if (m.style.display === 'flex') {
+          m.style.display = 'none';
+        }
+      });
+    }
+  });
+
+  // Handle window resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth > 768) {
+        closeMobileMenu();
+      }
+    }, 100);
+  });
+  </script>
 
   <script src="/clientadmin.js"></script>
 
