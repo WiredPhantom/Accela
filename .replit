@@ -58,5 +58,5 @@ flashcarduri = "mongodb+srv://practice:practice123@cluster0.wjn7kvt.mongodb.net/
 jwtkey = "iamgonnabeabillinoreinshallah"
 RAZORPAY_KEY_ID = "rzp_test_RlaWeM1APi1E1M"
 RAZORPAY_KEY_SECRET = "5E4VnaEzMj6DakZfhKRcA320"
-PREMIUM_PRICE = "4900"
+PREMIUM_PRICE = "9900"
 PREMIUM_CURRENCY = "INR"
