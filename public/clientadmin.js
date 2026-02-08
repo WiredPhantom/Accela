@@ -9,7 +9,7 @@
   return sorted[sorted.length - 1] + 1;
   }
 
-  console.log("✅ Enhanced clientadmin.js loaded (Premium + Notes Edition)");
+  console.log("✅ Enhanced clientadmin.js loaded (Premium + Notes + Device Lock Edition)");
 
   const chapters = window.chapters || [];
   const topics = window.topics || [];
@@ -38,6 +38,8 @@
       loadFlashcardCounts();
     } else if (sectionName === 'notes') {
       loadAllNotes();
+    } else if (sectionName === 'device-locks') {
+      loadDeviceLocks();
     }
   };
 
@@ -236,6 +238,208 @@
       }
     }
     openModal('subscription-modal');
+  };
+
+  // ==================== DEVICE LOCK MANAGEMENT (NEW) ====================
+
+  // Force logout (session only, NOT device lock)
+  window.forceLogout = async function(userId, username) {
+    if (!confirm(`Force logout ${username}?\n\nThis will clear their session (they'll need to re-login) but their device lock will remain active.`)) return;
+
+    try {
+      const response = await fetch('/admin/force-logout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId })
+      });
+      const data = await response.json();
+      if (data.success) {
+        showToast(`✅ ${data.message}`, 'success');
+      } else {
+        showToast(`❌ ${data.error}`, 'error');
+      }
+    } catch (err) {
+      console.error('Force logout error:', err);
+      showToast('❌ Failed to force logout', 'error');
+    }
+  };
+
+  // Clear device lock
+  window.clearDeviceLock = async function(userId, username) {
+    if (!confirm(`Clear device lock for ${username}?\n\nThis will allow them to login from ANY device. A new device lock will be created when they next login.`)) return;
+
+    try {
+      const response = await fetch('/admin/clear-device-lock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId })
+      });
+      const data = await response.json();
+      if (data.success) {
+        showToast(`🔓 ${data.message}`, 'success');
+        setTimeout(() => location.reload(), 1500);
+      } else {
+        showToast(`❌ ${data.error}`, 'error');
+      }
+    } catch (err) {
+      console.error('Clear device lock error:', err);
+      showToast('❌ Failed to clear device lock', 'error');
+    }
+  };
+
+  // Quick clear by username
+  window.quickClearDeviceLock = async function() {
+    const usernameInput = document.getElementById('quickClearUsername');
+    const username = usernameInput?.value?.trim();
+    
+    if (!username) {
+      showToast('⚠️ Please enter a username', 'error');
+      return;
+    }
+
+    if (!confirm(`Clear device lock for "${username}"?\n\nThey will be able to login from any device.`)) return;
+
+    try {
+      const response = await fetch(`/admin/clear-device-lock/${encodeURIComponent(username)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const data = await response.json();
+      if (data.success) {
+        showToast(`🔓 ${data.message}`, 'success');
+        usernameInput.value = '';
+        loadDeviceLocks(); // Refresh the list
+      } else {
+        showToast(`❌ ${data.error}`, 'error');
+      }
+    } catch (err) {
+      console.error('Quick clear error:', err);
+      showToast('❌ Failed to clear device lock', 'error');
+    }
+  };
+
+  // Load all active device locks
+  window.loadDeviceLocks = async function() {
+    const container = document.getElementById('device-locks-list');
+    if (!container) return;
+
+    container.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;"><span class="loading"></span> Loading device locks...</p>';
+
+    try {
+      const response = await fetch('/admin/device-locks');
+      const data = await response.json();
+
+      if (data.count === 0) {
+        container.innerHTML = '<p style="color: #888; text-align: center; padding: 40px;">No active device locks found.</p>';
+        return;
+      }
+
+      container.innerHTML = `
+        <p style="color: #00ff88; margin-bottom: 16px;">🔒 ${data.count} active device lock(s)</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Subscription</th>
+              <th>Device</th>
+              <th>Locked Since</th>
+              <th>Expires</th>
+              <th>Remaining</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.locks.map(lock => `
+              <tr>
+                <td><strong>${escapeHtml(lock.username)}</strong></td>
+                <td>
+                  ${lock.subscriptionStatus === 'premium' 
+                    ? '<span style="color: #ffd700;">⭐ Premium</span>' 
+                    : '<span style="color: #888;">Free</span>'}
+                </td>
+                <td><code style="font-size: 11px; color: #888;">${escapeHtml(lock.deviceFingerprint)}</code></td>
+                <td>${new Date(lock.lockedAt).toLocaleDateString()}</td>
+                <td>${new Date(lock.expiresAt).toLocaleDateString()}</td>
+                <td>
+                  <span style="color: ${lock.remainingDays <= 7 ? '#ffd700' : '#ff6b6b'}; font-weight: 600;">
+                    ${lock.remainingDays} days
+                  </span>
+                </td>
+                <td>
+                  <button onclick="clearDeviceLock('${lock.userId}', '${escapeHtml(lock.username)}')" 
+                          style="background: rgba(255,165,0,0.2); border-color: rgba(255,165,0,0.3);">
+                    🔓 Clear Lock
+                  </button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    } catch (err) {
+      console.error('Error loading device locks:', err);
+      container.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 40px;">❌ Failed to load device locks</p>';
+    }
+  };
+
+  // Load active sessions
+  window.loadActiveSessions = async function() {
+    const container = document.getElementById('active-sessions-list');
+    if (!container) return;
+
+    container.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;"><span class="loading"></span> Loading sessions...</p>';
+
+    try {
+      const response = await fetch('/admin/active-sessions');
+      const data = await response.json();
+
+      if (data.count === 0) {
+        container.innerHTML = '<p style="color: #888; text-align: center; padding: 40px;">No active sessions found.</p>';
+        return;
+      }
+
+      container.innerHTML = `
+        <p style="color: #00ff88; margin-bottom: 16px;">🟢 ${data.count} active session(s)</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Role</th>
+              <th>Login Time</th>
+              <th>Last Activity</th>
+              <th>Session Expires</th>
+              <th>Device Lock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.sessions.map(s => `
+              <tr>
+                <td><strong>${escapeHtml(s.username)}</strong></td>
+                <td style="text-transform: capitalize;">${s.role === 'admin' ? '<span style="color: #ff6b9d;">👑 Admin</span>' : s.role}</td>
+                <td>${new Date(s.loginTime).toLocaleString()}</td>
+                <td>${new Date(s.lastActivity).toLocaleString()}</td>
+                <td>${new Date(s.sessionExpiresAt).toLocaleDateString()}</td>
+                <td>
+                  ${s.hasDeviceLock 
+                    ? `<span style="color: #ff6b6b;">🔒 Locked</span><br><small style="color: #888;">Until ${new Date(s.deviceLockExpiresAt).toLocaleDateString()}</small>`
+                    : '<span style="color: #00ff88;">🔓 None</span>'}
+                </td>
+                <td>
+                  <button onclick="forceLogout('${s.userId}', '${escapeHtml(s.username)}')" style="font-size: 12px;">🚪 Logout</button>
+                  ${s.hasDeviceLock 
+                    ? `<button onclick="clearDeviceLock('${s.userId}', '${escapeHtml(s.username)}')" style="font-size: 12px; background: rgba(255,165,0,0.2); border-color: rgba(255,165,0,0.3);">🔓 Clear Lock</button>` 
+                    : ''}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    } catch (err) {
+      console.error('Error loading sessions:', err);
+      container.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 40px;">❌ Failed to load sessions</p>';
+    }
   };
 
   // ==================== TOPIC FUNCTIONS ====================
@@ -741,7 +945,6 @@ if (noteNewTopicNameEl) {
       if (chIdx) {
         const relatedTopics = noteTopics.filter(t => t._id.chapterIndex === chIdx);
         
-        // Only auto-fill if empty
         if (newIndexEl) {
           const currentValue = newIndexEl.value;
           if (!currentValue || currentValue === '') {
@@ -769,7 +972,6 @@ if (noteNewTopicNameEl) {
   });
 }
 
-// Add manual input detection for notes
 const noteNewTopicIndexEl = document.getElementById("noteNewTopicIndex");
 if (noteNewTopicIndexEl) {
   noteNewTopicIndexEl.addEventListener("input", (e) => {
@@ -858,7 +1060,6 @@ if (noteNewTopicIndexEl) {
     return option?.dataset?.name || option?.text?.trim() || "";
   }
 
-  // --- REGULAR FLASHCARD FORM ---
   window.fillChapterName = function() {
     const sel = document.getElementById("chapterIndex");
     if (!sel) return;
@@ -877,7 +1078,6 @@ if (noteNewTopicIndexEl) {
     document.getElementById("newTopicIndex").value = "";
   };
 
-  // --- BULK FORM ---
   window.fillBulkChapterName = function() {
     const sel = document.getElementById("bulkChapterIndex");
     if (!sel) return;
@@ -897,7 +1097,6 @@ if (noteNewTopicIndexEl) {
   };
 
   // ==================== INPUT HANDLERS ====================
-  // --- REGULAR ---
   const newChapterNameEl = document.getElementById("newChapterName");
   if (newChapterNameEl) {
     newChapterNameEl.addEventListener("input", (e) => {
@@ -918,7 +1117,6 @@ if (noteNewTopicIndexEl) {
     });
   }
 
-
 const newTopicNameEl = document.getElementById("newTopicName");
 if (newTopicNameEl) {
   newTopicNameEl.addEventListener("input", (e) => {
@@ -934,7 +1132,6 @@ if (newTopicNameEl) {
       if (chIdx) {
         const relatedTopics = topics.filter(t => t._id.chapterIndex === chIdx);
         
-        // Only auto-fill if the index field is empty (not manually set)
         if (newIndexEl) {
           const currentValue = newIndexEl.value;
           if (!currentValue || currentValue === '') {
@@ -942,7 +1139,7 @@ if (newTopicNameEl) {
             const nextIndex = findNextAvailableIndex(existingIndices);
             newIndexEl.value = nextIndex;
             newIndexEl.placeholder = `Suggested: ${nextIndex}`;
-            newIndexEl.style.color = '#888'; // Gray = auto-filled
+            newIndexEl.style.color = '#888';
           }
         }
         
@@ -953,7 +1150,6 @@ if (newTopicNameEl) {
         e.target.value = "";
       }
     } else {
-      // Only clear if it was auto-filled (gray text)
       if (newIndexEl && newIndexEl.style.color === 'rgb(136, 136, 136)') {
         newIndexEl.value = "";
         newIndexEl.placeholder = "Auto";
@@ -963,23 +1159,20 @@ if (newTopicNameEl) {
   });
 }
 
-// Add manual index input detection
 const newTopicIndexEl = document.getElementById("newTopicIndex");
 if (newTopicIndexEl) {
   newTopicIndexEl.addEventListener("input", (e) => {
-    // User manually typed something
     if (e.target.value) {
-      e.target.style.color = '#fff'; // White = manual
+      e.target.style.color = '#fff';
       e.target.style.fontWeight = '700';
       e.target.placeholder = "Manual";
     } else {
-      e.target.style.color = '#888'; // Gray = auto
+      e.target.style.color = '#888';
       e.target.style.fontWeight = '400';
       e.target.placeholder = "Auto";
     }
   });
-  
-  // Allow clearing with backspace
+
   newTopicIndexEl.addEventListener("keydown", (e) => {
     if (e.key === 'Backspace' && e.target.value.length === 1) {
       e.target.value = "";
@@ -987,9 +1180,8 @@ if (newTopicIndexEl) {
       e.target.placeholder = "Auto";
     }
   });
-              }
+}
 
-  // --- BULK ---
   const bulkNewChapterNameEl = document.getElementById("bulknewChapterName");
   if (bulkNewChapterNameEl) {
     bulkNewChapterNameEl.addEventListener("input", (e) => {
@@ -1025,7 +1217,6 @@ if (bulkNewTopicNameEl) {
       if (chIdx) {
         const related = topics.filter(tp => tp._id.chapterIndex === chIdx);
         
-        // Only auto-fill if empty
         if (newIndexEl) {
           const currentValue = newIndexEl.value;
           if (!currentValue || currentValue === '') {
@@ -1053,7 +1244,6 @@ if (bulkNewTopicNameEl) {
   });
 }
 
-// Add manual input detection for bulk
 const bulkNewTopicIndexEl = document.getElementById("bulknewTopicIndex");
 if (bulkNewTopicIndexEl) {
   bulkNewTopicIndexEl.addEventListener("input", (e) => {
@@ -1067,7 +1257,7 @@ if (bulkNewTopicIndexEl) {
       e.target.placeholder = "Auto";
     }
   });
-                                          }
+}
 
   // ==================== FORM VALIDATION ====================
   const flashcardForm = document.getElementById('add-flashcard-form');
@@ -1140,9 +1330,8 @@ if (bulkNewTopicIndexEl) {
   // ==================== INIT ====================
   document.addEventListener('DOMContentLoaded', () => {
     loadFlashcardCount();
-    console.log('✅ Admin panel initialized with Premium + Notes features');
+    console.log('✅ Admin panel initialized with Premium + Notes + Device Lock features');
 
-    // Attach dropdown change handlers
     const chapterIndexEl = document.getElementById("chapterIndex");
     if (chapterIndexEl) chapterIndexEl.addEventListener("change", fillChapterName);
     
@@ -1163,15 +1352,8 @@ if (bulkNewTopicIndexEl) {
   });
 
 
-
-
-
-
-// ADD THESE FUNCTIONS TO THE END OF YOUR clientadmin.js file (before the closing })() )
-
 // ==================== BULK UPLOAD FILE/TEXT TOGGLE ====================
 document.addEventListener('DOMContentLoaded', () => {
-  // Bulk Upload Method Toggle
   const bulkMethodFile = document.getElementById('bulkMethodFile');
   const bulkMethodText = document.getElementById('bulkMethodText');
   const bulkFileSection = document.getElementById('bulkFileUploadSection');
@@ -1185,8 +1367,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bulkTextSection) bulkTextSection.style.display = 'none';
       if (bulkJsonData) bulkJsonData.removeAttribute('required');
       if (bulkJsonFile) bulkJsonFile.setAttribute('required', 'required');
-      
-      // Update label styles
       bulkMethodFile.parentElement.style.background = 'rgba(79,70,229,0.2)';
       bulkMethodFile.parentElement.style.borderColor = 'rgba(79,70,229,0.5)';
       bulkMethodText.parentElement.style.background = 'rgba(255,255,255,0.05)';
@@ -1198,8 +1378,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bulkTextSection) bulkTextSection.style.display = 'block';
       if (bulkJsonFile) bulkJsonFile.removeAttribute('required');
       if (bulkJsonData) bulkJsonData.setAttribute('required', 'required');
-      
-      // Update label styles
       bulkMethodText.parentElement.style.background = 'rgba(79,70,229,0.2)';
       bulkMethodText.parentElement.style.borderColor = 'rgba(79,70,229,0.5)';
       bulkMethodFile.parentElement.style.background = 'rgba(255,255,255,0.05)';
@@ -1207,7 +1385,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Bulk File Upload Preview
   if (bulkJsonFile) {
     bulkJsonFile.addEventListener('change', (e) => {
       const file = e.target.files[0];
@@ -1222,12 +1399,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (preview) preview.style.display = 'none';
           return;
         }
-
         if (fileName) fileName.textContent = file.name;
         if (fileInfo) fileInfo.textContent = `Size: ${(file.size / 1024).toFixed(2)} KB | Type: ${file.type || 'application/json'}`;
         if (preview) preview.style.display = 'block';
 
-        // Optional: Preview content
         const reader = new FileReader();
         reader.onload = (event) => {
           try {
@@ -1239,7 +1414,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           } catch (err) {
             showToast('⚠️ Invalid JSON format', 'error');
-            console.error('JSON parse error:', err);
           }
         };
         reader.readAsText(file);
@@ -1249,7 +1423,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ==================== NOTE UPLOAD FILE/TEXT TOGGLE ====================
+  // Note upload toggle
   const noteMethodFile = document.getElementById('noteMethodFile');
   const noteMethodText = document.getElementById('noteMethodText');
   const noteFileSection = document.getElementById('noteFileUploadSection');
@@ -1263,8 +1437,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (noteTextSection) noteTextSection.style.display = 'none';
       if (noteHtmlContent) noteHtmlContent.removeAttribute('required');
       if (noteHtmlFile) noteHtmlFile.setAttribute('required', 'required');
-      
-      // Update label styles
       noteMethodFile.parentElement.style.background = 'rgba(255,215,0,0.2)';
       noteMethodFile.parentElement.style.borderColor = 'rgba(255,215,0,0.5)';
       noteMethodText.parentElement.style.background = 'rgba(255,255,255,0.05)';
@@ -1276,8 +1448,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (noteTextSection) noteTextSection.style.display = 'block';
       if (noteHtmlFile) noteHtmlFile.removeAttribute('required');
       if (noteHtmlContent) noteHtmlContent.setAttribute('required', 'required');
-      
-      // Update label styles
       noteMethodText.parentElement.style.background = 'rgba(255,215,0,0.2)';
       noteMethodText.parentElement.style.borderColor = 'rgba(255,215,0,0.5)';
       noteMethodFile.parentElement.style.background = 'rgba(255,255,255,0.05)';
@@ -1285,7 +1455,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Note File Upload Preview
   if (noteHtmlFile) {
     noteHtmlFile.addEventListener('change', (e) => {
       const file = e.target.files[0];
@@ -1300,12 +1469,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (preview) preview.style.display = 'none';
           return;
         }
-
         if (fileName) fileName.textContent = file.name;
         if (fileInfo) fileInfo.textContent = `Size: ${(file.size / 1024).toFixed(2)} KB | Type: ${file.type || 'text/html'}`;
         if (preview) preview.style.display = 'block';
 
-        // Optional: Basic HTML validation
         const reader = new FileReader();
         reader.onload = (event) => {
           const content = event.target.result;
@@ -1322,9 +1489,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ==================== FORM SUBMISSION HANDLERS ====================
-  
-  // Bulk Upload Form Validation
+  // Form submission handlers
   const bulkUploadForm = document.getElementById('bulk-upload-form');
   if (bulkUploadForm) {
     bulkUploadForm.addEventListener('submit', (e) => {
@@ -1333,29 +1498,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const fileInput = document.getElementById('bulkJsonFile');
       const textInput = document.getElementById('bulkJsonData');
       
-      // Check if chapter and topic are selected
       const chapterName = document.getElementById("bulkChapterName")?.value.trim();
       const topicName = document.getElementById("bulkTopicName")?.value.trim();
       const newChapterName = document.getElementById("bulknewChapterName")?.value.trim();
       const newTopicName = document.getElementById("bulknewTopicName")?.value.trim();
 
-      const chapterOk = chapterName || newChapterName;
-      const topicOk = topicName || newTopicName;
-      
-      if (!chapterOk || !topicOk) {
+      if (!(chapterName || newChapterName) || !(topicName || newTopicName)) {
         e.preventDefault();
         showToast("Please select or enter both a Chapter and a Topic", "error");
         return;
       }
 
-      // Validate based on method
       if (method === 'file') {
         if (!fileInput?.files?.length) {
           e.preventDefault();
           showToast('⚠️ Please select a JSON file to upload', 'error');
           return;
         }
-        // Clear text input to avoid confusion
         if (textInput) textInput.value = '';
       } else if (method === 'text') {
         if (!textInput?.value.trim()) {
@@ -1363,7 +1522,6 @@ document.addEventListener('DOMContentLoaded', () => {
           showToast('⚠️ Please paste JSON data', 'error');
           return;
         }
-        // Clear file input
         if (fileInput) fileInput.value = '';
       }
 
@@ -1374,7 +1532,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Add Note Form Validation
   const addNoteForm = document.getElementById('add-note-form');
   if (addNoteForm) {
     addNoteForm.addEventListener('submit', (e) => {
@@ -1384,36 +1541,29 @@ document.addEventListener('DOMContentLoaded', () => {
       const textInput = document.getElementById('noteHtmlContent');
       const titleInput = document.getElementById('noteTitle');
       
-      // Check title
       if (!titleInput?.value.trim()) {
         e.preventDefault();
         showToast('⚠️ Please enter a note title', 'error');
         return;
       }
 
-      // Check if chapter and topic are selected
       const chapterName = document.getElementById("noteChapterName")?.value.trim();
       const topicName = document.getElementById("noteTopicName")?.value.trim();
       const newChapterName = document.getElementById("noteNewChapterName")?.value.trim();
       const newTopicName = document.getElementById("noteNewTopicName")?.value.trim();
 
-      const chapterOk = chapterName || newChapterName;
-      const topicOk = topicName || newTopicName;
-      
-      if (!chapterOk || !topicOk) {
+      if (!(chapterName || newChapterName) || !(topicName || newTopicName)) {
         e.preventDefault();
         showToast("Please select or enter both a Chapter and a Topic", "error");
         return;
       }
 
-      // Validate based on method
       if (method === 'file') {
         if (!fileInput?.files?.length) {
           e.preventDefault();
           showToast('⚠️ Please select an HTML file to upload', 'error');
           return;
         }
-        // Clear text input
         if (textInput) textInput.value = '';
       } else if (method === 'text') {
         if (!textInput?.value.trim()) {
@@ -1421,7 +1571,6 @@ document.addEventListener('DOMContentLoaded', () => {
           showToast('⚠️ Please paste HTML content', 'error');
           return;
         }
-        // Clear file input
         if (fileInput) fileInput.value = '';
       }
 
@@ -1433,21 +1582,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ==================== FILE SIZE FORMATTER ====================
-function formatFileSize(bytes) {
-  if (bytes === 0) return '0 Bytes';
-  const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-}
+console.log('✅ File upload + Device Lock handlers initialized');
 
-console.log('✅ File upload handlers initialized');
-
-
-
-
-
-
-  
 })();
