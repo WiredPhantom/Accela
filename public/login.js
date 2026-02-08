@@ -1,4 +1,4 @@
-// public/login.js - Single Device Login Handler
+// public/login.js - Device Lock Login Handler
 const form = document.getElementById('login-form');
 const errorDiv = document.getElementById('error-message');
 const submitBtn = document.getElementById('submit-btn');
@@ -13,7 +13,7 @@ function showError(message) {
   }, 10);
 }
 
-function showDeviceLocked(message, expiresAt) {
+function showDeviceLocked(message, expiresAt, remainingDays) {
   const expiryDate = new Date(expiresAt).toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
@@ -26,7 +26,10 @@ function showDeviceLocked(message, expiresAt) {
       <div class="lock-icon">🔒</div>
       <div class="lock-title">Device Locked</div>
       <div class="lock-message">${message}</div>
-      <div class="lock-expiry">You can login from a new device after: ${expiryDate}</div>
+      <div class="lock-expiry">Lock expires on: ${expiryDate}${remainingDays ? ` (${remainingDays} days remaining)` : ''}</div>
+      <div class="lock-help" style="margin-top: 8px; font-size: 12px; color: #888;">
+        Contact admin to transfer your account to a new device.
+      </div>
     </div>
   `;
   errorDiv.classList.add('show');
@@ -42,7 +45,6 @@ function showSuccess(message) {
 
 function hideError() {
   errorDiv.classList.remove('show');
-  // Reset to error styling
   errorDiv.style.backgroundColor = 'rgba(255, 68, 68, 0.1)';
   errorDiv.style.borderColor = '#ff4444';
   errorDiv.style.color = '#ff4444';
@@ -71,18 +73,10 @@ form.addEventListener('submit', async (e) => {
     const data = await response.json();
 
     if (data.success) {
-      // Check if there was a previous session message
-      if (data.message && data.message.includes('Previous session')) {
-        showSuccess('⚠️ Previous device logged out. Redirecting...');
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 2000);
-      } else {
-        window.location.href = '/';
-      }
+      window.location.href = '/';
     } else if (data.reason === 'DEVICE_LOCKED') {
-      // Special handling for device lock - user is trying from different device
-      showDeviceLocked(data.message, data.expiresAt);
+      // Account is locked to a different device
+      showDeviceLocked(data.message, data.expiresAt, data.remainingDays);
       submitBtn.disabled = false;
       submitBtn.textContent = 'Enter';
     } else {
