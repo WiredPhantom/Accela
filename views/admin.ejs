@@ -66,6 +66,11 @@
           <span class="icon">👥</span>
           Users
         </a>
+        <!-- NEW: Device Locks Section -->
+        <a class="nav-item" onclick="showSection('device-locks')" data-section="device-locks">
+          <span class="icon">🔒</span>
+          Device Locks
+        </a>
       </nav>
       <div class="sidebar-footer">
         <a href="/" class="home-btn" style="width: 100%; text-align: center; display: block; margin-bottom: 12px;">← Back to Home</a>
@@ -127,6 +132,7 @@
               <button onclick="showSection('premium')">⭐ Manage Premium</button>
               <button onclick="exportAllData()">📤 Export All Data</button>
               <button onclick="showSection('users')">👥 Manage Users</button>
+              <button onclick="showSection('device-locks')" style="background: rgba(255,107,107,0.2); border-color: rgba(255,107,107,0.3);">🔒 Device Locks</button>
             </div>
           </div>
         </div>
@@ -825,6 +831,8 @@
                   <th>User ID</th>
                   <th>Username</th>
                   <th>Role</th>
+                  <th>Subscription</th>
+                  <th>Device Lock</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -835,6 +843,25 @@
                     <td><%= user.username %></td>
                     <td><span style="text-transform: capitalize;"><%= user.role %></span></td>
                     <td>
+                      <% if (user.subscriptionStatus === 'premium') { %>
+                        <span style="color: #ffd700;">⭐ Premium</span>
+                      <% } else { %>
+                        <span style="color: #888;">Free</span>
+                      <% } %>
+                    </td>
+                    <td>
+                      <% if (user.deviceLock && user.deviceLock.deviceFingerprint && user.deviceLock.expiresAt > new Date()) { %>
+                        <span style="color: #ff6b6b;">🔒 Locked</span>
+                        <br><small style="color: #888;">Expires: <%= new Date(user.deviceLock.expiresAt).toLocaleDateString() %></small>
+                      <% } else { %>
+                        <span style="color: #00ff88;">🔓 None</span>
+                      <% } %>
+                    </td>
+                    <td>
+                      <button onclick="forceLogout('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>')">🚪 Force Logout</button>
+                      <% if (user.deviceLock && user.deviceLock.deviceFingerprint && user.deviceLock.expiresAt > new Date()) { %>
+                        <button onclick="clearDeviceLock('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>')" style="background: rgba(255,165,0,0.2); border-color: rgba(255,165,0,0.3);">🔓 Clear Lock</button>
+                      <% } %>
                       <button onclick="openDeleteUserModal('<%= user.userId %>', '<%= user.username.replace(/'/g, "\\'") %>')" class="danger">🗑️ Delete</button>
                     </td>
                   </tr>
@@ -872,6 +899,64 @@
           </div>
         </div>
       </div>
+
+      <!-- ==================== NEW: DEVICE LOCKS SECTION ==================== -->
+      <div class="section" id="device-locks-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+          <h1 class="title">🔒 Device Lock Management</h1>
+          
+          <div class="container">
+            <div style="background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.3); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+              <h3 style="color: #ff6b6b; margin-bottom: 8px;">ℹ️ How Device Locks Work</h3>
+              <ul style="color: #ccc; font-size: 14px; line-height: 1.8; padding-left: 20px;">
+                <li><strong>Premium users</strong> are locked to one device for 30 days after login</li>
+                <li><strong>Free users</strong> have NO device lock — they can login from anywhere</li>
+                <li><strong>Admins</strong> are exempt from all device locks</li>
+                <li>Device lock <strong>persists after logout</strong> — logging out doesn't clear the lock</li>
+                <li>Only <strong>you (admin)</strong> can manually clear a device lock, or it expires after 30 days</li>
+              </ul>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+              <button onclick="loadDeviceLocks()">🔄 Refresh Locks</button>
+              <button onclick="loadActiveSessions()">📊 View Active Sessions</button>
+            </div>
+
+            <h2>Active Device Locks</h2>
+            <div id="device-locks-list">
+              <p style="color: #888; text-align: center; padding: 40px;">
+                Click "Refresh Locks" to load active device locks
+              </p>
+            </div>
+          </div>
+
+          <div class="container">
+            <h2>Active Sessions</h2>
+            <div id="active-sessions-list">
+              <p style="color: #888; text-align: center; padding: 40px;">
+                Click "View Active Sessions" to load
+              </p>
+            </div>
+          </div>
+
+          <div class="container">
+            <h2>🔓 Quick Clear Device Lock</h2>
+            <p style="color: #888; margin-bottom: 16px;">
+              Enter a username to quickly clear their device lock. Use this when a user contacts you saying they bought a new phone.
+            </p>
+            <div style="display: flex; gap: 12px; align-items: end;">
+              <div style="flex: 1;">
+                <label>Username:</label>
+                <input type="text" id="quickClearUsername" placeholder="Enter username" style="margin-bottom: 0;">
+              </div>
+              <button onclick="quickClearDeviceLock()" style="background: rgba(255,165,0,0.2); border-color: rgba(255,165,0,0.3); white-space: nowrap; margin-bottom: 0;">
+                🔓 Clear Lock
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
   </div>
 
@@ -1060,6 +1145,7 @@
         <input type="date" name="subscriptionExpiry" id="sub-expiry" placeholder="YYYY-MM-DD">
         <small style="display: block; margin-top: -10px; margin-bottom: 16px; color: #888;">
           Leave empty for lifetime premium access. Only applies if status is Premium.
+          <br>⚠️ Downgrading to Free will also clear the user's device lock.
         </small>
         
         <button type="submit" style="background: rgba(255,215,0,0.2); border-color: rgba(255,215,0,0.3);">
@@ -1093,5 +1179,3 @@ function findNextAvailableIndex(existingIndices) {
 
 </body>
 </html>
-
-     
