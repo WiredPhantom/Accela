@@ -3,12 +3,11 @@ module.exports = (User, Flashcard, Note) => {
   const bcrypt = require("bcrypt");
   const multer = require('multer');
   
-  // Configure multer for file uploads
   const storage = multer.memoryStorage();
   const upload = multer({
     storage: storage,
     limits: {
-      fileSize: 5 * 1024 * 1024 // 5MB limit
+      fileSize: 5 * 1024 * 1024
     },
     fileFilter: (req, file, cb) => {
       if (file.fieldname === 'jsonFile' && file.mimetype === 'application/json') {
@@ -111,7 +110,7 @@ module.exports = (User, Flashcard, Note) => {
 
   // ==================== SESSION MANAGEMENT ====================
   
-  // Force logout a user (clear their session)
+  // Force logout a user (clear their session only, NOT device lock)
   router.post("/force-logout", async (req, res) => {
     const { userId } = req.body;
     
@@ -128,11 +127,11 @@ module.exports = (User, Flashcard, Note) => {
       user.clearSession();
       await user.save();
       
-      console.log(`✅ Admin forced logout for user: ${user.username}`);
+      console.log(`✅ Admin forced logout for user: ${user.username} (device lock preserved)`);
       
       res.json({ 
         success: true, 
-        message: `Session cleared for ${user.username}` 
+        message: `Session cleared for ${user.username} (device lock still active)` 
       });
     } catch (err) {
       console.error("❌ Force logout error:", err);
@@ -143,7 +142,76 @@ module.exports = (User, Flashcard, Note) => {
     }
   });
 
-  // Get user session info
+  // ==================== NEW: CLEAR DEVICE LOCK (Admin only) ====================
+  router.post("/clear-device-lock", async (req, res) => {
+    const { userId } = req.body;
+    
+    try {
+      const user = await User.findOne({ userId });
+      
+      if (!user) {
+        return res.status(404).json({ 
+          success: false, 
+          error: "User not found" 
+        });
+      }
+      
+      const hadLock = user.hasActiveDeviceLock();
+      const oldFingerprint = user.deviceLock?.deviceFingerprint?.substring(0, 8) || 'none';
+      
+      user.clearDeviceLock();
+      await user.save();
+      
+      console.log(`🔓 Admin cleared device lock for user: ${user.username} (was locked: ${hadLock}, old device: ${oldFingerprint}...)`);
+      
+      res.json({ 
+        success: true, 
+        message: `Device lock cleared for ${user.username}. They can now login from any device.`,
+        hadActiveLock: hadLock
+      });
+    } catch (err) {
+      console.error("❌ Clear device lock error:", err);
+      res.status(500).json({ 
+        success: false, 
+        error: "Failed to clear device lock" 
+      });
+    }
+  });
+
+  // ==================== NEW: Clear device lock by username (convenience route) ====================
+  router.post("/clear-device-lock/:username", async (req, res) => {
+    try {
+      const user = await User.findOne({ username: req.params.username });
+      
+      if (!user) {
+        return res.status(404).json({ 
+          success: false, 
+          error: "User not found" 
+        });
+      }
+      
+      const hadLock = user.hasActiveDeviceLock();
+      
+      user.clearDeviceLock();
+      await user.save();
+      
+      console.log(`🔓 Admin cleared device lock for: ${user.username}`);
+      
+      res.json({ 
+        success: true, 
+        message: `Device lock cleared for ${user.username}`,
+        hadActiveLock: hadLock
+      });
+    } catch (err) {
+      console.error("❌ Clear device lock error:", err);
+      res.status(500).json({ 
+        success: false, 
+        error: "Failed to clear device lock" 
+      });
+    }
+  });
+
+  // Get user session AND device lock info
   router.get("/user-session/:userId", async (req, res) => {
     try {
       const user = await User.findOne({ userId: req.params.userId });
@@ -156,8 +224,11 @@ module.exports = (User, Flashcard, Note) => {
       
       res.json({
         username: user.username,
+        subscriptionStatus: user.subscriptionStatus,
         hasActiveSession: user.hasActiveSession(),
-        session: sessionInfo,
+        hasActiveDeviceLock: user.hasActiveDeviceLock(),
+        session: sessionInfo.session,
+        deviceLock: sessionInfo.deviceLock,
         loginAttempts: user.loginAttempts?.slice(-5) || []
       });
     } catch (err) {
@@ -166,22 +237,25 @@ module.exports = (User, Flashcard, Note) => {
     }
   });
 
-  // View all active sessions
+  // View all active sessions AND device locks
   router.get("/active-sessions", async (req, res) => {
     try {
       const usersWithSessions = await User.find({
         'currentSession.sessionToken': { $exists: true },
         'currentSession.expiresAt': { $gt: new Date() }
-      }).select('username userId currentSession role');
+      }).select('username userId currentSession deviceLock role subscriptionStatus');
       
       const sessions = usersWithSessions.map(u => ({
         userId: u.userId,
         username: u.username,
         role: u.role,
+        subscriptionStatus: u.subscriptionStatus,
         loginTime: u.currentSession.loginTime,
         lastActivity: u.currentSession.lastActivity,
-        expiresAt: u.currentSession.expiresAt,
-        ipAddress: u.currentSession.ipAddress
+        sessionExpiresAt: u.currentSession.expiresAt,
+        ipAddress: u.currentSession.ipAddress,
+        hasDeviceLock: u.hasActiveDeviceLock(),
+        deviceLockExpiresAt: u.deviceLock?.expiresAt || null
       }));
       
       res.json({ 
@@ -191,6 +265,34 @@ module.exports = (User, Flashcard, Note) => {
     } catch (err) {
       console.error("❌ Active sessions error:", err);
       res.status(500).json({ error: "Failed to get active sessions" });
+    }
+  });
+
+  // ==================== NEW: View all device locks ====================
+  router.get("/device-locks", async (req, res) => {
+    try {
+      const usersWithLocks = await User.find({
+        'deviceLock.deviceFingerprint': { $exists: true },
+        'deviceLock.expiresAt': { $gt: new Date() }
+      }).select('username userId deviceLock subscriptionStatus');
+      
+      const locks = usersWithLocks.map(u => ({
+        userId: u.userId,
+        username: u.username,
+        subscriptionStatus: u.subscriptionStatus,
+        deviceFingerprint: u.deviceLock.deviceFingerprint?.substring(0, 8) + '...',
+        lockedAt: u.deviceLock.lockedAt,
+        expiresAt: u.deviceLock.expiresAt,
+        remainingDays: Math.ceil((u.deviceLock.expiresAt - new Date()) / (1000 * 60 * 60 * 24))
+      }));
+      
+      res.json({ 
+        count: locks.length, 
+        locks 
+      });
+    } catch (err) {
+      console.error("❌ Device locks error:", err);
+      res.status(500).json({ error: "Failed to get device locks" });
     }
   });
 
@@ -495,6 +597,19 @@ module.exports = (User, Flashcard, Note) => {
         updateData.subscriptionExpiry = new Date(subscriptionExpiry);
       } else if (subscriptionStatus === 'free') {
         updateData.subscriptionExpiry = null;
+      }
+      
+      // If downgrading to free, also clear the device lock
+      if (subscriptionStatus === 'free') {
+        const user = await User.findOne({ userId });
+        if (user) {
+          user.clearDeviceLock();
+          user.subscriptionStatus = 'free';
+          user.subscriptionExpiry = updateData.subscriptionExpiry;
+          await user.save();
+          console.log(`✅ Subscription downgraded to free for ${user.username}, device lock cleared`);
+          return res.redirect("/admin");
+        }
       }
       
       await User.findOneAndUpdate(
