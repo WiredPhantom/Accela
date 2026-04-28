@@ -163,13 +163,13 @@
     <% if (isAuthenticated && user) { %>
       <div class="user-status <%= isAdmin ? 'admin' : (hasPremium ? 'premium' : 'free') %>">
         <% if (isAdmin) { %>
-          ðŸ‘‘ Admin
+          ðŸ‘‘#128081; Admin
         <% } else if (hasPremium) { %>
-          â­ Premium User
+          â­#11088; Premium User
           <% if (daysLeft !== Infinity && daysLeft > 0) { %>
             <div class="days-left <%= daysLeft <= 7 ? 'warning' : 'good' %>">
               <% if (daysLeft <= 7) { %>
-                âš ï¸ <%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %> left
+                âš ï¸#9888; <%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %> left
               <% } else { %>
                 <%= daysLeft %> days remaining
               <% } %>
@@ -178,8 +178,8 @@
             <div class="days-left good">Lifetime Access</div>
           <% } %>
         <% } else { %>
-          ðŸ‘¤ <%= user.username %>
-          <a href="/upgrade?username=<%= user.username %>" class="upgrade-link">â¬†ï¸ Upgrade to Premium</a>
+          ðŸ‘¤#128100; <%= user.username %>
+          <a href="/upgrade?username=<%= user.username %>" class="upgrade-link">â¬†ï¸#11014; Upgrade to Premium</a>
         <% } %>
       </div>
     <% } else { %>
@@ -191,7 +191,7 @@
   <% if (isAuthenticated && hasPremium && !isAdmin && daysLeft <= 7 && daysLeft > 0 && daysLeft !== Infinity) { %>
     <div class="premium-banner expiring-soon" style="margin-left: 20px; margin-right: 20px;">
       <div class="premium-banner-text">
-        âš ï¸ Your premium subscription expires in <strong><%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %></strong>. Renew now to keep access!
+        âš ï¸#9888; Your premium subscription expires in <strong><%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %></strong>. Renew now to keep access!
       </div>
     </div>
   <% } %>
@@ -199,13 +199,13 @@
   <!-- Home Grid -->
   <div class="home-grid">
     <a href="/notes" class="home-card">
-      <span class="home-card-icon">ðŸ“</span>
+      <span class="home-card-icon">ðŸ“#128221;</span>
       <h2>Smart Notes</h2>
       <p>Boring Textbooks ka nichod. Seedha dimaag mein utarne wali easy Urdu.</p>
     </a>
 
     <a href="/chapters" class="home-card">
-      <span class="home-card-icon">ðŸ—‚ï¸</span>
+      <span class="home-card-icon">ðŸ—‚ï¸#128194;</span>
       <h2>Flashcards</h2>
       <p>Ratta maarna band. Sawalon ke jawab do aur memory permanent karo.</p>
     </a>
@@ -234,9 +234,9 @@
       </p>
 
       <ul class="feature-list">
-        <li>âœ… <strong>Time Saver:</strong> Jo chapter 3 ghante leta hai, wo yahan 30 min mein pakka.</li>
-        <li>âœ… <strong>Urdu Notes:</strong> Simple zubaan, no complicated words.</li>
-        <li>âœ… <strong>Exam Ready:</strong> Hum sirf syllabus nahi, exam pass karwate hain.</li>
+        <li>âœ…#9989; <strong>Time Saver:</strong> Jo chapter 3 ghante leta hai, wo yahan 30 min mein pakka.</li>
+        <li>âœ…#9989; <strong>Urdu Notes:</strong> Simple zubaan, no complicated words.</li>
+        <li>âœ…#9989; <strong>Exam Ready:</strong> Hum sirf syllabus nahi, exam pass karwate hain.</li>
       </ul>
 
       <!-- Pricing Anchor Box -->
@@ -245,10 +245,10 @@
         <p style="color: #ccc; margin-bottom: 0;">Per term â€” less than one pizza</p>
         <hr style="border-color: rgba(255,255,255,0.1); margin: 15px 0;">
         <p style="color: #fff; font-size: 14px; line-height: 1.7;">
-          ðŸ“˜ <strong style="color:#00ffcc;">Term 1 / Term 2 / Term 3:</strong> â‚¹199 each<br>
-          ðŸ† <strong style="color:#ffd700;">Complete Syllabus:</strong> â‚¹499 <span style="color:#aaa;">(save â‚¹98)</span><br>
-          â³ Every plan stays active for <strong>18 months</strong> from purchase.<br>
-          ðŸ“š Includes notes <em>and</em> flashcards for the chapters you buy.
+          ðŸ“˜#128280; <strong style="color:#00ffcc;">Term 1 / Term 2 / Term 3:</strong> â‚¹199 each<br>
+          ðŸ†#127942; <strong style="color:#ffd700;">Complete Syllabus:</strong> â‚¹499 <span style="color:#aaa;">(save â‚¹98)</span><br>
+          â³#9203; Every plan stays active for <strong>18 months</strong> from purchase.<br>
+          ðŸ“š#128218; Includes notes <em>and</em> flashcards for the chapters you buy.
         </p>
 
         <% if (!isAuthenticated) { %>
@@ -259,16 +259,16 @@
 
       <!-- Contact Section -->
       <div class="contact-section">
-        <h3>ðŸ“© Kisi Madad Ki Zaroorat Hai?</h3>
+        <h3>ðŸ“©#128233; Kisi Madad Ki Zaroorat Hai?</h3>
         <p style="font-size: 14px; color: rgba(255, 255, 255, 0.7); margin-bottom: 12px;">
           Direct support for Students
         </p>
         <div class="contact-links">
     <a href="mailto:monstern395@gmail.com" class="contact-btn" onclick="window.open(this.href, '_system'); return false;">
-    ðŸ“§ Email Support
+    ðŸ“§#128231; Email Support
   </a>
   <a href="https://t.me/AccelaSupportbot" class="contact-btn" onclick="window.open(this.href, '_system'); return false;" target="_blank" rel="noopener">
-    ðŸ’¬ Telegram
+    ðŸ’¬#128172; Telegram
   </a>
 </div>
       </div>
@@ -290,27 +290,27 @@
   <section id="updates" class="section">
     <h2 id="siteupdate">What's New</h2>
     <ul class="updates">
-      <li>ðŸ§© <strong>Choose your plan</strong> â€” Buy only the term you need (â‚¹199) or the full syllabus (â‚¹499). Add more terms anytime.</li>
-      <li>â³ <strong>18-month validity</strong> â€” Every plan stays active for 18 months from the day you buy. No mid-prep cut-off.</li>
-      <li>ðŸ“§ <strong>Email verification & password reset</strong> â€” Forgot your password? Reset it yourself from the login page in seconds.</li>
-      <li>ðŸ‘¤ <strong>Profile page</strong> â€” See every plan you own and its individual expiry date in one place.</li>
+      <li>ðŸ§©#129329; <strong>Choose your plan</strong> â€” Buy only the term you need (â‚¹199) or the full syllabus (â‚¹499). Add more terms anytime.</li>
+      <li>â³#9203; <strong>18-month validity</strong> â€” Every plan stays active for 18 months from the day you buy. No mid-prep cut-off.</li>
+      <li>ðŸ“§#128231; <strong>Email verification & password reset</strong> â€” Forgot your password? Reset it yourself from the login page in seconds.</li>
+      <li>ðŸ‘¤#128100; <strong>Profile page</strong> â€” See every plan you own and its individual expiry date in one place.</li>
       <li>
-        ðŸ†“ <strong>Free sample chapters</strong> â€” 3 chapters are open to everyone, no login needed. Try before you buy!
+        ðŸ†“#127379; <strong>Free sample chapters</strong> â€” 3 chapters are open to everyone, no login needed. Try before you buy!
         <ul style="margin-top: 10px; padding-left: 20px; color: rgba(255,255,255,0.75); font-size: 14px; list-style: none;">
           <li style="margin-bottom: 8px;">
-            ðŸ“– <strong style="color:#00ffcc;">Chapter 2</strong> â€” Fanne Tibb ki Ibteda aur iske Awwaleen Marakiz
+            ðŸ“–#128214; <strong style="color:#00ffcc;">Chapter 2</strong> â€” Fanne Tibb ki Ibteda aur iske Awwaleen Marakiz
             <span style="display:block; margin-left: 8px; color: rgba(255,255,255,0.5); font-size: 13px;">
               Topics: a) Babuli &amp; Aashuri Tibb &nbsp;Â·&nbsp; b) Misri Tibb &nbsp;Â·&nbsp; c) Cheeni Tibb &nbsp;Â·&nbsp; d) Hindi Tibb/Ayurveda &nbsp;Â·&nbsp; e) Irani Tibb &amp; Madrasa Jundi Shapur &nbsp;Â·&nbsp; f) Unani Tibb
             </span>
           </li>
           <li style="margin-bottom: 8px;">
-            ðŸ“– <strong style="color:#00ffcc;">Chapter 9</strong> â€” Atibba Misr wa Sham
+            ðŸ“–#128214; <strong style="color:#00ffcc;">Chapter 9</strong> â€” Atibba Misr wa Sham
             <span style="display:block; margin-left: 8px; color: rgba(255,255,255,0.5); font-size: 13px;">
               Topics: a) Dawood Antaki &nbsp;Â·&nbsp; b) Ibn-e-Haysham &nbsp;Â·&nbsp; c) Ibn-al-Qaf Masihi &nbsp;Â·&nbsp; d) Ishaq bin Sulaiman Israili
             </span>
           </li>
           <li>
-            ðŸ“– <strong style="color:#00ffcc;">Chapter 18</strong> â€” Bartanawi Ahad
+            ðŸ“–#128214; <strong style="color:#00ffcc;">Chapter 18</strong> â€” Bartanawi Ahad
             <span style="display:block; margin-left: 8px; color: rgba(255,255,255,0.5); font-size: 13px;">
               Topics: a) Hakim Ajmal Khan &nbsp;Â·&nbsp; b) Hakim Abdul Aziz Lucknawi &nbsp;Â·&nbsp; c) Hakim Azam Khan &nbsp;Â·&nbsp; d) Hakim Abdul Hameed &nbsp;Â·&nbsp; e) Hakim Abdul Lateef Falsafi &nbsp;Â·&nbsp; f) Hakim Abdul Haleem Lucknawi &nbsp;Â·&nbsp; g) Hakim Ahmad Husain Usmani &nbsp;Â·&nbsp; x) Chand Digar Mashhoor Atibba
             </span>
@@ -320,7 +320,7 @@
     </ul>
 
     <div class="warning-box">
-      <strong>âš ï¸ Important:</strong> Account sharing allow nahi hai. Har account ek device se lock ho jaata hai. Agar multiple logo ne ek ID use ki, system auto-block kar dega bina refund ke. Play fair.
+      <strong>âš ï¸#9888; Important:</strong> Account sharing allow nahi hai. Har account ek device se lock ho jaata hai. Agar multiple logo ne ek ID use ki, system auto-block kar dega bina refund ke. Play fair.
     </div>
   </section>
 
