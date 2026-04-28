@@ -59,7 +59,6 @@ We use a **flexible, multi-plan structure** that respects students' budgets and 
 ## Product highlights
 
 ### For students
-- **Mobile-first web app** — works on any phone browser, no app install needed
 - **Sign up free**, browse the chapter list, see exactly what's locked
 - **Free sample chapters** — admin can mark any chapter "free" so visitors can try before they buy, no code changes required
 - **Buy only the syllabus you need** — no waste
