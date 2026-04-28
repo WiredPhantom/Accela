@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accela - Login</title>
+  <link rel="stylesheet" href="/login.css">
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <style>
+    .error-message {
+      color: #ff4444;
+      background-color: rgba(255, 68, 68, 0.1);
+      border: 1px solid #ff4444;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      font-size: 14px;
+      display: none;
+      animation: shake 0.3s;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .device-locked {
+      background-color: rgba(255, 107, 107, 0.15);
+      border: 1px solid #ff6b6b;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .device-locked .lock-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .device-locked .lock-title {
+      color: #ff6b6b;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .device-locked .lock-message {
+      color: #ffaaaa;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .device-locked .lock-expiry {
+      color: #888;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    button[type="submit"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <div class="glitch" data-text="ACCELA">ACCELA</div>
+    <p>Premium notes. Peak performance</p>
+
+    <div id="error-message" class="error-message"></div>
+
+    <form id="login-form" action="/login" method="POST">
+      <input id="username" name="username" type="text" placeholder="username" required />
+      <input id="password" name="password" type="password" placeholder="password" required />
+      <button type="submit" id="submit-btn">Enter</button>
+    </form>
+
+    <p style="margin-top: 14px; font-size: 13px;">
+      <a href="/forgot-password" style="color: rgba(255,255,255,0.6);">Forgot password?</a>
+    </p>
+    <p style="margin-top: 14px; font-size: 14px;">
+      New to Accela? <a href="/signup" style="color: #00ffcc;">Sign up here</a>
+    </p>
+  </div>
+
+  <div class="footer">Project E:Unit-00</div>
+
+  <script>
+    const form = document.getElementById('login-form');
+    const errorDiv = document.getElementById('error-message');
+    const submitBtn = document.getElementById('submit-btn');
+
+    function showError(message) {
+      errorDiv.innerHTML = message;
+      errorDiv.classList.add('show');
+      
+      errorDiv.style.animation = 'none';
+      setTimeout(() => {
+        errorDiv.style.animation = 'shake 0.3s';
+      }, 10);
+    }
+
+    function showDeviceLocked(message, expiresAt) {
+      const expiryDate = new Date(expiresAt).toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      
+      errorDiv.innerHTML = `
+        <div class="device-locked">
+          <div class="lock-icon">🔒</div>
+          <div class="lock-title">Device Locked</div>
+          <div class="lock-message">${message}</div>
+          <div class="lock-expiry">You can login from a new device after: ${expiryDate}</div>
+        </div>
+      `;
+      errorDiv.classList.add('show');
+    }
+
+    function hideError() {
+      errorDiv.classList.remove('show');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      hideError();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Logging in...';
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password }),
+          credentials: 'include'
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          window.location.href = '/';
+        } else if (data.reason === 'DEVICE_LOCKED') {
+          // Special handling for device lock
+          showDeviceLocked(data.message, data.expiresAt);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enter';
+        } else {
+          showError(data.message || 'Login failed');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enter';
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        showError('An error occurred. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enter';
+      }
+    });
+
+    // Hide error when user starts typing
+    document.getElementById('username').addEventListener('input', hideError);
+    document.getElementById('password').addEventListener('input', hideError);
+  </script>
+</body>
+</html>

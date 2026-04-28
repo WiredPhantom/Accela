@@ -1,0 +1,348 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: #0a092d;
+  color: #ffffff;
+  line-height: 1.7;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header */
+.header {
+  background: #0a092d;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.header-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  flex: 1;
+  letter-spacing: -0.5px;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.3px;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(-2px);
+}
+
+.spacer {
+  width: 100px;
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Toggle Container */
+.toggle-container {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.toggle-button {
+  padding: 12px 30px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #4f46e5;
+  color: white;
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.3px;
+}
+
+.toggle-button:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+/* List Mode - Flashcard Items */
+.flashcard-item {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 24px;
+  transition: all 0.3s;
+}
+
+.flashcard-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.question {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 19px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  line-height: 1.8;
+  letter-spacing: 0.2px;
+}
+
+.answer {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.9;
+  letter-spacing: 0.2px;
+}
+
+/* Flashcard Mode */
+#flashcard-mode {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-wrapper {
+  perspective: 1200px;
+  margin: 40px auto;
+  max-width: 850px;
+  height: 520px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  cursor: pointer;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  backface-visibility: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 500;
+  color: #ffffff;
+  transition: all 0.3s;
+  line-height: 1.9;
+  letter-spacing: 0.2px;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.nav-buttons button {
+  margin: 0 12px;
+  padding: 12px 28px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.3px;
+}
+
+.nav-buttons button:hover:not(:disabled) {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+.nav-buttons button:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  cursor: default;
+  opacity: 0.5;
+}
+
+.progress {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.3px;
+}
+
+/* Slide Animations */
+.slide-left {
+  animation: slideLeft 0.4s ease forwards;
+}
+
+.slide-right {
+  animation: slideRight 0.4s ease forwards;
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes slideRight {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Language Classes */
+.ur {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-weight: 500;
+}
+
+.en {
+  direction: ltr;
+  text-align: left;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+  }
+
+  .back-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .spacer {
+    width: 60px;
+  }
+
+  .card-wrapper {
+    height: 450px;
+  }
+
+  .face {
+    padding: 35px;
+    font-size: 20px;
+  }
+
+  .flashcard-item {
+    padding: 24px;
+  }
+
+  .question {
+    font-size: 18px;
+  }
+
+  .answer {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    gap: 10px;
+  }
+
+  .header h1 {
+    font-size: 16px;
+  }
+
+  .back-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  .card-wrapper {
+    height: 380px;
+  }
+
+  .face {
+    padding: 25px;
+    font-size: 18px;
+  }
+
+  .question {
+    font-size: 17px;
+  }
+
+  .answer {
+    font-size: 15px;
+  }
+
+  .nav-buttons button {
+    padding: 10px 20px;
+    font-size: 14px;
+    margin: 0 6px;
+  }
+}

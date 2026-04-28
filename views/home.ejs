@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Accela</title>
+  <link rel="stylesheet" href="/chapters.css">
+  <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
+  <style>
+    /* --- EXISTING STYLES --- */
+    .user-status {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .user-status.premium { background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); color: #ffd700; }
+    .user-status.admin { background: rgba(138, 43, 226, 0.15); border: 1px solid rgba(138, 43, 226, 0.4); color: #da70d6; }
+    .user-status.free { background: rgba(100, 100, 100, 0.1); border: 1px solid rgba(100, 100, 100, 0.3); color: rgba(255, 255, 255, 0.7); }
+
+    .days-left { font-size: 12px; opacity: 0.85; margin-top: 4px; }
+    .days-left.warning { color: #ff6b6b; }
+    .days-left.good { color: #4ade80; }
+
+    .upgrade-link { display: inline-block; margin-top: 6px; font-size: 12px; color: #00ffcc; text-decoration: none; transition: opacity 0.2s; }
+    .upgrade-link:hover { opacity: 0.8; text-decoration: underline; }
+
+    /* --- HEADER LOGIN BUTTON STYLE --- */
+    .header-login-btn {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      background: rgba(0, 255, 204, 0.15);
+      border: 1px solid rgba(0, 255, 204, 0.4);
+      color: #00ffcc;
+      padding: 8px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    .header-login-btn:hover {
+      background: #00ffcc;
+      color: #000;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+    }
+
+    .home-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .home-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .home-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .home-card-icon { font-size: 64px; margin-bottom: 20px; display: block; }
+    .home-card h2 { font-size: 28px; font-weight: 700; margin-bottom: 12px; color: #ffffff; }
+    .home-card p { font-size: 16px; color: rgba(255, 255, 255, 0.7); line-height: 1.6; }
+
+    /* --- SALES PITCH STYLES --- */
+    .pitch-headline {
+      font-size: 32px; font-weight: 800;
+      background: linear-gradient(to right, #fff, #00ffcc);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+    .pitch-subhead { font-size: 18px; color: #a0a0a0; margin-bottom: 25px; font-style: italic; }
+    .feature-list { text-align: left; margin: 20px auto; max-width: 600px; list-style: none; padding: 0; }
+    .feature-list li { margin-bottom: 12px; font-size: 16px; color: #ddd; }
+
+    .pricing-box {
+      background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(79, 70, 229, 0.1));
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 500px;
+    }
+    .price-tag { font-size: 36px; font-weight: bold; color: #00ffcc; display: block; margin-bottom: 10px; }
+
+    /* --- BIG CTA BUTTON --- */
+    .big-cta-btn {
+      display: inline-block;
+      background: #00ffcc;
+      color: #000;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 15px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      margin-top: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .big-cta-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
+    }
+
+    .contact-section { background: rgba(79, 70, 229, 0.1); border: 1px solid rgba(79, 70, 229, 0.3); border-radius: 12px; padding: 24px; margin-top: 24px; text-align: center; }
+    .contact-section h3 { font-size: 20px; margin-bottom: 16px; color: #ffffff; }
+    .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+    .contact-btn { background: rgba(255, 255, 255, 0.1); color: #ffffff; padding: 10px 24px; border-radius: 8px; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255, 255, 255, 0.2); font-size: 15px; }
+    .contact-btn:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+    .highlight { color: #00ffcc; font-weight: 600; }
+    .warning-box { background: rgba(255, 59, 48, 0.1); border: 1px solid rgba(255, 59, 48, 0.3); border-radius: 12px; padding: 16px; margin-top: 20px; color: #ff6b6b; font-size: 15px; }
+
+    /* Premium banner styles */
+    .premium-banner { background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.15)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 16px 24px; margin: 20px auto; max-width: 900px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .premium-banner.expiring-soon { background: linear-gradient(135deg, rgba(255, 100, 100, 0.15), rgba(255, 50, 50, 0.15)); border-color: rgba(255, 100, 100, 0.4); }
+    .premium-banner-text { color: #fff; font-size: 15px; }
+    .premium-banner-text strong { color: #ffd700; }
+    .premium-banner.expiring-soon .premium-banner-text strong { color: #ff6b6b; }
+    .renew-btn { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #000; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s; }
+    .renew-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4); }
+
+    @media (max-width: 768px) {
+      .user-status, .header-login-btn { position: static; margin: 16px auto; text-align: center; max-width: 200px; display: block; }
+      .home-grid { grid-template-columns: 1fr; gap: 16px; }
+      .home-card { padding: 32px 24px; }
+      .home-card-icon { font-size: 48px; }
+      .pitch-headline { font-size: 24px; }
+      .contact-links { flex-direction: column; align-items: stretch; }
+      .contact-btn { width: 100%; justify-content: center; }
+      .premium-banner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" style="position: relative;">
+    <div class="logo-title">
+      <img src="https://files.catbox.moe/bpi1je.gif" alt="Animated Accela Logo" class="logo" />
+      <h1 id="accela">Accela</h1>
+    </div>
+    
+    <% if (isAuthenticated && user) { %>
+      <div class="user-status <%= isAdmin ? 'admin' : (hasPremium ? 'premium' : 'free') %>">
+        <% if (isAdmin) { %>
+          👑 Admin
+        <% } else if (hasPremium) { %>
+          ⭐ Premium User
+          <% if (daysLeft !== Infinity && daysLeft > 0) { %>
+            <div class="days-left <%= daysLeft <= 7 ? 'warning' : 'good' %>">
+              <% if (daysLeft <= 7) { %>
+                ⚠️ <%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %> left
+              <% } else { %>
+                <%= daysLeft %> days remaining
+              <% } %>
+            </div>
+          <% } else if (daysLeft === Infinity) { %>
+            <div class="days-left good">Lifetime Access</div>
+          <% } %>
+        <% } else { %>
+          👤 <%= user.username %>
+          <a href="/upgrade?username=<%= user.username %>" class="upgrade-link">⬆️ Upgrade to Premium</a>
+        <% } %>
+      </div>
+    <% } else { %>
+      <a href="/login" class="header-login-btn">Login / Sign Up</a>
+    <% } %>
+  </header>
+
+  <!-- Premium Expiry Warning Banner -->
+  <% if (isAuthenticated && hasPremium && !isAdmin && daysLeft <= 7 && daysLeft > 0 && daysLeft !== Infinity) { %>
+    <div class="premium-banner expiring-soon" style="margin-left: 20px; margin-right: 20px;">
+      <div class="premium-banner-text">
+        ⚠️ Your premium subscription expires in <strong><%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %></strong>. Renew now to keep access!
+      </div>
+    </div>
+  <% } %>
+
+  <!-- Home Grid -->
+  <div class="home-grid">
+    <a href="/notes" class="home-card">
+      <span class="home-card-icon">📝</span>
+      <h2>Smart Notes</h2>
+      <p>Boring Textbooks ka nichod. Seedha dimaag mein utarne wali easy Urdu.</p>
+    </a>
+
+    <a href="/chapters" class="home-card">
+      <span class="home-card-icon">🗂️</span>
+      <h2>Flashcards</h2>
+      <p>Ratta maarna band. Sawalon ke jawab do aur memory permanent karo.</p>
+    </a>
+  </div>
+
+  <!-- THE SALESMAN PITCH Section -->
+  <section id="lain" class="section lain-section">
+    <div class="lain-container" style="text-align: center;">
+      <h2 class="pitch-headline">Tareekh-e-Tib Yaad Nahi Hoti?<br>Ratta Maarna Band Karo.</h2>
+      <p class="pitch-subhead">ACCELA: The Only System Designed for BUMS Students to Master Tareekh-e-Tib.</p>
+      
+      <img src="https://files.catbox.moe/bpi1je.gif" alt="ACCELA Logo" class="lain-img" style="margin: 20px auto;" />
+      
+      <p class="text" style="text-align: left;">
+        <strong>Sach bolo, ye scenario familiar hai?</strong><br>
+        Exam sar par hai. Aapne <em>Tareekh-e-Tib</em> ki moti kitaab kholi. Pehle 2 page padhe, aur neend aane lagi. Dates, Hakeems ke naam, aur unki history sab mix ho raha hai—dimaag mein "Khichdi" ban gayi hai.
+        <br><br>
+        Aap padh toh rahe ho, lekin <strong>yaad</strong> kuch nahi reh raha.
+        <br><br>
+        <span class="highlight">Problem aap nahi ho, problem aapka "Method" hai.</span><br>
+        Sirf reading karne se cheezein yaad nahi hoti. Agar bina samjhe ratta maaroge, toh exam hall mein blank ho jaoge.
+        <br><br>
+        <strong>Enter ACCELA (The Cheat Code):</strong><br>
+        <!-- GENDER FIX: "Maine" removed, replaced with "Humne" (Royal We/Professional) -->
+        Humne woh boring text ko tod kar <strong>Smart Notes</strong> aur <strong>Active Recall Flashcards</strong> mein convert kar diya hai.
+      </p>
+
+      <ul class="feature-list">
+        <li>✅ <strong>Time Saver:</strong> Jo chapter 3 ghante leta hai, wo yahan 30 min mein pakka.</li>
+        <li>✅ <strong>Urdu Notes:</strong> Simple zubaan, no complicated words.</li>
+        <li>✅ <strong>Exam Ready:</strong> Hum sirf syllabus nahi, exam pass karwate hain.</li>
+      </ul>
+
+      <!-- Pricing Anchor Box -->
+      <div class="pricing-box">
+        <span class="price-tag">₹199</span>
+        <p style="color: #ccc; margin-bottom: 0;">Per term — less than one pizza</p>
+        <hr style="border-color: rgba(255,255,255,0.1); margin: 15px 0;">
+        <p style="color: #fff; font-size: 14px; line-height: 1.7;">
+          📘 <strong style="color:#00ffcc;">Term 1 / Term 2 / Term 3:</strong> ₹199 each<br>
+          🏆 <strong style="color:#ffd700;">Complete Syllabus:</strong> ₹499 <span style="color:#aaa;">(save ₹98)</span><br>
+          ⏳ Every plan stays active for <strong>18 months</strong> from purchase.<br>
+          📚 Includes notes <em>and</em> flashcards for the chapters you buy.
+        </p>
+
+        <% if (!isAuthenticated) { %>
+          <br>
+          <a href="/login" class="big-cta-btn">Start Studying Now (Login)</a>
+        <% } %>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="contact-section">
+        <h3>📩 Kisi Madad Ki Zaroorat Hai?</h3>
+        <p style="font-size: 14px; color: rgba(255, 255, 255, 0.7); margin-bottom: 12px;">
+          Direct support for Students
+        </p>
+        <div class="contact-links">
+    <a href="mailto:monstern395@gmail.com" class="contact-btn" onclick="window.open(this.href, '_system'); return false;">
+    📧 Email Support
+  </a>
+  <a href="https://t.me/AccelaSupportbot" class="contact-btn" onclick="window.open(this.href, '_system'); return false;" target="_blank" rel="noopener">
+    💬 Telegram
+  </a>
+</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cbox -->
+  <section id="cbox" class="section">
+    <h2>Dimaag mein koi sawal? (Ask here)</h2>
+    <p style="text-align: center; color: #888; font-size: 14px; margin-bottom: 15px;">
+      <!-- GENDER FIX: Removed "Main khud", added "Personally check" (passive/neutral) -->
+      Koi doubt hai? Specific topic chahiye? Niche likho, personally check karke jawab milega.
+    </p>
+    <iframe src="https://www5.cbox.ws/box/?boxid=957561&boxtag=IZAjsP"
+      allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>      
+  </section>
+
+  <!-- Updates -->
+  <section id="updates" class="section">
+    <h2 id="siteupdate">What's New</h2>
+    <ul class="updates">
+      <li>🧩 <strong>Choose your plan</strong> — Buy only the term you need (₹199) or the full syllabus (₹499). Add more terms anytime.</li>
+      <li>⏳ <strong>18-month validity</strong> — Every plan stays active for 18 months from the day you buy. No mid-prep cut-off.</li>
+      <li>📧 <strong>Email verification & password reset</strong> — Forgot your password? Reset it yourself from the login page in seconds.</li>
+      <li>👤 <strong>Profile page</strong> — See every plan you own and its individual expiry date in one place.</li>
+      <li>🆓 <strong>Free sample chapters</strong> — A few chapters are open to everyone so you can try before you buy.</li>
+    </ul>
+
+    <div class="warning-box">
+      <strong>⚠️ Important:</strong> Account sharing allow nahi hai. Har account ek device se lock ho jaata hai. Agar multiple logo ne ek ID use ki, system auto-block kar dega bina refund ke. Play fair.
+    </div>
+  </section>
+
+  <!-- Buttons Container -->
+  <div class="buttons-container">
+    <div class="button-row">
+      <% if (isAuthenticated) { %>
+        <form action="/logout" method="GET">
+          <button type="submit" class="logout-btn">Logout</button>
+        </form>
+        <% if (user && user.role === 'admin') { %>
+          <a href="/admin" class="admin-btn">Admin Panel</a>
+        <% } %>
+        <a href="/profile" class="admin-btn" style="background: rgba(79, 70, 229, 0.3); border-color: rgba(79, 70, 229, 0.5);">Profile</a>
+      <% } else { %>
+   <a href="/login" class="admin-btn">Login / Sign Up</a>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>

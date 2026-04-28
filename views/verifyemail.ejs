@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify Email — Accela</title>
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#16213e 100%);
+      min-height:100vh; color:#fff; padding:20px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .box {
+      width:100%; max-width:460px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:16px; padding:32px 28px;
+    }
+    h1 {
+      font-size:24px; margin-bottom:6px;
+      background:linear-gradient(135deg,#00ffcc,#00aaff);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .subtitle {
+      color:rgba(255,255,255,0.65); font-size:14px; margin-bottom:24px; line-height:1.5;
+    }
+    .subtitle strong { color:#fff; }
+    label { display:block; font-size:13px; color:rgba(255,255,255,0.75); margin-bottom:8px; }
+    input[type="text"] {
+      width:100%; padding:16px 14px;
+      background:rgba(0,0,0,0.3);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:8px; color:#fff;
+      font-size:24px; letter-spacing:8px; text-align:center;
+      font-family:monospace;
+      margin-bottom:16px;
+    }
+    input:focus { outline:none; border-color:#00ffcc; }
+    button {
+      width:100%; padding:14px;
+      background:linear-gradient(135deg,#00ffcc,#00aaff);
+      color:#000; border:none; border-radius:8px;
+      font-size:15px; font-weight:700; cursor:pointer;
+    }
+    button:disabled { opacity:0.5; cursor:not-allowed; }
+    .alert {
+      padding:12px 14px; border-radius:8px; margin-bottom:16px;
+      font-size:13px; display:none; line-height:1.5;
+    }
+    .alert.show { display:block; }
+    .alert.success { background:rgba(0,255,153,0.1); border:1px solid rgba(0,255,153,0.4); color:#00ff99; }
+    .alert.error   { background:rgba(255,68,68,0.12); border:1px solid rgba(255,68,68,0.4); color:#ff8080; }
+    .alert.info    { background:rgba(0,170,255,0.1); border:1px solid rgba(0,170,255,0.4); color:#5fc0ff; }
+    .secondary {
+      text-align:center; margin-top:18px; font-size:13px; color:rgba(255,255,255,0.55);
+    }
+    .secondary a, .secondary button.linkbtn {
+      color:#00ffcc; text-decoration:none; background:none; border:none; padding:0; cursor:pointer; font-size:13px;
+    }
+    .secondary a:hover, .secondary button.linkbtn:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Verify Your Email</h1>
+    <p class="subtitle">
+      We sent a 6-digit code to <strong><%= maskedEmail %></strong>.
+      Enter it below to activate your account.
+    </p>
+
+    <div id="alert" class="alert"></div>
+
+    <form id="verify-form" autocomplete="off">
+      <input type="hidden" id="username" value="<%= username %>" />
+
+      <label for="code">6-Digit Code</label>
+      <input type="text" id="code" name="code"
+             inputmode="numeric" pattern="[0-9]{6}"
+             maxlength="6" required autofocus
+             placeholder="——————" />
+
+      <button type="submit" id="submit-btn">Verify Email</button>
+    </form>
+
+    <p class="secondary">
+      Didn't get the code? <button type="button" class="linkbtn" id="resend-btn">Resend code</button><br />
+      <a href="/login" style="color:rgba(255,255,255,0.55);">← Back to Login</a>
+    </p>
+  </div>
+
+  <script>
+    const form = document.getElementById('verify-form');
+    const alertBox = document.getElementById('alert');
+    const submitBtn = document.getElementById('submit-btn');
+    const resendBtn = document.getElementById('resend-btn');
+    const username = document.getElementById('username').value;
+
+    function showAlert(type, msg) {
+      alertBox.className = 'alert show ' + type;
+      alertBox.textContent = msg;
+    }
+
+    // Auto-strip non-digits & auto-submit when 6 digits reached
+    document.getElementById('code').addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const code = document.getElementById('code').value.trim();
+      if (code.length !== 6) return showAlert('error', 'Please enter the 6-digit code.');
+
+      submitBtn.disabled = true; submitBtn.textContent = 'Verifying...';
+      try {
+        const res = await fetch('/verify-email', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ username, code })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAlert('success', '✓ Email verified! Redirecting...');
+          setTimeout(() => { window.location.href = data.redirect || '/login'; }, 1000);
+        } else {
+          showAlert('error', data.message || 'Verification failed.');
+          submitBtn.disabled = false; submitBtn.textContent = 'Verify Email';
+        }
+      } catch (err) {
+        showAlert('error', 'Network error. Please try again.');
+        submitBtn.disabled = false; submitBtn.textContent = 'Verify Email';
+      }
+    });
+
+    resendBtn.addEventListener('click', async () => {
+      resendBtn.disabled = true; resendBtn.textContent = 'Sending...';
+      try {
+        const res = await fetch('/resend-verification', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ username })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAlert('info', data.message || 'A new code has been sent.');
+        } else {
+          showAlert('error', data.message || 'Could not resend code.');
+        }
+      } catch (err) {
+        showAlert('error', 'Network error.');
+      } finally {
+        setTimeout(() => { resendBtn.disabled = false; resendBtn.textContent = 'Resend code'; }, 5000);
+      }
+    });
+  </script>
+</body>
+</html>

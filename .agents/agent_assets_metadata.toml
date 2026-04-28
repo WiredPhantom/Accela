@@ -1,0 +1,14 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "lMFx55vKmfe27Pa8L6geL"
+uri = "file://BUSINESS.md"
+type = "text"
+title = "BUSINESS.md — Project overview for business / investors"
+
+[[outputs]]
+id = "oGGRS9tfLBI5FNR9CAfzr"
+uri = "file://DEVELOPER.md"
+type = "text"
+title = "DEVELOPER.md — Full technical guide for developers"
