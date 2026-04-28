@@ -169,7 +169,7 @@
           <% if (daysLeft !== Infinity && daysLeft > 0) { %>
             <div class="days-left <%= daysLeft <= 7 ? 'warning' : 'good' %>">
               <% if (daysLeft <= 7) { %>
-                âš ï¸ <%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %> left
+                âš ï¸ <%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %> left
               <% } else { %>
                 <%= daysLeft %> days remaining
               <% } %>
@@ -191,7 +191,7 @@
   <% if (isAuthenticated && hasPremium && !isAdmin && daysLeft <= 7 && daysLeft > 0 && daysLeft !== Infinity) { %>
     <div class="premium-banner expiring-soon" style="margin-left: 20px; margin-right: 20px;">
       <div class="premium-banner-text">
-        âš ï¸ Your premium subscription expires in <strong><%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %></strong>. Renew now to keep access!
+        âš ï¸ Your premium subscription expires in <strong><%= daysLeft %> day<%= daysLeft !== 1 ? 's' : '' %></strong>. Renew now to keep access!
       </div>
     </div>
   <% } %>
@@ -320,7 +320,7 @@
     </ul>
 
     <div class="warning-box">
-      <strong>âš ï¸ Important:</strong> Account sharing allow nahi hai. Har account ek device se lock ho jaata hai. Agar multiple logo ne ek ID use ki, system auto-block kar dega bina refund ke. Play fair.
+      <strong>âš ï¸ Important:</strong> Account sharing allow nahi hai. Har account ek device se lock ho jaata hai. Agar multiple logo ne ek ID use ki, system auto-block kar dega bina refund ke. Play fair.
     </div>
   </section>
 
