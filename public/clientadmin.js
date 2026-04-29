@@ -818,9 +818,6 @@
             <a href="/notes/chapter/${note.chapterIndex}/topic/${note.topicIndex}" target="_blank" style="display: inline-block; padding: 8px 16px; background: rgba(79,70,229,0.2); border: 1px solid rgba(79,70,229,0.3); border-radius: 8px; color: #fff; text-decoration: none; margin-right: 8px;">
               👁️ View
             </a>
-            <button onclick="openEditNoteModalById('${note._id}')">
-              ✏️ Edit
-            </button>
             <button onclick="openDeleteNoteModal('${note._id}', \`${escapeForTemplate(note.noteTitle)}\`)" class="danger">
               🗑️ Delete
             </button>
@@ -834,36 +831,6 @@
     `).join('');
   }
 
-  window.openEditNoteModal = function(noteId, title, htmlContent, isPremium) {
-    const id = document.getElementById('edit-note-id');
-    const titleEl = document.getElementById('edit-note-title');
-    const content = document.getElementById('edit-note-content');
-    const premium = document.getElementById('edit-note-premium');
-    
-    if (id) id.value = noteId;
-    if (titleEl) titleEl.value = title;
-    if (content) content.value = htmlContent;
-    if (premium) premium.checked = isPremium;
-    
-    openModal('edit-note-modal');
-  };
-
-  window.openEditNoteModalById = async function(noteId) {
-    try {
-      const note = allNotes.find(n => n._id === noteId);
-      
-      if (!note) {
-        showToast('Note not found', 'error');
-        return;
-      }
-      
-      openEditNoteModal(note._id, note.noteTitle, note.htmlContent, note.isPremium);
-    } catch (error) {
-      console.error('Error opening note modal:', error);
-      showToast('Failed to open note editor', 'error');
-    }
-  };
-
   window.filterNotes = function() {
     const chapterFilter = document.getElementById('filterNoteChapter')?.value;
     let filtered = allNotes;
@@ -873,50 +840,6 @@
     }
     displayNotes(filtered);
   };
-
-  const editNoteForm = document.getElementById('edit-note-form');
-  if (editNoteForm) {
-    editNoteForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const submitBtn = e.target.querySelector('button[type="submit"]');
-      const id = document.getElementById('edit-note-id');
-      const title = document.getElementById('edit-note-title');
-      const content = document.getElementById('edit-note-content');
-      const premium = document.getElementById('edit-note-premium');
-      
-      if (!id || !title || !content) return;
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Updating...';
-
-      try {
-        const response = await fetch('/admin/edit-note', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 
-            noteId: id.value, 
-            noteTitle: title.value, 
-            htmlContent: content.value,
-            isPremium: premium.checked
-          })
-        });
-
-        if (response.ok) {
-          closeModal('edit-note-modal');
-          showToast('Note updated successfully!', 'success');
-          loadAllNotes();
-        } else {
-          throw new Error('Update failed');
-        }
-      } catch (error) {
-        console.error('Error updating note:', error);
-        showToast('Failed to update note', 'error');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Update Note';
-      }
-    });
-  }
 
   window.openDeleteNoteModal = function(noteId, title) {
     const deleteId = document.getElementById('delete-note-id');

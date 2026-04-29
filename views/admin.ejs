@@ -1167,30 +1167,6 @@
     </div>
   </div>
 
-  <!-- Edit Note Modal -->
-  <div class="modal" id="edit-note-modal">
-    <div class="modal-content" style="max-width: 900px;">
-      <span class="close" onclick="closeModal('edit-note-modal')">&times;</span>
-      <h3>Edit Note</h3>
-      <form id="edit-note-form">
-        <input type="hidden" id="edit-note-id">
-        
-        <label>Note Title:</label>
-        <input type="text" id="edit-note-title" required placeholder="Note title">
-        
-        <label>HTML Content:</label>
-        <textarea id="edit-note-content" required style="min-height: 300px; font-family: monospace;" placeholder="Paste HTML content here"></textarea>
-        
-        <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
-          <input type="checkbox" id="edit-note-premium" style="width: auto; margin: 0;">
-          <span>🔒 Mark as Premium Content</span>
-        </label>
-        
-        <button type="submit">Update Note</button>
-      </form>
-    </div>
-  </div>
-
   <!-- Delete Note Modal -->
   <div class="modal" id="delete-note-modal">
     <div class="modal-content">
