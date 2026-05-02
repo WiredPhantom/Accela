@@ -3,11 +3,11 @@ const PLANS = {
     id: "complete",
     name: "Complete Syllabus",
     shortName: "Complete",
-    description: "Tamam 4 subjects ke tamam 3 terms — poora syllabus",
-    price: 99900,
+    description: "All chapters (notes + flashcards) till exam",
+    price: 49900,
     currency: "INR",
     coverage: { type: "all" },
-    chapterLabel: "All terms — all 4 subjects",
+    chapterLabel: "All chapters",
     badge: "Best Value",
     accent: "#ffd700",
   },
@@ -15,33 +15,33 @@ const PLANS = {
     id: "term1",
     name: "1st Term Syllabus",
     shortName: "Term 1",
-    description: "Tamam 4 subjects ka 1st Term (notes + flashcards)",
-    price: 49900,
+    description: "Chapters 1 to 6 (notes + flashcards) till exam",
+    price: 19900,
     currency: "INR",
-    coverage: { type: "term", termNumber: 1 },
-    chapterLabel: "Term 1 — all 4 subjects",
+    coverage: { type: "range", min: 1, max: 6 },
+    chapterLabel: "Chapters 1 – 6",
     accent: "#00ffcc",
   },
   term2: {
     id: "term2",
     name: "2nd Term Syllabus",
     shortName: "Term 2",
-    description: "Tamam 4 subjects ka 2nd Term (notes + flashcards)",
-    price: 49900,
+    description: "Chapters 7 to 19 (notes + flashcards) till exam",
+    price: 19900,
     currency: "INR",
-    coverage: { type: "term", termNumber: 2 },
-    chapterLabel: "Term 2 — all 4 subjects",
+    coverage: { type: "range", min: 7, max: 19 },
+    chapterLabel: "Chapters 7 – 19",
     accent: "#7c5cff",
   },
   term3: {
     id: "term3",
     name: "3rd Term Syllabus",
     shortName: "Term 3",
-    description: "Tamam 4 subjects ka 3rd Term (notes + flashcards)",
-    price: 49900,
+    description: "Chapters 20 onwards (notes + flashcards) till exam",
+    price: 19900,
     currency: "INR",
-    coverage: { type: "term", termNumber: 3 },
-    chapterLabel: "Term 3 — all 4 subjects",
+    coverage: { type: "range", min: 20, max: Infinity },
+    chapterLabel: "Chapter 20 onwards",
     accent: "#ff7ab6",
   },
 };
@@ -56,20 +56,19 @@ function getAllPlans() {
   return PLAN_ORDER.map((id) => PLANS[id]);
 }
 
-function planCoversTerm(planId, termNumber) {
+function planCoversChapter(planId, chapterIndex) {
   const plan = getPlan(planId);
   if (!plan) return false;
   const c = plan.coverage;
   if (c.type === "all") return true;
-  if (c.type === "term") return c.termNumber === termNumber;
+  if (c.type === "range") {
+    return chapterIndex >= c.min && chapterIndex <= c.max;
+  }
   return false;
 }
 
-// Backward compat alias (legacy code may call this)
-function planCoversChapter(planId, chapterIndex) {
-  return planCoversTerm(planId, chapterIndex);
-}
-
+// All plans are valid for a fixed number of months from the date of purchase.
+// Configurable via PLAN_VALIDITY_MONTHS env var (default 18).
 const VALIDITY_MONTHS = parseInt(process.env.PLAN_VALIDITY_MONTHS, 10) || 18;
 
 function getValidityMonths() {
@@ -100,7 +99,6 @@ module.exports = {
   PLAN_ORDER,
   getPlan,
   getAllPlans,
-  planCoversTerm,
   planCoversChapter,
   getValidityMonths,
   calcPlanExpiry,

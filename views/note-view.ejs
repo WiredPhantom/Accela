@@ -8,9 +8,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { margin: 0; padding: 0; overflow-x: hidden; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
-
+    /* Reset everything */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    /* Minimal floating back button */
     .minimal-nav {
       position: fixed;
       top: 20px;
@@ -19,12 +31,18 @@
       opacity: 0.7;
       transition: opacity 0.3s, transform 0.3s;
       transform: translateY(0);
-      display: flex;
-      gap: 10px;
-      align-items: center;
     }
-    .minimal-nav.hidden { transform: translateY(-100px); opacity: 0; pointer-events: none; }
-    .minimal-nav:hover { opacity: 1; }
+    
+    .minimal-nav.hidden {
+      transform: translateY(-100px);
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .minimal-nav:hover {
+      opacity: 1;
+    }
+    
     .minimal-nav a {
       display: inline-block;
       padding: 10px 18px;
@@ -39,20 +57,23 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       transition: all 0.2s;
-      white-space: nowrap;
     }
-    .minimal-nav a:hover { background: rgba(79, 70, 229, 1); transform: translateX(-2px); }
-    .minimal-nav a.fc-btn {
-      background: rgba(0, 200, 160, 0.85);
-      border-color: rgba(0, 255, 204, 0.4);
+    
+    .minimal-nav a:hover {
+      background: rgba(79, 70, 229, 1);
+      transform: translateX(-2px);
     }
-    .minimal-nav a.fc-btn:hover { background: rgba(0, 220, 180, 1); transform: none; }
 
-    @media print { .minimal-nav { display: none !important; } }
+    /* Print styles for notes */
+    @media print {
+      .minimal-nav {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body class="no-select">
-
+  
   <!-- ========== WATERMARK PROTECTION ========== -->
   <div class="watermark-overlay" id="watermarkOverlay">
     <div class="watermark-pattern" id="watermarkPattern"></div>
@@ -62,32 +83,49 @@
   <div class="print-watermark" id="printWatermark" style="display: none;"></div>
   <!-- ========== END WATERMARK ========== -->
 
-  <div class="minimal-nav" id="minimalNav">
-    <a href="/notes/<%= note.subjectSlug %>/chapter/<%= note.chapterIndex %>">← Back</a>
-    <a href="/chapters/<%= note.subjectSlug %>/chapter/<%= note.chapterIndex %>/topic/<%= note.topicIndex %>" class="fc-btn">📂 Go to Flashcards</a>
+  <!-- Minimal navigation -->
+  <div class="minimal-nav">
+    <a href="/notes/chapter/<%= note.chapterIndex %>">← Back</a>
   </div>
 
+  <!-- Pure HTML content - no wrappers, no styling -->
   <%- note.htmlContent %>
 
+  <!-- Protection Script -->
   <script src="/js/protection.js"></script>
   <script>
+    // Initialize content protection with user info
     (function() {
       var username = '<%= typeof fullUser !== "undefined" && fullUser ? fullUser.username : (typeof user !== "undefined" && user ? user.username : "guest") %>';
       var email = '<%= typeof fullUser !== "undefined" && fullUser && fullUser.email ? fullUser.email : "" %>';
-      if (typeof initProtection === 'function') { initProtection(username, email); }
+      
+      if (typeof initProtection === 'function') {
+        initProtection(username, email);
+      }
     })();
 
+    // Hide/show back button on scroll
     (function() {
-      var lastScroll = 0;
-      var backButton = document.getElementById('minimalNav');
+      let lastScroll = 0;
+      const backButton = document.querySelector('.minimal-nav');
+      
       window.addEventListener('scroll', function() {
-        var currentScroll = window.pageYOffset;
+        const currentScroll = window.pageYOffset;
+        
+        // Hide when scrolling down past 50px
         if (currentScroll > 50 && currentScroll > lastScroll) {
           backButton.classList.add('hidden');
-        } else if (currentScroll < lastScroll) {
+        } 
+        // Show when scrolling up
+        else if (currentScroll < lastScroll) {
           backButton.classList.remove('hidden');
         }
-        if (currentScroll <= 10) { backButton.classList.remove('hidden'); }
+        
+        // Always show at the very top
+        if (currentScroll <= 10) {
+          backButton.classList.remove('hidden');
+        }
+        
         lastScroll = currentScroll;
       });
     })();

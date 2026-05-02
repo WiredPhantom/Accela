@@ -9,58 +9,25 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* ===== THEME VARIABLES ===== */
-:root {
-  --fc-bg: #0a092d;
-  --fc-header-bg: #0a092d;
-  --fc-text: #ffffff;
-  --fc-text-muted: rgba(255, 255, 255, 0.7);
-  --fc-border: rgba(255, 255, 255, 0.1);
-  --fc-card-bg: rgba(255, 255, 255, 0.08);
-  --fc-card-border: rgba(255, 255, 255, 0.15);
-  --fc-card-hover-bg: rgba(255, 255, 255, 0.12);
-  --fc-back-btn-bg: rgba(255, 255, 255, 0.1);
-  --fc-back-btn-border: rgba(255, 255, 255, 0.2);
-  --fc-question-border: rgba(255, 255, 255, 0.1);
-  --fc-nav-disabled: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="light"] {
-  --fc-bg: #f0f4ff;
-  --fc-header-bg: #ffffff;
-  --fc-text: #1a1833;
-  --fc-text-muted: rgba(26, 24, 51, 0.65);
-  --fc-border: rgba(26, 24, 51, 0.1);
-  --fc-card-bg: rgba(255, 255, 255, 0.9);
-  --fc-card-border: rgba(26, 24, 51, 0.12);
-  --fc-card-hover-bg: rgba(255, 255, 255, 1);
-  --fc-back-btn-bg: rgba(79, 70, 229, 0.08);
-  --fc-back-btn-border: rgba(79, 70, 229, 0.25);
-  --fc-question-border: rgba(26, 24, 51, 0.1);
-  --fc-nav-disabled: rgba(26, 24, 51, 0.1);
-}
-
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: var(--fc-bg);
-  color: var(--fc-text);
+  background: #0a092d;
+  color: #ffffff;
   line-height: 1.7;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background 0.3s, color 0.3s;
 }
 
 /* Header */
 .header {
-  background: var(--fc-header-bg);
+  background: #0a092d;
   padding: 20px;
-  border-bottom: 1px solid var(--fc-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
-  transition: background 0.3s;
 }
 
 .header-content {
@@ -74,55 +41,32 @@ body {
 .header h1 {
   font-size: 24px;
   font-weight: 700;
-  color: var(--fc-text);
+  color: #ffffff;
   text-align: center;
   flex: 1;
   letter-spacing: -0.5px;
 }
 
 .back-btn {
-  background: var(--fc-back-btn-bg);
-  color: var(--fc-text);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
   text-decoration: none;
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 15px;
   font-weight: 600;
   transition: all 0.2s;
-  border: 1px solid var(--fc-back-btn-border);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   letter-spacing: 0.3px;
-  white-space: nowrap;
 }
 
 .back-btn:hover {
-  background: var(--fc-card-hover-bg);
+  background: rgba(255, 255, 255, 0.15);
   transform: translateX(-2px);
 }
 
-/* Theme toggle in flashcard header */
-.theme-toggle-fc {
-  background: var(--fc-back-btn-bg);
-  border: 1px solid var(--fc-back-btn-border);
-  color: var(--fc-text);
-  padding: 8px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 18px;
-  transition: all 0.2s;
-  line-height: 1;
-  margin-left: 8px;
-}
-
-.theme-toggle-fc:hover {
-  background: var(--fc-card-hover-bg);
-}
-
 .spacer {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  min-width: 100px;
-  justify-content: flex-end;
+  width: 100px;
 }
 
 /* Container */
@@ -159,8 +103,8 @@ body {
 
 /* List Mode - Flashcard Items */
 .flashcard-item {
-  background: var(--fc-card-bg);
-  border: 1px solid var(--fc-card-border);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   padding: 28px;
   margin-bottom: 24px;
@@ -168,24 +112,24 @@ body {
 }
 
 .flashcard-item:hover {
-  background: var(--fc-card-hover-bg);
+  background: rgba(255, 255, 255, 0.12);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .question {
   font-weight: 600;
-  color: var(--fc-text);
+  color: #ffffff;
   font-size: 19px;
   margin-bottom: 18px;
   padding-bottom: 14px;
-  border-bottom: 1px solid var(--fc-question-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   line-height: 1.8;
   letter-spacing: 0.2px;
 }
 
 .answer {
-  color: var(--fc-text-muted);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.9;
@@ -227,15 +171,15 @@ body {
   box-sizing: border-box;
   overflow-y: auto;
   backface-visibility: hidden;
-  background: var(--fc-card-bg);
-  border: 1px solid var(--fc-card-border);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
   font-weight: 500;
-  color: var(--fc-text);
+  color: #ffffff;
   transition: all 0.3s;
   line-height: 1.9;
   letter-spacing: 0.2px;
@@ -262,6 +206,7 @@ body {
   font-weight: 600;
   font-size: 15px;
   transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   letter-spacing: 0.3px;
 }
 
@@ -271,7 +216,7 @@ body {
 }
 
 .nav-buttons button:disabled {
-  background: var(--fc-nav-disabled);
+  background: rgba(255, 255, 255, 0.1);
   cursor: default;
   opacity: 0.5;
 }
@@ -281,7 +226,7 @@ body {
   font-size: 16px;
   font-weight: 600;
   text-align: center;
-  color: var(--fc-text-muted);
+  color: rgba(255, 255, 255, 0.7);
   letter-spacing: 0.3px;
 }
 
@@ -335,7 +280,7 @@ body {
   }
 
   .spacer {
-    min-width: 60px;
+    width: 60px;
   }
 
   .card-wrapper {
@@ -375,7 +320,7 @@ body {
   }
 
   .spacer {
-    min-width: auto;
+    display: none;
   }
 
   .card-wrapper {

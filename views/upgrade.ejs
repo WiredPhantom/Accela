@@ -236,19 +236,12 @@
     @keyframes toastOut { from { opacity: 1; transform: translateX(0) scale(1); } to { opacity: 0; transform: translateX(60px) scale(0.95); } }
     @keyframes toastProgress { from { width: 100%; } to { width: 0%; } }
   </style>
-  <script>
-    (function() {
-      var t = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', t);
-    })();
-  </script>
 </head>
 <body>
 
   <div id="toast-container"></div>
 
-  <header class="header" style="position:relative;">
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+  <header class="header">
     <div class="logo-title">
       <img src="https://files.catbox.moe/bpi1je.gif" alt="Animated Accela Logo" class="logo" />
       <h1 id="accela">Accela</h1>
@@ -402,20 +395,6 @@
     }
 
     function skipToFree() { window.location.href = '/'; }
-
-    function toggleTheme() {
-      var html = document.documentElement;
-      var current = html.getAttribute('data-theme') || 'dark';
-      var next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
-    }
-    (function() {
-      var t = localStorage.getItem('theme') || 'dark';
-      var btn = document.getElementById('themeToggle');
-      if (btn) btn.textContent = t === 'dark' ? '☀️' : '🌙';
-    })();
   </script>
 
 </body>

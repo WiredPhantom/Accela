@@ -1,20 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcards — Ch.<%= chapterId %> Topic <%= topicId %> - Accela</title>
+  <title>Flashcards - Chapter <%= chapterId %> Topic <%= topicId %></title>
   <link rel="stylesheet" href="/flashcards.css">
   <link rel="stylesheet" href="/css/protection.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
-  <script>
-    (function() {
-      var t = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', t);
-    })();
-  </script>
 </head>
 <body class="no-select">
 
@@ -27,30 +21,30 @@
   <div class="print-watermark" id="printWatermark" style="display: none;"></div>
   <!-- ========== END WATERMARK ========== -->
 
+  <!-- Header -->
   <header class="header">
     <div class="header-content">
-      <a href="/chapters/<%= subjectSlug %>/chapter/<%= chapterId %>" class="back-btn">← Back</a>
-      <h1><%= chapterId %>.<%= topicId %> — Topic</h1>
-      <div class="spacer">
-        <button class="theme-toggle-fc" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">☀️</button>
-      </div>
+      <a href="/chapter/<%= chapterId %>" class="back-btn">← Back</a>
+      <h1><%= chapterId %>.<%= topicId %> - Topic</h1>
+      <div class="spacer"></div>
     </div>
   </header>
 
+  <!-- Toggle Buttons -->
   <div class="toggle-container">
     <button class="toggle-button" id="flashcardToggle" onclick="toggleMode()">Switch to Flashcard Mode</button>
   </div>
 
   <!-- List Mode -->
   <div id="list-mode" class="container">
-    <% flashcards.forEach(function(f) {
-         var isUrdu = /[\u0600-\u06FF]/.test(f.question + f.answer);
+    <% flashcards.forEach(f => {
+         const isUrdu = /[\u0600-\u06FF]/.test(f.question + f.answer);
     %>
       <div class="flashcard-item">
         <div class="question <%= isUrdu ? 'ur' : 'en' %>">Q<%= f.flashcardIndex %>: <%= f.question %></div>
         <div class="answer <%= isUrdu ? 'ur' : 'en' %>">A: <%= f.answer %></div>
       </div>
-    <% }); %>
+    <% }) %>
   </div>
 
   <!-- Flashcard Mode -->
@@ -61,6 +55,7 @@
         <div class="face back" id="card-back"></div>
       </div>
     </div>
+
     <div class="nav-buttons">
       <button onclick="prevCard()" id="prevBtn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
       <button onclick="nextCard()" id="nextBtn">Next <i class="fa-solid fa-arrow-right"></i></button>
@@ -71,36 +66,28 @@
   <!-- Protection Script -->
   <script src="/js/protection.js"></script>
   <script>
+    // Initialize content protection with user info
     (function() {
       var username = '<%= typeof fullUser !== "undefined" && fullUser ? fullUser.username : (typeof user !== "undefined" && user ? user.username : "guest") %>';
       var email = '<%= typeof fullUser !== "undefined" && fullUser && fullUser.email ? fullUser.email : "" %>';
-      if (typeof initProtection === 'function') { initProtection(username, email); }
+      
+      if (typeof initProtection === 'function') {
+        initProtection(username, email);
+      }
     })();
   </script>
 
+  <!-- Flashcard Logic -->
   <script>
     var flashcards = <%- JSON.stringify(flashcards) %>;
     var current = 0;
     var flipped = false;
 
-    function toggleTheme() {
-      var html = document.documentElement;
-      var current = html.getAttribute('data-theme') || 'dark';
-      var next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
-    }
-    (function() {
-      var t = localStorage.getItem('theme') || 'dark';
-      var btn = document.getElementById('themeToggle');
-      if (btn) btn.textContent = t === 'dark' ? '☀️' : '🌙';
-    })();
-
     function toggleMode() {
       var list = document.getElementById("list-mode");
       var flashcard = document.getElementById("flashcard-mode");
       var toggleBtn = document.getElementById("flashcardToggle");
+
       if (list.style.display === "none") {
         list.style.display = "block";
         flashcard.style.display = "none";
@@ -117,20 +104,27 @@
 
     function renderCard() {
       if (!flashcards.length) return;
+
       var card = document.getElementById("card");
       var front = document.getElementById("card-front");
       var back = document.getElementById("card-back");
       var progress = document.getElementById("progressText");
+
       var curr = flashcards[current];
       var isUrdu = /[\u0600-\u06FF]/.test(curr.question + curr.answer);
       var langClass = isUrdu ? 'ur' : 'en';
+
       front.textContent = 'Q' + curr.flashcardIndex + ': ' + curr.question;
       back.textContent = 'A' + curr.flashcardIndex + ': ' + curr.answer;
+
       front.className = 'face front ' + langClass;
       back.className = 'face back ' + langClass;
+
       progress.textContent = (current + 1) + ' / ' + flashcards.length;
+
       document.getElementById("prevBtn").disabled = current === 0;
       document.getElementById("nextBtn").disabled = current === flashcards.length - 1;
+
       card.classList.remove("flipped", "slide-left", "slide-right");
       flipped = false;
     }
@@ -145,7 +139,10 @@
       if (current < flashcards.length - 1) {
         var card = document.getElementById("card");
         card.classList.add("slide-left");
-        setTimeout(function() { current++; renderCard(); }, 300);
+        setTimeout(function() {
+          current++;
+          renderCard();
+        }, 300);
       }
     }
 
@@ -153,7 +150,10 @@
       if (current > 0) {
         var card = document.getElementById("card");
         card.classList.add("slide-right");
-        setTimeout(function() { current--; renderCard(); }, 300);
+        setTimeout(function() {
+          current--;
+          renderCard();
+        }, 300);
       }
     }
   </script>

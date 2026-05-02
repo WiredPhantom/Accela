@@ -455,9 +455,6 @@ module.exports = (User, Flashcard, Note) => {
 
   router.post("/add-note", upload.single('htmlFile'), async (req, res) => {
     let {
-      subject,
-      subjectSlug,
-      termNumber,
       chapterIndex,
       chapterName,
       newChapterIndex,
@@ -528,9 +525,6 @@ module.exports = (User, Flashcard, Note) => {
       }
 
       const newNote = new Note({
-        subject: subject || 'kulliyat-advia',
-        subjectSlug: subjectSlug || subject || 'kulliyat-advia',
-        termNumber: parseInt(termNumber) || 1,
         chapterIndex,
         chapterName,
         topicIndex,
@@ -1021,9 +1015,6 @@ module.exports = (User, Flashcard, Note) => {
 
   router.post("/add-flashcard", async (req, res) => {
     let {
-      subject,
-      subjectSlug,
-      termNumber,
       chapterIndex,
       chapterName,
       newChapterIndex,
@@ -1086,9 +1077,6 @@ module.exports = (User, Flashcard, Note) => {
       }) + 1;
 
       const newFlashcard = new Flashcard({
-        subject: subject || 'kulliyat-advia',
-        subjectSlug: subjectSlug || subject || 'kulliyat-advia',
-        termNumber: parseInt(termNumber) || 1,
         chapterIndex,
         chapterName,
         topicIndex,
@@ -1110,9 +1098,6 @@ module.exports = (User, Flashcard, Note) => {
 
   router.post("/bulk-upload", upload.single('jsonFile'), async (req, res) => {
     let {
-      subject,
-      subjectSlug,
-      termNumber,
       chapterIndex,
       chapterName,
       newChapterIndex,
@@ -1182,9 +1167,6 @@ module.exports = (User, Flashcard, Note) => {
       const existingCount = await Flashcard.countDocuments({ chapterIndex, topicIndex });
 
       const flashcards = flashcardsData.map((fc, i) => ({
-        subject: subject || 'kulliyat-advia',
-        subjectSlug: subjectSlug || subject || 'kulliyat-advia',
-        termNumber: parseInt(termNumber) || 1,
         chapterIndex,
         chapterName,
         topicIndex,

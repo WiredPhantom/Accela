@@ -6,8 +6,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 require("dotenv").config();
 
-const { getAllPlans, getValidityMonths, formatDate, getPlan, planCoversTerm } = require("./config/plans");
-const { getAllSubjects, getSubject } = require("./config/subjects");
+const { getAllPlans, getValidityMonths, formatDate, getPlan } = require("./config/plans");
 const {
   generateDeviceFingerprint,
   getClientIP,
@@ -1043,33 +1042,16 @@ app.get("/profile", checkAuth, async (req, res) => {
 const paymentRoutes = require("./routes/payment")(User);
 app.use("/payment", paymentRoutes);
 
-// --------- 8. FLASHCARD ROUTES (Subject-based) ---------
+// --------- 8. FLASHCARD ROUTES ---------
 
 app.get("/chapters", optionalAuth, async (req, res) => {
-  const premiumStatus = await checkUserPremium(req.user?.username);
-  res.render("subjects", {
-    type: "flashcards",
-    subjects: getAllSubjects(),
-    isAuthenticated: req.isAuthenticated,
-    hasPremium: premiumStatus.isPremium,
-    user: req.user
-  });
-});
-
-app.get("/chapters/:subjectSlug", optionalAuth, async (req, res) => {
-  const subjectSlug = req.params.subjectSlug;
-  const subject = getSubject(subjectSlug);
-  if (!subject) return res.status(404).render("404");
-
   try {
     const chapters = await Flashcard.aggregate([
-      { $match: { subjectSlug } },
       {
         $group: {
           _id: "$chapterIndex",
           chapterName: { $first: "$chapterName" },
-          isPremium: { $first: "$isPremium" },
-          termNumber: { $first: "$termNumber" }
+          isPremium: { $first: "$isPremium" }
         }
       },
       { $sort: { _id: 1 } }
@@ -1077,56 +1059,61 @@ app.get("/chapters/:subjectSlug", optionalAuth, async (req, res) => {
 
     const premiumStatus = await checkUserPremium(req.user?.username);
 
-    res.render("chapters", {
-      chapters,
-      subjectSlug,
-      subjectName: subject.name,
+    res.render("chapters", { 
+      chapters, 
       isAuthenticated: req.isAuthenticated,
       hasPremium: premiumStatus.isPremium,
-      user: req.user
+      user: req.user 
     });
   } catch (err) {
-    console.error("❌ Chapters error:", err);
-    res.render("chapters", {
-      chapters: [], subjectSlug, subjectName: subject.name,
-      isAuthenticated: false, hasPremium: false, user: null
+    console.error("❌ Aggregate error:", err);
+    res.render("chapters", { 
+      chapters: [], 
+      isAuthenticated: false, 
+      hasPremium: false,
+      user: null 
     });
   }
 });
 
-app.get("/chapters/:subjectSlug/chapter/:chapterId", optionalAuth, async (req, res) => {
-  const subjectSlug = req.params.subjectSlug;
-  const chapterId = parseInt(req.params.chapterId);
-  const subject = getSubject(subjectSlug);
+app.get("/chapter/:id", optionalAuth, async (req, res) => {
+  const chapterId = parseInt(req.params.id);
 
-  if (!subject || isNaN(chapterId) || chapterId < 0) {
-    return res.status(404).render("404");
+  if (isNaN(chapterId) || chapterId < 0) {
+    return res.status(400).render("404");
   }
 
   try {
     const access = await getUserAccess(req.user?.username);
-    const chapterCheck = await Flashcard.findOne({ subjectSlug, chapterIndex: chapterId });
 
-    if (!chapterCheck) return res.status(404).render("404");
+    const chapterCheck = await Flashcard.findOne({ chapterIndex: chapterId });
 
-    const termNumber = chapterCheck.termNumber || 1;
+    if (!chapterCheck) {
+      return res.status(404).render("404");
+    }
+
     const allowed =
       !chapterCheck.isPremium ||
       access.isAdmin ||
-      (access.user && access.user.canAccessTerm(termNumber));
+      (access.user && access.user.canAccessChapter(chapterId));
 
     if (!allowed) {
       if (!req.isAuthenticated) {
-        return res.render("premiumrequired", { message: "Login required to access this chapter", username: null });
+        return res.render("premiumrequired", {
+          message: "Login required to access this chapter",
+          username: null,
+          chapterIndex: chapterId,
+        });
       }
       return res.render("premiumrequired", {
-        message: `Your current plan doesn't cover Term ${termNumber}. Pick a plan that includes it.`,
+        message: `Your current plan doesn't cover Chapter ${chapterId}. Pick a plan that includes it.`,
         username: req.user.username,
+        chapterIndex: chapterId,
       });
     }
 
     const topics = await Flashcard.aggregate([
-      { $match: { subjectSlug, chapterIndex: chapterId } },
+      { $match: { chapterIndex: chapterId } },
       {
         $group: {
           _id: "$topicIndex",
@@ -1138,52 +1125,67 @@ app.get("/chapters/:subjectSlug/chapter/:chapterId", optionalAuth, async (req, r
     ]);
 
     res.render("topics", {
-      chapterId, topics, subjectSlug, subjectName: subject.name,
-      isAuthenticated: req.isAuthenticated, hasPremium: access.isPremium, user: req.user
+      chapterId,
+      topics,
+      isAuthenticated: req.isAuthenticated,
+      hasPremium: access.isPremium,
+      user: req.user
     });
   } catch (err) {
     console.error("❌ Topic fetch error:", err);
     res.render("topics", {
-      chapterId, topics: [], subjectSlug, subjectName: subject.name,
-      isAuthenticated: false, hasPremium: false, user: null
+      chapterId,
+      topics: [],
+      isAuthenticated: false,
+      hasPremium: false,
+      user: null
     });
   }
 });
 
-app.get("/chapters/:subjectSlug/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => {
-  const subjectSlug = req.params.subjectSlug;
+app.get("/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => {
   const chapterId = parseInt(req.params.chapterId);
   const topicId = parseInt(req.params.topicId);
-  const subject = getSubject(subjectSlug);
 
-  if (!subject || isNaN(chapterId) || isNaN(topicId)) {
-    return res.status(404).render("404");
+  if (isNaN(chapterId) || isNaN(topicId) || chapterId < 0 || topicId < 0) {
+    return res.status(400).render("404");
   }
 
   try {
     const access = await getUserAccess(req.user?.username);
-    const topicCheck = await Flashcard.findOne({ subjectSlug, chapterIndex: chapterId, topicIndex: topicId });
 
-    if (!topicCheck) return res.status(404).render("404");
+    const topicCheck = await Flashcard.findOne({
+      chapterIndex: chapterId,
+      topicIndex: topicId
+    });
 
-    const termNumber = topicCheck.termNumber || 1;
+    if (!topicCheck) {
+      return res.status(404).render("404");
+    }
+
     const allowed =
       !topicCheck.isPremium ||
       access.isAdmin ||
-      (access.user && access.user.canAccessTerm(termNumber));
+      (access.user && access.user.canAccessChapter(chapterId));
 
     if (!allowed) {
       if (!req.isAuthenticated) {
-        return res.render("premiumrequired", { message: "Login required to access this topic", username: null });
+        return res.render("premiumrequired", {
+          message: "Login required to access this topic",
+          username: null,
+          chapterIndex: chapterId,
+        });
       }
       return res.render("premiumrequired", {
-        message: `Your current plan doesn't cover Term ${termNumber}. Pick a plan that includes it.`,
+        message: `Your current plan doesn't cover Chapter ${chapterId}. Pick a plan that includes it.`,
         username: req.user.username,
+        chapterIndex: chapterId,
       });
     }
 
     const flashcards = await Flashcard.find({
-      subjectSlug, chapterIndex: chapterId, topicIndex: topicId
+      chapterIndex: chapterId,
+      topicIndex: topicId
     }).sort({ flashcardIndex: 1 });
 
     let fullUser = null;
@@ -1192,46 +1194,38 @@ app.get("/chapters/:subjectSlug/chapter/:chapterId/topic/:topicId", optionalAuth
     }
 
     res.render("flashcards", {
-      chapterId, topicId, subjectSlug, flashcards,
-      isAuthenticated: req.isAuthenticated, hasPremium: access.isPremium,
-      user: req.user, fullUser
+      chapterId,
+      topicId,
+      flashcards,
+      isAuthenticated: req.isAuthenticated,
+      hasPremium: access.isPremium,
+      user: req.user,
+      fullUser: fullUser
     });
   } catch (err) {
     console.error("❌ Flashcard fetch error:", err);
     res.render("flashcards", {
-      chapterId, topicId, subjectSlug: subjectSlug || '', flashcards: [],
-      isAuthenticated: false, hasPremium: false, user: null, fullUser: null
+      chapterId,
+      topicId,
+      flashcards: [],
+      isAuthenticated: false,
+      hasPremium: false,
+      user: null,
+      fullUser: null
     });
   }
 });
 
-// --------- 9. NOTES ROUTES (Subject-based) ---------
+// --------- 9. NOTES ROUTES ---------
 
 app.get("/notes", optionalAuth, async (req, res) => {
-  const premiumStatus = await checkUserPremium(req.user?.username);
-  res.render("subjects", {
-    type: "notes",
-    subjects: getAllSubjects(),
-    isAuthenticated: req.isAuthenticated,
-    hasPremium: premiumStatus.isPremium,
-    user: req.user
-  });
-});
-
-app.get("/notes/:subjectSlug", optionalAuth, async (req, res) => {
-  const subjectSlug = req.params.subjectSlug;
-  const subject = getSubject(subjectSlug);
-  if (!subject) return res.status(404).render("404");
-
   try {
     const chapters = await Note.aggregate([
-      { $match: { subjectSlug } },
       {
         $group: {
           _id: "$chapterIndex",
           chapterName: { $first: "$chapterName" },
-          isPremium: { $first: "$isPremium" },
-          termNumber: { $first: "$termNumber" }
+          isPremium: { $first: "$isPremium" }
         }
       },
       { $sort: { _id: 1 } }
@@ -1239,52 +1233,61 @@ app.get("/notes/:subjectSlug", optionalAuth, async (req, res) => {
 
     const premiumStatus = await checkUserPremium(req.user?.username);
 
-    res.render("note-chapters", {
-      chapters, subjectSlug, subjectName: subject.name,
-      isAuthenticated: req.isAuthenticated, hasPremium: premiumStatus.isPremium, user: req.user
+    res.render("note-chapters", { 
+      chapters, 
+      isAuthenticated: req.isAuthenticated,
+      hasPremium: premiumStatus.isPremium,
+      user: req.user 
     });
   } catch (err) {
     console.error("❌ Note chapters error:", err);
-    res.render("note-chapters", {
-      chapters: [], subjectSlug, subjectName: subject.name,
-      isAuthenticated: false, hasPremium: false, user: null
+    res.render("note-chapters", { 
+      chapters: [], 
+      isAuthenticated: false, 
+      hasPremium: false,
+      user: null 
     });
   }
 });
 
-app.get("/notes/:subjectSlug/chapter/:chapterId", optionalAuth, async (req, res) => {
-  const subjectSlug = req.params.subjectSlug;
-  const chapterId = parseInt(req.params.chapterId);
-  const subject = getSubject(subjectSlug);
+app.get("/notes/chapter/:id", optionalAuth, async (req, res) => {
+  const chapterId = parseInt(req.params.id);
 
-  if (!subject || isNaN(chapterId) || chapterId < 0) {
-    return res.status(404).render("404");
+  if (isNaN(chapterId) || chapterId < 0) {
+    return res.status(400).render("404");
   }
 
   try {
     const access = await getUserAccess(req.user?.username);
-    const chapterCheck = await Note.findOne({ subjectSlug, chapterIndex: chapterId });
 
-    if (!chapterCheck) return res.status(404).render("404");
+    const chapterCheck = await Note.findOne({ chapterIndex: chapterId });
 
-    const termNumber = chapterCheck.termNumber || 1;
+    if (!chapterCheck) {
+      return res.status(404).render("404");
+    }
+
     const allowed =
       !chapterCheck.isPremium ||
       access.isAdmin ||
-      (access.user && access.user.canAccessTerm(termNumber));
+      (access.user && access.user.canAccessChapter(chapterId));
 
     if (!allowed) {
       if (!req.isAuthenticated) {
-        return res.render("premiumrequired", { message: "Login required to access this chapter", username: null });
+        return res.render("premiumrequired", {
+          message: "Login required to access this chapter",
+          username: null,
+          chapterIndex: chapterId,
+        });
       }
       return res.render("premiumrequired", {
-        message: `Your current plan doesn't cover Term ${termNumber}. Pick a plan that includes it.`,
+        message: `Your current plan doesn't cover Chapter ${chapterId}. Pick a plan that includes it.`,
         username: req.user.username,
+        chapterIndex: chapterId,
       });
     }
 
     const topics = await Note.aggregate([
-      { $match: { subjectSlug, chapterIndex: chapterId } },
+      { $match: { chapterIndex: chapterId } },
       {
         $group: {
           _id: "$topicIndex",
@@ -1296,47 +1299,61 @@ app.get("/notes/:subjectSlug/chapter/:chapterId", optionalAuth, async (req, res)
     ]);
 
     res.render("note-topics", {
-      chapterId, topics, subjectSlug, subjectName: subject.name,
-      isAuthenticated: req.isAuthenticated, hasPremium: access.isPremium, user: req.user
+      chapterId,
+      topics,
+      isAuthenticated: req.isAuthenticated,
+      hasPremium: access.isPremium,
+      user: req.user
     });
   } catch (err) {
     console.error("❌ Note topics error:", err);
-    res.render("note-topics", {
-      chapterId, topics: [], subjectSlug, subjectName: subject.name,
-      isAuthenticated: false, hasPremium: false, user: null
+    res.render("note-topics", { 
+      chapterId, 
+      topics: [],
+      isAuthenticated: false,
+      hasPremium: false,
+      user: null
     });
   }
 });
 
-app.get("/notes/:subjectSlug/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => {
-  const subjectSlug = req.params.subjectSlug;
+app.get("/notes/chapter/:chapterId/topic/:topicId", optionalAuth, async (req, res) => {
   const chapterId = parseInt(req.params.chapterId);
   const topicId = parseInt(req.params.topicId);
-  const subject = getSubject(subjectSlug);
 
-  if (!subject || isNaN(chapterId) || isNaN(topicId)) {
-    return res.status(404).render("404");
+  if (isNaN(chapterId) || isNaN(topicId) || chapterId < 0 || topicId < 0) {
+    return res.status(400).render("404");
   }
 
   try {
     const access = await getUserAccess(req.user?.username);
-    const note = await Note.findOne({ subjectSlug, chapterIndex: chapterId, topicIndex: topicId });
 
-    if (!note) return res.status(404).render("404");
+    const note = await Note.findOne({
+      chapterIndex: chapterId,
+      topicIndex: topicId
+    });
 
-    const termNumber = note.termNumber || 1;
+    if (!note) {
+      return res.status(404).render("404");
+    }
+
     const allowed =
       !note.isPremium ||
       access.isAdmin ||
-      (access.user && access.user.canAccessTerm(termNumber));
+      (access.user && access.user.canAccessChapter(chapterId));
 
     if (!allowed) {
       if (!req.isAuthenticated) {
-        return res.render("premiumrequired", { message: "Login required to access this note", username: null });
+        return res.render("premiumrequired", {
+          message: "Login required to access this note",
+          username: null,
+          chapterIndex: chapterId,
+        });
       }
       return res.render("premiumrequired", {
-        message: `Your current plan doesn't cover Term ${termNumber}. Pick a plan that includes it.`,
+        message: `Your current plan doesn't cover Chapter ${chapterId}. Pick a plan that includes it.`,
         username: req.user.username,
+        chapterIndex: chapterId,
       });
     }
 
@@ -1346,8 +1363,11 @@ app.get("/notes/:subjectSlug/chapter/:chapterId/topic/:topicId", optionalAuth, a
     }
 
     res.render("note-view", {
-      note, isAuthenticated: req.isAuthenticated, hasPremium: access.isPremium,
-      user: req.user, fullUser
+      note,
+      isAuthenticated: req.isAuthenticated,
+      hasPremium: access.isPremium,
+      user: req.user,
+      fullUser: fullUser
     });
   } catch (err) {
     console.error("❌ Note view error:", err);
