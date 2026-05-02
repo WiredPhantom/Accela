@@ -3,24 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= subjectName %> — Chapters - Accela</title>
+  <title><%= type === 'notes' ? 'Notes' : 'Flashcards' %> — Choose Subject - Accela</title>
   <link rel="stylesheet" href="/chapters.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
-  <style>
-    .premium-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-      color: #0a092d;
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-left: 12px;
-      vertical-align: middle;
-    }
-    .lock-icon { font-size: 20px; margin-right: 8px; vertical-align: middle; }
-  </style>
   <script>
     (function() {
       var t = localStorage.getItem('theme') || 'dark';
@@ -46,51 +32,29 @@
   <nav class="breadcrumb">
     <a href="/">🏠 Home</a>
     <span class="breadcrumb-separator">/</span>
-    <a href="/chapters">📂 Flashcards</a>
-    <span class="breadcrumb-separator">/</span>
-    <span><%= subjectName %></span>
+    <span><%= type === 'notes' ? '📝 Notes' : '📂 Flashcards' %></span>
   </nav>
 
   <div class="container">
-    <section id="chapters" class="section">
-      <h1 class="title">📂 <%= subjectName %></h1>
+    <section class="section">
+      <h1 style="text-align:center; font-size:28px; font-weight:700; margin-bottom:8px; color:var(--text);">
+        <%= type === 'notes' ? '📝 Notes' : '📂 Flashcards' %>
+      </h1>
+      <p style="text-align:center; color:var(--text-muted); margin-bottom:32px; font-size:15px;">
+        Subject choose karein
+      </p>
 
-      <% if (!isAuthenticated) { %>
-        <div class="premium-notice">
-          🔓 Some chapters are free, others require premium access.
-          <a href="/login" style="color: inherit; text-decoration: underline;">Login</a> to unlock premium content.
-        </div>
-      <% } else if (!hasPremium) { %>
-        <div class="premium-notice">
-          🌟 Upgrade to Premium to unlock all chapters and topics!
-        </div>
-      <% } %>
-
-      <% chapters.forEach(function(ch) { %>
-        <div class="chapter-box <%= ch.isPremium ? 'premium' : '' %>">
-          <h2>
-            Chapter <%= ch._id %>
-            <% if (ch.isPremium) { %>
-              <span class="premium-badge"><span class="lock-icon">🔒</span>PREMIUM</span>
-            <% } %>
-          </h2>
-          <p><%= ch.chapterName %></p>
-
-          <% if (ch.isPremium && !hasPremium) { %>
-            <a href="/upgrade<%= isAuthenticated ? '?username=' + user.username : '' %>" class="btn" style="background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); color: #0a092d;">
-              🔒 Unlock Premium
-            </a>
-          <% } else { %>
-            <a href="/chapters/<%= subjectSlug %>/chapter/<%= ch._id %>" class="btn">View Topics</a>
-          <% } %>
-        </div>
-      <% }); %>
-
-      <% if (chapters.length === 0) { %>
-        <div class="chapter-box">
-          <p style="text-align:center; color:var(--text-muted);">No chapters available yet. Check back soon!</p>
-        </div>
-      <% } %>
+      <div class="subjects-grid">
+        <% subjects.forEach(function(sub) { %>
+          <a href="/<%= type === 'notes' ? 'notes' : 'chapters' %>/<%= sub.id %>" class="subject-card">
+            <span class="subject-card-accent" style="background: <%= sub.color %>;"></span>
+            <span class="subject-card-emoji"><%= sub.emoji %></span>
+            <div class="subject-card-name"><%= sub.name %></div>
+            <div class="subject-card-urdu"><%= sub.urduName %></div>
+            <div class="subject-card-desc"><%= sub.description %></div>
+          </a>
+        <% }); %>
+      </div>
     </section>
   </div>
 
@@ -99,6 +63,7 @@
       <% if (isAuthenticated) { %>
         <form action="/logout" method="GET"><button type="submit" class="logout-btn">Logout</button></form>
         <% if (user && user.role === 'admin') { %><a href="/admin" class="admin-btn">Admin Panel</a><% } %>
+        <a href="/profile" class="admin-btn" style="background:rgba(79,70,229,0.3); border-color:rgba(79,70,229,0.5);">Profile</a>
       <% } else { %>
         <a href="/login" class="admin-btn">Login / Sign Up</a>
       <% } %>

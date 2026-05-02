@@ -319,6 +319,13 @@ module.exports = (connection) => {
     return active.some(p => planCoversChapter(p.planId, chapterIndex));
   };
 
+  userSchema.methods.canAccessTerm = function(termNumber) {
+    if (this.role === "admin") return true;
+    const active = this.getActivePlans();
+    const { planCoversTerm } = require("../config/plans");
+    return active.some(p => planCoversTerm(p.planId, termNumber));
+  };
+
   userSchema.methods.hasAnyActivePlan = function() {
     if (this.role === "admin") return true;
     return this.getActivePlans().length > 0;

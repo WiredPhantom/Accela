@@ -1,38 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Topics - Accela Notes</title>
+  <title>Topics — Chapter <%= chapterId %> Notes - Accela</title>
   <link rel="stylesheet" href="/chapters.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
   <style>
-    .breadcrumb {
-      max-width: 900px;
-      margin: 20px auto 0;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    .breadcrumb a {
-      color: #4f46e5;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .breadcrumb a:hover {
-      color: #6366f1;
-    }
-
-    .breadcrumb-separator {
-      color: rgba(255, 255, 255, 0.3);
-    }
-
     .premium-badge {
       display: inline-block;
       background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
@@ -44,73 +19,53 @@
       margin-left: 12px;
       vertical-align: middle;
     }
-
-    .chapter-box.premium {
-      border: 1px solid rgba(255, 215, 0, 0.3);
-      background: rgba(255, 215, 0, 0.03);
-    }
-
-    .chapter-box.premium:hover {
-      border-color: rgba(255, 215, 0, 0.5);
-      background: rgba(255, 215, 0, 0.06);
-    }
-
-    /* Urdu text styling */
-    .topic-name-urdu {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      direction: rtl;
-      text-align: right;
-      line-height: 1.8;
-    }
-
-    .topic-name-english {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
-      direction: ltr;
-      text-align: left;
-    }
-
-    @media (max-width: 768px) {
-      .breadcrumb {
-        margin-top: 12px;
-      }
-    }
+    .topic-name-urdu { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; text-align: right; line-height: 1.8; }
+    .topic-name-english { direction: ltr; text-align: left; }
   </style>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header">
+  <header class="header" style="position: relative;">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">☀️</button>
     <div class="logo-title">
-      <img src="https://files.catbox.moe/bpi1je.gif" alt="Animated Accela Logo" class="logo" />
+      <img src="https://files.catbox.moe/bpi1je.gif" alt="Accela Logo" class="logo" />
       <h1 id="accela">Accela</h1>
     </div>
+    <% if (isAuthenticated && user) { %>
+      <div class="user-status <%= hasPremium ? 'premium' : '' %>" style="position:absolute; top:50%; right:40px; transform:translateY(-50%);">
+        <% if (hasPremium) { %>⭐ Premium<% } else { %>👤 <%= user.username %><% } %>
+      </div>
+    <% } %>
   </header>
 
-  <!-- Breadcrumb Navigation -->
   <nav class="breadcrumb">
     <a href="/">🏠 Home</a>
     <span class="breadcrumb-separator">/</span>
-    <a href="/notes">Notes</a>
+    <a href="/notes">📝 Notes</a>
+    <span class="breadcrumb-separator">/</span>
+    <a href="/notes/<%= subjectSlug %>"><%= subjectName %></a>
     <span class="breadcrumb-separator">/</span>
     <span>Chapter <%= chapterId %></span>
   </nav>
 
-  <!-- Topics Section -->
   <div class="container">
     <section id="topics" class="section">
       <h1 class="title">📚 Topics in Chapter <%= chapterId %></h1>
-      
+
       <% if (topics.length === 0) { %>
         <div class="chapter-box">
-          <p style="text-align: center; color: rgba(255, 255, 255, 0.5);">No topics available in this chapter yet.</p>
+          <p style="text-align:center; color:var(--text-muted);">No topics available in this chapter yet.</p>
         </div>
       <% } else { %>
-        <% topics.forEach(topic => { %>
-          <% 
-            // Check if topic name contains Urdu characters
-            const urduRegex = /[\u0600-\u06FF]/;
-            const isUrdu = urduRegex.test(topic.topicName);
-          %>
+        <% topics.forEach(function(topic) {
+             var isUrdu = /[\u0600-\u06FF]/.test(topic.topicName);
+        %>
           <div class="chapter-box <%= topic.isPremium ? 'premium' : '' %>">
             <h2>
               Topic <%= topic._id %>
@@ -118,28 +73,39 @@
                 <span class="premium-badge">🔒 PREMIUM</span>
               <% } %>
             </h2>
-            <p class="<%= isUrdu ? 'topic-name-urdu' : 'topic-name-english' %>">
-              <%= topic.topicName %>
-            </p>
-            <a href="/notes/chapter/<%= chapterId %>/topic/<%= topic._id %>" class="btn">Read Note</a>
+            <p class="<%= isUrdu ? 'topic-name-urdu' : 'topic-name-english' %>"><%= topic.topicName %></p>
+            <a href="/notes/<%= subjectSlug %>/chapter/<%= chapterId %>/topic/<%= topic._id %>" class="btn">Read Note</a>
           </div>
-        <% }) %>
+        <% }); %>
       <% } %>
     </section>
   </div>
 
-  <!-- Buttons Container -->
   <div class="buttons-container">
     <div class="button-row">
       <% if (isAuthenticated) { %>
-        <form action="/logout" method="GET">
-          <button type="submit" class="logout-btn">Logout</button>
-        </form>
+        <form action="/logout" method="GET"><button type="submit" class="logout-btn">Logout</button></form>
+        <% if (user && user.role === 'admin') { %><a href="/admin" class="admin-btn">Admin Panel</a><% } %>
       <% } else { %>
         <a href="/login" class="admin-btn">Login / Sign Up</a>
       <% } %>
     </div>
   </div>
 
+  <script>
+    function toggleTheme() {
+      var html = document.documentElement;
+      var current = html.getAttribute('data-theme') || 'dark';
+      var next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+    (function() {
+      var t = localStorage.getItem('theme') || 'dark';
+      document.getElementById('themeToggle').textContent = t === 'dark' ? '☀️' : '🌙';
+    })();
+  </script>
+
 </body>
-      </html>
+</html>

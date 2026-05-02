@@ -9,25 +9,58 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* ===== THEME VARIABLES ===== */
+:root {
+  --fc-bg: #0a092d;
+  --fc-header-bg: #0a092d;
+  --fc-text: #ffffff;
+  --fc-text-muted: rgba(255, 255, 255, 0.7);
+  --fc-border: rgba(255, 255, 255, 0.1);
+  --fc-card-bg: rgba(255, 255, 255, 0.08);
+  --fc-card-border: rgba(255, 255, 255, 0.15);
+  --fc-card-hover-bg: rgba(255, 255, 255, 0.12);
+  --fc-back-btn-bg: rgba(255, 255, 255, 0.1);
+  --fc-back-btn-border: rgba(255, 255, 255, 0.2);
+  --fc-question-border: rgba(255, 255, 255, 0.1);
+  --fc-nav-disabled: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] {
+  --fc-bg: #f0f4ff;
+  --fc-header-bg: #ffffff;
+  --fc-text: #1a1833;
+  --fc-text-muted: rgba(26, 24, 51, 0.65);
+  --fc-border: rgba(26, 24, 51, 0.1);
+  --fc-card-bg: rgba(255, 255, 255, 0.9);
+  --fc-card-border: rgba(26, 24, 51, 0.12);
+  --fc-card-hover-bg: rgba(255, 255, 255, 1);
+  --fc-back-btn-bg: rgba(79, 70, 229, 0.08);
+  --fc-back-btn-border: rgba(79, 70, 229, 0.25);
+  --fc-question-border: rgba(26, 24, 51, 0.1);
+  --fc-nav-disabled: rgba(26, 24, 51, 0.1);
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: #0a092d;
-  color: #ffffff;
+  background: var(--fc-bg);
+  color: var(--fc-text);
   line-height: 1.7;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* Header */
 .header {
-  background: #0a092d;
+  background: var(--fc-header-bg);
   padding: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--fc-border);
   position: sticky;
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
+  transition: background 0.3s;
 }
 
 .header-content {
@@ -41,32 +74,55 @@ body {
 .header h1 {
   font-size: 24px;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--fc-text);
   text-align: center;
   flex: 1;
   letter-spacing: -0.5px;
 }
 
 .back-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: var(--fc-back-btn-bg);
+  color: var(--fc-text);
   text-decoration: none;
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 15px;
   font-weight: 600;
   transition: all 0.2s;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--fc-back-btn-border);
   letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 .back-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--fc-card-hover-bg);
   transform: translateX(-2px);
 }
 
+/* Theme toggle in flashcard header */
+.theme-toggle-fc {
+  background: var(--fc-back-btn-bg);
+  border: 1px solid var(--fc-back-btn-border);
+  color: var(--fc-text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s;
+  line-height: 1;
+  margin-left: 8px;
+}
+
+.theme-toggle-fc:hover {
+  background: var(--fc-card-hover-bg);
+}
+
 .spacer {
-  width: 100px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 100px;
+  justify-content: flex-end;
 }
 
 /* Container */
@@ -103,8 +159,8 @@ body {
 
 /* List Mode - Flashcard Items */
 .flashcard-item {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--fc-card-bg);
+  border: 1px solid var(--fc-card-border);
   border-radius: 16px;
   padding: 28px;
   margin-bottom: 24px;
@@ -112,24 +168,24 @@ body {
 }
 
 .flashcard-item:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--fc-card-hover-bg);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .question {
   font-weight: 600;
-  color: #ffffff;
+  color: var(--fc-text);
   font-size: 19px;
   margin-bottom: 18px;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--fc-question-border);
   line-height: 1.8;
   letter-spacing: 0.2px;
 }
 
 .answer {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--fc-text-muted);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.9;
@@ -171,15 +227,15 @@ body {
   box-sizing: border-box;
   overflow-y: auto;
   backface-visibility: hidden;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--fc-card-bg);
+  border: 1px solid var(--fc-card-border);
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--fc-text);
   transition: all 0.3s;
   line-height: 1.9;
   letter-spacing: 0.2px;
@@ -206,7 +262,6 @@ body {
   font-weight: 600;
   font-size: 15px;
   transition: all 0.2s;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   letter-spacing: 0.3px;
 }
 
@@ -216,7 +271,7 @@ body {
 }
 
 .nav-buttons button:disabled {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--fc-nav-disabled);
   cursor: default;
   opacity: 0.5;
 }
@@ -226,7 +281,7 @@ body {
   font-size: 16px;
   font-weight: 600;
   text-align: center;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--fc-text-muted);
   letter-spacing: 0.3px;
 }
 
@@ -280,7 +335,7 @@ body {
   }
 
   .spacer {
-    width: 60px;
+    min-width: 60px;
   }
 
   .card-wrapper {
@@ -320,7 +375,7 @@ body {
   }
 
   .spacer {
-    display: none;
+    min-width: auto;
   }
 
   .card-wrapper {

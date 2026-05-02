@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Profile - Accela</title>
   <link rel="stylesheet" href="/chapters.css">
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <link rel="icon" href="https://files.catbox.moe/bpi1je.gif" type="image/gif">
   <style>
     .profile-container {
@@ -173,7 +179,8 @@
 </head>
 <body>
 
-  <header class="header">
+  <header class="header" style="position:relative;">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">☀️</button>
     <div class="logo-title">
       <img src="https://files.catbox.moe/bpi1je.gif" alt="Logo" class="logo" />
       <h1>Accela</h1>
@@ -259,7 +266,7 @@
 
     <% if (user.role !== 'admin' && (!hasPremium || canBuyMore)) { %>
       <button onclick="window.location.href='/upgrade?username=<%= user.username %>'" class="upgrade-btn">
-        <%= hasPremium ? '➕ Add Another Plan' : '🚀 View Plans (from ₹199)' %>
+        <%= hasPremium ? '➕ Add Another Plan' : '🚀 View Plans (from ₹499)' %>
       </button>
     <% } %>
 
@@ -275,6 +282,21 @@
       </a>
     </div>
   </div>
+
+  <script>
+    function toggleTheme() {
+      var html = document.documentElement;
+      var current = html.getAttribute('data-theme') || 'dark';
+      var next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+    (function() {
+      var t = localStorage.getItem('theme') || 'dark';
+      document.getElementById('themeToggle').textContent = t === 'dark' ? '☀️' : '🌙';
+    })();
+  </script>
 
 </body>
 </html>
