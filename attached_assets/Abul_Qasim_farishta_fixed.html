@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابوالقاسم فرشتہ - عادل شاہی دور</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section-title h2 {
+            font-size: 22px;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+            border-right: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .key-point-title {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-point-title::before {
+            content: "★";
+            color: #764ba2;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border: 2px solid #818cf8;
+        }
+
+        .info-box-title {
+            color: #4338ca;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box-title::before {
+            content: "📌";
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border: 2px solid #f59e0b;
+        }
+
+        .highlight-box-title {
+            color: #b45309;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .book-card {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border: 2px solid #10b981;
+        }
+
+        .book-title {
+            color: #047857;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .book-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-right: 4px solid #10b981;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .book-number {
+            background: #10b981;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .quick-fact {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8fafc;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .quick-fact-icon {
+            font-size: 24px;
+        }
+
+        .quick-fact-text {
+            flex: 1;
+        }
+
+        .simple-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .simple-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .simple-list li:last-child {
+            border-bottom: none;
+        }
+
+        .simple-list li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .memory-tip {
+            background: linear-gradient(135deg, #fdf4ff 0%, #f3e8ff 100%);
+            border: 2px dashed #a855f7;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .memory-tip-title {
+            color: #7c3aed;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .memory-tip-title::before {
+            content: "💡 ";
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin: 20px 0;
+        }
+
+        .summary-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: #a5f3fc;
+            font-weight: bold;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        strong {
+            color: #4338ca;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 480px) {
+            body { font-size: 16px; }
+            .header h1 { font-size: 24px; }
+            .section-title h2 { font-size: 18px; }
+            .container { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>ابوالقاسم فرشتہ</h1>
+        <p class="subtitle">عادل شاہی دور کے مشہور طبیب اور مورخ</p>
+    </header>
+
+    <div class="container">
+
+        <!-- حصہ اول: تعارف -->
+        <section class="section-card">
+            <div class="section-title">
+                <span class="section-number">۱</span>
+                <h2>تعارف اور حالاتِ زندگی</h2>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">ابوالقاسم فرشتہ کون تھے؟</div>
+                <p>ابوالقاسم فرشتہ عادل شاہی دور کے مشہور طبیب اور مورخ تھے۔ ان کا پورا نام <strong>محمد قاسم ہندو شاہ فرشتہ</strong> تھا۔</p>
+            </div>
+
+            <div class="quick-fact">
+                <span class="quick-fact-icon">🌍</span>
+                <span class="quick-fact-text"><strong>وطن:</strong> استر آباد، ایران</span>
+            </div>
+            <div class="quick-fact">
+                <span class="quick-fact-icon">📅</span>
+                <span class="quick-fact-text"><strong>ہندوستان آمد:</strong> بچپن میں، احمد نگر</span>
+            </div>
+            <div class="quick-fact">
+                <span class="quick-fact-icon">👑</span>
+                <span class="quick-fact-text"><strong>دور:</strong> ابراہیم عادل شاہ ثانی، بیجاپور</span>
+            </div>
+            <div class="quick-fact">
+                <span class="quick-fact-icon">📖</span>
+                <span class="quick-fact-text"><strong>زمانہ:</strong> سولہویں/سترہویں صدی عیسوی</span>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">خاندانی پس منظر</div>
+                <ul class="simple-list">
+                    <li>اصل وطن ایران کا شہر استر آباد تھا</li>
+                    <li>بچپن میں خاندان سمیت ہندوستان آئے</li>
+                    <li>احمد نگر میں قیام کیا</li>
+                    <li>بعد میں بیجاپور کے عادل شاہی دربار سے وابستہ ہوئے</li>
+                </ul>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">یاد رکھیں</div>
+                <p>"فرشتہ" ان کا تخلص تھا۔ وہ ایرانی نژاد تھے لیکن ہندوستان میں پلے بڑھے اور یہاں شہرت پائی۔</p>
+            </div>
+        </section>
+
+        <!-- حصہ دوم: خدمات -->
+        <section class="section-card">
+            <div class="section-title">
+                <span class="section-number">۲</span>
+                <h2>طبی خدمات</h2>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">بحیثیت طبیب</div>
+                <ul class="simple-list">
+                    <li>یونانی طب میں مہارت حاصل کی</li>
+                    <li>عادل شاہی دربار کے طبیب رہے</li>
+                    <li>علاج معالجے کے ساتھ ساتھ طبی تصنیف کا کام کیا</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-box-title">⚠️ اہم نکتہ</div>
+                <p>فرشتہ کی شہرت طب سے زیادہ مورخ کی حیثیت سے ہے، لیکن انہوں نے طبی خدمات بھی انجام دیں اور طب پر ایک اہم کتاب لکھی جو ان کی طبی مہارت کی دلیل ہے۔</p>
+            </div>
+        </section>
+
+        <!-- حصہ سوم: تصانیف -->
+        <section class="section-card">
+            <div class="section-title">
+                <span class="section-number">۳</span>
+                <h2>تصانیف (کتابیں)</h2>
+            </div>
+
+            <div class="book-card">
+                <div class="book-title">📚 اہم کتابیں</div>
+
+                <div class="book-item">
+                    <span class="book-number">۱</span>
+                    <div>
+                        <strong>اختیارات قاسمی</strong>
+                        <p style="margin:5px 0 0 0; color:#374151;">طب پر لکھی گئی اہم کتاب — یونانی اور آیورویدک ادویہ کی تفصیل</p>
+                    </div>
+                </div>
+
+                <div class="book-item">
+                    <span class="book-number">۲</span>
+                    <div>
+                        <strong>تاریخ فرشتہ (گلشن ابراہیمی)</strong>
+                        <p style="margin:5px 0 0 0; color:#374151;">ہندوستان کی تاریخ پر مشہور ترین تصنیف — بادشاہ ابراہیم عادل شاہ کے نام سے منسوب</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">اختیارات قاسمی کی خصوصیات</div>
+                <ul class="simple-list">
+                    <li>یونانی اور ہندی دوائیں دونوں شامل ہیں</li>
+                    <li>فارسی زبان میں لکھی گئی</li>
+                    <li>ادویہ مفردہ اور مرکبہ دونوں کا ذکر</li>
+                    <li>عادل شاہی دور کی طبی روایت کا آئینہ</li>
+                </ul>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">یاد رکھیں</div>
+                <p>فرشتہ کی طبی کتاب <strong>اختیارات قاسمی</strong> ہے اور تاریخی کتاب <strong>تاریخ فرشتہ / گلشن ابراہیمی</strong> ہے۔ دونوں الگ الگ موضوعات پر ہیں۔</p>
+            </div>
+        </section>
+
+        <!-- حصہ چہارم: عہد اور دربار -->
+        <section class="section-card">
+            <div class="section-title">
+                <span class="section-number">۴</span>
+                <h2>عادل شاہی دربار سے وابستگی</h2>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">دربار میں مقام</div>
+                <ul class="simple-list">
+                    <li>بیجاپور کے حکمران <strong>ابراہیم عادل شاہ ثانی</strong> کے دربار سے وابستہ رہے</li>
+                    <li>بادشاہ کے نام پر <strong>"گلشن ابراہیمی"</strong> لکھی</li>
+                    <li>طبیب اور مورخ دونوں حیثیتوں میں خدمات انجام دیں</li>
+                    <li>دربار میں علم و ادب کے سرپرستی کا دور تھا</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-box-title">🌟 تاریخی اہمیت</div>
+                <p>فرشتہ کی <strong>تاریخ فرشتہ</strong> آج بھی ہندوستان کی قرون وسطیٰ کی تاریخ کا ایک بنیادی ماخذ مانی جاتی ہے۔ مغربی مورخین نے بھی اس سے استفادہ کیا۔</p>
+            </div>
+        </section>
+
+        <!-- خلاصہ -->
+        <div class="summary-card">
+            <h3>📝 خلاصہ — یاد کریں</h3>
+            <ul class="summary-list">
+                <li><span class="check-icon">✓</span> ابوالقاسم فرشتہ — ایرانی نژاد، عادل شاہی دور</li>
+                <li><span class="check-icon">✓</span> پورا نام: محمد قاسم ہندو شاہ فرشتہ</li>
+                <li><span class="check-icon">✓</span> وطن: استر آباد، ایران — ہندوستان میں پرورش</li>
+                <li><span class="check-icon">✓</span> دربار: ابراہیم عادل شاہ ثانی، بیجاپور</li>
+                <li><span class="check-icon">✓</span> طبی کتاب: اختیارات قاسمی</li>
+                <li><span class="check-icon">✓</span> تاریخی کتاب: تاریخ فرشتہ / گلشن ابراہیمی</li>
+                <li><span class="check-icon">✓</span> دوہری شہرت: طبیب اور مورخ دونوں</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
