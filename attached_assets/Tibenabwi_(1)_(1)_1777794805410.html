@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طبِ نبوی - آسان تعارف</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 2;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 20px;
+            border-right: 5px solid #4299e1;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #2c5282;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #4299e1;
+        }
+
+        .section h3 {
+            color: #2d3748;
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+            background: #e6fffa;
+            padding: 10px;
+            border-radius: 8px;
+            border-right: 4px solid #38b2ac;
+        }
+
+        .hadith-box {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            border-right: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            font-size: 1.05em;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .list-item {
+            background: white;
+            margin: 10px 0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-right: 3px solid #48bb78;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-size: 1.05em;
+        }
+
+        .list-item::before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            margin-left: 8px;
+            font-size: 1.2em;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-right: 4px solid #319795;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .number {
+            display: inline-block;
+            background: #4299e1;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1em;
+        }
+
+        .emphasis {
+            color: #c53030;
+            font-weight: bold;
+        }
+
+        .medicine-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .medicine-item {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .intro-box {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .intro-box p {
+            font-size: 1.15em;
+            line-height: 2.2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>طبِ نبوی ﷺ</h1>
+            <p>صحت اور شفا کا مکمل نظام</p>
+        </div>
+
+        <div class="content">
+            <div class="intro-box">
+                <p><strong>طبِ نبوی</strong> یعنی نبی اکرم ﷺ کی وہ تعلیمات جو ہماری صحت، علاج اور پاکیزگی سے متعلق ہیں۔ آپ ﷺ نے جسم، دل اور سماج، سب کی صحت کے لیے مکمل رہنمائی دی ہے۔</p>
+            </div>
+
+            <div class="section">
+                <h2>طبِ نبوی کیوں اہم ہے؟</h2>
+                <p>عالمی ادارۂ صحت (WHO) آج کہتا ہے کہ صحت کا مطلب ہے: جسمانی، ذہنی اور سماجی تندرستی۔</p>
+                <div class="highlight">
+                    <p><strong>حیرت کی بات!</strong> نبی اکرم ﷺ نے یہ سب کچھ 1400 سال پہلے ہی سکھا دیا تھا۔</p>
+                </div>
+                <p>طبِ نبوی صرف جسم کو صحت مند نہیں بناتی، بلکہ دل، ذہن اور سماج کو بھی بہتر بناتی ہے۔</p>
+            </div>
+
+            <div class="section">
+                <h2>جسم کی نگہداشت</h2>
+                
+                <div class="hadith-box">
+                    <p>"تمہارے جسم کا تم پر حق ہے"</p>
+                </div>
+
+                <p>مطلب: اپنے جسم کو تکلیف، گندگی یا نقصان میں نہ ڈالو۔</p>
+
+                <div class="hadith-box">
+                    <p>"اپنے جسموں کو پاک رکھو، اللہ تمہارے دل کو پاک رکھے گا"</p>
+                </div>
+
+                <h3>دس فطری صفائی کے کام</h3>
+                
+                <div class="list-item"><span class="number">1</span>ختنہ</div>
+                <div class="list-item"><span class="number">2</span>مونچھیں چھوٹی رکھنا</div>
+                <div class="list-item"><span class="number">3</span>بغلوں کے بال صاف کرنا</div>
+                <div class="list-item"><span class="number">4</span>زیرِ ناف بال صاف کرنا</div>
+                <div class="list-item"><span class="number">5</span>داڑھی بڑھانا</div>
+                <div class="list-item"><span class="number">6</span>ناخن کاٹنا</div>
+                <div class="list-item"><span class="number">7</span>ناک میں پانی ڈال کر صفائی</div>
+                <div class="list-item"><span class="number">8</span>مسواک کرنا</div>
+                <div class="list-item"><span class="number">9</span>انگلیوں کا خلال</div>
+                <div class="list-item"><span class="number">10</span>استنجا کرنا</div>
+            </div>
+
+            <div class="section">
+                <h2>منہ کی صفائی</h2>
+                <div class="hadith-box">
+                    <p>"اگر مجھے اپنی امت پر مشقت کا ڈر نہ ہوتا تو میں ہر نماز سے پہلے مسواک کا حکم دیتا"</p>
+                </div>
+                <div class="highlight">
+                    <p>مسواک دانتوں اور منہ کی صحت کے لیے بہترین ہے!</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>پینے کے آداب</h2>
+                <div class="list-item">برتن میں سانس نہ چھوڑیں</div>
+                <div class="list-item">تین گھونٹ میں پییں، درمیان میں سانس باہر لیں</div>
+                <div class="list-item">پھونک مار کر ٹھنڈا نہ کریں</div>
+            </div>
+
+            <div class="section">
+                <h2>کھانے کے آداب</h2>
+                <div class="list-item">کھانے سے پہلے اور بعد میں ہاتھ دھوئیں</div>
+                
+                <div class="hadith-box">
+                    <p>"انسان کے لیے چند لقمے کافی ہیں جو کمر کو سیدھا رکھ دیں"</p>
+                </div>
+
+                <h3>پیٹ کی تقسیم</h3>
+                <div class="highlight">
+                    <p><span class="emphasis">ایک تہائی</span> کھانے کے لیے</p>
+                    <p><span class="emphasis">ایک تہائی</span> پانی کے لیے</p>
+                    <p><span class="emphasis">ایک تہائی</span> سانس کے لیے</p>
+                </div>
+
+                <div class="list-item">بہت گرم کھانا نہ کھائیں</div>
+            </div>
+
+            <div class="section">
+                <h2>لباس</h2>
+                <div class="list-item">لباس صاف اور پاکیزہ رکھیں</div>
+            </div>
+
+            <div class="section">
+                <h2>پانی اور ہوا کی صفائی</h2>
+                <div class="list-item">پانی کے برتن ڈھانپ کر رکھیں</div>
+                <div class="list-item">چھینک آئے تو منہ ڈھانپیں (تاکہ بیماری نہ پھیلے)</div>
+            </div>
+
+            <div class="section">
+                <h2>گھر اور محلے کی صفائی</h2>
+                
+                <div class="hadith-box">
+                    <p>"اپنے گھروں کو صاف رکھو، یہودیوں جیسے نہ بنو"</p>
+                </div>
+
+                <div class="list-item">راستے کم از کم 7 ہاتھ چوڑے رکھیں</div>
+
+                <h3>تین جگہ بول و براز منع ہے</h3>
+                <div class="list-item"><span class="number">1</span>پانی کے کنارے</div>
+                <div class="list-item"><span class="number">2</span>سایہ دار جگہ</div>
+                <div class="list-item"><span class="number">3</span>لوگوں کی گزرگاہ</div>
+            </div>
+
+            <div class="section">
+                <h2>وبا اور متعدی بیماریاں</h2>
+                <div class="highlight">
+                    <p><span class="emphasis">طاعون والی جگہ میں:</span></p>
+                    <p>✗ اندر جانا منع</p>
+                    <p>✗ باہر نکلنا منع</p>
+                </div>
+                <div class="list-item">جذامی (کوڑھ والے) سے مناسب فاصلہ رکھیں</div>
+            </div>
+
+            <div class="section">
+                <h2>علاج کروانا</h2>
+                
+                <div class="hadith-box">
+                    <p>"اے اللہ کے بندو! علاج کرو۔ اللہ نے ہر مرض کے ساتھ اس کی شفا بھی رکھی ہے، سوائے بڑھاپے کے"</p>
+                </div>
+
+                <h3>فائدہ مند ادویات</h3>
+                <div class="medicine-list">
+                    <div class="medicine-item">شہد</div>
+                    <div class="medicine-item">کلونجی</div>
+                    <div class="medicine-item">قسط</div>
+                    <div class="medicine-item">سرکہ</div>
+                    <div class="medicine-item">جو</div>
+                    <div class="medicine-item">زیرہ</div>
+                    <div class="medicine-item">زیتون</div>
+                    <div class="medicine-item">لہسن</div>
+                    <div class="medicine-item">انجیر</div>
+                </div>
+
+                <h3>علاج کے طریقے</h3>
+                <div class="list-item">حجامہ (پچھنے لگوانا)</div>
+                <div class="list-item">رگ کھلوانا</div>
+            </div>
+
+            <div class="section">
+                <h2>طبی اخلاقیات</h2>
+                
+                <h3>طبیب کی ذمہ داری</h3>
+                <div class="highlight">
+                    <p>جو شخص بغیر علم کے علاج کرے اور نقصان کرے، وہ گناہگار ہے</p>
+                </div>
+
+                <h3>مریض کی عیادت</h3>
+                <div class="list-item">مریض کی عیادت کرنے والے کے لیے جنت کے دروازے کھلتے ہیں</div>
+                <div class="list-item">مریض کے پاس حوصلہ افزائی کی بات کریں</div>
+            </div>
+
+            <div class="section">
+                <h2>دل اور سماج کی صحت</h2>
+                <p>نبی کریم ﷺ نے یہ بھی سکھایا:</p>
+                <div class="list-item">اچھے اخلاق</div>
+                <div class="list-item">انصاف</div>
+                <div class="list-item">دوسروں کے حقوق</div>
+                <div class="list-item">رحم دلی</div>
+                <div class="list-item">زندگی میں توازن</div>
+
+                <div class="highlight">
+                    <p>ان اصولوں سے بہت سی نفسیاتی بیماریوں سے بچاؤ ہوتا ہے</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>خلاصہ</h2>
+                <div class="hadith-box">
+                    <p style="text-align: center; font-size: 1.2em;">جو شخص طبِ نبوی کو اپناتا ہے، اللہ کے حکم سے بیماری سے بھی بچتا ہے اور بیماری میں شفا بھی پاتا ہے</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </div>
+    </div>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

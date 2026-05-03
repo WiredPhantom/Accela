@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ایر اسسطر اطوس - Erasistratus</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+            line-height: 2;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #764ba2;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:active {
+            transform: scale(0.98);
+        }
+        
+        .card-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .card-content {
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        .highlight {
+            background: #ffeaa7;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            line-height: 2.4;
+        }
+        
+        .important-box {
+            background: #fff3cd;
+            border-right: 5px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        
+        .list-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-right: 3px solid #667eea;
+        }
+        
+        .number-badge {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        
+        .key-point {
+            background: #e8f5e9;
+            border-right: 4px solid #4caf50;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin: 0 5px;
+        }
+
+        /* Naming table styles */
+        .naming-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+            margin: 12px 0;
+        }
+
+        .naming-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 14px;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .naming-table th:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+
+        .naming-table th:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        .naming-table td {
+            background: #f8f9fa;
+            padding: 10px 14px;
+            border-right: 3px solid #667eea;
+            font-size: 1em;
+        }
+
+        .naming-table td:first-child {
+            border-right: none;
+            border-left: 3px solid #667eea;
+            border-radius: 0 0 0 8px;
+            text-align: left;
+            font-style: italic;
+            color: #555;
+        }
+
+        .naming-table td:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+        .naming-table tr:hover td {
+            background: #eef0ff;
+        }
+
+        .artery-row td { border-right-color: #e74c3c; border-left-color: #e74c3c; }
+        .artery-row td:first-child { border-left-color: #e74c3c; }
+        .vein-row td { border-right-color: #3498db; border-left-color: #3498db; }
+        .vein-row td:first-child { border-left-color: #3498db; }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 10px 0 4px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ایر اسسطر اطوس</h1>
+            <div class="subtitle">Erasistratus</div>
+            <div style="margin-top: 15px; font-size: 1.1em;">
+                <span class="highlight">بانیٔ منافع الاعضاء</span><br>
+                (Founder of Physiology)
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📚 تعارف</div>
+            <div class="card-content">
+                <p><span class="highlight">ہیرو فیلوس</span> کے بعد مدرسہ اسکندریہ کا دوسرا بڑا اور مشہور طبیب</p>
+                
+                <div class="important-box">
+                    <strong>خاص بات:</strong><br>
+                    ہیرو فیلوس سے جونیئر تھا، لیکن <span class="highlight">منافع الاعضاء</span> میں اس کا کام زیادہ اہم اور وسیع تھا
+                </div>
+                
+                <div class="key-point">
+                    🏆 <strong>لقب:</strong> بانیٔ منافع الاعضاء (Founder of Physiology)
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🎓 تعلیم و تربیت</div>
+            <div class="card-content">
+                <div class="list-item">
+                    <span class="number-badge">1</span>
+                    <strong>والدین:</strong> دونوں طبیب تھے
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">2</span>
+                    <strong>ابتدائی تعلیم:</strong>ایتھینس (Athens) میں والدین کی سرپرستی میں
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">3</span>
+                    <strong>استاد:</strong> میٹروڈورس (Metrodoros) سے تعلیم حاصل کی
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">4</span>
+                    <strong>اعلیٰ تعلیم:</strong> 258 قبل مسیح میں مدرسہ اسکندریہ کے میوزیم سے وابستہ ہوا
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">⭐ فضل و کمال</div>
+            <div class="card-content">
+                <p>ایک ماہر طبیب، محقق اور مصنف تھا</p>
+                
+                <div class="important-box">
+                    <strong>🌟 سب سے بڑی شہرت:</strong><br>
+                    منافع الاعضاء (Physiology) میں تحقیق کی وجہ سے
+                </div>
+                
+                <div class="key-point">
+                    <strong>خاص اعزاز:</strong><br>
+                    مشہور یونانی فلسفی <span class="highlight">ارسطو (Aristotle)</span> نے اسے اپنا داماد بنایا
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🔬 منافع الاعضاء میں کام</div>
+            <div class="card-content">
+                <div class="important-box">
+                    منافع الاعضاء کی بنیاد ایک <span class="highlight">علیحدہ اور مکمل فن</span> کے طور پر رکھی
+                </div>
+                
+                <div class="key-point">
+                    <strong>طریقہ کار:</strong><br>
+                    • مختلف تجربات کیے<br>
+                    • تقابلی تشریح (Comparative Anatomy)<br>
+                    • بدن انسان کی ساخت اور افعال کا جانوروں کی ساخت اور افعال سے تقابلی مطالعہ کیا
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🧠 دماغ کے بارے میں انکشاف</div>
+            <div class="card-content">
+                <div class="list-item">
+                    انسان کا دماغ جانوروں کے مقابلے میں <span class="highlight">زیادہ پیچیدہ</span> ہے
+                </div>
+                
+                <div class="list-item">
+                    یہ پیچیدگی ہی <span class="highlight">انسانی ذہانت</span> کی بنیاد ہے
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🩸 اعصاب، شرائین اور وریدیں</div>
+            <div class="card-content">
+                <div class="important-box">
+                    <strong>اہم دریافت:</strong><br>
+                    ہر عضو میں تین چیزیں ہوتی ہیں:
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">1</span>
+                    شرائین (Arteries)
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">2</span>
+                    وریدیں (Veins)
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">3</span>
+                    اعصاب (Nerves)
+                </div>
+                
+                <div class="key-point">
+                    یہ تینوں چیزیں <span class="highlight">افعالِ اعضاء</span> کے لیے ضروری ہیں
+                </div>
+                
+                <div class="important-box">
+                    <strong>خاص بات:</strong><br>
+                    عروق دمویہ کو <span class="highlight">افعال</span> کے اعتبار سے تقسیم کیا، نہ کہ ساخت کے اعتبار سے
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">💓 دورانِ خون کا نظریہ</div>
+            <div class="card-content">
+                <div class="list-item">
+                    <span class="number-badge">1</span>
+                    <strong>شرائین:</strong> قلب سے نکلتی ہیں
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">2</span>
+                    <strong>وریدیں:</strong> جگر سے نکلتی ہیں
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">3</span>
+                    <strong>وریدوں میں:</strong> غذا بطورِ خون محفوظ رہتی ہے
+                </div>
+                
+                <div class="important-box">
+                    <strong>روحِ حیوانی (Vital Spirit):</strong><br>
+                    جب خون پھیپھڑوں میں جاتا ہے تو اس میں روحِ حیوانی شامل ہوتی ہے
+                </div>
+                
+                <div class="important-box">
+                    <strong>روحِ نفسانی (Mental Spirit):</strong><br>
+                    یہ روح دماغ میں پہنچ کر روحِ نفسانی میں بدل جاتی ہے، جو اعصاب کے ذریعے پورے جسم میں پھیلتی ہے
+                </div>
+                
+                <div class="key-point">
+                    <strong>خون کا دورہ (Circulation):</strong><br>
+                    قلب ←  شرائین ←  ورید<br>
+                    شرائین وریدوں سے <span class="highlight">عروقِ شعریہ (Capillaries)</span> کے ذریعے ملتی ہیں
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW: عروق کی نامگذاری -->
+        <div class="card">
+            <div class="card-title">🏷️ عروق کی نامگذاری</div>
+            <div class="card-content">
+                <div class="important-box">
+                    اس نے شرائین اور وریدوں کو اس عضو کے نام سے پکارا جس کی طرف وہ جاتے یا جس سے نکلتے تھے
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item"><div class="legend-dot" style="background:#e74c3c;"></div> شرائین (Arteries)</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:#3498db;"></div> وریدیں (Veins)</div>
+                </div>
+
+                <table class="naming-table">
+                    <thead>
+                        <tr>
+                            <th>انگریزی نام</th>
+                            <th>مقصد / متعلقہ عضو</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="artery-row">
+                            <td>Pulmonary Artery</td>
+                            <td>پھیپھڑوں کی طرف جانے والی شرہ</td>
+                        </tr>
+                        <tr class="artery-row">
+                            <td>Hepatic Artery</td>
+                            <td>جگر کی طرف جانے والی شرہ</td>
+                        </tr>
+                        <tr class="artery-row">
+                            <td>Gastric Artery</td>
+                            <td>معدہ کی طرف جانے والی شرہ</td>
+                        </tr>
+                        <tr class="artery-row">
+                            <td>Renal Artery</td>
+                            <td>گردوں کی طرف جانے والی شرہ</td>
+                        </tr>
+                        <tr class="vein-row">
+                            <td>Pulmonary Vein</td>
+                            <td>پھیپھڑوں سے واپس آنے والی ورید</td>
+                        </tr>
+                        <tr class="vein-row">
+                            <td>Mesenteric Vein</td>
+                            <td>آنتوں کی جھلیوں سے آنے والی ورید</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-point">
+                    <strong>اہم نکتہ:</strong><br>
+                    یہ نامگذاری اس نے <span class="highlight">افعال کے اعتبار سے</span> کی، جو اس کے عروق دمویہ کی تقسیم کے اصول کے مطابق تھی
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🫀 قلب کے صمامات  </div>
+            <div class="card-content">
+                <div class="list-item">
+                    <span class="number-badge">1</span>
+                    Tricuspid Valve
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">2</span>
+                    Semilunar Valves
+                </div>
+                
+                <div class="important-box">
+                    <strong>کام:</strong><br>
+                    یہ <span class="highlight">یک طرفہ دورانِ خون</span> (Unidirectional Blood Flow) کے ذمہ دار ہیں
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🔍 دیگر اہم تشریحات</div>
+            <div class="card-content">
+                <div class="list-item">
+                    <strong>Epiglottis:</strong><br>
+                    کھانے کو قصبتہ الرِّیہ (Trachea) میں جانے سے روکتا ہے
+                </div>
+                
+                <div class="list-item">
+                    <strong>معدہ:</strong><br>
+                    صرف Grinding نہیں کرتا، بلکہ <span class="highlight">ہضم اور استحالہ</span> بھی کرتا ہے
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🔬 پیتھولوجیکل تشریح</div>
+            <div class="card-content">
+                <div class="important-box">
+                    <strong>🏆 سب سے پہلے:</strong><br>
+                    پیتھولوجی کی بنیاد رکھنے والا
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">1</span>
+                    <strong>ذات الرِّیہ (Pneumonia):</strong><br>
+                    مبتلا پھیپھڑے کا ڈسکشن کیا
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">2</span>
+                    مرض کے نتیجے میں ہونے والی <span class="highlight">ساختی تبدیلیوں</span> (Morphological Changes) کی وضاحت کی
+                </div>
+                
+                <div class="list-item">
+                    <span class="number-badge">3</span>
+                    <strong>Ascites اور Cirrhosis of Liver:</strong><br>
+                    ان دونوں کے تعلق کو بیان کیا
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">👨‍⚕️ بحیثیت طبیب</div>
+            <div class="card-content">
+                <div class="list-item">
+                    بقراط کے بعض نظریات سے اختلاف کے باوجود اس کے <span class="highlight">اصولِ علاج</span> کو مانتا تھا
+                </div>
+                
+                <div class="list-item">
+                    قیاسی (Hypothetical) علاج کا قائل نہیں تھا
+                </div>
+                
+                <div class="important-box">
+                    <strong>سب سے زیادہ زور:</strong><br>
+                    Treatment سے زیادہ <span class="highlight">حفظانِ صحت</span> پر
+                </div>
+
+                <!-- NEW: دواؤں سے پرہیز و غذائی علاج -->
+                <div class="important-box">
+                    <strong>🚫 دواؤں سے پرہیز:</strong><br>
+                    تیز دواؤں اور فصد (Venesection) کا استعمال پسند نہیں کرتا تھا، بلکہ <span class="highlight">قدرتی اور ہلکے طریقوں</span> کو ترجیح دیتا تھا
+                </div>
+
+                <div class="key-point">
+                    <strong>🥗 غذائی علاج، ورزش اور حمام:</strong><br>
+                    اس کے نظریہ علاج کے تین اہم ستون تھے:
+                </div>
+
+                <div class="list-item">
+                    <span class="number-badge">1</span>
+                    <strong>غذائی علاج (Diet):</strong> علاج بالغذا کو سب سے اہم سمجھتا تھا، مناسب غذا کو <span class="highlight">بہترین دوا</span> کہتا تھا
+                </div>
+
+                <div class="list-item">
+                    <span class="number-badge">2</span>
+                    <strong>ورزش (Exercise):</strong> منظم جسمانی سرگرمی کو صحت کی حفاظت کا ذریعہ سمجھتا تھا
+                </div>
+
+                <div class="list-item">
+                    <span class="number-badge">3</span>
+                    <strong>حمام (Bathing):</strong> نہاؤں کو جسم کی صفائی اور صحت کی بحالی کا اہم وسیلہ قرار دیتا تھا
+                </div>
+                
+                <div class="key-point">
+                    <strong>سرجری:</strong><br>
+                    • ماہر سرجن تھا<br>
+                    • پیٹ کے آپریشن کرتا تھا<br>
+                    • <span class="highlight">S شکل کا کیتھیٹر (Catheter)</span> ایجاد کیا
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📖 تصانیف (کتابیں)</div>
+            <div class="card-content">
+                <div class="important-box">
+                    <strong>تعداد:</strong> 60 سے زائد کتابیں لکھیں<br>
+                    <strong>😔 افسوس:</strong> کوئی بھی محفوظ نہ رہ سکی
+                </div>
+                
+                <div class="key-point">
+                    <strong>موضوعات:</strong>
+                </div>
+                
+                <div class="list-item">• لغت الادویہ</div>
+                <div class="list-item">• تشریح</div>
+                <div class="list-item">• ماہیت الامراض</div>
+                <div class="list-item">• حمیات</div>
+                <div class="list-item">• نقرس</div>
+                <div class="list-item">• استسقاء</div>
+                <div class="list-item">• حفظانِ صحت</div>
+            </div>
+        </div>
+
+        <div class="footer">
+             <p>© <span id="year"></span> Accela. All rights reserved</p>
+            </div>
+        </div>
+    </div>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ارسطو - حیات اور کارنامے</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 10px;
+            line-height: 2;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            margin-bottom: 20px;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #d63031;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #d63031;
+            font-weight: bold;
+        }
+
+        .subsection {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-right: 4px solid #6c5ce7;
+        }
+
+        .subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .subsection-title {
+            font-size: 1.2em;
+            color: #6c5ce7;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .point {
+            padding: 10px 15px;
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-right: 3px solid #00b894;
+        }
+ 
+        .highlight {
+            background: rgba(231, 76, 60, 0.2);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+        .books-list {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .book-item {
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            background: #e3f2fd;
+            border-radius: 6px;
+            border-right: 3px solid #2196f3;
+        }
+      
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        .emoji {
+            font-size: 1.3em;
+            margin-left: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .section-title {
+                font-size: 1.3em;
+            }
+            
+            .subsection-title {
+                font-size: 1.1em;
+            }
+            
+            body {
+                padding: 10px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 ارسطو 🎓</h1>
+            <p>عظیم یونانی فلسفی اور حکیم</p>
+        </div>
+
+        <div class="content">
+            <!-- ابتدائی تعلیم -->
+            <div class="section">
+                <div class="section-title">📚 ابتدائی تعلیم اور شاگردی</div>
+                <div class="point">
+                    <span class="emoji">🎯</span>
+                    <span class="highlight">17 سال</span> کی عمر میں اعلیٰ تعلیم کے لیے یونان کے علمی مرکز <span class="highlight">ایتھینس</span> گئے
+                </div>
+                <div class="point">
+                    <span class="emoji">✍️</span>
+                    سب سے پہلے <span class="highlight">علم اللسان، صرف اور نحو</span> میں مہارت حاصل کی
+                </div>
+                <div class="point">
+                    <span class="emoji">👨‍🏫</span>
+                    مشہور فلسفی <span class="highlight">افلاطون</span> کے شاگرد بنے
+                </div>
+                <div class="point">
+                    <span class="emoji">⏰</span>
+                    تقریباً <span class="highlight">20 سال</span> افلاطون کی شاگردی میں رہے
+                </div>
+                <div class="point">
+                    <span class="emoji">🔬</span>
+                    فلسفہ، طبیعیات،مابعدالطبیعیات، حیاتیات، نباتیات، فلکیات، الٰہیات، سیاسیات اور ریاضیات میں ماہر بنے
+                </div>
+                <div class="point">
+                    <span class="emoji">👑</span>
+                    اپنی قابلیت کی بنا پر <span class="highlight">سکندر اعظم</span> کے استاد مقرر ہوئے
+                </div>
+            </div>
+
+            <!-- فضل و کمال -->
+            <div class="section">
+                <div class="section-title">⭐ فضل و کمال</div>
+                <div class="point">
+                    <span class="emoji">🌟</span>
+                    اپنے زمانے کے تقریباً <span class="highlight">تمام علوم</span> پر دسترس تھی
+                </div>
+                <div class="point">
+                    <span class="emoji">💡</span>
+                    استاد افلاطون بھی ان کی قابلیت سے بہت متاثر تھے
+                </div>
+                <div class="point">
+                    <span class="emoji">📖</span>
+                    افلاطون اپنی غیر موجودگی میں <span class="highlight">درس و تدریس</span> کا کام ارسطو پر چھوڑ دیتے تھے
+                </div>
+                <div class="point">
+                    <span class="emoji">🌿</span>
+                    جمادات، نباتات اور حیوانات سے متعلق فلسفہ بہت اہم ہے
+                </div>
+                <div class="point">
+                    <span class="emoji">📚</span>
+                    متعدد کتابیں لکھیں
+                </div>
+                <div class="point">
+                    <span class="emoji">🏆</span>
+                    فلسفی، حکیم اور مصنف کی حیثیت سے قابل احترام
+                </div>
+            </div>
+
+            <!-- بحیثیت فلسفی -->
+            <div class="section">
+                <div class="section-title">🧠 ارسطو بحیثیت فلسفی</div>
+                <div class="point">
+                    <span class="emoji">❌</span>
+                    <span class="highlight">اندھی تقلید</span> کے قائل نہیں تھے
+                </div>
+                <div class="point">
+                    <span class="emoji">🔍</span>
+                    <span class="highlight">ذاتی فکر و تحقیق</span> کے بعد ہی رائے قائم کرتے تھے
+                </div>
+                <div class="point">
+                    <span class="emoji">⚖️</span>
+                    عقلی دلائل کو <span class="highlight">منطق (Logic)</span> کی اصطلاح دینے والے پہلے شخص
+                </div>
+                <div class="point">
+                    <span class="emoji">🎯</span>
+                    فلسفے کو ٹھوس بنیاد فراہم کی
+                </div>
+            </div>
+
+            <!-- بحیثیت حکیم -->
+            <div class="section">
+                <div class="section-title">⚕️ ارسطو بحیثیت حکیم</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">📌 بنیادی معلومات</div>
+                    <div class="point">
+                        <span class="emoji">ℹ️</span>
+                        کوئی معالج یا طبیب نہیں تھے
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🌍</span>
+                        لیکن وجود کائنات اور <span class="highlight">جسم انسانی کی تخلیق</span> پر فلسفہ دیا
+                    </div>
+                    <div class="point">
+                        <span class="emoji">📊</span>
+                        طبی دنیا میں ان کی حکمت بہت اہم قرار پائی
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">👶 انسانی تخلیق پر تحقیق</div>
+                    <div class="point">
+                        <span class="emoji">👨‍👩‍👦</span>
+                        انسانی تخلیق میں مرد اور عورت دونوں کا حصہ ہے
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🧬</span>
+                        <span class="highlight">مادہ منویہ (semen)</span> انسانی تخلیق کی بنیاد ہے
+                    </div>
+                    <div class="point">
+                        <span class="emoji">⚡</span>
+                        مزاج یہ فیصلہ کرتا ہے کہ بچہ لڑکا ہوگا یا لڑکی
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🏠</span>
+                        دونوں کی تخلیق <span class="highlight">رحم مادر (uterus)</span> میں ہوتی ہے
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">🫀 تکوین جنین</div>
+                    <div class="point">
+                        <span class="emoji">❤️</span>
+                        تکوین جنین میں سب سے پہلے <span class="highlight">قلب</span> بنتا ہے
+                    </div>
+                    <div class="point">
+                        <span class="emoji">👑</span>
+                        قلب تمام اعضاء میں سب سے اعلیٰ ہے
+                    </div>
+                    <div class="point">
+                        <span class="emoji">▶️</span>
+                        سب سے پہلے کام شروع کرتا ہے
+                    </div>
+                    <div class="point">
+                        <span class="emoji">⏸️</span>
+                        موت کے وقت سب سے آخر میں بند ہوتا ہے
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🌬️</span>
+                        رحم میں جنین سانس نہیں لیتا - ماں کے ذریعے پوری ہوتی ہے
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🎂</span>
+                        ولادت کے بعد ہی قلب <span class="highlight">دھڑکنا</span> شروع کرتا ہے
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">🔬 بدن انسانی کی ساخت</div>
+                    <div class="point">
+                        <span class="emoji">🥼</span>
+                        انسانی لاش کا <span class="highlight">ڈسکشن</span> ارسطو نے شروع کیا
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🧠</span>
+                        اعصاب پر تحقیق کی
+                    </div>
+                    <div class="point">
+                        <span class="emoji">💓</span>
+                        قلب کو <span class="highlight">عروق دمویہ کا مبدا</span> بتایا
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🩸</span>
+                        خون کی نالیوں کو <span class="highlight">عروق (vessels)</span> کی اصطلاح دی
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🧩</span>
+                        دماغ اور اس کی جھلیوں سے بحث کی
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🍽️</span>
+                        معدے کے فعل کو بتایا
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🫁</span>
+                        پھیپھڑوں کی ساخت بیان کی
+                    </div>
+                    <div class="point">
+                        <span class="emoji">👄</span>
+                        گلپھڑوں (Parotid glands) کی ساخت بتائی
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">💭 فلسفہ</div>
+                    <div class="point">
+                        <span class="emoji">🎯</span>
+                        بدن کے <span class="highlight">تمام اعضاء</span> جاننا چاہتے تھے
+                    </div>
+                    <div class="point">
+                        <span class="emoji">✨</span>
+                        بدن میں کوئی چیز <span class="highlight">بے مقصد نہیں</span>
+                    </div>
+                    <div class="point">
+                        <span class="emoji">🌟</span>
+                        قدرت کوئی کام بغیر مقصد کے نہیں کرتی
+                    </div>
+                </div>
+            </div>
+
+            <!-- بحیثیت مصنف -->
+            <div class="section">
+                <div class="section-title">📖 ارسطو بحیثیت مصنف</div>
+                <div class="point">
+                    <span class="emoji">✍️</span>
+                    مختلف علوم پر مختلف کتابیں لکھیں
+                </div>
+                <div class="point">
+                    <span class="emoji">⚕️</span>
+                    طب پر باقاعدہ کتاب نہیں لیکن دوسری کتابوں میں طب سے بحث کی
+                </div>
+                <div class="point">
+                    <span class="emoji">📚</span>
+                    فلسفہ، طبیعیات، نباتیات اور حیوانات پر کتابیں لکھیں
+                </div>
+                
+                <div class="books-list">
+                    <div class="subsection-title">📚 اہم کتابیں</div>
+                    <div class="book-item">🐘 کتاب الحیوان</div>
+                    <div class="book-item">🦁 کتاب فی طبائع الحیوان</div>
+                    <div class="book-item">💊 کتاب فی الطب</div>
+                    <div class="book-item">💓 کتاب فی النبض</div>
+                    <div class="book-item">👶 کتاب فی تناسل الحیوان</div>
+                    <div class="book-item">💑 کتاب فی الباہ</div>
+                    <div class="book-item">📖 کتاب فی العظم</div>
+                    <div class="book-item">🏃 کتاب الریاضۃ</div>
+                    <div class="book-item">🩸 کتاب فی نفث الدم</div>
+                </div>
+            </div>
+
+            <!-- خلاصہ -->
+            <div class="section" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                <div class="section-title" style="color: #8e44ad; border-bottom-color: #8e44ad;">🎯 خلاصہ</div>
+                <div class="point" style="background: white; border-right-color: #e74c3c;">
+                    <span class="emoji">🌟</span>
+                    ارسطو ایک <span class="highlight">عظیم فلسفی، حکیم اور مصنف</span> تھے
+                </div>
+                <div class="point" style="background: white; border-right-color: #3498db;">
+                    <span class="emoji">🔬</span>
+                    انہوں نے طبی سائنس میں بنیادی کام کیا
+                </div>
+                <div class="point" style="background: white; border-right-color: #2ecc71;">
+                    <span class="emoji">📚</span>
+                    متعدد علوم پر قیمتی کتابیں لکھیں
+                </div>
+                <div class="point" style="background: white; border-right-color: #f39c12;">
+                    <span class="emoji">💡</span>
+                    منطق (Logic) کی بنیاد رکھی
+                </div>
+                <div class="point" style="background: white; border-right-color: #9b59b6;">
+                    <span class="emoji">🏆</span>
+                    علم کی دنیا میں ہمیشہ یاد رکھے جائیں گے
+                </div>
+            </div>
+        </div>
+<div class="footer"> <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </div>
+    </div>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

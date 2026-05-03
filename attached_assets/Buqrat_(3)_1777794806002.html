@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بقراط - ابو الطب</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 10px;
+            line-height: 2;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            color: #333;
+            font-size: 1.1em;
+            line-height: 2.2;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-right: 4px solid #ffc107;
+        }
+        
+        .list-item {
+            background: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-right: 3px solid #28a745;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .number-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        
+        .quote {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 1.2em;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .theory-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 2px dashed #2196f3;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .section-title {
+                font-size: 1.3em;
+            }
+            
+            .section-content {
+                font-size: 1em;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>بقراط — ابو الطب</h1>
+            <p>Father of Medicine</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Hippocrates (460-377 BC)</p>
+        </div>
+        
+        <div class="content">
+            <!-- تعارف -->
+            <div class="section">
+                <div class="section-title">📚 تعارف</div>
+                <div class="section-content">
+                    <p><strong>پیدائش:</strong> 460 قبل مسیح</p>
+                    <p><strong>جگہ:</strong> جزیرہ قاس (Island of Cos)، بحیرہ اخضر</p>
+                    <p><strong>خاندان:</strong> اسقلی بیوس کی 16ویں نسل</p>
+                    <p><strong>وفات:</strong>377 قبل مسیح، Thessaly</p>
+                    <p><strong>عمر:</strong> تقریباً 83 سال</p>
+                    <div class="highlight">
+                        <strong>اہم بات:</strong> طب خاندان میں چلتی آئی تھی، لیکن بقراط نے تحقیق و مشاہدے سے اسے سائنسی علم بنایا۔
+                    </div>
+                </div>
+            </div>
+
+            <!-- تعلیم -->
+            <div class="section">
+                <div class="section-title">🎓 تعلیم و تربیت</div>
+                <div class="section-content">
+                    <div class="list-item"><strong>والد:</strong> ہر اقلیدس (Heraclides)</div>
+                    <div class="list-item"><strong>دادا:</strong> بقراط (یہی نام تھا)</div>
+                    <div class="list-item"><strong>اساتذہ:</strong> ہر وڈیوس، اسقلی بیوس دوم</div>
+                    <div class="list-item"><strong>فلسفہ:</strong> جارجیاس اور دمقراط سے سیکھا</div>
+                </div>
+            </div>
+
+            <!-- جسمانی شباہت -->
+            <div class="section">
+                <div class="section-title">👤 جسمانی شکل</div>
+                <div class="section-content">
+                    <p>✓ درمیانہ قد</p>
+                    <p>✓ دبلا پتلا جسم</p>
+                    <p>✓ بڑی آنکھیں، درمیانی ابھری ہوئی ناک</p>
+                    <p>✓ چوڑی پیشانی</p>
+                    <p>✓ جاذب نظر چہرہ، گھنی داڑھی</p>
+                    <p>✓ بہت سادہ لباس—اکثر صرف ایک چادر</p>
+                </div>
+            </div>
+
+            <!-- عادات -->
+            <div class="section">
+                <div class="section-title">⭐ عادات و اطوار</div>
+                <div class="section-content">
+                    <div class="list-item">باوقار، سنجیدہ، نرم دل اور مہذب</div>
+                    <div class="list-item">زیادہ وقت فکر اور سوچ میں گزارتا</div>
+                    <div class="list-item">سادہ زندگی، فقر کو پسند کرتا</div>
+                    <div class="list-item">غریبوں کا علاج خوشی سے کرتا</div>
+                    <div class="list-item">انکساری اخلاق کی بنیاد</div>
+                    <div class="highlight">
+                        <strong>یاد رکھیں:</strong> بادشاہوں کی دولت کبھی قبول نہ کی—علم کو دولت پر فوقیت دیتا تھا
+                    </div>
+                </div>
+            </div>
+
+            <!-- فضل و کمال -->
+            <div class="section">
+                <div class="section-title">🌟 فضل و کمال</div>
+                <div class="section-content">
+                    <p>بقراط ایک ہی وقت میں:</p>
+                    <div class="list-item"><span class="number-badge">1</span> عظیم فلسفی</div>
+                    <div class="list-item"><span class="number-badge">2</span> مایہ ناز طبیب</div>
+                    <div class="list-item"><span class="number-badge">3</span> بہترین استاد</div>
+                    <div class="list-item"><span class="number-badge">4</span> محقق</div>
+                    <div class="list-item"><span class="number-badge">5</span> مجدد</div>
+                    <div class="list-item"><span class="number-badge">6</span> مصنف</div>
+                </div>
+            </div>
+
+            <!-- نظریہ اخلاط -->
+            <div class="section">
+                <div class="section-title">🧪 طبی فلسفہ (نظریہ اخلاط)</div>
+                <div class="section-content">
+                    <p><strong>بقراط نے مادّوں کو 3 قسموں میں تقسیم کیا:</strong></p>
+                    <div class="list-item">1. جامد (Solid)</div>
+                    <div class="list-item">2. سیال (Liquid)</div>
+                    <div class="list-item">3. ریحی(Gaseous)</div>
+                    
+                    <div class="theory-box">
+                        <p><strong>چار اخلاط (Four Humours):</strong></p>
+                        <div class="list-item">🔴 دم (Blood)</div>
+                        <div class="list-item">⚪ بلغم (Phlegm)</div>
+                        <div class="list-item">🟡 صفراء (Yellow Bile)</div>
+                        <div class="list-item">⚫ سودا (Black Bile)</div>
+                    </div>
+                    
+                    <div class="highlight">
+                        <strong>اصول:</strong> ان اخلاط کی مقدار + کیفیت + باہمی تناسب = صحت<br>
+                        عدم توازن = بیماری
+                    </div>
+                </div>
+            </div>
+
+            <!-- نظریہ طبیعت -->
+            <div class="section">
+                <div class="section-title">🌿 نظریہ طبیعت</div>
+                <div class="section-content">
+                    <div class="theory-box">
+                      
+                        <p>ہر جاندار میں ایک فطری قوت ہوتی ہے جو:</p>
+                        <p>✓ صحت کی محافظ</p>
+                        <p>✓ بیماری سے لڑنے والی</p>
+                    </div>
+                    <div class="highlight">
+                        <strong>بقراط کا کہنا:</strong> اصل طبیب طبیعت ہے، ڈاکٹر تو صرف اس کا مددگار ہے
+                    </div>
+                </div>
+            </div>
+
+            <!-- علاج کی پالیسی -->
+            <div class="section">
+                <div class="section-title">💊 علاج کی پالیسی</div>
+                <div class="section-content">
+                    <div class="list-item">کم سے کم، سادہ اور مؤثر طریقے</div>
+                    <div class="list-item">عام اور ہلکی ادویات کو ترجیح</div>
+                    <div class="list-item">زہریلی ادویات صرف مجبوری میں</div>
+                    <div class="list-item">300 سے زیادہ مفرد ادویات کا علم</div>
+                    <div class="list-item">مریض کی نگہداشت = علاج کا ضروری حصہ</div>
+                    <div class="highlight">
+                        <strong>پہلا ہسپتال:</strong> اپنے گھر کے پاس باغ نما شفا خانہ بنوایا
+                    </div>
+                </div>
+            </div>
+
+            <!-- استاد -->
+            <div class="section">
+                <div class="section-title">👨‍🏫 بحیثیت استاد</div>
+                <div class="section-content">
+                    <p>✓ درخت کے نیچے بیٹھ کر طب کی تعلیم</p>
+                    <p>✓ طب کو خاندان تک محدود رکھنے کی روایت ختم کی</p>
+                    <p>✓ علم طب کو عام کیا</p>
+                    <div class="theory-box">
+                        <p><strong>لیکن فن کو بچانے کے لیے:</strong></p>
+                        <p>• اہلیت کی شرائط بنائیں</p>
+                        <p>• معاہدہ بقراطیہ (Hippocratic Oath) تیار کیا</p>
+                        <p>• شاگرد تعلیم مکمل کر کے اس عہد پر دستخط کرتے</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مصنف -->
+            <div class="section">
+                <div class="section-title">📖 بحیثیت مصنف</div>
+                <div class="section-content">
+                    <p><strong>اہم کتابیں:</strong></p>
+                    <div class="list-item">کتاب الطبیعتہ الانسان</div>
+                    <div class="list-item">کتاب الاجنہ</div>
+                    <div class="list-item">کتاب الفصول</div>
+                    <div class="list-item">کتاب الاخلاط</div>
+                    <div class="list-item">کتاب الاغذیہ</div>
+                    <div class="list-item">کتاب القلب</div>
+                    <div class="list-item">کتاب العین</div>
+                    <div class="list-item">کتاب فی الحمیات والمحرکہ</div>
+                    <div class="highlight">
+                        یہ سب بعد میں طب یونانی کی بنیاد بنیں
+                    </div>
+                </div>
+            </div>
+
+            <!-- کارنامے -->
+            <div class="section">
+                <div class="section-title">🏆 بڑے کارنامے (Exam Points)</div>
+                <div class="section-content">
+                    <div class="list-item"><span class="number-badge">1</span> طب کو توہمات سے نکال کر سائنسی بنیاد پر قائم کیا</div>
+                    <div class="list-item"><span class="number-badge">2</span> طب کو خاندانی انحصار سے نکال کر عوام کے لیے عام کیا</div>
+                    <div class="list-item"><span class="number-badge">3</span> معاہدہ بقراطیہ—طبی اخلاقیات کی بنیاد</div>
+                    <div class="list-item"><span class="number-badge">4</span> نظریۂ اخلاط + نظریۂ طبیعت</div>
+                    <div class="list-item"><span class="number-badge">5</span> شفا خانہ / ہسپتال کا ابتدائی تصور</div>
+                    <div class="list-item"><span class="number-badge">6</span> اصولِ علاج کی بنیاد رکھی</div>
+                    <div class="list-item"><span class="number-badge">7</span> اسبابِ صحت و مرض بیان کیے</div>
+                    <div class="list-item"><span class="number-badge">8</span> طب کو تحریری شکل دی</div>
+                </div>
+            </div>
+
+            <!-- اقوال -->
+            <div class="section">
+                <div class="section-title">💬 اقوالِ زریں</div>
+                <div class="section-content">
+                    <div class="quote">
+                        "درندوں کی طرح کھانا مرض ہے، پرندوں کی طرح کھانا صحت ہے۔"
+                    </div>
+                    <div class="quote">
+                        "زندہ رہنے کے لیے کھاؤ، کھانے کے لیے زندہ نہ رہو۔"
+                    </div>
+                    <div class="quote">
+                        "اتنا نہ کھاؤ کہ غذا تمہیں کھا جائے۔"
+                    </div>
+                    <div class="quote">
+                        "مرض کا علاج وہی جڑی بوٹیاں کرتی ہیں جو آس پاس پیدا ہوتی ہیں۔"
+                    </div>
+                         <div class="quote">
+                        "بغیر ضرورت دوا کبھی نہ استعمال کرو"
+                    </div>
+               
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+          <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </div>
+    </div>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

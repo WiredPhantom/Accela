@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خالد بن یزید بن معاویہ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 10px;
+            line-height: 2;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .header .date {
+            font-size: 16px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 20px;
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateX(-5px);
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: '◆';
+            font-size: 18px;
+        }
+        
+        .section-text {
+            font-size: 18px;
+            color: #333;
+            text-align: justify;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-right: 4px solid #e17055;
+        }
+        
+        .list-item {
+            background: white;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-right: 3px solid #00b894;
+            font-size: 17px;
+        }
+        
+        .numbered-list {
+            counter-reset: item;
+        }
+        
+        .numbered-list .list-item {
+            counter-increment: item;
+            position: relative;
+            padding-right: 40px;
+        }
+        
+        .numbered-list .list-item::before {
+            content: counter(item);
+            position: absolute;
+            right: 10px;
+            background: #00b894;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .key-points {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .key-points h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .point {
+            background: rgba(255,255,255,0.2);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 17px;
+        }
+        
+        .footer {
+            background: #2d3436;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .emoji {
+            font-size: 24px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>خالد ابن یزید ابن معاویہ</h1>
+            <div class="subtitle">Khalid ibn Yazid ibn Mu'awiya</div>
+            <div class="date">وفات: 704ء</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <div class="section-title">تعارف <span class="emoji">📚</span></div>
+                <div class="section-text">
+                    خالد بن یزید امیر معاویہ کے پوتے اور اموی خاندان کے مشہور شاہزادے تھے۔ انہیں  حکیم ابی مروان کے نام سے بھی جانا جاتا ہے۔
+                </div>
+                <div class="highlight-box">
+                    <strong>خاص بات:</strong> خالد نے تخت و تاج چھوڑ کر علم کا راستہ چنا۔ ان کی جگہ ان کا بھائی معاویہ بن یزید خلیفہ بنا۔
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">علمی خدمات <span class="emoji">🌟</span></div>
+                <div class="section-text">
+                    خالد عربوں کے علمی کارواں کے پہلے حقیقی راہنما تھے۔ انہوں نے عربوں کو یونانی علوم سے متعارف کرایا۔
+                </div>
+                <div class="key-points">
+                    <h3>اہم شعبے</h3>
+                    <div class="point">🔬 علمِ کیمیا - سب سے زیادہ مشہور</div>
+                    <div class="point">💊 علمِ طب - نمایاں خدمات</div>
+                    <div class="point">📖 تراجم - یونانی کتب کا عربی ترجمہ</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">تعلیم و تربیت <span class="emoji">🎓</span></div>
+                <div class="section-text">
+                    شاہزادے ہونے کی وجہ سے ابتدائی تعلیم محل میں ہوئی، لیکن اساتذہ کا بہت احترام کرتے تھے۔
+                </div>
+                <div class="list-item">
+                    <strong>علمِ طب:</strong> یحیٰ دیلمی سے سیکھا
+                </div>
+                <div class="list-item">
+                    <strong>علمِ کیمیا:</strong> رومی راہب فریانوس سے سیکھا
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">بحیثیت کیمیا دان <span class="emoji">⚗️</span></div>
+                <div class="section-text">
+                    خالد کے زمانے میں دینی اور لسانی علوم کا زیادہ رواج تھا۔ ایسے ماحول میں خالد نے علمِ کیمیا کو سنجیدگی سے اپنایا۔
+                </div>
+                <div class="highlight-box">
+                    <strong>سب سے بڑا کارنامہ:</strong> یونانی اور مصری زبانوں میں کیمیا کی کتابوں کا عربی ترجمہ کروایا اور خود بھی گہرا مطالعہ کیا۔
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">تصنیفات <span class="emoji">📝</span></div>
+                <div class="section-text">
+                    خالد نے تراجم کے علاوہ خود بھی کتابیں لکھیں۔ مؤرخ کمال سامرائی کے مطابق 10 نسخے آج بھی موجود ہیں۔
+                </div>
+                <div class="numbered-list">
+                    <div class="list-item">کتاب الحرارة</div>
+                    <div class="list-item">کتاب صحیفۃ الکبیر</div>
+                    <div class="list-item">کتاب صحیفۃ الصغیر</div>
+                    <div class="list-item">وصیۃ الابنہ عن کتاب الصناعۃ</div>
+                    <div class="list-item">کتاب السر البدیع فی فلک الرمز المنیع</div>
+                    <div class="list-item">رسالہ فی الکیمیا (رضا لائبریری، رامپور)</div>
+                    <div class="list-item">رسائل خالد  لفریانوس الراہب</div>
+                    <div class="list-item">اختیارات خالد </div>
+                    <div class="list-item">دیوان النجومک کو پریلی(دمشق)</div>
+                    <div class="list-item">فردوس الحکمۃ فی الکیمیاء (بیروت و قاہرہ)</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">خلاصہ <span class="emoji">✨</span></div>
+                <div class="section-text">
+                    اگر یہ اموی شاہزادہ یونانی علوم کی طرف توجہ نہ دیتا تو عرب وہ علمی عروج حاصل نہ کر پاتے جو آج تاریخ کا روشن باب ہے۔
+                </div>
+                <div class="key-points">
+                    <h3>یاد رکھنے کی باتیں</h3>
+                    <div class="point">👑 شاہزادہ لیکن تخت چھوڑ کر عالم بنے</div>
+                    <div class="point">🔬 کیمیا دان کے طور پر مشہور</div>
+                    <div class="point">📚 یونانی علوم کے عربی تراجم کا آغاز</div>
+                    <div class="point">✍️ 10 نسخے آج بھی محفوظ</div>
+                    <div class="point">🌍 عربوں کے علمی کارواں کے پہلے راہنما</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+             <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </div>
+    </div><script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

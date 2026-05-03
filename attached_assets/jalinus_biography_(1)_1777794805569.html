@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جالینوس - رومی طبیب</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 2;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .section:active {
+            transform: scale(0.98);
+        }
+        
+        .section-title {
+            font-size: 1.6em;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .icon {
+            font-size: 1.2em;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-right: 4px solid #e17055;
+        }
+        
+        .important-text {
+            color: #d63031;
+            font-weight: bold;
+        }
+        
+        .date-box {
+            background: #74b9ff;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .list-item {
+            background: white;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-right: 3px solid #00b894;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 1.1em;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+        }
+        
+        .achievement {
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        
+        .footer {
+            background: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        .story-box {
+            background: #fff5e6;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px dashed #ff9f43;
+        }
+
+        .book-item {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+            color: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+
+        .info-box {
+            background: #dfe6e9;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-right: 4px solid #0984e3;
+        }
+
+        .anatomy-list {
+            background: linear-gradient(135deg, #fab1a0 0%, #ff7675 100%);
+            color: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>جالینوس</h1>
+            <div class="subtitle">Claudius Galen</div>
+            <div class="subtitle">رومی طبیب اور محقق</div>
+        </div>
+        
+        <div class="content">
+            <!-- تعارف -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">📖</span>
+                    تعارف
+                </div>
+                <p>طبِ یونانی کے ابتدائی اور تخلیقی عہد میں جالینوس کا نام نہایت نمایاں حیثیت رکھتا ہے۔</p>
+                <div class="highlight-box">
+                    <span class="important-text">ابو الطب بقراط</span> کے بعد فنِ طب کو جس طبیب نے سب سے زیادہ وسعت، گہرائی اور استحکام عطا کیا وہ <span class="important-text">جالینوس</span> ہی ہے۔
+                </div>
+                <p>اس نے بقراط کے قائم کردہ اصولِ طب میں روح پھونک دی۔</p>
+            </div>
+
+            <!-- پیدائش -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🌍</span>
+                    پیدائش اور زمانہ
+                </div>
+                <div class="date-box">
+                    129ء تا 200ء
+                </div>
+                <p><strong>مقام پیدائش:</strong> پرگامون (Pergamon)</p>
+                <p>ایشیائے کوچک (Asia Minor) کا ایک مشہور قدیم شہر</p>
+                <div class="info-box">
+                    جالینوس نے اپنی بعض کتابوں میں اپنے حالاتِ زندگی خود قلم بند کیے ہیں۔
+                </div>
+            </div>
+
+            <!-- تعلیم -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🎓</span>
+                    تعلیم و تربیت
+                </div>
+                <div class="list-item">
+                    <strong>پہلے استاد:</strong> اپنے والد
+                </div>
+                <div class="info-box">
+                    <strong>والد کی خصوصیت:</strong>
+                    <br>• علمِ ہندسہ (Geometry) میں ماہر
+                    <br>• ریاضی (Mathematics) میں ماہر
+                </div>
+                
+                <div class="story-box">
+                    <strong>📜 روایت:</strong>
+                    <br>جالینوس کو خواب میں علمِ طب حاصل کرنے کی ہدایت ملی۔
+                    <br><br>
+                    اس کے بعد انہوں نے بقراط اور ارسطو کی طبی و فلسفیانہ کتابوں کا گہرا مطالعہ کیا۔
+                </div>
+
+                <div class="highlight-box">
+                    محض <span class="important-text">17 سال</span> کی عمر میں ان علوم میں مہارت حاصل کر لی:
+                    <br>• تشریح (Anatomy)
+                    <br>• منافع الاعضاء (Physiology)
+                    <br>• معالجات (Medicine)
+                </div>
+            </div>
+
+            <!-- سفر -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">✈️</span>
+                    علمی سفر
+                </div>
+                <p>علم کی جستجو نے انہیں مسلسل سفر پر آمادہ رکھا۔</p>
+                <div class="achievement">
+                    <strong>سفر کیے گئے ممالک:</strong>
+                    <br>🌍 یونان
+                    <br>🌍 روم
+                    <br>🌍 مصر
+                </div>
+                <div class="info-box">
+                    <strong>سفر کا مقصد:</strong>
+                    <br>• ادویۂ مفردہ (Single Drugs) کی تلاش
+                    <br>• جڑی بوٹیوں کی تحقیق
+                </div>
+                <p>باریک بینی سے مشاہدہ کرنا ان کی فطرت تھی، اسی وجہ سے انہوں نے جانوروں سے بھی بہت کچھ سیکھا۔</p>
+            </div>
+
+            <!-- حقنہ کی دریافت -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🐦</span>
+                    حقنہ کی دریافت
+                </div>
+                <div class="highlight-box">
+                    <span class="important-text">حقنہ (Enema)</span> کا طریقہ جالینوس نے ایک پرندے کے مشاہدے سے اخذ کیا۔
+                </div>
+                <div class="story-box">
+                    اسی لیے حقنہ کو <strong>"عملِ طائر"</strong> بھی کہا جاتا ہے۔
+                </div>
+            </div>
+
+            <!-- فضل و کمال -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">⭐</span>
+                    فضل و کمال
+                </div>
+                <div class="achievement">
+                    جالینوس کے فضل و کمال کا دائرہ بہت وسیع ہے۔
+                </div>
+                <p>ذیل میں ان کی خدمات کو چند اہم پہلوؤں سے بیان کیا جاتا ہے:</p>
+            </div>
+
+            <!-- بحیثیت طبیب -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">⚕️</span>
+                    جالینوس بحیثیت طبیب
+                </div>
+                <div class="info-box">
+                    علمی اور عملی دونوں اعتبار سے جالینوس کو فنِ طب پر مکمل عبور حاصل تھا۔
+                </div>
+                <div class="achievement">
+                    <strong>ماہر تھے ان میدانوں میں:</strong>
+                    <br>• تشریح
+                    <br>• منافع الاعضاء
+                    <br>• علم الادویہ
+                    <br>• اصولِ تشخیص و تجویز
+                    <br>• جراحت
+                    <br>• امراضِ نسواں (Gynaecology)
+                </div>
+                <div class="highlight-box">
+                    <strong>خاص مہارت:</strong> نبض شناسی
+                    <br><br>
+                    پیچیدہ اور خطرناک امراض کا علاج سفر کے دوران بھی کر لیتے تھے۔
+                </div>
+
+                <div class="story-box">
+                    <strong>🏥 ایک مشہور واقعہ:</strong>
+                    <br><br>
+                    ایک جگہ جالینوس نے لوگوں کا مجمع دیکھا۔ معلوم ہوا کہ ایک نوجوان شدید بیمار ہے۔
+                    <br><br>
+                    مقامی اطباء تشخیص میں اختلاف کر رہے تھے:
+                    <br>• کچھ فصد کھولنے کے حق میں تھے
+                    <br>• کچھ مخالف تھے
+                    <br><br>
+                    جالینوس نے کہا: <em>"فصد کی ضرورت نہیں، کچھ دیر میں مریض کی ایک رگ خود بخود کھل جائے گی۔"</em>
+                    <br><br>
+                    <span class="important-text">واقعی کچھ ہی دیر بعد مریض کی ناک سے خون جاری ہو گیا اور اس کی حالت بہتر ہونے لگی!</span>
+                    <br><br>
+                    ایسے بے شمار واقعات جالینوس کی غیر معمولی طبی مہارت کا ثبوت ہیں۔
+                </div>
+            </div>
+
+            <!-- بحیثیت محقق - تشریح -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🔬</span>
+                    جالینوس بحیثیت محقق
+                </div>
+                <div class="achievement">
+                    تشریحی کارنامے
+                </div>
+                <p>جالینوس نے تشریحی معلومات کے لیے تجربات کیے:</p>
+                <div class="list-item">
+                    <strong>انسانی نعشوں (Cadavers) پر</strong>
+                </div>
+                <div class="list-item">
+                    <strong>جانوروں پر</strong> - مقصد: اطلاقی تشریح (Applied Anatomy)
+                </div>
+
+                <div class="highlight-box">
+                    <strong>اہم دریافت:</strong>
+                    <br>گردے سے مثانے تک پیشاب کے یک طرفہ بہاؤ (Unidirectional Flow) کی تصدیق تجربات کے ذریعے کی۔
+                </div>
+
+                <div class="info-box">
+                    <strong>انسانی جسم کے مختلف اعضاء کی تفصیلی تشریح بیان کی:</strong>
+                </div>
+
+                <div class="anatomy-list">🦴 ہڈیاں (Bones)</div>
+                <div class="anatomy-list">💪 عضلات (Muscles)</div>
+                    <div class="anatomy-list"> اوتار (Tendons)</div>
+                    <div class="anatomy-list"> اعصاب (Nerves)</div>
+     <div class="anatomy-list"> حالب (Ureter)</div>
+     <div class="anatomy-list"> اعضاء جنسیہ(Sex organs)</div>
+                <div class="anatomy-list">🫁 پھیپھڑے (Lungs)</div>
+                <div class="anatomy-list">🫀 قلب (Heart)</div>
+                <div class="anatomy-list">🧠 دماغ (Brain)</div>
+                <div class="anatomy-list">🔗 اعصاب (Nerves)</div>
+                <div class="anatomy-list">💧 مثانہ (Bladder)</div>
+                <div class="anatomy-list">🔴 گردے (Kidneys)</div>
+                <div class="anatomy-list">🟤 جگر (Liver)</div>
+
+                <div class="achievement">
+                    <strong>تفصیلی کام:</strong>
+                    <br>• ہڈیوں کو لمبی اور چپٹی وضع کے اعتبار سے تقسیم کیا
+ <br>• ہڈی اور رباط کے درمیان تعلق بتایا
+                    <br>• اعصاب کی ابتداء دماغ اور نخاع (Spinal Cord) سے ثابت کی
+ <br>•  دماغ سے نکلنے والے عصب بصری ،سمعی، وجہی 
+  <br>• عضلات کو ، عمودی،مستعرض اور مؤرب   ریشوں میں تقسیم کیا 
+                    <br>• معدے کی تہہ در تہہ ساخت واضح کی
+  <br>• حالبین، اوردہ اور شرائن کے درمیان فرق کی وضاحت کی 
+  <br>• شرائین کا مبداء قلب اور اورطی کو بتایا
+                </div>
+
+                <div class="highlight-box">
+                    <span class="important-text">تقریباً تمام مغربی مؤرخین اس بات پر متفق ہیں:</span>
+                    <br><br>
+                    جدید علمِ تشریح کی بنیاد جالینوس کی تحقیقات پر رکھی گئی۔
+                </div>
+            </div>
+
+            <!-- منافع الاعضاء -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">🫁</span>
+                    جالینوس اور منافع الاعضاء
+                </div>
+                <p>جالینوس نے بقراط اور ارسطو کے نظریات کو بنیاد بنا کر منافع الاعضاء کو وسعت دی۔</p>
+                
+                <div class="highlight-box">
+                    <strong>خون کی تشکیل اور گردش کا نظریہ:</strong>
+                    <br><br>
+                    1️⃣ غذا معدے اور آنتوں سے جگر میں جاتی ہے
+                    <br>↓
+                    <br>2️⃣ جگر میں خون میں تبدیل ہوتی ہے
+                    <br>↓
+                    <br>3️⃣ پھیپھڑوں میں تنفس کے ذریعے روح (Pneuma) شامل ہوتی ہے
+                    <br>↓
+                    <br>4️⃣ قلب اسے پورے جسم میں پھیلا دیتا ہے
+                </div>
+
+                <div class="story-box">
+                    اس طرح جالینوس نے دورانِ خون کے نظام کو بڑی حد تک دریافت کر لیا۔
+                </div>
+
+                <div class="achievement">
+                    <strong>دیگر اہم کام:</strong>
+                </div>
+
+                <div class="list-item">
+                    <strong>انقباض (Systole)</strong> اور <strong>انبساط (Diastole)</strong> کی وضاحت کی
+                </div>
+
+                <div class="list-item">
+                    اعصابِ حسی اور حرکی (Sensory & Motor Nerves) میں فرق بیان کیا
+                </div>
+
+                <div class="list-item">
+                    دماغ کو حس و حرکت کا مرکز قرار دیا
+                </div>
+
+                <div class="list-item">
+                    یادداشت کے مرکز کی نشاندہی کی
+                </div>
+            </div>
+
+            <!-- بحیثیت مصنف -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">✍️</span>
+                    جالینوس بحیثیت مصنف
+                </div>
+                <div class="achievement">
+                    جالینوس کا ایک عظیم کارنامہ یہ ہے کہ انہوں نے اپنے مطالعہ، مشاہدے اور تجربات کو تحریری صورت میں محفوظ کیا۔
+                </div>
+
+                <div class="info-box">
+                    ان کی تصانیف کی صحیح تعداد معلوم نہیں، تاہم ان کی <span class="important-text">سولہ (16) کتب</span> مدرسۂ اسکندریہ کے نصاب کی بنیاد بنیں۔
+                </div>
+
+                <div class="highlight-box">
+                    یہ تمام کتب <strong>یونانی زبان</strong> میں تھیں۔
+                    <br><br>
+                    بعد میں:
+                    <br>📖 عربی میں: <strong>جوامع الاسکندر</strong>
+                    <br>📖 انگریزی میں: <strong>Alexandrine Collection</strong>
+                    <br>کے نام سے مشہور ہوئیں۔
+                </div>
+            </div>
+
+        
+    <!-- 16 کتب کی فہرست -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">📚</span>
+                    سولہ (16) اہم کتب
+                </div>
+                <div class="book-item">1. کتابُ الفرق</div>
+                <div class="book-item">2. کتابُ الصناعۃ الصغیر</div>
+                <div class="book-item">3. کتابُ النبض الصغیر</div>
+                <div class="book-item">4. کتابُ النبض الکبیر</div>
+                <div class="book-item">5. کتابُ الخلوص</div>
+                <div class="book-item">6. کتابُ الاسطقسات</div>
+                <div class="book-item">7. کتابُ المزاج</div>
+                <div class="book-item">8. کتابُ القویٰ الطبیعیہ</div>
+                <div class="book-item">9. کتابُ التشریح الصغیر</div>
+                <div class="book-item">10. کتابُ العلل والامراض</div>
+                <div class="book-item">11. کتابُ العلل الاعضاء الباطنہ</div>
+                <div class="book-item">12. کتابُ الحمیات</div>
+                <div class="book-item">13. کتابُ البحران</div>
+                <div class="book-item">14. کتابُ ایام البحران</div>
+                <div class="book-item">15. کتابُ حیلۃ البرء</div>
+                <div class="book-item">16. کتابُ تدبیر الاصحاء</div>
+            </div>
+
+            <!-- اقوال -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">💭</span>
+                    جالینوس کے اہم اقوال
+                </div>
+                <div class="quote-box">
+                    "وہ بیمار جسے بھوک لگے، اس تندرست سے بہتر ہے جسے بھوک نہ لگے۔"
+                </div>
+                <div class="quote-box">
+                    "انسان اپنے نفس کو پہچان کر اپنی اصلاح کر سکتا ہے۔"
+                </div>
+                <div class="quote-box">
+                    "جو شخص خود کو دوسروں سے زیادہ عقل مند سمجھے، وہ دراصل خود احمق ہے۔"
+                </div>
+            </div>
+
+    <!-- خلاصہ -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="icon">⭐</span>
+                    خلاصہ
+                </div>
+                <div class="achievement">
+                    جالینوس طبِ یونانی کے ابتدائی اور تخلیقی عہد میں نمایاں ترین شخصیت تھے۔
+                </div>
+                <div class="list-item">✅ بقراط کے بعد طب کو سب سے زیادہ وسعت، گہرائی اور استحکام عطا کیا</div>
+                <div class="list-item">✅ تشریح اور منافع الاعضاء میں انقلابی کام کیا</div>
+                <div class="list-item">✅ دورانِ خون کے نظام کو دریافت کیا</div>
+                <div class="list-item">✅ جانوروں پر تجربات کے ذریعے اطلاقی تشریح کی بنیاد رکھی</div>
+                <div class="list-item">✅ 16 اہم کتب تصنیف کیں جو صدیوں تک نصاب کی بنیاد رہیں</div>
+                <div class="list-item">✅ جدید طب کی بنیاد رکھی</div>
+                <div class="list-item">✅ نبض شناسی میں خاص مہارت رکھتے تھے</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+             <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </div>
+    </div>
+    <script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

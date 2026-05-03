@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ویدوں کی بغداد میں آمد</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 2;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 1rem;
+            opacity: 0.95;
+            font-style: italic;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-right: 5px solid #f5576c;
+        }
+        
+        .intro-box p {
+            font-size: 1.1rem;
+            line-height: 2.2;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-right: 4px solid #667eea;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #f093fb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .icon {
+            font-size: 1.8rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #667eea;
+        }
+        
+        .key-point {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin: 10px 0;
+            font-size: 1.05rem;
+            border-right: 3px solid #f5576c;
+        }
+        
+        .name-card {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 8px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-right: 3px solid #764ba2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .name-card::before {
+            content: "👨‍⚕️";
+            font-size: 1.5rem;
+        }
+        
+        .list-item {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-right: 3px solid #667eea;
+        }
+        
+        .story-box {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .story-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .impact-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-right: 20px;
+        }
+        
+        .timeline-item {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #f5576c;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: "📅";
+            position: absolute;
+            right: -35px;
+            top: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .emphasis {
+            color: #f5576c;
+            font-weight: 700;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            body {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 ویدوں کی بغداد میں آمد</h1>
+            <div class="subtitle">Arrival of Indian Physicians in Baghdad</div>
+        </div>
+        
+        <div class="content">
+            <!-- Introduction -->
+            <div class="intro-box">
+                <p>قدیم زمانے میں <span class="emphasis">ہندوستان علم و ادب اور عدل و سیاست کا سرچشمہ</span> تھا۔ طب کے میدان میں ہندوستانی وید (Indian Physicians) غیر معمولی شہرت کے حامل تھے۔</p>
+            </div>
+            
+            <div class="key-point">
+                <strong>کیوں مشہور تھے؟</strong><br>
+                ان کی طبی معلومات اور عملی صلاحیت کی بنا پر علاج و معالجہ اور درس و تدریس کی غرض سے انہیں ہندوستان سے باہر بھی طلب کیا جاتا تھا۔
+            </div>
+            
+            <div class="highlight-box">
+                <strong>سب سے زیادہ پذیرائی کب ہوئی؟</strong><br>
+                بیرونِ ہندوستان ہندی ویدوں کی سب سے زیادہ پذیرائی <span class="emphasis">عہدِ عباسی (750–1258ء)</span> میں ہوئی، جب عباسی خلفاء نے ہندی ویدوں کو اپنے دارالخلافہ بغداد بلایا۔
+            </div>
+            
+            <!-- Baghdad Arrival -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">🕌</span>
+                    بغداد میں ہندی ویدوں کی آمد
+                </h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>خلیفہ المنصور (754–769ء)</strong><br>
+                        اس کے عہدِ خلافت سے بغداد میں ہندی ویدوں کی آمد کا سلسلہ شروع ہوا۔
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <strong>بنیادی مقصد:</strong><br>
+                        ہندی ویدوں کے ذریعے ہندی طب (Ayurveda) کی معلومات کو عربوں تک پہنچانا۔
+                    </div>
+                </div>
+                
+                <div class="story-box">
+                    <h3>📖 ہارون الرشید کی بیماری کی کہانی</h3>
+                    <p><strong>مسئلہ:</strong> خلیفہ ہارون الرشید بیمار ہوا</p>
+                    <p><strong>ناکامی:</strong> یونانی اور ایرانی اطباء علاج میں ناکام رہے</p>
+                    <p><strong>حل:</strong> ہندوستان سے مشہور ہندی وید <span class="emphasis">منکہ الہندی</span> کو بلایا گیا</p>
+                    <p><strong>نتیجہ:</strong> منکہ الہندی نے کامیاب علاج کیا اور خلیفہ صحت یاب ہوا ✅</p>
+                    <p><strong>اثر:</strong> اس واقعے کے بعد دربارِ عباسی میں ہندی ویدوں کی قدر و قیمت مزید بڑھ گئی</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <strong>خلیفہ ہارون الرشید کا اثر:</strong><br>
+                    اس کی علم دوستی اور علمی سخاوت کے چرچے سن کر ہندوستان کے ویدوں کی ایک بڑی جماعت بغداد میں جمع ہو گئی جو وہاں علاج و معالجہ اور تدریس دونوں خدمات انجام دیتی تھی۔
+                </div>
+            </div>
+            
+            <!-- Bayt al-Hikmah -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">📚</span>
+                    بیت الحکمت میں ویدوں کا تقرر
+                </h2>
+                
+                <div class="timeline-item">
+                    <strong>خلیفہ مامون الرشید (813–833ء)</strong><br>
+                    اس کے زمانے میں ویدوں کو باقاعدہ طور پر <span class="emphasis">بیت الحکمہ</span> کے شعبۂ ترجمہ و تالیف میں شامل کر لیا گیا۔
+                </div>
+                
+                <div class="key-point">
+                    <strong>بیت الحکمت میں ویدوں کی خوبیاں:</strong><br>
+                    • سنسکرت اور عربی دونوں زبانوں پر عبور<br>
+                    • ہندی طبی متون کو عربی میں منتقل کرنا<br>
+                    • قابلِ قدر علمی خدمات
+                </div>
+                
+                <h3 style="color: #667eea; margin: 20px 0 10px;">مشہور ویدوں کے نام:</h3>
+                
+                <div class="name-card">منکہ الہندی (Manka al-Hindi)</div>
+                <div class="name-card">کنکہ الہندی (Kanka al-Hindi)</div>
+                <div class="name-card">ابن دین الہندی (Ibn Dīn al-Hindī)</div>
+                <div class="name-card">صالح بن بہلہ الہندی (Ṣāliḥ ibn Bahla al-Hindī)</div>
+                <div class="name-card">قلیرقل الہندی (Qlirqāl al-Hindī)</div>
+                <div class="name-card">صنجہیل الہندی (Sanjhel al-Hindī)</div>
+            </div>
+            
+            <!-- Manka al-Hindi -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">⭐</span>
+                    منکہ الہندی کی علمی خدمات
+                </h2>
+                
+                <div class="highlight-box">
+                    <strong>کون تھے؟</strong><br>
+                    ہند سے بغداد جانے والے ویدوں میں سب سے زیادہ مشہور اور اہم۔
+                </div>
+                
+                <div class="key-point">
+                    <strong>خصوصیات:</strong><br>
+                    • ویدک طریقۂ علاج میں کامل مہارت<br>
+                    • سنسکرت، فارسی (پہلوی) اور عربی پر مکمل عبور<br>
+                    • قدیم ویدک طبی کتابوں کے تراجم
+                </div>
+                
+                <h3 style="color: #f5576c; margin: 20px 0 10px;">منکہ الہندی کی اہم کتابیں:</h3>
+                
+                <div class="list-item">
+                    <strong>1. کتاب السموم</strong><br>
+                    اصل: شاناق یا چانکیہ (Chanakya) کی سنسکرت تصنیف<br>
+                    کام: پہلے فارسی میں ترجمہ، بعد میں عربی ترجمہ
+                </div>
+                
+                <div class="list-item">
+                    <strong>2. تفسیر اسماء عقاقیر الہند</strong><br>
+                    موضوع: ادویہ کے مختلف نام اور مترادفات<br>
+                    کام: سنسکرت سے عربی میں ترجمہ
+                </div>
+                
+                <div class="list-item">
+                    <strong>3. چرک سمہتا</strong><br>
+                    مصنف: مشہور رِشی وید چرک (Charaka)<br>
+                    کام: سنسکرت سے فارسی میں ترجمہ<br>
+                    اہمیت: معرکۃ الآراء تصنیف
+                </div>
+                
+                <div class="list-item">
+                    <strong>4. سشرت سمہتا</strong><br>
+                    مصنف: مشہور طبیب و جرّاح سشرت (Sushruta)<br>
+                    کام: سنسکرت سے عربی میں ترجمہ<br>
+                    اہمیت: عظیم الشان کتاب
+                </div>
+            </div>
+            
+            <!-- Kanka al-Hindi -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">💊</span>
+                    کنکہ الہندی کی علمی خدمات
+                </h2>
+                
+                <div class="highlight-box">
+                    <strong>دوسرا نام:</strong> بعض قدیم ماخذ میں <span class="emphasis">کبکہ (Kabka)</span> بھی لکھا گیا ہے۔
+                </div>
+                
+                <div class="key-point">
+                    <strong>خاص مہارت:</strong><br>
+                    ادویہ کی شناخت، ان کے افعال و خواص اور استعمال میں کمال حاصل تھا۔
+                </div>
+                
+                <h3 style="color: #667eea; margin: 20px 0 10px;">کنکہ الہندی کی تصنیفات:</h3>
+                
+                <div class="list-item">1. کتاب النمو فی الاعمار</div>
+                <div class="list-item">2. کتاب القرانات الکبیرۃ</div>
+                <div class="list-item">3. کتاب القرانات الصغیرۃ</div>
+                <div class="list-item">4. کتاب فی الطب</div>
+                
+                <div class="highlight-box">
+                    ان کی طبی تصنیفات کے عربی تراجم بھی ہوئے۔
+                </div>
+            </div>
+            
+            <!-- Impact -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">🌟</span>
+                    ہندی ویدوں کے طبِ یونانی پر اثرات
+                </h2>
+                
+                <div class="impact-box">
+                    <h3>دور رس نتائج:</h3>
+                    <p>عربوں نے علم دوستی کا ثبوت دیتے ہوئے ہندی ویدوں کو بغداد مدعو کیا اور ان کی ذاتی طبی مہارت سے فائدہ اٹھانے کے ساتھ ساتھ قدیم ویدک گرنتھوں کے ترجمے بھی کروائے۔</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <strong>نتیجہ:</strong> عربوں نے ہندی طب سے بھرپور استفادہ کیا۔
+                </div>
+                
+                <h3 style="color: #f5576c; margin: 20px 0 10px;">بلند پایہ اطباء جنہوں نے ہندی طب سے استفادہ کیا:</h3>
+                
+                <div class="name-card">رازی (Rhazes)</div>
+                <div class="name-card">ربن طبری (Rabban Tabari)</div>
+                <div class="name-card">نوح القمری (Nuh al-Qamri)</div>
+                <div class="name-card">ابن بیطار (Ibn Baytar)</div>
+                
+                <div class="key-point">
+                    ان کی کتابوں میں ہندی طب کے حوالے کثرت سے ملتے ہیں۔
+                </div>
+                
+                <div class="story-box">
+                    <h3>علم الادویہ میں ہندی طب کی گہری چھاپ</h3>
+                    
+                    <p><strong>ہندی طب سے ماخوذ اصطلاحات:</strong></p>
+                    <p>• صَیدلہ<br>• اطریفل<br>• سام پٹ<br>• گجرپٹ</p>
+                    
+                    <p style="margin-top: 15px;"><strong>آج بھی:</strong> بعض ادویہ کے ہندی نام درس و تدریس میں استعمال ہو رہے ہیں۔</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <strong>کشتہ سازی:</strong><br>
+                    اس فن کے بارے میں عام خیال ہے کہ اس کے موجد اہلِ ہند ہیں۔
+                </div>
+            </div>
+            
+            <!-- Conclusion -->
+            <div class="impact-box">
+                <h2 style="margin-bottom: 15px;">📝 خلاصہ</h2>
+                <p>عربوں نے ہندی ویدوں کو بغداد میں مدعو کر کے ہندی طب سے جس بھرپور انداز میں استفادہ کیا، وہ فنِ طب جیسے عظیم اور شریف علم کے تقاضوں کے عین مطابق تھا۔</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+         <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </div>
+    </div>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
