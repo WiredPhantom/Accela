@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اسماعیل جرجانی - شرف الدین</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 16px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .header .english-name {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-family: Arial, sans-serif;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            opacity: 0.95;
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .section p {
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #48bb78;
+        }
+
+        .key-point strong {
+            color: #2d7d46;
+        }
+
+        .sub-section {
+            background: #f8fafc;
+            padding: 18px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .sub-section h4 {
+            color: #764ba2;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .book-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+        }
+
+        .book-header h2 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .volume-card {
+            background: white;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .volume-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .volume-content h4 {
+            color: #4a5568;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .volume-content p {
+            font-size: 0.95rem;
+            color: #718096;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border-right: 4px solid #ed8936;
+        }
+
+        .highlight-box h4 {
+            color: #c05621;
+            margin-bottom: 10px;
+        }
+
+        .books-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .books-list li {
+            background: #f7fafc;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .translation-box {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+            border-right: 4px solid #38b2ac;
+        }
+
+        .translation-box h4 {
+            color: #234e52;
+            margin-bottom: 10px;
+        }
+
+        .memory-tip {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 20px 0;
+            border-right: 4px solid #3182ce;
+        }
+
+        .memory-tip h4 {
+            color: #2b6cb0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .fact-card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .fact-card .emoji {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .fact-card .fact-label {
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        .fact-card .fact-value {
+            font-size: 1rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .additional-chapter {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+            border-right: 4px solid #805ad5;
+        }
+
+        .additional-chapter h4 {
+            color: #553c9a;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .toc {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .toc h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc-list li {
+            padding: 10px 15px;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .toc-list li:last-child {
+            border-bottom: none;
+        }
+
+        .toc-list a {
+            color: #4a5568;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc-list a:hover {
+            color: #667eea;
+        }
+
+        .toc-number {
+            background: #edf2f7;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .list-item {
+            margin: 10px 0;
+        }
+
+        .inner-list {
+            margin-top: 10px;
+            padding-right: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .quick-facts {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>اسماعیل جرجانی</h1>
+        <p class="english-name">Isma'il Jurjani</p>
+        <p class="subtitle">بارہویں صدی کے مشہور طبیب</p>
+    </header>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-card">
+                <div class="emoji">🕌</div>
+                <div class="fact-label">زمانہ</div>
+                <div class="fact-value">12ویں صدی عیسوی</div>
+            </div>
+            <div class="fact-card">
+                <div class="emoji">📍</div>
+                <div class="fact-label">شہر</div>
+                <div class="fact-value">جرجان (Jurjan)</div>
+            </div>
+            <div class="fact-card">
+                <div class="emoji">🏅</div>
+                <div class="fact-label">لقب</div>
+                <div class="fact-value">شرف الدین</div>
+            </div>
+            <div class="fact-card">
+                <div class="emoji">👨‍⚕️</div>
+                <div class="fact-label">پیشہ</div>
+                <div class="fact-value">شاہی طبیب</div>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>📋 فہرست مضامین</h3>
+            <ul class="toc-list">
+                <li><a href="#intro"><span class="toc-number">۱</span> تعارف</a></li>
+                <li><a href="#education"><span class="toc-number">۲</span> تعلیم و تربیت</a></li>
+                <li><a href="#excellence"><span class="toc-number">۳</span> فضل و کمال</a></li>
+                <li><a href="#book"><span class="toc-number">۴</span> ذخیرہ خوارزم شاہی</a></li>
+                <li><a href="#volumes"><span class="toc-number">۵</span> دس جلدوں کی تفصیل</a></li>
+                <li><a href="#translation"><span class="toc-number">۶</span> تراجم</a></li>
+            </ul>
+        </div>
+
+        <!-- Introduction Section -->
+        <section class="section" id="intro">
+            <h2 class="section-title">
+                <span class="icon">📜</span>
+                تعارف
+            </h2>
+            <p><strong>شرف الدین اسماعیل جرجانی</strong> بارہویں صدی عیسوی (12th century AD) کا بہت بڑا اور مشہور طبیب تھا۔</p>
+            
+            <div class="key-point">
+                <strong>نام کی وجہ:</strong> شرف الدین اس کا لقب تھا۔ جرجان شہر سے تعلق ہونے کی وجہ سے "جرجانی" کہلایا۔
+            </div>
+
+            <div class="highlight-box">
+                <h4>🏆 اہم کارنامہ</h4>
+                <p>اسماعیل جرجانی نے طب پر فارسی (Persian) زبان میں ایک بہت بڑی کتاب <strong>"ذخیرہ خوارزم شاہی"</strong> لکھی۔ اس کتاب کی وجہ سے طب کا بہت بڑا سرمایہ عربی سے فارسی میں آ گیا اور طبی لٹریچر میں ایک نیا باب شامل ہوا۔</p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section" id="education">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+            <p>اس طبیب کی زندگی کی مکمل تفصیل موجود نہیں ہے۔ اس لیے تعلیم و تربیت کے بارے میں بھی یقین سے کچھ نہیں کہا جا سکتا۔</p>
+            
+            <div class="key-point">
+                <strong>استاد:</strong> صرف ایک حوالے سے معلوم ہوتا ہے کہ یہ <strong>ابن صادق</strong> کا شاگرد تھا۔
+            </div>
+        </section>
+
+        <!-- Excellence Section -->
+        <section class="section" id="excellence">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال
+            </h2>
+            <p>اسماعیل جرجانی ایک بڑا طبیب اور بہترین مصنف تھا۔</p>
+
+            <div class="sub-section">
+                <h4>👨‍⚕️ بحیثیت طبیب</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li class="list-item">✅ اپنے زمانے کا نامور اور تجربہ کار طبیب تھا</li>
+                    <li class="list-item">✅ حاکم وقت <strong>سلطان خوارزم شاہ</strong> کے دربار میں شاہی طبیب تھا</li>
+                    <li class="list-item">✅ جرجان میں <strong>بہاء الدولہ</strong> کے ہسپتال کا منتظم بھی رہا</li>
+                </ul>
+            </div>
+
+            <div class="sub-section">
+                <h4>✍️ بحیثیت مصنف</h4>
+                <p>اسماعیل کی تصنیفی خدمات بہت اہم ہیں۔ فارسی زبان میں طبی تصنیف کا امام مانا جاتا ہے۔</p>
+                
+                <div class="memory-tip">
+                    <h4>💡 یاد رکھیں - پانچ کتابیں</h4>
+                    <ul class="books-list">
+                        <li>📖 ذخیرہ خوارزم شاہی (سب سے مشہور)</li>
+                        <li>📖 کتاب التحفی العلائی</li>
+                        <li>📖 کتاب یادگار علائی</li>
+                        <li>📖 کتاب اغراض الطبیہ</li>
+                        <li>📚 کتاب زبدۃ الطب (عربی میں)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Section -->
+        <div class="book-header" id="book">
+            <h2>📚 ذخیرہ خوارزم شاہی</h2>
+            <p>فارسی زبان کی سب سے اہم طبی کتاب</p>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                کتاب کا تعارف
+            </h2>
+            <p>یہ کتاب بارہویں صدی عیسوی کی تصنیف ہے۔ فارسی زبان میں لکھی جانے والی بہت اہم طبی کتاب ہے۔</p>
+            
+            <div class="key-point">
+                <strong>خاص بات:</strong> اسماعیل نے اس میں اپنے وقت کی تمام طبی معلومات کو جمع کر دیا۔ اس لیے اسے <strong>طبی انسائیکلوپیڈیا</strong> کا درجہ دیا گیا۔
+            </div>
+
+            <div class="highlight-box">
+                <h4>📝 نام کی وجہ</h4>
+                <p>یہ کتاب <strong>سلطان خوارزم شاہ</strong> کی خواہش پر لکھی گئی اور ان کے نام سے منسوب کر کے "ذخیرہ خوارزم شاہی" نام رکھا گیا۔</p>
+            </div>
+
+            <div class="memory-tip">
+                <h4>💡 ضخامت</h4>
+                <p>📕 <strong>10 جلدیں</strong> ہیں<br>
+                📑 ہر جلد پہلے <strong>گفتار (مقالات)</strong> میں تقسیم ہے<br>
+                📄 پھر ہر گفتار <strong>ابواب</strong> میں تقسیم ہے</p>
+            </div>
+        </section>
+
+        <!-- Volumes Section -->
+        <section class="section" id="volumes">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                دس جلدوں کی تفصیل
+            </h2>
+
+            <div class="volume-card">
+                <div class="volume-number">۱</div>
+                <div class="volume-content">
+                    <h4>جلد اول</h4>
+                    <p>علم طب کی تعریف، اغراض اور امور طبیعیہ کا بیان</p>
+                </div>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-number">۲</div>
+                <div class="volume-content">
+                    <h4>جلد دوم</h4>
+                    <p>احوال بدن، اسباب مرض، اعراض و دلائل (نبض، قارورہ وغیرہ)</p>
+                </div>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-number">۳</div>
+                <div class="volume-content">
+                    <h4>جلد سوم</h4>
+                    <p>اسباب ستہ ضروریہ، استفراغ اور ذرائع استفراغ</p>
+                </div>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-number">۴</div>
+                <div class="volume-content">
+                    <h4>جلد چہارم</h4>
+                    <p>اصول تشخیص، نضج، بحران اور تقدمۃ المعرفۃ</p>
+                </div>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-number">۵</div>
+                <div class="volume-content">
+                    <h4>جلد پنجم</h4>
+                    <p>حمیات (بخار)، حمیات کی اقسام، احوال بدن اور علاج</p>
+                </div>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-number">۶</div>
+                <div class="volume-content">
+                    <h4>جلد ششم</h4>
+                    <p>سر سے پیر تک تمام امراض کا بیان</p>
+                </div>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-number">۷</div>
+                <div class="volume-content">
+                    <h4>جلد ہفتم</h4>
+                    <p>اورام و قروح، جراحیات، عمل کی، علاج اعضاء فاسدہ، کسر و خلع کی تدابیر</p>
+                </div>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-number">۸</div>
+                <div class="volume-content">
+                    <h4>جلد ہشتم</h4>
+                    <p>امور زینت، جسم کی پاکیزگی و آراستگی کی اندرونی اور بیرونی تدابیر</p>
+                </div>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-number">۹</div>
+                <div class="volume-content">
+                    <h4>جلد نہم</h4>
+                    <p>زہروں اور ان کے تریاقات کی تفصیل، ادویہ حیوانیہ کے فوائد</p>
+                </div>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-number">۱۰</div>
+                <div class="volume-content">
+                    <h4>جلد دہم</h4>
+                    <p>ادویہ مفردہ و مرکبہ کا بیان</p>
+                </div>
+            </div>
+
+            <div class="additional-chapter">
+                <h4>➕ اضافی باب</h4>
+                <p>کتاب کے آخر میں ایک اضافی باب ہے جس میں:</p>
+                <ul class="inner-list">
+                    <li>ادویہ مفردہ اور مرکبہ کا ذکر</li>
+                    <li>اگر طبیب خود بیمار پڑ جائے تو اپنے علاج کی تدابیر</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Translation Section -->
+        <section class="section" id="translation">
+            <h2 class="section-title">
+                <span class="icon">🌍</span>
+                تراجم
+            </h2>
+            <p>ذخیرہ خوارزم شاہی کے کئی بار تراجم ہو چکے ہیں۔</p>
+
+            <div class="translation-box">
+                <h4>🇵🇰 برصغیر میں اردو ترجمہ</h4>
+                <p><strong>مترجم:</strong> حکیم ہادی حسن خان مراد آبادی</p>
+                <p><strong>سنہ اشاعت:</strong> 1878ء</p>
+                <p><strong>ناشر:</strong> منشی نول کشور پریس، لکھنؤ</p>
+                <p style="margin-top: 10px;">یہ اردو ترجمہ برصغیر میں بہت مقبول ہوا۔</p>
+            </div>
+        </section>
+
+        <!-- Memory Summary -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🧠</span>
+                یاد رکھنے کے نکات
+            </h2>
+
+            <div class="memory-tip">
+                <h4>💡 اہم باتیں</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li class="list-item">🔹 شرف الدین اسماعیل جرجانی - 12ویں صدی</li>
+                    <li class="list-item">🔹 جرجان شہر سے تعلق - اس لیے جرجانی</li>
+                    <li class="list-item">🔹 ابن صادق کا شاگرد</li>
+                    <li class="list-item">🔹 خوارزم شاہ کا شاہی طبیب</li>
+                    <li class="list-item">🔹 5 کتابیں لکھیں (4 فارسی + 1 عربی)</li>
+                    <li class="list-item">🔹 ذخیرہ خوارزم شاہی - 10 جلدیں</li>
+                    <li class="list-item">🔹 طبی انسائیکلوپیڈیا کا درجہ</li>
+                    <li class="list-item">🔹 فارسی طبی تصنیف کا امام</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

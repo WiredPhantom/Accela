@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن نفیس - عظیم مسلم طبیب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 2.2;
+            font-size: 18px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        /* Quick Info Box */
+        .quick-info {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-right: 5px solid #0ea5e9;
+        }
+
+        .quick-info h3 {
+            color: #0ea5e9;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .info-table {
+            width: 100%;
+        }
+
+        .info-row {
+            display: flex;
+            border-bottom: 1px dashed #e2e8f0;
+            padding: 10px 0;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #64748b;
+            width: 40%;
+        }
+
+        .info-value {
+            color: #1e293b;
+            width: 60%;
+        }
+
+        /* Section Styles */
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            color: #2563eb;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #e0f2fe;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.2em;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid #0ea5e9;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-right-color: #22c55e;
+        }
+
+        .highlight-box.purple {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border-right-color: #a855f7;
+        }
+
+        .highlight-box.orange {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border-right-color: #f97316;
+        }
+
+        .highlight-box.yellow {
+            background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+            border-right-color: #eab308;
+        }
+
+        /* Sub Section */
+        .sub-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .sub-section h4 {
+            color: #0369a1;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* List Styles */
+        .custom-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .custom-list li {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: #f1f5f9;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .custom-list li::before {
+            content: "◆";
+            color: #0ea5e9;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        /* Books Section */
+        .book-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .book-card h4 {
+            color: #7c3aed;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        /* Fun Section */
+        .fun-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .fun-item {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 20px 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .fun-item .number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #d97706;
+        }
+
+        .fun-item .label {
+            font-size: 0.9em;
+            color: #92400e;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .summary-box h3 {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-box ul {
+            list-style: none;
+        }
+
+        .summary-box ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .summary-box ul li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-box ul li::before {
+            content: "✓";
+            background: #22c55e;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                font-size: 16px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .fun-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .info-row {
+                flex-direction: column;
+            }
+
+            .info-label, .info-value {
+                width: 100%;
+            }
+
+            .info-label {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>ابن نفیس</h1>
+        <p class="subtitle">Ibn Nafis - عظیم مسلم طبیب و محقق</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- Quick Info -->
+        <div class="quick-info">
+            <h3>⚡ فوری معلومات</h3>
+            <div class="info-table">
+                <div class="info-row">
+                    <span class="info-label">پورا نام:</span>
+                    <span class="info-value">ابوالحسن علاء الدین علی بن ابی الحزم القرشی الشافعی</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">مشہور نام:</span>
+                    <span class="info-value">ابن نفیس / قرشی</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">پیدائش:</span>
+                    <span class="info-value">1210ء - قرشیہ (دمشق کے قریب)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">وفات:</span>
+                    <span class="info-value">1288ء - قاہرہ (مصر)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">عمر:</span>
+                    <span class="info-value">78 سال</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">پیشہ:</span>
+                    <span class="info-value">طبیب، محقق، مصنف، استاد</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                تعارف
+            </h2>
+            <p>
+                ابن نفیس دمشق کے قریب ایک جگہ قرشیہ میں پیدا ہوئے۔ یہ ایک بہت بڑے طبیب (ڈاکٹر) تھے جنہوں نے طب کی دنیا میں بہت نام کمایا۔
+            </p>
+            
+            <div class="highlight-box">
+                <strong>ابن نفیس کی عظمت کی تین بڑی وجوہات:</strong>
+                <ul class="custom-list">
+                    <li>دورانِ خون ریوی کی تحقیق (پھیپھڑوں میں خون کی گردش دریافت کی)</li>
+                    <li>قانون کی شرح لکھی (ابن سینا کی کتاب کی وضاحت)</li>
+                    <li>موجز القانون لکھی (قانون کا خلاصہ)</li>
+                </ul>
+            </div>
+            <p>
+                ان تین کاموں نے ابن نفیس کا نام ہمیشہ کے لیے طب کی تاریخ میں امر کر دیا۔
+            </p>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+            <p>
+                ابن نفیس نے ابتدائی تعلیم اپنے آبائی گاؤں قرشیہ میں حاصل کی۔ پھر طب (طبی علوم) کی تعلیم نورالدین کے شفا خانے سے حاصل کی۔
+            </p>
+            
+            <div class="highlight-box green">
+                <strong>ابن نفیس کے اساتذہ:</strong>
+                <ul class="custom-list">
+                    <li>مہذب الدین دخوار</li>
+                    <li>عمران اسرائیلی</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال
+            </h2>
+            <p>
+                ابن نفیس بیک وقت کئی خوبیوں کے مالک تھے:
+            </p>
+            <ul class="custom-list">
+                <li>عربی زبان کے ماہر</li>
+                <li>بڑے عالم</li>
+                <li>بہترین استاد</li>
+                <li>عظیم محقق (ریسرچر)</li>
+                <li>شارح (کتابوں کی وضاحت لکھنے والے)</li>
+                <li>تلخیص نگار (خلاصہ لکھنے والے)</li>
+            </ul>
+        </section>
+
+        <!-- As Physician -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">👨‍⚕️</span>
+                بحیثیت طبیب
+            </h2>
+            <p>
+                ابن نفیس اعلیٰ درجے کے ڈاکٹر تھے۔ جب وہ قاہرہ (مصر کا دارالحکومت) گئے تو وہاں کے مشہور ہسپتال "بیمارستان" میں افسر اعلیٰ (سربراہ) مقرر ہوئے۔
+            </p>
+            <div class="highlight-box purple">
+                <strong>اہم عہدہ:</strong> سلطان مصر کے ذاتی طبیب (شاہی ڈاکٹر) بھی رہے۔
+            </div>
+        </section>
+
+        <!-- As Researcher -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🔬</span>
+                بحیثیت محقق
+            </h2>
+            <p>
+                ابن نفیس نے سب سے پہلے یہ دریافت کیا کہ خون پھیپھڑوں میں کیسے گردش کرتا ہے (دورانِ خون ریوی)۔
+            </p>
+            <div class="highlight-box orange">
+                <strong>اہم بات:</strong> مغربی لوگ کہتے ہیں کہ یہ دریافت ولیم ہاروے (William Harvey 1578-1657) نے کی، لیکن حقیقت یہ ہے کہ ابن نفیس نے یہ کام ہاروے سے تقریباً 300 سال پہلے کر دیا تھا! یہ بات تصویروں سمیت کتابوں میں موجود ہے اور تاریخ دانوں نے اس کا اعتراف کیا ہے۔
+            </div>
+        </section>
+
+        <!-- As Teacher -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">👨‍🏫</span>
+                بحیثیت استاد
+            </h2>
+            <p>
+                ابن نفیس نے بیمارستان (ہسپتال) میں مریضوں کا علاج کرنے کے ساتھ ساتھ طب کی تعلیم بھی دی۔
+            </p>
+            <div class="highlight-box green">
+                <strong>مشہور شاگرد:</strong>
+                <ul class="custom-list">
+                    <li>ابن القف</li>
+                    <li>ابو الفرج بن صغیر</li>
+                    <li>ابن برہان</li>
+                    <li>العمری</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- As Author -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">✍️</span>
+                بحیثیت مصنف
+            </h2>
+            <p>
+                ابن نفیس ساری زندگی کتابیں لکھتے رہے۔ کتاب لکھنا ان کی فطرت میں تھا۔
+            </p>
+            <div class="fun-grid">
+                <div class="fun-item">
+                    <div class="number">24</div>
+                    <div class="label">کتابیں لکھیں</div>
+                </div>
+                <div class="fun-item">
+                    <div class="number">78</div>
+                    <div class="label">سال کی عمر</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- As Commentator -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📝</span>
+                بحیثیت شارح
+            </h2>
+            <p>
+                شارح وہ ہوتا ہے جو کسی کتاب کی تفصیلی وضاحت لکھے۔ ابن نفیس نے تین بڑے طبیبوں کی کتابوں کی شرحیں لکھیں:
+            </p>
+            <ul class="custom-list">
+                <li>بقراط (Hippocrates) کی کتابیں</li>
+                <li>جالینوس (Galen) کی کتابیں</li>
+                <li>ابن سینا کی کتاب "القانون فی الطب"</li>
+            </ul>
+            <div class="highlight-box">
+                ابن سینا کی کتاب "القانون" کی شرح سب سے زیادہ مشہور ہوئی جسے "شرح قانون" کہتے ہیں۔
+            </div>
+        </section>
+
+        <!-- As Summarizer -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                بحیثیت تلخیص نگار
+            </h2>
+            <p>
+                تلخیص نگار وہ ہوتا ہے جو کسی بڑی کتاب کا مختصر خلاصہ لکھے۔ ابن نفیس نے ابن سینا کی کتاب "القانون" کی تلخیص لکھی جسے "موجز القانون" کہتے ہیں۔
+            </p>
+            <div class="highlight-box yellow">
+                <strong>دلچسپ بات:</strong> موجز القانون اتنی مقبول ہوئی کہ لوگوں نے اصل قانون پڑھنا چھوڑ دیا اور اس کی جگہ موجز پڑھنے لگے۔ آج بھی یہی صورتحال ہے!
+            </div>
+        </section>
+
+        <!-- Book: Sharh Qanun -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📕</span>
+                شرح قانون (کتاب)
+            </h2>
+            <div class="book-card">
+                <h4>شرح قانون کی خصوصیات:</h4>
+                <ul class="custom-list">
+                    <li>یہ ابن سینا کی کتاب "القانون" کی تفصیلی وضاحت ہے</li>
+                    <li>عربی زبان میں لکھی گئی</li>
+                    <li>بہت بڑی کتاب ہے - 5 جلدوں پر مشتمل</li>
+                    <li>اصل قانون کی طرح پانچ حصوں میں ہے</li>
+                </ul>
+            </div>
+            <div class="highlight-box orange">
+                <strong>افسوس کی بات:</strong> اس کتاب کا کسی اور زبان میں مکمل ترجمہ نہیں ہو سکا۔ صرف "شرح حمیات" والا حصہ چھپ سکا، باقی کتاب ہاتھ سے لکھے ہوئے نسخوں (مخطوطات) کی شکل میں ہے۔
+            </div>
+        </section>
+
+        <!-- Book: Mujiz al-Qanun -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📗</span>
+                موجز القانون (کتاب)
+            </h2>
+            <p>
+                یہ ابن نفیس کی سب سے مشہور کتاب ہے۔ اس کتاب نے ابن نفیس کو ہمیشہ کی شہرت دی۔
+            </p>
+            <div class="book-card">
+                <h4>موجز القانون کیا ہے؟</h4>
+                <p>
+                    یہ ابن سینا کی بڑی کتاب "القانون فی الطب" کا مختصر خلاصہ ہے۔ ابن نفیس نے "قانون کے سمندر کو موجز کے کوزے میں بند کر دیا"۔
+                </p>
+            </div>
+            
+            <div class="highlight-box green">
+                <strong>موجز کی اہمیت:</strong> جیسے اردو پڑھنے کے لیے پہلے "قاعدہ بغدادی" پڑھتے ہیں، اسی طرح طب پڑھنے کے لیے پہلے "موجز القانون" پڑھتے ہیں۔ یہ ہر طبی مدرسے کی پہلی کتاب ہے۔
+            </div>
+
+            <div class="sub-section">
+                <h4>موجز القانون کے چار فنون (حصے):</h4>
+            </div>
+
+            <div class="highlight-box">
+                <strong>فن اول (پہلا حصہ):</strong>
+                <p>اس میں طب کی بنیادی باتیں بیان کی گئی ہیں - علمی اور عملی دونوں پہلو شامل ہیں۔</p>
+            </div>
+
+            <div class="highlight-box green">
+                <strong>فن دوم (دوسرا حصہ):</strong>
+                <p>اس میں ادویہ (دوائیں) اور اغذیہ (کھانے کی چیزیں) کا بیان ہے۔</p>
+            </div>
+
+            <div class="highlight-box purple">
+                <strong>فن سوم (تیسرا حصہ):</strong>
+                <p>اس میں سر سے پاؤں تک ہر عضو کی بیماریوں کا بیان ہے۔</p>
+            </div>
+
+            <div class="highlight-box orange">
+                <strong>فن چہارم (چوتھا حصہ):</strong>
+                <p>اس میں عمومی بیماریاں (جو کسی ایک عضو کی نہیں بلکہ پورے جسم کی ہوں) کا بیان ہے۔</p>
+            </div>
+
+            <div class="highlight-box yellow">
+                <strong>موجز کی مقبولیت:</strong> اس کتاب کے کئی زبانوں میں ترجمے ہوئے۔ اردو میں بھی کئی ترجمے ہوئے جو بہت مقبول ہوئے۔
+            </div>
+        </section>
+
+        <!-- Summary for Memorization -->
+        <div class="summary-box">
+            <h3>📌 یاد رکھنے کا خلاصہ</h3>
+            <ul>
+                <li>ابن نفیس کا پورا نام: ابوالحسن علاء الدین علی بن ابی الحزم القرشی الشافعی</li>
+                <li>پیدائش: 1210ء قرشیہ (دمشق) - وفات: 1288ء قاہرہ (مصر)</li>
+                <li>تین وجہ شہرت: دورانِ خون ریوی، شرح قانون، موجز القانون</li>
+                <li>اساتذہ: مہذب الدین دخوار، عمران اسرائیلی</li>
+                <li>شاگرد: ابن القف، ابو الفرج، ابن برہان، العمری</li>
+                <li>کتابیں: تقریباً 24 کتابیں لکھیں</li>
+                <li>شرح قانون: 5 جلدیں، عربی میں، مکمل ترجمہ نہیں ہوا</li>
+                <li>موجز القانون: 4 فنون میں - بنیادیات، ادویہ/اغذیہ، اعضاء کے امراض، عمومی امراض</li>
+                <li>دورانِ خون کی دریافت ہاروے سے 300 سال پہلے کی</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

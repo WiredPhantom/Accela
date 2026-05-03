@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن جزلہ - Ibn Jazlah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .english-name {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .subtitle {
+            font-size: 1em;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        /* Quick Info Cards */
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-right: 4px solid #1e3a5f;
+        }
+
+        .info-card .icon {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .info-card .label {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .info-card .value {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #1e3a5f;
+            border-bottom: 3px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.2em;
+        }
+
+        /* Remember Box */
+        .remember-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #f59e0b;
+        }
+
+        .remember-box .title {
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .remember-box ul {
+            padding-right: 20px;
+            color: #78350f;
+        }
+
+        .remember-box li {
+            margin-bottom: 5px;
+        }
+
+        /* Date Badge */
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 3px;
+        }
+
+        /* Teacher Cards */
+        .teacher-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            border-right: 4px solid #22c55e;
+        }
+
+        .teacher-card .name {
+            font-weight: bold;
+            color: #166534;
+            font-size: 1.1em;
+        }
+
+        .teacher-card .subject {
+            color: #15803d;
+            font-size: 0.95em;
+        }
+
+        /* Skills Section */
+        .skill-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 12px 0;
+            border-right: 4px solid #6366f1;
+        }
+
+        .skill-card .skill-title {
+            font-weight: bold;
+            color: #4338ca;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-card p {
+            color: #475569;
+        }
+
+        /* Book Section */
+        .book-highlight {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px solid #ec4899;
+        }
+
+        .book-highlight .book-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #be185d;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .book-highlight ul {
+            padding-right: 20px;
+        }
+
+        .book-highlight li {
+            margin-bottom: 8px;
+            color: #9d174d;
+        }
+
+        /* Other Books */
+        .other-books {
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .other-books h4 {
+            color: #475569;
+            margin-bottom: 10px;
+        }
+
+        .other-books ol {
+            padding-right: 25px;
+        }
+
+        .other-books li {
+            margin-bottom: 8px;
+            color: #64748b;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .summary-section h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .summary-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .summary-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Points */
+        .point {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .point:last-child {
+            border-bottom: none;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section, .info-card, .summary-section {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .quick-info {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            .info-card {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>ابن جزلہ</h1>
+        <div class="english-name">Ibn Jazlah / Ben Giesla</div>
+        <div class="subtitle">گیارہویں صدی کے مشہور طبیب</div>
+    </div>
+
+    <div class="container">
+        <!-- Quick Info Cards -->
+        <div class="quick-info">
+            <div class="info-card">
+                <div class="icon">🌒</div>
+                <div class="label">پیدائش</div>
+                <div class="value">1054ء</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">🌙</div>
+                <div class="label">وفات</div>
+                <div class="value">1100ء</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">☪️</div>
+                <div class="label">قبولِ اسلام</div>
+                <div class="value">1074ء</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">📍</div>
+                <div class="label">مقام</div>
+                <div class="value">بغداد</div>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                تعارف
+            </h2>
+            
+            <div class="point">
+                <strong>پورا نام:</strong> شرف الدین ابوعلی یحیٰ بن عیسیٰ ابن جزلہ بغدادی
+            </div>
+            
+            <div class="point">
+                <strong>پیدائش:</strong> <span class="date-badge">1054ء</span> بغداد میں
+            </div>
+            
+            <div class="point">
+                <strong>نسبت:</strong> بغداد میں پیدائش کی وجہ سے <span class="highlight">بغدادی</span> کہلایا
+            </div>
+            
+            <div class="point">
+                <strong>سابقہ مذہب:</strong> پہلے عیسائی تھا - مغرب میں <span class="highlight">Ben Giesla</span> (لاطینی نام) سے مشہور
+            </div>
+            
+            <div class="point">
+                <strong>قبولِ اسلام:</strong> <span class="date-badge">1074ء</span> میں مسلمان ہوا
+            </div>
+            
+            <div class="point">
+                <strong>وفات:</strong> <span class="date-badge">1100ء</span>
+            </div>
+            
+            <div class="point">
+                <strong>خصوصیات:</strong> ہمدرد، سخی، غریبوں کا مسیحا
+            </div>
+
+            <div class="remember-box">
+                <div class="title">💡 یاد رکھیں:</div>
+                <ul>
+                    <li>پیدائش: <strong>1054ء</strong> (یاد رکھیں: 10-54)</li>
+                    <li>اسلام: <strong>1074ء</strong> (20 سال بعد)</li>
+                    <li>وفات: <strong>1100ء</strong> (آسان نمبر)</li>
+                    <li>عمر: تقریباً <strong>46 سال</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+            
+            <p style="margin-bottom: 15px;">ابن جزلہ کی زندگی کا بیشتر حصہ <strong>بغداد</strong> میں گزرا۔ دو مشہور اساتذہ سے تعلیم حاصل کی:</p>
+            
+            <div class="teacher-card">
+                <div class="name">1️⃣ سعید بن ہبۃ اللہ</div>
+                <div class="subject">📚 مضمون: طب (میڈیسن)</div>
+            </div>
+            
+            <div class="teacher-card">
+                <div class="name">2️⃣ ابو جعفر طوسی</div>
+                <div class="subject">📚 مضمون: حکمت (فلسفہ)</div>
+            </div>
+
+            <div class="remember-box">
+                <div class="title">💡 یاد رکھیں:</div>
+                <ul>
+                    <li><strong>سعید</strong> = <strong>طب</strong> (دونوں میں 'ط' کی آواز)</li>
+                    <li><strong>طوسی</strong> = <strong>حکمت</strong> (فلسفی استاد)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال (تین خوبیاں)
+            </h2>
+            
+            <div class="skill-card">
+                <div class="skill-title">🏥 1. ماہر طبیب</div>
+                <p>اپنے وقت کا نامور طبیب تھا۔ انتہائی ہمدرد اور ملنسار تھا۔ خاص و عام میں ہر دلعزیز تھا۔ <strong>غریبوں سے علاج کی اجرت نہیں لیتا تھا</strong> اور ہر طرح سے مدد کرتا تھا۔</p>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-title">✒️ 2. ماہر خطاط</div>
+                <p>خوشخطی میں ماہر تھا۔ <strong>بغداد کے قاضی</strong> کے یہاں خوش نویسی کے فرائض انجام دیتا تھا۔</p>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-title">📚 3. با کمال مصنف</div>
+                <p>مصروف طبیب ہونے کے باوجود تصنیف و تالیف کا کام بھی کیا۔ <strong>4 کتابیں</strong> لکھیں جن میں "منہاج" سب سے مشہور ہے۔</p>
+            </div>
+
+            <div class="remember-box">
+                <div class="title">💡 یاد رکھیں (3 خوبیاں):</div>
+                <ul>
+                    <li>طبیب - علاج کرنے والا</li>
+                    <li>خطاط - لکھنے والا</li>
+                    <li>مصنف - کتابیں لکھنے والا</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Famous Book Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">📕</span>
+                مشہور کتاب
+            </h2>
+            
+            <div class="book-highlight">
+                <div class="book-name">📖 منہاج البیان فیما یستعملہ الانسان</div>
+                <ul>
+                    <li><strong>زبان:</strong> عربی</li>
+                    <li><strong>صدی:</strong> گیارہویں صدی عیسوی (11th Century)</li>
+                    <li><strong>فرمائش:</strong> خلیفہ <strong>مقتدر باللہ</strong> کی فرمائش پر لکھی</li>
+                    <li><strong>موضوع:</strong> ادویہ (دوائیں) اور اغذیہ (غذائیں)</li>
+                    <li><strong>ترتیب:</strong> حروف تہجی کے اعتبار سے</li>
+                    <li><strong>مضامین:</strong> دوا کی ماہیت، اقسام، مزاج، افعال، خواص، مقدار خوراک</li>
+                    <li><strong>اہمیت:</strong> علم الادویہ میں مآخذ (بنیادی کتاب) شمار ہوتی ہے</li>
+                    <li><strong>مخطوطہ:</strong> ہندوستان میں <strong>رضا لائبریری رامپور</strong> میں محفوظ</li>
+                </ul>
+            </div>
+
+            <div class="remember-box">
+                <div class="title">💡 یاد رکھیں:</div>
+                <ul>
+                    <li><strong>منہاج</strong> = راستہ/طریقہ (ادویہ کا راستہ)</li>
+                    <li>خلیفہ <strong>مقتدر</strong> نے فرمائش کی</li>
+                    <li><strong>رامپور</strong> میں مخطوطہ ہے</li>
+                </ul>
+            </div>
+
+            <div class="other-books">
+                <h4>📚 دیگر کتابیں (مزید 3):</h4>
+                <ol>
+                    <li><strong>تقویم الابدان</strong></li>
+                    <li><strong>الاشارہ فی تلخیص العبارت</strong> (قوانین طبیعیہ میں صحت کی تدابیر)</li>
+                    <li><strong>رسالہ فی مدح الطب</strong> (طب کی تعریف اور شرع سے موافقت)</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h3>📝 خلاصہ - جلدی یاد کریں</h3>
+            <div class="summary-tags">
+                <span class="summary-tag">🌒 1054ء پیدائش</span>
+                <span class="summary-tag">📍 بغداد</span>
+                <span class="summary-tag">✝️ پہلے عیسائی</span>
+                <span class="summary-tag">☪️ 1074ء مسلمان</span>
+                <span class="summary-tag">🏥 طبیب</span>
+                <span class="summary-tag">✒️ خطاط</span>
+                <span class="summary-tag">📚 مصنف</span>
+                <span class="summary-tag">📖 منہاج (مشہور کتاب)</span>
+                <span class="summary-tag">👑 مقتدر باللہ</span>
+                <span class="summary-tag">📍 رامپور لائبریری</span>
+                <span class="summary-tag">🌙 1100ء وفات</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

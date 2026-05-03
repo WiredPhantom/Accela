@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زکریا رازی - امامِ طب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2d3748;
+            line-height: 2;
+            padding: 0;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            font-weight: normal;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .card h3 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-right: 5px solid #e17055;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #a8e6cf 0%, #56ccf2 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            color: #2d3748;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #667eea;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            background: #e9ecef;
+            border-right-width: 6px;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .role-card {
+            background: linear-gradient(135deg, #fa8fbd 0%, #f093fb 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .role-card:hover {
+            transform: scale(1.05);
+        }
+
+        .role-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .books-list {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .books-list h4 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .books-list ol {
+            margin-right: 25px;
+        }
+
+        .books-list li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .volumes-section {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .volume-item {
+            background: white;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .volume-item strong {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .key-points {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .key-points li {
+            margin-bottom: 10px;
+            padding-right: 10px;
+        }
+
+        .emphasis {
+            color: #e17055;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .dates {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: #2d3748;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .story-box {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px dashed #ffa726;
+            margin: 20px 0;
+        }
+
+        .story-box h4 {
+            color: #f57c00;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 40px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .card h2 {
+                font-size: 1.5em;
+            }
+            
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>زکریا رازی</h1>
+        <p class="subtitle">امامِ طب • جالینوس العرب</p>
+    </header>
+
+    <div class="container">
+        <!-- تعارف -->
+        <div class="card">
+            <h2>📚 تعارف</h2>
+            <p><strong class="emphasis">ابو بکر محمد بن زکریا رازی</strong> طب کے عربی دور کے ایک عظیم طبیب تھے۔</p>
+            
+            <div class="info-box">
+                <p><strong>القاب:</strong> امامِ طب، جالینوس العرب</p>
+                <p><strong>پیدائش:</strong> <span class="dates">850 عیسوی</span> شہر رے (ایران)</p>
+                <p><strong>وفات:</strong> <span class="dates">923 عیسوی</span> (73 سال کی عمر میں)</p>
+            </div>
+        </div>
+
+        <!-- تعلیم و تربیت -->
+        <div class="card">
+            <h2>🎓 تعلیم و تربیت</h2>
+            <p>رازی کی ابتدائی تعلیم شہر <strong>رے</strong> میں ہوئی۔ انہیں بچپن سے ہی علم کا بہت شوق تھا۔</p>
+            
+            <div class="highlight-box">
+                <h4>تعلیمی میدان:</h4>
+                <ul class="key-points">
+                    <li>ادب، منطق، فلسفہ، موسیقی</li>
+                    <li>کیمیاء اور طبیعیات</li>
+                    <li>علم طب (40 سال کی عمر میں شروع کیا)</li>
+                </ul>
+            </div>
+
+            <div class="story-box">
+                <h4>🌟 طب میں دلچسپی کیسے ہوئی؟</h4>
+                <p>ایک دن رازی ایک بیمارستان (ہسپتال) گئے۔ وہاں ایک ماہر دوا ساز اور طبیب سے بات چیت ہوئی۔ صحت اور بیماری کے بارے میں سوالات کیے۔ جوابات سن کر انہیں طب سے دلچسپی ہو گئی۔ اگرچہ عمر 40 سال تھی، مگر انہوں نے سنجیدگی سے طب سیکھا اور ماہر بن گئے۔</p>
+            </div>
+        </div>
+
+        <!-- فضل و کمال -->
+        <div class="card">
+            <h2>⭐ فضل و کمال</h2>
+            <p>رازی کی شخصیت کو <strong>چار پہلوؤں</strong> میں دیکھا جا سکتا ہے:</p>
+            
+            <div class="roles-grid">
+                <div class="role-card">
+                    <h4>👨‍⚕️ طبیب</h4>
+                    <p>تمام قدیم اطباء میں سب سے بڑے</p>
+                </div>
+                <div class="role-card">
+                    <h4>🔬 محقق</h4>
+                    <p>تجربے اور مشاہدے پر یقین</p>
+                </div>
+                <div class="role-card">
+                    <h4>💡 موجد</h4>
+                    <p>جدید طریقۂ علاج کے بانی</p>
+                </div>
+                <div class="role-card">
+                    <h4>✍️ مصنف</h4>
+                    <p>تقریباً 200 کتابوں کے مصنف</p>
+                </div>
+            </div>
+
+            <h3>بطور طبیب 👨‍⚕️</h3>
+            <div class="timeline-item">
+                <p>✅ رے اور بغداد میں <strong>رئیس الاطباء</strong> (Chief Physician) مقرر ہوئے</p>
+                <p>✅ بیماری کی علامات دیکھنے اور صحیح تشخیص میں ماہر</p>
+                <p>✅ بیماری سے زیادہ <strong>سبب</strong> پر توجہ دیتے تھے</p>
+                <p>✅ علاج عموماً کامیاب رہتا تھا</p>
+            </div>
+
+            <h3>بطور محقق 🔬</h3>
+            <div class="timeline-item">
+                <p>✅ کتابی باتوں سے زیادہ <strong>تجربہ اور مشاہدہ</strong> پر یقین</p>
+                <p>✅ <strong>چیچک (Smallpox)</strong> اور <strong>خسرہ (Measles)</strong> کا صحیح تصور پیش کیا</p>
+                <p>✅ دونوں کو <strong>متعدی بیماریاں</strong> قرار دیا</p>
+                <p>✅ واضح کیا کہ یہ دونوں الگ الگ بیماریاں ہیں</p>
+            </div>
+
+            <div class="story-box">
+                <h4>🏥 مشہور واقعہ - شفاخانے کی جگہ کا انتخاب</h4>
+                <p><strong>خلیفہ عضد الدولہ</strong> (بغداد) نے شفاخانہ بنانے کی جگہ پوچھی۔</p>
+                <p>🥩 رازی نے ایک ہی جانور کے گوشت کے کئی ٹکڑے لیے</p>
+                <p>📍 شہر کے مختلف مقامات پر لٹکا دیے</p>
+                <p>⏰ جس مقام کا ٹکڑا سب سے دیر میں سڑا - وہ جگہ منتخب کی</p>
+                <p><strong class="emphasis">🦠 جراثیم کا فلسفہ (Microbial Theory):</strong> اس سے ثابت ہوا کہ رازی ماحول میں جراثیم کی موجودگی سے واقف تھے!</p>
+            </div>
+
+            <h3>بطور موجد 💡</h3>
+            <div class="info-box">
+                <p><strong>رازی کو جدید طریقۂ مطب (Clinical Method) کا بانی سمجھا جاتا ہے</strong></p>
+                
+                <h4 style="margin-top: 15px;">طلباء کو تعلیم کا طریقہ:</h4>
+                <ol style="margin-right: 25px; margin-top: 10px;">
+                    <li>شاگردوں کو مریض کے پاس بھیجتے</li>
+                    <li>وہ مریض کی تکالیف اور علامات لکھتے</li>
+                    <li>سابقہ حالات دیکھ کر تشخیص کرتے</li>
+                    <li>رازی ان کی تشخیص چیک کرتے</li>
+                    <li>آخر میں خود معائنہ کر کے طلباء کو سکھاتے</li>
+                </ol>
+            </div>
+
+            <h3>بطور مصنف ✍️</h3>
+            <div class="books-list">
+                <h4>📖 اہم کتابیں (کل تقریباً 200 تصانیف)</h4>
+                <ol>
+                    <li><strong>کتاب الحاوی</strong> - سب سے مشہور طبی انسائیکلوپیڈیا</li>
+                    <li><strong>کتاب المنصوری</strong> - مختصر اور جامع</li>
+                    <li><strong>رسالتہ الجدری و الحصبہ</strong> - چیچک اور خسرہ پر</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- کتاب الحاوی -->
+        <div class="card">
+            <h2>📘 کتاب الحاوی (Liber Continens)</h2>
+            
+            <div class="highlight-box">
+                <p><strong class="emphasis">کتاب الحاوی الکبیر فی الطب</strong> - دسویں صدی کی عظیم طبی تصنیف</p>
+                <p>یہ کتاب رازی اپنی زندگی میں مکمل نہ کر سکے۔ بعد میں شاگردوں نے مرتب کی۔</p>
+                <p>مغرب میں لاطینی ترجمہ: <strong>Liber Continens</strong></p>
+            </div>
+
+            <h3>📚 ضخامت</h3>
+            <div class="timeline-item">
+                <p>✅ طبی تاریخ کی <strong>سب سے ضخیم کتابوں</strong> میں سے ایک</p>
+                <p>✅ موجودہ دور میں تقریباً <strong>23 جلدیں</strong> دستیاب (1971ء - حیدرآباد دکن)</p>
+                <p>✅ مؤرخین کا خیال ہے کہ اور بھی جلدیں ہو سکتی ہیں</p>
+            </div>
+
+            <h3>📝 مندرجات</h3>
+            <div class="info-box">
+                <ul class="key-points">
+                    <li>امراض اور ان کے علاج</li>
+                    <li>علم الادویہ</li>
+                    <li>اصولِ علاج</li>
+                    <li>جلد اور بالوں کے امراض</li>
+                    <li>استفراغ کے طریقے (اسہال، قے، فصد، تعریق)</li>
+                    <li>موسم اور صحت کے تعلقات</li>
+                    <li>نبض اور مزاجِ اقالیم</li>
+                    <li>حفظانِ صحت</li>
+                    <li>بول (Urine) کی مفصل معلومات</li>
+                </ul>
+            </div>
+
+            <h3>🌍 تراجم</h3>
+            <div class="timeline-item">
+                <p>✅ ماضی میں <strong>دو لاطینی تراجم</strong> شائع ہوئے</p>
+                <p>✅ موجودہ دور میں <strong>اردو ترجمہ</strong> CCRUM کے زیر اہتمام جاری</p>
+            </div>
+        </div>
+
+        <!-- کتاب الحاوی - جلد وار تفصیل -->
+        <div class="card">
+            <h2>📑 کتاب الحاوی - جلد وار تفصیل</h2>
+            
+            <div class="volumes-section">
+                <div class="volume-item">
+                    <strong>جلد 1:</strong> امراضِ راس (سر کی بیماریاں)
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 2:</strong> امراضِ چشم (آنکھ کی بیماریاں)
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 3:</strong> امراضِ کان، ناک، دانت اور حلق
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 4:</strong> امراضِ اعضاءِ رئیسہ (اہم اعضاء کی بیماریاں)
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 5:</strong> امراضِ مری و معدہ
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 6:</strong> استفراغات اور امراضِ تسمین و ہزال
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 7:</strong> امراضِ پستان، قلب، جگر اور طحال
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 8:</strong> امراضِ امعاء (آنتوں کی بیماریاں)
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 9:</strong> امراضِ نسواں (خواتین کی بیماریاں)
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 10:</strong> امراضِ بول و تناسل
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 11:</strong> دیدانِ امعاء، امراضِ مقعد اور امراضِ مفاصل
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 12:</strong> سرطان، ام و قروح اور جراحیات
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 13:</strong> جراحیات و معالجات اور کسر و خلع
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 14، 15، 16:</strong> حمیات (بخاروں) کا بیان - تین جلدیں
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 17:</strong> امراضِ جدری و حصبہ، ناخن اور بحران
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 18:</strong> ایامِ بحران
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 19:</strong> بول، سموم اور تریاقات
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 20، 21:</strong> ادویہ مفردہ (اکہری دوائیں)
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 22:</strong> صیدلہ اور مجہول الاسماء ادویہ
+                </div>
+                <div class="volume-item">
+                    <strong>جلد 23:</strong> ماکولات و مشروبات کے قوانین
+                </div>
+            </div>
+        </div>
+
+        <!-- کتاب المنصوری -->
+        <div class="card">
+            <h2>📗 کتاب المنصوری</h2>
+            <div class="info-box">
+                <p>✅ یہ کتاب <strong>مختصر</strong> ہے</p>
+                <p>✅ طبی مبادیات کے ساتھ معالجات بھی شامل</p>
+                <p>✅ <strong>جامعیت اور اختصار</strong> کی وجہ سے مشہور ہوئی</p>
+                <p>✅ اس میں یونانی اطباء سے لی گئی معلومات جمع کی گئی ہیں</p>
+                <p>✅ اس سے اندازہ ہوتا ہے کہ رازی سے پہلے طب کا معیار کیا تھا</p>
+                <p>✅ اور رازی نے علم میں کتنا اضافہ کیا</p>
+            </div>
+        </div>
+
+        <!-- رسالتہ الجدری و الحصبہ -->
+        <div class="card">
+            <h2>📕 رسالتہ الجدری و الحصبہ</h2>
+            <div class="highlight-box">
+                <p><strong class="emphasis">مرض چیچک اور خسرہ پر خصوصی کتاب</strong></p>
+                <p>✅ مکمل طور پر رازی کی <strong>ذاتی فکر اور تحقیق</strong> پر مبنی</p>
+                <p>✅ طب کے قیمتی سرمائے میں شامل</p>
+                <p>✅ ایسی کتاب جس پر طب کو <strong>فخر</strong> ہے</p>
+            </div>
+        </div>
+
+        <!-- خلاصہ -->
+        <div class="card">
+            <h2>🌟 خلاصہ - یاد رکھنے کے لیے اہم نکات</h2>
+            <div class="story-box">
+                <ul class="key-points" style="font-size: 1.1em;">
+                    <li>👤 <strong>نام:</strong> ابو بکر محمد بن زکریا رازی</li>
+                    <li>📅 <strong>زندگی:</strong> 850-923 عیسوی (73 سال)</li>
+                    <li>🏛️ <strong>القاب:</strong> امامِ طب، جالینوس العرب</li>
+                    <li>🎯 <strong>چار کردار:</strong> طبیب، محقق، موجد، مصنف</li>
+                    <li>🦠 <strong>بڑی دریافت:</strong> چیچک اور خسرہ الگ بیماریاں ہیں، جراثیم کا علم</li>
+                    <li>📚 <strong>تین اہم کتابیں:</strong> الحاوی، المنصوری، الجدری و الحصبہ</li>
+                    <li>📖 <strong>الحاوی:</strong> 23 جلدوں پر مشتمل طبی انسائیکلوپیڈیا</li>
+                    <li>💡 <strong>جدید طریقۂ علاج:</strong> Clinical Method کے بانی</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add fade-in animation to cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>علی ابن عباس مجوسی - طبِ یونانی کے عظیم طبیب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        /* Navigation removed */
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .card-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title .icon {
+            font-size: 1.2em;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-right: 4px solid #f6a085;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-right-color: #7dd3c7;
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #c3cfe2 0%, #e2ebf0 100%);
+            border-right-color: #667eea;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: #f8fafc;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 12px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .key-point .bullet {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .info-item .label {
+            font-size: 0.85em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .info-item .value {
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        /* Book Stats */
+        .book-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-item .number {
+            font-size: 2em;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-item .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* Maqala Cards */
+        .maqala-section {
+            margin: 25px 0;
+        }
+
+        .maqala-header {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 15px 15px 0 0;
+            font-size: 1.2em;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .maqala-header.jild2 {
+            background: linear-gradient(135deg, #fc5c7d 0%, #6a82fb 100%);
+        }
+
+        .maqala-item {
+            background: white;
+            padding: 18px;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.3s ease;
+        }
+
+        .maqala-item:last-child {
+            border-bottom: none;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .maqala-item:hover {
+            background: #f8fafc;
+        }
+
+        .maqala-title {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .maqala-chapters {
+            background: #e2e8f0;
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        .maqala-content {
+            color: #4a5568;
+            line-height: 2;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding-right: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 10px;
+            width: 15px;
+            height: 15px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Special Lists */
+        .special-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .special-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .special-list li:last-child {
+            border-bottom: none;
+        }
+
+        .special-list .emoji {
+            font-size: 1.2em;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            font-style: italic;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4em;
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            color: rgba(0,0,0,0.1);
+            font-family: serif;
+        }
+
+        .quote-author {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #764ba2;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 15px 0;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .accordion-header:hover {
+            border-color: #667eea;
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 0 0 12px 12px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .accordion-content.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-right: 4px solid #fbc02d;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .memory-tip .icon {
+            font-size: 1.5em;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .book-stats {
+                flex-direction: column;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Scroll to top removed */
+
+        /* Simple numbering */
+        .simple-number {
+            background: #667eea;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>علی ابن عباس مجوسی</h1>
+        <p class="subtitle">طبِ یونانی کے عظیم اور نامور طبیب</p>
+    </header>
+
+    <!-- Navigation removed -->
+
+    <main class="container">
+
+        <!-- Introduction -->
+        <section id="intro" class="card">
+            <h2 class="card-title">
+                <span class="icon">📜</span>
+                تعارف
+            </h2>
+            
+            <p><strong>علی ابن عباس مجوسی</strong> طبِ یونانی کے بڑے اور مشہور طبیب ہیں۔ انہوں نے طب کے علم کو بہت آگے بڑھایا۔</p>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">پیدائش</div>
+                    <div class="value">930 عیسوی</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">وفات</div>
+                    <div class="value">994 عیسوی</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">جائے پیدائش</div>
+                    <div class="value">اہواز (ایران)</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">مغربی نام</div>
+                    <div class="value">Haly Abbas</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>مجوسی کیوں کہتے ہیں؟</strong><br>
+                وہ پہلے مجوسی (آگ کی پوجا کرنے والے) مذہب کے تھے۔ اسی وجہ سے انہیں "مجوسی" کہا جاتا ہے۔
+            </div>
+
+            <div class="memory-tip">
+                <span class="icon">💡</span>
+                <div>
+                    <strong>یاد رکھیں:</strong> انہوں نے کتاب <strong>کامل الصناعۃ</strong> لکھی جسے <strong>کتاب الملکی</strong> بھی کہتے ہیں۔ لاطینی میں اسے <strong>Liber Regius</strong> کہتے ہیں۔
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="card">
+            <h2 class="card-title">
+                <span class="icon">📚</span>
+                تعلیم و تربیت
+            </h2>
+
+            <p>انہوں نے طب کی تعلیم دو بڑے استادوں سے حاصل کی:</p>
+
+            <div class="key-point">
+                <span class="bullet">1</span>
+                <div><strong>شیخ ابو ماہر</strong> - طب کے استاد</div>
+            </div>
+
+            <div class="key-point">
+                <span class="bullet">2</span>
+                <div><strong>موسیٰ بن سیار</strong> - طب کے استاد</div>
+            </div>
+
+            <div class="highlight-box green">
+                طب کے علاوہ انہوں نے <strong>منطق</strong> اور <strong>فلسفہ</strong> میں بھی مہارت حاصل کی۔
+            </div>
+        </section>
+
+        <!-- Excellence -->
+        <section id="excellence" class="card">
+            <h2 class="card-title">
+                <span class="icon">⭐</span>
+                فضل و کمال
+            </h2>
+
+            <p>مجوسی کی شخصیت <strong>تین نمایاں پہلوؤں</strong> پر مشتمل ہے:</p>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>1️⃣ ماہر طبیب</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul class="special-list">
+                        <li><span class="emoji">✅</span> وہ اپنے زمانے کے سب سے اچھے طبیب تھے</li>
+                        <li><span class="emoji">👑</span> <strong>عضد الدولہ بن بویہ دیلمی</strong> کے دربار میں شاہی طبیب تھے</li>
+                        <li><span class="emoji">🎯</span> مرض کی پہچان میں بہت ماہر تھے</li>
+                        <li><span class="emoji">🏥</span> کہتے تھے کہ طبیب کو شفاخانہ جا کر مریضوں کو دیکھنا چاہیے</li>
+                        <li><span class="emoji">📝</span> علامات دیکھ کر نسخہ لکھنا چاہیے</li>
+                    </ul>
+                    <div class="memory-tip">
+                        <span class="icon">💡</span>
+                        <div>وہ سمجھتے تھے کہ <strong>علم کے ساتھ عمل بھی ضروری ہے</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>2️⃣ صاحبِ نظر نقاد</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>انہوں نے پرانی طبی کتابوں کا گہرا مطالعہ کیا اور ان پر تنقید بھی کی:</p>
+                    <div class="key-point">
+                        <span class="bullet">📖</span>
+                        <div><strong>بقراط کی کتابیں:</strong> بہت زیادہ مختصر ہیں</div>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">📖</span>
+                        <div><strong>جالینوس کی کتابیں:</strong> غیر ضروری تکرار سے بھری ہیں</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>3️⃣ بلند پایہ مصنف</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>جب انہوں نے دیکھا کہ پرانی کتابوں میں کمی ہے تو انہوں نے خود ایک <strong>مکمل اور منظم کتاب</strong> لکھی۔ اس کتاب نے انہیں ہمیشہ کے لیے مشہور کر دیا۔</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Introduction -->
+        <section id="book" class="card">
+            <h2 class="card-title">
+                <span class="icon">📕</span>
+                کامل الصناعۃ الطبیۃ (Liber Regius)
+            </h2>
+
+            <p>یہ طبِ یونانی کی <strong>سب سے اہم اور مکمل کتاب</strong> ہے۔</p>
+
+            <div class="highlight-box blue">
+                <strong>کتاب کے نام:</strong><br>
+                ✦ <strong>کامل الصناعۃ</strong> - اصل نام<br>
+                ✦ <strong>کتاب الملکی</strong> - عضد الدولہ کے نام پر<br>
+                ✦ <strong>Liber Regius</strong> - لاطینی نام
+            </div>
+
+            <p>یہ کتاب <strong>عضد الدولہ فنا خسرو بن رکن الدولہ</strong> کے نام منسوب ہے۔ اسی لیے اسے کتاب الملکی کہتے ہیں۔</p>
+
+            <div class="quote-box">
+                اگر یہ کتاب پہلے میری نظر سے گزر جاتی تو میں القانون نہ لکھتا۔
+                <div class="quote-author">— ابن سینا</div>
+            </div>
+
+            <div class="memory-tip">
+                <span class="icon">🌟</span>
+                <div>یہ کتاب اتنی مشہور ہوئی کہ لوگ مجوسی کو <strong>"صاحب کامل"</strong> کہنے لگے۔</div>
+            </div>
+
+            <h3 style="margin-top: 25px; color: #667eea;">کتاب کی ضخامت:</h3>
+            
+            <div class="book-stats">
+                <div class="stat-item">
+                    <span class="number">2</span>
+                    <span class="label">جلدیں</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">20</span>
+                    <span class="label">مقالات</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">783</span>
+                    <span class="label">ابواب</span>
+                </div>
+            </div>
+
+            <div class="highlight-box green">
+                <strong>تقسیم:</strong><br>
+                ✦ <strong>پہلے 10 مقالات:</strong> نظری طب (تھیوری)<br>
+                ✦ <strong>آخری 10 مقالات:</strong> عملی طب (پریکٹس)
+            </div>
+        </section>
+
+        <!-- Jild 1 -->
+        <section id="jild1" class="maqala-section">
+            <div class="maqala-header">📗 جلد اول - نظری طب (10 مقالات)</div>
+            
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ اول</div>
+                <div class="maqala-chapters">25 ابواب</div>
+                <div class="maqala-content">
+                    علمِ طب کا تعارف، طب کا مقصد، بقراط کا عہدنامہ، طب کی تقسیم، اسطقسات (عناصر)، امزجہ (مزاج) اور اخلاط (بلغم، خون، صفرا، سودا)
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ دوم</div>
+                <div class="maqala-chapters">16 ابواب</div>
+                <div class="maqala-content">
+                    اعضائے متشابہتہ الاجزاء (جیسے ہڈی، گوشت) کی بناوٹ اور فائدے
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ سوم</div>
+                <div class="maqala-chapters">27 ابواب</div>
+                <div class="maqala-content">
+                    اعضاء مرکبہ (جیسے ہاتھ، پاؤں) کی بناوٹ اور فائدے
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ چہارم</div>
+                <div class="maqala-chapters">20 ابواب</div>
+                <div class="maqala-content">
+                    قوٰی (طاقتیں)، ارواح (روحیں) اور افعال (کام) کا بیان
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ پنجم</div>
+                <div class="maqala-chapters">28 ابواب</div>
+                <div class="maqala-content">
+                    اسبابِ ستہ ضروریہ (6 ضروری چیزیں): ہوا، ورزش، کھانا پینا، نیند و بیداری، جماع، نہانا، ذہنی کیفیات
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ ششم</div>
+                <div class="maqala-chapters">26 ابواب</div>
+                <div class="maqala-content">
+                    بیماریوں کے اسباب اور علامات
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ ہفتم</div>
+                <div class="maqala-chapters">18 ابواب</div>
+                <div class="maqala-content">
+                    مرض پہچاننے کے طریقے: نبض، پیشاب، پاخانہ، سانس، تھوک، پسینہ وغیرہ
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ ہشتم</div>
+                <div class="maqala-chapters">—</div>
+                <div class="maqala-content">
+                    ظاہری امراض (باہر نظر آنے والی بیماریاں)
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ نہم</div>
+                <div class="maqala-chapters">41 ابواب</div>
+                <div class="maqala-content">
+                    اندرونی اعضاء کی بیماریوں کی علامات
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ دہم</div>
+                <div class="maqala-chapters">12 ابواب</div>
+                <div class="maqala-content">
+                    دلائلِ منذرہ (خطرے کی علامات)
+                </div>
+            </div>
+        </section>
+
+        <!-- Jild 2 -->
+        <section id="jild2" class="maqala-section">
+            <div class="maqala-header jild2">📘 جلد دوم - عملی طب (10 مقالات)</div>
+            
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ اول</div>
+                <div class="maqala-chapters">21 ابواب</div>
+                <div class="maqala-content">
+                    صحت کی حفاظت، بچوں کی دیکھ بھال، بوڑھوں کی دیکھ بھال
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ دوم</div>
+                <div class="maqala-chapters">75 ابواب</div>
+                <div class="maqala-content">
+                    ادویہ کی عمومی بحث (دواؤں کے بارے میں مکمل معلومات)
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ سوم</div>
+                <div class="maqala-chapters">24 ابواب</div>
+                <div class="maqala-content">
+                    بخار اور سوجن کا علاج
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ چہارم</div>
+                <div class="maqala-chapters">52 ابواب</div>
+                <div class="maqala-content">
+                    ظاہری بیماریوں کا علاج
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ پنجم</div>
+                <div class="maqala-chapters">42 ابواب</div>
+                <div class="maqala-content">
+                    دماغی اور اعصابی امراض (نفسانی اعضاء)
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ ششم</div>
+                <div class="maqala-chapters">18 ابواب</div>
+                <div class="maqala-content">
+                    سانس کے اعضاء کی بیماریاں
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ ہفتم</div>
+                <div class="maqala-chapters">51 ابواب</div>
+                <div class="maqala-content">
+                    ہاضمے کے اعضاء کی بیماریاں
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ ہشتم</div>
+                <div class="maqala-chapters">25 ابواب</div>
+                <div class="maqala-content">
+                    تولیدی اعضاء کی بیماریاں
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ نہم</div>
+                <div class="maqala-chapters">111 ابواب</div>
+                <div class="maqala-content">
+                    جراحت (سرجری) کا علاج - <strong>سب سے بڑا مقالہ</strong>
+                </div>
+            </div>
+
+            <div class="maqala-item">
+                <div class="maqala-title">مقالہ دہم</div>
+                <div class="maqala-chapters">28 ابواب</div>
+                <div class="maqala-content">
+                    مرکب دوائیں (ملی جلی دوائیں)
+                </div>
+            </div>
+        </section>
+
+        <!-- Publication -->
+        <section id="publication" class="card">
+            <h2 class="card-title">
+                <span class="icon">🖨️</span>
+                اشاعت و تراجم
+            </h2>
+
+            <p><strong>اصل زبان:</strong> عربی</p>
+
+            <h3 style="color: #667eea; margin: 20px 0 15px;">عربی اشاعت:</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>1866 عیسوی</strong> - لاہور سے شائع ہوئی
+                </div>
+                <div class="timeline-item">
+                    <strong>1877 عیسوی</strong> - قاہرہ (مصر) سے شائع ہوئی
+                </div>
+                <div class="timeline-item">
+                    <strong>ہندوستان</strong> - نامی پریس لکھنؤ اور مطبع نول کشور سے شائع ہوئی
+                </div>
+            </div>
+
+            <h3 style="color: #667eea; margin: 20px 0 15px;">لاطینی ترجمہ:</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>1492 عیسوی</strong> - پہلا ترجمہ وینس سے شائع
+                </div>
+                <div class="timeline-item">
+                    <strong>1523 عیسوی</strong> - دوسرا ترجمہ لائنس سے شائع
+                </div>
+            </div>
+
+            <h3 style="color: #667eea; margin: 20px 0 15px;">اردو ترجمہ:</h3>
+            <div class="highlight-box">
+                <strong>مترجم:</strong> غلام حسنین کشوری<br>
+                <strong>سال:</strong> 1889 عیسوی<br>
+                <strong>ناشر:</strong> مطبع نول کشور، لکھنؤ
+            </div>
+
+            <div class="memory-tip">
+                <span class="icon">📖</span>
+                <div>آج یہ کتاب <strong>عربی اور اردو</strong> دونوں زبانوں میں موجود ہے۔ طب کے طالب علم اور محقق اس سے فائدہ اٹھاتے ہیں۔</div>
+            </div>
+        </section>
+
+        <!-- Quick Summary -->
+        <section class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-right: none;">
+            <h2 class="card-title" style="color: white; border-bottom-color: rgba(255,255,255,0.3);">
+                <span class="icon">📝</span>
+                فوری خلاصہ
+            </h2>
+
+            <ul class="special-list" style="color: white;">
+                <li style="border-bottom-color: rgba(255,255,255,0.2);"><span class="emoji">👤</span> نام: علی ابن عباس مجوسی (Haly Abbas)</li>
+                <li style="border-bottom-color: rgba(255,255,255,0.2);"><span class="emoji">📍</span> پیدائش: 930 عیسوی، اہواز (ایران)</li>
+                <li style="border-bottom-color: rgba(255,255,255,0.2);"><span class="emoji">⚰️</span> وفات: 994 عیسوی</li>
+                <li style="border-bottom-color: rgba(255,255,255,0.2);"><span class="emoji">👨‍🏫</span> استاد: شیخ ابو ماہر، موسیٰ بن سیار</li>
+                <li style="border-bottom-color: rgba(255,255,255,0.2);"><span class="emoji">👑</span> شاہی طبیب: عضد الدولہ کے دربار میں</li>
+                <li style="border-bottom-color: rgba(255,255,255,0.2);"><span class="emoji">📕</span> کتاب: کامل الصناعۃ / کتاب الملکی / Liber Regius</li>
+                <li style="border-bottom-color: rgba(255,255,255,0.2);"><span class="emoji">📊</span> ضخامت: 2 جلدیں، 20 مقالات، 783 ابواب</li>
+                <li><span class="emoji">⭐</span> خصوصیات: ماہر طبیب، نقاد، مصنف</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <!-- Scroll to Top Button removed -->
+
+    <script>
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Accordion functionality
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const isActive = element.classList.contains('active');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.classList.remove('active');
+                header.nextElementSibling.classList.remove('show');
+            });
+            
+            // Open clicked one if it wasn't active
+            if (!isActive) {
+                element.classList.add('active');
+                content.classList.add('show');
+            }
+        }
+
+        // Navigation and scroll-to-top removed
+
+        // Open first accordion by default
+        document.querySelector('.accordion-header').click();
+    </script>
+
+</body>
+</html>

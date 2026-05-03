@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کمال الدین فارسی - ماہر علم الانوار</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .hero .dates {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .info-card h2 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h2 .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            color: #4a5568;
+            text-align: justify;
+        }
+
+        /* Key Points */
+        .key-points {
+            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .key-point {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .key-point:last-child {
+            margin-bottom: 0;
+        }
+
+        .key-point .bullet {
+            min-width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .key-point p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 20px 0;
+            border-right: 4px solid #f6ad55;
+        }
+
+        .highlight-box p {
+            color: #744210;
+            font-size: 0.95rem;
+        }
+
+        /* Section Divider */
+        .section-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #e6fffa 0%, #c6f6d5 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 15px;
+            border-right: 4px solid #38b2ac;
+        }
+
+        .memory-tip h4 {
+            color: #234e52;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .memory-tip p {
+            color: #285e61;
+            font-size: 0.9rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .achievement-item {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid #667eea;
+        }
+
+        .achievement-item .emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .achievement-item h4 {
+            color: #667eea;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .achievement-item p {
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        /* Book Section */
+        .book-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin: 25px 0;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .book-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .book-card .book-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .book-card p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        /* Summary Section */
+        .summary-box {
+            background: linear-gradient(135deg, #ebf4ff 0%, #e6e6fa 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .summary-box h3 {
+            color: #553c9a;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .check-icon {
+            color: #38a169;
+            font-weight: bold;
+        }
+
+        /* English Terms */
+        .english-term {
+            background: #edf2f7;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 0.85rem;
+            color: #4a5568;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-top: 15px;
+        }
+
+        .accordion-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .accordion-header {
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
+        }
+
+        .accordion-header h4 {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        .accordion-arrow {
+            transition: transform 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .accordion-item.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 15px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding: 15px;
+        }
+
+        /* Responsive */
+        @media (min-width: 500px) {
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>کمال الدین فارسی</h1>
+        <p class="subtitle">ماہر علم الانوار (Optics) اور محقق</p>
+        <div class="dates">📅 وفات: ١٣٢٥ء (تیرہویں-چودہویں صدی)</div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction -->
+        <section class="info-card">
+            <h2>
+                <span class="icon">📖</span>
+                تعارف
+            </h2>
+            <p>
+                کمال الدین فارسی ایران کے ایک بڑے عالم تھے جنہوں نے روشنی کے علم <span class="english-term">Optics</span> میں بہت کام کیا۔ وہ فارس (ایران) کے رہنے والے تھے اس لیے انہیں "فارسی" کہا جاتا ہے۔
+            </p>
+            
+            <div class="memory-tip">
+                <h4>💡 یاد رکھیں</h4>
+                <p><strong>فارسی = فارس (ایران) کا باشندہ</strong> - جیسے لاہوری لاہور کا، فارسی فارس کا!</p>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="info-card">
+            <h2>
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+            <p>
+                کمال الدین فارسی نے مشہور عالم <strong>قطب الدین شیرازی</strong> سے تعلیم حاصل کی۔
+            </p>
+            
+            <div class="key-points">
+                <h4 style="margin-bottom: 10px; color: #4a5568;">انہوں نے یہ علوم سیکھے:</h4>
+                <div class="key-point">
+                    <span class="bullet">۱</span>
+                    <p><strong>علم طبیعیات</strong> <span class="english-term">Physics</span> - قدرتی چیزوں کا علم</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">۲</span>
+                    <p><strong>علم ریاضی</strong> <span class="english-term">Mathematics</span> - گنتی اور حساب</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">۳</span>
+                    <p><strong>فلسفہ</strong> <span class="english-term">Philosophy</span> - سوچ اور منطق</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">۴</span>
+                    <p><strong>علم ہیئت</strong> <span class="english-term">Astronomy</span> - ستاروں کا علم</p>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <h4>💡 یاد رکھیں</h4>
+                <p><strong>استاد:</strong> قطب الدین شیرازی (قطب = پول، شیرازی = شیراز کا)</p>
+            </div>
+        </section>
+
+        <!-- Main Work -->
+        <section class="info-card">
+            <h2>
+                <span class="icon">🔬</span>
+                بحیثیت ماہر علم الانوار
+            </h2>
+            <p>
+                کمال الدین فارسی نے ابن ہیثم کی طرح روشنی <span class="english-term">Light</span> کو اپنا خاص میدان بنایا۔
+            </p>
+
+            <div class="achievements-grid">
+                <div class="achievement-item">
+                    <div class="emoji">🔍</div>
+                    <h4>عدسات کا مطالعہ</h4>
+                    <p>مختلف قسم کے شیشے <span class="english-term">Lenses</span> اور ان کی خصوصیات</p>
+                </div>
+                <div class="achievement-item">
+                    <div class="emoji">🪞</div>
+                    <h4>روشنی کا انعکاس</h4>
+                    <p><span class="english-term">Reflection</span> - روشنی کا واپس لوٹنا</p>
+                </div>
+                <div class="achievement-item">
+                    <div class="emoji">🌈</div>
+                    <h4>روشنی کا انعطاف</h4>
+                    <p><span class="english-term">Refraction</span> - روشنی کا مڑنا</p>
+                </div>
+                <div class="achievement-item">
+                    <div class="emoji">👁️</div>
+                    <h4>آنکھ کا مطالعہ</h4>
+                    <p>پردۂ شبکیہ پر تصویر بننا</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p>📐 <strong>خاص بات:</strong> انہوں نے آنکھ سے دیکھنے کے عمل کو ریاضی اور ہندسے کی مدد سے سمجھایا اور تصویروں سے واضح کیا۔</p>
+            </div>
+        </section>
+
+        <!-- Research Work -->
+        <section class="info-card">
+            <h2>
+                <span class="icon">🧪</span>
+                بحیثیت محقق
+            </h2>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>📷 کیمرے میں ترمیم</h4>
+                        <span class="accordion-arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>ابن ہیثم نے کیمرہ ایجاد کیا تھا۔ کمال الدین نے اس میں مزید بہتری کی۔</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>🌈 قوس قزح (دھنک) کی وضاحت</h4>
+                        <span class="accordion-arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>انہوں نے گول شیشے سے روشنی گزار کر اور بارش کے قطروں کا مشاہدہ کر کے بتایا کہ بارش کے بعد آسمان میں دھنک کیسے بنتی ہے۔</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>🎨 روشنی کے رنگ</h4>
+                        <span class="accordion-arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>ایک روشنی کی شعاع میں کئی رنگ ہوتے ہیں - یہ انہوں نے تجربے سے ثابت کیا۔</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <h4>💡 یاد رکھیں</h4>
+                <p><strong>تین اہم تحقیقات:</strong> کیمرہ + دھنک + روشنی کے رنگ</p>
+            </div>
+        </section>
+
+        <!-- Book Section -->
+        <div class="book-card">
+            <div class="book-icon">📚</div>
+            <h3>تنقیح المناظر</h3>
+            <p>یہ ابن ہیثم کی کتاب "کتاب المناظر" کی شرح ہے۔ اس میں کمال الدین نے روشنی کے مسائل کو ریاضی، ہندسہ اور علم اقلیدس <span class="english-term">Euclid's</span> سے سمجھایا۔</p>
+        </div>
+
+        <!-- Author Section -->
+        <section class="info-card">
+            <h2>
+                <span class="icon">✍️</span>
+                بحیثیت مصنف
+            </h2>
+            <p>
+                "تنقیح المناظر" میں انہوں نے:
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <p>👁️ آنکھ سے دیکھنے کے عمل کو خاکوں سے سمجھایا</p>
+                </div>
+                <div class="timeline-item">
+                    <p>📐 شعاعی زاویوں کی پیمائش ریاضی سے کی</p>
+                </div>
+                <div class="timeline-item">
+                    <p>🔢 ان کی شناخت ہندسے سے کی</p>
+                </div>
+                <div class="timeline-item">
+                    <p>📊 مقدار نکالنے کے طریقے علم اقلیدس سے بنائے</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p>🏛️ <strong>اہمیت:</strong> یہ کتاب اتنی اہم ہے کہ دائرۃ المعارف حیدرآباد نے اس کے دو بڑے حصے شائع کیے ہیں!</p>
+            </div>
+        </section>
+
+        <!-- Comparison -->
+        <section class="info-card">
+            <h2>
+                <span class="icon">⚖️</span>
+                اہم موازنہ
+            </h2>
+            <div class="key-points">
+                <div class="key-point">
+                    <span class="bullet">👨‍🔬</span>
+                    <p><strong>جابر اور رازی:</strong> کیمیاء کو طب کا حصہ بنایا</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">👨‍🔬</span>
+                    <p><strong>کمال الدین فارسی:</strong> طبی مسائل کو ریاضی اور علم اقلیدس کا حصہ ثابت کیا</p>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <h4>💡 یاد رکھیں</h4>
+                <p>جابر + رازی = کیمیاء ← طب<br>کمال الدین = طب ← ریاضی + اقلیدس</p>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="summary-box">
+            <h3>📝 خلاصہ (جلدی یاد کریں)</h3>
+            <ul class="summary-list">
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span><strong>نام:</strong> کمال الدین فارسی (ایران)</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span><strong>وفات:</strong> ١٣٢٥ء</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span><strong>استاد:</strong> قطب الدین شیرازی</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span><strong>میدان:</strong> علم الانوار (روشنی کا علم)</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span><strong>کتاب:</strong> تنقیح المناظر (ابن ہیثم کی کتاب کی شرح)</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span><strong>اہم کام:</strong> دھنک کی وضاحت، کیمرے میں ترمیم</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span><strong>خاص بات:</strong> طب کو ریاضی سے جوڑا</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Quick Facts -->
+        <section class="info-card" style="border-right-color: #38b2ac;">
+            <h2>
+                <span class="icon" style="background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);">⚡</span>
+                فوری حقائق
+            </h2>
+            <div class="key-points">
+                <div class="key-point">
+                    <span class="bullet" style="background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);">۱</span>
+                    <p>ابن ہیثم = ماہر بصر <span class="english-term">Vision Expert</span></p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet" style="background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);">۲</span>
+                    <p>کمال الدین = ابن ہیثم کے کام کو آگے بڑھایا</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet" style="background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);">۳</span>
+                    <p>عدسہ محدب <span class="english-term">Convex Lens</span> کا مطالعہ کیا</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet" style="background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);">۴</span>
+                    <p>ان کی تحقیقات نے علم الانوار کو نئی بلندیوں تک پہنچایا</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all accordions
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // Open clicked one if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.info-card, .book-card, .summary-box').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نفیس بن عوض کرمانی - طبی عالم</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 30px rgba(15, 118, 110, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header .english-name {
+            font-size: 1em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .era {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.9em;
+        }
+
+        /* Quick Facts Card */
+        .quick-facts {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-right: 5px solid #14b8a6;
+        }
+
+        .quick-facts h3 {
+            color: #0f766e;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .fact-item:last-child {
+            border-bottom: none;
+        }
+
+        .fact-icon {
+            background: #f0fdfa;
+            color: #0f766e;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2em;
+        }
+
+        .fact-text {
+            flex: 1;
+        }
+
+        .fact-label {
+            font-size: 0.85em;
+            color: #64748b;
+        }
+
+        .fact-value {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        /* Section Cards */
+        .section {
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .section-icon {
+            background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0f766e;
+        }
+
+        .section p {
+            font-size: 1em;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 16px 0;
+            border-right: 4px solid #14b8a6;
+        }
+
+        .highlight-box.yellow {
+            background: linear-gradient(135deg, #fefce8 0%, #fef08a 100%);
+            border-right-color: #eab308;
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%);
+            border-right-color: #3b82f6;
+        }
+
+        .highlight-title {
+            font-weight: 700;
+            color: #0f766e;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .highlight-box.yellow .highlight-title {
+            color: #a16207;
+        }
+
+        .highlight-box.blue .highlight-title {
+            color: #1d4ed8;
+        }
+
+        /* Book Cards */
+        .book-card {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .book-card:hover {
+            border-color: #14b8a6;
+            box-shadow: 0 5px 20px rgba(20, 184, 166, 0.15);
+        }
+
+        .book-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #0f766e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-author {
+            font-size: 0.9em;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .book-desc {
+            font-size: 0.95em;
+        }
+
+        /* Key Point */
+        .key-point {
+            background: #fef3c7;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .key-point-icon {
+            font-size: 1.2em;
+        }
+
+        /* List Style */
+        .styled-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .styled-list li {
+            padding: 10px 0;
+            padding-right: 30px;
+            position: relative;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .styled-list li:last-child {
+            border-bottom: none;
+        }
+
+        .styled-list li::before {
+            content: "✦";
+            position: absolute;
+            right: 0;
+            color: #14b8a6;
+            font-size: 0.9em;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #fdf4ff 0%, #f5d0fe 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 16px 0;
+            border-right: 4px solid #a855f7;
+        }
+
+        .memory-tip-title {
+            font-weight: 700;
+            color: #7e22ce;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .summary-box h3 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-box li {
+            padding: 8px 0;
+            padding-right: 25px;
+            position: relative;
+        }
+
+        .summary-box li::before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+        }
+
+        /* Number Badge */
+        .num-badge {
+            background: #14b8a6;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>نفیس بن عوض کرمانی</h1>
+        <p class="english-name">Nafis bin 'Iwad Kirmani</p>
+        <div class="era">📅 پندرہویں صدی عیسوی (15th Century AD)</div>
+    </header>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <h3>⚡ اہم معلومات ایک نظر میں</h3>
+            <div class="fact-item">
+                <div class="fact-icon">📍</div>
+                <div class="fact-text">
+                    <div class="fact-label">آبائی شہر</div>
+                    <div class="fact-value">کرمان، ایران (اسی لیے "کرمانی" کہلائے)</div>
+                </div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-icon">👨‍⚕️</div>
+                <div class="fact-text">
+                    <div class="fact-label">پیشہ</div>
+                    <div class="fact-value">طبیب اور طبی مصنف</div>
+                </div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-icon">👑</div>
+                <div class="fact-text">
+                    <div class="fact-label">خاص حیثیت</div>
+                    <div class="fact-value">سلطان الغ بیگ (سمرقند) کے طبیب خاص</div>
+                </div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-icon">⭐</div>
+                <div class="fact-text">
+                    <div class="fact-label">شہرت کی وجہ</div>
+                    <div class="fact-value">مشہور طبی کتابوں کی شروح لکھیں</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">📖</div>
+                <h2 class="section-title">تعارف</h2>
+            </div>
+            
+            <p><strong>پورا نام:</strong> برہان الدین نفیس بن عوض بن جمال الدین الکرمانی</p>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">آسان الفاظ میں:</div>
+                <p>نفیس کرمانی پندرہویں صدی کے بہت بڑے طبی عالم تھے۔ یہ ایران کے مشہور شہر کرمان سے تھے، اسی لیے انہیں "کرمانی" کہا جاتا ہے۔</p>
+            </div>
+
+            <div class="key-point">
+                <span class="key-point-icon">💡</span>
+                <span>نفیس کو سب سے زیادہ شہرت مشہور طبی کتابوں کی شرحیں لکھنے سے ملی۔</span>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🎓</div>
+                <h2 class="section-title">تعلیم و تربیت</h2>
+            </div>
+            
+            <div class="highlight-box yellow">
+                <div class="highlight-title">⚠️ یاد رکھیں:</div>
+                <p>نفیس کرمانی کی ابتدائی تعلیم و تربیت کے بارے میں کوئی تفصیلی معلومات دستیاب نہیں ہیں۔ ان کی زندگی کی تفصیلات محفوظ نہیں رہ سکیں۔</p>
+            </div>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🏆</div>
+                <h2 class="section-title">فضل و کمال</h2>
+            </div>
+            
+            <p>نفیس کرمانی دو حیثیتوں سے مشہور ہوئے:</p>
+
+            <!-- As Physician -->
+            <div class="highlight-box">
+                <div class="highlight-title">👨‍⚕️ نفیس بحیثیت طبیب</div>
+                <p>نفیس کرمانی صرف کتابیں نہیں لکھتے تھے بلکہ طبیب کے فرائض بھی انجام دیتے تھے۔</p>
+                <div class="key-point">
+                    <span class="key-point-icon">👑</span>
+                    <span><strong>خاص بات:</strong> یہ سمرقند کے سلطان الغ بیگ کے ذاتی طبیب (طبیب خاص) تھے۔</span>
+                </div>
+            </div>
+
+            <!-- As Author -->
+            <div class="highlight-box blue">
+                <div class="highlight-title">✍️ نفیس بحیثیت مصنف</div>
+                <p>طبی مصنف، خاص طور پر شارح (شرح لکھنے والے) کی حیثیت سے نفیس کا مقام بہت بلند ہے۔</p>
+            </div>
+        </div>
+
+        <!-- Famous Books Section -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">📚</div>
+                <h2 class="section-title">مشہور کتابیں</h2>
+            </div>
+
+            <p>نفیس کرمانی کو سب سے زیادہ شہرت دو کتابوں کی شرحیں لکھنے سے ملی:</p>
+
+            <!-- Book 1 -->
+            <div class="book-card">
+                <div class="book-title">
+                    <span class="num-badge">1</span>
+                    شرح الاسباب والعلامات
+                </div>
+                <div class="book-author">📌 اصل کتاب: "الاسباب والعلامات" از نجیب الدین سمرقندی</div>
+                <div class="book-desc">
+                    <div class="key-point">
+                        <span class="key-point-icon">⭐</span>
+                        <span>یہ شرح اصل کتاب سے بھی زیادہ مشہور اور مقبول ہوئی!</span>
+                    </div>
+                    <ul class="styled-list">
+                        <li>آج بھی طبی درسگاہوں میں پڑھائی جاتی ہے</li>
+                        <li>اردو ترجمہ: علامہ کبیر الدین نے بیسویں صدی کے اوائل میں کیا</li>
+                        <li>طالبان طب آج بھی یہ کتاب کثرت سے پڑھتے ہیں</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="book-card">
+                <div class="book-title">
+                    <span class="num-badge">2</span>
+                    شرح نفیسی (موجز القانون کی شرح)
+                </div>
+                <div class="book-author">📌 اصل کتاب: "موجز القانون" از علاء الدین قرشی (ابن نفیس)</div>
+                <div class="book-desc">
+                    <ul class="styled-list">
+                        <li>طبی دنیا میں "شرح نفیسی" کے نام سے مشہور</li>
+                        <li>طبی درسگاہوں میں داخل نصاب</li>
+                        <li>اردو ترجمہ: علامہ کبیر الدین نے کیا</li>
+                        <li>طب کے بنیادی نظریات سمجھنے کے لیے بہترین کتاب</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Other Books -->
+            <div class="highlight-box">
+                <div class="highlight-title">📖 دیگر کتابیں</div>
+                <ul class="styled-list">
+                    <li><strong>کتاب شرح الفصول</strong></li>
+                    <li><strong>کتاب معالجات نفیسی</strong></li>
+                    <li><strong>علم الادویہ کی کتاب</strong> (دواؤں کے علم پر)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Memory Tips -->
+        <div class="memory-tip">
+            <div class="memory-tip-title">🧠 یاد رکھنے کا طریقہ</div>
+            <p><strong>"نفیس = دو شرحیں"</strong></p>
+            <ul class="styled-list">
+                <li><strong>شرح اسباب</strong> ← سمرقندی کی کتاب</li>
+                <li><strong>شرح نفیسی</strong> ← ابن نفیس کی کتاب</li>
+            </ul>
+            <p style="margin-top: 10px;"><strong>یاد رکھیں:</strong> دونوں کا اردو ترجمہ علامہ کبیر الدین نے کیا!</p>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <h3>📝 خلاصہ</h3>
+            <ul>
+                <li>نفیس کرمانی پندرہویں صدی کے عظیم طبی عالم تھے</li>
+                <li>کرمان (ایران) سے تعلق رکھتے تھے</li>
+                <li>سلطان الغ بیگ کے طبیب خاص تھے</li>
+                <li>طبی کتابوں کی شرحیں لکھنے سے مشہور ہوئے</li>
+                <li>ان کی شرحیں آج بھی طبی نصاب میں شامل ہیں</li>
+                <li>طبی تصنیف میں انہوں نے لازوال خدمات انجام دیں</li>
+            </ul>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">✨</div>
+                <h2 class="section-title">آخری بات</h2>
+            </div>
+            
+            <div class="highlight-box">
+                <p>بحیثیت مجموعی کہا جا سکتا ہے کہ نفیس کرمانی نے طبی تصنیف و تالیف میں ایسی گراں قدر خدمات انجام دیں جن کا طبی دنیا ہمیشہ احسان مند رہے گی۔ ان کی لکھی ہوئی شرحیں آج بھی طب سیکھنے والوں کے لیے روشنی کا مینار ہیں۔</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

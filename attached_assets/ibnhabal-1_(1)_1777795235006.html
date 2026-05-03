@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن ہبل بغدادی - تعارف اور کارنامے</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .dates-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .card:active {
+            transform: scale(0.98);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-title .icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .card-content {
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+
+        .card-content p {
+            margin-bottom: 12px;
+        }
+
+        /* Highlight boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecf3 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border-right: 4px solid #48bb78;
+        }
+
+        .highlight-box.info {
+            border-right-color: #4299e1;
+        }
+
+        .highlight-box.warning {
+            border-right-color: #ed8936;
+        }
+
+        /* Key points */
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .key-point:last-child {
+            border-bottom: none;
+        }
+
+        .key-point .bullet {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        /* Sub sections */
+        .sub-section {
+            background: #fafbfc;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .sub-section-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #553c9a;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e9d8fd;
+        }
+
+        /* Book section */
+        .book-card {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border-right-color: #9f7aea;
+        }
+
+        .book-parts {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .book-part {
+            background: white;
+            border-radius: 15px;
+            padding: 18px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid;
+        }
+
+        .book-part:nth-child(1) { border-top-color: #667eea; }
+        .book-part:nth-child(2) { border-top-color: #48bb78; }
+        .book-part:nth-child(3) { border-top-color: #ed8936; }
+        .book-part:nth-child(4) { border-top-color: #e53e3e; }
+
+        .part-number {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+            background: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .book-part:nth-child(1) .part-number { background: #667eea; }
+        .book-part:nth-child(2) .part-number { background: #48bb78; }
+        .book-part:nth-child(3) .part-number { background: #ed8936; }
+        .book-part:nth-child(4) .part-number { background: #e53e3e; }
+
+        /* Manuscripts */
+        .manuscripts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .manuscript-tag {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            color: #234e52;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 15px 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 25px;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Summary box */
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 15px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .card {
+                padding: 35px;
+            }
+
+            .summary-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>📚 ابن ہبل بغدادی</h1>
+        <p class="subtitle">مہذب الدین ابو الحسن علی بن احمد بن ہبل</p>
+        <div class="dates-badge">
+            🗓️ پیدائش: 1124ء بغداد | وفات: 1223ء
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction -->
+        <section id="intro" class="card">
+            <div class="card-title">
+                <span class="icon">👤</span>
+                تعارف
+            </div>
+            <div class="card-content">
+                <div class="highlight-box info">
+                    <strong>🏛️ بغداد کی اہمیت:</strong> بغداد خلافت عباسیہ کا دارالخلافہ تھا۔ یہ شہر علم و حکمت کا بڑا مرکز بن گیا تھا۔
+                </div>
+                
+                <div class="key-point">
+                    <span class="bullet">1</span>
+                    <div>ہر <strong>طالب علم</strong> علم حاصل کرنے کے لیے بغداد آتا تھا۔</div>
+                </div>
+                
+                <div class="key-point">
+                    <span class="bullet">2</span>
+                    <div>ہر <strong>عالم</strong> اپنے علم کو مکمل کرنے کے لیے بغداد کا رخ کرتا تھا۔</div>
+                </div>
+                
+                <div class="key-point">
+                    <span class="bullet">3</span>
+                    <div>بغداد سے بہت سے <strong>بڑے حکماء</strong> (ڈاکٹر/طبیب) پیدا ہوئے۔</div>
+                </div>
+
+                <div class="sub-section">
+                    <div class="sub-section-title">🔖 ابن ہبل کی پہچان</div>
+                    <p>• <strong>پورا نام:</strong> مہذب الدین ابو الحسن علی بن احمد بن ہبل</p>
+                    <p>• <strong>مشہور نام:</strong> ابن ہبل</p>
+                    <p>• <strong>پیدائش:</strong> 1124ء میں بغداد میں</p>
+                    <p>• <strong>وفات:</strong> 1223ء میں</p>
+                    <p>• <strong>دوسرے نام:</strong> بغدادی اور خلاطی (آذربائیجان کے شہر خلاط سے تعلق کی وجہ سے)</p>
+                    <p>• <strong>مشہور کتاب:</strong> "کتاب المختار" - اس کتاب نے انہیں بہت شہرت دلائی</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="card">
+            <div class="card-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </div>
+            <div class="card-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">📖 ابتدائی تعلیم</div>
+                        <p>بغداد کے مشہور <strong>مدرسہ نظامیہ</strong> سے حاصل کی۔</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">✍️ ادب کی تعلیم</div>
+                        <p><strong>ابو قاسم اسماعیل سمرقندی</strong> سے ادب (زبان و لکھائی) سیکھا۔</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">💊 طب کی تعلیم</div>
+                        <p><strong>ابو البرکات علی ملکا</strong> کے شاگرد بنے اور ان سے طب (طبی علوم) سیکھی۔</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>💡 یاد رکھیں:</strong> تین اساتذہ - نظامیہ (ابتدائی)، سمرقندی (ادب)، ملکا (طب)
+                </div>
+            </div>
+        </section>
+
+        <!-- Excellence -->
+        <section id="excellence" class="card">
+            <div class="card-title">
+                <span class="icon">⭐</span>
+                فضل و کمال (خوبیاں)
+            </div>
+            <div class="card-content">
+                <div class="highlight-box info">
+                    <strong>🌟 تین بڑی حیثیتیں:</strong> ابن ہبل ایک ماہر طبیب، قابل استاد اور بہترین مصنف تھے۔
+                </div>
+
+                <!-- As Physician -->
+                <div class="sub-section">
+                    <div class="sub-section-title">🩺 بحیثیت طبیب (ڈاکٹر)</div>
+                    <div class="key-point">
+                        <span class="bullet">1</span>
+                        <div>علم حاصل کرنے اور پھیلانے کے لیے مختلف جگہوں پر گئے۔</div>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">2</span>
+                        <div><strong>بغداد</strong> سے <strong>آذربائیجان</strong> گئے۔</div>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">3</span>
+                        <div>پھر <strong>خلاط</strong> پہنچے جہاں کے حاکم نے انہیں <strong>درباری طبیب</strong> بنا دیا۔</div>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">4</span>
+                        <div>خلاط سے <strong>ماردین</strong> گئے اور وہاں کے حاکم <strong>بدرالدین</strong> کے درباری طبیب بنے۔</div>
+                    </div>
+                </div>
+
+                <!-- As Teacher -->
+                <div class="sub-section">
+                    <div class="sub-section-title">👨‍🏫 بحیثیت استاد</div>
+                    <div class="key-point">
+                        <span class="bullet">1</span>
+                        <div>بڑھاپے میں ان کی <strong>بینائی چلی گئی</strong> اور وہ مکمل نابینا ہو گئے۔</div>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">2</span>
+                        <div>اب طبیب کا کام کرنا مشکل ہو گیا۔</div>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">3</span>
+                        <div>عمر کے آخری حصے میں شہر <strong>موصل</strong> میں رہنے لگے۔</div>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">4</span>
+                        <div>موصل میں <strong>طب کا ادارہ</strong> (طبی مدرسہ) قائم کیا۔</div>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">5</span>
+                        <div>آخری دم تک <strong>طلبہ کو پڑھاتے</strong> رہے۔</div>
+                    </div>
+                </div>
+
+                <!-- As Author -->
+                <div class="sub-section">
+                    <div class="sub-section-title">📝 بحیثیت مصنف</div>
+                    <p>مصروف زندگی کے باوجود کتابیں لکھتے رہے۔ ان کی <strong>تین کتابیں</strong> مشہور ہیں:</p>
+                    
+                    <div class="manuscripts" style="margin-top: 15px;">
+                        <span class="manuscript-tag">📗 کتاب الطب الجمال</span>
+                        <span class="manuscript-tag">📘 کتاب المختار فی الطب</span>
+                        <span class="manuscript-tag">📙 کتاب النار المجوسیتہ</span>
+                    </div>
+
+                    <div class="highlight-box warning" style="margin-top: 15px;">
+                        <strong>⭐ سب سے مشہور:</strong> "کتاب المختار فی الطب" - اس کتاب نے انہیں دنیا بھر میں مشہور کیا۔
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Section -->
+        <section id="book" class="card book-card">
+            <div class="card-title">
+                <span class="icon">📖</span>
+                کتاب المختار فی الطب
+            </div>
+            <div class="card-content">
+                <div class="highlight-box info">
+                    <strong>📅 تصنیف:</strong> 1164ء میں لکھی گئی | <strong>📚 حصے:</strong> چار حصوں پر مشتمل
+                </div>
+
+                <div class="book-parts">
+                    <div class="book-part">
+                        <span class="part-number">پہلا حصہ</span>
+                        <p><strong>جسم کی تشریح:</strong> سر سے پیر تک تمام اعضاء کا بیان</p>
+                        <p><strong>بیماریوں کے اسباب اور علامات:</strong> کیوں ہوتی ہیں اور کیسے پہچانیں</p>
+                        <p><strong>نومولود کی نگہداشت:</strong> نوزائیدہ بچے کی دیکھ بھال</p>
+                        <p><strong>صحت کی تدابیر:</strong> ورزش، حمام، فصد (خون نکالنا) اور حجامت</p>
+                    </div>
+
+                    <div class="book-part">
+                        <span class="part-number">دوسرا حصہ</span>
+                        <p><strong>آلات تناسل:</strong> تفصیلی بیان</p>
+                        <p><strong>آداب جماع:</strong> ازدواجی زندگی کے آداب</p>
+                        <p><strong>امراض:</strong> سر، آنکھ، مری اور معدے کی بیماریاں - اسباب اور علاج</p>
+                    </div>
+
+                    <div class="book-part">
+                        <span class="part-number">تیسرا حصہ</span>
+                        <p><strong>دل کی بیماریاں:</strong> اسباب اور علاج</p>
+                        <p><strong>رحم کی بیماریاں:</strong> اسباب اور علاج</p>
+                        <p><strong>ہڈیوں کی بیماریاں:</strong> اسباب اور علاج</p>
+                    </div>
+
+                    <div class="book-part">
+                        <span class="part-number">چوتھا حصہ</span>
+                        <p><strong>اعضائے تناسل کی بیماریاں:</strong> اسباب اور علاج</p>
+                        <p><strong>عمومی بیماریاں:</strong></p>
+                        <p>• جذام (کوڑھ)</p>
+                        <p>• سرطان (کینسر)</p>
+                        <p>• بحران</p>
+                        <p>• حمیات (بخار کی اقسام)</p>
+                    </div>
+                </div>
+
+                <div class="sub-section" style="margin-top: 25px;">
+                    <div class="sub-section-title">📚 کتاب کی اشاعت اور مخطوطات</div>
+                    <p><strong>اشاعت:</strong> 1943ء میں حیدرآباد دکن سے <strong>دو جلدوں</strong> میں شائع ہوئی۔</p>
+                    
+                    <p style="margin-top: 15px;"><strong>مخطوطات:</strong> اس کتاب کے قلمی نسخے ان کتب خانوں میں محفوظ ہیں:</p>
+                    <div class="manuscripts">
+                        <span class="manuscript-tag">🏛️ ایا صوفیا</span>
+                        <span class="manuscript-tag">🏛️ فاتح</span>
+                        <span class="manuscript-tag">🏛️ ولی الدین آفندی</span>
+                        <span class="manuscript-tag">🏛️ بغداد</span>
+                        <span class="manuscript-tag">🏛️ لیڈن</span>
+                        <span class="manuscript-tag">🏛️ عراقی میوزیم</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section id="summary" class="summary-box">
+            <h3>📌 خلاصہ یاد رکھیں</h3>
+            <p>ابن ہبل بغدادی - طبیب، استاد، مصنف - "کتاب المختار" کے خالق</p>
+            <div class="summary-stats">
+                <div class="stat-item">
+                    <div class="stat-number">1124ء</div>
+                    <div class="stat-label">پیدائش بغداد</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1223ء</div>
+                    <div class="stat-label">وفات</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">کتابیں</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">کتاب المختار کے حصے</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Memory Card -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🧠</span>
+                جلدی یاد کریں
+            </div>
+            <div class="card-content">
+                <div class="highlight-box">
+                    <strong>🏫 تعلیم:</strong> نظامیہ ← سمرقندی (ادب) ← ملکا (طب)
+                </div>
+                <div class="highlight-box info">
+                    <strong>🗺️ سفر:</strong> بغداد ← آذربائیجان ← خلاط ← ماردین ← موصل
+                </div>
+                <div class="highlight-box warning">
+                    <strong>📚 کتابیں:</strong> الطب الجمال، المختار فی الطب، النار المجوسیتہ
+                </div>
+                <div class="highlight-box">
+                    <strong>📖 کتاب المختار:</strong> 1164ء | 4 حصے | 1943ء حیدرآباد سے 2 جلدوں میں شائع
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

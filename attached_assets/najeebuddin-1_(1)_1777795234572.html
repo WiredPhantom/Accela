@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نجیب الدین سمرقندی - طبیب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .tagline {
+            font-size: 1rem;
+            margin-top: 10px;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 20px;
+        }
+
+        /* Quick Facts Card */
+        .quick-facts {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .quick-facts h2 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .fact-item:last-child {
+            border-bottom: none;
+        }
+
+        .fact-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .fact-content {
+            flex: 1;
+        }
+
+        .fact-label {
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        .fact-value {
+            font-size: 1rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        /* Section Card */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .section:active {
+            transform: scale(0.98);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .section h2 {
+            color: #2d3748;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #f6f8ff 0%, #f0e6ff 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #764ba2;
+        }
+
+        .highlight-box h3 {
+            color: #667eea;
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
+
+        /* Points List */
+        .points-list {
+            list-style: none;
+        }
+
+        .points-list li {
+            position: relative;
+            padding-right: 30px;
+            padding-left: 0;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .points-list li::before {
+            content: "✦";
+            position: absolute;
+            right: 0;
+            left: auto;
+            color: #667eea;
+            font-size: 0.9rem;
+        }
+
+        /* Book Volumes */
+        .volumes-grid {
+            display: grid;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .volume-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 15px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .volume-card:active {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f6f8ff 0%, #f0e6ff 100%);
+        }
+
+        .volume-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .volume-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .volume-card h4 {
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+
+        .volume-card p {
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+
+        /* Famous Books */
+        .books-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .book-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            display: inline-block;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #f59e0b;
+        }
+
+        .memory-tip h4 {
+            color: #b45309;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .memory-tip p {
+            color: #92400e;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Important Note */
+        .important-note {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #22c55e;
+        }
+
+        .important-note h4 {
+            color: #166534;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .important-note p {
+            color: #15803d;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Timeline */
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            .header {
+                padding: 40px 30px;
+                border-radius: 0 0 40px 40px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 30px;
+            }
+
+            .volumes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section, .quick-facts {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Navigation dots */
+        .nav-dots {
+            position: fixed;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            background: #cbd5e0;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot:hover, .nav-dot.active {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+
+        @media (max-width: 767px) {
+            .nav-dots {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot" onclick="scrollToSection('intro')"></div>
+        <div class="nav-dot" onclick="scrollToSection('education')"></div>
+        <div class="nav-dot" onclick="scrollToSection('excellence')"></div>
+        <div class="nav-dot" onclick="scrollToSection('physician')"></div>
+        <div class="nav-dot" onclick="scrollToSection('author')"></div>
+        <div class="nav-dot" onclick="scrollToSection('book')"></div>
+        <div class="nav-dot" onclick="scrollToSection('volumes')"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>نجیب الدین سمرقندی</h1>
+        <p class="english-name">Najibuddin Samarqandi</p>
+        <p class="tagline">۱۳ویں صدی کا مشہور طبیب</p>
+    </header>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="quick-facts" id="intro">
+            <h2>⭐ اہم معلومات</h2>
+            
+            <div class="fact-item">
+                <div class="fact-icon">📛</div>
+                <div class="fact-content">
+                    <div class="fact-label">پورا نام</div>
+                    <div class="fact-value">نجیب الدین ابو حامد محمد بن علی بن عمر سمرقندی</div>
+                </div>
+            </div>
+
+            <div class="fact-item">
+                <div class="fact-icon">🗓️</div>
+                <div class="fact-content">
+                    <div class="fact-label">زمانہ</div>
+                    <div class="fact-value">تیرہویں صدی عیسوی (13th Century)</div>
+                </div>
+            </div>
+
+            <div class="fact-item">
+                <div class="fact-icon">🏠</div>
+                <div class="fact-content">
+                    <div class="fact-label">آبائی شہر</div>
+                    <div class="fact-value">سمرقند (Samarqand) - اسی لیے سمرقندی کہلایا</div>
+                </div>
+            </div>
+
+            <div class="fact-item">
+                <div class="fact-icon">⚰️</div>
+                <div class="fact-content">
+                    <div class="fact-label">وفات</div>
+                    <div class="fact-value">1222ء - ہرات (Herat) میں تاتاریوں کے حملے میں</div>
+                </div>
+            </div>
+
+            <div class="fact-item">
+                <div class="fact-icon">📚</div>
+                <div class="fact-content">
+                    <div class="fact-label">مشہور کتاب</div>
+                    <div class="fact-value">الاسباب والعلامات</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <section class="section" id="intro-detail">
+            <div class="section-header">
+                <div class="section-number">۱</div>
+                <h2>تعارف</h2>
+            </div>
+            
+            <p>نجیب الدین سمرقندی تیرہویں صدی عیسوی کا ایک بہت بڑا طبیب تھا۔ وہ سمرقند شہر سے تھا اس لیے لوگ اسے "سمرقندی" کہتے تھے۔</p>
+            
+            <div class="highlight-box">
+                <h3>🌟 خدمات</h3>
+                <ul class="points-list">
+                    <li>عملی طور پر مریضوں کا علاج کیا</li>
+                    <li>علمی طور پر طب کی کتابیں لکھیں</li>
+                    <li>طبی تصنیف میں نمایاں کردار ادا کیا</li>
+                </ul>
+            </div>
+
+            <div class="memory-tip">
+                <h4>💡 یاد رکھیں</h4>
+                <p>سمرقند سے = سمرقندی | 1222ء میں ہرات میں تاتاریوں کے حملے میں وفات</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Education -->
+        <section class="section" id="education">
+            <div class="section-header">
+                <div class="section-number">۲</div>
+                <h2>تعلیم و تربیت</h2>
+            </div>
+            
+            <p>نجیب الدین کی تعلیم کے بارے میں زیادہ معلومات نہیں ملتیں۔ لیکن اتنا پتہ چلتا ہے کہ وہ تین علوم میں ماہر تھا:</p>
+            
+            <div class="highlight-box">
+                <h3>📖 مہارت کے شعبے</h3>
+                <ul class="points-list">
+                    <li><strong>لسانیات</strong> - زبان دانی میں ماہر</li>
+                    <li><strong>ادبیات</strong> - ادب میں ماہر</li>
+                    <li><strong>علم طب</strong> - طب میں بڑا عالم</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 3: Excellence -->
+        <section class="section" id="excellence">
+            <div class="section-header">
+                <div class="section-number">۳</div>
+                <h2>فضل و کمال</h2>
+            </div>
+            
+            <p>نجیب الدین اپنے زمانے کا:</p>
+            <ul class="points-list">
+                <li><strong>طبیب حاذق</strong> - ماہر اور تجربہ کار ڈاکٹر</li>
+                <li><strong>جلیل القدر مصنف</strong> - بڑے رتبے والا لکھاری</li>
+            </ul>
+        </section>
+
+        <!-- Section 4: As Physician -->
+        <section class="section" id="physician">
+            <div class="section-header">
+                <div class="section-number">۴</div>
+                <h2>بحیثیت طبیب</h2>
+            </div>
+            
+            <p>نجیب الدین بطور ڈاکٹر بہت قابل تھا:</p>
+            
+            <div class="highlight-box">
+                <h3>👨‍⚕️ طبی خصوصیات</h3>
+                <ul class="points-list">
+                    <li><strong>وسیع مطالعہ</strong> - بہت ساری کتابیں پڑھی تھیں</li>
+                    <li><strong>اسباب و علامات</strong> - بیماری کی وجہ اور نشانیاں خوب جانتا تھا</li>
+                    <li><strong>علاج بالتدبیر</strong> - پہلے طرز زندگی بدلنے کا مشورہ دیتا</li>
+                    <li><strong>علاج بالغذا</strong> - کھانے سے علاج کو ترجیح دیتا</li>
+                    <li><strong>دوا کا انتخاب</strong> - صحیح دوا چننے میں ماہر</li>
+                    <li><strong>احتیاط</strong> - غیر ضروری اور نقصان دہ دواؤں سے بچتا</li>
+                </ul>
+            </div>
+
+            <div class="memory-tip">
+                <h4>💡 یاد رکھیں</h4>
+                <p>پہلے تدبیر ← پھر غذا ← آخر میں دوا</p>
+            </div>
+        </section>
+
+        <!-- Section 5: As Author -->
+        <section class="section" id="author">
+            <div class="section-header">
+                <div class="section-number">۵</div>
+                <h2>بحیثیت مصنف</h2>
+            </div>
+            
+            <p>نجیب الدین کا لکھنے کا انداز دوسروں سے مختلف تھا:</p>
+            
+            <div class="highlight-box">
+                <h3>✍️ تصنیفی انداز</h3>
+                <ul class="points-list">
+                    <li>لمبی روایتی کتابیں نہیں لکھیں</li>
+                    <li>پہلے مشہور کتابوں کا گہرا مطالعہ کیا</li>
+                    <li>پھر <strong>مختصر اور جامع</strong> کتابیں لکھیں</li>
+                    <li>عملی علاج میں کام آنے والی باتیں لکھیں</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <h4>📕 جن کتابوں سے استفادہ کیا:</h4>
+                <p>کامل الصناعۃ، القانون فی الطب، معالجات بقراطیہ</p>
+            </div>
+
+            <h3 style="margin-top: 20px; color: #667eea;">📚 مشہور تصنیفات:</h3>
+            <div class="books-list">
+                <span class="book-tag">الاسباب والعلامات</span>
+                <span class="book-tag">اغذیۃ المرضیٰ</span>
+                <span class="book-tag">القرابادین کبیر</span>
+                <span class="book-tag">القرابادین صغیر</span>
+                <span class="book-tag">القرابادین السمرقندی</span>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 15px;">
+                <h3>📘 کتابوں کا موضوع</h3>
+                <ul class="points-list">
+                    <li><strong>اغذیۃ المرضیٰ:</strong> بیماریوں میں کیا کھائیں، کیا نہ کھائیں</li>
+                    <li><strong>الاسباب والعلامات:</strong> بیماریوں کی علامات، وجوہات اور علاج</li>
+                    <li><strong>القرابادین:</strong> دواؤں کے نسخے</li>
+                </ul>
+            </div>
+
+            <div class="memory-tip">
+                <h4>💡 یاد رکھیں</h4>
+                <p>القرابادین السمرقندی کا انگریزی ترجمہ مارٹن پری نے کیا</p>
+            </div>
+        </section>
+
+        <!-- Section 6: Main Book -->
+        <section class="section" id="book">
+            <div class="section-header">
+                <div class="section-number">۶</div>
+                <h2>کتاب الاسباب والعلامات</h2>
+            </div>
+            
+            <p>یہ نجیب الدین کی سب سے مشہور کتاب ہے۔ علاج کی بنیادی کتابوں میں اس کا اونچا مقام ہے۔</p>
+            
+            <div class="highlight-box">
+                <h3>📖 کتاب میں کیا ہے؟</h3>
+                <ul class="points-list">
+                    <li>بیماریوں کے نام اور ان کی وجہ تسمیہ</li>
+                    <li>بیماریوں کے اسباب (وجوہات)</li>
+                    <li>بیماریوں کی علامات (نشانیاں)</li>
+                    <li>تشخیص فارقہ (فرق کرنے والی تشخیص)</li>
+                    <li>اصول علاج اور علاج</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <h4>📚 ماخذ (Sources):</h4>
+                <p>کامل الصناعۃ، القانون فی الطب، معالجات بقراطیہ سے مواد لیا گیا</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🏆 کتاب کی مقبولیت</h3>
+                <ul class="points-list">
+                    <li>اس کی کئی شرحیں لکھی گئیں</li>
+                    <li>کئی زبانوں میں ترجمے ہوئے</li>
+                    <li>طبی نصاب کا حصہ بنی</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <strong>نفیس ابن عوض کرمانی</strong> نے مشہور شرح لکھی جو بہت مقبول ہوئی
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <strong>علامہ کبیر الدین</strong> (20ویں صدی) نے اس شرح کا اردو ترجمہ کیا جو آج بھی نصاب میں ہے
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Volumes -->
+        <section class="section" id="volumes">
+            <div class="section-header">
+                <div class="section-number">۷</div>
+                <h2>کتاب کی جلدیں</h2>
+            </div>
+            
+            <p>یہ کتاب بہت بڑی ہے۔ آج کل <strong>چار جلدوں</strong> میں ملتی ہے:</p>
+            
+            <div class="volumes-grid">
+                <div class="volume-card">
+                    <div class="volume-header">
+                        <span class="volume-number">جلد اول</span>
+                    </div>
+                    <h4>امراض راس و چشم</h4>
+                    <p>سر کی بیماریاں اور آنکھوں کی بیماریاں + علاج</p>
+                </div>
+
+                <div class="volume-card">
+                    <div class="volume-header">
+                        <span class="volume-number">جلد دوم</span>
+                    </div>
+                    <h4>کان، گلا، سینہ، جگر</h4>
+                    <p>امراض اذن، حلق، صدر و ریہ اور جگر + علاج</p>
+                </div>
+
+                <div class="volume-card">
+                    <div class="volume-header">
+                        <span class="volume-number">جلد سوم</span>
+                    </div>
+                    <h4>تلی، گردہ، مثانہ، جلد</h4>
+                    <p>امراض طحال، گردہ و مثانہ، مردانہ و زنانہ اعضاء، چھاتی، جلد + علم الجراحت</p>
+                </div>
+
+                <div class="volume-card">
+                    <div class="volume-header">
+                        <span class="volume-number">جلد چہارم</span>
+                    </div>
+                    <h4>ہڈی، بال، بخار</h4>
+                    <p>امراض کسر و خلع، بال، عمومی امراض، حمیات (بخار) اور بحران + علاج</p>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <h4>💡 جلدیں یاد رکھنے کا طریقہ</h4>
+                <p>
+                    ۱- سر آنکھ (اوپر سے شروع)<br>
+                    ۲- کان گلا سینہ جگر (نیچے آتے ہوئے)<br>
+                    ۳- پیٹ کے اعضاء + جلد (درمیان)<br>
+                    ۴- ہڈیاں + بخار (عمومی)
+                </p>
+            </div>
+        </section>
+
+        <!-- Legacy Section -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">۸</div>
+                <h2>کتاب کی اہمیت</h2>
+            </div>
+            
+            <div class="important-note">
+                <h4>🏅 750 سال بعد بھی نصاب میں!</h4>
+                <p>یہ کتاب طب یونانی کی درسی کتاب کا حق بخوبی ادا کرتی ہے۔ تصنیف کے تقریباً 750 سال بعد بھی طبی درس گاہوں میں داخل نصاب ہے اور اطباء اس کا متبادل پیش کرنے سے قاصر ہیں۔</p>
+            </div>
+        </section>
+
+        <!-- Summary Card -->
+        <section class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <div class="section-header" style="border-bottom-color: rgba(255,255,255,0.3);">
+                <div class="section-number" style="background: white; color: #667eea;">✓</div>
+                <h2 style="color: white;">خلاصہ</h2>
+            </div>
+            
+            <ul class="points-list" style="color: white;">
+                <li style="color: white;">نجیب الدین سمرقندی = 13ویں صدی کا مشہور طبیب</li>
+                <li style="color: white;">سمرقند کا رہنے والا، 1222ء میں ہرات میں وفات</li>
+                <li style="color: white;">طبیب حاذق + عظیم مصنف</li>
+                <li style="color: white;">مشہور کتاب: الاسباب والعلامات (4 جلدیں)</li>
+                <li style="color: white;">نفیس ابن عوض کی شرح + کبیر الدین کا اردو ترجمہ</li>
+                <li style="color: white;">750 سال بعد بھی نصاب میں شامل</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Scroll to section function
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add active class to nav dots on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section, .quick-facts');
+            const navDots = document.querySelectorAll('.nav-dot');
+            
+            let current = 0;
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 150) {
+                    current = index;
+                }
+            });
+
+            navDots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index === current) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

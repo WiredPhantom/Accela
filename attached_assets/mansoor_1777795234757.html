@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابو منصور الحسن بن نوح القمری - تعارف</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .header .english-name {
+            font-family: Arial, sans-serif;
+            font-size: 0.9em;
+            opacity: 0.85;
+            margin-top: 8px;
+            direction: ltr;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:active {
+            transform: scale(0.98);
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        .section p {
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        /* Key Points Box */
+        .key-points {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .key-points h3 {
+            color: #764ba2;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-point-item {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .key-point-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .key-point-item .bullet {
+            width: 25px;
+            height: 25px;
+            min-width: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7em;
+            margin-top: 5px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid #ff9800;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-right-color: #4caf50;
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-right-color: #2196f3;
+        }
+
+        .highlight-box h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .highlight-box.green h4 {
+            color: #2e7d32;
+        }
+
+        .highlight-box.blue h4 {
+            color: #1565c0;
+        }
+
+        /* Book Section */
+        .book-card {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .book-card h3 {
+            color: #c2185b;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .book-card .book-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        /* Chapters Grid */
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .chapter-item {
+            background: white;
+            padding: 15px 10px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.9em;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .chapter-item .number {
+            display: block;
+            font-size: 1.5em;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        /* Parts Section */
+        .parts-container {
+            margin: 20px 0;
+        }
+
+        .part-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            border-right: 4px solid;
+        }
+
+        .part-card:nth-child(1) { border-right-color: #e91e63; }
+        .part-card:nth-child(2) { border-right-color: #9c27b0; }
+        .part-card:nth-child(3) { border-right-color: #3f51b5; }
+
+        .part-card h4 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .part-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+        }
+
+        /* Books List */
+        .books-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .book-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Scholars Reference */
+        .scholars-box {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .scholars-box h4 {
+            color: #00838f;
+            margin-bottom: 12px;
+        }
+
+        .scholars-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .scholar-name {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* Memory Tips */
+        .memory-box {
+            background: linear-gradient(135deg, #fffde7 0%, #fff9c4 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px dashed #fbc02d;
+        }
+
+        .memory-box h4 {
+            color: #f9a825;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .memory-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .memory-box li {
+            padding: 8px 0;
+            padding-right: 25px;
+            position: relative;
+        }
+
+        .memory-box li::before {
+            content: "💡";
+            position: absolute;
+            right: 0;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .summary-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-item {
+            background: rgba(255,255,255,0.2);
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .summary-item strong {
+            color: #ffd54f;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section, .book-card, .summary-card {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .chapters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ابو منصور الحسن بن نوح القمری</h1>
+        <div class="subtitle">مشہور طبیب اور ابن سینا کے استاد</div>
+        <div class="english-name">Abu Mansoor al-Hasan bin Nuh al-Qamri</div>
+    </div>
+
+    <div class="container">
+        <!-- تعارف -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📖</span>
+                تعارف
+            </div>
+            <p>ابو منصور الحسن ایک بہت بڑے طبیب تھے جنہوں نے علاج کے ساتھ ساتھ کتابیں بھی لکھیں۔</p>
+            
+            <div class="key-points">
+                <h3>🔑 اہم معلومات</h3>
+                <div class="key-point-item">
+                    <span class="bullet">۱</span>
+                    <span><strong>پیدائش:</strong> چوتھی صدی ہجری کے قریب</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۲</span>
+                    <span><strong>جائے پیدائش:</strong> بخارا (ایران)</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۳</span>
+                    <span><strong>مہارت:</strong> کلیات (طب کے اصول) اور معالجات (علاج)</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۴</span>
+                    <span><strong>خاص بات:</strong> ان کی حذاقت ضرب المثل بن گئی تھی</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۵</span>
+                    <span><strong>عہدہ:</strong> بادشاہ وقت کے طبیب خاص</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- تعلیم و تربیت -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </div>
+            <div class="highlight-box">
+                <h4>📝 یاد رکھیں</h4>
+                <p>ان کے اساتذہ کی تفصیل نہیں ملتی، لیکن یہ معلوم ہے کہ وہ اپنے ذاتی شوق کی وجہ سے طب کی طرف آئے۔</p>
+            </div>
+        </div>
+
+        <!-- فضل و کمال -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال
+            </div>
+            <p>یہ اپنے زمانے کے سب سے بڑے طبیب تھے۔ ساتھ ہی اعلیٰ درجے کے استاد اور مصنف بھی تھے۔</p>
+            
+            <div class="key-points">
+                <h3>🏆 تین بڑی خوبیاں</h3>
+                <div class="key-point-item">
+                    <span class="bullet">۱</span>
+                    <span><strong>بحیثیت طبیب:</strong> وحید العصر (اپنے زمانے کے واحد ماہر)</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۲</span>
+                    <span><strong>بحیثیت استاد:</strong> اعلیٰ پائے کے مدرس</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۳</span>
+                    <span><strong>بحیثیت مصنف:</strong> کئی اہم کتابوں کے مصنف</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- بحیثیت طبیب -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">🏥</span>
+                بحیثیت طبیب
+            </div>
+            <p>امیر منصور کے دور میں ان کی طبی مہارت کی بہت شہرت تھی۔</p>
+            
+            <div class="highlight-box green">
+                <h4>✅ دو اہم کامیابیاں</h4>
+                <div class="key-point-item">
+                    <span class="bullet">۱</span>
+                    <span>امیر منصور نے انہیں اپنے <strong>حرم سرا کا طبیب</strong> مقرر کیا (یہ بہت اعتماد کی بات تھی)</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۲</span>
+                    <span>خود <strong>ابن سینا</strong> بھی ان سے سیکھنے ان کے مطب میں آتے تھے</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- بحیثیت استاد -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">👨‍🏫</span>
+                بحیثیت استاد
+            </div>
+            
+            <div class="highlight-box blue">
+                <h4>🌟 سب سے اہم بات</h4>
+                <p><strong>شیخ الرئیس بوعلی ابن سینا</strong> (رئیس الاطباء) ان کے شاگرد تھے!</p>
+            </div>
+            
+            <div class="key-points">
+                <h3>📚 ابن سینا کا ان سے تعلق</h3>
+                <div class="key-point-item">
+                    <span class="bullet">۱</span>
+                    <span>ابن سینا ان کے مطب میں باقاعدگی سے آتے تھے</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۲</span>
+                    <span>ان کی علمی مجالس میں شامل ہوتے تھے</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۳</span>
+                    <span>ان سے علم طب حاصل کیا</span>
+                </div>
+            </div>
+
+            <div class="memory-box">
+                <h4>💡 یاد رکھنے کا طریقہ</h4>
+                <ul>
+                    <li>ابن سینا کے استاد = ابو منصور</li>
+                    <li>یہ بات خود غیر معمولی ہے!</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- بحیثیت مصنف -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">✍️</span>
+                بحیثیت مصنف
+            </div>
+            <p>انہوں نے کئی اہم کتابیں لکھیں۔ ان کی تصانیف:</p>
+            
+            <div class="books-list">
+                <span class="book-tag">غنیٰ منیٰ (سب سے مشہور)</span>
+                <span class="book-tag">مجموعہ کبیر</span>
+                <span class="book-tag">معالجات منصوری</span>
+                <span class="book-tag">مقالتہ فی البحران</span>
+                <span class="book-tag">مقالہ فی استسقاء</span>
+                <span class="book-tag">رسالہ فی حمیات</span>
+                <span class="book-tag">رسالہ فی امراض الصدر</span>
+                <span class="book-tag">کتاب التنویر فی اصطلاحات الطبیہ</span>
+            </div>
+        </div>
+
+        <!-- کتاب غنیٰ منیٰ -->
+        <div class="book-card">
+            <div class="book-icon">📕</div>
+            <h3>کتاب غنیٰ منیٰ</h3>
+            <p>سب سے مشہور کتاب</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📚</span>
+                کتاب کی تفصیل
+            </div>
+            
+            <div class="key-points">
+                <h3>📋 بنیادی معلومات</h3>
+                <div class="key-point-item">
+                    <span class="bullet">۱</span>
+                    <span><strong>موضوع:</strong> معالجات (علاج)</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۲</span>
+                    <span><strong>سائز:</strong> زیادہ بڑی نہیں لیکن فائدہ مند</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۳</span>
+                    <span><strong>ابواب:</strong> 20 ابواب</span>
+                </div>
+            </div>
+
+            <div class="chapters-grid">
+                <div class="chapter-item">
+                    <span class="number">۲۰</span>
+                    ابواب
+                </div>
+                <div class="chapter-item">
+                    <span class="number">۳</span>
+                    حصے
+                </div>
+            </div>
+        </div>
+
+        <!-- تین حصے -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📑</span>
+                کتاب کے تین حصے
+            </div>
+            
+            <div class="parts-container">
+                <div class="part-card">
+                    <h4><span class="part-number">۱</span> پہلا حصہ</h4>
+                    <p>امراض راس (سر کی بیماریاں)، امراض صدر و ریہ (سینے اور پھیپھڑوں کی بیماریاں)، امراض امعاء و کبد (آنتوں اور جگر کی بیماریاں) اور متفرق امراض</p>
+                </div>
+                <div class="part-card">
+                    <h4><span class="part-number">۲</span> دوسرا حصہ</h4>
+                    <p>امراض جلد (جلد کی بیماریاں): داء الثعلب، داء الحیہ، جذام، نملہ، فارفارسی وغیرہ</p>
+                </div>
+                <div class="part-card">
+                    <h4><span class="part-number">۳</span> تیسرا حصہ</h4>
+                    <p>حمیات (بخار)، بحران، تشخیص کے طریقے، نبض، بول اور براز کی جانچ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- کتاب کی خصوصیات -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">✨</span>
+                کتاب کی خصوصیات
+            </div>
+            
+            <div class="highlight-box">
+                <h4>📌 خاص باتیں</h4>
+                <div class="key-point-item">
+                    <span class="bullet">۱</span>
+                    <span>پرانے طبیبوں کے نظریات شامل ہیں</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۲</span>
+                    <span>مفرد ادویہ کے نسخے ہیں</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">۳</span>
+                    <span>بعد کے طبیبوں نے بکثرت استعمال کیے</span>
+                </div>
+            </div>
+
+            <div class="scholars-box">
+                <h4>📜 جن اطباء کے حوالے ملتے ہیں</h4>
+                <div class="scholars-list">
+                    <span class="scholar-name">رازی</span>
+                    <span class="scholar-name">بقراط</span>
+                    <span class="scholar-name">جالینوس</span>
+                    <span class="scholar-name">ابن ماسویہ</span>
+                    <span class="scholar-name">چرک</span>
+                    <span class="scholar-name">روفس</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- اردو ترجمہ -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">🔄</span>
+                اردو ترجمہ
+            </div>
+            <div class="highlight-box green">
+                <h4>📗 ترجمہ کی تفصیل</h4>
+                <div class="key-point-item">
+                    <span class="bullet">✓</span>
+                    <span><strong>ناشر:</strong> معدن الادویہ، لکھنو</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">✓</span>
+                    <span><strong>نگران:</strong> حکیم میرن صاحب</span>
+                </div>
+                <div class="key-point-item">
+                    <span class="bullet">✓</span>
+                    <span><strong>خاصیت:</strong> اردو ترجمہ + عربی متن دونوں موجود</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- خلاصہ -->
+        <div class="summary-card">
+            <h3>📝 مکمل خلاصہ</h3>
+            <div class="summary-item">
+                <strong>نام:</strong> ابو منصور الحسن بن نوح القمری
+            </div>
+            <div class="summary-item">
+                <strong>زمانہ:</strong> چوتھی صدی ہجری
+            </div>
+            <div class="summary-item">
+                <strong>مقام:</strong> بخارا، ایران
+            </div>
+            <div class="summary-item">
+                <strong>پہچان:</strong> وحید العصر طبیب، ابن سینا کے استاد
+            </div>
+            <div class="summary-item">
+                <strong>عہدہ:</strong> امیر منصور کے حرم کے طبیب
+            </div>
+            <div class="summary-item">
+                <strong>مشہور کتاب:</strong> غنیٰ منیٰ (20 ابواب، 3 حصے)
+            </div>
+            <div class="summary-item">
+                <strong>دیگر کتابیں:</strong> 7 مزید کتابیں
+            </div>
+        </div>
+
+        <!-- یاد رکھنے کے نکات -->
+        <div class="memory-box">
+            <h4>🧠 آسان یاد کرنے کے نکات</h4>
+            <ul>
+                <li><strong>قمری + بخارا:</strong> چاند (قمر) بخارا میں نکلا</li>
+                <li><strong>ابن سینا کے استاد:</strong> استاد کا نام "منصور"</li>
+                <li><strong>غنیٰ منیٰ:</strong> "غنیٰ" یعنی امیری کی کتاب</li>
+                <li><strong>20 ابواب، 3 حصے:</strong> 20÷3 کے قریب 7 (دیگر کتابیں بھی 7)</li>
+                <li><strong>6 بڑے طبیب:</strong> رازی، بقراط، جالینوس، ابن ماسویہ، چرک، روفس</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

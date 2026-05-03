@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابو سہل مسیحی - تعارف و تصانیف</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Nastaliq Urdu', serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #1e293b;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--section-color, #1e40af);
+        }
+
+        .section-icon {
+            font-size: 28px;
+            background: var(--section-color, #1e40af);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .section-title {
+            color: var(--section-color, #1e40af);
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* Sub Section */
+        .sub-section {
+            margin-bottom: 20px;
+        }
+
+        .sub-section-title {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #1e293b;
+            background: #e2e8f0;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        /* Info Card */
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 12px;
+        }
+
+        .info-card p {
+            margin-bottom: 8px;
+        }
+
+        .info-card ul {
+            padding-right: 20px;
+            margin: 10px 0;
+        }
+
+        .info-card li {
+            margin-bottom: 5px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-right: 4px solid var(--highlight-color, #3b82f6);
+        }
+
+        .highlight-blue {
+            --highlight-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .highlight-green {
+            --highlight-color: #059669;
+            background: rgba(5, 150, 105, 0.1);
+        }
+
+        .highlight-purple {
+            --highlight-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .highlight-red {
+            --highlight-color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .highlight-yellow {
+            --highlight-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        /* Feature Card */
+        .feature-cards {
+            display: grid;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Topic Tags */
+        .topics-grid {
+            display: grid;
+            gap: 8px;
+        }
+
+        .topic-tag {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-right: 3px solid #3b82f6;
+            font-size: 15px;
+        }
+
+        /* Theory Box */
+        .theory-old {
+            background: #fef2f2;
+            padding: 12px;
+            border-radius: 8px;
+            border-right: 4px solid #ef4444;
+            margin-bottom: 10px;
+        }
+
+        .theory-new {
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 8px;
+            border-right: 4px solid #22c55e;
+        }
+
+        .theory-food {
+            background: #fef3c7;
+            padding: 12px;
+            border-radius: 8px;
+            border-right: 4px solid #f59e0b;
+        }
+
+        /* Important Book Card */
+        .book-card {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .book-card .icon {
+            font-size: 24px;
+        }
+
+        .book-card .title {
+            margin: 5px 0 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* Memory Section */
+        .memory-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px solid #f59e0b;
+        }
+
+        .memory-box h3 {
+            color: #92400e;
+            margin: 0 0 15px;
+            font-size: 18px;
+        }
+
+        .memory-points {
+            display: grid;
+            gap: 10px;
+        }
+
+        .memory-point {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .memory-number {
+            background: #f59e0b;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .memory-text {
+            font-weight: 500;
+        }
+
+        /* Success Message */
+        .success-text {
+            text-align: center;
+            color: #059669;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        /* Colors */
+        .color-blue { --section-color: #1e40af; }
+        .color-green { --section-color: #059669; }
+        .color-purple { --section-color: #7c3aed; }
+        .color-red { --section-color: #dc2626; }
+        .color-yellow { --section-color: #f59e0b; }
+
+        .bg-blue { background-color: #1e40af; }
+        .bg-green { background-color: #059669; }
+        .bg-purple { background-color: #7c3aed; }
+        .bg-red { background-color: #dc2626; }
+
+        .text-blue { color: #1e40af; }
+        .text-green { color: #059669; }
+        .text-purple { color: #7c3aed; }
+        .text-red { color: #dc2626; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-icon">📚</div>
+        <h1>ابو سہل مسیحی</h1>
+        <p>طبِ یونانی کے عظیم طبیب، محقق اور مصنف</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- تعارف -->
+        <section class="section color-blue">
+            <div class="section-header">
+                <span class="section-icon">👤</span>
+                <h2 class="section-title">تعارف</h2>
+            </div>
+            <div class="info-card">
+                <p><strong>پورا نام:</strong> ابو سہل عیسیٰ بن یحییٰ المسیحی</p>
+                <p><strong>شہرت:</strong> طبِ یونانی کے مشہور اطباء میں شمار</p>
+                <p><strong>دور:</strong> دسویں صدی عیسوی</p>
+                <p><strong>جائے پیدائش:</strong> جرجان (ایران)</p>
+                <p><strong>وفات:</strong> تقریباً 1010 عیسوی</p>
+                <p><strong>خاص بات:</strong> ابن سینا کے استاد اور ہم عصر تھے</p>
+            </div>
+            <div class="highlight-box highlight-blue">
+                انہوں نے علمِ طب میں نمایاں خدمات دیں اور اپنی کتابوں سے علمی دنیا میں بلند مقام حاصل کیا۔
+            </div>
+        </section>
+
+        <!-- تعلیم و تربیت -->
+        <section class="section color-green">
+            <div class="section-header">
+                <span class="section-icon">🎓</span>
+                <h2 class="section-title">تعلیم و تربیت</h2>
+            </div>
+            <div class="info-card">
+                <p>ان کی تعلیم کی تفصیل محفوظ نہیں، لیکن ان کی کتابوں سے پتا چلتا ہے:</p>
+                <ul>
+                    <li>عربی زبان کے ماہر تھے</li>
+                    <li>طب میں کامل مہارت رکھتے تھے</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- فضل و کمال -->
+        <section class="section color-purple">
+            <div class="section-header">
+                <span class="section-icon">⭐</span>
+                <h2 class="section-title">فضل و کمال</h2>
+            </div>
+            <div class="highlight-box highlight-purple">
+                ابو سہل مسیحی کی شخصیت تین نمایاں پہلوؤں پر مشتمل تھی:
+            </div>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <span class="feature-number bg-blue">1</span>
+                    <span class="feature-title text-blue">حاذق طبیب</span>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-number bg-green">2</span>
+                    <span class="feature-title text-green">محقق مفکر</span>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-number bg-purple">3</span>
+                    <span class="feature-title text-purple">بلند پایہ مصنف</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- بطور طبیب -->
+        <section class="section color-red">
+            <div class="section-header">
+                <span class="section-icon">⚕️</span>
+                <h2 class="section-title">بطور طبیب</h2>
+            </div>
+            <div class="info-card">
+                <p><strong>تشخیص کا طریقہ:</strong></p>
+                <ul>
+                    <li>بیماری کی وجوہات پر گہری نظر رکھتے تھے</li>
+                    <li>وجوہات کی روشنی میں علاج تجویز کرتے تھے</li>
+                </ul>
+                
+                <p><strong>معائنے کے طریقے:</strong></p>
+                <ul>
+                    <li>نبض کا معائنہ</li>
+                    <li>پیشاب کا معائنہ</li>
+                    <li>پاخانے کا معائنہ</li>
+                </ul>
+
+                <p><strong>دوائیں دینے میں احتیاط:</strong></p>
+                <ul>
+                    <li>دواؤں کے انتخاب میں بہت محتاط تھے</li>
+                    <li>نقصان دہ اور زہریلی دواؤں سے پرہیز کرتے تھے</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- بطور محقق -->
+        <section class="section color-green">
+            <div class="section-header">
+                <span class="section-icon">🔬</span>
+                <h2 class="section-title">بطور محقق</h2>
+            </div>
+
+            <!-- حمل اور بچے کی پیدائش کی تحقیق -->
+            <div class="sub-section">
+                <h3 class="sub-section-title">📌 حمل اور بچے کی پیدائش کی تحقیق</h3>
+                <div class="info-card">
+                    <p><strong>پرانا نظریہ (قدماء کا):</strong></p>
+                    <div class="theory-old">
+                        حمل کے دوران ماہواری کا خون رک جاتا ہے کیونکہ یہی خون بچے کی نشوونما میں خرچ ہوتا ہے۔
+                    </div>
+                    <p><strong>ابو سہل کا نیا نظریہ:</strong></p>
+                    <div class="theory-new">
+                        ماہواری کا خون نہ تو اچھا ہے اور نہ ہی اتنا زیادہ کہ بچے کی پرورش ہو سکے۔ بچے کی پرورش ماں کے بدن میں گردش کرنے والے صاف خون سے ہوتی ہے۔
+                    </div>
+                </div>
+            </div>
+
+            <!-- عورت کا کردار -->
+            <div class="sub-section">
+                <h3 class="sub-section-title">📌 عورت کا کردار</h3>
+                <div class="highlight-box highlight-green">
+                    ابو سہل نے پہلی بار کہا کہ بچے کی پیدائش میں عورت صرف نطفہ قبول نہیں کرتی بلکہ نطفہ بنانے میں بھی برابر کی شریک ہے۔
+                </div>
+                <p class="success-text">✓ آج کی سائنس نے یہ بات درست ثابت کر دی ہے</p>
+            </div>
+
+            <!-- غذا کی تحقیق -->
+            <div class="sub-section">
+                <h3 class="sub-section-title">📌 غذا کی تحقیق</h3>
+                <div class="info-card">
+                    <p><strong>ابو سہل کا اصول:</strong></p>
+                    <div class="theory-food">
+                        جو غذا جتنی مزیدار ہوتی ہے وہ جسم کی نشونما کے لیے اتنی ہی فائدہ مند ہے۔
+                    </div>
+                </div>
+            </div>
+
+            <!-- دواؤں کی تحقیق -->
+            <div class="sub-section">
+                <h3 class="sub-section-title">📌 دواؤں کی تحقیق</h3>
+                <div class="info-card">
+                    <p>مسیحی نے دواؤں کے بارے میں بھی اہم تحقیق اور ایجادات کیں جو آج بھی قابل قدر ہیں۔</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بطور مصنف -->
+        <section class="section color-purple">
+            <div class="section-header">
+                <span class="section-icon">✍️</span>
+                <h2 class="section-title">بطور مصنف</h2>
+            </div>
+            <div class="info-card">
+                <p>ان کی کتابوں کی تعداد تقریباً <strong>12 (ایک درجن)</strong> ہے۔</p>
+                <p><strong>موضوعات:</strong> فلسفہ اور طب</p>
+                <p style="margin-top: 15px;"><strong>سب سے اہم کتاب:</strong></p>
+                <div class="book-card">
+                    <span class="icon">📖</span>
+                    <p class="title">کتاب المأة فی الطب</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- کتاب المأة فی الطب -->
+        <section class="section color-blue">
+            <div class="section-header">
+                <span class="section-icon">📖</span>
+                <h2 class="section-title">کتاب المأة فی الطب</h2>
+            </div>
+
+            <!-- کتاب کا تعارف -->
+            <div class="sub-section">
+                <h3 class="sub-section-title">📌 کتاب کا تعارف</h3>
+                <div class="info-card">
+                    <p>یہ طب پر لکھی گئی ایک <strong>شاہکار کتاب</strong> ہے۔</p>
+                    <p><strong>نام کی وجہ:</strong> اس میں <strong>100 ابواب</strong> ہیں اور ہر باب الگ کتاب کی طرح ہے، اس لیے اسے "کتاب المأة" یعنی "سو کتابیں" کہا جاتا ہے۔</p>
+                </div>
+                <div class="highlight-box highlight-blue">
+                    اس کتاب میں طب کے تقریباً تمام موضوعات پر تفصیلی بحث ہے۔ عربی زبان میں لکھی ہونے کی وجہ سے یہ عربی ادب کے نوادرات میں بھی شامل ہے۔
+                </div>
+            </div>
+
+            <!-- کتاب کی ساخت -->
+            <div class="sub-section">
+                <h3 class="sub-section-title">📌 کتاب کی ساخت</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number text-blue">100</div>
+                        <div class="stat-label">کل ابواب</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number text-green">50</div>
+                        <div class="stat-label">کلیاتِ طب</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number text-purple">50</div>
+                        <div class="stat-label">علاج و معالجات</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number text-red">4</div>
+                        <div class="stat-label">ابواب ادویہ</div>
+                    </div>
+                </div>
+                <div class="info-card" style="margin-top: 12px;">
+                    <p><strong>ہر باب کا نام:</strong> مصنف نے ہر باب کو "کتاب" کا نام دیا جیسے کتاب الاسطقسات، کتاب المزاج وغیرہ۔</p>
+                </div>
+            </div>
+
+            <!-- اہم موضوعات -->
+            <div class="sub-section">
+                <h3 class="sub-section-title">📌 اہم موضوعات</h3>
+                <div class="topics-grid">
+                    <div class="topic-tag">✦ فنِ طب کی تعریف اور اصول</div>
+                    <div class="topic-tag">✦ عناصر، اخلاط اور مزاج</div>
+                    <div class="topic-tag">✦ اعضاء کی ساخت اور کام</div>
+                    <div class="topic-tag">✦ ہوا، پانی، غذا اور صحت کی حفاظت</div>
+                    <div class="topic-tag">✦ سادی اور ملی ہوئی دوائیں</div>
+                    <div class="topic-tag">✦ بیماریوں کی وجوہات اور علامات</div>
+                    <div class="topic-tag">✦ تشخیص (نبض، پیشاب، پاخانہ)</div>
+                    <div class="topic-tag">✦ بخار اور سوجن کی بیماریاں</div>
+                    <div class="topic-tag">✦ آنکھ، کان، ناک، گلے کی بیماریاں</div>
+                    <div class="topic-tag">✦ دل، جگر، معدے، آنتوں کی بیماریاں</div>
+                    <div class="topic-tag">✦ عورتوں کی بیماریاں اور حمل و ولادت</div>
+                    <div class="topic-tag">✦ جلدی بیماریاں، آپریشن اور زہر</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- اشاعت و دستیابی -->
+        <section class="section color-red">
+            <div class="section-header">
+                <span class="section-icon">📚</span>
+                <h2 class="section-title">اشاعت و دستیابی</h2>
+            </div>
+            <div class="info-card">
+                <p><strong>افسوس کی بات:</strong> یہ اہم کتاب آج تک ترجمہ سے محروم ہے۔</p>
+                
+                <p style="margin-top: 15px;"><strong>چھپا ہوا حصہ:</strong></p>
+                <ul>
+                    <li>حیدرآباد دکن سے 1963ء میں شائع ہوا</li>
+                    <li>صرف 23 مقالات شامل ہیں</li>
+                    <li>بقیہ حصہ ہاتھ سے لکھا ہوا اور منتشر ہے</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box highlight-red">
+                <strong>اہم معلومات:</strong>
+                <p style="margin: 10px 0 0;">نظامیہ طبیہ کالج حیدرآباد میں 1947 سے 1950 تک طبِ یونانی میں "طبیب ماہر" کی ڈگری دی جاتی تھی۔</p>
+            </div>
+
+            <div class="info-card">
+                <p><strong>حکیم علی حسین کا کام:</strong></p>
+                <ul>
+                    <li>انہوں نے اپنی تحقیق کے لیے کتاب المأة کا انتخاب کیا</li>
+                    <li>مقالہ لکھا: "مأة ابو سہل مسیحی"</li>
+                    <li>یہ کام حکیم کبیر الدین صاحب کی نگرانی میں ہوا</li>
+                    <li>اسی ریکارڈ سے 24 تا 100 مقالات کے نام ملے</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- یاد رکھنے کے نکات -->
+        <section class="section color-yellow">
+            <div class="section-header">
+                <span class="section-icon">💡</span>
+                <h2 class="section-title">یاد رکھنے کے نکات</h2>
+            </div>
+            <div class="memory-box">
+                <h3>خلاصہ یاد کریں:</h3>
+                <div class="memory-points">
+                    <div class="memory-point">
+                        <span class="memory-number">1</span>
+                        <span class="memory-text">ابو سہل = ابن سینا کے استاد</span>
+                    </div>
+                    <div class="memory-point">
+                        <span class="memory-number">2</span>
+                        <span class="memory-text">پیدائش = جرجان (ایران)</span>
+                    </div>
+                    <div class="memory-point">
+                        <span class="memory-number">3</span>
+                        <span class="memory-text">وفات = 1010ء</span>
+                    </div>
+                    <div class="memory-point">
+                        <span class="memory-number">4</span>
+                        <span class="memory-text">شخصیت = طبیب + محقق + مصنف</span>
+                    </div>
+                    <div class="memory-point">
+                        <span class="memory-number">5</span>
+                        <span class="memory-text">اہم کتاب = کتاب المأة (100 ابواب)</span>
+                    </div>
+                    <div class="memory-point">
+                        <span class="memory-number">6</span>
+                        <span class="memory-text">نیا نظریہ = عورت نطفہ سازی میں شریک</span>
+                    </div>
+                    <div class="memory-point">
+                        <span class="memory-number">7</span>
+                        <span class="memory-text">تشخیص = نبض + بول + براز</span>
+                    </div>
+                    <div class="memory-point">
+                        <span class="memory-number">8</span>
+                        <span class="memory-text">غذا کا اصول = مزیدار = فائدہ مند</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ربن طبری - Rabban Tabari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+            color: #2d3748;
+            line-height: 2;
+            padding: 0;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english {
+            font-family: Arial, sans-serif;
+            font-size: 1.2em;
+            opacity: 0.9;
+            direction: ltr;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .card h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8eef5;
+            font-weight: 600;
+        }
+
+        .card h3 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 1.1em;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .important-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-right: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .book-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-right: 5px solid #22c55e;
+        }
+
+        ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        ul li {
+            padding: 10px 0;
+            padding-right: 25px;
+            position: relative;
+            font-size: 1.05em;
+        }
+
+        ul li:before {
+            content: "◆";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .timeline {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-right: 4px solid #ec4899;
+            font-weight: 500;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 40px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card h2 {
+                font-size: 1.5em;
+            }
+
+            .card h3 {
+                font-size: 1.2em;
+            }
+
+            .card p, ul li {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>ربن طبری</h1>
+    <div class="english">Rabban Tabari</div>
+</div>
+
+<div class="container">
+
+    <!-- تعارف -->
+    <div class="card">
+        <h2>📚 تعارف</h2>
+        <p><span class="highlight">ابو الحسن علی بن سہل ربن طبری</span> طب یونانی کے بہت مشہور اور عظیم ڈاکٹر تھے۔</p>
+        
+        <div class="important-box">
+            ان کی سب سے مشہور کتاب <strong>"فردوس الحکمت"</strong> ہے، جو عربی زبان میں طب پر لکھی جانے والی پہلی مکمل کتاب ہے۔
+        </div>
+
+        <div class="timeline">
+            <strong>پیدائش:</strong> 770ء تا 780ء کے درمیان، مرو (طبرستان، ایران) میں
+        </div>
+
+        <div class="timeline">
+            <strong>مذہب:</strong> پہلے عیسائی خاندان سے تھے، بعد میں اسلام قبول کیا
+        </div>
+
+        <div class="timeline">
+            <strong>وفات:</strong> 850ء کے بعد، تقریباً 70 سال کی عمر میں
+        </div>
+
+        <p>ان کی علمی خدمات آج بھی تاریخ طب میں زندہ ہیں۔</p>
+    </div>
+
+    <!-- تعلیم و تربیت -->
+    <div class="card">
+        <h2>📖 تعلیم و تربیت</h2>
+        
+        <p><strong>والد کی شخصیت:</strong> ربن طبری کے والد بہت علم دوست اور قابل شخصیت تھے۔ وہ حساب، فلسفہ اور طب کے ماہر تھے۔</p>
+
+        <h3>ابتدائی تعلیم (والد سے):</h3>
+        <ul>
+            <li>عبرانی (Hebrew) زبان</li>
+            <li>سریانی (Syriac) زبان</li>
+            <li>طب (Medicine)</li>
+            <li>ریاضی (Mathematics)</li>
+            <li>فلسفہ (Philosophy)</li>
+        </ul>
+
+        <div class="important-box">
+            بعد میں مرو سے بغداد چلے گئے اور وہاں <strong>عربی زبان</strong> میں مہارت حاصل کی۔
+        </div>
+    </div>
+
+    <!-- فضل و کمال -->
+    <div class="card">
+        <h2>⭐ فضل و کمال</h2>
+        
+        <p>ربن طبری ایک ساتھ کئی علوم کے ماہر تھے:</p>
+        <ul>
+            <li>ریاضی</li>
+            <li>علم ہندسہ (Geometry)</li>
+            <li>فلسفہ</li>
+            <li>طب (سب سے زیادہ مشہور)</li>
+        </ul>
+
+        <h3>سرکاری عہدے:</h3>
+        <div class="timeline">
+            <strong>دیوان:</strong> طبرستان کے گورنر کے دربار میں
+        </div>
+        <div class="timeline">
+            <strong>منشی:</strong> بغداد میں عباسی خلیفہ کے دربار میں
+        </div>
+
+        <p>لیکن ان کی اصل فضیلت ان کی علمی کتابوں میں ہے۔</p>
+    </div>
+
+    <!-- بطور طبیب -->
+    <div class="card">
+        <h2>🏥 بطور طبیب</h2>
+        
+        <p>ربن طبری نے صرف کتابیں نہیں لکھیں بلکہ عملی طور پر بھی مریضوں کا علاج کیا۔</p>
+
+        <div class="important-box">
+            انہوں نے اپنا ذاتی <strong>کلینک (مطب)</strong> کھولا اور ایک ماہر اور مشہور ڈاکٹر کے طور پر معروف ہوئے۔
+        </div>
+    </div>
+
+    <!-- بطور مصنف -->
+    <div class="card">
+        <h2>✍️ بطور مصنف</h2>
+        
+        <div class="stats">
+            تقریباً 14 کتابیں لکھیں
+        </div>
+
+        <div class="important-box">
+            سب سے مشہور کتاب: <strong>فردوس الحکمت</strong><br>
+            اسی کتاب نے انہیں تاریخ طب میں ہمیشہ کے لیے زندہ کر دیا۔
+        </div>
+    </div>
+
+    <!-- فردوس الحکمت -->
+    <div class="card book-section">
+        <h2>📗 فردوس الحکمت (Paradise of Wisdom)</h2>
+        
+        <h3>کتاب کی خصوصیات:</h3>
+        <ul>
+            <li><strong>زبان:</strong> عربی</li>
+            <li><strong>اہمیت:</strong> عربی میں طب پر لکھی جانے والی پہلی اصل اور مکمل کتاب</li>
+            <li><strong>زمانہ:</strong> آٹھویں صدی عیسوی</li>
+            <li><strong>خصوصیت:</strong> اس سے پہلے عربی میں زیادہ تر صرف ترجمے تھے</li>
+        </ul>
+
+        <h3>موضوعات:</h3>
+        <ul>
+            <li>طب (سب سے زیادہ)</li>
+            <li>نباتات (پودے)</li>
+            <li>حیوانات (جانور)</li>
+            <li>ریاضیات</li>
+            <li>فلکیات اور ہیئت (Astronomy)</li>
+            <li>نجوم (Astrology)</li>
+            <li>فلسفہ</li>
+        </ul>
+
+        <div class="important-box">
+            <strong>مصادر:</strong> اس کتاب میں یونانی، ہندوستانی اور اپنے زمانے کے ڈاکٹروں کی کتابوں سے معلومات جمع کیں، اور اپنی ذاتی تحقیق بھی شامل کی۔
+        </div>
+    </div>
+
+    <!-- کتاب کی ساخت -->
+    <div class="card book-section">
+        <h2>📊 کتاب کی ساخت</h2>
+        
+        <div class="stats">
+            7 انواع + 30 مقالات + تقریباً 360 ابواب
+        </div>
+
+        <h3><span class="section-number">1</span> نوع اوّل</h3>
+        <p><strong>1 مقالہ، 12 ابواب</strong></p>
+        <ul>
+            <li>فلسفیانہ موضوعات</li>
+            <li>کیفیات اربعہ (چار خصوصیات)</li>
+            <li>ارکان (عناصر)</li>
+            <li>استحالہ (Metabolism) - بہت اہم حصہ</li>
+            <li>کون و فساد</li>
+        </ul>
+        <div class="important-box">
+            استحالہ کا حصہ جدید نظریہ Metabolism کی بنیاد ہے۔
+        </div>
+
+        <h3><span class="section-number">2</span> نوع دوم</h3>
+        <p><strong>5 مقالات، 52 ابواب</strong></p>
+        <ul>
+            <li>علم جنین (Embryology)</li>
+            <li>تشخیص حمل (Pregnancy diagnosis)</li>
+            <li>آنکھوں کے مسائل</li>
+            <li>حفظان صحت (Health protection)</li>
+            <li>علم الغذاء (Nutrition)</li>
+        </ul>
+
+        <h3><span class="section-number">3</span> نوع سوم</h3>
+        <p><strong>1 مقالہ، 3 ابواب</strong></p>
+        <ul>
+            <li>غذا کی ضرورت</li>
+            <li>غذا کی اقسام</li>
+        </ul>
+
+        <h3><span class="section-number">4</span> نوع چہارم</h3>
+        <p><strong>12 مقالات، 152 ابواب</strong></p>
+        <div class="important-box">
+            سب سے بڑا اور اہم حصہ!
+        </div>
+        <ul>
+            <li>سر سے پیر تک تمام بیماریاں</li>
+            <li>بیماریوں کی وجوہات</li>
+            <li>علامات (Symptoms)</li>
+            <li>علاج (Treatment)</li>
+            <li>عضلات (Muscles)</li>
+            <li>اعصاب (Nerves)</li>
+            <li>عروق (Blood vessels)</li>
+            <li>نبض (Pulse)</li>
+            <li>فصد (Bloodletting)</li>
+            <li>پیشاب اور پاخانہ کا معائنہ</li>
+        </ul>
+
+        <h3><span class="section-number">5</span> نوع پنجم</h3>
+        <p><strong>1 مقالہ، 9 ابواب</strong></p>
+        <ul>
+            <li>خوشبو اور بو</li>
+            <li>رنگ</li>
+        </ul>
+
+        <h3><span class="section-number">6</span> نوع ششم</h3>
+        <p><strong>6 مقالات، 74 ابواب</strong></p>
+        <ul>
+            <li>علم الادویہ (دوائیں)</li>
+            <li>علم السموم (زہر)</li>
+        </ul>
+
+        <h3><span class="section-number">7</span> نوع ہفتم</h3>
+        <p><strong>4 مقالات، 58 ابواب</strong></p>
+        <ul>
+            <li>آب و ہوا اور موسم کا صحت پر اثر</li>
+            <li>علم ہیئت (Astronomy)</li>
+            <li>علم نجوم (Astrology)</li>
+            <li><strong>ہندوستانی طب (آیورویدک)</strong> - بہت خاص!</li>
+        </ul>
+        <div class="important-box">
+            ہندوستانی طب کا تعارف اس کتاب کو دوسری کتابوں سے منفرد بناتا ہے۔
+        </div>
+    </div>
+
+    <!-- ترجمہ اور اشاعت -->
+    <div class="card">
+        <h2>🌍 ترجمہ اور اشاعت</h2>
+        
+        <h3>عربی میں:</h3>
+        <p>مشرق میں طویل عرصے تک عربی میں پڑھی جاتی رہی۔</p>
+
+        <div class="timeline">
+            <strong>1928ء:</strong> ڈاکٹر زبیر صدیقی نے مخطوطات مرتب کر کے برلن سے شائع کیا
+        </div>
+
+        <h3>اردو میں:</h3>
+        <div class="timeline">
+            <strong>1981ء:</strong> رشید اشرف ندوی نے اردو ترجمہ کیا<br>
+            <strong>ناشر:</strong> ہمدرد فاؤنڈیشن پریس، کراچی
+        </div>
+
+        <div class="important-box">
+            آج بھی یہ کتاب طبی محققین کے لیے ایک اہم ذریعہ ہے۔
+        </div>
+
+        <p><strong>نوٹ:</strong> مغربی زبانوں میں ترجمے کا واضح ثبوت نہیں ملتا۔</p>
+    </div>
+
+    <!-- خلاصہ -->
+    <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-right: 5px solid #f59e0b;">
+        <h2>🎯 یاد رکھنے کے اہم نکات</h2>
+        <ul>
+            <li><strong>نام:</strong> ابو الحسن علی بن سہل ربن طبری</li>
+            <li><strong>مشہور کتاب:</strong> فردوس الحکمت</li>
+            <li><strong>خصوصیت:</strong> عربی میں طب پر پہلی اصل مکمل کتاب</li>
+            <li><strong>زمانہ:</strong> 770-850ء</li>
+            <li><strong>جائے پیدائش:</strong> مرو، طبرستان (ایران)</li>
+            <li><strong>کتاب کی ساخت:</strong> 7 انواع، 30 مقالات، 360 ابواب</li>
+            <li><strong>خاص بات:</strong> ہندوستانی طب (آیورویدک) کا تعارف</li>
+            <li><strong>اردو ترجمہ:</strong> 1981ء، رشید اشرف ندوی</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>© <span id="year"></span> Accela. All rights reserved</p>
+</div>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

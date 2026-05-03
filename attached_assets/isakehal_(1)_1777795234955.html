@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>علی ابن عیسیٰ کحال - ماہر امراض چشم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .header .english-name {
+            font-size: 0.9em;
+            margin-top: 10px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.2em;
+        }
+
+        /* Memory Box - Yellow highlight */
+        .memory-box {
+            background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-right: 4px solid #fbc02d;
+            box-shadow: 0 3px 10px rgba(251, 192, 45, 0.2);
+        }
+
+        .memory-box .label {
+            font-size: 0.85em;
+            color: #f57f17;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Key Point Box */
+        .key-point {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 12px;
+            padding: 12px 18px;
+            margin: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .key-point .bullet {
+            background: #4caf50;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            flex-shrink: 0;
+        }
+
+        /* Highlight Number */
+        .highlight-num {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .skill-card .skill-icon {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .skill-card .skill-name {
+            font-size: 0.95em;
+            color: #7b1fa2;
+            font-weight: bold;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -25px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        /* Book Section */
+        .book-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-right: 5px solid #1976d2;
+        }
+
+        .book-title {
+            font-size: 1.5em;
+            color: #1565c0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .book-title .arabic {
+            display: block;
+            font-size: 1.2em;
+            color: #0d47a1;
+        }
+
+        /* Maqala Cards */
+        .maqala {
+            background: white;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .maqala-1 { border-right: 4px solid #e53935; }
+        .maqala-2 { border-right: 4px solid #1e88e5; }
+        .maqala-3 { border-right: 4px solid #43a047; }
+
+        .maqala-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .maqala-num {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .maqala-1 .maqala-num { background: #e53935; }
+        .maqala-2 .maqala-num { background: #1e88e5; }
+        .maqala-3 .maqala-num { background: #43a047; }
+
+        .maqala-title {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .maqala-content {
+            padding-right: 45px;
+            color: #555;
+        }
+
+        /* Special Feature Box */
+        .special-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px dashed #ff9800;
+            text-align: center;
+        }
+
+        .special-box .star {
+            font-size: 1.5em;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .summary-section .section-title {
+            color: white;
+        }
+
+        .summary-item {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .summary-item .check {
+            background: #4caf50;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            flex-shrink: 0;
+        }
+
+        /* Location Box */
+        .location-box {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .location-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .info-card {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .info-card .info-label {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .info-card .info-value {
+            font-size: 1.1em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Surgeon Section */
+        .surgeon-points {
+            margin-top: 15px;
+        }
+
+        .surgeon-point {
+            background: #f0f4ff;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .surgeon-point .point-icon {
+            font-size: 1.5em;
+        }
+
+        .surgeon-point .point-content strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Author Section */
+        .author-highlight {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .author-highlight .book-count {
+            font-size: 3em;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        .author-highlight .book-label {
+            color: #388e3c;
+            font-size: 1.1em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .skill-card {
+                padding: 12px 8px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section, .book-section, .summary-section {
+            animation: fadeInUp 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>👁️ علی ابن عیسیٰ کحال</h1>
+        <div class="subtitle">ماہر امراض چشم</div>
+        <div class="english-name">'Ali ibn Isa Kahhal / Jesu Haly</div>
+    </header>
+
+    <div class="container">
+        <!-- تعارف Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📜</span>
+                تعارف
+            </h2>
+            <p>علی بن عیسیٰ عرب نسل سے تعلق رکھنے والا ایک مشہور طبیب تھا۔ اس کا مضمون خاص امراض چشم تھا۔</p>
+            
+            <div class="memory-box">
+                <div class="label">🧠 یاد رکھیں</div>
+                ماہر چشم ہونے کی وجہ سے اسے <strong>کحال</strong> (Ophthalmologist) کا لقب ملا۔
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">رہائش</div>
+                    <div class="info-value">📍 بغداد</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">سال وفات</div>
+                    <div class="info-value">🗓️ 1039 AD</div>
+                </div>
+            </div>
+
+            <div class="memory-box">
+                <div class="label">🌍 مغربی نام</div>
+                مغرب میں <strong>Jesu Haly</strong> کے نام سے مشہور ہے۔
+            </div>
+
+            <p style="margin-top: 15px; color: #666;">
+                ⚠️ اس طبیب کی زندگی کی مکمل تفصیلات مورخین کو دستیاب نہیں ہیں۔
+            </p>
+        </section>
+
+        <!-- تعلیم و تربیت Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                تعلیم و تربیت
+            </h2>
+            
+            <p>علی بن عیسیٰ کی ابتدائی تعلیم کہاں اور کیسے ہوئی، اس کا تاریخ کی کتابوں میں کوئی ذکر نہیں۔</p>
+
+            <div class="memory-box">
+                <div class="label">👨‍🏫 استاد</div>
+                طب کی تعلیم <strong>عبداللہ بن لطیف</strong> سے حاصل کی۔
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>پہلا مرحلہ:</strong> طب کی تعلیم حاصل کی
+                </div>
+                <div class="timeline-item">
+                    <strong>دوسرا مرحلہ:</strong> طب میں کامل ہوا
+                </div>
+                <div class="timeline-item">
+                    <strong>تیسرا مرحلہ:</strong> امراض چشم کو مضمون خاص بنایا
+                </div>
+                <div class="timeline-item">
+                    <strong>آخری مرحلہ:</strong> ماہر چشم بن گیا
+                </div>
+            </div>
+        </section>
+
+        <!-- فضل و کمال Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال
+            </h2>
+            
+            <p>علی بن عیسیٰ کحال کے چار بڑے کمالات:</p>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">👨‍⚕️</div>
+                    <div class="skill-name">بہترین طبیب</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">👁️</div>
+                    <div class="skill-name">ماہر امراض چشم</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔪</div>
+                    <div class="skill-name">تجربہ کار سرجن</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">✍️</div>
+                    <div class="skill-name">بلند پایہ مصنف</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- بحیثیت سرجن Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🏥</span>
+                بحیثیت سرجن
+            </h2>
+
+            <div class="surgeon-points">
+                <div class="surgeon-point">
+                    <span class="point-icon">🔬</span>
+                    <div class="point-content">
+                        <strong>جراحت عین (Eye Surgery)</strong>
+                        آنکھوں کی سرجری میں ماہر تھا
+                    </div>
+                </div>
+
+                <div class="surgeon-point">
+                    <span class="point-icon">💉</span>
+                    <div class="point-content">
+                        <strong>نزول الماء (Cataract)</strong>
+                        موتیا کے آپریشن میں مہارت حاصل تھی
+                    </div>
+                </div>
+
+                <div class="surgeon-point">
+                    <span class="point-icon">😴</span>
+                    <div class="point-content">
+                        <strong>عمل تخدیر (Anaesthesia)</strong>
+                        عربی اطباء میں پہلی مرتبہ استعمال کیا
+                    </div>
+                </div>
+
+                <div class="surgeon-point">
+                    <span class="point-icon">🌀</span>
+                    <div class="point-content">
+                        <strong>مقناطیسی تنویم (Hypnotism)</strong>
+                        اس طریقے کا موجد ہے
+                    </div>
+                </div>
+            </div>
+
+            <div class="memory-box">
+                <div class="label">⭐ اہم نکتہ</div>
+                علی بن عیسیٰ نے عربی اطباء میں <strong>پہلی بار</strong> تخدیر (بے ہوشی کی دوا) استعمال کی اور <strong>مقناطیسی تنویم ایجاد</strong> کی۔
+            </div>
+        </section>
+
+        <!-- بحیثیت مصنف Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                بحیثیت مصنف
+            </h2>
+
+            <p>تصنیف و تالیف میں بھی گراں قدر خدمات انجام دیں۔</p>
+
+            <div class="author-highlight">
+                <div class="book-count">۵</div>
+                <div class="book-label">کتابیں تحریر کیں</div>
+            </div>
+
+            <div class="memory-box">
+                <div class="label">📕 مشہور کتاب</div>
+                امراض چشم پر <strong>"تذکرۃ الکحالین"</strong> بہت مشہور ہے۔
+            </div>
+        </section>
+
+        <!-- کتاب تذکرۃ الکحالین Section -->
+        <section class="book-section">
+            <h2 class="book-title">
+                <span class="arabic">📗 کتاب تذکرۃ الکحالین</span>
+            </h2>
+
+            <div class="key-point">
+                <span class="bullet">✓</span>
+                <span>امراض چشم پر <strong>عربی زبان کی پہلی کتاب</strong></span>
+            </div>
+
+            <div class="key-point">
+                <span class="bullet">✓</span>
+                <span>ہر مسئلہ <strong>غور و فکر</strong> کے بعد شامل کیا گیا</span>
+            </div>
+
+            <div class="key-point">
+                <span class="bullet">✓</span>
+                <span>سابقہ نظریات کو <strong>تجربے پر پرکھا</strong>، غلط کو شامل نہیں کیا</span>
+            </div>
+
+            <div class="key-point">
+                <span class="bullet">✓</span>
+                <span>یہ کتاب <strong>ضخیم</strong> ہے اور <span class="highlight-num">۳</span> مقالات پر مشتمل ہے</span>
+            </div>
+
+            <!-- مقالات -->
+            <h3 style="margin: 20px 0 15px; color: #1565c0;">📑 تین مقالات:</h3>
+
+            <div class="maqala maqala-1">
+                <div class="maqala-header">
+                    <span class="maqala-num">۱</span>
+                    <span class="maqala-title">پہلا مقالہ - تشریح عین</span>
+                </div>
+                <div class="maqala-content">
+                    <strong>موضوعات:</strong>
+                    <br>• طبقہ مشیمیہ (Choroid)
+                    <br>• طبقہ صلبیہ (Sclera)
+                    <br>• رطوبات عین (Eye Fluids)
+                </div>
+            </div>
+
+            <div class="maqala maqala-2">
+                <div class="maqala-header">
+                    <span class="maqala-num">۲</span>
+                    <span class="maqala-title">دوسرا مقالہ - جملہ امراض عین</span>
+                </div>
+                <div class="maqala-content">
+                    آنکھوں کی تمام بیماریوں سے بحث
+                </div>
+            </div>
+
+            <div class="maqala maqala-3">
+                <div class="maqala-header">
+                    <span class="maqala-num">۳</span>
+                    <span class="maqala-title">تیسرا مقالہ - اعصاب عین</span>
+                </div>
+                <div class="maqala-content">
+                    <strong>موضوعات:</strong>
+                    <br>• عضلات عین کے افعال
+                    <br>• عصب بصر (Optic Nerve) کے امراض
+                    <br>• قریب اور دور کی نظر
+                </div>
+            </div>
+
+            <div class="special-box">
+                <span class="star">⭐</span>
+                <div style="margin-top: 10px;">
+                    <strong>خاص بات:</strong> اس کتاب میں آنکھوں کی <strong>حفاظت</strong> کے بارے میں مختلف تدابیر بھی بیان کی گئی ہیں۔
+                </div>
+            </div>
+        </section>
+
+        <!-- کتاب کی دستیابی Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📍</span>
+                کتاب کی دستیابی
+            </h2>
+
+            <div class="location-box">
+                <div class="location-item">
+                    <span>📜</span>
+                    <span>قلمی نسخہ: <strong>رضا لائبریری، رامپور</strong> (ہندوستان)</span>
+                </div>
+                <div class="location-item">
+                    <span>📚</span>
+                    <span>طبع شدہ: <strong>حیدرآباد دکن</strong> سے <span class="highlight-num">1964</span> میں شائع</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- خلاصہ Section -->
+        <section class="summary-section">
+            <h2 class="section-title">
+                <span class="icon">✅</span>
+                خلاصہ - یاد کرنے کے نکات
+            </h2>
+
+            <div class="summary-item">
+                <span class="check">۱</span>
+                <span><strong>نام:</strong> علی بن عیسیٰ کحال | <strong>مغربی نام:</strong> Jesu Haly</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="check">۲</span>
+                <span><strong>نسل:</strong> عرب | <strong>شہر:</strong> بغداد | <strong>وفات:</strong> 1039 AD</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="check">۳</span>
+                <span><strong>لقب:</strong> کحال (ماہر چشم ہونے کی وجہ سے)</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="check">۴</span>
+                <span><strong>استاد:</strong> عبداللہ بن لطیف</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="check">۵</span>
+                <span><strong>کمالات:</strong> طبیب، ماہر چشم، سرجن، مصنف</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="check">۶</span>
+                <span><strong>پہلی بار:</strong> عربی اطباء میں تخدیر استعمال کی</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="check">۷</span>
+                <span><strong>ایجاد:</strong> مقناطیسی تنویم (Hypnotism)</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="check">۸</span>
+                <span><strong>مشہور کتاب:</strong> تذکرۃ الکحالین (3 مقالات) - عربی میں آنکھوں پر پہلی کتاب</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="check">۹</span>
+                <span><strong>کل کتابیں:</strong> 5 | <strong>کتاب شائع:</strong> 1964 حیدرآباد</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن بطلان - طبیب اور فلسفی</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+            color: #2d3748;
+            line-height: 2;
+            direction: rtl;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english {
+            font-size: 1.2em;
+            opacity: 0.95;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        /* Quick Info Box */
+        .quick-info {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .quick-info h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .info-item {
+            background: #f7fafc;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border-right: 3px solid #a0aec0;
+        }
+
+        .info-item strong {
+            color: #4a5568;
+            font-size: 1.1em;
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #e2e8f0;
+            font-weight: 700;
+        }
+
+        .section-content {
+            font-size: 1.15em;
+            color: #4a5568;
+            line-height: 2.2;
+        }
+
+        /* Highlighted Cards */
+        .highlight-card {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(253, 203, 110, 0.3);
+        }
+
+        .highlight-card h4 {
+            color: #2d3748;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .highlight-card p {
+            color: #4a5568;
+            font-size: 1.1em;
+            line-height: 2;
+        }
+
+        /* Three Roles Section */
+        .roles-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .role-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .role-card h4 {
+            color: #2d3748;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            padding-bottom: 10px;
+        }
+
+        .role-card p {
+            color: #4a5568;
+            font-size: 1.05em;
+            line-height: 2;
+        }
+
+        /* Book Section */
+        .book-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(252, 182, 159, 0.3);
+        }
+
+        .book-section h4 {
+            color: #2d3748;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .book-section p {
+            color: #4a5568;
+            font-size: 1.1em;
+            line-height: 2.2;
+            margin-bottom: 12px;
+        }
+
+        .book-title {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #667eea;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Key Points */
+        .key-points {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        .key-points li {
+            margin-right: 25px;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            color: #4a5568;
+            line-height: 2;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-right: 5px solid #48bb78;
+        }
+
+        .memory-tip strong {
+            color: #2d3748;
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .memory-tip p {
+            color: #4a5568;
+            font-size: 1.05em;
+            line-height: 2;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .section-content {
+                font-size: 1.05em;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>ابن بطلان</h1>
+            <div class="english">Ibn Butlan</div>
+        </div>
+
+        <!-- Quick Info -->
+        <div class="quick-info fade-in" style="animation-delay: 0.1s;">
+            <h3>📌 فوری معلومات</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>پورا نام:</strong> ابو الحسن مختار بن عبدون بن سعد ابن بطلان
+                </div>
+                <div class="info-item">
+                    <strong>دور:</strong> گیارہویں صدی عیسوی (11th Century AD)
+                </div>
+                <div class="info-item">
+                    <strong>وطن:</strong> بغداد
+                </div>
+                <div class="info-item">
+                    <strong>مذہب:</strong> عیسائی
+                </div>
+                <div class="info-item">
+                    <strong>وفات:</strong> 1036 عیسوی، انطاکیہ (Antioch)
+                </div>
+                <div class="info-item">
+                    <strong>شخصیت:</strong> عالم، طبیب، فلسفی اور سیاح
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="section fade-in" style="animation-delay: 0.2s;">
+            <h2 class="section-title">تعارف</h2>
+            <div class="section-content">
+                <p>ابن بطلان ایک قابل قدر طبیب اور بلند پایہ فلسفی تھا۔ وہ بغداد میں رہتا تھا اور عیسائی مذہب کا پیروکار تھا۔</p>
+                
+                <div class="highlight-card">
+                    <h4>🌍 خاص بات</h4>
+                    <p>ابن بطلان کو ایک جگہ ٹھہرنا پسند نہیں تھا۔ وہ فطرت سے سیاح تھا اور علم کا بہت شوقین تھا۔ علم اور حکمت کی تلاش میں اس نے زندگی بھر سفر کیا اور مختلف جگہوں میں رہا۔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section fade-in" style="animation-delay: 0.3s;">
+            <h2 class="section-title">تعلیم و تربیت</h2>
+            <div class="section-content">
+                <p>ابن بطلان نے تین اہم مضامین میں تعلیم حاصل کی:</p>
+                
+                <div class="key-points">
+                    <ul>
+                        <li><strong>فلسفہ</strong> - حکمت اور سوچ کا علم</li>
+                        <li><strong>حکمت</strong> - دانائی اور سمجھ کا علم</li>
+                        <li><strong>طب</strong> - علاج اور صحت کا علم</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-card">
+                    <h4>👨‍🏫 استاد</h4>
+                    <p><strong>ابو الفرج عبداللہ ابن الطیب</strong> - ان سے فلسفہ اور طب سیکھی۔</p>
+                    <p><strong>ابو الحسن بن ابراہیم بن آبرون الحرانی</strong> - ان سے طب کی تعلیم حاصل کی۔</p>
+                </div>
+
+                <div class="memory-tip">
+                    <strong>یاد رکھیں:</strong>
+                    <p>ابن بطلان نے صرف کتابوں سے نہیں سیکھا، بلکہ اصل مریضوں کا علاج کرکے بھی سیکھا۔ یعنی اس نے عملی تربیت بھی حاصل کی۔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Three Roles -->
+        <div class="section fade-in" style="animation-delay: 0.4s;">
+            <h2 class="section-title">فضل و کمال</h2>
+            <div class="section-content">
+                <p>ابن بطلان نے تین میدانوں میں نام کمایا:</p>
+                
+                <div class="roles-grid">
+                    <!-- Role 1: Philosopher -->
+                    <div class="role-card">
+                        <h4>🧠 1. بحیثیت فلسفی</h4>
+                        <p>ابن بطلان ایک بلند پایہ فلسفی تھا۔ اس نے اپنے زمانے کے مشہور فلسفی اور طبیب <strong>علی بن رضوان</strong> سے فلسفہ اور طب پر بحث اور مناظرے کیے۔</p>
+                        <p><strong>خاص بات:</strong> ابن بطلان نے بغداد سے مصر کا سفر صرف اس لیے کیا تاکہ وہ ابن رضوان سے مل سکے اور ان سے بات چیت کر سکے۔</p>
+                    </div>
+
+                    <!-- Role 2: Physician -->
+                    <div class="role-card">
+                        <h4>⚕️ 2. بحیثیت طبیب</h4>
+                        <p>ابن بطلان ایک ماہر اور تجربہ کار طبیب تھا۔ وہ اپنے کام پر بہت توجہ دیتا تھا۔</p>
+                        
+                        <div style="background: white; padding: 15px; border-radius: 10px; margin-top: 15px;">
+                            <p><strong>علاج کا طریقہ:</strong></p>
+                            <ul style="margin-right: 20px; margin-top: 10px;">
+                                <li>صرف کتابوں پر انحصار نہیں کرتا تھا</li>
+                                <li>مشاہدہ اور تجربہ پر یقین رکھتا تھا</li>
+                                <li>اس کی تشخیص بالکل درست ہوتی تھی</li>
+                            </ul>
+                        </div>
+
+                        <div class="memory-tip" style="margin-top: 15px;">
+                            <strong>دلچسپ عادت:</strong>
+                            <p>اگر وہ کسی مریض کو لاعلاج کہہ دیتا اور وہ مریض کسی طرح ٹھیک ہو جاتا، تو ابن بطلان اس سے ضرور پوچھتا کہ کیسے ٹھیک ہوا؟ اور پھر اسے اپنے علم میں شامل کر لیتا۔</p>
+                        </div>
+                    </div>
+
+                    <!-- Role 3: Author -->
+                    <div class="role-card">
+                        <h4>✍️ 3. بحیثیت مصنف</h4>
+                        <p>اگر ابن بطلان نے کتابیں نہ لکھی ہوتیں، تو شاید آج ہم اسے نہ جانتے۔ اس کی کتابوں کی وجہ سے اس کا نام تاریخ میں زندہ ہے۔</p>
+                        
+                        <div style="background: white; padding: 15px; border-radius: 10px; margin-top: 15px;">
+                            <p><strong>مشہور تصانیف:</strong></p>
+                            <ul style="margin-right: 20px; margin-top: 10px;">
+                                <li>تقویم الصحۃ (سب سے مشہور کتاب)</li>
+                                <li>مقالہ فی شرب الدواء المسہل</li>
+                                <li>مقالہ فی کیفیۃ دخول الغذاء فی البدن</li>
+                                <li>مثانے کی پتھری پر مقالہ</li>
+                                <li>بچوں کی تعلیم پر مقالہ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Famous Book -->
+        <div class="section fade-in" style="animation-delay: 0.5s;">
+            <h2 class="section-title">سب سے مشہور کتاب</h2>
+            
+            <div class="book-section">
+                <div class="book-title">📖 تقویم الصحۃ</div>
+                
+                <p><strong>زبان:</strong> عربی</p>
+                <p><strong>موضوع:</strong> طب اور صحت</p>
+                <p><strong>خاصیت:</strong> یہ ایک نادر اور قیمتی کتاب ہے</p>
+                
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-top: 20px;">
+                    <p><strong>📚 کہاں محفوظ ہے:</strong></p>
+                    <p>اصل قلمی نسخہ کیمبرج یونیورسٹی کے ایڈمز کالج کے کتب خانے میں محفوظ ہے۔</p>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-top: 20px;">
+                    <p><strong>🌍 مقبولیت:</strong></p>
+                    <p>یہ کتاب مشرق اور مغرب دونوں جگہوں پر یکساں طور پر مشہور ہوئی۔</p>
+                    <p style="margin-top: 10px;"><strong>لاطینی ترجمہ:</strong> مغرب میں اس کا لاطینی زبان میں ترجمہ ہوا جس کا نام <strong>"Theatrum Sanitatis"</strong> رکھا گیا۔</p>
+                    <p><strong>اشاعت:</strong> روم سے 1940 عیسوی میں شائع ہوا۔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Guide -->
+        <div class="section fade-in" style="animation-delay: 0.6s;">
+            <h2 class="section-title">💡 یاد رکھنے کا آسان طریقہ</h2>
+            <div class="section-content">
+                <div class="memory-tip">
+                    <strong>نام یاد کریں:</strong>
+                    <p>ابو الحسن مختار بن عبدون بن سعد = ابن بطلان</p>
+                </div>
+
+                <div class="memory-tip">
+                    <strong>وقت یاد کریں:</strong>
+                    <p>گیارہویں صدی (11th Century) = 1036 میں وفات</p>
+                </div>
+
+                <div class="memory-tip">
+                    <strong>تین چیزیں یاد کریں:</strong>
+                    <p>1️⃣ فلسفی - سوچنے والا<br>
+                    2️⃣ طبیب - علاج کرنے والا<br>
+                    3️⃣ مصنف - کتابیں لکھنے والا</p>
+                </div>
+
+                <div class="memory-tip">
+                    <strong>خاص بات:</strong>
+                    <p>✈️ سیاح تھا - علم کی تلاش میں سفر کرتا رہا<br>
+                    📊 عملی تھا - تجربہ اور مشاہدہ پر یقین تھا<br>
+                    📚 مشہور کتاب - تقویم الصحۃ</p>
+                </div>
+
+                <div class="memory-tip">
+                    <strong>دو شہر یاد کریں:</strong>
+                    <p>🏛️ بغداد - جہاں رہتا تھا<br>
+                    🕌 انطاکیہ - جہاں فوت ہوا (1036)</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

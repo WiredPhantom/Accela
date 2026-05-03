@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن سینا - شیخ الرئیس</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        .header .english-name {
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            border-right: 5px solid #2c5282;
+        }
+
+        .info-card h2 {
+            color: #1e3a5f;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h2 .icon {
+            font-size: 1.2em;
+        }
+
+        .info-card h3 {
+            color: #2c5282;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+            padding-right: 15px;
+            border-right: 3px solid #4299e1;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin: 12px 0;
+            border-right: 4px solid #38b2ac;
+        }
+
+        .key-point strong {
+            color: #234e52;
+        }
+
+        /* Memory Box */
+        .memory-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px dashed #d69e2e;
+        }
+
+        .memory-box .title {
+            font-weight: 700;
+            color: #744210;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #2c5282, #38b2ac);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -25px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #2c5282;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #2c5282;
+        }
+
+        .timeline-item .year {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            color: #2c5282;
+            font-size: 0.9em;
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, #e9d8fd 0%, #fce7f3 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border-right: 4px solid #805ad5;
+        }
+
+        /* List Styling */
+        .styled-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .styled-list li {
+            padding: 10px 25px 10px 10px;
+            position: relative;
+            margin: 8px 0;
+            background: #f7fafc;
+            border-radius: 10px;
+        }
+
+        .styled-list li::before {
+            content: '✦';
+            position: absolute;
+            right: 8px;
+            color: #2c5282;
+        }
+
+        /* Books Section */
+        .book-card {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border-right: 4px solid #38a169;
+        }
+
+        .book-card .book-title {
+            font-weight: 700;
+            color: #22543d;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* Volume Cards */
+        .volume-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            border-right: 4px solid #4299e1;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .volume-card .volume-title {
+            font-weight: 700;
+            color: #2b6cb0;
+            margin-bottom: 8px;
+        }
+
+        /* Scholar Cards */
+        .scholar-card {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border-right: 4px solid #e53e3e;
+        }
+
+        .scholar-card .name {
+            font-weight: 700;
+            color: #742a2a;
+            font-size: 1.1em;
+        }
+
+        .scholar-card .dates {
+            font-family: Arial, sans-serif;
+            font-size: 0.85em;
+            color: #9b2c2c;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .fact-item {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .fact-item .number {
+            font-family: Arial, sans-serif;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #4338ca;
+        }
+
+        .fact-item .label {
+            font-size: 0.9em;
+            color: #3730a3;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 15px 0;
+        }
+
+        .accordion-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .accordion-header {
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
+        }
+
+        .accordion-header .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .accordion-content.show {
+            max-height: 2000px;
+            padding: 20px;
+        }
+
+        /* Removed navigation dots */
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                font-size: 16px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .quick-facts {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .info-card {
+                padding: 20px 15px;
+            }
+        }
+
+        /* Removed scroll to top button */
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>ابن سینا</h1>
+        <div class="english-name">Avicenna</div>
+        <div class="subtitle">شیخ الرئیس - طبی دنیا کا آفتاب</div>
+    </header>
+
+    <div class="container">
+        <!-- تعارف -->
+        <section class="info-card" id="intro">
+            <h2><span class="icon">📜</span> تعارف</h2>
+            
+            <div class="key-point">
+                <strong>پورا نام:</strong> ابو علی الحسین ابن عبداللہ ابن سینا
+            </div>
+
+            <div class="quick-facts">
+                <div class="fact-item">
+                    <div class="number">980</div>
+                    <div class="label">سالِ پیدائش (عیسوی)</div>
+                </div>
+                <div class="fact-item">
+                    <div class="number">1037</div>
+                    <div class="label">سالِ وفات (عیسوی)</div>
+                </div>
+                <div class="fact-item">
+                    <div class="number">58</div>
+                    <div class="label">عمر (سال)</div>
+                </div>
+                <div class="fact-item">
+                    <div class="number">200+</div>
+                    <div class="label">تصانیف</div>
+                </div>
+            </div>
+
+            <div class="key-point">
+                <strong>جائے پیدائش:</strong> افشنہ (بخارا کے قریب، ایران)
+            </div>
+
+            <div class="key-point">
+                <strong>جائے وفات:</strong> ہمدان
+            </div>
+
+            <div class="memory-box">
+                <div class="title">🧠 یاد رکھیں:</div>
+                <p>• طبی دنیا کا <strong>آفتاب</strong> کہلائے</p>
+                <p>• مشرق میں <strong>شیخ الرئیس</strong> کا لقب ملا</p>
+                <p>• علمِ طب کو مکمل اور مرتب کرنے کا سہرا انہی کے سر ہے</p>
+                <p>• مشہور کتاب <strong>القانون فی الطب</strong> مغرب میں <strong>Alcanon</strong> کے نام سے معروف</p>
+            </div>
+        </section>
+
+        <!-- تعلیم و تربیت -->
+        <section class="info-card" id="education">
+            <h2><span class="icon">📚</span> تعلیم و تربیت</h2>
+
+            <div class="key-point">
+                <strong>والد:</strong> بلخ کے رہنے والے تھے
+            </div>
+
+            <div class="key-point">
+                <strong>والدہ:</strong> افشنہ کی رہنے والی تھیں (یہیں شیخ پیدا ہوئے)
+            </div>
+
+            <div class="key-point">
+                <strong>ابتدائی تعلیم:</strong> بخارا میں حاصل کی
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">10 سال کی عمر</div>
+                    <p>قرآن مجید حفظ کر لیا اور عربی علوم میں مہارت حاصل کی</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">16 سال کی عمر</div>
+                    <p>طب کی طرف توجہ دی</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">18 سال کی عمر</div>
+                    <p>فنِ طب میں کمال حاصل کر لیا</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>دلچسپ بات:</strong> شیخ نے ہندسہ (ریاضی) ایک <strong>سبزی فروش</strong> سے سیکھا! یعنی جہاں سے بھی علم ملتا، سیکھتے۔
+            </div>
+
+            <div class="memory-box">
+                <div class="title">🎯 ان کے علوم:</div>
+                <p>طب، منطق، فلسفہ، الٰہیات، لسانیات، ادب، اخلاقیات، سیاسیات، موسیقی، نجوم، فلکیات، طبیعیات، حیاتیات، کیمیاء، ریاضیات</p>
+            </div>
+        </section>
+
+        <!-- فضل و کمال -->
+        <section class="info-card" id="achievements">
+            <h2><span class="icon">⭐</span> فضل و کمال</h2>
+
+            <p style="margin-bottom: 15px;">شیخ کی شخصیت کے <strong>تین پہلو</strong>:</p>
+
+            <div class="accordion">
+                <!-- بحیثیت فلسفی -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>🔹 بحیثیت فلسفی</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>شیخ نے پہلے فلسفے کی بنیاد پر طب کو سمجھا۔</p>
+                        <div class="key-point">
+                            <strong>اہم کام:</strong> طب پر غیر ضروری فلسفہ حاوی تھا۔ شیخ نے القانون میں اصول و ضوابط کو فلسفے سے پاک کر کے پیش کیا تاکہ طب سمجھنے میں آسانی ہو۔
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بحیثیت طبیب -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>🔹 بحیثیت طبیب</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>کم عمری میں ہی علاج شروع کر دیا۔ 18 سال کی عمر میں طبیب حاذق کے طور پر شہرت دور دور تک پہنچ گئی۔</p>
+                        
+                        <div class="highlight">
+                            <strong>مشہور واقعہ:</strong> امیر بخارا <strong>نوح بن منصور</strong> کسی پیچیدہ مرض میں مبتلا ہوا۔ شاہی اطبا ناکام رہے۔ شیخ کو بلایا گیا اور نوعمر ہونے کے باوجود کامیاب علاج کیا۔ بادشاہ نے خوش ہو کر <strong>شاہی طبیب</strong> مقرر کر دیا۔
+                        </div>
+
+                        <div class="key-point">
+                            <strong>خاص بات:</strong> مختلف ممالک میں جہاں بھی گئے، اپنی لیاقت کی بنا پر ہر جگہ دربارِ شاہی کے طبیب خاص مقرر ہوئے۔
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بحیثیت مصنف -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>🔹 بحیثیت مصنف</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="quick-facts">
+                            <div class="fact-item">
+                                <div class="number">200+</div>
+                                <div class="label">کل کتب</div>
+                            </div>
+                            <div class="fact-item">
+                                <div class="number">48</div>
+                                <div class="label">طب سے متعلق</div>
+                            </div>
+                        </div>
+
+                        <div class="memory-box">
+                            <div class="title">📖 اہم تصانیف:</div>
+                            <ul class="styled-list">
+                                <li>القانون فی الطب</li>
+                                <li>کتاب الشفاء</li>
+                                <li>کتاب القولنج</li>
+                                <li>کتاب النجاة</li>
+                                <li>الادویہ القلبیہ</li>
+                            </ul>
+                        </div>
+
+                        <div class="key-point">
+                            <strong>خصوصیت:</strong> ان کی تحریروں میں ذاتی تحقیق اور مشاہدہ نمایاں نظر آتا ہے۔
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- القانون فی الطب -->
+        <section class="info-card" id="alqanun">
+            <h2><span class="icon">📗</span> القانون فی الطب</h2>
+
+            <div class="book-card">
+                <div class="book-title">علم طب کی عظیم ترین کتاب</div>
+                <p>گیارہویں صدی عیسوی میں لکھی گئی۔ طبی لٹریچر کی جان تصور کی جاتی ہے۔</p>
+            </div>
+
+            <div class="memory-box">
+                <div class="title">🏆 القانون کی شہرت:</div>
+                <p>• مشرق میں: <strong>طبی انسائیکلوپیڈیا</strong></p>
+                <p>• مغرب میں: <strong>میڈیکل بائبل</strong></p>
+                <p>• یورپ کے میڈیکل کالجوں میں <strong>700 سال</strong> تک داخل نصاب رہی</p>
+                <p>• آج بھی ہماری طبی درسگاہوں کے نصاب کی بنیاد القانون پر ہے</p>
+            </div>
+
+            <h3>ضخامت</h3>
+            <div class="key-point">
+                <p>پہلے <strong>14 جلدوں</strong> پر مشتمل تھی</p>
+                <p>اب صرف <strong>5 جلدیں</strong> موجود ہیں</p>
+            </div>
+
+            <h3>مندرجات (5 جلدیں)</h3>
+
+            <div class="volume-card">
+                <div class="volume-title">جلد اول</div>
+                <p>امور طبیعیہ، اعضاء کی تشریح و منافع، اسباب ستہ ضروریہ، علم الاحوال والاسباب والاعراض، ذرائع استدلال (نبض، بول و براز)، اصول علاج</p>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-title">جلد دوم</div>
+                <p>کلیات ادویہ اور ادویہ مفردہ کا بیان</p>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-title">جلد سوم (معالجات)</div>
+                <p>امراض سر، اعصاب، چشم، اذن، انف و اسنان، صدر و قلب، مری، معدہ و امعاء، کبد، اطحال، گردہ و مثانہ، امراض مخصوصہ مردانہ و زنانہ، امراض ظاہرہ بدنیہ</p>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-title">جلد چہارم (معالجات)</div>
+                <p>امراض عمومی (حمیات، اورام)، امراض جراحیہ، زہر اور تریاقات، امور زینت، بال اور جلد کے امراض</p>
+            </div>
+
+            <div class="volume-card">
+                <div class="volume-title">جلد پنجم (قرابادین)</div>
+                <p>تقریباً <strong>750 مرکبات</strong> کا بیان</p>
+            </div>
+        </section>
+
+        <!-- شروح و تلخیصات -->
+        <section class="info-card" id="sharh">
+            <h2><span class="icon">✍️</span> قانون کی شروح و تلخیصات</h2>
+
+            <p style="margin-bottom: 15px;">قانون پر بیشمار کام ہوا۔ تین نام بہت نمایاں ہیں:</p>
+
+            <div class="scholar-card">
+                <div class="name">۱۔ علاء الدین ابن نفیس قرشی</div>
+                <div class="dates">1210 - 1288 AD</div>
+                <div style="margin-top: 10px;">
+                    <p>• قانون کی <strong>مکمل شرح</strong> لکھی (عربی میں پہلی شرح)</p>
+                    <p>• <strong>موجز القانون</strong> - قانون کا خلاصہ تیار کیا (اصل سے زیادہ مشہور ہوا)</p>
+                </div>
+            </div>
+
+            <div class="scholar-card">
+                <div class="name">۲۔ حکیم علی گیلانی</div>
+                <div class="dates">1554 - 1609 AD</div>
+                <div style="margin-top: 10px;">
+                    <p>• مغلیہ دور کے عہد اکبری کے نامور طبیب</p>
+                    <p>• القانون کی عربی میں مکمل شرح لکھی: <strong>شرح گیلانی</strong></p>
+                </div>
+            </div>
+
+            <div class="scholar-card">
+                <div class="name">۳۔ علامہ محمد بن محمود چغمنی</div>
+                <div class="dates"></div>
+                <div style="margin-top: 10px;">
+                    <p>• قانون کا نہایت مختصر خلاصہ تیار کیا</p>
+                    <p>• <strong>قانونچہ</strong> کے نام سے مشہور ہوا</p>
+                    <p>• "سمندر کو کوزے میں بند کرنے کی کامیاب کوشش"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- تراجم -->
+        <section class="info-card" id="translations">
+            <h2><span class="icon">🌍</span> تراجم</h2>
+
+            <div class="highlight">
+                <strong>خاص بات:</strong> علم طب کی کسی اور کتاب کے اتنی زبانوں میں تراجم نہیں ہوئے جتنے القانون کے ہوئے!
+            </div>
+
+            <div class="key-point">
+                <strong>مغرب میں:</strong> لاطینی تراجم کو مقبولیت حاصل ہوئی
+            </div>
+
+            <div class="key-point">
+                <strong>مشرق میں:</strong> اردو تراجم کا بول بالا رہا
+            </div>
+
+            <h3>اہم اردو تراجم</h3>
+
+            <div class="scholar-card">
+                <div class="name">۱۔ علامہ غلام حسنین کشوری</div>
+                <div class="dates">1829 - 1918 AD</div>
+                <div style="margin-top: 10px;">
+                    <p><strong>اہمیت:</strong> پانچوں جلدوں پر مشتمل ہے</p>
+                </div>
+            </div>
+
+            <div class="scholar-card">
+                <div class="name">۲۔ علامہ کبیر الدین</div>
+                <div class="dates">1889 - 1976 AD</div>
+                <div style="margin-top: 10px;">
+                    <p><strong>مقبول ترین ترجمہ</strong> - لیکن صرف جلد اول اور دوم تک محدود</p>
+                </div>
+            </div>
+
+            <div class="key-point">
+                <strong>انگریزی ترجمہ:</strong> ہمدرد پبلیکیشن، تغلق آباد، نئی دہلی کے زیر اہتمام
+            </div>
+        </section>
+
+        <!-- خلاصہ -->
+        <section class="info-card" id="summary">
+            <h2><span class="icon">📝</span> مختصر خلاصہ (یاد کرنے کے لیے)</h2>
+
+            <div class="memory-box">
+                <div class="title">🔑 اہم نکات:</div>
+                <p>✅ <strong>پورا نام:</strong> ابو علی الحسین ابن عبداللہ ابن سینا</p>
+                <p>✅ <strong>پیدائش:</strong> 980AD - افشنہ (بخارا کے قریب)</p>
+                <p>✅ <strong>وفات:</strong> 1037AD - ہمدان (عمر 58 سال)</p>
+                <p>✅ <strong>لقب:</strong> شیخ الرئیس (مشرق میں)</p>
+                <p>✅ <strong>10 سال:</strong> قرآن حفظ</p>
+                <p>✅ <strong>16 سال:</strong> طب کی طرف توجہ</p>
+                <p>✅ <strong>18 سال:</strong> طب میں کمال + شاہی طبیب</p>
+                <p>✅ <strong>کتب:</strong> 200+ (48 طب سے متعلق)</p>
+                <p>✅ <strong>مشہور کتاب:</strong> القانون فی الطب (Alcanon)</p>
+                <p>✅ <strong>القانون:</strong> 5 جلدیں، 750 مرکبات</p>
+                <p>✅ <strong>یورپ میں:</strong> 700 سال داخل نصاب</p>
+            </div>
+
+            <div class="memory-box">
+                <div class="title">📚 شارحین (3 نام):</div>
+                <p>۱۔ <strong>علاء الدین قرشی</strong> → موجز القانون</p>
+                <p>۲۔ <strong>حکیم علی گیلانی</strong> → شرح گیلانی</p>
+                <p>۳۔ <strong>علامہ چغمنی</strong> → قانونچہ</p>
+            </div>
+
+            <div class="memory-box">
+                <div class="title">📖 اردو مترجمین:</div>
+                <p>۱۔ <strong>غلام حسنین کشوری</strong> → 5 جلدیں</p>
+                <p>۲۔ <strong>علامہ کبیر الدین</strong> → 2 جلدیں (مقبول ترین)</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Removed scroll to top button -->
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        // Year in footer
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const isActive = this.classList.contains('active');
+                
+                // Close all accordions
+                document.querySelectorAll('.accordion-header').forEach(h => {
+                    h.classList.remove('active');
+                    h.nextElementSibling.classList.remove('show');
+                });
+                
+                // Open clicked one if it wasn't active
+                if (!isActive) {
+                    this.classList.add('active');
+                    content.classList.add('show');
+                }
+            });
+        });
+
+        // Removed scroll to top button functionality
+
+        // Animate elements on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.info-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
