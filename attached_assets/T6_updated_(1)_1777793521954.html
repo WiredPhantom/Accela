@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>یونانی طب</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+
+        :root {
+            --primary: #1e3c72;
+            --accent: #667eea;
+            --accent2: #764ba2;
+            --card-bg: #ffffff;
+            --light-bg: #f4f6fc;
+            --text: #2d3748;
+            --text-light: #6b7a99;
+            --peach: #ffecd2;
+            --peach2: #fcb69f;
+            --mint: #a8edea;
+            --pink: #fed6e3;
+            --red-accent: #ff6b6b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: var(--light-bg);
+            min-height: 100vh;
+            line-height: 2;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ===== TOP STATUS BAR GLOW ===== */
+        .top-glow {
+            height: 50px;
+            background: linear-gradient(180deg, rgba(102,126,234,0.25) 0%, transparent 100%);
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(145deg, var(--primary) 0%, #2a5298 60%, var(--accent) 100%);
+            color: white;
+            padding: 60px 22px 34px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -40px; right: -40px;
+            width: 140px; height: 140px;
+            background: rgba(255,255,255,0.07);
+            border-radius: 50%;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px; left: -25px;
+            width: 100px; height: 100px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .header-icon {
+            font-size: 2.2em;
+            margin-bottom: 6px;
+            display: block;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+        }
+
+        .header h1 {
+            font-size: 1.9em;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 0.88em;
+            opacity: 0.78;
+            margin-top: 4px;
+            font-family: Georgia, serif;
+            font-style: italic;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-line {
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, white, transparent);
+            margin: 14px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ===== MAIN WRAPPER ===== */
+        .content {
+            padding: 18px 16px 30px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ===== SECTION CARDS ===== */
+        .section {
+            background: var(--card-bg);
+            border-radius: 18px;
+            margin-bottom: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(30,60,114,0.08);
+            animation: slideUp 0.5s ease both;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.05s; }
+        .section:nth-child(2) { animation-delay: 0.12s; }
+        .section:nth-child(3) { animation-delay: 0.19s; }
+        .section:nth-child(4) { animation-delay: 0.26s; }
+        .section:nth-child(5) { animation-delay: 0.33s; }
+        .section:nth-child(6) { animation-delay: 0.40s; }
+        .section:nth-child(7) { animation-delay: 0.47s; }
+
+        /* ===== DIAGNOSIS GRID (نبض بول فراز) ===== */
+        .diag-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .diag-item {
+            background: linear-gradient(145deg, #e8eaff, #d4d9ff);
+            border-radius: 12px;
+            padding: 14px 6px;
+            text-align: center;
+        }
+
+        .diag-emoji {
+            font-size: 1.6em;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .diag-label {
+            font-size: 0.82em;
+            color: var(--primary);
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .diag-sublabel {
+            font-size: 0.72em;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        /* ===== MIZAJ ARROW BOX (علاج بالضد) ===== */
+        .opposite-box {
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        .opposite-arrow {
+            font-size: 1.8em;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .opposite-box p {
+            font-size: 0.9em;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        /* ===== 7 PILLARS GRID ===== */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .pillar-item {
+            background: white;
+            border-radius: 10px;
+            padding: 11px 10px;
+            box-shadow: 0 2px 8px rgba(30,60,114,0.08);
+            border-right: 3px solid var(--accent);
+        }
+
+        .pillar-item.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .pillar-number {
+            font-size: 0.72em;
+            background: var(--accent);
+            color: white;
+            border-radius: 10px;
+            padding: 1px 7px;
+            display: inline-block;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .pillar-name {
+            font-size: 0.88em;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .pillar-eng {
+            font-size: 0.72em;
+            color: var(--text-light);
+            font-family: Georgia, serif;
+            font-style: italic;
+        }
+
+        /* ===== TRI-MASTER 3 MATTER BADGES ===== */
+        .matter-row {
+            display: flex;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .matter-badge {
+            flex: 1;
+            border-radius: 12px;
+            padding: 14px 6px;
+            text-align: center;
+        }
+
+        .matter-badge.solid   { background: linear-gradient(145deg, #ffe0b2, #ffcc80); }
+        .matter-badge.liquid  { background: linear-gradient(145deg, #bbdefb, #90caf9); }
+        .matter-badge.gas     { background: linear-gradient(145deg, #c8e6c9, #a5d6a7); }
+
+        .matter-badge .m-emoji { font-size: 1.5em; display: block; margin-bottom: 3px; }
+        .matter-badge .m-title { font-size: 0.82em; color: var(--primary); font-weight: 700; }
+        .matter-badge .m-eng   { font-size: 0.68em; color: #666; font-family: Georgia, serif; font-style: italic; }
+        .matter-badge .m-map   { font-size: 0.72em; color: var(--text); margin-top: 4px; }
+
+        /* ===== ETHICS / OATH BOX ===== */
+        .oath-box {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            border-radius: 12px;
+            padding: 18px 16px;
+            margin: 14px 0;
+            text-align: center;
+        }
+
+        .oath-icon {
+            font-size: 2em;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .oath-box p {
+            font-size: 0.93em;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        /* green stripe variant */
+        .section-stripe.green {
+            background: linear-gradient(90deg, #66bb6a, #43a047);
+        }
+        /* teal stripe variant */
+        .section-stripe.teal {
+            background: linear-gradient(90deg, #26c6da, #00acc1);
+        }
+        /* pink stripe variant */
+        .section-stripe.pink {
+            background: linear-gradient(90deg, #ec407a, #e91e63);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section colour stripe on top */
+        .section-stripe {
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+        }
+        .section-stripe.peach {
+            background: linear-gradient(90deg, #fcb69f, #ff6b6b);
+        }
+
+        .section-inner {
+            padding: 20px 18px 22px;
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-size: 1.25em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+
+        /* ===== INTRO BOX ===== */
+        .intro-box {
+            background: linear-gradient(135deg, var(--peach) 0%, var(--peach2) 100%);
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 0.98em;
+            line-height: 1.9;
+            margin-bottom: 14px;
+        }
+
+        .highlight {
+            background: rgba(255,255,255,0.55);
+            padding: 1px 7px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        .intro-box p, .intro-text p {
+            margin-bottom: 10px;
+        }
+
+        .intro-text p:last-child { margin-bottom: 0; }
+
+        .intro-text {
+            font-size: 0.96em;
+            color: var(--text);
+            line-height: 1.85;
+        }
+
+        /* ===== CONCEPT CARDS (inner) ===== */
+        .concept-card {
+            background: var(--light-bg);
+            border-radius: 13px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-right: 4px solid var(--accent);
+        }
+
+        .concept-card:last-child { margin-bottom: 0; }
+
+        .concept-title {
+            color: #2a5298;
+            font-size: 1.05em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .concept-text {
+            font-size: 0.93em;
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* ===== KEY POINTS LIST ===== */
+        .key-points {
+            background: #eef2fb;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin: 10px 0;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            padding: 7px 8px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 8px;
+            font-size: 0.92em;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            position: relative;
+            padding-right: 28px;
+        }
+
+        .key-points li::before {
+            content: "◈";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* ===== TREATMENT GRID (2-col on phone) ===== */
+        .treatment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .treatment-item {
+            background: linear-gradient(145deg, var(--mint) 0%, var(--pink) 100%);
+            padding: 16px 10px 18px;
+            border-radius: 14px;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .treatment-item:active {
+            transform: scale(0.96);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+
+        .treatment-number {
+            font-size: 1.6em;
+            color: var(--primary);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .treatment-name {
+            font-size: 0.92em;
+            color: #2a5298;
+            font-weight: 700;
+            margin: 6px 0 5px;
+        }
+
+        .treatment-desc {
+            font-size: 0.78em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* ===== REMINDER BOX (bottom of treatments) ===== */
+        .reminder-box {
+            background: linear-gradient(135deg, var(--peach), var(--peach2));
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-top: 16px;
+            font-size: 0.92em;
+            line-height: 1.7;
+        }
+
+        /* ===== SUMMARY SECTION ===== */
+        .summary-section .section-stripe { background: linear-gradient(90deg, #fcb69f, var(--red-accent)); }
+
+        .summary-section .section-title {
+            color: #c92a2a;
+        }
+
+        .summary-section .key-points {
+            background: linear-gradient(135deg, rgba(255,236,210,0.5), rgba(252,182,159,0.4));
+        }
+
+        .summary-section .key-points li {
+            font-size: 0.93em;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #2d3748;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 18px 16px;
+            font-size: 0.78em;
+            position: relative;
+            z-index: 40;
+            margin-top: 0;
+        }
+
+        /* ===== RESPONSIVE: tablet+ ===== */
+        @media (min-width: 540px) {
+            .content { padding: 24px 20px 40px; }
+            .section-inner { padding: 24px 22px 26px; }
+            .header { padding: 70px 28px 40px; }
+            .header h1 { font-size: 2.2em; }
+            .treatment-grid { gap: 14px; }
+            .treatment-item { padding: 20px 14px 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-glow"></div>
+
+<!-- HEADER -->
+<header class="header" id="top">
+    <span class="header-icon">☽</span>
+    <h1>یونانی طب</h1>
+    <p>Unani Medicine</p>
+    <div class="header-line"></div>
+</header>
+
+<!-- MAIN -->
+<main class="content">
+
+    <!-- SECTION 1 -->
+    <section class="section" id="s1">
+        <div class="section-stripe"></div>
+        <div class="section-inner">
+            <h2 class="section-title"><span class="icon">📖</span> یونانی طب کیا ہے؟</h2>
+
+            <div class="intro-box">
+                یونانی طب ایک قدیم علاج کا طریقہ ہے جو یونان سے شروع ہوا۔ اس کے بانی
+                <span class="highlight">بقراط</span> (Hippocrates) ہیں جنہیں
+                <span class="highlight">ابوالطب</span> (Father of Medicine) کہا جاتا ہے۔
+            </div>
+
+            <div class="intro-text">
+                <p><strong>بقراط کا کارنامہ:</strong> انہوں نے طب کو جادو ٹونے سے نکال کر سائنس اور تجربے کی بنیاد پر قائم کیا۔</p>
+                <p><strong>یونانی طب کی خاصیت:</strong> یہ قدرتی چیزوں سے علاج کرتی ہے اور جسم کی اپنی طاقت (طبیعت) کو بڑھاتی ہے۔</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section class="section" id="s2">
+        <div class="section-stripe"></div>
+        <div class="section-inner">
+            <h2 class="section-title"><span class="icon">🔬</span> بنیادی تصورات</h2>
+
+            <!-- 1. Tri-Master (نظریہ مواليد ثلاثہ) — moved to top -->
+            <div class="concept-card" style="border-right-color: #43a047;">
+                <div class="concept-title">۱۔ نظریہ مواليد ثلاثہ (Tri-Master Theory)</div>
+                <div class="concept-text">
+                    <p>بقراط نے مانا کہ کائنات میں <strong>تین طرح کے مادے</strong> پائے جاتے ہیں۔ انسانی بدن کی ساخت بھی انہی تین مادوں پر مشتمل ہے:</p>
+
+                    <div class="matter-row">
+                        <div class="matter-badge solid">
+                            <span class="m-emoji">🪨</span>
+                            <div class="m-title">جامد</div>
+                            <div class="m-eng">Solid</div>
+                            <div class="m-map">→ اعضاء</div>
+                        </div>
+                        <div class="matter-badge liquid">
+                            <span class="m-emoji">💧</span>
+                            <div class="m-title">سیال</div>
+                            <div class="m-eng">Liquid</div>
+                            <div class="m-map">→ اخلاط</div>
+                        </div>
+                        <div class="matter-badge gas">
+                            <span class="m-emoji">🌬️</span>
+                            <div class="m-title">ریحی</div>
+                            <div class="m-eng">Gaseous</div>
+                            <div class="m-map">→ بخارات</div>
+                        </div>
+                    </div>
+
+                    <div class="key-points">
+                        <ul>
+                            <li><strong>جامد مادے</strong> → بقراط نے انہیں <strong>اعضاء</strong> (Organs) کہا</li>
+                            <li><strong>سیال مادے</strong> → انہیں <strong>اخلاط</strong> (Humours) کہا گیا</li>
+                            <li><strong>ریکی مادے</strong> → انہیں بدنی <strong>بخارات</strong> (Pneuma) سے تعبیر کیا گیا</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Humours (shifted from ۱ to ۲) -->
+            <div class="concept-card">
+                <div class="concept-title">۲۔ نظریہ اخلاط (Humours)</div>
+                <div class="concept-text">
+                    <p>جسم میں چار طرح کی رطوبتیں ہیں:</p>
+                    <div class="key-points">
+                        <ul>
+                            <li><strong>خون</strong> — Blood (خلط دم)</li>
+                            <li><strong>بلغم</strong> — Phlegm (خلط بلغم)</li>
+                            <li><strong>صفرا</strong> — Bile (خلط صفرا)</li>
+                            <li><strong>سودا</strong> — Black Bile (خلط سودا)</li>
+                        </ul>
+                    </div>
+                    <p><strong>اہم بات:</strong> جب یہ چاروں متوازن ہوں تو انسان تندرست رہتا ہے۔ عدم توازن سے بیماری ہوتی ہے۔</p>
+                </div>
+            </div>
+
+            <!-- 3. Tabiyat -->
+            <div class="concept-card">
+                <div class="concept-title">۳۔ نظریہ طبیعت (Physic)</div>
+                <div class="concept-text">
+                    <p>جسم میں ایک <span class="highlight">قدرتی طاقت</span> ہے جو:</p>
+                    <div class="key-points">
+                        <ul>
+                            <li>صحت کی حفاظت کرتی ہے</li>
+                            <li>بیماری سے لڑتی ہے</li>
+                            <li>خود شفا دیتی ہے</li>
+                        </ul>
+                    </div>
+                    <p><strong>طبیب کا کام:</strong> اس قدرتی طاقت کی مدد کرنا ہے، نہ کہ اس کی جگہ لینا۔</p>
+                </div>
+            </div>
+
+            <!-- 4. Six Causes -->
+            <div class="concept-card">
+                <div class="concept-title">۴۔ اسباب ستہ ضروریہ (Six Essential Causes)</div>
+                <div class="concept-text">
+                    <p>چھ چیزیں جو صحت اور بیماری پر اثر ڈالتی ہیں:</p>
+                    <div class="key-points">
+                        <ul>
+                            <li><strong>ہوا</strong> — صاف ہوا میں رہنا</li>
+                            <li><strong>ماکول و مشروب</strong> — صحیح غذا</li>
+                            <li><strong>حرکت و سکون بدنی</strong> — ورزش اور آرام</li>
+                            <li><strong>حرکت و سکون نفسانی</strong> — سوچ اور جذبات</li>
+                            <li><strong>نوم و یقظہ</strong> — کافی نیند لینا</li>
+                            <li><strong>استفراغ و احتباس</strong> — فضلات کا خارج ہونا یا روکنا</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Amur-e Tabiyya (replaces Mizaj) -->
+            <div class="concept-card" style="border-right-color: #43a047;">
+                <div class="concept-title">۵۔ امور طبیعیہ (Natural Philosophy)</div>
+                <div class="concept-text">
+                    <p>یونانی طب میں بدن انسان کی ساخت اور افعال <strong>سات چیزوں</strong> پر منحصر ہیں:</p>
+                    <div class="pillars-grid">
+                        <div class="pillar-item">
+                            <span class="pillar-number">۱</span>
+                            <div class="pillar-name">ارکان</div>
+                            <div class="pillar-eng">Constituents</div>
+                        </div>
+                        <div class="pillar-item">
+                            <span class="pillar-number">۲</span>
+                            <div class="pillar-name">مزاج</div>
+                            <div class="pillar-eng">Temperament</div>
+                        </div>
+                        <div class="pillar-item">
+                            <span class="pillar-number">۳</span>
+                            <div class="pillar-name">اخلاط</div>
+                            <div class="pillar-eng">Humours</div>
+                        </div>
+                        <div class="pillar-item">
+                            <span class="pillar-number">۴</span>
+                            <div class="pillar-name">اعضاء</div>
+                            <div class="pillar-eng">Organs</div>
+                        </div>
+                        <div class="pillar-item">
+                            <span class="pillar-number">۵</span>
+                            <div class="pillar-name">قویٰ</div>
+                            <div class="pillar-eng">Faculties</div>
+                        </div>
+                        <div class="pillar-item">
+                            <span class="pillar-number">۶</span>
+                            <div class="pillar-name">ارواح</div>
+                            <div class="pillar-eng">Pneumas</div>
+                        </div>
+                        <div class="pillar-item full-width">
+                            <span class="pillar-number">۷</span>
+                            <div class="pillar-name">افعال</div>
+                            <div class="pillar-eng">Functions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="section" id="s3">
+        <div class="section-stripe"></div>
+        <div class="section-inner">
+            <h2 class="section-title"><span class="icon">💊</span> علاج کے طریقے</h2>
+
+            <div class="treatment-grid">
+                <div class="treatment-item">
+                    <div class="treatment-number">۱</div>
+                    <div class="treatment-name">علاج بالتدبیر</div>
+                    <div class="treatment-desc">طرز زندگی بدلنا — ورزش، مالش، حمام</div>
+                </div>
+                <div class="treatment-item">
+                    <div class="treatment-number">۲</div>
+                    <div class="treatment-name">علاج بالغذا</div>
+                    <div class="treatment-desc">صحیح غذا سے علاج — کیا کھائیں، کتنا کھائیں</div>
+                </div>
+                <div class="treatment-item">
+                    <div class="treatment-number">۳</div>
+                    <div class="treatment-name">علاج بالدوا</div>
+                    <div class="treatment-desc">قدرتی ادویات — جڑی بوٹیاں، معدنیات</div>
+                </div>
+                <div class="treatment-item">
+                    <div class="treatment-number">۴</div>
+                    <div class="treatment-name">علاج بالجراحت</div>
+                    <div class="treatment-desc">سرجری — فصد، حجامت، تعلیق اور عمل کیٔ</div>
+                </div>
+            </div>
+
+            <div class="reminder-box">
+                <strong>یاد رکھیں:</strong> پہلے آسان طریقے (تدبیر اور غذا) استعمال کیے جاتے ہیں، پھر دوا، اور آخر میں سرجری۔
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: تشخیص (Diagnosis) -->
+    <section class="section" id="s5">
+        <div class="section-stripe teal"></div>
+        <div class="section-inner">
+            <h2 class="section-title"><span class="icon">🔍</span> امور شخیص </h2>
+
+            <div class="intro-box">
+                یونانی طب میں تشخیص کے لیے انسانی <span class="highlight">مزاج کی شناخت</span> بہت اہم ہے۔ ہر مرض کا اپنا مزاج بھی ہوتا ہے۔
+            </div>
+
+                    <!-- Two main inspection methods -->
+            <div class="concept-card">
+                <div class="concept-title">تشخیص کے دو بنیادی طریقے</div>
+                <div class="concept-text">
+                    <div class="key-points">
+                        <ul>
+                            <li><strong>امتحان بالنظر</strong> (Inspection) — دیکھ کر جانچنا</li>
+                            <li><strong>امتحان بالمس</strong> (Palpation) — چھو کر جانچنا</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 key examinations -->
+            <p style="font-size:0.92em; color:var(--text); margin-bottom:6px;"><strong>خاص طور پر یہ تین چیزیں جانچی جاتی ہیں:</strong></p>
+            <div class="diag-grid">
+                <div class="diag-item">
+                    <span class="diag-emoji">💓</span>
+                    <div class="diag-label">نبض</div>
+                    <div class="diag-sublabel">Pulse</div>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-emoji">🧪</span>
+                    <div class="diag-label">بول</div>
+                    <div class="diag-sublabel">Urine</div>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-emoji">📋</span>
+                    <div class="diag-label">براز</div>
+                    <div class="diag-sublabel">Stool</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5b: اصول علاج (Laws of Treatment) — visually part of diagnosis flow -->
+    <section class="section" id="s5b">
+        <div class="section-stripe teal"></div>
+        <div class="section-inner">
+            <h2 class="section-title"><span class="icon">⚖️</span> اصول علاج</h2>
+
+            <div class="intro-box">
+                اصول علاج کی بنیاد <span class="highlight">تعدیل مزاج</span> ہے — یعنی غیر معتدل مزاج کو معتدل مزاج کی طرف لانا۔
+            </div>
+
+            <div class="concept-card">
+                <div class="concept-title">مزاج کی چار کیفیات</div>
+                <div class="concept-text">
+                    <div class="key-points">
+                        <ul>
+                            <li><strong>گرم</strong> (Hot) 🔥</li>
+                            <li><strong>سرد</strong> (Cold) ❄️</li>
+                            <li><strong>خشک</strong> (Dry) 🏜️</li>
+                            <li><strong>تر</strong> (Wet) 💧</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- علاج بالضد visual box -->
+            <div class="opposite-box">
+                <span class="opposite-arrow">🔄</span>
+                <p><strong>علاج بالضد کا اصول</strong><br>
+                اگر کسی شخص کا طبعی مزاج <strong>گرم و خشک</strong> ہے لیکن وہ <strong>سرد و خشک</strong> ہو گیا ہے تو اس کا علاج ایسی دوا یا تدابیر سے کیا جائے گا جو <strong>گرم و تر</strong> مزاج رکھتی ہوں — کہ مزاج کی تعدیل ممکن ہو۔</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: یونانی طب اور اخلاقیات -->
+    <section class="section" id="s7">
+        <div class="section-stripe pink"></div>
+        <div class="section-inner">
+            <h2 class="section-title"><span class="icon">📜</span> یونانی طب اور اخلاقیات</h2>
+
+            <div class="oath-box">
+                <span class="oath-icon">🏛️</span>
+                <p><strong>معاہدہ بقراطیہ</strong><br>(Hippocratic Oath)</p>
+            </div>
+
+            <div class="intro-box">
+                یونانی طب میں <span class="highlight">طبی اخلاقیات</span> پر خاص توجہ دیا گیا ہے۔ بقراط نے باقاعدہ متعلمین طب کے اوصاف اور طبیب کے فرائض ترتیب دیئے تھے۔
+            </div>
+
+            <div class="concept-card" style="border-right-color: #e91e63;">
+                <div class="concept-title">معاہدہ بقراطیہ کیا ہے؟</div>
+                <div class="concept-text">
+                    <p>یہ طبیب کا <strong>وعدہ</strong> ہے جو بقراط نے بنایا تھا۔ اس میں طبیب کے فرائض اور اخلاقی اصول بیان کیے گئے ہیں جو اس فن شریف کے عین مطابق ہیں۔</p>
+                    <div class="key-points">
+                        <ul>
+                            <li>طبیب کے <strong>فرائض</strong> کا بیان</li>
+                            <li>متعلمین طب کے <strong>اوصاف</strong></li>
+                            <li>طبی فن کے <strong>اخلاقی اصول</strong></li>
+                            <li>مریض کی <strong>حفاظت</strong> کا وعدہ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: SUMMARY -->
+    <section class="section summary-section" id="s4">
+        <div class="section-stripe peach"></div>
+        <div class="section-inner">
+            <h2 class="section-title"><span class="icon">📝</span> خلاصہ — آسانی سے یاد رکھیں</h2>
+            <div class="key-points">
+                <ul>
+                    <li>یونانی طب کے بانی <strong>بقراط</strong> ہیں</li>
+                    <li>جسم میں <strong>چار رطوبتیں</strong> ہیں جن کا توازن صحت ہے</li>
+                    <li>جسم کی <strong>قدرتی طاقت</strong> خود علاج کرتی ہے</li>
+                    <li><strong>چھ چیزیں</strong> صحت پر اثر ڈالتی ہیں</li>
+                    <li>علاج کے <strong>چار طریقے</strong> ہیں — تدبیر، غذا، دوا، جراحت</li>
+                    <li>علاج میں <strong>ضد سے ضد</strong> کا اصول — سردی میں گرمی، گرمی میں سردی</li>
+                    <li>تشخیص میں <strong>نبض، بول، براز</strong> کا معائنہ اہم ہے</li>
+                    <li>اصول علاج کی بنیاد <strong>تعدیل مزاج</strong> ہے</li>
+                    <li>بدن کی ساخت <strong>سات چیزوں</strong> پر منحصر ہے</li>
+                    <li>کائنات میں <strong>تین مادے</strong> ہیں — جامد، سیال، ریحی</li>
+                    <li>بقراط نے <strong>معاہدہ بقراطیہ</strong> سے طبی اخلاقیات قائم کیے</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© <span id="year"></span> Accela &nbsp;|&nbsp; All rights reserved</p>
+</footer>
+
+<script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مصری طب - Egyptian Medicine</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 2;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.4;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-right: 6px solid #f5576c;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .section h2 {
+            color: #c23866;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px dotted #f5576c;
+        }
+        
+        .section h3 {
+            color: #d63447;
+            font-size: 1.4em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .section p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .highlight-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-right: 4px solid #667eea;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .key-points {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .key-points h3 {
+            color: #2c5364;
+            margin-bottom: 15px;
+        }
+        
+        .key-points ul {
+            list-style: none;
+            padding-right: 20px;
+        }
+        
+        .key-points li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            position: relative;
+            padding-right: 35px;
+        }
+        
+        .key-points li:before {
+            content: "✦";
+            color: #f5576c;
+            font-size: 1.3em;
+            position: absolute;
+            right: 10px;
+        }
+        
+        .memory-tip {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px dashed #f5576c;
+        }
+        
+        .memory-tip strong {
+            color: #c23866;
+            font-size: 1.2em;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        /* Mobile Oriented Optimizations */
+        @media (max-width: 640px) {
+            body {
+                padding: 0;
+            }
+            
+            .container {
+                border-radius: 0;
+                box-shadow: none;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section {
+                padding: 20px 15px;
+                border-right-width: 4px;
+                margin-bottom: 20px;
+            }
+            
+            /* Disable hover effects on mobile */
+            .section:hover {
+                transform: none;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .highlight-box, .key-points, .memory-tip {
+                padding: 15px;
+            }
+            
+            .key-points ul {
+                padding-right: 10px;
+            }
+            
+            .section p {
+                text-align: right; /* Better for mobile reading */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏛️ مصری طب 🏛️</h1>
+            <p>Egyptian Medicine</p>
+        </header>
+        
+        <div class="content">
+            <!-- تعارف -->
+            <div class="section">
+                <h2>📚 تعارف</h2>
+                <p>دنیا کی قدیم ترین تہذیبوں میں مصر کی تہذیب بہت مشہور ہے۔ مصری اہرام(pyramids of egypt)، مقبرے اور پرانے کھنڈرات سے ملنے والے بردی نوشتے، مٹی کی تختیاں اور حنوط شدہ لاشوں (mummies)سے قدیم مصری تہذیب اور طب کے بارے میں بہت معلومات ملتی ہیں۔</p>
+                
+                <div class="memory-tip">
+                    <strong>یاد رکھیں:</strong> مصری تہذیب = اہرام + مقبرے + بردی نوشتے
+                </div>
+            </div>
+
+            <!-- ابتدائی نظریات -->
+            <div class="section">
+                <h2>💭 مصری طب کے ابتدائی نظریات</h2>
+                
+                <h3>صحت اور مرض کا نظریہ</h3>
+                <p>قدیم مصریوں کا ماننا تھا کہ زندگی لافانی ہے اور کوئی خود نہیں مرتا۔ موت صرف مرض یا حادثے سے ہوتی ہے۔</p>
+                
+                <div class="highlight-box">
+                    <p><strong>اہم نکتہ:</strong> مصری لوگ مرض اور حادثات کو بھوت پریت اور بدروحوں کا سایہ سمجھتے تھے۔</p>
+                </div>
+
+                <h3>طریقہ علاج</h3>
+                <p>جب مرض کا سبب شیطانی طاقت سمجھا جاتا تھا تو علاج بھی جھاڑ پھونک اور ٹونے ٹوٹکوں سے کیا جاتا تھا۔</p>
+                
+                <div class="key-points">
+                    <h3>جسم کی تقسیم:</h3>
+                    <ul>
+                        <li>انسانی جسم کو 36 حصوں میں تقسیم کیا گیا</li>
+                        <li>ہر حصے کا ایک دیوتا محافظ ہوتا تھا</li>
+                        <li>ہر حصے کے مرض کا سبب شیطانی طاقت سمجھی جاتی تھی</li>
+                    </ul>
+                </div>
+
+                <h3>امحوطب - سب سے بڑا شفا بخش دیوتا</h3>
+                <div class="highlight-box">
+                    <p><strong>امحوطب کون تھا؟</strong></p>
+                    <ul style="list-style: none; padding-right: 20px;">
+                        <li>✓ در حقیقت ایک انسان تھا</li>
+                        <li>✓ "تاہ" بادشاہ کا وزیر اعظم تھا</li>
+                        <li>✓ عالم، فاضل، ہیئت دان، ساحر اور طبیب تھا</li>
+                        <li>✓ ہر مرض کے علاج میں ماہر تھا</li>
+                        <li>✓ موت کے بعد لوگوں نے اس کے بت بنائے</li>
+                        <li>✓ میمفس میں سب سے زیادہ مندر بنائے گئے</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- مصری طب کی ترقی -->
+            <div class="section">
+                <h2>📈 مصری طب کی ترقی</h2>
+                <p>ابتداء میں مصری طب جادو اور سحر پر مشتمل تھی، لیکن 3000 سے 2000 قبل مسیح کے درمیان مصریوں نے اس فن میں حیرت انگیز ترقی کی۔</p>
+                
+                <div class="memory-tip">
+                    <strong>یاد رکھیں:</strong> 3000-2000 BC = مصری طب میں انقلاب کا دور
+                </div>
+            </div>
+
+            <!-- ذرائع معلومات -->
+            <div class="section">
+                <h2>📜 مصری طب کے ذرائع معلومات</h2>
+                
+                <h3>1. جارج ایبرس کا بردی نوشتہ</h3>
+                <div class="highlight-box">
+                    <p><strong>خاص باتیں:</strong></p>
+                    <ul style="list-style: none; padding-right: 20px;">
+                        <li>📅 1873 میں لکسر میں دریافت ہوا</li>
+                        <li>📏 20 میٹر لمبا</li>
+                        <li>📖 1700 امراض اور ان کے علاج کی تفصیل</li>
+                        <li>⏰ زمانہ: 1553-1550 قبل مسیح</li>
+                        <li>🏛️ لیپزگ یونیورسٹی کے عجائب خانے میں محفوظ</li>
+                        <li>⭐ سب سے اہم اور مشہور طبی نوشتہ</li>
+                    </ul>
+                </div>
+
+                <div class="key-points">
+                    <h3>اہم معلومات جو اس نوشتے سے ملیں:</h3>
+                    <ul>
+                        <li>قدیم مصری علم تشریح اور منافع الاعضاء سے واقف تھے</li>
+                        <li> قلب ودماغ کو اہمیت دیتے تھے</li>
+                        <li>نبض سے قلب کی حرکت معلوم کرتے تھے</li>
+                        <li>سانس لینے کو بہت اہمیت دیتے تھے</li>
+                        <li>خون کی اہمیت جانتے تھے - لال رنگ زندگی کی علامت</li>
+                    </ul>
+                </div>
+
+                <h3>اسباب مرض:</h3>
+                <div class="highlight-box">
+                    <ul style="list-style: none; padding-right: 20px;">
+                        <li>🌤️ موسموں کی تبدیلی</li>
+                        <li>⭐ سیاروں کی تبدیلی</li>
+                        <li>🐛 کیڑے مکوڑے</li>
+                        <li>👻 غیر مرئی کیڑے (جو آنکھ سے نظر نہ آئیں)</li>
+                    </ul>
+                </div>
+
+                <h3>تشخیص میں مہارت:</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>امراض قلب، معدہ اور تناسل کی اچھی پہچان</li>
+                        <li>طحال اور جگر کی رسولیوں کا باریک بینی سے معائنہ</li>
+                        <li>زخموں کو انگلیوں سے دبا کر مواد کا معائنہ</li>
+                        <li>امتحان نبض (Pulse examination)</li>
+                        <li>ملمس (Palpation) - ہاتھ سے دبا کر معائنہ</li>
+                        <li>امتحان باسمع (Auscultation) - کان لگا کر سننا</li>
+                    </ul>
+                </div>
+
+                <h3>دوائیں:</h3>
+                <div class="highlight-box">
+                    <p><strong>نباتی دوائیں:</strong> شہد، شراب، انجیر، پیاز، لہسن، لوبان، ایلوا، سیسہ</p>
+                    <p><strong>حیوانی دوائیں:</strong> جانوروں کے اعضاء (چربی، مغز، فضلہ، خون)</p>
+                    <p><strong>معدنیات:</strong> نمک، پھٹکری، تانبہ</p>
+                    <p><strong>استعمال:</strong>مرہم، مسہل (روغن بیدانجیر)،۔   دوائیں</p>
+                </div>
+
+                <h3>حفظان صحت:</h3>
+                <div class="key-points">
+                    <ul>
+                        <li>مردوں کی تدفین کے قوانین</li>
+                        <li>گھروں اور گلیوں کی صفائی</li>
+                        <li>مناسب غذائیں</li>
+                        <li>ابال کر پانی پینا</li>
+                        <li>جنسی تعلقات میں احتیاط</li>
+                        <li>نومولود کی دیکھ بھال</li>
+                    </ul>
+                </div>
+
+                <h3>2. اڈون اسمتھ کا بردی نوشتہ</h3>
+                <div class="highlight-box">
+                    <p><strong>خاص باتیں:</strong></p>
+                    <ul style="list-style: none; padding-right: 20px;">
+                        <li>⏰ زمانہ: 1700 قبل مسیح</li>
+                        <li>🔍   1862 میں ایک امریکن نے خریدا</li>
+                        <li>📚 1920  میں دو جلدوں میں شائع ہوا</li>
+                        <li>⚕️ "نوشتہ جراحت" کے نام سے مشہور</li>
+                        <li>🏥 علم الجراحت پر سب سے اہم نوشتہ</li>
+                    </ul>
+                </div>
+
+                <div class="key-points">
+                    <h3>اہمیت:</h3>
+                    <ul>
+                        <li>علم الجراحت میں مصریوں کی مہارت کا ثبوت</li>
+                        <li>اہم عروق کی مکمل معلومات</li>
+                        <li>اعضاء کی تشریح سے واقفیت</li>
+                        <li>جراحیات کی تعلیم کے لیے بنایا گیا</li>
+                    </ul>
+                </div>
+
+                <h3>3. دیگر اہم بردی نوشتے:</h3>
+                <div class="highlight-box">
+                    <ul style="list-style: none; padding-right: 20px;">
+                        <li>📜 کاہون بردی نوشتہ (1800-2000 قبل مسیح) - سب سے قدیم، طب حیوانی اور امراض نسواں</li>
+                        <li>📜 ہرسٹ بردی نوشتہ</li>
+                        <li>📜 لندن بردی نوشتہ (1400 قبل مسیح)</li>
+                        <li>📜 برلن بردی نوشتہ (1300 قبل مسیح)</li>
+                        <li>📜 بروگش بردی نوشتہ (1200 قبل مسیح)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- خلاصہ -->
+            <div class="section">
+                <h2>📝 خلاصہ - یاد رکھنے کے لیے</h2>
+                <div class="memory-tip">
+                    <p><strong>مصری طب کی خاص باتیں:</strong></p>
+                    <ol style="padding-right: 30px; font-size: 1.1em;">
+                        <li>ابتداء میں جادو اور سحر پر مبنی</li>
+                        <li>جسم کو 36 حصوں میں تقسیم</li>
+                        <li>امحوطب سب سے بڑا شفا بخش دیوتا</li>
+                        <li>بردی نوشتوں سے معلومات</li>
+                        <li>جارج ایبرس کا نوشتہ سب سے اہم</li>
+                        <li>اڈون اسمتھ کا نوشتہ جراحت کے لیے</li>
+                        <li>تشریح، نبض اور معائنہ کا علم</li>
+                        <li>نباتی، حیوانی اور معدنی دوائیں</li>
+                        <li>حفظان صحت کا خیال</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+           <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </footer>
+    </div>
+    <script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

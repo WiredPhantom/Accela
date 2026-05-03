@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#667eea">
+    <title>چینی طب - Chinese Medicine</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.8;
+            padding: 10px;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+        
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.3;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+        
+        .content {
+            padding: 15px;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+            padding: 18px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-right: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .section:active {
+            transform: scale(0.98);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.15);
+        }
+        
+        .section-title {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #f5576c;
+            display: block;
+            line-height: 1.4;
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            line-height: 1.7;
+        }
+        
+        .intro-box p {
+            margin-bottom: 10px;
+        }
+        
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .philosopher-card {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-right: 3px solid #f5576c;
+        }
+        
+        .philosopher-card h3 {
+            color: #f5576c;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .philosopher-card p {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        
+        .concept-box {
+            background: #fff3cd;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border-right: 3px solid #ffc107;
+        }
+        
+        .concept-box h4 {
+            color: #856404;
+            margin-bottom: 8px;
+            font-size: 1.15em;
+            line-height: 1.4;
+        }
+        
+        .concept-box p {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+        
+        .treatment-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .treatment-card h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .treatment-card p {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #e65100;
+            border-bottom: 3px solid #fff176;
+            padding-bottom: 1px;
+        }
+        
+        .key-point {
+            background: #e1f5fe;
+            padding: 12px;
+            margin: 10px 0;
+            border-right: 3px solid #0288d1;
+            border-radius: 8px;
+            line-height: 1.7;
+        }
+        
+        .key-point strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #01579b;
+        }
+        
+        .ethics-box {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .ethics-box h3 {
+            color: #2e7d32;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+            line-height: 1.4;
+        }
+        
+        ul {
+            margin-right: 20px;
+            margin-top: 10px;
+            padding-right: 5px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            font-size: 1em;
+            line-height: 1.7;
+        }
+        
+        ul ul {
+            margin-top: 8px;
+            margin-right: 15px;
+        }
+        
+        ul ul li {
+            margin-bottom: 6px;
+            font-size: 0.95em;
+        }
+        
+        .number-badge {
+            background: #667eea;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 0.75em;
+            white-space: nowrap;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        @media (min-width: 768px) {
+            body { padding: 20px; }
+            .container { max-width: 750px; border-radius: 20px; }
+            header h1 { font-size: 2.5em; }
+            header p { font-size: 1.2em; }
+            .content { padding: 25px; }
+            .section { padding: 25px; }
+            .section-title { font-size: 1.8em; }
+            .philosopher-card h3, .treatment-card h3, .ethics-box h3 { font-size: 1.5em; }
+        }
+        
+        @media (min-width: 1024px) {
+            .container { max-width: 1000px; }
+            header { padding: 40px 20px; }
+            header h1 { font-size: 3em; }
+            header p { font-size: 1.3em; }
+            .content { padding: 40px; }
+            .section { padding: 30px; margin-bottom: 50px; }
+            .section:hover { transform: translateX(-5px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2); }
+            .section-title { font-size: 2em; }
+            .philosopher-card h3, .treatment-card h3, .ethics-box h3 { font-size: 1.7em; }
+            .intro-box { font-size: 1.2em; padding: 25px; }
+            .philosopher-card, .treatment-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>چینی طب</h1>
+            <p>Chinese Medicine - قدیم چینی علاج کا خزانہ</p>
+        </header>
+        
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">تعارف</h2>
+                <div class="intro-box">
+                    <p><strong>چینی طب</strong> ایک قدیم اور منفرد طریقہ علاج ہے جو تقریباً <span class="highlight">3000 قبل مسیح</span> سے چلا آ رہا ہے۔</p>
+                    <p>چین اپنی تہذیب، تمدن اور علوم و فنون کی بنیاد پر پوری دنیا میں مشہور ہے۔</p>
+                    <p>چینی طب کی بنیاد <span class="highlight">مذہبی عقائد پر نہیں</span> بلکہ چینی فلاسفہ اور اطباء کے نظریات اور تجربات پر رکھی گئی ہے۔</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">چینی طب کے بنیادی نظریات</h2>
+                <div class="philosopher-card">
+                    <h3>فلسفی فوہسائی کا نظریہ - یانگ اور یِن</h3>
+                    <div class="concept-box">
+                        <h4>یانگ (Yang) - مثبت قوت</h4>
+                        <p>✦ جو فاعل سے مشتق ہے</p>
+                        <p>✦ اس زمرے میں مذکر اشیاء آتی ہیں</p>
+                        <p>✦ جیسے سورج، روشن، گرم اور بارد</p>
+                    </div>
+                    <div class="concept-box">
+                        <h4>یِن (Yin) - منفی قوت</h4>
+                        <p>✦ جو مفعول سے مشتق ہے</p>
+                        <p>✦ اس زمرے میں مؤنث اشیاء آتی ہیں</p>
+                        <p>✦ جیسے چاند، تاریک، یا بس اور رطب</p>
+                    </div>
+                    <div class="key-point">
+                        <strong>اہم نکتہ:</strong> کائنات کی ہر چیز کی تخلیق <span class="highlight">یانگ اور یِن</span> کی دو متضاد قوتوں سے ہوتی ہے۔
+                    </div>
+                    <div class="key-point">
+                        <strong>پانچ بنیادی عناصر:</strong>
+                        پانی • مٹی • لکڑی • آگ • دھات
+                    </div>
+                </div>
+                <div class="philosopher-card">
+                    <h3>صحت اور مرض کا نظریہ</h3>
+                    <p><strong>✓ صحت:</strong> جب یانگ اور یِن میں <span class="highlight">توازن</span> ہو</p>
+                    <p><strong>✗ مرض:</strong> جب یانگ اور یِن میں <span class="highlight">عدم توازن</span> ہو</p>
+                    <div class="key-point">
+                        <strong>علاج کا اصول:</strong> یانگ اور یِن کو دوبارہ <span class="highlight">متوازن</span> کرنا
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">قدیم چینی فلاسفہ اور اطباء کی خدمات</h2>
+                <div class="philosopher-card">
+                    <h3>۱) شین نُنگ - بابائے طب <span class="number-badge">2800 BC</span></h3>
+                    <p><strong>لقب:</strong> شہنشاہ سرخ (Red Emperor)</p>
+                    <div class="key-point">
+                        <strong>کتاب:</strong> پین ساؤ (Pen Tsao) - جڑی بوٹیوں پر کتاب
+                    </div>
+                    <p><strong>خدمات:</strong></p>
+                    <ul>
+                        <li>سیکڑوں جڑی بوٹیوں پر تجربات کیے</li>
+                        <li>زہروں کو بھی چکھ کر تحقیق کی</li>
+                        <li><span class="highlight">365 ادویہ</span> کا تین درجات میں تقسیم:
+                            <ul>
+                                <li>برتر (120 ادویہ) - غیر زہریلی، شباب آور</li>
+                                <li>اوسط (120 ادویہ) - مقوی</li>
+                                <li>ادنیٰ (125 ادویہ) - صرف دفع مرض کے لیے</li>
+                            </ul>
+                        </li>
+                        <li>علاج بالابر کے <span class="highlight">365 نقطوں</span> کا ذکر</li>
+                        <li>پانچ کے عدد کو اہمیت دی</li>
+                    </ul>
+                </div>
+                <div class="philosopher-card">
+                    <h3>۲) ہوانگ ٹی <span class="number-badge">2689-2599 BC</span></h3>
+                    <p><strong>لقب:</strong> شہنشاہ زرد (Yellow Emperor)</p>
+                    <div class="key-point">
+                        <strong>کتاب:</strong> نی چِنگ (Nei-Ching) - چینی طب کی قدیم ترین کتاب
+                    </div>
+                    <p><strong>خدمات:</strong></p>
+                    <ul>
+                        <li>طب کے بنیادی نظریات درج کیے</li>
+                        <li><strong>چار طریقے تشخیص:</strong>
+                            <ul>
+                                <li>مریض کا معائنہ دیکھ کر</li>
+                                <li>مریض کا حال سننا</li>
+                                <li>مریض سے سوالات کرنا</li>
+                                <li>نبض دیکھنا (سب سے اہم)</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">200 اقسام نبض</span> کا ذکر (26 موت کی علامت)</li>
+                        <li>ہاتھ میں 12 مقامات پر نبض دیکھنے کا طریقہ</li>
+                        <li>علم تشریح اور منافع الاعضاء کی معلومات</li>
+                    </ul>
+                    <div class="key-point">
+                        <strong>نبض کے بارے میں:</strong> دل نبض کا ہمنوا ہے، خون کی گردش برابر رہتی ہے، تمام خون دل کے قبضے میں ہے۔
+                    </div>
+                    <div class="key-point">
+                        <strong>دلچسپ بات:</strong> قدیم زمانے میں عورت طبیب کے سامنے نہیں آ سکتی تھی، اس لیے طبیب عورت کے ہاتھ میں تار باندھ کر نبض دیکھتا تھا۔
+                    </div>
+                </div>
+                <div class="philosopher-card">
+                    <h3>۳) سُن ژومیاؤ <span class="number-badge">581-682 AD</span></h3>
+                    <div class="key-point">
+                        <strong>کتاب:</strong> چین چِن یاؤ فنگ - ایک ہزار سنہرے نسخے
+                    </div>
+                    <p><strong>خدمات:</strong></p>
+                    <ul>
+                        <li>چینی طب کا انسائیکلوپیڈیا لکھا</li>
+                        <li>چالیس جلدوں پر مشتمل عظیم کتاب</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">تشخیص کے طریقے</h2>
+                <div class="concept-box">
+                    <h4>چار اہم طریقے:</h4>
+                    <ul>
+                        <li><strong>۱) معائنہ:</strong> مریض کو دیکھ کر</li>
+                        <li><strong>۲) سماعت:</strong> مریض کا حال سن کر</li>
+                        <li><strong>۳) سوالات:</strong> مریض سے پوچھ کر</li>
+                        <li><strong>۴) نبض:</strong> نبض دیکھ کر (سب سے اہم)</li>
+                    </ul>
+                </div>
+                <div class="key-point">
+                    <strong>نبض کی خصوصیات:</strong>
+                    <ul>
+                        <li>بہترین وقت: صبح صادق</li>
+                        <li>طبیب کی اپنی حالت درست ہو</li>
+                        <li>مریض کی جنس، موسم اور وزن کا خیال</li>
+                        <li>200 اقسام نبض، 26 موت کی علامت</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">چینی طب کے خاص طریقے علاج</h2>
+                <div class="intro-box">
+                    <strong>مرض کا سبب:</strong> بدن میں 12 خاص رگیں ہیں جن میں یانگ اور یِن دورہ کرتی ہیں۔ جب کسی رگ میں <span class="highlight">سدہ</span> پیدا ہو تو مرض لاحق ہوتا ہے۔
+                </div>
+                <div class="treatment-card">
+                    <h3>۱) علاج بالابر (Acupuncture)</h3>
+                    <p><strong>دوسرا نام:</strong> علاج سوزنی / ایکیوپنکچر</p>
+                    <p><strong>طریقہ کار:</strong></p>
+                    <ul>
+                        <li>جلد پر <span class="highlight">365 خاص نقطے</span> ہیں</li>
+                        <li>یہ نقطے بدن کی <span class="highlight">12 اندرونی رگوں</span> سے جڑے ہیں</li>
+                        <li>6 رگوں کا تعلق: بڑی آنت، چھوٹی آنت، مثانہ، معدہ وغیرہ</li>
+                        <li>6 رگوں کا تعلق: دل، پھیپھڑے، جگر، گردے، طحال وغیرہ</li>
+                        <li>مخصوص نقطے پر <span class="highlight">سوئی</span> چبھوئی جاتی ہے</li>
+                        <li>سوئی سے سوز (درد) پیدا ہوتا ہے</li>
+                        <li>سوز کی لہر رگ کو تحریک پہنچاتی ہے</li>
+                        <li>تحریک سے رگ میں سدہ کھل جاتا ہے</li>
+                        <li>یانگ اور یِن کا توازن بحال ہو جاتا ہے</li>
+                    </ul>
+                    <div class="key-point">
+                        <strong>سوئیاں:</strong> پہلے سونے اور چاندی کی، اب سٹیل کی جراثیم سے پاک سوئیاں استعمال ہوتی ہیں۔
+                    </div>
+                </div>
+                <div class="treatment-card">
+                    <h3>۲) علاج بالذع (Moxibustion)</h3>
+                    <p><strong>طریقہ کار:</strong></p>
+                    <ul>
+                        <li>سوئی کی جگہ <span class="highlight">گرم دھات</span> استعمال ہوتی ہے</li>
+                        <li>سونا، چاندی یا لوہے کو گرم کر کے داغ لگایا جاتا ہے</li>
+                        <li>داغ سے جلد پر درد پیدا ہوتا ہے</li>
+                        <li>اسی طرح رگ میں سدہ دور ہوتا ہے</li>
+                    </ul>
+                    <div class="key-point">
+                        <strong>نقصان:</strong> جلد پر زخم اور نشان رہ جاتا ہے، اس لیے یہ طریقہ اب استعمال نہیں ہوتا ہے۔
+                    </div>
+                </div>
+                <div class="treatment-card">
+                    <h3>۳) علاج بالدلک (Massage)</h3>
+                    <p><strong>طریقہ کار:</strong></p>
+                    <ul>
+                        <li>جلد کے خاص مقامات پر <span class="highlight">مالش</span> کی جاتی ہے</li>
+                        <li>ہتھیلی، انگوٹھے یا لکڑی سے مالش</li>
+                        <li>مالش سے اندرونی عضو کو تقویت ملتی ہے</li>
+                        <li><span class="highlight">تھکاوٹ اور گھبراہٹ</span> دور کرنے میں بہت مفید</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="ethics-box">
+                    <h3>چینی طب کا ضابطہ اخلاق</h3>
+                    <ul>
+                        <li>امیر اور غریب سب کے ساتھ یکساں سلوک</li>
+                        <li>مریض کو دیکھنے میں تاخیر نہ کریں</li>
+                        <li>لڑکی یا راہب کو بغیر کسی تیسرے کی موجودگی کے نہ دیکھیں</li>
+                        <li><span class="highlight">مریض کی رازداری</span> لازمی ہے</li>
+                        <li>قیمتی دوا کو سستی سے نہ بدلیں</li>
+                        <li>جہاں تک ممکن ہو طبیب غیر حاضر نہ رہے</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">فن جراحت</h2>
+                <div class="key-point">
+                    <p>چین میں <span class="highlight">نعشوں کے ڈسکشن کی ممانعت</span> تھی، اس لیے فن جراحت بہت کم پایا جاتا تھا۔</p>
+                    <p style="margin-top:8px;">صرف دو صورتوں میں جراحت جائز تھی:</p>
+                    <ul>
+                        <li>جب کوئی اور علاج باقی نہ رہے</li>
+                        <li>کھلے زخموں کو صاف یا بند کرنے کے لیے</li>
+                    </ul>
+                </div>
+                <p style="margin-top:12px;"><strong>مشہور جراح:</strong> ہواتو (Hua To) - جو اکثر جراحی کے عمل انجام دیتا تھا</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">خلاصہ</h2>
+                <div class="intro-box">
+                    <p>✦ چینی طب <span class="highlight">3000 قبل مسیح</span> سے رائج ہے</p>
+                    <p>✦ بنیاد <span class="highlight">یانگ اور یِن</span> کے نظریے پر</p>
+                    <p>✦ صحت = توازن، مرض = عدم توازن</p>
+                    <p>✦ تین خاص طریقے علاج: سوئی، داغ، مالش</p>
+                    <p>✦ <span class="highlight">نبض</span> تشخیص کا اہم ترین ذریعہ</p>
+                    <p>✦ تین عظیم شخصیات: شین نُنگ، ہوانگ ٹی، سُن ژومیاؤ</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

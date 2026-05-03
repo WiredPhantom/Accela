@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بابلی و آشوری طب - تاریخ طب</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+        
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 2;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.4;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 30px;
+            background: #f7fafc;
+            border-radius: 15px;
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .section-title {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #f093fb;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid #f5576c;
+            font-size: 1.1em;
+        }
+        
+        .key-point {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-right: 4px solid #48bb78;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .key-point h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .memory-tip {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid #667eea;
+        }
+        
+        .memory-tip::before {
+            content: "💡 یاد رکھیں: ";
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        ul {
+            margin-right: 20px;
+            margin-top: 10px;
+            list-style-type: disc;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            padding-right: 5px;
+        }
+        
+        .timeline {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .timeline-item {
+            padding: 15px;
+            margin: 15px 0;
+            background: #edf2f7;
+            border-radius: 8px;
+            border-right: 4px solid #f093fb;
+        }
+        
+        .gods-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .god-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid #48bb78;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .god-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .god-name {
+            color: #f5576c;
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 5px;
+        }
+        
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .emoji {
+            font-size: 1.4em;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        /* Mobile First Optimizations */
+        @media (max-width: 640px) {
+            body {
+                padding: 0;
+            }
+            
+            .container {
+                border-radius: 0;
+                width: 100%;
+                box-shadow: none;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section {
+                padding: 20px 15px;
+                border-right-width: 4px;
+                margin-bottom: 20px;
+            }
+
+            .section:hover {
+                transform: none;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            /* Stack cards vertically on small phones */
+            .gods-section {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .highlight-box, .key-point, .memory-tip {
+                padding: 15px;
+                font-size: 1em;
+            }
+
+            ul {
+                margin-right: 15px;
+            }
+            
+            .timeline {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ بابلی و آشوری طب</h1>
+            <p>دنیا کی قدیم ترین طب</p>
+        </div>
+        
+        <div class="content">
+            <!-- تعارف -->
+            <div class="section">
+                <h2 class="section-title">📖 تعارف</h2>
+                <div class="highlight-box">
+                    <p><strong>بابلی و آشوری طب کو دنیا کی قدیم ترین طب مانا جاتا ہے۔</strong></p>
+                </div>
+                <div class="key-point">
+                    <p><span class="emoji">📍</span> یہ طب <strong>بابل (Babylon)</strong> اور <strong>آشوریا (Assyria)</strong> نامی جگہوں سے شروع ہوئی۔</p>
+                </div>
+                <div class="memory-tip">
+                    دونوں جگہیں میسوپوٹامیا میں واقع تھیں جو دریائے دجلہ اور فرات کے درمیان زرخیز علاقہ تھا۔
+                </div>
+            </div>
+
+            <!-- میسوپوٹامیا -->
+            <div class="section">
+                <h2 class="section-title">🗺️ میسوپوٹامیا</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>مقام:</strong> جنوب مغربی ایشیا (دریائے دجلہ اور فرات کے درمیان)
+                    </div>
+                    <div class="timeline-item">
+                        <strong>تقریباً 4000 قبل مسیح:</strong> سمیر (Sumer) قوم آباد تھی
+                    </div>
+                    <div class="timeline-item">
+                        <strong>تقریباً 2000 قبل مسیح:</strong> دو حصوں میں تقسیم
+                        <ul>
+                            <li>شمالی حصہ = آشوریا</li>
+                            <li>جنوبی حصہ = بابل</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="memory-tip">
+                    سمیری تہذیب سے ہی انسانی تہذیب اور مختلف علوم شروع ہوئے، جن میں طب بھی شامل تھا۔
+                </div>
+            </div>
+
+            <!-- بنیادی نظریات -->
+            <div class="section">
+                <h2 class="section-title">🔮 بنیادی نظریات</h2>
+                <div class="highlight-box">
+                    <p><strong>صحت اور مرض کو دیوی دیوتاؤں کی رضا اور ناراضگی کا نتیجہ سمجھا جاتا تھا۔</strong></p>
+                </div>
+                
+                <div class="key-point">
+                    <h3>مرض کی وجوہات:</h3>
+                    <ul>
+                        <li><strong>گناہ:</strong> اگر کوئی بیمار پڑے تو سمجھا جاتا کہ اس نے گناہ کیا ہے</li>
+                        <li><strong>معمولی مرض =</strong> چھوٹا گناہ</li>
+                        <li><strong>مہلک مرض =</strong> بڑا اور ناقابل معافی گناہ</li>
+                    </ul>
+                </div>
+                
+                <div class="key-point">
+                    <h3>بے قصور لوگوں کے مرض:</h3>
+                    <p>اگر کوئی بے قصور بیمار پڑے تو ذمہ دار <strong>شیطانی طاقتیں اور بدروحیں</strong> (Evil demons & ghosts) تھیں۔</p>
+                </div>
+            </div>
+
+            <!-- صحت کے دیوتا -->
+            <div class="section">
+                <h2 class="section-title">👼 صحت کے دیوتا</h2>
+                <div class="gods-section">
+                    <div class="god-card">
+                        <div class="god-name">ایا (Ea)</div>
+                        <p>سب سے قدیم صحت کا دیوتا</p>
+                    </div>
+                    
+                    <div class="god-card">
+                        <div class="god-name">مردک (Marduk)</div>
+                        <p>ہر مرض پر غلبہ پانے کی طاقت رکھتا تھا</p>
+   <p>Rx جو آج بھی شفا کی علامت تصور کی جاتی ہے اسی دیوتا سے منسوب</p>
+                    </div>
+                    
+                    <div class="god-card">
+                        <div class="god-name">نیبو (Nabu/Nebu)</div>
+                        <p>بہت طاقتور، ہر تکلیف دور کر سکتا تھا</p>
+                    </div>
+                    
+                    <div class="god-card">
+                        <div class="god-name">گلا (Gulae)</div>
+                        <p>سب سے عظیم دیوی، زہروں کا اثر ختم کرتی تھی</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- شیطانی طاقتیں -->
+            <div class="section">
+                <h2 class="section-title">👹 شیطانی طاقتیں</h2>
+                <div class="memory-tip">
+                    ہر شیطان کسی خاص مرض کا ذمہ دار تھا
+                </div>
+                <div class="gods-section">
+                    <div class="god-card">
+                        <div class="god-name">اشکو (Ashakku)</div>
+                        <p>بخار پیدا کرتا تھا</p>
+                    </div>
+                    
+                    <div class="god-card">
+                        <div class="god-name">نامتارو (Namtaru)</div>
+                        <p>طاعون (Plague) پھیلاتا تھا</p>
+                    </div>
+                    
+                    <div class="god-card">
+                        <div class="god-name">اٹکو (Atakku)</div>
+                        <p>گردن کے امراض کا سبب</p>
+                    </div>
+                    
+                    <div class="god-card">
+                        <div class="god-name">الو (Alu)</div>
+                        <p>ہڈیوں کے امراض</p>
+                    </div>
+                    
+                    <div class="god-card">
+                        <div class="god-name">گلو (Gallu)</div>
+                        <p>ہاتھوں کی بیماریاں</p>
+                    </div>
+                    
+                    <div class="god-card">
+                        <div class="god-name">ربیسو (Rabisu)</div>
+                        <p>جلدی امراض</p>
+                    </div>
+                    
+                    <div class="god-card">
+                        <div class="god-name">پزوزو (Pazuzu)</div>
+                        <p>مہلک امراض</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بابلی اطبا -->
+            <div class="section">
+                <h2 class="section-title">👨‍⚕️ بابلی اطبا کی اقسام</h2>
+                <div class="memory-tip">
+                    اطبا تین جماعتوں میں تقسیم تھے - اوصاف کے اعتبار سے
+                </div>
+                
+                <div class="key-point">
+                    <h3>1. بارو (Baru)</h3>
+                    <p><span class="emoji">🔮</span> روحانی علاج میں ماہر</p>
+                </div>
+                
+                <div class="key-point">
+                    <h3>2. اشیپو (Ashipu)</h3>
+                    <p><span class="emoji">🙏</span> منتر کے ذریعے تکلیف نکالنے والا - پروہت</p>
+                    <p>کام: مریض کے بدن سے بدروح خارج کر کے صحت کے دیوتا سے ملانا</p>
+                </div>
+                
+                <div class="key-point">
+                    <h3>3. آزو (Azu) ⭐</h3>
+                    <p><span class="emoji">💊</span> <strong>صحیح معنی میں طبیب</strong></p>
+                    <ul>
+                        <li>جادو یا سحر کی بجائے دواؤں سے علاج</li>
+                        <li>بعض اوقات عمل جراحت بھی</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-box">
+                    <p><strong>طبی تعلیم:</strong> درسگاہیں مندروں سے ملحق ہوتی تھیں</p>
+                </div>
+            </div>
+
+            <!-- تشخیص -->
+            <div class="section">
+                <h2 class="section-title">🔍 طریقہ تشخیص</h2>
+                <div class="memory-tip">
+                    پانی اور تیل کو مقدس شے مانا جاتا تھا
+                </div>
+                
+                <div class="key-point">
+                    <h3>پانی اور تیل کا طریقہ:</h3>
+                    <ul>
+                        <li>ایک برتن میں پانی اور تیل ملایا جاتا</li>
+                        <li><strong>اگر تیل کا حالا بنے (ring) =</strong> مرض قابل علاج</li>
+                        <li><strong>اگر تیل پھیل جائے =</strong> شفا کی امید کم</li>
+                    </ul>
+                </div>
+                
+                <div class="key-point">
+                    <h3>آگ کا طریقہ:</h3>
+                    <ul>
+                        <li><strong>لال رنگ =</strong> اچھی علامت</li>
+                        <li><strong>زرد یا سبز رنگ =</strong> بری علامت</li>
+                    </ul>
+                </div>
+                
+                <div class="key-point">
+                    <h3>جدید طریقے بھی تھے:</h3>
+                    <p>تھوک، پیشاب اور پاخانے کی رنگت سے بھی تشخیص ہوتی تھی</p>
+                </div>
+            </div>
+
+            <!-- علاج -->
+            <div class="section">
+                <h2 class="section-title">💉 طریقہ علاج</h2>
+                
+                <div class="highlight-box">
+                    <h3>روحانی علاج:</h3>
+                    <ul>
+                        <li>دیوتا کی پوجا</li>
+                        <li>شیطان سے پناہ مانگنا</li>
+                        <li>جھاڑ پھونک اور جادو</li>
+                    </ul>
+                </div>
+                
+                <div class="key-point">
+                    <h3>جگر کا نظریہ:</h3>
+                    <p><span class="emoji">🫀</span> چونکہ جگر میں خون بنتا ہے، اس لیے بدروح وہاں بیٹھ جاتی ہے</p>
+                    <ul>
+                        <li>جگر میں شگاف دیا جاتا</li>
+                        <li>سوراخ کر کے بدروح نکالی جاتی</li>
+                    </ul>
+                </div>
+                
+                <div class="key-point">
+                    <h3>دماغی امراض:</h3>
+                    <p>سر میں سوراخ کر کے خبیث روح نکالی جاتی (سوراخ دار کھوپڑیاں ملی ہیں)</p>
+                </div>
+                
+                <div class="key-point">
+                    <h3>صدقہ کا طریقہ:</h3>
+                    <p>اگر مریض بڑی شخصیت ہو تو اس کے نام پر جانور کا صدقہ کیا جاتا اور اس جانور کے جگر میں سوراخ کر کے بدروح نکالی جاتی</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>دوائیں:</h3>
+                    <ul>
+                        <li>100 سے زیادہ ادویہ استعمال ہوتی تھیں</li>
+                        <li>نباتی، معدنی اور حیوانی</li>
+                        <li>ہاضم اورکاسرریاح  دوائیں عام تھیں</li>
+                        <li>سانپ کے کاٹنے کے لیے جنگلی جڑ استعمال ہوتی</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ذرائع معلومات -->
+            <div class="section">
+                <h2 class="section-title">📚 ذرائع معلومات</h2>
+                
+                <div class="key-point">
+                    <h3>1. سمیری طبیب کی مہر (Seal)</h3>
+                    <ul>
+                        <li>تاریخ: 3300 قبل مسیح</li>
+                        <li>مقام: لندن کے ویلکم میوزیم آف ہسٹری</li>
+                        <li>ثبوت: سمیری دور میں طبابت کا پیشہ موجود تھا</li>
+                    </ul>
+                </div>
+                
+                <div class="key-point">
+                    <h3>2. مٹی کی تختیاں (Clay Tablets)</h3>
+                    <ul>
+                        <li>میسوپوٹامیا سے ملی ہیں</li>
+                        <li>برٹش میوزیم میں موجود ہیں</li>
+                        <li>بابلی و آشوری طب کا اہم ذریعہ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ہمورابی کا ضابطہ -->
+            <div class="section">
+                <h2 class="section-title">⚖️ ہمورابی کا ضابطہ برائے طب</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>شہنشاہ ہمورابی (Hammurabi)</strong></p>
+                    <p>دور: 1728-1686 قبل مسیح</p>
+                    <p>کل ضابطے: 282</p>
+                    <p>طب سے متعلق: نمبر 215 سے 225</p>
+                </div>
+                
+                <div class="key-point">
+                    <h3>قانون 1: کامیاب آپریشن کا انعام</h3>
+                    <p>اگر برانز  (جست)کے نشتر سے آپریشن کامیاب ہو:</p>
+                    <ul>
+                        <li>آزاد شخص = 10 چاندی کے شیکیل</li>
+                        <li>غلام = مالک 2 چاندی کے شیکیل دے گا</li>
+                    </ul>
+                </div>
+                
+                <div class="key-point">
+                    <h3>قانون 2: ناکام آپریشن کی سزا</h3>
+                    <p>اگر نشتر سے زخم خطرناک ہو اور موت واقع ہو:</p>
+                    <p><strong>طبیب کے ہاتھ قلم کر دیے جائیں</strong></p>
+                </div>
+                
+                <div class="key-point">
+                    <h3>قانون 3: غلام کی موت</h3>
+                    <p>اگر غلام کی موت ہو جائے:</p>
+                    <p><strong>طبیب غلام کے بدلے غلام دے</strong></p>
+                </div>
+                
+                <div class="key-point">
+                    <h3>قانون 4: متاثرہ عضو اور ہڈی کا علاج</h3>
+                    <p>اگر کوئی طبیب کسی متاثرہ عضو اور ہڈی کو اچھا کر دے گا تو:</p>
+                    <ul>
+                        <li>آزاد شخص = 5 چاندی کے شیکیل</li>
+                        <li>آزاد غلام = 3 چاندی کے شیکیل</li>
+                        <li>غلام = 2 چاندی کے شیکیل</li>
+                    </ul>
+                </div>
+            
+                <div class="memory-tip">
+                    ہمورابی کے قوانین سے پتہ چلتا ہے کہ طب ایک باقاعدہ پیشہ بن چکا تھا اور اس کے اصول و ضوابط موجود تھے۔
+                </div>
+            </div>
+      <!-- نتیجہ -->
+            <div class="section">
+                <h2 class="section-title">✅ خلاصہ</h2>
+                <div class="highlight-box">
+                    <h3>اہم نکات:</h3>
+                    <ul>
+                        <li>بابلی و آشوری طب دنیا کی قدیم ترین طب ہے</li>
+                        <li>توہمات پر مبنی کمزور عقائد غالب تھے</li>
+                        <li>لیکن طب بحیثیت فن کی ابتدا ہو چکی تھی</li>
+                        <li>باقاعدہ طبی تعلیم اور پیشہ موجود تھا</li>
+                        <li>دوائیں اور جراحی کا استعمال شروع ہو گیا تھا</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="footer">
+          <p>© <span id="year"></span> Accela. All rights reserved.</p>
+        </div>
+    </div>
+    <script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

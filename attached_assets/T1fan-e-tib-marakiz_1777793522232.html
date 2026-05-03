@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فن طب کے اولین مراکز</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 36px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .header p {
+            font-size: 1em;
+            opacity: 0.85;
+            font-family: sans-serif;
+        }
+
+        /* ── CONTENT ── */
+        .content {
+            padding: 30px 25px;
+        }
+
+        /* ── SECTION CARD ── */
+        .section {
+            background: #f7fafc;
+            border-right: 5px solid #4299e1;
+            padding: 22px 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+        }
+
+        .section-title {
+            color: #2c5282;
+            font-size: 1.5em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            background: #4299e1;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+
+        /* ── HIGHLIGHT BOX ── */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef5e7 0%, #fadbd8 100%);
+            border-right: 4px solid #e74c3c;
+            padding: 16px 18px;
+            margin: 18px 0;
+            border-radius: 8px;
+            font-size: 1.05em;
+        }
+
+        /* ── COUNTRY CARDS ── */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 16px 0;
+            justify-content: center;
+        }
+
+        .country-card {
+            background: white;
+            border: 2px solid #4299e1;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.05em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .country-card:hover {
+            background: #4299e1;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* ── KEY POINTS ── */
+        .key-points {
+            background: #ebf8ff;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 16px 0;
+        }
+
+        .key-points h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #2c5282;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 12px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 6px;
+            /* no ::before pseudo — avoids overlap */
+        }
+
+        .check-icon {
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+            /* push check to LEFT side since RTL reverses flex direction */
+            order: 1;
+        }
+
+        .li-text {
+            order: 0;
+            flex: 1;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        /* vertical line on the RIGHT in RTL */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: #4299e1;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+            padding-right: 20px;
+        }
+
+        /* dot on the timeline */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 12px;
+            width: 16px;
+            height: 16px;
+            background: #4299e1;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #4299e1;
+        }
+
+        /* ── CONCLUSION ── */
+        .conclusion {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            padding: 26px 22px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .conclusion h2 {
+            font-size: 1.4em;
+            text-align: center;
+            margin-bottom: 16px;
+            color: #22543d;
+        }
+
+        .conclusion-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .conclusion-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .conclusion-list li:last-child {
+            border-bottom: none;
+        }
+
+        .conclusion-check {
+            color: #276749;
+            font-size: 1.2em;
+            flex-shrink: 0;
+            order: 1;
+        }
+
+        .conclusion-text {
+            order: 0;
+            flex: 1;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 18px;
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 0.9em;
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 600px) {
+            body { padding: 0; }
+
+            .container {
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .header { padding: 26px 16px; }
+            .header h1 { font-size: 1.6em; }
+
+            .content { padding: 18px 14px; }
+
+            .section { padding: 18px 14px; }
+            .section-title { font-size: 1.25em; }
+
+            .country-card {
+                font-size: 1em;
+                padding: 9px 16px;
+            }
+
+            .timeline { padding-right: 24px; }
+
+            .timeline-item::before {
+                right: -6px;
+                width: 12px;
+                height: 12px;
+                top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>🏛️ فن طب کے اولین مراکز</h1>
+            <p>Earliest Centres of Medicine</p>
+        </div>
+
+        <div class="content">
+
+            <!-- Question -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">❓</span>
+                    فن طب کے اولین مراکز کیا ہیں؟
+                </h2>
+                <p>یہ وہ جگہیں ہیں جہاں سب سے پہلے طب کی ابتداء ہوئی۔</p>
+            </div>
+
+            <!-- Historians' Disagreement -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">🤔</span>
+                    مورخین میں اختلافات
+                </h2>
+
+                <div class="highlight-box">
+                    <strong>پہلا اختلاف:</strong> کیا یونان پہلا مرکز ہے؟
+                </div>
+
+                <div class="key-points">
+                    <h3>کچھ مورخین کہتے ہیں:</h3>
+                    <ul>
+                        <li><span class="li-text">یونان پہلا مرکز ہے</span><span class="check-icon">✓</span></li>
+                        <li><span class="li-text">بقراط نے طب کو جادو سے علیحدہ کیا</span><span class="check-icon">✓</span></li>
+                        <li><span class="li-text">انہیں "ابوالطب" کہا جاتا ہے</span><span class="check-icon">✓</span></li>
+                        <li><span class="li-text">عرصہ: 460-377 قبل مسیح</span><span class="check-icon">✓</span></li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>دوسرا اختلاف:</strong> کون سی جگہ سب سے پہلے تھی؟
+                </div>
+
+                <div class="key-points">
+                    <h3>دوسرے مورخین کہتے ہیں:</h3>
+                    <ul>
+                        <li><span class="li-text">چونکہ جادو، سحر اور مختلف قسم کے دیگر عملیات بھی فنون میں شمار کیے جا سکتے ہیں</span><span class="check-icon">✓</span></li>
+                        <li><span class="li-text">بابل، مصر، ہندوستان، چین پہلے شروع ہوئے</span><span class="check-icon">✓</span></li>
+                        <li><span class="li-text">بقراط سے سینکڑوں سال پہلے یہاں طب مختلف اشکال میں موجود تھی</span><span class="check-icon">✓</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ancient Centres -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">🌍</span>
+                    قدیم طبی مراکز
+                </h2>
+                <div class="cards-container">
+                    <div class="country-card">🏛️ بابل (Babylon)</div>
+                    <div class="country-card">🏺 مصر (Egypt)</div>
+                    <div class="country-card">🕉️ ہندوستان (India)</div>
+                    <div class="country-card">🏮 چین (China)</div>
+                    <div class="country-card">🏛️ یونان (Greece)</div>
+                </div>
+            </div>
+
+            <!-- Babylon -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">📜</span>
+                    بابل: قدیم ترین مرکز
+                </h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>تقریباً 4000 قبل مسیح:</strong> میسوپوٹامیا (جنوب مغربی ایشیا) میں سمیر قوم آباد ہوئی
+                    </div>
+                    <div class="timeline-item">
+                        <strong>بعد میں:</strong> دو حصوں میں تقسیم ہوا<br>
+                        • جنوبی حصہ = بابل<br>
+                        • شمالی حصہ = آشور
+                    </div>
+                    <div class="timeline-item">
+                        <strong>1952ء:</strong> محققین کریمر اور مارٹن لیوی نے بابل کو اولین مرکز قرار دیا
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>اہم دریافت:</strong><br>
+                    برٹش میوزیم میں 3000 سال پرانی پتھر کی تختی ملی جس پر طبی معلومات لکھی ہیں۔ یہ سمیر قوم کے طبیب نے اپنے شاگردوں کے لیے لکھی تھی۔
+                </div>
+            </div>
+
+            <!-- Geography -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="icon">🗺️</span>
+                    اہم جغرافیائی مقامات
+                </h2>
+                <p><strong>دجلہ (Tigris) اور فرات (Euphrates) دریاؤں کے درمیان</strong> کی خشک پٹی پر آباد قوم نے فن طب کی ابتداء کی۔</p>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="conclusion">
+                <h2>💡 خلاصہ اور نتیجہ</h2>
+                <ul class="conclusion-list">
+                    <li><span class="conclusion-text">بابل قدیم ترین مرکز ہو سکتا ہے</span><span class="conclusion-check">✅</span></li>
+                    <li><span class="conclusion-text">تمام قدیم ممالک (بابل، مصر، ہندوستان، چین، یونان) اولین مراکز میں شامل ہیں</span><span class="conclusion-check">✅</span></li>
+                    <li><span class="conclusion-text"><strong>ایشیا کو سب سے زیادہ اہمیت حاصل ہے</strong></span><span class="conclusion-check">✅</span></li>
+                    <li><span class="conclusion-text">وجہ: بہترین آب و ہوا اور زرخیز زمین</span><span class="conclusion-check">✅</span></li>
+                    <li><span class="conclusion-text">جہاں انسان بسا، وہاں طب بھی شروع ہوئی</span><span class="conclusion-check">✅</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <p>© <span id="year"></span> Accela. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

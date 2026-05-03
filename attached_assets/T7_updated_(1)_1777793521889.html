@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>ایرانی طب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            line-height: 1.8;
+            direction: rtl;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0;
+            background: white;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 15px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 20px 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-right: 4px solid #3498db;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .section h3 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin: 15px 0 10px 0;
+        }
+
+        .box {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-right: 4px solid;
+            font-size: 1em;
+        }
+
+        .highlight { background: #e3f2fd; border-color: #2196f3; }
+        .key { background: #fff3cd; border-color: #ffc107; font-weight: bold; }
+        .info { background: #d1ecf1; border-color: #17a2b8; }
+        .important { background: #f8d7da; border-color: #dc3545; font-weight: bold; }
+        .success { background: #d4edda; border-color: #28a745; }
+        .warning { background: #fff3e0; border-color: #ff9800; }
+
+        ul {
+            margin: 10px 0;
+            padding-right: 0;
+            list-style: none;
+        }
+
+        li {
+            margin: 8px 0;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            margin-left: 8px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: black;
+            padding: 20px 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .summary h2 {
+            border: none;
+            padding-bottom: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            font-size: 1em;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        /* Better readability */
+        p {
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+
+        /* Tablet and larger phones */
+        @media (min-width: 480px) {
+            header h1 { font-size: 1.8em; }
+            .section h2 { font-size: 1.8em; }
+            .content { padding: 20px; }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Small tablets and landscape phones */
+        @media (min-width: 768px) {
+            .container {
+                border-radius: 20px;
+                margin: 20px auto;
+                max-width: 800px;
+            }
+            
+            body {
+                padding: 20px;
+            }
+            
+            header h1 { font-size: 2em; }
+            .section { padding: 25px 20px; }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Large tablets */
+        @media (min-width: 1024px) {
+            .container { max-width: 1000px; }
+            header h1 { font-size: 2.5em; }
+            .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏛️ ایرانی طب 🏛️</h1>
+            <p>Persian Medicine - آسان اور یاد رکھنے والی زبان میں</p>
+        </header>
+
+        <div class="content">
+            <!-- تعارف -->
+            <section class="section" id="intro">
+                <h2>📖 تعارف</h2>
+                <div class="box highlight">
+                    <p><strong>ایران قدیم ملک ہے</strong> جس کی اپنی تہذیب، مذہب اور علوم تھے۔</p>
+                </div>
+                <ul>
+                    <li><span class="badge">1</span> قدیم ایران میں صحت و بیماری کے مذہبی نظریات</li>
+                    <li><span class="badge">2</span> طب کی ترقی میں ایران کا اہم کردار</li>
+                    <li><span class="badge">3</span> حکمرانوں نے ہسپتال بنائے</li>
+                    <li><span class="badge">4</span> دنیا کے مشہور حکیم ایرانی تھے</li>
+                </ul>
+            </section>
+
+            <!-- اوستا -->
+            <section class="section" id="avesta">
+                <h2>📚 اوستا (Avesta)</h2>
+                <div class="box info">
+                    <p><strong>اوستا = زرتشتیوں کی مقدس کتاب</strong></p>
+                    <p>ہزاروں صفحات پر مشتمل ایران کی قدیم مذہبی کتاب</p>
+                </div>
+                
+                <h3>زرتشت اور مجوس</h3>
+                <ul>
+                    <li>زرتشت: تقریباً 7000 سال پہلے کا مذہبی پیشوا</li>
+                    <li>آگ کی پوجا کرنے والا مذہب شروع کیا</li>
+                    <li>ماننے والے <strong>مجوس</strong> (آتش پرست) کہلائے</li>
+                </ul>
+
+                <div class="box important">
+                    <p><strong>وندیداد:</strong> اوستا کا چھٹا حصہ جس میں طب کی معلومات ہیں</p>
+                </div>
+            </section>
+
+            <!-- صحت و مرض -->
+            <section class="section" id="health">
+                <h2>🏥 صحت و مرض</h2>
+                
+                <div class="box key">
+                    <p><strong>بنیادی عقیدہ: پاکی اور صفائی</strong></p>
+                    <p>صحت = صفائی | بیماری = گندگی</p>
+                </div>
+
+                <h3>آگ اور سورج کی اہمیت</h3>
+                <ul>
+                    <li>آگ پاک اور مقدس</li>
+                    <li>سورج دنیا کو گندگی سے پاک رکھتا ہے</li>
+                </ul>
+
+                <h3>صفائی کے اہم قوانین</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h3>💧 پانی</h3>
+                        <p>پانی گندا کرنا گناہ</p>
+                    </div>
+                    <div class="card">
+                        <h3>🌍 زمین</h3>
+                        <p>لاشیں دخما (میناروں) میں رکھنا</p>
+                    </div>
+                    <div class="card">
+                        <h3>🧹 عام صفائی</h3>
+                        <p>مکھیوں سے بچاؤ، کوڑھ (leprosy) کے مریض الگ</p>
+                    </div>
+                </div>
+
+                <div class="box warning">
+                    <h3>🗼 دخما (میناروں) میں دفن کی وجوہات</h3>
+                    <p><strong>زمین کو صاف رکھنے کی غرض سے مردوں کو زمین میں دفن کرنے کا رواج نہیں تھا بلکہ مردوں کو خاص قسم کی میناروں پر ٹانگ دیتے تھے:</strong></p>
+                    <ul style="list-style: none; padding-right: 0;">
+                        <li>🔹 <strong>پہلی وجہ:</strong> کوئی جانور لاش کو اٹھا کر نہ لے جائے اور اسے جگہ بے جگہ ڈال کر پانی اور زمین کی آلودگی کا سبب نہ بنے</li>
+                        <li>🔹 <strong>دوسری وجہ:</strong> مینار کی بلندی پر ٹنگی لاش کو مردہ خور پرندے (گدھ وغیرہ) آسانی سے ٹھکانے لگا دیتے تھے</li>
+                    </ul>
+                </div>
+
+                <div class="box info">
+                    <h3>🧼 مزید صفائی کے اصول</h3>
+                    <ul style="list-style: none; padding-right: 0;">
+                        <li>✓ گرد و غبار اور کوڑا کرکٹ کو صاف کرتے رہنا</li>
+                        <li>✓ پالتو جانوروں کی صفائی کا خیال رکھنا</li>
+                        <li>✓ وہ لباس یا اشیاء جو کسی شخص کے خون یا بول و براز سے آلودہ ہو جاتے تھے ان کو پوری طرح تباہ کرنا لازمی تھا</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- طریقہ علاج -->
+            <section class="section" id="treatment">
+                <h2>💊 طریقہ علاج - تین قسم کے حکیم</h2>
+                
+                <div class="grid">
+                    <div class="card" style="border-color: #e74c3c;">
+                        <h3><span class="badge" style="background: #e74c3c;">1</span> دعا والے</h3>
+                        <p><strong>کون:</strong> مذہبی پیشوا</p>
+                        <p><strong>علاج:</strong> دعا، عبادت، اہورا مزدا کے کلمات</p>
+                        <p><strong>امراض:</strong> گندی روحوں اور بری عادتوں کے نتیجے میں پیدا ہونے والے امراض کا علاج کرتے تھے</p>
+                    </div>
+                    
+                    <div class="card" style="border-color: #27ae60;">
+                        <h3><span class="badge" style="background: #27ae60;">2</span> جڑی بوٹی والے</h3>
+                        <p><strong>کون:</strong> کاشتکار</p>
+                        <p><strong>علاج:</strong> نباتی دوائیں</p>
+                        <p><strong>خصوصیت:</strong> اسقاط حمل کے لیے بھی نباتی ادویہ کا استعمال کرتے تھے</p>
+                    </div>
+                    
+                    <div class="card" style="border-color: #3498db;">
+                        <h3><span class="badge" style="background: #3498db;">3</span> آپریشن والے</h3>
+                        <p><strong>کون:</strong> فوجی خاندان</p>
+                        <p><strong>علاج:</strong> نشتر سے جراحی</p>
+                        <p><strong>مہارت:</strong> زخموں اور دوسرے کسر و خلع کے علاج میں ماہر ہوا کرتے تھے</p>
+                    </div>
+                </div>
+
+                <div class="box important">
+                    <h3>⚖️ طبی اخلاقیات</h3>
+                    <ul>
+                        <li>✅ حکیم بننے سے پہلے امتحان</li>
+                        <li>✅ ہمیشہ پاک و صاف رہنا</li>
+                        <li>✅ علاج کی فیس جائز</li>
+                        <li>❌ غلطی پر سزا مقرر تھی</li>
+                        <li>❌ بلا وجہ اسقاط حمل کرنے والے کی سزا وہی تھی جو قتل کی تھی</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ترقی -->
+            <section class="section" id="progress">
+                <h2>🌟 طب کا فروغ</h2>
+                
+                <div class="box success">
+                    <h3>👑 حکمرانوں کا دور</h3>
+                    <ul>
+                        <li><strong>شاپور اول و دوم</strong> (380 عیسوی)</li>
+                        <li><strong>خاندان نوشیرواں</strong> (534 عیسوی)</li>
+                    </ul>
+                </div>
+
+                <div class="box important">
+                    <h3>🏛️ جندی شاپور</h3>
+                    <p><strong>ایران کا سب سے مشہور طبی مرکز</strong></p>
+                    <ul>
+                        <li>یونان اور ہندوستان کے حکیموں کو بلایا</li>
+                        <li>مختلف طبوں کا بہترین مواد</li>
+                        <li>عربوں کو طب سکھانے میں اہم کردار</li>
+                    </ul>
+                </div>
+
+                <div class="box info">
+                    <h3>🏥 مشہور شہر اور ہسپتال</h3>
+                    <p>رے، ہمدان، فارس میں تمام طبی سہولیات سے آراستہ بیمارستان قائم کیے گئے</p>
+                </div>
+            </section>
+
+            <!-- مشہور اطباء -->
+            <section class="section" id="doctors">
+                <h2>⭐ مشہور ایرانی حکیم</h2>
+                
+                <div class="grid">
+                    <div class="card">1. ربن طبری</div>
+                    <div class="card">2. زکریا رازی</div>
+                    <div class="card">3. علی بن عباس مجوسی</div>
+                    <div class="card">4. ابو سہل مسیحی</div>
+                    <div class="card" style="border-color: #e74c3c; border-width: 3px;">5. <strong>ابن سینا</strong> (سب سے مشہور)</div>
+                    <div class="card">6. حکیم رستم جرجانی (فارسی ترجمہ)</div>
+                </div>
+            </section>
+
+            <!-- خلاصہ -->
+            <div class="summary">
+                <h2>🎯 مکمل خلاصہ</h2>
+                <ul style="list-style: none; padding: 0;">
+                    <li>📚 اوستا: زرتشتی مقدس کتاب</li>
+                    <li>🧹 صفائی = صحت، گندگی = بیماری</li>
+                    <li>🗼 دخما: لاشوں کو میناروں پر رکھنا (زمین کی حفاظت)</li>
+                    <li>💊 تین قسم کے حکیم: دعا، جڑی بوٹی، آپریشن</li>
+                    <li>⚖️ طبی اخلاقیات: امتحان، صفائی، سزائیں</li>
+                    <li>🏛️ جندی شاپور: مشہور طبی مرکز</li>
+                    <li>⭐ 6 مشہور ایرانی حکیم</li>
+                </ul>
+            </div>
+
+            <div class="box key" style="text-align: center; font-size: 1.1em;">
+                <h2>🏆 نتیجہ</h2>
+                <p><strong>طب کی تاریخ میں ایران کا کردار بہت اہم ہے</strong></p>
+            </div>
+        </div>
+
+        <footer>
+            <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        // Set year
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
