@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم یوسفی - مغل دور کے مشہور طبیب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        .header .english-name {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:active {
+            transform: scale(0.98);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f6f8fb 0%, #eef1f5 100%);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #48bb78;
+        }
+
+        .key-point-title {
+            color: #48bb78;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe4c4 100%);
+            padding: 18px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #ed8936;
+        }
+
+        .memory-tip-title {
+            color: #ed8936;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .highlight-box .big-text {
+            font-size: 1.5rem;
+            color: #319795;
+            font-weight: 600;
+        }
+
+        /* Books List */
+        .books-list {
+            list-style: none;
+        }
+
+        .books-list li {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-right: 4px solid #667eea;
+        }
+
+        .book-name {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.15rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .book-desc {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        /* Poetry Section */
+        .poetry-box {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px dashed #9f7aea;
+        }
+
+        .poetry-line {
+            font-size: 1.2rem;
+            color: #553c9a;
+            margin: 10px 0;
+            line-height: 2.5;
+        }
+
+        .translation {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-size: 1rem;
+            color: #4a5568;
+        }
+
+        .translation-title {
+            color: #9f7aea;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .fact-item {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .fact-label {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+
+        .fact-value {
+            font-size: 1.1rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        /* Timeline */
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 10px;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        /* Summary Section */
+        .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+        }
+
+        .summary-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-card ul {
+            list-style: none;
+        }
+
+        .summary-card li {
+            padding: 10px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .summary-card li::before {
+            content: "✓ ";
+            margin-left: 5px;
+        }
+
+        /* Number Badge */
+        .number-badge {
+            display: inline-flex;
+            width: 35px;
+            height: 35px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            margin-left: 10px;
+        }
+
+        /* Section Divider */
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 30px 0;
+            border-radius: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .quick-facts {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .card-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>حکیم یوسفی</h1>
+        <div class="subtitle">مغل دور کے مشہور طبیب</div>
+        <div class="english-name">Yusufi</div>
+    </header>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-item">
+                <div class="fact-label">پورا نام</div>
+                <div class="fact-value">یوسف بن محمد بن یوسف الہروی</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-label">تخلص</div>
+                <div class="fact-value">یوسفیؔ</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-label">وطن</div>
+                <div class="fact-value">ہرات (ہروی)</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-label">دور</div>
+                <div class="fact-value">بابر و ہمایوں</div>
+            </div>
+        </div>
+
+        <!-- تعارف -->
+        <div class="card">
+            <h2 class="card-title">
+                <span class="icon">📖</span>
+                تعارف
+            </h2>
+            
+            <div class="key-point">
+                <div class="key-point-title">🏰 مغل سلطنت کی بنیاد</div>
+                <p>ترکی نسل کے بادشاہ <strong>بابر</strong> نے ہندوستان میں مغل سلطنت کی بنیاد ڈالی۔</p>
+            </div>
+
+            <div class="highlight-box">
+                <div class="big-text">بابر کا دورِ حکومت</div>
+                <p style="margin-top: 10px; font-size: 1.3rem; color: #319795;"><strong>1526 تا 1530</strong></p>
+            </div>
+
+            <p>بابر کو <strong>علم طب</strong> سے بہت دلچسپی تھی۔ اسے قابل طبیب بہت پسند تھے۔</p>
+
+            <div class="key-point">
+                <div class="key-point-title">👨‍⚕️ حکیم یوسفی کون تھے؟</div>
+                <ul style="list-style: none; padding-right: 20px;">
+                    <li>• بابر کے خاص درباری طبیب</li>
+                    <li>• ہمایوں کا دور بھی دیکھا</li>
+                    <li>• شاعر بھی تھے</li>
+                    <li>• بہترین طبیب ہونے کے ساتھ مصنف بھی تھے</li>
+                </ul>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">💡 یاد رکھیں</div>
+                <p><strong>ہروی</strong> کہلانے کی وجہ = <strong>ہرات</strong> ان کا وطن تھا</p>
+            </div>
+        </div>
+
+        <!-- تعلیم و تربیت -->
+        <div class="card">
+            <h2 class="card-title">
+                <span class="icon">📚</span>
+                تعلیم و تربیت
+            </h2>
+
+            <div class="highlight-box">
+                <div class="big-text">طبابت وراثت میں ملی</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <strong>والد کا نام:</strong> محمد بن یوسف الطبیب
+                    <br>
+                    <small style="color: #718096;">(والد بھی طبیب تھے)</small>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <strong>ابتدائی تعلیم:</strong> ہرات سے حاصل کی
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <strong>بعد میں:</strong> خراسان ہجرت کی
+                    <br>
+                    والد کی نگرانی میں طب میں مہارت حاصل کی
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">💡 آسان یاد</div>
+                <p>ہرات ← خراسان ← والد سے سیکھا ← طبیب بنا</p>
+            </div>
+        </div>
+
+        <!-- فضل و کمال -->
+        <div class="card">
+            <h2 class="card-title">
+                <span class="icon">⭐</span>
+                فضل و کمال (خوبیاں)
+            </h2>
+
+            <div class="highlight-box">
+                <div class="big-text">حکیم یوسفی کی تین بڑی خوبیاں</div>
+            </div>
+
+            <div class="quick-facts" style="grid-template-columns: 1fr;">
+                <div class="fact-item" style="border-right: 4px solid #48bb78;">
+                    <div class="fact-label">پہلی خوبی</div>
+                    <div class="fact-value">حاذق طبیب (ماہر ڈاکٹر)</div>
+                </div>
+                <div class="fact-item" style="border-right: 4px solid #ed8936;">
+                    <div class="fact-label">دوسری خوبی</div>
+                    <div class="fact-value">قادر الکلام شاعر (فصیح شاعر)</div>
+                </div>
+                <div class="fact-item" style="border-right: 4px solid #9f7aea;">
+                    <div class="fact-label">تیسری خوبی</div>
+                    <div class="fact-value">عمدہ مصنف (اچھے لکھاری)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- بحیثیت طبیب -->
+        <div class="card">
+            <h2 class="card-title">
+                <span class="icon">🏥</span>
+                حکیم یوسفی بحیثیت طبیب
+            </h2>
+
+            <div class="key-point">
+                <div class="key-point-title">✅ ان کی قابلیت کی دلیل</div>
+                <p>بادشاہ بابر نے خود انہیں <strong>خراسان</strong> سے بلایا اور <strong>خصوصی معالج</strong> مقرر کیا۔</p>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">💡 سادہ الفاظ میں</div>
+                <p>جب بادشاہ خود کسی کو دور سے بلائے اور اپنا ڈاکٹر بنائے - تو سمجھو وہ بہت قابل ہے!</p>
+            </div>
+        </div>
+
+        <!-- بحیثیت شاعر -->
+        <div class="card">
+            <h2 class="card-title">
+                <span class="icon">✍️</span>
+                حکیم یوسفی بحیثیت شاعر
+            </h2>
+
+            <p>یوسفی نے اپنی <strong>شاعری</strong> کو طب کی اشاعت کا ذریعہ بنایا۔ یعنی شعروں کے ذریعے طب سکھائی!</p>
+
+            <div class="poetry-box">
+                <div class="poetry-line">غرض از طب دو چیز آمده است</div>
+                <div class="poetry-line">بشنو از یوسفیؔ بسمعِ رضا</div>
+                <div class="poetry-line" style="margin-top: 15px;">حفظ صحت یکی ازاں باشد</div>
+                <div class="poetry-line">دیگری دفعِ علّت مرضا</div>
+                <div class="poetry-line" style="margin-top: 15px;">یاد گیر از من ای کہ میخواہی</div>
+                <div class="poetry-line">کہ کنی در علاج نشو ونما</div>
+                <div class="poetry-line" style="margin-top: 15px;">دفع ہر علتی بضد می کن</div>
+                <div class="poetry-line">حفظ صحت بمثل می فرما</div>
+            </div>
+
+            <div class="translation">
+                <div class="translation-title">📝 ترجمہ (آسان الفاظ میں)</div>
+                <p><strong>طب کے دو مقاصد ہیں:</strong></p>
+                <div style="display: flex; gap: 10px; margin: 10px 0; flex-wrap: wrap;">
+                    <span class="number-badge">۱</span>
+                    <span><strong>حفظ صحت</strong> - صحت کو برقرار رکھنا</span>
+                </div>
+                <div style="display: flex; gap: 10px; margin: 10px 0; flex-wrap: wrap;">
+                    <span class="number-badge">۲</span>
+                    <span><strong>ازالہ مرض</strong> - بیماری کو دور کرنا</span>
+                </div>
+            </div>
+
+            <div class="key-point" style="margin-top: 15px;">
+                <div class="key-point-title">🎯 علاج کا اصول</div>
+                <p><strong>علاج بالضد:</strong> بیماری کا ازالہ اس کے الٹ چیز سے کرو</p>
+                <p><small style="color: #718096;">مثال: گرمی ہو تو ٹھنڈی چیز</small></p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">💚 صحت کا اصول</div>
+                <p><strong>مثل اشیاء:</strong> صحت برقرار رکھنے کے لیے ملتی جلتی چیزیں استعمال کرو</p>
+            </div>
+        </div>
+
+        <!-- بحیثیت مصنف -->
+        <div class="card">
+            <h2 class="card-title">
+                <span class="icon">📕</span>
+                حکیم یوسفی بحیثیت مصنف
+            </h2>
+
+            <div class="highlight-box">
+                <div class="big-text">مغل عہد کے پہلے طبی مصنف!</div>
+                <p style="margin-top: 10px;">یوسفی مغل دور کے پہلے طبیب ہیں جنہوں نے طبی کتابیں لکھیں۔</p>
+            </div>
+
+            <h3 style="margin: 20px 0 15px; color: #667eea; font-size: 1.2rem;">📚 اہم تصانیف (کتابیں)</h3>
+
+            <ul class="books-list">
+                <li>
+                    <span class="book-name">۱۔ اصل الاصول</span>
+                    <span class="book-desc">اطباء کے <strong>قواعد و ضوابط</strong> - یہ نادر کتاب ہے</span>
+                </li>
+                <li>
+                    <span class="book-name">۲۔ دلائل البول</span>
+                    <span class="book-desc"><strong>پیشاب</strong> سے تشخیص کا طریقہ (قارورہ)</span>
+                </li>
+                <li>
+                    <span class="book-name">۳۔ دلائل النبض</span>
+                    <span class="book-desc"><strong>نبض</strong> سے تشخیص کا طریقہ</span>
+                </li>
+                <li>
+                    <span class="book-name">۴۔ علاج الامراض</span>
+                    <span class="book-desc">مختلف <strong>بیماریوں کا علاج</strong></span>
+                </li>
+                <li>
+                    <span class="book-name">۵۔ جامع الفوائد</span>
+                    <span class="book-desc">علاج الامراض کی <strong>شرح</strong> (تفصیل)</span>
+                </li>
+                <li>
+                    <span class="book-name">۶۔ قصیدہ در حفظ صحت</span>
+                    <span class="book-desc"><strong>نظم</strong> میں صحت کے اصول</span>
+                </li>
+                <li>
+                    <span class="book-name">۷۔ رسالہ ماکول و مشروب</span>
+                    <span class="book-desc"><strong>کھانے پینے</strong> کی اشیاء پر نظمیں</span>
+                </li>
+                <li>
+                    <span class="book-name">۸۔ ریاض الادویہ</span>
+                    <span class="book-desc"><strong>ادویہ</strong> (مفرد و مرکب) پر کتاب</span>
+                </li>
+                <li>
+                    <span class="book-name">۹۔ ستہ ضروریہ</span>
+                    <span class="book-desc">صحت کے <strong>زریں اصول</strong> - نظم میں</span>
+                </li>
+            </ul>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">💡 کتابیں یاد کرنے کا آسان طریقہ</div>
+                <p><strong>تشخیص کی کتابیں:</strong> دلائل البول + دلائل النبض</p>
+                <p><strong>علاج کی کتابیں:</strong> علاج الامراض + جامع الفوائد</p>
+                <p><strong>صحت کی کتابیں:</strong> قصیدہ در حفظ صحت + ستہ ضروریہ</p>
+                <p><strong>خوراک:</strong> رسالہ ماکول و مشروب</p>
+                <p><strong>دوائیں:</strong> ریاض الادویہ</p>
+                <p><strong>اصول:</strong> اصل الاصول</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- خلاصہ -->
+        <div class="summary-card">
+            <h3>📌 خلاصہ - یاد رکھنے کے اہم نکات</h3>
+            <ul>
+                <li>پورا نام: یوسف بن محمد بن یوسف الہروی</li>
+                <li>تخلص: یوسفیؔ | وطن: ہرات (اسی لیے ہروی)</li>
+                <li>والد بھی طبیب تھے - طبابت وراثت میں ملی</li>
+                <li>تعلیم: ہرات ← خراسان میں والد سے</li>
+                <li>بابر کے درباری طبیب + ہمایوں کا دور دیکھا</li>
+                <li>تین خوبیاں: طبیب + شاعر + مصنف</li>
+                <li>طب کے دو مقاصد: حفظ صحت + ازالہ مرض</li>
+                <li>علاج بالضد + حفظ صحت بمثل</li>
+                <li>مغل دور کے پہلے طبی مصنف</li>
+                <li>کل 9 اہم کتابیں لکھیں</li>
+            </ul>
+        </div>
+
+        <!-- Number Memory Aid -->
+        <div class="card">
+            <h2 class="card-title">
+                <span class="icon">🔢</span>
+                نمبروں سے یاد رکھیں
+            </h2>
+            <div class="quick-facts" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="fact-item">
+                    <div class="fact-value" style="font-size: 2rem; color: #667eea;">2</div>
+                    <div class="fact-label">بادشاہوں کا دور دیکھا</div>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-value" style="font-size: 2rem; color: #48bb78;">3</div>
+                    <div class="fact-label">خوبیاں (طبیب، شاعر، مصنف)</div>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-value" style="font-size: 2rem; color: #ed8936;">9</div>
+                    <div class="fact-label">اہم کتابیں</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Add touch feedback to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

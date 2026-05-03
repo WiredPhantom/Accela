@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>حکیم میر مومن - حالاتِ زندگی اور خدمات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Noto Nastaliq Urdu', serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+        min-height: 100vh;
+        line-height: 2.2;
+        color: #2d3748;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px 15px;
+      }
+
+      /* Header */
+      .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+        border-radius: 0 0 30px 30px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      }
+
+      .header h1 {
+        font-size: 2.2em;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      }
+
+      .header .subtitle {
+        font-size: 1.1em;
+        opacity: 0.95;
+      }
+
+      /* Icon Badge */
+      .icon-badge {
+        width: 80px;
+        height: 80px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        font-size: 2.5em;
+      }
+
+      /* Section Card */
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 25px 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      }
+
+      .card-title {
+        font-size: 1.4em;
+        font-weight: 700;
+        color: #667eea;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #667eea;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .card-title .emoji {
+        font-size: 1.3em;
+      }
+
+      .card p {
+        font-size: 1.1em;
+        text-align: justify;
+        margin-bottom: 15px;
+      }
+
+      /* Key Points Box */
+      .key-points {
+        background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 15px 0;
+        border-right: 5px solid #667eea;
+      }
+
+      .key-points h3 {
+        color: #764ba2;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+      }
+
+      .key-points ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .key-points li {
+        padding: 10px 15px;
+        margin: 8px 0;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .key-points li .bullet {
+        color: #667eea;
+        font-weight: bold;
+        font-size: 1.2em;
+        min-width: 25px;
+      }
+
+      /* Highlight Box */
+      .highlight-box {
+        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        border-radius: 15px;
+        padding: 18px;
+        margin: 15px 0;
+        border-right: 5px solid #ff9800;
+      }
+
+      .highlight-box h4 {
+        color: #e65100;
+        font-size: 1.15em;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Timeline */
+      .timeline {
+        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        border-radius: 15px;
+        padding: 18px;
+        margin: 15px 0;
+        border-right: 5px solid #4caf50;
+      }
+
+      .timeline-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 10px 0;
+      }
+
+      .timeline-date {
+        background: #4caf50;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.95em;
+        white-space: nowrap;
+      }
+
+      /* Buildings List */
+      .buildings-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 15px 0;
+      }
+
+      .building-item {
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        font-weight: 600;
+        color: #1565c0;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      }
+
+      .building-item .icon {
+        font-size: 1.8em;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      /* Books Section */
+      .books-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin: 15px 0;
+      }
+
+      .book-item {
+        background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+        padding: 18px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .book-item .icon {
+        font-size: 2em;
+      }
+
+      .book-item .title {
+        font-weight: 700;
+        color: #ad1457;
+        font-size: 1.15em;
+      }
+
+      /* Summary Box */
+      .summary-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 20px;
+        padding: 25px 20px;
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .summary-box h3 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+      }
+
+      .summary-box p {
+        font-size: 1.1em;
+        line-height: 2;
+      }
+
+      /* Footer */
+      .footer {
+        background: #2d3748;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9em;
+        margin-top: 30px;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 600px) {
+        .header h1 {
+          font-size: 1.8em;
+        }
+
+        .card {
+          padding: 20px 15px;
+        }
+
+        .buildings-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .card p {
+          font-size: 1em;
+        }
+      }
+
+      /* Animation for cards */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card {
+        animation: fadeInUp 0.5s ease forwards;
+      }
+
+      .card:nth-child(2) { animation-delay: 0.1s; }
+      .card:nth-child(3) { animation-delay: 0.2s; }
+      .card:nth-child(4) { animation-delay: 0.3s; }
+      .card:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header">
+      <div class="icon-badge">📚</div>
+      <h1>حکیم میر مومن</h1>
+      <p class="subtitle">جنوبی ہند کا مشہور طبیب اور معمار</p>
+    </div>
+
+    <div class="container">
+      <!-- Section 1: Introduction -->
+      <div class="card">
+        <h2 class="card-title">
+          <span class="emoji">👤</span>
+          تعارف
+        </h2>
+        <p>حکیم میر مومن جنوبی ہند کے <strong>قطب شاہی دور</strong> کا بہت مشہور طبیب تھا۔ یہ ایک ماہر ڈاکٹر تھا جو مختلف علوم میں مہارت رکھتا تھا۔</p>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-date">1582ء</span>
+            <span>ایران سے ہجرت کر کے ہندوستان آیا</span>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">📍 گولکنڈہ</span>
+            <span>جنوبی ہند کے گولکنڈہ علاقے میں رہائش اختیار کی</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Position -->
+      <div class="card">
+        <h2 class="card-title">
+          <span class="emoji">👑</span>
+          عہدہ اور مقام
+        </h2>
+        <p>گولکنڈہ کے بادشاہ <strong>قلی قطب شاہ</strong> نے میر مومن کی قابلیت دیکھ کر اسے اپنی سلطنت کا <strong>پیشوا</strong> (وزیراعظم) بنا دیا۔</p>
+        
+        <div class="highlight-box">
+          <h4>💡 یاد رکھیں</h4>
+          <p>میر مومن کی ابتدائی تعلیم ایران میں ہوئی تھی اس لیے اس کی تعلیم کی تفصیلات موجود نہیں ہیں۔</p>
+        </div>
+      </div>
+
+      <!-- Section 3: Skills -->
+      <div class="card">
+        <h2 class="card-title">
+          <span class="emoji">🎯</span>
+          مہارتیں اور علوم
+        </h2>
+        <p>لفظ <strong>"حکیم"</strong> کے مطابق میر مومن بیک وقت کئی علوم میں ماہر تھا:</p>
+        
+        <div class="key-points">
+          <h3>📋 تین اہم مہارتیں:</h3>
+          <ul>
+            <li>
+              <span class="bullet">۱</span>
+              <span><strong>علم طب:</strong> بیماریوں کا علاج</span>
+            </li>
+            <li>
+              <span class="bullet">۲</span>
+              <span><strong>سیاسیات:</strong> حکومتی امور</span>
+            </li>
+            <li>
+              <span class="bullet">۳</span>
+              <span><strong>فن تعمیر:</strong> عمارتیں بنانا</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 4: Architecture -->
+      <div class="card">
+        <h2 class="card-title">
+          <span class="emoji">🏛️</span>
+          تعمیراتی کارنامے
+        </h2>
+        <p>میر مومن نے فن تعمیر میں خاص دلچسپی لی اور حیدرآباد کی مشہور عمارتیں بنائیں:</p>
+        
+        <div class="buildings-grid">
+          <div class="building-item">
+            <span class="icon">🕌</span>
+            چار مینار
+          </div>
+          <div class="building-item">
+            <span class="icon">🏥</span>
+            دارالشفاء
+          </div>
+          <div class="building-item">
+            <span class="icon">🏰</span>
+            شاہی محل
+          </div>
+          <div class="building-item">
+            <span class="icon">⭕</span>
+            دائرہ میر مومن
+          </div>
+        </div>
+        
+        <div class="highlight-box">
+          <h4>⭐ اہم نکتہ</h4>
+          <p>یہ عمارتیں آج بھی حیدرآباد میں موجود ہیں اور میر مومن کے فن تعمیر کی زندہ مثالیں ہیں۔</p>
+        </div>
+      </div>
+
+      <!-- Section 5: Medical Services -->
+      <div class="card">
+        <h2 class="card-title">
+          <span class="emoji">⚕️</span>
+          بحیثیت طبیب (ڈاکٹر)
+        </h2>
+        <p>حکیم میر مومن نے طب میں اہم خدمات انجام دیں:</p>
+        
+        <div class="key-points">
+          <h3>🩺 طبی مہارتیں:</h3>
+          <ul>
+            <li>
+              <span class="bullet">•</span>
+              <span>شاہی دربار میں بطور طبیب خدمات دیں</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>بیماریوں کی نوعیت سمجھنے میں ماہر</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>علاج کے اصول جانتا تھا</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>ادویہ مفردہ (سادہ دوائیں) کے فائدے اور استعمال جانتا تھا</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>دواؤں کی مقدار اور وزن کے ماہر</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span><strong>دارالشفاء</strong> میں بطور معالج کام کیا</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 6: Books -->
+      <div class="card">
+        <h2 class="card-title">
+          <span class="emoji">📖</span>
+          بحیثیت مصنف (کتابیں)
+        </h2>
+        <p>میر مومن نے <strong>دو کتابیں</strong> لکھیں جو بہت مشہور ہوئیں:</p>
+        
+        <div class="books-grid">
+          <div class="book-item">
+            <span class="icon">📕</span>
+            <div>
+              <span class="title">اختیارات قطب شاہی</span>
+            </div>
+          </div>
+          <div class="book-item">
+            <span class="icon">📗</span>
+            <div>
+              <span class="title">رسالۂ مقداریہ</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="highlight-box">
+          <h4>📝 نوٹ</h4>
+          <p>اگرچہ صرف دو کتابیں ہیں لیکن یہ اپنی فضیلت اور فائدے کی وجہ سے بہت مقبول ہوئیں۔</p>
+        </div>
+      </div>
+
+      <!-- Summary Box -->
+      <div class="summary-box">
+        <h3>🎓 خلاصہ یاد کریں</h3>
+        <p>
+          میر مومن = ایرانی طبیب ← 1582ء میں ہندوستان آیا ← گولکنڈہ میں پیشوا بنا ← تین مہارتیں (طب، سیاست، تعمیر) ← چار عمارتیں بنائیں ← دو کتابیں لکھیں
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شہاب عبدالکریم ناگوری - مشہور طبیب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section-title h2 {
+            font-size: 22px;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+            border-right: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .key-point-title {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 17px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-point-title::before {
+            content: "★";
+            color: #764ba2;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border: 2px solid #818cf8;
+        }
+
+        .info-box-title {
+            color: #4338ca;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box-title::before {
+            content: "📌";
+        }
+
+        /* Timeline */
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            margin-top: 12px;
+            flex-shrink: 0;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border: 2px solid #f59e0b;
+        }
+
+        .highlight-box-title {
+            color: #b45309;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Book Section */
+        .book-card {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border: 2px solid #10b981;
+        }
+
+        .book-title {
+            color: #047857;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Chapter Points */
+        .chapter-point {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-right: 4px solid #10b981;
+        }
+
+        .chapter-number {
+            background: #10b981;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* Term Box */
+        .term-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f1f5f9;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .term-urdu {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .term-meaning {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* Library Box */
+        .library-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border: 2px solid #ef4444;
+        }
+
+        .library-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .library-item::before {
+            content: "📚";
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .summary-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* List Styles */
+        .simple-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .simple-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .simple-list li:last-child {
+            border-bottom: none;
+        }
+
+        .simple-list li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        /* Quick Facts */
+        .quick-fact {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8fafc;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .quick-fact-icon {
+            font-size: 24px;
+        }
+
+        .quick-fact-text {
+            flex: 1;
+        }
+
+        /* Paragraph */
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Strong text */
+        strong {
+            color: #4338ca;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .section-title h2 {
+                font-size: 18px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #fdf4ff 0%, #f3e8ff 100%);
+            border: 2px dashed #a855f7;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .memory-tip-title {
+            color: #7c3aed;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .memory-tip-title::before {
+            content: "💡 ";
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>شہاب عبدالکریم ناگوری</h1>
+        <p class="subtitle">گجرات کے مشہور طبیب - چودھویں صدی عیسوی</p>
+    </header>
+
+    <div class="container">
+        <!-- حصہ اول -->
+        <section class="section-card">
+            <div class="section-title">
+                <span class="section-number">۱</span>
+                <h2>حالاتِ زندگی</h2>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">شہاب کون تھے؟</div>
+                <p>شہاب عبدالکریم ناگوری ہندوستان کے مشہور طبیب تھے۔ وہ گجرات کے شہر <strong>ناگور</strong> سے تعلق رکھتے تھے اس لیے انہیں <strong>ناگوری</strong> کہا جاتا ہے۔</p>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-box-title">⚠️ اہم نوٹ</div>
+                <p>شہاب کی تاریخ پیدائش اور وفات کا کہیں ذکر نہیں ملتا۔ ان کے بارے میں جو معلومات ہیں وہ ان کی کتاب <strong>"طبِ شہابی"</strong> سے لی گئی ہیں۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">خاندانی پس منظر</div>
+                <ul class="simple-list">
+                    <li>شہاب کے آباء و اجداد شہاب الدین غوری کے زمانے میں ہندوستان آئے</li>
+                    <li>سلطان نے ان کے جد <strong>محمد ملک</strong> کو ناگور کا گورنر بنایا</li>
+                    <li>محمد ملک نے ناگور میں رہنا شروع کیا</li>
+                    <li>انہی کی نسل میں شہاب عبدالکریم پیدا ہوئے</li>
+                </ul>
+            </div>
+
+            <div class="quick-fact">
+                <span class="quick-fact-icon">📅</span>
+                <span class="quick-fact-text"><strong>زمانہ:</strong> چودھویں صدی عیسوی (عہدِ تغلق)</span>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">یاد رکھیں</div>
+                <p>طبِ شہابی <strong>1388ء</strong> میں لکھی گئی، اس لیے شہاب کا زمانہ چودھویں صدی اور تغلق دور ہے۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">تعلیم</div>
+                <ul class="simple-list">
+                    <li>ابتدائی تعلیم <strong>شیخ حسام علی</strong> سے حاصل کی</li>
+                    <li>طب کی تعلیم افغانستان کے طبیب <strong>محمد</strong> سے سیکھی</li>
+                    <li>یونانی طب کی تعلیم حاصل کی</li>
+                    <li>مشہور یوگیوں اور ویدوں سے <strong>آیوروید</strong> بھی سیکھی</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">طب کیوں سیکھی؟</div>
+                <p>شہاب نے اپنی کتاب میں لکھا کہ وہ <strong>خدمتِ خلق</strong> کے جذبے سے طب کی طرف آئے۔</p>
+            </div>
+        </section>
+
+        <!-- حصہ دوم -->
+        <section class="section-card">
+            <div class="section-title">
+                <span class="section-number">۲</span>
+                <h2>خدمات</h2>
+            </div>
+
+            <div class="book-card">
+                <div class="book-title">🩺 شہاب بحیثیتِ طبیب</div>
+                <ul class="simple-list">
+                    <li>عملی اور علمی دونوں لحاظ سے ماہر طبیب تھے</li>
+                    <li>تجربہ کار اطباء کی صحبت میں رہ کر سیکھا</li>
+                    <li><strong>نبض</strong> اور <strong>بول و براز</strong> کے معائنے میں ماہر تھے</li>
+                    <li>مرض کی تشخیص میں مہارت رکھتے تھے</li>
+                    <li>یونانی اور آیوروید دونوں طریقوں سے علاج کرتے تھے</li>
+                    <li>دواؤں کے فوائد اچھی طرح جانتے تھے</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-box-title">🌟 خاص بات</div>
+                <p>شہاب <strong>مفرد (سادہ) ادویہ</strong> سے علاج کو پسند کرتے تھے۔ نسخے میں صرف <strong>ایک یا دو</strong> دوائیں لکھتے تھے۔</p>
+            </div>
+
+            <div class="quick-fact">
+                <span class="quick-fact-icon">👥</span>
+                <span class="quick-fact-text">ان کے مطب میں <strong>ہمیشہ مریضوں کا ہجوم</strong> رہتا تھا کیونکہ وہ بہت مقبول طبیب تھے۔</span>
+            </div>
+
+            <div class="book-card">
+                <div class="book-title">📖 شہاب بحیثیتِ مصنف</div>
+                <ul class="simple-list">
+                    <li>مطب میں مصروف رہنے کے باوجود کتابیں لکھیں</li>
+                    <li><strong>فارسی زبان</strong> میں طب پر کتابیں تحریر کیں</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">تین مشہور کتابیں</div>
+                <div class="quick-fact">
+                    <span class="quick-fact-icon">۱</span>
+                    <span class="quick-fact-text"><strong>طبِ شہابی</strong> - سب سے مشہور کتاب</span>
+                </div>
+                <div class="quick-fact">
+                    <span class="quick-fact-icon">۲</span>
+                    <span class="quick-fact-text"><strong>طبِ شفائی الخانی</strong></span>
+                </div>
+                <div class="quick-fact">
+                    <span class="quick-fact-icon">۳</span>
+                    <span class="quick-fact-text"><strong>فرہنگ شہابی</strong></span>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">یاد رکھیں</div>
+                <p>"طبِ شہابی" علمی اور فنی لحاظ سے بہت اہم کتاب ہے اور طبی لٹریچر میں اپنا خاص مقام رکھتی ہے۔</p>
+            </div>
+        </section>
+
+        <!-- حصہ سوم -->
+        <section class="section-card">
+            <div class="section-title">
+                <span class="section-number">۳</span>
+                <h2>طبِ شہابی کی اہمیت</h2>
+            </div>
+
+            <div class="book-card">
+                <div class="book-title">📚 کتاب کا تعارف</div>
+                <ul class="simple-list">
+                    <li>شہاب کی سب سے <strong>مشہور کتاب</strong></li>
+                    <li>کلیاتِ طب اور معالجات کی <strong>جامع معلومات</strong></li>
+                    <li><strong>فارسی زبان</strong> میں لکھی گئی</li>
+                    <li><strong>1388ء</strong> کے قریب وجود میں آئی</li>
+                    <li>قدماء کے حوالے اور شہاب کے <strong>ذاتی تجربات</strong> شامل ہیں</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-box-title">نسخوں کی خصوصیت</div>
+                <p>کتاب کے نسخوں میں زیادہ تر <strong>صرف 2 یا 3 مفرد ادویہ</strong> ہیں۔ مصنف کا کہنا ہے کہ یہ سب <strong>آزمودہ (تجربہ شدہ)</strong> نسخے ہیں۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">اہم ابواب</div>
+                
+                <div class="chapter-point">
+                    <span class="chapter-number">باب 83، 84، 86</span>
+                    <p><strong>خاندانی منصوبہ بندی:</strong> مانعِ حمل اور مسقطِ جنین ادویہ کا ذکر۔ اسقاط کے نسخے دیے لیکن <strong>غیر ضروری اسقاط کو منع</strong> کیا۔</p>
+                </div>
+
+                <div class="chapter-point">
+                    <span class="chapter-number">باب 162</span>
+                    <p><strong>جنگی سامان:</strong> تیر، تلوار کی دیکھ بھال اور <strong>گھوڑوں کے علاج</strong> کی معلومات۔</p>
+                </div>
+
+                <div class="chapter-point">
+                    <span class="chapter-number">باب 169</span>
+                    <p><strong>کیمیاء (Chemistry):</strong> الکیمیاء کا بیان۔ غیر ضروری تجربات کو <strong>ناپسند</strong> کیا۔</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">آیوروید کی اصطلاحات</div>
+                <p>کتاب میں آیوروید کی کچھ اصطلاحات ہیں جو ثابت کرتی ہیں کہ شہاب آیوروید کے بھی ماہر تھے:</p>
+            </div>
+
+            <div class="term-box">
+                <span class="term-urdu">رینگین</span>
+                <span class="term-meaning">← عرق النساء (Sciatica)</span>
+            </div>
+            <div class="term-box">
+                <span class="term-urdu">مرگی</span>
+                <span class="term-meaning">← صرع (Epilepsy)</span>
+            </div>
+            <div class="term-box">
+                <span class="term-urdu">موتیا بند</span>
+                <span class="term-meaning">← نزول الماء (Cataract)</span>
+            </div>
+            <div class="term-box">
+                <span class="term-urdu">پنڈ روگ</span>
+                <span class="term-meaning">← یرقان (Jaundice)</span>
+            </div>
+            <div class="term-box">
+                <span class="term-urdu">پھوڑی</span>
+                <span class="term-meaning">← بثور (Boils)</span>
+            </div>
+
+            <div class="library-box">
+                <h4 style="color: #b91c1c; margin-bottom: 12px; font-weight: 700;">📚 کتاب کہاں موجود ہے؟</h4>
+                <div class="library-item">سینٹرل لائبریری، جامعہ ہمدرد</div>
+                <div class="library-item">رضا لائبریری، رامپور</div>
+                <div class="library-item">کتب خانہ قاضی علی محمد ٹھٹھوری</div>
+            </div>
+
+            <div class="summary-card">
+                <h3>🏆 طبِ شہابی کی عظمت</h3>
+                <p>یہ ایک <strong>نادر طبی نسخہ</strong> ہے جس میں <strong>طبِ یونانی</strong> اور <strong>طبِ ہندی (آیوروید)</strong> کی مشترکہ معلومات موجود ہیں۔</p>
+            </div>
+        </section>
+
+        <!-- خلاصہ -->
+        <section class="section-card">
+            <div class="section-title">
+                <span class="section-number">✓</span>
+                <h2>آسان خلاصہ</h2>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">شہاب کون تھے؟</div>
+                <p>گجرات کے شہر ناگور کے مشہور طبیب، چودھویں صدی (تغلق دور) میں رہے۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">تعلیم کہاں سے لی؟</div>
+                <p>شیخ حسام علی سے ابتدائی، افغانی طبیب محمد سے طب، یوگیوں سے آیوروید۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">کیا خاص بات تھی؟</div>
+                <p>یونانی اور آیوروید دونوں جانتے تھے، سادہ ادویہ (1-2) سے علاج کرتے تھے۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">کون سی کتابیں لکھیں؟</div>
+                <p>طبِ شہابی (سب سے مشہور)، طبِ شفائی الخانی، فرہنگ شہابی - فارسی میں۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">طبِ شہابی کب لکھی؟</div>
+                <p>1388ء کے قریب، اس میں آزمودہ نسخے اور یونانی + آیوروید معلومات ہیں۔</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

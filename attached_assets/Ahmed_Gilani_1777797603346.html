@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم نظام الدین احمد گیلانی - سوانح حیات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .header .dates {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding: 5px;
+        }
+
+        .nav-tab {
+            background: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            color: #4a5568;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f6f8fb 0%, #eef1f5 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-right: 4px solid #48bb78;
+        }
+
+        .key-point-title {
+            color: #38a169;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-point-title::before {
+            content: "✓";
+            background: #48bb78;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* Books List */
+        .book-item {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-right: 4px solid #9f7aea;
+        }
+
+        .book-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .book-title {
+            font-weight: 600;
+            color: #6b46c1;
+            font-size: 18px;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .fact-card .label {
+            font-size: 12px;
+            color: #4299e1;
+            margin-bottom: 5px;
+        }
+
+        .fact-card .value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2b6cb0;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #fffaf0 0%, #feebc8 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-right: 4px solid #ed8936;
+        }
+
+        .memory-tip-title {
+            color: #c05621;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* Comparison Box */
+        .comparison-box {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .comparison-header {
+            background: linear-gradient(135deg, #fc8181 0%, #f56565 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .comparison-content {
+            padding: 15px;
+        }
+
+        .comparison-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .comparison-col {
+            flex: 1;
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .comparison-col-title {
+            font-size: 12px;
+            color: #718096;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border-radius: 12px;
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 13px;
+            color: #234e52;
+            font-weight: 500;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .highlight-box h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Story Box */
+        .story-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-right: 4px solid #fc8181;
+        }
+
+        .story-title {
+            color: #c53030;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-bottom: 15px;
+        }
+
+        .accordion-header {
+            background: #edf2f7;
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #e2e8f0;
+        }
+
+        .accordion-header .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.open .accordion-header .arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 0 0 12px 12px;
+            margin-top: -5px;
+        }
+
+        .accordion.open .accordion-content {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 3px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card h4 {
+            color: #276749;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .summary-card ul {
+            list-style: none;
+        }
+
+        .summary-card li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #68d391;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .summary-card li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-card li::before {
+            content: "📌";
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>حکیم نظام الدین احمد گیلانی</h1>
+        <p class="subtitle">قطب شاہی دور کے مشہور طبیب</p>
+        <div class="dates">📅 1586ء - 1669ء</div>
+    </div>
+
+    <div class="container">
+
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-card">
+                <div class="label">جائے پیدائش</div>
+                <div class="value">گیلان، ایران</div>
+            </div>
+            <div class="fact-card">
+                <div class="label">عمر</div>
+                <div class="value">83 سال</div>
+            </div>
+            <div class="fact-card">
+                <div class="label">خطاب</div>
+                <div class="value">حکیم الملک</div>
+            </div>
+            <div class="fact-card">
+                <div class="label">دربار</div>
+                <div class="value">قطب شاہی</div>
+            </div>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">👤</span>
+                تعارف
+            </h2>
+            
+            <div class="key-point">
+                <div class="key-point-title">کون تھے؟</div>
+                <p>یہ جنوبی ہند کے قطب شاہی دور کے بہت مشہور طبیب (ڈاکٹر) تھے۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">کس بادشاہ کے دربار میں تھے؟</div>
+                <p>دکن کے بادشاہ عبداللہ قطب شاہ کے دربار سے جڑے ہوئے تھے۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">کہاں پیدا ہوئے؟</div>
+                <p>ایران کے علاقے گیلان میں 1586ء میں پیدا ہوئے۔ بعد میں اپنا وطن چھوڑ کر ہندوستان آ گئے۔</p>
+            </div>
+        </div>
+
+        <!-- Section 2: Timeline -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">📜</span>
+                زندگی کے اہم واقعات
+            </h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">1586ء</div>
+                    <p>ایران کے علاقے گیلان میں پیدا ہوئے۔</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">ہجرت</div>
+                    <p>اپنا وطن ایران چھوڑ کر ہندوستان آ گئے۔</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">شاہجہاں کا دور</div>
+                    <p>مغل بادشاہ شاہجہاں کے سپہ سالار مہابت خاں کے دربار میں ملازم ہوئے۔ جلد ہی مہابت خاں کے قابل اعتماد مشیر بن گئے۔</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">دولت آباد کی جنگ</div>
+                    <p>مہابت خاں کے ساتھ دولت آباد پر حملے میں شریک ہوئے۔ تین ماہ کی کوشش کے بعد بھی قلعہ فتح نہ ہو سکا۔ پھر حکیم کی زبردست حکمت عملی سے قلعہ فتح ہوا۔</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">مصیبت</div>
+                    <p>مہابت خاں کو حسد ہوا اور اس نے حکیم کا کتب خانہ جلا دیا۔ کتاب "منہاج البیان" بھی جل گئی۔</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">قطب شاہی دربار</div>
+                    <p>جب عراق جا رہے تھے تو عبداللہ قطب شاہ کا محبت بھرا پیغام ملا۔ گولکنڈہ آ گئے اور زندگی بھر وہیں رہے۔</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">1669ء</div>
+                    <p>83 سال کی عمر میں وفات پائی۔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Stories Comparison -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                دو مختلف روایات
+            </h2>
+
+            <div class="comparison-box">
+                <div class="comparison-header">⚠️ تاریخ میں دو مختلف بیانات ملتے ہیں</div>
+                <div class="comparison-content">
+                    <div class="comparison-row">
+                        <div class="comparison-col">
+                            <div class="comparison-col-title">📚 مورخین کا بیان</div>
+                            <p>حکیم نے اپنی حکمت عملی سے دولت آباد کا قلعہ فتح کروایا۔ مہابت خاں کو حسد ہوا اور اس نے کتب خانہ جلا دیا۔</p>
+                        </div>
+                        <div class="comparison-col">
+                            <div class="comparison-col-title">✍️ خود حکیم کا بیان</div>
+                            <p>میں دولت آباد میں رہتا تھا۔ جب مغل فوج نے قلعہ فتح کیا تو لوٹ مار میں میرا کتب خانہ بھی جل گیا۔</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">💡 یاد رکھیں</div>
+                <p>دونوں روایات میں ایک بات مشترک ہے: کتب خانہ جلا اور حکیم بہت رنجیدہ ہوئے۔</p>
+            </div>
+        </div>
+
+        <!-- Qutub Shah Story -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">👑</span>
+                قطب شاہی دربار میں آمد
+            </h2>
+
+            <div class="story-box">
+                <div class="story-title">🚢 دلچسپ واقعہ</div>
+                <p>جب حکیم دل برداشتہ ہو کر عراق جانے کے لیے مچھلی پٹن کی بندرگاہ پہنچے تو گولکنڈہ کے بادشاہ عبداللہ قطب شاہ کا محبت بھرا پیغام ملا۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">بادشاہ نے کیا کیا؟</div>
+                <ul style="padding-right: 20px;">
+                    <li>بہت عزت و احترام سے استقبال کیا</li>
+                    <li>اپنے خاص مشیروں میں شامل کیا</li>
+                    <li>ایک نیا کتب خانہ دیا جس میں طب کی نایاب کتابیں تھیں</li>
+                    <li>"حکیم الملک" کا خطاب دیا</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🏆 کامیابی</h3>
+                <p>حکیم نظام الدین قطب شاہ کے دربار میں سرخرو ہوئے اور زندگی بھر وہیں رہے!</p>
+            </div>
+        </div>
+
+        <!-- Skills and Knowledge -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                علم و مہارت
+            </h2>
+
+            <p style="margin-bottom: 15px;">حکیم نظام الدین بہت پڑھے لکھے شخص تھے۔ انہیں ان علوم میں مہارت تھی:</p>
+
+            <div class="skills-grid">
+                <div class="skill-item">منطق</div>
+                <div class="skill-item">فلسفہ</div>
+                <div class="skill-item">طبیعیات</div>
+                <div class="skill-item">کیمیاء</div>
+                <div class="skill-item">علم حیوانات</div>
+                <div class="skill-item">علم نباتات</div>
+                <div class="skill-item">دینیات</div>
+                <div class="skill-item">الٰہیات</div>
+                <div class="skill-item">طب</div>
+                <div class="skill-item">شعر</div>
+                <div class="skill-item">ادب</div>
+                <div class="skill-item">تصنیف</div>
+            </div>
+
+            <div class="memory-tip" style="margin-top: 20px;">
+                <div class="memory-tip-title">💡 خلاصہ</div>
+                <p>وہ ماہر طبیب بھی تھے، عملی ڈاکٹر بھی تھے اور کتابیں لکھنے میں بھی دلچسپی رکھتے تھے۔</p>
+            </div>
+        </div>
+
+        <!-- Books Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                اہم طبی تصانیف (کتابیں)
+            </h2>
+
+            <p style="margin-bottom: 20px;">حکیم نے طب اور دیگر علوم پر بہت سی کتابیں لکھیں۔ چار اہم کتابیں:</p>
+
+            <div class="book-item">
+                <div class="book-icon">📕</div>
+                <div>
+                    <div class="book-title">مجموعہ حکیم الملک</div>
+                </div>
+            </div>
+
+            <div class="book-item">
+                <div class="book-icon">📗</div>
+                <div>
+                    <div class="book-title">شجرۂ دانش</div>
+                </div>
+            </div>
+
+            <div class="book-item">
+                <div class="book-icon">📘</div>
+                <div>
+                    <div class="book-title">خواص الادویہ</div>
+                </div>
+            </div>
+
+            <div class="book-item">
+                <div class="book-icon">📙</div>
+                <div>
+                    <div class="book-title">صفات و خواص مومیائی</div>
+                </div>
+            </div>
+
+            <div class="memory-tip" style="margin-top: 20px;">
+                <div class="memory-tip-title">💡 یاد رکھنے کی تکنیک</div>
+                <p><strong>م ش خ ص</strong> = مجموعہ، شجرہ، خواص، صفات</p>
+            </div>
+        </div>
+
+        <!-- Summary for Memorization -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">🎯</span>
+                یاد رکھنے کے لیے خلاصہ
+            </h2>
+
+            <div class="summary-card">
+                <h4>اہم نکات</h4>
+                <ul>
+                    <li>نام: حکیم نظام الدین احمد گیلانی</li>
+                    <li>پیدائش: 1586ء، گیلان (ایران)</li>
+                    <li>وفات: 1669ء (عمر 83 سال)</li>
+                    <li>پہلے مہابت خاں کے پاس ملازم تھے</li>
+                    <li>کتب خانہ جلنے سے دل برداشتہ ہوئے</li>
+                    <li>عبداللہ قطب شاہ کے دربار میں آئے</li>
+                    <li>خطاب: "حکیم الملک"</li>
+                    <li>12 علوم میں ماہر تھے</li>
+                    <li>4 اہم کتابیں لکھیں</li>
+                </ul>
+            </div>
+
+            <div class="accordion" onclick="this.classList.toggle('open')">
+                <div class="accordion-header">
+                    کتابوں کے نام یاد کریں
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>1. مجموعہ حکیم الملک</p>
+                    <p>2. شجرۂ دانش</p>
+                    <p>3. خواص الادویہ</p>
+                    <p>4. صفات و خواص مومیائی</p>
+                </div>
+            </div>
+
+            <div class="accordion" onclick="this.classList.toggle('open')">
+                <div class="accordion-header">
+                    علوم کے نام یاد کریں
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>منطق، فلسفہ، طبیعیات، کیمیاء، علم حیوانات، علم نباتات، دینیات، الٰہیات، طب، شعر، ادب</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Box -->
+        <div class="highlight-box" style="background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);">
+            <h3>✨ اہم سبق</h3>
+            <p>حکیم نظام الدین نے مصیبت کے بعد ہمت نہیں ہاری۔ جب کتب خانہ جلا تو وہ رنجیدہ ہوئے، لیکن نئی جگہ جا کر دوبارہ کامیاب ہوئے!</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

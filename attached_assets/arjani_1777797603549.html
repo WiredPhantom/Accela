@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم اکبر ارزانی - سوانح حیات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .header .dates {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 1em;
+        }
+
+        /* Section Card */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:active {
+            transform: scale(0.98);
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        /* Key Points Box */
+        .key-point {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin: 12px 0;
+            border-right: 4px solid #667eea;
+        }
+
+        .key-point strong {
+            color: #4c51bf;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border-right: 4px solid #ffc107;
+        }
+
+        .highlight-box .emoji {
+            font-size: 1.5em;
+            margin-left: 8px;
+        }
+
+        /* Important Note */
+        .important {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border-right: 4px solid #28a745;
+        }
+
+        /* Books List */
+        .books-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .books-list li {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1em;
+            transition: transform 0.2s ease;
+        }
+
+        .books-list li:active {
+            transform: translateX(-5px);
+        }
+
+        .book-number {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .summary-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-item {
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin: 10px 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .summary-item .label {
+            opacity: 0.9;
+            min-width: 80px;
+        }
+
+        .summary-item .value {
+            font-weight: 600;
+        }
+
+        /* Memory Tips */
+        .memory-tips {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border-right: 5px solid #00bcd4;
+        }
+
+        .memory-tips h3 {
+            color: #00838f;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .tip-item {
+            background: white;
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .tip-icon {
+            font-size: 1.3em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            border-radius: 20px 20px 0 0;
+            margin-top: 30px;
+        }
+
+        /* Quick Facts Strip */
+        .quick-facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .fact-chip {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.2em;
+            }
+            
+            .section p {
+                font-size: 1em;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 حکیم محمد اکبر ارزانی</h1>
+        <p class="subtitle">عہدِ مغلیہ کے مشہور طبیب اور مترجم</p>
+        <div class="dates">⏳ وفات: 1722ء - دہلی / برہان پور</div>
+    </div>
+
+    <div class="container">
+        
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-chip">🏠 برہان پور میں مطب</div>
+            <div class="fact-chip">📖 عربی سے فارسی ترجمے</div>
+            <div class="fact-chip">🇮🇳 ہندوستانی</div>
+        </div>
+
+        <!-- تعارف -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">👤</span>
+                تعارف
+            </h2>
+            <p>حکیم اکبر ارزانی <strong>مغل دور کے مشہور طبیب</strong> تھے۔</p>
+            
+            <div class="key-point">
+                <strong>📍 وطن کے بارے میں دو رائے:</strong><br>
+                ۱۔ کچھ لوگ کہتے ہیں کہ وہ ایران کے شہر <strong>شیراز</strong> سے آئے<br>
+                ۲۔ کچھ کہتے ہیں وہ <strong>ہندوستان</strong> کے ہی تھے
+            </div>
+            
+            <div class="important">
+                <strong>✅ صحیح بات:</strong> وہ ہندوستان میں ہی پیدا ہوئے اور یہیں کام کیا۔
+            </div>
+
+            <div class="highlight-box">
+                <span class="emoji">⚰️</span>
+                <strong>وفات:</strong> 1722ء<br>
+                <strong>جگہ:</strong> دہلی (کچھ کے مطابق برہان پور، مدھیہ پردیش)
+            </div>
+        </div>
+
+        <!-- خاندان -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">👨‍👧</span>
+                خاندان اور تعلیم
+            </h2>
+            
+            <div class="key-point">
+                <strong>👨 والد کا نام:</strong> میر حاجی محمد مقیم
+            </div>
+            
+            <div class="highlight-box">
+                <span class="emoji">📚</span>
+                ان کی ابتدائی تعلیم کے بارے میں کوئی خاص معلومات نہیں ملتیں۔
+            </div>
+        </div>
+
+        <!-- صلاحیتیں -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⭐</span>
+                صلاحیتیں اور مہارت
+            </h2>
+            <p>حکیم اکبر ارزانی کی تین بڑی صلاحیتیں تھیں:</p>
+            
+            <div class="key-point">
+                <strong>۱۔ 🩺 بہترین طبیب:</strong> بیماریوں کا علاج کرنے میں ماہر تھے
+            </div>
+            
+            <div class="key-point">
+                <strong>۲۔ 📝 عربی زبان کے ماہر:</strong> عربی پڑھنا لکھنا جانتے تھے
+            </div>
+            
+            <div class="key-point">
+                <strong>۳۔ 📜 فارسی زبان کے ماہر:</strong> فارسی میں لکھنے میں مہارت تھی
+            </div>
+            
+            <div class="important">
+                <strong>🏆 دو شعبوں میں مشہور:</strong><br>
+                ۱۔ طبیب کی حیثیت سے<br>
+                ۲۔ طبی کتابیں لکھنے اور ترجمہ کرنے والے کی حیثیت سے
+            </div>
+        </div>
+
+        <!-- بحیثیت طبیب -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🩺</span>
+                بحیثیت طبیب
+            </h2>
+            
+            <div class="key-point">
+                <strong>📋 حقیقت:</strong> ان کے علاج کے مشہور قصے نہیں ملتے، لیکن تاریخ لکھنے والوں نے تصدیق کی کہ وہ <strong>ذی علم اور ماہر طبیب</strong> تھے۔
+            </div>
+            
+            <div class="highlight-box">
+                <span class="emoji">🏥</span>
+                <strong>مطب (کلینک):</strong> برہان پور میں تھا<br>
+                زیادہ تر وقت برہان پور میں ہی گزارا
+            </div>
+        </div>
+
+        <!-- بحیثیت مصنف -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">✍️</span>
+                بحیثیت مصنف (لکھاری)
+            </h2>
+            <p>حکیم ارزانی نے تین طرح کا کام کیا:</p>
+            
+            <div class="key-point">
+                <strong>۱۔ 🔄 تراجم:</strong> دوسری زبانوں کی کتابیں فارسی میں ترجمہ کیں (سب سے زیادہ کام)
+            </div>
+            
+            <div class="key-point">
+                <strong>۲۔ 📖 اپنی کتابیں:</strong> خود بھی نئی کتابیں لکھیں
+            </div>
+            
+            <div class="key-point">
+                <strong>۳۔ 📑 شرحیں:</strong> پرانی اہم کتابوں کی وضاحت لکھی
+            </div>
+            
+            <div class="important">
+                ان کی کتابوں سے پتا چلتا ہے کہ <strong>طب کا گہرا علم</strong> رکھتے تھے۔
+            </div>
+        </div>
+
+        <!-- بحیثیت مترجم -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🔄</span>
+                بحیثیت مترجم (سب سے بڑا کارنامہ)
+            </h2>
+            
+            <div class="highlight-box">
+                <span class="emoji">💡</span>
+                <strong>مسئلہ کیا تھا؟</strong><br>
+                طب یونانی کی اہم کتابیں عربی زبان میں تھیں۔ بہت سے لوگ عربی نہیں جانتے تھے مگر فارسی سمجھتے تھے۔
+            </div>
+            
+            <div class="important">
+                <strong>🎯 ارزانی نے کیا کیا؟</strong><br>
+                عربی کتابوں کو فارسی میں ترجمہ کر دیا!
+            </div>
+            
+            <div class="key-point">
+                <strong>🏅 خاص بات:</strong> مغل دور میں صرف ارزانی وہ طبیب ہیں جنہوں نے طبِ یونانی کا عربی ذخیرہ فارسی میں منتقل کیا۔
+            </div>
+            
+            <div class="highlight-box">
+                <span class="emoji">📈</span>
+                <strong>فائدہ:</strong> طب یونانی کی ترقی میں بہت اضافہ ہوا۔ فارسی جاننے والے بھی طب سیکھ سکے۔<br>
+                <strong>اس لیے اہل طب ان کے شکر گزار ہیں۔</strong>
+            </div>
+        </div>
+
+        <!-- کتابیں -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📚</span>
+                اہم کتابیں اور تراجم
+            </h2>
+            <p>حکیم ارزانی کی چھ مشہور کتابیں:</p>
+            
+            <ul class="books-list">
+                <li>
+                    <span class="book-number">۱</span>
+                    تلخیص طب نبوی
+                </li>
+                <li>
+                    <span class="book-number">۲</span>
+                    طب اکبر
+                </li>
+                <li>
+                    <span class="book-number">۳</span>
+                    مفرح القلوب
+                </li>
+                <li>
+                    <span class="book-number">۴</span>
+                    حدود الامراض
+                </li>
+                <li>
+                    <span class="book-number">۵</span>
+                    قرابادین قادری
+                </li>
+                <li>
+                    <span class="book-number">۶</span>
+                    مجربات اکبری
+                </li>
+                <li>
+                    <span class="book-number">۷</span>
+                    میزان الطب
+                </li>
+            </ul>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-card">
+            <h3>📋 خلاصہ - یاد رکھیں</h3>
+            <div class="summary-item">
+                <span class="label">نام:</span>
+                <span class="value">محمد اکبر ارزانی</span>
+            </div>
+            <div class="summary-item">
+                <span class="label">دور:</span>
+                <span class="value">مغلیہ دور</span>
+            </div>
+            <div class="summary-item">
+                <span class="label">پیشہ:</span>
+                <span class="value">طبیب، مصنف، مترجم</span>
+            </div>
+            <div class="summary-item">
+                <span class="label">والد:</span>
+                <span class="value">میر حاجی محمد مقیم</span>
+            </div>
+            <div class="summary-item">
+                <span class="label">مطب:</span>
+                <span class="value">برہان پور</span>
+            </div>
+            <div class="summary-item">
+                <span class="label">وفات:</span>
+                <span class="value">1722ء</span>
+            </div>
+            <div class="summary-item">
+                <span class="label">بڑا کارنامہ:</span>
+                <span class="value">عربی طبی کتب کا فارسی ترجمہ</span>
+            </div>
+            <div class="summary-item">
+                <span class="label">کتابیں:</span>
+                <span class="value">7 مشہور کتابیں</span>
+            </div>
+        </div>
+
+        <!-- Memory Tips -->
+        <div class="memory-tips">
+            <h3>💡 یاد کرنے کے آسان طریقے</h3>
+            
+            <div class="tip-item">
+                <span class="tip-icon">🔢</span>
+                <div><strong>"ارزانی = 1722"</strong> - نام اور سنِ وفات دونوں یاد رکھیں</div>
+            </div>
+            
+            <div class="tip-item">
+                <span class="tip-icon">🏠</span>
+                <div><strong>"برہان پور"</strong> - یہاں مطب تھا اور شاید یہیں وفات ہوئی</div>
+            </div>
+            
+            <div class="tip-item">
+                <span class="tip-icon">🔄</span>
+                <div><strong>"عربی ← فارسی"</strong> - یہ ان کا سب سے بڑا کام تھا</div>
+            </div>
+            
+            <div class="tip-item">
+                <span class="tip-icon">📖</span>
+                <div><strong>"طب اکبر، مجربات اکبری"</strong> - "اکبر" والی کتابیں ان کی ہیں</div>
+            </div>
+            
+            <div class="tip-item">
+                <span class="tip-icon">👨</span>
+                <div><strong>"مقیم کا بیٹا"</strong> - والد میر حاجی محمد مقیم</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بہوہ بن خواص خان - حیات اور خدمات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Main Title Cards */
+        .main-title {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.4em;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(17, 153, 142, 0.3);
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.5em;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #ff6b6b;
+        }
+
+        .key-point-title {
+            color: #c0392b;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .info-box .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .info-box .label {
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 20px 0;
+            padding: 15px 20px;
+            background: #f8f9ff;
+            border-radius: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-date {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* Book Sections */
+        .book-part {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .book-part-title {
+            background: white;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .highlight-icon {
+            font-size: 1.5em;
+            margin-left: 10px;
+        }
+
+        /* Lists */
+        .custom-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .custom-list li {
+            padding: 12px 15px;
+            margin: 10px 0;
+            background: #f8f9ff;
+            border-radius: 10px;
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .custom-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 12px;
+            color: #11998e;
+            font-weight: bold;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .stat-card .value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-card .label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #11998e;
+        }
+
+        .memory-tip-title {
+            color: #0d7377;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 15px 0;
+        }
+
+        .accordion-item {
+            background: white;
+            border-radius: 15px;
+            margin: 10px 0;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            opacity: 0.9;
+        }
+
+        .accordion-header .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header .arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+        }
+
+        .accordion-body {
+            padding: 20px;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            color: #c0392b;
+            margin-bottom: 15px;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: #f8f9ff;
+            border-right: 5px solid #667eea;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .toc-title {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .toc-list li:last-child {
+            border-bottom: none;
+        }
+
+        .toc-list a {
+            color: #2d3748;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toc-list a:hover {
+            color: #667eea;
+        }
+
+        .toc-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 1.6em;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section, .book-part, .key-point, .memory-tip {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>📚 بہوہ بن خواص خان</h1>
+        <div class="subtitle">حیات، خدمات اور معدن الشفاء سکندر شاہی</div>
+    </header>
+
+    <div class="container">
+        <!-- Table of Contents -->
+        <nav class="toc">
+            <div class="toc-title">📋 فہرست مضامین</div>
+            <ul class="toc-list">
+                <li>
+                    <a href="#intro">
+                        <span>تعارف</span>
+                        <span class="toc-number">۱</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#era">
+                        <span>عہد اور زمانہ</span>
+                        <span class="toc-number">۲</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#skills">
+                        <span>مہارتیں اور صلاحیتیں</span>
+                        <span class="toc-number">۳</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#book">
+                        <span>معدن الشفاء سکندر شاہی</span>
+                        <span class="toc-number">۴</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#importance">
+                        <span>کتاب کی اہمیت</span>
+                        <span class="toc-number">۵</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#summary">
+                        <span>خلاصہ</span>
+                        <span class="toc-number">۶</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Section 1: Introduction -->
+        <section id="intro" class="section">
+            <h2 class="section-title">
+                <span class="icon">👤</span>
+                بہوہ بن خواص خان کون تھے؟
+            </h2>
+            
+            <div class="key-point">
+                <div class="key-point-title">🎯 آسان الفاظ میں:</div>
+                <p>بہوہ بن خواص خان سلطان سکندر لودھی کے <strong>وزیر</strong> اور <strong>طبیب</strong> تھے۔ وہ ایک بہت بڑے حکیم تھے جنہوں نے طب پر اہم کتاب لکھی۔</p>
+            </div>
+
+            <ul class="custom-list">
+                <li>سلطان سکندر لودھی کے وزیر تھے</li>
+                <li>ماہر طبیب (ڈاکٹر) تھے</li>
+                <li>شاہی دربار سے وابستہ تھے</li>
+                <li>"معدن الشفاء سکندر شاہی" کے مصنف ہیں</li>
+            </ul>
+        </section>
+
+        <!-- Section 2: Era -->
+        <section id="era" class="section">
+            <h2 class="section-title">
+                <span class="icon">🏰</span>
+                عہد اور زمانہ
+            </h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">۱۴۵۱ء</div>
+                    <p>بہلول لودھی (سکندر لودھی کے والد) نے <strong>لودھی سلطنت</strong> کی بنیاد رکھی۔ وہ پہلے لاہور اور سندھ کے گورنر تھے۔</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">سکندر لودھی کا دور</div>
+                    <p>بہلول لودھی کے بیٹے سکندر لودھی کے زمانے میں <strong>طب نے بہت ترقی</strong> کی۔</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">۱۵۱۲ء</div>
+                    <p>بہوہ بن خواص نے <strong>معدن الشفاء سکندر شاہی</strong> مکمل کی۔</p>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">💡 یاد رکھیں:</div>
+                <p><strong>لودھی خاندان:</strong> بہلول لودھی (باپ) ← سکندر لودھی (بیٹا)</p>
+            </div>
+
+            <div class="highlight">
+                <span class="highlight-icon">⭐</span>
+                <strong>سکندر لودھی کیوں خاص تھا؟</strong>
+                <ul class="custom-list">
+                    <li>خود بھی پڑھا لکھا تھا</li>
+                    <li>فارسی زبان جانتا تھا</li>
+                    <li>طب (میڈیکل) میں ماہر تھا</li>
+                    <li>"گنجینہ سکندر شاہی" نامی کتاب سے اس کے علم کا پتہ چلتا ہے</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 3: Skills -->
+        <section id="skills" class="section">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                بہوہ بن خواص کی صلاحیتیں
+            </h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">۱</div>
+                    <div class="label">بہترین طبیب</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">۲</div>
+                    <div class="label">ماہر مترجم</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">۳</div>
+                    <div class="label">عمدہ مصنف</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">۴</div>
+                    <div class="label">زبانوں کا عالم</div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-item active">
+                    <div class="accordion-header">
+                        <span>🏥 بحیثیت طبیب (ڈاکٹر)</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <ul class="custom-list">
+                                <li>شاہی دربار میں کام کرتے تھے</li>
+                                <li>سلطان ان کی صلاحیت کا قائل تھا</li>
+                                <li>بہترین علاج کرتے تھے</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>📝 بحیثیت مترجم</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <ul class="custom-list">
+                                <li><strong>عربی</strong> زبان جانتے تھے</li>
+                                <li><strong>فارسی</strong> زبان جانتے تھے</li>
+                                <li><strong>سنسکرت</strong> کے اچھے عالم تھے</li>
+                                <li>آیوروید کی کتابوں کو فارسی میں ترجمہ کیا</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>✍️ بحیثیت مصنف</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <ul class="custom-list">
+                                <li>"معدن الشفاء سکندر شاہی" لکھی</li>
+                                <li>صرف ترجمہ نہیں بلکہ اپنی معلومات بھی شامل کیں</li>
+                                <li>طبی طریقوں کو ترتیب سے لکھا</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">💡 یاد رکھنے کا طریقہ:</div>
+                <p><strong>تین "ت":</strong> طبیب + ترجمان + تصنیف نگار</p>
+            </div>
+        </section>
+
+        <!-- Main Title for Book -->
+        <div class="main-title">
+            📖 معدن الشفاء سکندر شاہی
+        </div>
+
+        <!-- Section 4: Book Details -->
+        <section id="book" class="section">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                کتاب کا تعارف
+            </h2>
+
+            <div class="key-point">
+                <div class="key-point-title">🎯 کتاب کیوں لکھی گئی؟</div>
+                <p>سلطان سکندر لودھی نے حکم دیا کہ ایک ایسی کتاب لکھی جائے جس میں <strong>آیوروید</strong> (ہندوستانی طب) کی پوری معلومات ہوں۔</p>
+            </div>
+
+            <div class="highlight">
+                <span class="highlight-icon">🤔</span>
+                <strong>یہ کتاب کیوں ضروری تھی؟</strong>
+            </div>
+
+            <ul class="custom-list">
+                <li><strong>یونانی طب</strong> ہندوستان کے لیے نامکمل تھی</li>
+                <li>ہندوستان کی <strong>آب و ہوا</strong> مختلف ہے</li>
+                <li>یہاں کی <strong>بیماریاں</strong> مختلف ہیں</li>
+                <li>یونانی ادویات ہندوستان میں <strong>نہیں ملتیں</strong></li>
+                <li>ہندوستانی جڑی بوٹیوں کے <strong>فائدے</strong> یونانی حکیم نہیں جانتے تھے</li>
+            </ul>
+
+            <div class="info-box">
+                <div class="number">۱۲+</div>
+                <div class="label">آیوروید کی کتابوں سے معلومات لی گئیں</div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">💡 پہلے کی کوششیں:</div>
+                <p>تغلق کے زمانے میں بھی ایسی کتابیں لکھی گئیں جیسے <strong>"مجموعہ شمسی"</strong> اور <strong>"مجموعہ ضیائی"</strong></p>
+            </div>
+        </section>
+
+        <!-- Section 5: Book Structure -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📑</span>
+                کتاب کی ترتیب
+            </h2>
+
+            <div class="quote-box">
+                کتاب میں <strong>ایک مقدمہ</strong> اور <strong>تین حصے</strong> ہیں
+            </div>
+
+            <div class="book-part">
+                <div class="book-part-title">📜 مقدمہ</div>
+                <ul class="custom-list">
+                    <li>طب کی تعریف</li>
+                    <li>طب کی اہمیت</li>
+                    <li>آیوروید کے بنیادی اصول</li>
+                </ul>
+            </div>
+
+            <div class="book-part">
+                <div class="book-part-title">۱ حصہ اول - ۳۲ ابواب</div>
+                <ul class="custom-list">
+                    <li><strong>باب ۱:</strong> آیوروید سیکھنے کے قواعد</li>
+                    <li>بڑے حکیموں سے سیکھنے پر زور</li>
+                    <li><strong>جراحت</strong> (سرجری) پر تفصیلی معلومات</li>
+                    <li><strong>باب ۱۷-۱۸:</strong> ہندوستانی اوزان اور ادویات</li>
+                </ul>
+            </div>
+
+            <div class="book-part">
+                <div class="book-part-title">۲ حصہ دوم</div>
+                <ul class="custom-list">
+                    <li>انسانی جسم کی <strong>تشریح</strong></li>
+                    <li>انسان کی <strong>پیدائش</strong> کا بیان</li>
+                    <li><strong>باب ۹:</strong> حاملہ عورت کی صفائی (نیا موضوع!)</li>
+                </ul>
+            </div>
+
+            <div class="book-part">
+                <div class="book-part-title">۳ حصہ سوم - ۸۷ ابواب</div>
+                <ul class="custom-list">
+                    <li>مختلف بیماریوں کی <strong>علامات</strong></li>
+                    <li>بیماریوں کی <strong>تشخیص</strong></li>
+                    <li>بیماریوں کا <strong>علاج</strong></li>
+                </ul>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">۳۲</div>
+                    <div class="label">ابواب (حصہ اول)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">۸۷</div>
+                    <div class="label">ابواب (حصہ سوم)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Importance -->
+        <section id="importance" class="section">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                کتاب کی اہمیت
+            </h2>
+
+            <div class="key-point">
+                <div class="key-point-title">🏆 سب سے بڑی اہمیت:</div>
+                <p>اس کتاب نے <strong>یونانی طب</strong> اور <strong>آیوروید</strong> کو ملا کر ایک نئی <strong>ہندوستانی طب</strong> بنانے کا خیال دیا۔</p>
+            </div>
+
+            <ul class="custom-list">
+                <li>سکندر لودھی کو تاریخ طب میں جگہ دلائی</li>
+                <li>اس دور کے طبی معیار کا پتہ چلتا ہے</li>
+                <li>طب کی ترقی کا اندازہ ہوتا ہے</li>
+                <li>یونانی اور آیوروید کے امتزاج کی مثال</li>
+            </ul>
+        </section>
+
+        <!-- Section 7: Publication Details -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                کتاب کی تفصیلات
+            </h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="value">۱۵۱۲ء</div>
+                    <div class="label">تصنیف کا سال</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">۱۸۷۷ء</div>
+                    <div class="label">اشاعت کا سال</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">۴۹۲</div>
+                    <div class="label">صفحات</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value">فارسی</div>
+                    <div class="label">زبان</div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <span class="highlight-icon">🏛️</span>
+                <strong>کہاں ملتی ہے؟</strong>
+                <ul class="custom-list">
+                    <li>ہندوستان کے مختلف کتب خانوں میں (مخطوطے)</li>
+                    <li>مطبع <strong>نول کشور لکھنو</strong> سے چھپی (۱۸۷۷ء)</li>
+                    <li>حکیم محمد سعید سینٹرل لائبریری، <strong>جامعہ ہمدرد</strong>، نئی دہلی</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section id="summary" class="summary-box">
+            <h3>📝 مختصر خلاصہ</h3>
+            <p>بہوہ بن خواص خان لودھی دور کے <strong>وزیر اور طبیب</strong> تھے۔ انہوں نے سلطان سکندر لودھی کے حکم پر <strong>معدن الشفاء سکندر شاہی</strong> لکھی جو <strong>آیوروید</strong> پر مبنی ہے۔ یہ کتاب <strong>۱۵۱۲ء</strong> میں مکمل ہوئی اور <strong>۴۹۲ صفحات</strong> پر مشتمل ہے۔</p>
+        </section>
+
+        <!-- Quick Revision -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">⚡</span>
+                فوری یاد
+            </h2>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">🔑 اہم نکات:</div>
+                <ul class="custom-list">
+                    <li><strong>نام:</strong> بہوہ بن خواص خان</li>
+                    <li><strong>عہد:</strong> سلطان سکندر لودھی</li>
+                    <li><strong>کتاب:</strong> معدن الشفاء سکندر شاہی</li>
+                    <li><strong>سال:</strong> ۱۵۱۲ء</li>
+                    <li><strong>موضوع:</strong> آیوروید</li>
+                    <li><strong>زبان:</strong> فارسی</li>
+                    <li><strong>صفحات:</strong> ۴۹۲</li>
+                    <li><strong>اشاعت:</strong> نول کشور لکھنو (۱۸۷۷ء)</li>
+                </ul>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">📊 کتاب کی ترتیب یاد رکھیں:</div>
+                <p><strong>مقدمہ</strong> + <strong>۳ حصے</strong> (۳۲ + ؟ + ۸۷ ابواب)</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for TOC
+        document.querySelectorAll('.toc-list a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

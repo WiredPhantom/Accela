@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم علوی خاں - تعارف</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .dates {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 1em;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .section-content {
+            font-size: 1.1em;
+            text-align: justify;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #764ba2;
+        }
+
+        .info-box.highlight {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-right-color: #ff9800;
+        }
+
+        .info-box.success {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-right-color: #4caf50;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: #f8f9ff;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .key-point-icon {
+            min-width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-year {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* Students List */
+        .student-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .student-icon {
+            width: 35px;
+            height: 35px;
+            background: #1976d2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Books List */
+        .book-card {
+            background: white;
+            border: 2px solid #e8ecff;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .book-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .book-title {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .book-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 10px;
+            font-size: 0.9em;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            font-style: italic;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4em;
+            color: rgba(233, 30, 99, 0.3);
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-family: serif;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        /* Titles Badge */
+        .title-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.95em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Memorization Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            border-right: 4px solid #4caf50;
+        }
+
+        .memory-tip-title {
+            color: #2e7d32;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section-title {
+                font-size: 1.2em;
+            }
+            
+            .section-content {
+                font-size: 1em;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 10px 0;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #e8ecff 0%, #dde3ff 100%);
+        }
+
+        .accordion-header.active {
+            border-radius: 12px 12px 0 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 15px;
+            background: #fafbff;
+            border-radius: 0 0 12px 12px;
+            border: 2px solid #e8ecff;
+            border-top: none;
+        }
+
+        .accordion-content.show {
+            display: block;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>حکیم علوی خاں</h1>
+        <div class="english-name">'Alwi Khan</div>
+        <div class="dates">📅 1669ء - 1749ء</div>
+    </div>
+
+    <div class="container">
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">80</div>
+                <div class="stat-label">سال عمر</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">16</div>
+                <div class="stat-label">کتابیں</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3+</div>
+                <div class="stat-label">مشہور شاگرد</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">خطابات</div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon">📖</div>
+                <span>تعارف</span>
+            </div>
+            <div class="section-content">
+                <div class="info-box highlight">
+                    <strong>اصل نام:</strong> سید محمد ہاشم بن قلندر بن سید مظفر الدین
+                </div>
+                
+                <p>حکیم علوی خاں طبیب کی حیثیت سے مشہور ہوئے۔ یہ عہد مغلیہ کے نامور اطباء میں شمار ہوتے ہیں۔ اپنی علمی فضیلت اور فنی مہارت کی وجہ سے زمانے میں بے مثال تھے۔</p>
+                
+                <div class="memory-tip">
+                    <div class="memory-tip-title">🧠 یاد رکھیں:</div>
+                    اصل نام = سید محمد ہاشم | مشہور نام = علوی خاں
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon">⏰</div>
+                <span>زندگی کا سفر</span>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">1669ء</span>
+                        <p>شیراز (ایران) میں پیدائش ہوئی</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1700ء</span>
+                        <p>شیراز سے ہندوستان آئے اور عالمگیر کے دربار میں حاضری دی</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">بعد ازاں</span>
+                        <p>شاہزادہ محمد اعظم کی ملازمت میں داخل ہوئے</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">تخت کی جنگ</span>
+                        <p>محمد اعظم کی موت کے بعد محمد معظم "شاہ عالم" کے دربار سے منسلک ہوئے</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">خطاب</span>
+                        <p>شاہ عالم نے "علوی خاں" کا خطاب دیا</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">محمد شاہ کا دور</span>
+                        <p>محمد شاہ رنگیلا کے دور میں غیر معمولی طبی خدمات انجام دیں اور "معتمد الملوک" کا خطاب ملا</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1739ء</span>
+                        <p>نادر شاہ نے دہلی لوٹا اور علوی خاں کو ایران لے جانا چاہا</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1749ء</span>
+                        <p>انتقال</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Titles -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon">🏅</div>
+                <span>خطابات</span>
+            </div>
+            <div class="section-content">
+                <p>حکیم صاحب کو مختلف بادشاہوں نے یہ خطابات سے نوازا:</p>
+                <div style="text-align: center; margin: 15px 0;">
+                    <span class="title-badge">علوی خاں</span>
+                    <span class="title-badge">معتمد الملوک</span>
+                    <span class="title-badge">موتمن الملوک</span>
+                </div>
+                <div class="memory-tip">
+                    <div class="memory-tip-title">🧠 یاد رکھیں:</div>
+                    "علوی خاں" = شاہ عالم نے دیا | "معتمد الملوک" = محمد شاہ نے دیا
+                </div>
+            </div>
+        </div>
+
+        <!-- As Physician -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon">⚕️</div>
+                <span>بحیثیت طبیب</span>
+            </div>
+            <div class="section-content">
+                <div class="key-point">
+                    <div class="key-point-icon">✓</div>
+                    <div>اپنے وقت کے مایہ ناز معالج تھے</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">✓</div>
+                    <div>حاکمین وقت کے طبیب خاص رہے</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">✓</div>
+                    <div>مطب کا ہر طرف چرچا تھا</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">✓</div>
+                    <div>امیر ہو یا غریب - سب کے معالج اور ہمدرد تھے</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">✓</div>
+                    <div>علاج میں حکمت عملی سے کام لیتے تھے</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">✓</div>
+                    <div>بہترین نباض تھے</div>
+                </div>
+
+                <div class="info-box success">
+                    <strong>قابل ذکر واقعہ:</strong> ایک مریض کی نبض دیکھ کر 6-7 دن میں موت کی پیشین گوئی کی جو درست ثابت ہوئی!
+                </div>
+            </div>
+        </div>
+
+        <!-- As Teacher -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon">👨‍🏫</div>
+                <span>بحیثیت استاد</span>
+            </div>
+            <div class="section-content">
+                <p>حکیم صاحب نے درس و تدریس کے فرائض بخوبی انجام دیئے۔ ان کے مشہور شاگرد:</p>
+                
+                <div class="student-card">
+                    <div class="student-icon">1</div>
+                    <div>
+                        <strong>حکیم شیخ جلال الدین امروہوی</strong>
+                        <br><small>صاحب قرابادین جلالی</small>
+                    </div>
+                </div>
+                
+                <div class="student-card">
+                    <div class="student-icon">2</div>
+                    <div>
+                        <strong>حکیم اکمل خاں</strong>
+                        <br><small>حکیم شریف خاں کے والد | حکیم اجمل خاں کے چچا</small>
+                    </div>
+                </div>
+                
+                <div class="student-card">
+                    <div class="student-icon">3</div>
+                    <div>
+                        <strong>حکیم اجمل خاں اول</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon">🎓</div>
+                <span>تعلیم و تربیت</span>
+            </div>
+            <div class="section-content">
+                <div class="info-box">
+                    چونکہ علوی خاں ایران سے ہی تعلیم و تربیت لے کر ہندوستان آئے تھے اس لئے ان کی تعلیم و تربیت کی تفصیل موجود نہیں۔
+                </div>
+            </div>
+        </div>
+
+        <!-- As Author -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon">📚</div>
+                <span>بحیثیت مصنف</span>
+            </div>
+            <div class="section-content">
+                <p>تصنیف و تالیف میں حکیم علوی خاں کی خدمات انتہائی غیر معمولی اور لائق ستائش ہیں۔ تقریباً <strong>16 کتابیں</strong> ان کے نام ہیں۔</p>
+                
+                <div style="margin-top: 20px;">
+                    <h4 style="color: #667eea; margin-bottom: 15px;">چار مشہور کتابیں:</h4>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span><span class="book-number">1</span> حاشیہ شرح اسباب و علامات</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            یہ علامہ نفیس بن عوض کرمانی کی مشہور شرح "شرح اسباب و علامات" پر حاشیہ ہے۔
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span><span class="book-number">2</span> شرح موجز القانون</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            یہ علاء الدین قرشی کی مشہور تلخیص "موجز القانون" کی شرح ہے۔
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span><span class="book-number">3</span> جامع الجوامع محمد شاہی</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>یہ حکیم علوی خاں کی اہم ترین تالیف ہے۔ "قرابادین علوی خاں" کے نام سے بھی مشہور ہے۔</p>
+                            
+                            <div class="quote-box">
+                                "اگر تمام طبی کتب مفقود ہو جائیں تو مسائل طبیہ کو از سر نو جامع الجوامع سے مستنبط کیا جا سکتا ہے۔"
+                            </div>
+                            
+                            <div class="info-box">
+                                <strong>تفصیلات:</strong>
+                                <ul style="margin-top: 10px; padding-right: 20px;">
+                                    <li>کافی ضخیم کتاب ہے - 6 جلدیں ملی ہیں</li>
+                                    <li>4 جلدیں رضا لائبریری رام پور میں</li>
+                                    <li>2 جلدیں سینٹرل لائبریری جامعہ ہمدرد میں</li>
+                                    <li>کل 200 صفحات پر مشتمل</li>
+                                    <li>محمد شاہ (متوفی 1748ء) کے نام منسوب</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span><span class="book-number">4</span> مطب حکیم علوی خاں</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            ان کی ایک اور معروف تصنیف۔
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon">⭐</div>
+                <span>فضل و کمال</span>
+            </div>
+            <div class="section-content">
+                <div class="key-point">
+                    <div class="key-point-icon">1</div>
+                    <div><strong>کہنہ مشق طبیب</strong> - تجربہ کار طبیب</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">2</div>
+                    <div><strong>لائق استاد</strong> - ماہر استاد</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-icon">3</div>
+                    <div><strong>بلند پایہ مصنف</strong> - اعلیٰ درجے کے مصنف</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <h3>🌟 خلاصہ 🌟</h3>
+            <p>بلاشبہ علوی خاں عہد مغلیہ کے ان چند لائق و فائق اطباء میں سے ہیں جنہوں نے طب کے فروغ و ارتقاء میں غیر معمولی کارکردگی پیش کی۔</p>
+        </div>
+
+        <!-- Quick Revision -->
+        <div class="section-card">
+            <div class="section-title">
+                <div class="section-icon">📝</div>
+                <span>فوری یاد داشت</span>
+            </div>
+            <div class="section-content">
+                <div class="info-box">
+                    <strong>اصل نام:</strong> سید محمد ہاشم بن قلندر بن سید مظفر الدین
+                </div>
+                <div class="info-box">
+                    <strong>پیدائش:</strong> 1669ء - شیراز (ایران)
+                </div>
+                <div class="info-box">
+                    <strong>ہندوستان آمد:</strong> 1700ء
+                </div>
+                <div class="info-box">
+                    <strong>خطابات:</strong> علوی خاں، معتمد الملوک، موتمن الملوک
+                </div>
+                <div class="info-box">
+                    <strong>کتابیں:</strong> 16 (مشہور: جامع الجوامع)
+                </div>
+                <div class="info-box">
+                    <strong>انتقال:</strong> 1749ء
+                </div>
+                <div class="info-box">
+                    <strong>خصوصیات:</strong> کہنہ مشق طبیب، لائق استاد، بلند پایہ مصنف، بہترین نباض
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Accordion functionality
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.classList.remove('show');
+            });
+            
+            // Open clicked one if it wasn't active
+            if (!isActive) {
+                header.classList.add('active');
+                content.classList.add('show');
+            }
+        }
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

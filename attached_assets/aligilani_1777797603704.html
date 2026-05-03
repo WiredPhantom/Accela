@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم علی گیلانی - عہدِ اکبری کے مشہور طبیب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Timeline Dates */
+        .dates-box {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .date-item {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .section:active {
+            transform: scale(0.98);
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);
+        }
+
+        /* Story Box */
+        .story-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #f5576c;
+        }
+
+        .story-title {
+            color: #c53030;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .highlight-title {
+            color: #2b6cb0;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            border-right: 3px solid #48bb78;
+        }
+
+        /* Number Badges */
+        .number-badge {
+            display: inline-flex;
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            margin-left: 8px;
+        }
+
+        /* Lists */
+        .simple-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .simple-list li {
+            padding: 10px 15px;
+            margin: 8px 0;
+            background: #f7fafc;
+            border-radius: 10px;
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .simple-list li::before {
+            content: "◆";
+            position: absolute;
+            right: 8px;
+            color: #667eea;
+        }
+
+        /* Pool Specifications */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .spec-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 15px;
+        }
+
+        .spec-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .spec-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Books Section */
+        .book-card {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .book-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #553c9a;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .summary-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            background: rgba(255,255,255,0.2);
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-emoji {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            border-radius: 30px 30px 0 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .specs-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .spec-value {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .warning-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Invention Box */
+        .invention-box {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .invention-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>📚 حکیم علی گیلانی</h1>
+        <p class="subtitle">عہدِ اکبری کے مشہور طبیب اور دانشمند</p>
+        <div class="dates-box">
+            <span class="date-item">🎂 پیدائش: 1554ء</span>
+            <span class="date-item">⚰️ وفات: 1609ء</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Section 1: Introduction -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">👤</span>
+                تعارف
+            </h2>
+            
+            <div class="key-point">
+                حکیم علی گیلانی اکبر بادشاہ کا سب سے پسندیدہ طبیب تھا
+            </div>
+
+            <ul class="simple-list">
+                <li><span class="number-badge">۱</span> حکیم علی گیلان (ایران) میں 1554ء میں پیدا ہوا</li>
+                <li><span class="number-badge">۲</span> بہت غریب حالت میں ہندوستان آیا</li>
+                <li><span class="number-badge">۳</span> ہندوستان آ کر اس کی قسمت چمکی</li>
+                <li><span class="number-badge">۴</span> اکبر کے دربار میں نوکری مل گئی</li>
+                <li><span class="number-badge">۵</span> اپنی عقل اور ہنر سے اکبر کا چہیتا بن گیا</li>
+                <li><span class="number-badge">۶</span> 1609ء میں جہانگیر کے زمانے میں فوت ہوا</li>
+            </ul>
+        </section>
+
+        <!-- Section 2: Skills -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⭐</span>
+                فضل و کمال (خوبیاں)
+            </h2>
+
+            <div class="highlight-box">
+                <div class="highlight-title">حکیم علی کی تین بڑی خوبیاں</div>
+            </div>
+
+            <ul class="simple-list">
+                <li>🏥 ماہر طبیب (ڈاکٹر) تھا</li>
+                <li>🔢 ریاضی (حساب) میں ماہر تھا</li>
+                <li>🔬 طبیعیات (فزکس) میں ماہر تھا</li>
+                <li>📖 کتابیں لکھنے میں بھی بہت اچھا تھا</li>
+            </ul>
+
+            <div class="key-point">
+                ان خوبیوں کی وجہ سے اکبر کا منظورِ نظر بنا
+            </div>
+        </section>
+
+        <!-- Section 3: As a Physician -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🏥</span>
+                بطور طبیب (ڈاکٹر)
+            </h2>
+
+            <div class="key-point">
+                حکیم علی علم اور عمل دونوں میں ماہر تھا
+            </div>
+
+            <!-- Story 1: Urine Test -->
+            <div class="story-box">
+                <div class="story-title">📋 واقعہ ۱: قارورے کا امتحان</div>
+                <p>
+                    <strong>کیا ہوا:</strong> اکبر نے حکیم علی کا امتحان لینا چاہا
+                </p>
+                <p>
+                    <strong>طریقہ:</strong> مختلف قارورے (پیشاب کے نمونے) سامنے رکھے:
+                </p>
+                <ul class="simple-list">
+                    <li>کوئی صحت مند آدمی کا</li>
+                    <li>کوئی بیمار کا</li>
+                    <li>کوئی جانور کا</li>
+                    <li>کوئی ملا ہوا (مکس)</li>
+                </ul>
+                <p>
+                    <strong>نتیجہ:</strong> حکیم علی نے سب کی صحیح پہچان کی اور کامیاب رہا ✅
+                </p>
+            </div>
+
+            <div class="info-card">
+                <strong>🏆 اس امتحان کے بعد:</strong> حکیم علی شاہی خاندان کا خاص ڈاکٹر بن گیا۔ اکبر صرف اسی سے علاج کرواتا تھا۔
+            </div>
+
+            <!-- Story 2: Horse Fall -->
+            <div class="story-box">
+                <div class="story-title">🐎 واقعہ ۲: گھوڑے سے گرنا</div>
+                <p>
+                    <strong>مسئلہ:</strong> ایک بار اکبر گھوڑے سے گر گیا اور اندرونی چوٹ آئی
+                </p>
+                <p>
+                    <strong>علاج:</strong> حکیم علی نے روغنِ دیودار استعمال کیا
+                </p>
+                <p>
+                    <strong>نتیجہ:</strong> اکبر جلدی ٹھیک ہو گیا ✅
+                </p>
+            </div>
+
+            <div class="invention-box">
+                <div class="invention-title">💡 روغنِ دیودار کی ایجاد</div>
+                <p>یہ تیل حکیم علی نے خود بنایا تھا</p>
+                <p><strong>فائدے:</strong></p>
+                <p>پٹھوں کا درد • جوڑوں کا درد • اعصاب کا درد</p>
+                <p>⭐ یہ نسخہ آج بھی طب کی کتابوں میں موجود ہے</p>
+            </div>
+
+            <!-- Story 3: Diarrhea -->
+            <div class="story-box">
+                <div class="story-title">😷 واقعہ ۳: اسہال (دست) کی بیماری</div>
+                <p>
+                    <strong>مسئلہ:</strong> اکبر کو اسہال ہو گئے
+                </p>
+                <p>
+                    <strong>علاج:</strong> حکیم علی نے علاج شروع کیا لیکن جلدی فائدہ نہ ہوا
+                </p>
+                <p>
+                    <strong>اکبر کا غصہ:</strong> اکبر نے کہا کہ سنجیدگی سے علاج کیوں نہیں کرتا
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-title">🧪 حکیم علی کا مظاہرہ</div>
+                <p>حکیم علی نے ایک طاقتور دوا منگوائی</p>
+                <p>پانی میں ڈالی تو پانی جم گیا!</p>
+                <p>پھر کہا: "میرے پاس طاقتور دوائیں ہیں لیکن اسہال میں یہ دینا غلط ہے"</p>
+            </div>
+
+            <div class="warning-box">
+                <div class="warning-title">⚠️ کیا ہوا پھر:</div>
+                <p>اکبر نے اصرار کیا کہ یہی دوا دو</p>
+                <p>حکیم علی نے دے دی ← اسہال بند ہو گئے</p>
+                <p>لیکن شدید قبض ہو گئی ← پھر قبض کی دوا دی</p>
+                <p>پھر بہت زیادہ اسہال ہوئے ← جو اکبر کی موت کا سبب بنے</p>
+            </div>
+        </section>
+
+        <!-- Section 4: As a Wise Man -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🧠</span>
+                بطور حکیم (دانشمند)
+            </h2>
+
+            <div class="key-point">
+                حکیم = جو مختلف علوم میں ماہر ہو
+            </div>
+
+            <p style="margin: 15px 0;">
+                حکیم علی صرف نام کا نہیں بلکہ صفت کا بھی حکیم تھا۔ اس کی دانائی کا ثبوت ایک عجیب حوض تھا۔
+            </p>
+
+            <div class="highlight-box">
+                <div class="highlight-title">🏊 حوضِ علی (لاہور میں)</div>
+                <p>یہ حوض حکیم علی نے لاہور میں بنوایا</p>
+            </div>
+
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <div class="spec-value">۲۰</div>
+                    <div class="spec-label">گز لمبائی</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-value">۲۰</div>
+                    <div class="spec-label">گز چوڑائی</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-value">۳</div>
+                    <div class="spec-label">گز گہرائی</div>
+                </div>
+            </div>
+
+            <div class="story-box">
+                <div class="story-title">🏠 حوض کی خاص بات</div>
+                <ul class="simple-list">
+                    <li>حوض پانی سے بھرا رہتا تھا</li>
+                    <li>بیچ میں ایک روشن کمرہ تھا</li>
+                    <li>کمرے میں آرام کا سارا سامان تھا</li>
+                    <li>۱۰ سے ۱۲ آدمی بیٹھ سکتے تھے</li>
+                </ul>
+            </div>
+
+            <div class="key-point">
+                ⚡ حیران کن بات: دروازہ کھولنے پر بھی پانی کا ایک قطرہ کمرے میں نہیں جاتا تھا!
+            </div>
+
+            <div class="info-card">
+                <strong>🔬 سائنسی وجہ:</strong> حکیم علی نے فزکس اور ریاضی کا استعمال کر کے کمرے کے اندر ہوا کا دباؤ (atmospheric pressure) اتنا متوازن رکھا کہ پانی اندر نہ جا سکے
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-title">👑 اکبر کا دورہ</div>
+                <p>یہ حوض دیکھنے کے لیے اکبر نے آگرہ سے لاہور جانے کی زحمت کی!</p>
+            </div>
+        </section>
+
+        <!-- Section 5: As an Author -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📚</span>
+                بطور مصنف (لکھاری)
+            </h2>
+
+            <div class="key-point">
+                طبی کتابیں لکھنے میں حکیم علی کا مقام بہت بلند ہے
+            </div>
+
+            <p style="margin: 15px 0; text-align: center;">
+                <strong>مشہور کتابیں:</strong>
+            </p>
+
+            <div class="book-card">
+                <div class="book-title">📖 شرح قانون</div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-title">📖 بیاضِ گیلانی</div>
+            </div>
+
+            <div class="info-card">
+                یہ دونوں کتابیں طب کی دنیا میں بہت مشہور و معروف ہیں
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="summary-section">
+            <h2 class="summary-title">📝 خلاصہ یاد رکھیں</h2>
+
+            <div class="summary-item">
+                <span class="summary-emoji">📅</span>
+                <span>پیدائش 1554ء گیلان میں، وفات 1609ء جہانگیر کے دور میں</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="summary-emoji">👑</span>
+                <span>اکبر کا پسندیدہ اور چہیتا طبیب</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="summary-emoji">🧪</span>
+                <span>قارورے کے امتحان میں کامیاب ہوا</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="summary-emoji">💊</span>
+                <span>روغنِ دیودار ایجاد کیا - آج بھی مشہور ہے</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="summary-emoji">🏊</span>
+                <span>حوضِ علی - پانی میں خشک کمرہ بنایا</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="summary-emoji">📚</span>
+                <span>کتابیں: شرح قانون اور بیاضِ گیلانی</span>
+            </div>
+
+            <div class="summary-item">
+                <span class="summary-emoji">🎓</span>
+                <span>طب، ریاضی اور فزکس تینوں میں ماہر</span>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Add smooth animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section, .summary-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
