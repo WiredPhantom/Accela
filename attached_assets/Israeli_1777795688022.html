@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اسحٰق بن سلیمان اسرائیلی - مشہور طبیب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 16px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 0.9em;
+            opacity: 0.9;
+            font-style: italic;
+            direction: ltr;
+        }
+
+        .header .subtitle {
+            font-size: 1em;
+            margin-top: 10px;
+            opacity: 0.95;
+        }
+
+        /* Quick Facts Card */
+        .quick-facts {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .quick-facts h2 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .fact-item {
+            background: linear-gradient(135deg, #f6f8fb 0%, #eef1f5 100%);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border-right: 4px solid #667eea;
+        }
+
+        .fact-label {
+            font-size: 0.8em;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+
+        .fact-value {
+            font-size: 1em;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .section-card:active {
+            transform: scale(0.98);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px dashed #e2e8f0;
+        }
+
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4em;
+            flex-shrink: 0;
+        }
+
+        .section-header h2 {
+            font-size: 1.2em;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .section-content {
+            font-size: 0.95em;
+            color: #4a5568;
+        }
+
+        .section-content p {
+            margin-bottom: 12px;
+        }
+
+        /* Colored Icons */
+        .icon-intro { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .icon-education { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .icon-skills { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .icon-doctor { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .icon-eye { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .icon-author { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+        .icon-books { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
+
+        /* Highlight Boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 5px solid #f5576c;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            border-right-color: #43e97b;
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            border-right-color: #4facfe;
+        }
+
+        .highlight-box.purple {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            border-right-color: #667eea;
+        }
+
+        /* Key Points List */
+        .key-points {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: #f7fafc;
+            border-radius: 12px;
+            border-right: 4px solid #667eea;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .key-points li::before {
+            content: "✦";
+            color: #667eea;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        /* Books Section */
+        .books-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .book-item {
+            background: linear-gradient(135deg, #f6f8fb 0%, #eef1f5 100%);
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .book-item::before {
+            content: "📖";
+            font-size: 1.2em;
+        }
+
+        .book-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        /* Memory Tips */
+        .memory-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin: 25px 0;
+        }
+
+        .memory-section h2 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .memory-tip {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .memory-tip:last-child {
+            margin-bottom: 0;
+        }
+
+        .memory-tip strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -24px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #dfe6e9 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4em;
+            color: #667eea;
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            right: 20px;
+        }
+
+        .quote-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .quote-attribution {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #718096;
+        }
+
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 15px 10px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .summary-card .emoji {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .summary-card .label {
+            font-size: 0.75em;
+            color: #718096;
+        }
+
+        .summary-card .value {
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-top: 15px;
+        }
+
+        .accordion-item {
+            background: #f7fafc;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #2d3748;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: #edf2f7;
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            font-size: 0.8em;
+            transition: transform 0.3s;
+            color: #667eea;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 15px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding: 0 15px 15px;
+        }
+
+        /* Responsive */
+        @media (min-width: 600px) {
+            .fact-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .books-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-card, .quick-facts, .memory-section {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>اسحٰق بن سلیمان اسرائیلی</h1>
+        <p class="english-name">Ishaq bin Sulaiman Israeli</p>
+        <p class="subtitle">مشہور طبیب، ماہر کحال اور مصنف</p>
+    </header>
+
+    <div class="container">
+        <!-- Quick Summary -->
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="emoji">🏥</div>
+                <div class="label">پیشہ</div>
+                <div class="value">طبیب</div>
+            </div>
+            <div class="summary-card">
+                <div class="emoji">👁️</div>
+                <div class="label">مہارت</div>
+                <div class="value">ماہر کحال</div>
+            </div>
+            <div class="summary-card">
+                <div class="emoji">📚</div>
+                <div class="label">کام</div>
+                <div class="value">مصنف</div>
+            </div>
+        </div>
+
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <h2>⚡ اہم معلومات (جلدی یاد کریں)</h2>
+            <div class="fact-grid">
+                <div class="fact-item">
+                    <div class="fact-label">دوسرے نام</div>
+                    <div class="fact-value">الاسرائیلی / اسحٰق یہودی</div>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-label">علاقہ</div>
+                    <div class="fact-value">مصر و شام</div>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-label">سنہ وفات</div>
+                    <div class="fact-value">۳۳۰ ھ / ۹۳۲ ء</div>
+                </div>
+                <div class="fact-item">
+                    <div class="fact-label">مورخ حوالہ</div>
+                    <div class="fact-value">ابن ابی اصیبعہ</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon icon-intro">📜</div>
+                <h2>تعارف</h2>
+            </div>
+            <div class="section-content">
+                <p><strong>اسحٰق بن سلیمان اسرائیلی</strong> مصر اور شام کا ایک بہت مشہور طبیب تھا۔</p>
+                
+                <div class="highlight-box blue">
+                    <strong>🏷️ دوسرے نام:</strong> اسے "الاسرائیلی" یا "اسحٰق یہودی" بھی کہتے تھے۔
+                </div>
+
+                <ul class="key-points">
+                    <li>پیدائش کی تاریخ معلوم نہیں ہے</li>
+                    <li>مصر کے حاکم احمد بن طولون کے زمانے میں تھا</li>
+                    <li>۳۳۰ ھ (۹۳۲ ء) میں وفات پائی</li>
+                    <li>مورخ ابن ابی اصیبعہ نے اپنی کتاب "عیون الانباء فی طبقات الاطباء" میں لکھا ہے</li>
+                </ul>
+
+                <div class="highlight-box green">
+                    <strong>🌟 خاص باتیں:</strong>
+                    <br>• پڑھنے لکھنے کا بہت شوق تھا
+                    <br>• آنکھوں کی بیماریوں میں زیادہ دلچسپی تھی
+                    <br>• سرمہ بنانے میں ماہر تھا
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon icon-education">🎓</div>
+                <h2>تعلیم و تربیت</h2>
+            </div>
+            <div class="section-content">
+                <p>اس کی ابتدائی تعلیم کی تفصیلات معلوم نہیں ہیں۔</p>
+
+                <div class="highlight-box purple">
+                    <strong>🔑 اہم بات:</strong> یہ طبیب اپنے استاذ کی بہت عزت کرتا تھا۔
+                </div>
+
+                <div class="quote-box">
+                    <p class="quote-text">جب تیونس کے بادشاہ زیادۃ اللہ نے اس کے استاذ کی عزت نہیں کی تو اسحٰق نے شاہی طبیب کا منصب چھوڑ دیا!</p>
+                    <p class="quote-attribution">— استاذ کی عزت کی مثال</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon icon-skills">⭐</div>
+                <h2>فضل و کمال</h2>
+            </div>
+            <div class="section-content">
+                <p>اسحٰق بن سلیمان کی تین بڑی خوبیاں تھیں:</p>
+                
+                <div class="accordion">
+                    <!-- As Doctor -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">🏥 بحیثیت طبیب (ڈاکٹر)</div>
+                        <div class="accordion-content">
+                            <ul class="key-points">
+                                <li>اپنے فن میں اتنا ماہر تھا کہ بادشاہ اسے دربار میں بلاتے تھے</li>
+                                <li>زیادۃ اللہ کا دربار چھوڑنے کے بعد فوراً عبید اللہ فاطمی کے بیٹے کا شاہی طبیب بن گیا</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- As Eye Specialist -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">👁️ بحیثیت ماہر کحال (آنکھوں کا ڈاکٹر)</div>
+                        <div class="accordion-content">
+                            <ul class="key-points">
+                                <li>ماہر کحال یعنی آنکھوں کی بیماریوں کا ماہر</li>
+                                <li>اس نے "کتاب فی الکحال" لکھی</li>
+                                <li>سرمہ بنانے میں بھی ماہر تھا</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- As Author -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">✍️ بحیثیت مصنف (لکھاری)</div>
+                        <div class="accordion-content">
+                            <ul class="key-points">
+                                <li>اپنی زندگی طب کے فروغ کے لیے وقف کر دی</li>
+                                <li>جو وقت ملتا لکھنے پڑھنے میں لگاتا</li>
+                                <li>وقت نہ ہونے کی وجہ سے شادی بھی نہیں کی</li>
+                            </ul>
+                            
+                            <div class="quote-box">
+                                <p class="quote-text">کسی نے کہا: "شادی کرتے تو اولاد سے نام چلتا"
+                                <br><br>
+                                جواب دیا: "میری کتابیں میری اولاد ہیں، یہ میرا نام زندہ رکھیں گی!"</p>
+                                <p class="quote-attribution">— اسحٰق بن سلیمان</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Books Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon icon-books">📚</div>
+                <h2>اہم کتابیں</h2>
+            </div>
+            <div class="section-content">
+                <p>اسحٰق نے طب پر کئی کتابیں لکھیں:</p>
+                
+                <div class="books-grid">
+                    <div class="book-item"><span class="book-name">کتاب مرشد الاطباء</span></div>
+                    <div class="book-item"><span class="book-name">کتاب المدخل الى الصناعۃ الطب</span></div>
+                    <div class="book-item"><span class="book-name">کتاب الاسطقسات</span></div>
+                    <div class="book-item"><span class="book-name">کتاب الحمیات</span></div>
+                    <div class="book-item"><span class="book-name">کتاب البول</span></div>
+                    <div class="book-item"><span class="book-name">کتاب الادویۃ المفردہ</span></div>
+                    <div class="book-item"><span class="book-name">کتاب فی التریاق</span></div>
+                    <div class="book-item"><span class="book-name">کتاب الکحل</span></div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>📖 کتابوں کی اہمیت:</strong>
+                    <br>• لاطینی اور عبرانی میں ترجمے ہوئے
+                    <br>• مغرب والوں نے بہت فائدہ اٹھایا
+                    <br>• عبدالطیف بغدادی نے "کتاب الحمیات" کا خلاصہ لکھا
+                    <br>• مخطوطات لیدن وغیرہ کتب خانوں میں موجود ہیں
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Tips -->
+        <div class="memory-section">
+            <h2>💡 یاد رکھنے کے آسان طریقے</h2>
+            
+            <div class="memory-tip">
+                <strong>۱۔ نام یاد رکھیں:</strong>
+                اسحٰق + سلیمان + اسرائیلی = "اسرائیلی" یا "یہودی" بھی کہلاتا تھا
+            </div>
+            
+            <div class="memory-tip">
+                <strong>۲۔ تین خوبیاں (ت، ک، م):</strong>
+                <br>• طبیب (ڈاکٹر)
+                <br>• کحال (آنکھوں کا ماہر)  
+                <br>• مصنف (لکھاری)
+            </div>
+            
+            <div class="memory-tip">
+                <strong>۳۔ سنہ وفات:</strong>
+                ۳۳۰ ھ = ۹۳۲ ء (تین تین صفر، نو تین دو)
+            </div>
+            
+            <div class="memory-tip">
+                <strong>۴۔ خاص بات:</strong>
+                شادی نہیں کی ← کتابیں ہی اولاد ہیں!
+            </div>
+            
+            <div class="memory-tip">
+                <strong>۵۔ استاذ کی عزت:</strong>
+                بادشاہ نے استاذ کی عزت نہ کی ← نوکری چھوڑ دی
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon icon-intro">📅</div>
+                <h2>زندگی کا سفر</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">ابتدائی زندگی</div>
+                        <p>مصر و شام میں پیدائش، طب کا شوق پیدا ہوا</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">احمد بن طولون کا دور</div>
+                        <p>مصر میں طبابت کا آغاز</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">تیونس</div>
+                        <p>زیادۃ اللہ کا شاہی طبیب بنا، پھر استاذ کی عزت نہ ہونے پر چھوڑ دیا</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">بعد میں</div>
+                        <p>عبید اللہ فاطمی کے بیٹے کا شاہی طبیب بنا</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">۳۳۰ ھ / ۹۳۲ ء</div>
+                        <p>وفات - کتابوں کی صورت میں علم چھوڑ گئے</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Summary -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-icon icon-doctor">✅</div>
+                <h2>خلاصہ</h2>
+            </div>
+            <div class="section-content">
+                <ul class="key-points">
+                    <li><strong>نام:</strong> اسحٰق بن سلیمان اسرائیلی (الاسرائیلی / اسحٰق یہودی)</li>
+                    <li><strong>علاقہ:</strong> مصر اور شام</li>
+                    <li><strong>وفات:</strong> ۳۳۰ ھ (۹۳۲ ء)</li>
+                    <li><strong>پیشہ:</strong> طبیب، ماہر کحال، مصنف</li>
+                    <li><strong>خاص مہارت:</strong> آنکھوں کا علاج اور سرمہ سازی</li>
+                    <li><strong>شادی:</strong> نہیں کی (کتابیں ہی اولاد ہیں)</li>
+                    <li><strong>کردار:</strong> استاذ کی عزت کرنے والا</li>
+                    <li><strong>مشہور کتابیں:</strong> مرشد الاطباء، الحمیات، الادویۃ المفردہ</li>
+                    <li><strong>حوالہ:</strong> ابن ابی اصیبعہ (عیون الانباء)</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const item = this.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all accordions
+                document.querySelectorAll('.accordion-item').forEach(acc => {
+                    acc.classList.remove('active');
+                });
+                
+                // Open clicked one if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Open first accordion by default
+        document.querySelector('.accordion-item')?.classList.add('active');
+    </script>
+</body>
+</html>

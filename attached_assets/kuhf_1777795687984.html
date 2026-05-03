@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن القف - Ibn al-Quf</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .dates {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.3em;
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .info-card.green {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .info-card.blue {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .info-card.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .info-card .label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .info-card .value {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Content Paragraphs */
+        .content-para {
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #667eea;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+            padding: 18px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border: 2px dashed #f9a825;
+        }
+
+        .highlight-box .title {
+            color: #f57f17;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        /* Teacher Cards */
+        .teacher-section {
+            margin: 15px 0;
+        }
+
+        .teacher-category {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+        }
+
+        .teacher-category .subject {
+            color: #5e35b1;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .teacher-name {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .teacher-name .bullet {
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Book List */
+        .book-item {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 12px 18px;
+            border-radius: 12px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .book-item .book-icon {
+            font-size: 1.3em;
+        }
+
+        /* Role Cards */
+        .role-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 18px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .role-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .role-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .role-content {
+            color: #4a5568;
+            line-height: 2.4;
+        }
+
+        /* Comparison Box */
+        .comparison-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 18px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .comparison-box .vs {
+            text-align: center;
+            font-size: 1.3em;
+            color: #e65100;
+            margin: 10px 0;
+        }
+
+        .person-compare {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin: 8px 0;
+        }
+
+        /* Topic Tags */
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Memory Tips */
+        .memory-section {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+        }
+
+        .memory-title {
+            font-size: 1.4em;
+            color: #6a1b9a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .memory-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 12px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .memory-number {
+            background: #6a1b9a;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 600;
+        }
+
+        /* Important Point */
+        .important {
+            background: #fff3e0;
+            border-right: 4px solid #ff9800;
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+            margin: 15px 0;
+        }
+
+        .important::before {
+            content: "💡 ";
+        }
+
+        /* Full Width Info */
+        .full-info {
+            background: linear-gradient(135deg, #c3cfe2 0%, #c3cfe2 100%);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        /* Bullet Points */
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bullet-list li {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .bullet-list li::before {
+            content: "◆";
+            color: #667eea;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ابن القف</h1>
+        <div class="english-name">Ibn al-Quf</div>
+        <div class="dates">۶۳۰ھ / ۱۲۳۳ء — ۱۲۸۶ء</div>
+    </div>
+
+    <div class="container">
+        <!-- تعارف Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">📋</span>
+                تعارف
+            </h2>
+
+            <div class="info-grid">
+                
+                <div class="info-card green">
+                    <div class="label">والد کا نام</div>
+                    <div class="value">شیخ موفق الدین یعقوب</div>
+                </div>
+                <div class="info-card blue">
+                    <div class="label">جائے پیدائش</div>
+                    <div class="value">کرک</div>
+                </div>
+                <div class="info-card orange">
+                    <div class="label">سال پیدائش</div>
+                    <div class="value">۶۳۰ھ / ۱۲۳۳ء</div>
+                </div>
+            </div>
+
+            <div class="full-info">
+                <strong>مکمل نام:</strong> ابوالفرج بن شیخ موفق الدین یعقوب بن اسحاق بن قف مسیحی
+            </div>
+
+            <div class="content-para">
+                ابن القف کے والد بھی بڑے طبیب تھے۔ اس نے علم طب کے دو بڑے میدانوں میں نام کمایا:
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card green">
+                    <div class="value">معالجات</div>
+                </div>
+                <div class="info-card blue">
+                    <div class="value">علم الجراحت</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="title">📚 مشہور کتاب:</div>
+                کتاب العمدہ فی صناعۃ الجراح — یہ کتاب فن جراحت پر بے نظیر ہے
+            </div>
+
+            <div class="comparison-box">
+                <div class="vs">⚖️ موازنہ</div>
+                <div class="person-compare">
+                    <strong>ابوالقاسم زہراوی</strong> (اندلس کے طبیب) — کتاب التصریف
+                </div>
+                <div class="person-compare">
+                    <strong>ابن القف</strong> — کتاب العمدہ
+                </div>
+                <div class="important">
+                    دونوں فن جراحت میں برابر کا مقام رکھتے ہیں
+                </div>
+            </div>
+
+            <div class="full-info">
+                <strong>وفات:</strong> ۱۲۸۶ء
+            </div>
+        </div>
+
+        <!-- تعلیم و تربیت Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+
+            <div class="teacher-section">
+                <div class="teacher-category">
+                    <div class="subject">📖 علوم حکمیہ کے اساتذہ:</div>
+                    <div class="teacher-name">
+                        <span class="bullet"></span>
+                        شیخ شمس الدین خسرو شاہی
+                    </div>
+                    <div class="teacher-name">
+                        <span class="bullet"></span>
+                        عزالدین حسین
+                    </div>
+                </div>
+
+                <div class="teacher-category">
+                    <div class="subject">💊 طب کے اساتذہ:</div>
+                    <div class="teacher-name">
+                        <span class="bullet"></span>
+                        حکیم نجم الدین
+                    </div>
+                    <div class="teacher-name">
+                        <span class="bullet"></span>
+                        والد شیخ موفق الدین
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-para">
+                بعد میں قدیم اطبا کی کتابوں کا بڑے انہماک سے مطالعہ کیا
+            </div>
+
+            <div class="highlight-box">
+                <div class="title">📚 مطالعہ کی گئی کتابیں:</div>
+            </div>
+
+            <div class="book-item">
+                <span class="book-icon">📕</span>
+                <span><strong>فصول بقراط</strong> — ابو الطب بقراط</span>
+            </div>
+            <div class="book-item">
+                <span class="book-icon">📗</span>
+                <span><strong>کتاب المسائل</strong> — حنین ابن اسحاق</span>
+            </div>
+            <div class="book-item">
+                <span class="book-icon">📘</span>
+                <span><strong>کئی کتابیں</strong> — ابوبکر محمد بن زکریا رازی</span>
+            </div>
+
+            <div class="important">
+                ان کتابوں کے مطالعے سے فن طب میں کمال حاصل کیا
+            </div>
+        </div>
+
+        <!-- فضل و کمال Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال
+            </h2>
+
+            <div class="content-para">
+                ابن القف ایک طبیب، اپنے دور کا غیر معمولی جراح اور قابل قدر مصنف تھا
+            </div>
+
+            <!-- بحیثیت طبیب -->
+            <div class="role-card">
+                <div class="role-title">👨‍⚕️ بحیثیت طبیب</div>
+                <div class="role-content">
+                    <ul class="bullet-list">
+                        <li>قلعہ عجلون (بادشاہ کا قلعہ) میں طبیب و جراح کے فرائض انجام دئے</li>
+                        <li>دمشق کے قلعہ محروسہ میں بطور طبیب مامور ہوئے</li>
+                        <li>اپنی فنی مہارت کی بنا پر ہر جگہ عزت پائی اور ہر دلعزیز رہے</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- بحیثیت جراح -->
+            <div class="role-card">
+                <div class="role-title">🔪 بحیثیت جراح</div>
+                <div class="role-content">
+                    <ul class="bullet-list">
+                        <li>کتاب العمدہ فی صناعۃ الجراح کے مطالعہ سے ثابت ہے کہ وہ فن جراحت میں علمی اور عملی دونوں اعتبار سے کامل تھا</li>
+                        <li>ابوالقاسم زہراوی کے برابر شہرت کا مستحق تھا</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- بحیثیت مصنف -->
+            <div class="role-card">
+                <div class="role-title">✍️ بحیثیت مصنف</div>
+                <div class="role-content">
+                    <div class="content-para">
+                        علاج و معالجہ کی مصروفیت کے باوجود کافی وقت تصنیفی خدمات میں صرف کیا
+                    </div>
+                    
+                    <div class="important">
+                        اس کے دو اساتذہ نے ابن سینا کی کتاب "القانون فی الطب" کی توضیح و تدریس میں عمر صرف کی اور شرحیں لکھیں — اسی سے قانون کے مطالعے کا شوق پیدا ہوا
+                    </div>
+
+                    <div class="highlight-box">
+                        <div class="title">📚 تصنیفات:</div>
+                    </div>
+
+                    <div class="book-item">
+                        <span class="book-icon">📕</span>
+                        شرح اشارات ابن سینا
+                    </div>
+                    <div class="book-item">
+                        <span class="book-icon">📗</span>
+                        شرح کلیات
+                    </div>
+                    <div class="book-item">
+                        <span class="book-icon">📘</span>
+                        کتاب الشافی
+                    </div>
+                    <div class="book-item">
+                        <span class="book-icon">📙</span>
+                        مقالہ فی حفظ صحت و دفع المرض
+                    </div>
+                    <div class="book-item">
+                        <span class="book-icon">📕</span>
+                        کتاب الفصول فی شرح فصول
+                    </div>
+                    <div class="book-item">
+                        <span class="book-icon">📗</span>
+                        حاشیہ معالجات قانون (جلد سوم)
+                    </div>
+                    <div class="book-item">
+                        <span class="book-icon">📘</span>
+                        کتاب العمدہ فی صناعۃ الجراح
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- کتاب العمدہ Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                کتاب العمدہ فی صناعۃ الجراح
+            </h2>
+
+            <div class="highlight-box">
+                <div class="title">کتاب کا تعارف:</div>
+                یہ فن جراحت پر بیش قیمت کتاب ہے جس میں <strong>بیس (۲۰) مقالات</strong> ہیں اور ہر مقالہ میں کئی فصلیں ہیں
+            </div>
+
+            <div class="content-para">
+                <strong>کتاب کے مضامین:</strong>
+            </div>
+
+            <div class="topic-tags">
+                <span class="tag">معالجہ جراحت کے عام قوانین</span>
+                <span class="tag">جراحت کی قسمیں</span>
+                <span class="tag">نشتر زنی کے طریقے</span>
+                <span class="tag">آلات جراحیہ کا استعمال</span>
+                <span class="tag">پٹی باندھنے کے طریقے</span>
+                <span class="tag">اعضاء کے قطع و برید</span>
+                <span class="tag">ہڈیوں کی شکست و ریخت</span>
+                <span class="tag">اورام کی اقسام</span>
+                <span class="tag">زخم کا علاج</span>
+                <span class="tag">سرطان کی تشخیص و علاج</span>
+            </div>
+
+            <div class="role-card">
+                <div class="role-title">🇮🇳 ہندوستان میں اشاعت</div>
+                <div class="role-content">
+                    <ul class="bullet-list">
+                        <li>مخطوطے ہندوستان میں بھی پائے جاتے ہیں</li>
+                        <li>دائرۃ المعارف عثمانیہ حیدرآباد سے تدوین و اشاعت ہوئی</li>
+                        <li>اردو ترجمہ دو جلدوں میں مرکزی کونسل برائے تحقیق طب یونانی سے شائع ہوا</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- یاد رکھنے کے نکات -->
+        <div class="memory-section">
+            <h2 class="memory-title">🧠 یاد رکھنے کے اہم نکات</h2>
+
+            <div class="memory-item">
+                <span class="memory-number">۱</span>
+                <span><strong>نام:</strong> ابوالفرج بن موفق الدین یعقوب بن اسحاق بن قف مسیحی (مشہور: ابن القف)</span>
+            </div>
+
+            <div class="memory-item">
+                <span class="memory-number">۲</span>
+                <span><strong>پیدائش:</strong> کرک — ۶۳۰ھ / ۱۲۳۳ء | <strong>وفات:</strong> ۱۲۸۶ء</span>
+            </div>
+
+            <div class="memory-item">
+                <span class="memory-number">۳</span>
+                <span><strong>دو میدان:</strong> معالجات + علم الجراحت</span>
+            </div>
+
+            <div class="memory-item">
+                <span class="memory-number">۴</span>
+                <span><strong>مشہور کتاب:</strong> کتاب العمدہ فی صناعۃ الجراح (۲۰ مقالات)</span>
+            </div>
+
+            <div class="memory-item">
+                <span class="memory-number">۵</span>
+                <span><strong>موازنہ:</strong> ابوالقاسم زہراوی (کتاب التصریف) کے برابر</span>
+            </div>
+
+            <div class="memory-item">
+                <span class="memory-number">۶</span>
+                <span><strong>علوم حکمیہ کے اساتذہ:</strong> شمس الدین خسرو شاہی + عزالدین حسین</span>
+            </div>
+
+            <div class="memory-item">
+                <span class="memory-number">۷</span>
+                <span><strong>طب کے اساتذہ:</strong> حکیم نجم الدین + والد موفق الدین</span>
+            </div>
+
+            <div class="memory-item">
+                <span class="memory-number">۸</span>
+                <span><strong>ملازمت:</strong> قلعہ عجلون + قلعہ محروسہ دمشق</span>
+            </div>
+
+            <div class="memory-item">
+                <span class="memory-number">۹</span>
+                <span><strong>تین حیثیتیں:</strong> طبیب + جراح + مصنف</span>
+            </div>
+
+            <div class="memory-item">
+                <span class="memory-number">۱۰</span>
+                <span><strong>اردو ترجمہ:</strong> مرکزی کونسل برائے تحقیق طب یونانی (۲ جلدیں)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

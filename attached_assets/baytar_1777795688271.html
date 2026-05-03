@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن بیطار - عظیم ماہر نباتیات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a5f2a 0%, #2d8a3e 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(26, 95, 42, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .header .english-name {
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* Quick Info Cards */
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 18px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-right: 4px solid #1a5f2a;
+        }
+
+        .info-card .icon {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .info-card .label {
+            font-size: 0.85em;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+
+        .info-card .value {
+            font-size: 1.1em;
+            color: #1a5f2a;
+            font-weight: bold;
+        }
+
+        /* Section Styling */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #1a5f2a;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.2em;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 15px 0;
+            border-right: 4px solid #2d8a3e;
+        }
+
+        .highlight-box.warning {
+            background: linear-gradient(135deg, #fffaf0 0%, #ffecd2 100%);
+            border-right-color: #dd6b20;
+        }
+
+        .highlight-box.info {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border-right-color: #3182ce;
+        }
+
+        /* List Styling */
+        .styled-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .styled-list li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: #f8fafc;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .styled-list li::before {
+            content: "✦";
+            color: #1a5f2a;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        /* Countries Grid */
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .country-tag {
+            background: linear-gradient(135deg, #e6ffed 0%, #c6f6d5 100%);
+            padding: 10px 8px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .country-tag .flag {
+            font-size: 1.5em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, #1a5f2a 0%, #2d8a3e 100%);
+            color: white;
+            padding: 20px 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-item .text {
+            font-size: 0.9em;
+            opacity: 0.95;
+        }
+
+        /* Memory Tips */
+        .memory-section {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+        }
+
+        .memory-section .section-title {
+            color: #6b46c1;
+        }
+
+        .memory-tip {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-right: 4px solid #6b46c1;
+        }
+
+        .memory-tip .tip-title {
+            color: #6b46c1;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #1a5f2a;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding-right: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 10px;
+            width: 15px;
+            height: 15px;
+            background: #2d8a3e;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-date {
+            font-size: 1.1em;
+            color: #1a5f2a;
+            font-weight: bold;
+        }
+
+        /* Book Section */
+        .book-section {
+            background: linear-gradient(135deg, #fffaf0 0%, #feebc8 100%);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+        }
+
+        .book-section .section-title {
+            color: #c05621;
+        }
+
+        .book-cover {
+            background: linear-gradient(135deg, #744210 0%, #975a16 100%);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(116, 66, 16, 0.3);
+        }
+
+        .book-cover h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .book-cover .author {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #1a5f2a 0%, #276749 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-box h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .summary-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-box li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .summary-box li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-box li::before {
+            content: "✓";
+            background: white;
+            color: #1a5f2a;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section, .quick-info, .memory-section, .book-section, .summary-box {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .countries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1a5f2a;
+            border-radius: 4px;
+        }
+
+        .bold {
+            font-weight: bold;
+            color: #1a5f2a;
+        }
+
+        .underline {
+            border-bottom: 2px solid #1a5f2a;
+            padding-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>ابن بیطار</h1>
+        <p class="subtitle">عظیم ماہر نباتیات اور ماہر دواسازی</p>
+        <p class="english-name">Ibn Baytar</p>
+    </header>
+
+    <div class="container">
+        <!-- Quick Info Cards -->
+        <div class="quick-info">
+            <div class="info-card">
+                <div class="icon">📅</div>
+                <div class="label">پیدائش</div>
+                <div class="value">1197ء</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">🌍</div>
+                <div class="label">جائے پیدائش</div>
+                <div class="value">ملاغا (اندلس)</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">⭐</div>
+                <div class="label">وفات</div>
+                <div class="value">1248ء</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">📍</div>
+                <div class="label">جائے وفات</div>
+                <div class="value">دمشق</div>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                تعارف
+            </h2>
+            <p>
+                ابن بیطار کا پورا نام <span class="bold">ابو محمد عبد اللہ ابن احمد ابن بیطار</span> ہے۔ یہ <span class="bold">اندلس (Spain)</span> کے مشہور اور بڑے طبیب تھے۔
+            </p>
+            
+            <div class="highlight-box">
+                <strong>ابن بیطار کے دو بڑے کمالات:</strong>
+                <ul class="styled-list" style="margin-top: 10px;">
+                    <li>ماہر نباتیات (Botanist) - پودوں کا ماہر</li>
+                    <li>ماہر دواسازی (Pharmacist) - دوائیں بنانے کا ماہر</li>
+                </ul>
+            </div>
+
+            <p>
+                ابن بیطار اتنے بڑے عالم تھے کہ انہیں <span class="bold underline">علم الادویہ مفردہ کا امام</span> کہا جاتا ہے۔ ان کی مشہور کتاب <span class="bold">"کتاب جامع المفردات"</span> دواؤں کے بارے میں بہترین کتاب ہے۔
+            </p>
+
+            <div class="highlight-box warning">
+                <strong>⚠️ وفات کا واقعہ:</strong><br>
+                ابن بیطار کسی پودے کو حاصل کرنے کے لیے گہرے پانی میں اترے اور ڈوب کر وفات پا گئے۔ یہ ان کی تحقیق کے لیے محنت کی دلیل ہے۔
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">⏳</span>
+                زندگی کا سفر
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">1197ء</div>
+                    <p>ملاغا (Malaga) اندلس میں پیدائش</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">بچپن</div>
+                    <p>پودوں سے محبت اور دلچسپی</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">تعلیم</div>
+                    <p>ابوالعباس نباتی سے علم سیکھا</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">سفر</div>
+                    <p>مختلف ملکوں کا سفر اور دوائیں جمع کیں</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1248ء</div>
+                    <p>دمشق (Damascus) میں وفات</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+            <p>
+                ابن بیطار کو <span class="bold">بچپن سے ہی پودوں سے محبت</span> تھی۔ انہوں نے یہ علم سیکھنے کے لیے بہت محنت کی۔
+            </p>
+
+            <div class="highlight-box info">
+                <strong>👨‍🏫 استاد:</strong><br>
+                ابن بیطار نے اپنے وقت کے مشہور ماہر نباتیات <span class="bold">ابوالعباس نباتی</span> سے علم حاصل کیا۔
+            </div>
+
+            <p>
+                <strong>سفر کی داستان:</strong> ابن بیطار نے پوری زندگی مختلف ملکوں کا سفر کیا اور ہر جگہ سے <span class="bold">سیکڑوں دوائی پودے اور جڑی بوٹیاں</span> جمع کیں۔
+            </p>
+
+            <h3 style="margin: 20px 0 15px; color: #1a5f2a;">🗺️ سفر کیے ہوئے ممالک:</h3>
+            <div class="countries-grid">
+                <div class="country-tag">
+                    <span class="flag">🇪🇸</span>
+                    اندلس
+                </div>
+                <div class="country-tag">
+                    <span class="flag">🇲🇦</span>
+                    مراکش
+                </div>
+                <div class="country-tag">
+                    <span class="flag">🇪🇸</span>
+                    شبیلہ
+                </div>
+                <div class="country-tag">
+                    <span class="flag">🇹🇳</span>
+                    تیونس
+                </div>
+                <div class="country-tag">
+                    <span class="flag">🇹🇷</span>
+                    قسطنطنیہ
+                </div>
+                <div class="country-tag">
+                    <span class="flag">🇪🇬</span>
+                    مصر
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🏆</span>
+                فضل و کمال
+            </h2>
+            
+            <div class="highlight-box">
+                <strong>🌿 بحیثیت ماہر نباتیات:</strong>
+                <p style="margin-top: 10px;">
+                    تمام تاریخ دان اس بات پر متفق ہیں کہ ابن بیطار <span class="bold">ادویہ مفردہ کا امام</span> ہے۔
+                </p>
+            </div>
+
+            <p><strong>ابن بیطار کی خاص باتیں:</strong></p>
+            <ul class="styled-list">
+                <li>پرانے ماہرین (دیسقوریدوس، جالینوس، ابن زکریا) کی کتابیں غور سے پڑھیں</li>
+                <li>ان کتابوں کی غلطیاں بھی بتائیں</li>
+                <li>صرف کتابوں پر بھروسہ نہیں کیا</li>
+                <li>خود جا کر پودوں کو دیکھا اور جانچا</li>
+                <li>دواؤں کے مزاج اور اثرات پر تحقیق کی</li>
+            </ul>
+
+            <div class="highlight-box info">
+                <strong>📝 بحیثیت مصنف:</strong>
+                <p style="margin-top: 10px;">
+                    مسلسل سفر کے باوجود ابن بیطار نے اپنی تحقیق کو لکھ کر محفوظ کیا۔
+                </p>
+            </div>
+
+            <p><strong>مشہور کتابیں:</strong></p>
+            <ul class="styled-list">
+                <li><span class="bold">کتاب الجامع الادویہ المفردہ والاغذیہ</span> - دواؤں پر بہترین کتاب</li>
+                <li><span class="bold">کتاب المغنی فی العلاج بالادویہ المفردہ</span> - علاج کی کتاب</li>
+            </ul>
+        </section>
+
+        <!-- Book Section -->
+        <section class="book-section">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                کتاب الجامع المفردات
+            </h2>
+
+            <div class="book-cover">
+                <h3>کتاب الجامع المفردات</h3>
+                <p class="author">مصنف: ابن بیطار</p>
+            </div>
+
+            <p>
+                یہ ابن بیطار کی <span class="bold">سب سے مشہور کتاب</span> ہے۔ <span class="bold">عربی زبان</span> میں لکھی گئی ہے اور دواؤں کے بارے میں مکمل معلومات دیتی ہے۔
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="number">1400+</span>
+                    <span class="text">دواؤں کا ذکر</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">2</span>
+                    <span class="text">جلدیں</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">25+</span>
+                    <span class="text">کتابوں کے حوالے</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">100+</span>
+                    <span class="text">اطباء کے اقتباسات</span>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>📌 کتاب کی خاص بات:</strong>
+                <p style="margin-top: 10px;">
+                    ابن بیطار نے ہر دوا کی شکل اور صورت <span class="bold">خود جا کر دیکھ کر</span> لکھی۔ جن پودوں میں پہلے غلطیاں تھیں، انہیں ٹھیک کیا۔
+                </p>
+            </div>
+
+            <p style="text-align: center; font-size: 1.1em; margin: 20px 0;">
+                <strong>اس لیے یہ کتاب یونانی ادویہ مفردہ کا انسائیکلوپیڈیا کہلاتی ہے!</strong>
+            </p>
+        </section>
+
+        <!-- Publication Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🌐</span>
+                کتاب کی اشاعت اور تراجم
+            </h2>
+
+            <ul class="styled-list">
+                <li><strong>1874ء</strong> - قاہرہ (Cairo) سے عربی میں چھپی (4 جلدیں)</li>
+                <li><strong>لاطینی ترجمہ:</strong> "The Corpus of Simples" کے نام سے</li>
+                <li><strong>فرانسیسی ترجمہ:</strong> French میں ترجمہ ہوا</li>
+                <li><strong>جرمن ترجمہ:</strong> German میں ترجمہ ہوا</li>
+                <li><strong>اردو ترجمہ:</strong> CCRUM نے چاروں جلدوں کا اردو ترجمہ کیا</li>
+            </ul>
+
+            <div class="highlight-box info">
+                <strong>✨ آج بھی:</strong> یہ کتاب علم الادویہ میں سب سے اہم کتابوں میں شمار ہوتی ہے اور اس کی عظمت برقرار ہے۔
+            </div>
+        </section>
+
+        <!-- Memory Tips Section -->
+        <section class="memory-section">
+            <h2 class="section-title">
+                <span class="icon">🧠</span>
+                یاد کرنے کے آسان طریقے
+            </h2>
+
+            <div class="memory-tip">
+                <div class="tip-title">📅 تاریخیں یاد رکھیں:</div>
+                <p><strong>1197</strong> → <strong>1248</strong> (تقریباً 51 سال کی عمر)</p>
+                <p>یاد رکھنے کا طریقہ: "97 سے 48 تک" - فرق 49 سال (تقریباً 50)</p>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">🌍 جگہیں یاد رکھیں:</div>
+                <p><strong>م → م</strong> (ملاغا سے... مصر ہوتے ہوئے... دمشق تک)</p>
+                <p>"م" سے شروع، "م" سے گزرے، "د" پر ختم</p>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">📊 اعداد یاد رکھیں:</div>
+                <p><strong>14-2-25-100</strong></p>
+                <p>1400 دوائیں، 2 جلدیں، 25+ کتب کے حوالے، 100+ اطباء</p>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">👨‍🏫 استاد:</div>
+                <p><strong>"نباتی سے نباتیات"</strong> - ابوالعباس نباتی سے سیکھا</p>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">📚 لقب:</div>
+                <p><strong>"امام ادویہ مفردہ"</strong> - سادہ دواؤں کا امام</p>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <div class="summary-box">
+            <h2>📝 خلاصہ - اہم نکات</h2>
+            <ul>
+                <li>پورا نام: ابو محمد عبد اللہ ابن احمد ابن بیطار</li>
+                <li>پیدائش: 1197ء - ملاغا (اندلس/Spain)</li>
+                <li>وفات: 1248ء - دمشق (پانی میں ڈوبنے سے)</li>
+                <li>لقب: امام علم الادویہ مفردہ</li>
+                <li>استاد: ابوالعباس نباتی</li>
+                <li>مشہور کتاب: کتاب الجامع المفردات</li>
+                <li>کتاب میں 1400+ دواؤں کا ذکر</li>
+                <li>خود جا کر پودے دیکھے، صرف کتابوں پر بھروسہ نہیں کیا</li>
+                <li>کتاب کے لاطینی، فرانسیسی، جرمن، اردو تراجم ہوئے</li>
+                <li>آج بھی یہ کتاب علم الادویہ میں سرفہرست ہے</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Smooth scroll effect
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section, .memory-section, .book-section, .summary-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

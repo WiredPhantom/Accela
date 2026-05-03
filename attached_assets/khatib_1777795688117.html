@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن خطیب - عظیم طبیب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(30, 58, 95, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .english-name {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-family: Arial, sans-serif;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            margin-top: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* Quick Facts Card */
+        .quick-facts {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.3);
+        }
+
+        .quick-facts h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .fact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .fact-item {
+            background: rgba(255,255,255,0.2);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .fact-item .icon {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .fact-item .label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .fact-item .value {
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        /* Section Card */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #4299e1;
+        }
+
+        .section h2 {
+            color: #1e3a5f;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 .icon {
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #faf089 0%, #f6e05e 100%);
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #d69e2e;
+        }
+
+        .highlight-box.important {
+            background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+            border-right-color: #c53030;
+        }
+
+        .highlight-box.success {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            border-right-color: #38a169;
+        }
+
+        /* Key Points List */
+        .key-points {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            background: #f7fafc;
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            position: relative;
+            padding-right: 45px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .key-points li::before {
+            content: "✓";
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #48bb78;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+        }
+
+        /* Books Section */
+        .books-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .book-item {
+            background: linear-gradient(135deg, #e9d8fd 0%, #d6bcfa 100%);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            color: #553c9a;
+            transition: transform 0.3s ease;
+        }
+
+        .book-item:active {
+            transform: scale(0.98);
+        }
+
+        /* Memory Tips */
+        .memory-card {
+            background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .memory-card h2 {
+            color: #2c5282;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .memory-tip {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .memory-tip:last-child {
+            margin-bottom: 0;
+        }
+
+        .memory-tip .num {
+            background: #3182ce;
+            color: white;
+            min-width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #4299e1;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            background: #4299e1;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .timeline-item .date {
+            color: #4299e1;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Scrollable sections indicator */
+        .scroll-indicator {
+            text-align: center;
+            padding: 15px;
+            color: #718096;
+            font-size: 0.9em;
+        }
+
+        .scroll-indicator span {
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Expandable sections */
+        .expandable {
+            cursor: pointer;
+        }
+
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .expandable-content.show {
+            max-height: 2000px;
+        }
+
+        .expand-btn {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 1em;
+            cursor: pointer;
+            display: block;
+            margin: 15px auto 0;
+            transition: background 0.3s;
+        }
+
+        .expand-btn:active {
+            background: #3182ce;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            opacity: 0.8;
+        }
+
+        .summary-value {
+            font-weight: 600;
+        }
+
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .fact-grid {
+                grid-template-columns: 1fr;
+            }
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>ابن خطیب</h1>
+        <div class="english-name">Ibn Khatib</div>
+        <div class="subtitle">🏥 عظیم اندلسی طبیب و عالم</div>
+    </header>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <h2>⚡ اہم معلومات ایک نظر میں</h2>
+            <div class="fact-grid">
+                <div class="fact-item">
+                    <div class="icon">📅</div>
+                    <div class="label">پیدائش</div>
+                    <div class="value">1313ء</div>
+                </div>
+                <div class="fact-item">
+                    <div class="icon">📍</div>
+                    <div class="label">جائے پیدائش</div>
+                    <div class="value">لوجا (غرناطہ)</div>
+                </div>
+                <div class="fact-item">
+                    <div class="icon">🏷️</div>
+                    <div class="label">لقب</div>
+                    <div class="value">لسان الدین</div>
+                </div>
+                <div class="fact-item">
+                    <div class="icon">🌍</div>
+                    <div class="label">علاقہ</div>
+                    <div class="value">اندلس (اسپین)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- تعارف -->
+        <section class="section">
+            <h2><span class="icon">👤</span> تعارف</h2>
+            <p>ابن خطیب اندلس (اسپین) کے مشہور اور اہم طبیبوں میں سے ایک تھے۔</p>
+            
+            <div class="highlight-box">
+                <strong>پورا نام:</strong> ابو عبد اللہ بن سعید بن عبداللہ بن علی احمد سلمانی
+            </div>
+            
+            <ul class="key-points">
+                <li>ابن خطیب کے نام سے مشہور ہوئے</li>
+                <li>لسان الدین ان کا لقب تھا</li>
+                <li>1313ء میں غرناطہ کے قریب لوجا میں پیدا ہوئے</li>
+                <li>مختلف علوم سیکھے لیکن طب کو اپنا پیشہ بنایا</li>
+            </ul>
+
+            <div class="highlight-box success">
+                <strong>🔬 بڑا کارنامہ:</strong> طاعون پر تحقیق کی اور اسے متعدی مرض ثابت کیا
+            </div>
+        </section>
+
+        <!-- تعلیم و تربیت -->
+        <section class="section">
+            <h2><span class="icon">📚</span> تعلیم و تربیت</h2>
+            
+            <div class="highlight-box">
+                <strong>خاندان:</strong> بنو وزیر - ایک اہم اور مشہور خاندان
+            </div>
+
+            <ul class="key-points">
+                <li>والد حاکم بنو نصر کے دربار میں اعلیٰ منصب پر تھے</li>
+                <li>والد کی نگرانی میں بہترین تعلیم ملی</li>
+                <li>اس وقت کے بڑے اساتذہ نے پڑھایا</li>
+                <li>ذہانت کی وجہ سے جلد ماہر ہو گئے</li>
+                <li>لسانی اور فنی علوم میں مہارت حاصل کی</li>
+                <li>غرناطہ کی بڑی علمی شخصیت بن گئے</li>
+            </ul>
+        </section>
+
+        <!-- فضل و کمال -->
+        <section class="section">
+            <h2><span class="icon">⭐</span> فضل و کمال</h2>
+            <p>ابن خطیب اپنے وقت کے بہت بڑے:</p>
+            
+            <ul class="key-points">
+                <li>عالم (علم والے)</li>
+                <li>طبیب (ڈاکٹر)</li>
+                <li>شاعر</li>
+                <li>مؤرخ (تاریخ لکھنے والے)</li>
+                <li>مصنف (کتابیں لکھنے والے)</li>
+                <li>ماہر لسان (زبان کے ماہر)</li>
+            </ul>
+
+            <div class="highlight-box important">
+                <strong>⚠️ افسوسناک انجام:</strong> سیاسی سازشوں کی وجہ سے ان کا قتل ہوا
+            </div>
+        </section>
+
+        <!-- بحیثیت طبیب -->
+        <section class="section">
+            <h2><span class="icon">🏥</span> ابن خطیب بحیثیت طبیب</h2>
+            
+            <ul class="key-points">
+                <li>طب کے علمی اور عملی دونوں شعبوں پر گہری نظر تھی</li>
+                <li>بیماریوں کی وجوہات کا گہرا مطالعہ کیا</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>اس وقت کی صورتحال:</strong> یونانی طب میں متعدی امراض (چھوت کی بیماریاں) کے بارے میں صرف 2-3 بیماریوں کا ذکر تھا
+            </div>
+
+            <h3 style="margin: 20px 0 15px; color: #2c5282;">🔬 طاعون پر تحقیق</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="date">واقعہ</div>
+                    <p>اندلس میں طاعون کی وباء پھیلی</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">لوگوں کا خیال</div>
+                    <p>مذہبی پیشواؤں نے کہا: یہ اللہ کی طرف سے گناہوں کی سزا ہے</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">ابن خطیب کا کام</div>
+                    <p>تحقیق کی اور ثابت کیا کہ یہ متعدی مرض ہے جس کا علاج ہو سکتا ہے</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">نتیجہ</div>
+                    <p>دوسرے ڈاکٹروں نے بھی ان کی بات مان لی</p>
+                </div>
+            </div>
+
+            <div class="highlight-box success">
+                <strong>علم الادویہ:</strong> دواؤں کے فائدے اور مزاج کی اچھی جانکاری تھی۔ اس موضوع پر کتاب بھی لکھی۔
+            </div>
+
+            <div class="highlight-box important">
+                <strong>افسوس:</strong> سیاسی مسائل کی وجہ سے انہیں کبھی موقع نہیں ملا کہ ایک جگہ رہ کر طب کی پوری خدمت کر سکیں
+            </div>
+        </section>
+
+        <!-- بحیثیت مصنف -->
+        <section class="section">
+            <h2><span class="icon">✍️</span> ابن خطیب بحیثیت مصنف</h2>
+            
+            <div class="highlight-box success">
+                <strong>کل کتابیں:</strong> 60 سے زیادہ کتابیں لکھیں
+            </div>
+
+            <p style="margin: 15px 0;"><strong>موضوعات:</strong></p>
+            <ul class="key-points">
+                <li>تاریخ</li>
+                <li>جغرافیہ</li>
+                <li>فلسفہ</li>
+                <li>طب</li>
+                <li>تصوف</li>
+            </ul>
+
+            <h3 style="margin: 20px 0 15px; color: #2c5282;">📖 طب کی اہم کتابیں</h3>
+            <div class="books-grid">
+                <div class="book-item">کتاب الادویہ</div>
+                <div class="book-item">خطرة الطيف في رحلتہ الشتاء والصيف</div>
+                <div class="book-item">عمل الطب</div>
+                <div class="book-item">الاعلام فيمن يولج قبل الاحتلام</div>
+            </div>
+        </section>
+
+        <!-- یاد رکھنے کے لیے -->
+        <div class="memory-card">
+            <h2>🧠 آسان یاد کرنے کا طریقہ</h2>
+            
+            <div class="memory-tip">
+                <span class="num">1</span>
+                <div><strong>نام:</strong> ابن خطیب = لسان الدین</div>
+            </div>
+            
+            <div class="memory-tip">
+                <span class="num">2</span>
+                <div><strong>جگہ:</strong> لوجا (غرناطہ) اندلس = اسپین</div>
+            </div>
+            
+            <div class="memory-tip">
+                <span class="num">3</span>
+                <div><strong>سال:</strong> 1313ء (یاد رکھیں: 13-13)</div>
+            </div>
+            
+            <div class="memory-tip">
+                <span class="num">4</span>
+                <div><strong>خاندان:</strong> بنو وزیر (اہم خاندان)</div>
+            </div>
+            
+            <div class="memory-tip">
+                <span class="num">5</span>
+                <div><strong>بڑا کام:</strong> طاعون = متعدی مرض ثابت کیا</div>
+            </div>
+            
+            <div class="memory-tip">
+                <span class="num">6</span>
+                <div><strong>کتابیں:</strong> 60+ (طب، تاریخ، جغرافیہ، فلسفہ، تصوف)</div>
+            </div>
+        </div>
+
+        <!-- خلاصہ -->
+        <div class="summary-box">
+            <h2>📋 خلاصہ</h2>
+            <div class="summary-item">
+                <span class="summary-label">نام</span>
+                <span class="summary-value">ابن خطیب</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">لقب</span>
+                <span class="summary-value">لسان الدین</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">پیدائش</span>
+                <span class="summary-value">1313ء - لوجا</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">علاقہ</span>
+                <span class="summary-value">اندلس (اسپین)</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">خاندان</span>
+                <span class="summary-value">بنو وزیر</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">پیشہ</span>
+                <span class="summary-value">طبیب، شاعر، مؤرخ</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">بڑا کارنامہ</span>
+                <span class="summary-value">طاعون پر تحقیق</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">کتابیں</span>
+                <span class="summary-value">60 سے زیادہ</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">انجام</span>
+                <span class="summary-value">سیاسی سازش سے قتل</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

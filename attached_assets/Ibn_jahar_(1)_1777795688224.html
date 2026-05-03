@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن زہر - طبیب اندلس</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #fef9e7 0%, #fdf2e9 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a5276 0%, #2471a3 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(26, 82, 118, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .header .english-name {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #3498db;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #1a5276;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3498db, #2471a3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Different section colors */
+        .section.green { border-right-color: #27ae60; }
+        .section.green .section-title { color: #1e8449; }
+        .section.green .icon { background: linear-gradient(135deg, #27ae60, #1e8449); }
+
+        .section.blue { border-right-color: #3498db; }
+        .section.blue .section-title { color: #1a5276; }
+        .section.blue .icon { background: linear-gradient(135deg, #3498db, #2471a3); }
+
+        .section.purple { border-right-color: #9b59b6; }
+        .section.purple .section-title { color: #7d3c98; }
+        .section.purple .icon { background: linear-gradient(135deg, #9b59b6, #7d3c98); }
+
+        .section.red { border-right-color: #e74c3c; }
+        .section.red .section-title { color: #c0392b; }
+        .section.red .icon { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+
+        .section.orange { border-right-color: #e67e22; }
+        .section.orange .section-title { color: #d35400; }
+        .section.orange .icon { background: linear-gradient(135deg, #e67e22, #d35400); }
+
+        .section.teal { border-right-color: #1abc9c; }
+        .section.teal .section-title { color: #16a085; }
+        .section.teal .icon { background: linear-gradient(135deg, #1abc9c, #16a085); }
+
+        .section.indigo { border-right-color: #5c6bc0; }
+        .section.indigo .section-title { color: #3949ab; }
+        .section.indigo .icon { background: linear-gradient(135deg, #5c6bc0, #3949ab); }
+
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f6f3 0%, #d5f4e6 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #27ae60;
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #ebf5fb 0%, #d6eaf8 100%);
+            border-right-color: #3498db;
+        }
+
+        .highlight-box.yellow {
+            background: linear-gradient(135deg, #fef9e7 0%, #fcf3cf 100%);
+            border-right-color: #f1c40f;
+        }
+
+        .highlight-box.pink {
+            background: linear-gradient(135deg, #fdedec 0%, #f5b7b1 100%);
+            border-right-color: #e74c3c;
+        }
+
+        .highlight-box-title {
+            font-weight: 700;
+            color: #1e8449;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .highlight-box.blue .highlight-box-title { color: #1a5276; }
+        .highlight-box.yellow .highlight-box-title { color: #9a7b0a; }
+        .highlight-box.pink .highlight-box-title { color: #c0392b; }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .info-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .info-item .label {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+
+        .info-item .value {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        /* List styles */
+        .custom-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .custom-list li {
+            padding: 10px 15px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .custom-list li::before {
+            content: "✦";
+            color: #3498db;
+            font-size: 1.2em;
+        }
+
+        .custom-list.green li::before { color: #27ae60; }
+        .custom-list.red li::before { color: #e74c3c; }
+        .custom-list.orange li::before { color: #e67e22; }
+        .custom-list.teal li::before { color: #1abc9c; }
+
+        /* Numbered list */
+        .numbered-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: item;
+        }
+
+        .numbered-list li {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            counter-increment: item;
+        }
+
+        .numbered-list li::before {
+            content: counter(item);
+            background: linear-gradient(135deg, #3498db, #2471a3);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Special Book Section */
+        .book-section {
+            background: linear-gradient(135deg, #1a5276 0%, #2471a3 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(26, 82, 118, 0.3);
+        }
+
+        .book-section .section-title {
+            color: white;
+        }
+
+        .book-section .icon {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .book-section p {
+            opacity: 0.95;
+        }
+
+        .book-detail {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 12px 0;
+        }
+
+        .book-detail-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #f1c40f;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card .section-title {
+            color: #f1c40f;
+        }
+
+        .summary-card .icon {
+            background: rgba(241, 196, 15, 0.3);
+        }
+
+        .summary-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list .emoji {
+            font-size: 1.3em;
+        }
+
+        /* Roles Grid */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .role-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .role-card .emoji {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .role-card .title {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Bold text */
+        strong {
+            color: #1a5276;
+        }
+
+        .book-section strong {
+            color: #f1c40f;
+        }
+
+        .summary-card strong {
+            color: #f1c40f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>📚 ابن زہر</h1>
+        <p class="subtitle">اندلس کے عظیم طبیب و جراح</p>
+        <span class="english-name">Ibn Zuhr / Avenzoar</span>
+    </header>
+
+    <div class="container">
+        <!-- تعارف -->
+        <section class="section green">
+            <h2 class="section-title">
+                <span class="icon">👤</span>
+                تعارف
+            </h2>
+            <p>
+                ابن زہر کا پورا نام <strong>"ابی مروان عبد الملک بن محمد بن مروان بن زہر"</strong> ہے۔ یہ نام اس لیے استعمال ہوتا ہے تاکہ دوسرے ہم نام ڈاکٹروں سے فرق ہو سکے۔ لیکن عام طور پر انہیں <strong>ابن زہر</strong> ہی کہا جاتا ہے۔
+            </p>
+            <p>
+                ابن زہر <strong>اندلس (سپین)</strong> کے مشہور ڈاکٹروں میں سے تھے۔ یورپ میں انہیں <strong>لاطینی نام "Avenzoar"</strong> سے جانا جاتا ہے۔
+            </p>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">📅 پیدائش</div>
+                    <div class="value">1091ء</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">📍 جائے پیدائش</div>
+                    <div class="value">اشبیلیہ (Seville)</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">📅 وفات</div>
+                    <div class="value">1162ء</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">📍 جائے وفات</div>
+                    <div class="value">اشبیلیہ (Seville)</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-box-title">📌 یاد رکھیں:</div>
+                <p>پیدائش اور وفات دونوں <strong>اشبیلیہ</strong> میں ہوئی۔ عمر تقریباً <strong>71 سال</strong> تھی۔</p>
+            </div>
+        </section>
+
+        <!-- تعلیم و تربیت -->
+        <section class="section blue">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+            <p>
+                ابن زہر کا تعلق ایک <strong>علمی خاندان</strong> سے تھا۔ ان کی پچھلی <strong>7 نسلیں</strong> علم و حکمت کے کام میں لگی ہوئی تھیں۔ یہاں تک کہ اس خاندان کی <strong>عورتیں بھی ڈاکٹر</strong> تھیں اور مریضوں کا علاج کرتی تھیں۔
+            </p>
+            <p>
+                ابن زہر کی ابتدائی تعلیم <strong>گھر</strong> سے ہی شروع ہوئی۔ ان کے والد بھی اپنے زمانے کے <strong>مشہور ڈاکٹر</strong> تھے۔ ان کے پاس <strong>نادر کتابوں کا ذاتی کتب خانہ</strong> تھا۔ والد کی نگرانی میں ابن زہر ایک <strong>ماہر ڈاکٹر</strong> بن گئے۔
+            </p>
+
+            <div class="highlight-box blue">
+                <div class="highlight-box-title">📌 یاد رکھیں:</div>
+                <ul class="custom-list">
+                    <li>7 نسلیں علم و حکمت میں مصروف</li>
+                    <li>خاندان کی عورتیں بھی ڈاکٹر تھیں</li>
+                    <li>والد مشہور ڈاکٹر تھے</li>
+                    <li>گھر میں نادر کتابوں کا کتب خانہ تھا</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- فضل و کمال -->
+        <section class="section purple">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال (مہارتیں)
+            </h2>
+            <p>
+                ابن زہر <strong>اعلیٰ درجے کے ڈاکٹر اور جراح (سرجن)</strong> تھے۔ تاریخ دانوں نے ان کی مہارتوں کو اپنی کتابوں میں لکھا ہے۔ انہوں نے <strong>چار اہم کام</strong> کیے:
+            </p>
+
+            <div class="roles-grid">
+                <div class="role-card">
+                    <div class="emoji">👨‍⚕️</div>
+                    <div class="title">طبیب (ڈاکٹر)</div>
+                </div>
+                <div class="role-card">
+                    <div class="emoji">🔪</div>
+                    <div class="title">جراح (سرجن)</div>
+                </div>
+                <div class="role-card">
+                    <div class="emoji">👨‍🏫</div>
+                    <div class="title">استاد</div>
+                </div>
+                <div class="role-card">
+                    <div class="emoji">✍️</div>
+                    <div class="title">مصنف (لکھاری)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- بحیثیت طبیب -->
+        <section class="section red">
+            <h2 class="section-title">
+                <span class="icon">👨‍⚕️</span>
+                بحیثیت طبیب (ڈاکٹر)
+            </h2>
+            <p>
+                یورپ میں <strong>جالینوس کے بعد دوسرے بڑے ڈاکٹر</strong> ابن زہر کو مانا جاتا ہے۔ وہ <strong>علاج میں بہت ماہر</strong> تھے۔ ان کے زمانے میں ان جیسا کوئی دوسرا ڈاکٹر نہیں تھا۔
+            </p>
+            <p>
+                تاریخ سے پتہ چلتا ہے کہ وہ <strong>کم عمری میں ہی شاہی دربار سے جڑ گئے</strong> تھے۔ ساری زندگی مختلف <strong>بادشاہوں کے ذاتی ڈاکٹر</strong> رہے۔ خاص طور پر <strong>خلیفہ عبد المومن</strong> ان پر بہت بھروسہ کرتے تھے۔
+            </p>
+
+            <div class="highlight-box yellow">
+                <div class="highlight-box-title">🧪 خاص دوائی:</div>
+                <p>ابن زہر نے خلیفہ کے لیے <strong>"تریاقِ سبعینی"</strong> بنائی۔ یہ <strong>70 دواؤں کا مرکب</strong> تھا جو بعد میں <strong>"تریاقِ استلہ"</strong> کے نام سے مشہور ہوا۔</p>
+            </div>
+
+            <p>
+                ابن زہر علاج میں <strong>عقل اور حکمت</strong> سے کام لیتے تھے۔ وہ خاص طور پر ان بیماریوں کے علاج میں ماہر تھے:
+            </p>
+
+            <ul class="custom-list red">
+                <li><strong>دق (Tuberculosis)</strong> - پھیپھڑوں کی بیماری</li>
+                <li><strong>فالج (Paralysis)</strong> - لقوہ</li>
+            </ul>
+        </section>
+
+        <!-- بحیثیت جراح -->
+        <section class="section orange">
+            <h2 class="section-title">
+                <span class="icon">🔪</span>
+                بحیثیت جراح (سرجن)
+            </h2>
+            <p>
+                ابن زہر <strong>سرجری میں غیر معمولی مہارت</strong> رکھتے تھے۔ وہ یہ آپریشن کرتے تھے:
+            </p>
+
+            <ul class="custom-list orange">
+                <li><strong>گردے کی پتھری (Renal Stone)</strong> کا آپریشن</li>
+                <li><strong>سانس کی نالی کا انسداد (Tracheal Obstruction)</strong> کا علاج</li>
+                <li><strong>ناسور (Fistula)</strong> کا آپریشن</li>
+                <li><strong>موتیا بند (Cataract)</strong> کا آپریشن</li>
+            </ul>
+
+            <div class="highlight-box pink">
+                <div class="highlight-box-title">📌 یاد رکھیں:</div>
+                <p>چار اہم سرجری: <strong>پتھری، سانس کی نالی، ناسور، موتیا</strong></p>
+            </div>
+        </section>
+
+        <!-- بحیثیت استاد -->
+        <section class="section teal">
+            <h2 class="section-title">
+                <span class="icon">👨‍🏫</span>
+                بحیثیت استاد
+            </h2>
+            <p>
+                ابن زہر نے <strong>پڑھانے کا کام</strong> بھی بہت اچھے طریقے سے کیا۔ ان کے مشہور شاگرد تھے:
+            </p>
+
+            <ul class="custom-list teal">
+                <li><strong>ابو الحسن ابو بکر بن فقیہ</strong></li>
+                <li><strong>زاہد ابو عمران</strong></li>
+                <li><strong>ابن رشد</strong> - مشہور فلسفی و طبیب</li>
+            </ul>
+
+            <div class="highlight-box">
+                <div class="highlight-box-title">📌 یاد رکھیں:</div>
+                <p>مشہور فلسفی <strong>ابن رشد</strong> بھی ابن زہر کے شاگرد تھے!</p>
+            </div>
+        </section>
+
+        <!-- بحیثیت مصنف -->
+        <section class="section indigo">
+            <h2 class="section-title">
+                <span class="icon">✍️</span>
+                بحیثیت مصنف (لکھاری)
+            </h2>
+            <p>
+                ابن زہر نے <strong>تقریباً 7 کتابیں</strong> لکھیں۔ ان میں سب سے مشہور کتاب <strong>"کتاب التیسیر"</strong> ہے۔
+            </p>
+
+            <div class="highlight-box blue">
+                <div class="highlight-box-title">📌 یاد رکھیں:</div>
+                <p>کل کتابیں: <strong>7</strong> | سب سے مشہور: <strong>کتاب التیسیر</strong></p>
+            </div>
+        </section>
+
+        <!-- کتاب التیسیر -->
+        <section class="book-section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                کتاب التیسیر
+            </h2>
+            <p>
+                یہ ابن زہر کی <strong>سب سے اہم کتاب</strong> ہے۔ اسی کتاب کی وجہ سے <strong>طبی دنیا میں ابن زہر کی پہچان</strong> ہوئی۔
+            </p>
+
+            <div class="book-detail">
+                <div class="book-detail-title">📚 کتاب میں کیا ہے؟</div>
+                <p>اس کتاب میں طب کا <strong>عملی حصہ</strong> ہے یعنی: مریض کا معائنہ، بیماری کی علامات، تشخیص اور علاج۔ ابن زہر نے اپنے <strong>پوری زندگی کے تجربات</strong> اس میں لکھے ہیں۔</p>
+            </div>
+
+            <div class="book-detail">
+                <div class="book-detail-title">📏 کتاب کی ضخامت</div>
+                <p>یہ کتاب <strong>زیادہ موٹی نہیں</strong> ہے۔ صرف <strong>دو حصوں</strong> پر مشتمل ہے:</p>
+                <ul style="list-style: none; padding: 10px 0;">
+                    <li>۱۔ <strong>سفرِ اول</strong> (پہلا حصہ)</li>
+                    <li>۲۔ <strong>سفرِ ثانی</strong> (دوسرا حصہ)</li>
+                </ul>
+            </div>
+
+            <div class="book-detail">
+                <div class="book-detail-title">📝 سفرِ اول (پہلا حصہ) میں:</div>
+                <ul style="list-style: none; padding: 5px 0;">
+                    <li>✦ صحت کی حفاظت کے طریقے</li>
+                    <li>✦ سر کی بیماریاں</li>
+                    <li>✦ سینے اور پھیپھڑوں کی بیماریاں</li>
+                    <li>✦ جگر اور تلی کی بیماریاں</li>
+                    <li>✦ معدے کی بیماریاں</li>
+                    <li>✦ سادہ اور مرکب دوائیں</li>
+                </ul>
+            </div>
+
+            <div class="book-detail">
+                <div class="book-detail-title">📝 سفرِ ثانی (دوسرا حصہ) میں:</div>
+                <ul style="list-style: none; padding: 5px 0;">
+                    <li>✦ گردے اور مثانے کی بیماریاں</li>
+                    <li>✦ آنتوں کی بیماریاں</li>
+                    <li>✦ مردانہ و زنانہ امراض</li>
+                    <li>✦ ہڈیوں کی بیماریاں</li>
+                    <li>✦ سرجری کا بیان</li>
+                    <li>✦ بخار اور وبائی بیماریاں</li>
+                </ul>
+            </div>
+
+            <div class="book-detail">
+                <div class="book-detail-title">🌍 تراجم (ترجمے)</div>
+                <p><strong>لاطینی ترجمہ:</strong> 13ویں صدی میں ہوا۔ اس وجہ سے یورپ میں مشہور ہوئی۔ <strong>18ویں صدی تک</strong> یورپ کے میڈیکل کالجوں میں پڑھائی جاتی رہی۔</p>
+                <p style="margin-top: 10px;"><strong>اردو ترجمہ:</strong> CCRUM کی طرف سے شائع ہو چکا ہے اور آسانی سے ملتا ہے۔</p>
+            </div>
+        </section>
+
+        <!-- فوری خلاصہ -->
+        <section class="summary-card">
+            <h2 class="section-title">
+                <span class="icon">⚡</span>
+                فوری خلاصہ (جلدی یاد کریں)
+            </h2>
+
+            <ul class="summary-list">
+                <li>
+                    <span class="emoji">👤</span>
+                    <span><strong>نام:</strong> ابن زہر / Avenzoar</span>
+                </li>
+                <li>
+                    <span class="emoji">📅</span>
+                    <span><strong>پیدائش:</strong> 1091ء اشبیلیہ</span>
+                </li>
+                <li>
+                    <span class="emoji">📅</span>
+                    <span><strong>وفات:</strong> 1162ء اشبیلیہ</span>
+                </li>
+                <li>
+                    <span class="emoji">👨‍👩‍👦</span>
+                    <span><strong>خاندان:</strong> 7 نسلیں علم میں، عورتیں بھی ڈاکٹر</span>
+                </li>
+                <li>
+                    <span class="emoji">🏆</span>
+                    <span><strong>مقام:</strong> جالینوس کے بعد دوسرے بڑے ڈاکٹر</span>
+                </li>
+                <li>
+                    <span class="emoji">👑</span>
+                    <span><strong>شاہی ڈاکٹر:</strong> خلیفہ عبد المومن کے خاص</span>
+                </li>
+                <li>
+                    <span class="emoji">🧪</span>
+                    <span><strong>خاص دوائی:</strong> تریاقِ سبعینی (70 دواؤں کا مرکب)</span>
+                </li>
+                <li>
+                    <span class="emoji">💊</span>
+                    <span><strong>ماہر:</strong> دق (TB) اور فالج کے علاج میں</span>
+                </li>
+                <li>
+                    <span class="emoji">🔪</span>
+                    <span><strong>سرجری:</strong> پتھری، ناسور، موتیا، سانس کی نالی</span>
+                </li>
+                <li>
+                    <span class="emoji">👨‍🎓</span>
+                    <span><strong>مشہور شاگرد:</strong> ابن رشد</span>
+                </li>
+                <li>
+                    <span class="emoji">📚</span>
+                    <span><strong>کتابیں:</strong> 7 (سب سے مشہور: کتاب التیسیر)</span>
+                </li>
+                <li>
+                    <span class="emoji">📖</span>
+                    <span><strong>کتاب التیسیر:</strong> 2 حصے (سفرِ اول + سفرِ ثانی)</span>
+                </li>
+                <li>
+                    <span class="emoji">🌍</span>
+                    <span><strong>تراجم:</strong> لاطینی (13ویں صدی)، اردو (CCRUM)</span>
+                </li>
+                <li>
+                    <span class="emoji">🏫</span>
+                    <span><strong>نصاب میں:</strong> 18ویں صدی تک یورپ کے کالجوں میں</span>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

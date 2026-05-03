@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابوالقاسم زہراوی - بابائے جراحت</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .title-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #4a5568;
+        }
+
+        .card p {
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+            border-right: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .key-point strong {
+            color: #667eea;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border: 2px dashed #667eea;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .highlight-box .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .highlight-box .label {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -25px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Sub-sections */
+        .sub-section {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .sub-section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #553c9a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sub-section-title::before {
+            content: '◆';
+            color: #667eea;
+        }
+
+        /* List */
+        .custom-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .custom-list li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 12px;
+        }
+
+        .custom-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        /* Book Section */
+        .book-card {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px solid #d6bcfa;
+        }
+
+        .book-title {
+            font-size: 1.5rem;
+            color: #553c9a;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .book-subtitle {
+            font-size: 0.9rem;
+            color: #805ad5;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Contents List */
+        .contents-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .content-item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .content-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* Memory Tips */
+        .memory-card {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 2px solid #f59e0b;
+        }
+
+        .memory-tip {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border-right: 4px solid #f59e0b;
+        }
+
+        .memory-emoji {
+            font-size: 1.5rem;
+            margin-left: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .fact-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #0284c7;
+        }
+
+        .fact-row:last-child {
+            border-bottom: none;
+        }
+
+        .fact-label {
+            color: #0369a1;
+            font-weight: 600;
+        }
+
+        .fact-value {
+            color: #0c4a6e;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>ابوالقاسم زہراوی</h1>
+        <div class="english-name">Abul Qasim Zahrawi (Abulcasis)</div>
+        <div class="title-badge">🏆 بابائے جراحت</div>
+    </header>
+
+    <div class="container">
+
+        <!-- Navigation -->
+        <nav class="nav-container">
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">تعارف</a>
+                <a href="#education" class="nav-link">تعلیم</a>
+                <a href="#achievements" class="nav-link">کارنامے</a>
+                <a href="#book" class="nav-link">کتاب التصریف</a>
+                <a href="#memory" class="nav-link">یاد رکھیں</a>
+            </div>
+        </nav>
+
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-row">
+                <span class="fact-label">📅 پیدائش</span>
+                <span class="fact-value">936 عیسوی</span>
+            </div>
+            <div class="fact-row">
+                <span class="fact-label">📍 جائے پیدائش</span>
+                <span class="fact-value">زہرا، قرطبہ کے قریب</span>
+            </div>
+            <div class="fact-row">
+                <span class="fact-label">📅 وفات</span>
+                <span class="fact-value">1036 عیسوی</span>
+            </div>
+            <div class="fact-row">
+                <span class="fact-label">📖 مشہور کتاب</span>
+                <span class="fact-value">کتاب التصریف</span>
+            </div>
+            <div class="fact-row">
+                <span class="fact-label">🌍 لاطینی نام</span>
+                <span class="fact-value">Abulcasis</span>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <section id="intro" class="card">
+            <div class="card-header">
+                <div class="card-icon">📜</div>
+                <h2 class="card-title">تعارف</h2>
+            </div>
+            
+            <p>طبی تاریخ میں بہت سے بڑے ڈاکٹر گزرے ہیں۔ لیکن <strong>سرجن</strong> (جراح) کے طور پر <strong>ابوالقاسم زہراوی</strong> کا نام سب سے اوپر ہے۔</p>
+
+            <div class="key-point">
+                <strong>پورا نام:</strong> ابو القاسم خلف بن عباس زہراوی
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">936 عیسوی</div>
+                    <p>قرطبہ (Cordova) کے قریب <strong>زہرا</strong> (Zahra) نامی جگہ پر پیدا ہوئے۔ اسی جگہ کی وجہ سے <strong>زہراوی</strong> کہلائے۔</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1036 عیسوی</div>
+                    <p>وفات پائی۔</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p>زہراوی اچھے ڈاکٹر تھے لیکن <strong>سرجری</strong> میں ان کا کام اتنا زبردست تھا کہ انہیں <strong>"بابائے جراحت"</strong> کہا جاتا ہے۔</p>
+            </div>
+
+            <p>ان کی شہرت کی سب سے بڑی وجہ ان کی کتاب <strong>"کتاب التصریف"</strong> ہے جو سرجری کے بارے میں بہترین معلومات دیتی ہے۔</p>
+
+            <div class="key-point">
+                <strong>اہم بات:</strong> زہراوی مشرق اور مغرب دونوں میں مشہور ہوئے۔ مغرب کے لوگ انہیں <strong>Abulcasis</strong> کے نام سے جانتے ہیں۔
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="card">
+            <div class="card-header">
+                <div class="card-icon">🎓</div>
+                <h2 class="card-title">تعلیم و تربیت</h2>
+            </div>
+
+            <p>جب زہراوی نے قرطبہ میں آنکھ کھولی تو یہ شہر <strong>علم کا بڑا مرکز</strong> بنا ہوا تھا۔</p>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">3 لاکھ+</div>
+                    <div class="stat-label">کتابوں کا کتب خانہ</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">50</div>
+                    <div class="stat-label">شفا خانے (ہسپتال)</div>
+                </div>
+            </div>
+
+            <ul class="custom-list">
+                <li>قرطبہ میں ایک بہترین درسگاہ (یونیورسٹی) تھی</li>
+                <li>بغداد کی طرح یہاں بھی دور دور سے لوگ پڑھنے آتے تھے</li>
+                <li>زہراوی کو کہیں دور جانے کی ضرورت نہیں پڑی</li>
+                <li>ابتدائی سے اعلیٰ تعلیم تک سب قرطبہ میں مکمل ہوئی</li>
+            </ul>
+        </section>
+
+        <!-- Achievements -->
+        <section id="achievements" class="card">
+            <div class="card-header">
+                <div class="card-icon">⭐</div>
+                <h2 class="card-title">فضل و کمال (کارنامے)</h2>
+            </div>
+
+            <p>زہراوی <strong>تین خوبیوں</strong> کے مالک تھے:</p>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">عمدہ طبیب</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">غیر معمولی سرجن</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">بہترین مصنف</div>
+                </div>
+            </div>
+
+            <!-- As Physician -->
+            <div class="sub-section">
+                <h3 class="sub-section-title">بطور طبیب (ڈاکٹر)</h3>
+                
+                <ul class="custom-list">
+                    <li>اچھے معالج (علاج کرنے والے) تھے</li>
+                    <li><strong>ادویٔہ مفردہ</strong> (سادہ دوائیں) پر خاص مہارت تھی</li>
+                    <li><strong>حابس الدم</strong> (خون روکنے والی) دواؤں کا گہرا علم تھا</li>
+                    <li>مرکب دوائیں بنانے میں ماہر تھے</li>
+                    <li>بیماری پہچاننا اور دوا تجویز کرنا بہت اچھا تھا</li>
+                </ul>
+
+                <div class="key-point">
+                    <strong>اہم عہدہ:</strong> امیر عبدالرحمٰن کے ذاتی طبیب (شاہی ڈاکٹر) مقرر ہوئے
+                </div>
+
+                <p>زہراوی کو <strong>امراض نسواں</strong> (عورتوں کی بیماریاں) اور <strong>علم القابلہ</strong> (دائی گری) کا بھی اچھا علم تھا۔ عورتوں کی بیماریوں پر انہوں نے بہت کچھ لکھا۔</p>
+            </div>
+
+            <!-- As Surgeon -->
+            <div class="sub-section">
+                <h3 class="sub-section-title">بطور سرجن (جراح)</h3>
+                
+                <p>سرجری زہراوی کا <strong>خاص میدان</strong> تھا۔ وہ ان طریقوں میں ماہر تھے:</p>
+
+                <ul class="custom-list">
+                    <li><strong>عمل قیٔ (Cautery):</strong> گرم آلے سے داغنا</li>
+                    <li><strong>فصد (Venesection):</strong> رگ کاٹ کر خون نکالنا</li>
+                    <li><strong>تعلیق (Leeching):</strong> جونک لگانا</li>
+                    <li><strong>حجامت (Cupping):</strong> پچھنے لگانا</li>
+                </ul>
+
+                <div class="key-point">
+                    <strong>اہم عہدہ:</strong> قرطبہ کے شاہی اسپتال کے شعبۂ جراحت کے سربراہ مقرر ہوئے
+                </div>
+
+                <div class="highlight-box">
+                    <p>زہراوی ہر طرح کے چھوٹے بڑے آپریشن بہت آسانی سے کر لیتے تھے۔ انہوں نے بہت سے <strong>جراحی آلات ایجاد</strong> کیے جن کی بنیاد پر آج کے جدید آلات بنائے گئے۔</p>
+                </div>
+            </div>
+
+            <!-- As Author -->
+            <div class="sub-section">
+                <h3 class="sub-section-title">بطور مصنف (لکھاری)</h3>
+                
+                <p>زہراوی کے نام صرف <strong>ایک کتاب</strong> ہے: <strong>"کتاب التصریف"</strong></p>
+
+                <div class="key-point">
+                    لیکن یہ ایک کتاب اتنی زبردست ہے کہ کسی اور کتاب کی ضرورت ہی نہیں!
+                </div>
+            </div>
+        </section>
+
+        <!-- Book -->
+        <section id="book" class="card book-card">
+            <div class="card-header">
+                <div class="card-icon">📚</div>
+                <h2 class="card-title">کتاب التصریف</h2>
+            </div>
+
+            <div class="book-title">کتاب التصریف لمن عجز عن التالیف</div>
+            <div class="book-subtitle">Al-Tasrif (Vade-mecum)</div>
+
+            <p>یہ کتاب اتنی مشہور ہے کہ اسی کی وجہ سے زہراوی کو <strong>دنیا بھر میں شہرت</strong> ملی۔</p>
+
+            <div class="highlight-box">
+                <div class="number">30</div>
+                <div class="label">مقالات (ابواب) پر مشتمل</div>
+            </div>
+
+            <p>یہ کتاب طب کے <strong>تمام موضوعات</strong> پر ہے، لیکن صرف <strong>آخری (30واں) مقالہ</strong> سرجری کے بارے میں ہے۔ یہ آخری حصہ اتنا مقبول ہوا کہ لوگ سمجھتے ہیں پوری کتاب سرجری کے بارے میں ہے!</p>
+
+            <h3 style="margin-top: 20px; color: #553c9a;">📖 مندرجات (کیا کیا لکھا ہے):</h3>
+
+            <div class="contents-grid" style="margin-top: 15px;">
+                <div class="content-item">
+                    <div class="content-number">1</div>
+                    <div>
+                        <strong>پہلا مقالہ:</strong> عناصر، مزاج، غذائیں، دوا بنانا، جسم کی ساخت
+                    </div>
+                </div>
+                <div class="content-item">
+                    <div class="content-number">2</div>
+                    <div>
+                        <strong>دوسرا مقالہ:</strong> بیماریوں کی اقسام، پہچان کی علامات، علاج کے اصول
+                    </div>
+                </div>
+                <div class="content-item">
+                    <div class="content-number">3-29</div>
+                    <div>
+                        <strong>تیسرے سے انتیسواں:</strong> دوائیوں اور ان کی تیاری کا علم
+                    </div>
+                </div>
+                <div class="content-item">
+                    <div class="content-number">30</div>
+                    <div>
+                        <strong>تیسواں مقالہ:</strong> 🌟 سرجری - کتاب کا سب سے اہم حصہ
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-point" style="margin-top: 20px;">
+                <strong>دلچسپ بات:</strong> مشہور دوا ساز <strong>ابن بیطار</strong> نے اپنی کتاب "جامع المفردات" میں دواؤں کے کچھ حوالے کتاب التصریف سے لیے ہیں۔
+            </div>
+
+            <h3 style="margin-top: 25px; color: #553c9a;">🔪 تیسویں مقالے کی خاص باتیں:</h3>
+
+            <ul class="custom-list" style="margin-top: 15px;">
+                <li>فصد، حجامت، داغنا اور جونک لگانے کی تفصیل</li>
+                <li>زخموں اور پھوڑوں کا مکمل علاج</li>
+                <li>مختلف آپریشنز کی وضاحت</li>
+                <li>سرجری کے آلات کی <strong>خوبصورت تصویریں</strong></li>
+            </ul>
+
+            <div class="highlight-box">
+                <p>🐦 <strong>آلات کی خاص بات:</strong></p>
+                <p>یہ آلات مختلف پرندوں اور جانوروں کے اعضاء کی شکل کے ہیں۔ خاص طور پر مختلف <strong>چمٹیاں (Forceps)</strong> پرندوں کی <strong>چونچ</strong> کی شکل کی ہیں!</p>
+            </div>
+
+            <div class="sub-section" style="margin-top: 20px;">
+                <h3 class="sub-section-title">اردو ترجمہ</h3>
+                <p><strong>مترجم:</strong> حکیم نثار احمد کاکوری</p>
+                <p><strong>اشاعت:</strong> 1947 عیسوی، دارالاشاعت کانپور</p>
+            </div>
+        </section>
+
+        <!-- Memory Tips -->
+        <section id="memory" class="card memory-card">
+            <div class="card-header">
+                <div class="card-icon">💡</div>
+                <h2 class="card-title">یاد رکھنے کے آسان نکات</h2>
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-emoji">📅</span>
+                <strong>پیدائش و وفات:</strong> 936 میں پیدا، 1036 میں وفات (یعنی 100 سال کا فرق)
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-emoji">📍</span>
+                <strong>نام کیسے پڑا:</strong> زہرا میں پیدا = زہراوی
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-emoji">👑</span>
+                <strong>3 خوبیاں:</strong> طبیب + سرجن + مصنف
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-emoji">📚</span>
+                <strong>ایک کتاب:</strong> التصریف = 30 مقالے = آخری سرجری پر
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-emoji">🏆</span>
+                <strong>دو بڑے عہدے:</strong> امیر کا ذاتی ڈاکٹر + شاہی ہسپتال کے سرجری شعبے کا سربراہ
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-emoji">🌍</span>
+                <strong>دو نام:</strong> زہراوی (عربی) + Abulcasis (لاطینی)
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-emoji">🏛️</span>
+                <strong>قرطبہ کی خاصیت:</strong> 3 لاکھ کتابیں + 50 ہسپتال
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-emoji">🔧</span>
+                <strong>4 جراحی طریقے:</strong> داغنا، فصد، جونک، حجامت
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="card" style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border: 2px solid #10b981;">
+            <div class="card-header">
+                <div class="card-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">✅</div>
+                <h2 class="card-title" style="color: #047857;">خلاصہ</h2>
+            </div>
+
+            <p><strong>ابوالقاسم زہراوی</strong> ایک عظیم مسلمان سرجن تھے جو 936 میں قرطبہ کے قریب زہرا میں پیدا ہوئے۔ وہ طبیب، سرجن اور مصنف تینوں تھے۔ ان کی شہرت کی وجہ ان کی کتاب <strong>التصریف</strong> ہے جو 30 ابواب پر مشتمل ہے اور سرجری پر سب سے اہم کتاب ہے۔ انہوں نے بہت سے جراحی آلات ایجاد کیے جو آج بھی استعمال ہوتے ہیں۔ مغرب میں انہیں Abulcasis کہتے ہیں۔ انہیں <strong>"بابائے جراحت"</strong> کا لقب دیا گیا۔ 1036 میں وفات پائی۔</p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

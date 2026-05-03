@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عبد اللطیف بغدادی - Abdul Latif Baghdadi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .dates {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 1rem;
+        }
+
+        /* Quick Info Cards */
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-right: 4px solid #667eea;
+        }
+
+        .info-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .info-card .label {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-bottom: 3px;
+        }
+
+        .info-card .value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        /* Section Styles */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.5rem;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .memory-tip-title {
+            font-weight: bold;
+            color: #c53030;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .memory-tip ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .memory-tip li {
+            padding: 5px 0;
+            padding-right: 25px;
+            position: relative;
+        }
+
+        .memory-tip li::before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: #c53030;
+            font-weight: bold;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -24px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        /* Key Points Box */
+        .key-points {
+            background: #ebf8ff;
+            border-right: 4px solid #3182ce;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .key-points-title {
+            color: #2b6cb0;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 8px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: #fffbeb;
+            border: 2px solid #f59e0b;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        .highlight-box .title {
+            color: #d97706;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* Book List */
+        .book-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .book-list li {
+            background: #f7fafc;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            border-right: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .book-list li::before {
+            content: "📖";
+            font-size: 1.2rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Discovery Box */
+        .discovery-box {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .discovery-title {
+            color: #276749;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: #f0fff4;
+            border: 2px solid #38a169;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .summary-title {
+            color: #276749;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #9ae6b4;
+            display: flex;
+            gap: 10px;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list .num {
+            background: #38a169;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.7rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>عبد اللطیف بغدادی</h1>
+        <div class="english-name">Abdul Latif Baghdadi</div>
+        <div class="dates">📅 1163ء - 1231ء</div>
+    </div>
+
+    <div class="container">
+        <!-- Quick Info Cards -->
+        <div class="quick-info">
+            <div class="info-card">
+                <div class="icon">🎂</div>
+                <div class="label">پیدائش</div>
+                <div class="value">1163ء بغداد</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">⚰️</div>
+                <div class="label">وفات</div>
+                <div class="value">1231ء بغداد</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">📆</div>
+                <div class="label">عمر</div>
+                <div class="value">68 سال</div>
+            </div>
+            <div class="info-card">
+                <div class="icon">📚</div>
+                <div class="label">طبی کتابیں</div>
+                <div class="value">57 کتابیں</div>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">📜</span>
+                تعارف
+            </h2>
+            <p>
+                <strong>موفق الدین ابو محمد بن یوسف عبداللطیف بغدادی</strong> اپنے زمانے کا بڑا عالم، ماہر تشریح (اناٹومی) اور مشہور مصنف تھا۔
+            </p>
+            <p>
+                یہ <strong>"ابن العبادی"</strong> کے نام سے بھی جانا جاتا ہے۔
+            </p>
+            <p>
+                یہ <strong>1163ء</strong> میں بغداد میں پیدا ہوا اس لیے <strong>"بغدادی"</strong> کہلایا۔
+            </p>
+            <p>
+                <strong>68 سال</strong> کی عمر میں <strong>1231ء</strong> میں اپنے شہر بغداد میں فوت ہوا۔
+            </p>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">🧠 یاد رکھنے کا طریقہ:</div>
+                <ul>
+                    <li>پورا نام: موفق الدین ابو محمد بن یوسف عبداللطیف بغدادی</li>
+                    <li>دوسرا نام: ابن العبادی</li>
+                    <li>پیدائش اور وفات دونوں بغداد میں</li>
+                    <li>عمر 68 سال (1163 سے 1231)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">ابتدائی تعلیم - بغداد</div>
+                    <p>بچپن سے علم حاصل کرنے کا بہت شوق تھا۔</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">پہلے مرحلے کی تعلیم</div>
+                    <p><strong>دینی علوم:</strong> نحو (گرامر)، فقہ، حدیث</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">دوسرے مرحلے کی تعلیم</div>
+                    <p><strong>سائنسی علوم:</strong> طب، حکمت، کیمیا، طبیعیات</p>
+                    <p>یہ علوم مغرب کے ایک عالم سیاح سے سیکھے۔</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">مزید تحقیق</div>
+                    <p>علم کی تلاش میں دور دراز مقامات کے سفر کیے اور ہمیشہ اپنے علم میں اضافہ کرتا رہا۔</p>
+                </div>
+            </div>
+
+            <div class="key-points">
+                <div class="key-points-title">📌 اہم نکات:</div>
+                <p>✅ پہلے دینی علوم (نحو، فقہ، حدیث) پھر سائنسی علوم (طب، حکمت، کیمیا، طبیعیات)</p>
+                <p>✅ سائنسی علوم مغربی سیاح عالم سے سیکھے</p>
+                <p>✅ علم کی خاطر بہت سفر کیے</p>
+            </div>
+        </div>
+
+        <!-- Expertise Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال (مہارتیں)
+            </h2>
+            
+            <p>عبد اللطیف بغدادی ایک ہی وقت میں کئی علوم کا ماہر تھا:</p>
+
+            <div class="skills-grid">
+                <div class="skill-item">علم لغت</div>
+                <div class="skill-item">فقہ</div>
+                <div class="skill-item">حدیث</div>
+                <div class="skill-item">طب</div>
+                <div class="skill-item">معدنیات</div>
+                <div class="skill-item">فلسفہ</div>
+                <div class="skill-item">ریاضیات</div>
+                <div class="skill-item">طبیعیات</div>
+                <div class="skill-item">عربی زبان</div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="title">🌟 خاص باتیں:</div>
+                <p>✅ درس و تدریس کے فرائض انجام دیتا تھا (پڑھاتا بھی تھا)</p>
+                <p>✅ تحقیقی کام بھی کرتا تھا</p>
+                <p>✅ علم تشریح (اناٹومی) میں خاص تحقیقات کیں</p>
+                <p>✅ تصنیف و تالیف نے اسے عزت و شہرت دی</p>
+            </div>
+        </div>
+
+        <!-- Research Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">🔬</span>
+                بحیثیت محقق (ریسرچر)
+            </h2>
+            
+            <p>عبد اللطیف کو <strong>علم تشریح (اناٹومی)</strong> سے خاص دلچسپی تھی۔</p>
+
+            <div class="discovery-box">
+                <div class="discovery-title">🔍 مصر کا واقعہ:</div>
+                <p>ایک دفعہ مصر کے سفر میں <strong>"معس"</strong> نامی ٹیلے سے گزرا۔ وہاں بہت سے انسانی ڈھانچے پڑے تھے۔</p>
+            </div>
+
+            <div class="key-points">
+                <div class="key-points-title">🦴 اہم دریافتیں:</div>
+                <p>۱۔ انسانی ہڈیوں کا گہرائی سے مشاہدہ کیا</p>
+                <p>۲۔ پتا چلا کہ جالینوس اور پرانے طبیبوں کی ہڈیوں کے بارے میں معلومات میں غلطیاں ہیں</p>
+                <p>۳۔ سر اور پیڑو (Pelvis) کی ہڈیوں کے بارے میں نئے انکشافات کیے</p>
+            </div>
+
+            <div class="highlight-box">
+                <div class="title">⭐ سب سے اہم دریافت:</div>
+                <p><strong>عظم العجز (Sacrum)</strong> کے بارے میں بتایا کہ یہ <strong>ایک ہی ہڈی</strong> ہے، کئی ہڈیوں کا مجموعہ نہیں ہے۔</p>
+                <p>(پرانے طبیب سمجھتے تھے کہ یہ کئی ہڈیاں ہیں)</p>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">🧠 یاد رکھیں:</div>
+                <ul>
+                    <li>جگہ: مصر کا ٹیلہ "معس"</li>
+                    <li>موضوع: ہڈیوں کی تحقیق</li>
+                    <li>دریافت: Sacrum ایک ہڈی ہے، کئی نہیں</li>
+                    <li>جالینوس کی غلطیاں درست کیں</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Author Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">✍️</span>
+                بحیثیت مصنف (لکھاری)
+            </h2>
+            
+            <div class="highlight-box">
+                <div class="title">📚 حیرت انگیز بات:</div>
+                <p>صرف <strong>طب</strong> کے موضوع پر <strong>57 کتابیں</strong> لکھیں!</p>
+            </div>
+
+            <div class="key-points">
+                <div class="key-points-title">📝 تصنیفی کام:</div>
+                <p>✅ مشہور طبیبوں (بقراط، دیستوریدوس، جالینوس، ابن سینا) کی کتابوں کی شرحیں لکھیں</p>
+                <p>✅ پرانے نظریات کا تجزیہ کیا</p>
+                <p>✅ ضرورت پڑنے پر تنقید بھی کی</p>
+                <p>✅ طب کے ہر شعبے پر خود بھی کتابیں لکھیں</p>
+            </div>
+
+            <h3 style="color: #667eea; margin: 20px 0 15px; font-size: 1.2rem;">📖 مشہور طبی کتابیں (11):</h3>
+            
+            <ol class="book-list">
+                <li>اختصار کتاب اراء بقراط و افلاطون</li>
+                <li>اختصار کتاب منافع الاعضاء الجالینوس</li>
+                <li>اختصار کتاب الفصل</li>
+                <li>شرح کتاب الفصول البقراط</li>
+                <li>مقالہ فی صناعتہ الطب</li>
+                <li>مقالہ فی شفاء الضد بالضد</li>
+                <li>مقالہ فی المزاج</li>
+                <li>کتاب الرد علی شرح کلیات القانون</li>
+                <li>مقالہ فی الادویتہ المفردہ</li>
+                <li>فی الادویتہ المرکبہ</li>
+                <li>مقالہ فی ترتیب اوزان الادویہ</li>
+            </ol>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <h3 style="text-align: center; margin-bottom: 20px; font-size: 1.3rem;">📊 ایک نظر میں</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">68</div>
+                    <div class="stat-label">سال عمر</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">57+</div>
+                    <div class="stat-label">طبی کتابیں</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9+</div>
+                    <div class="stat-label">علوم میں مہارت</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">مشہور تصانیف</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <div class="summary-title">📋 خلاصہ - یاد رکھیں</div>
+            <ul class="summary-list">
+                <li><span class="num">1</span> پورا نام: موفق الدین ابو محمد بن یوسف عبداللطیف بغدادی</li>
+                <li><span class="num">2</span> دوسرا نام: ابن العبادی</li>
+                <li><span class="num">3</span> پیدائش: 1163ء بغداد | وفات: 1231ء بغداد | عمر: 68 سال</li>
+                <li><span class="num">4</span> تعلیم: پہلے دینی (نحو، فقہ، حدیث) پھر سائنسی (طب، حکمت، کیمیا، طبیعیات)</li>
+                <li><span class="num">5</span> 9 علوم کا ماہر تھا</li>
+                <li><span class="num">6</span> علم تشریح (اناٹومی) میں خاص تحقیق</li>
+                <li><span class="num">7</span> مصر میں "معس" ٹیلے پر ہڈیوں کی تحقیق</li>
+                <li><span class="num">8</span> دریافت: Sacrum ایک ہڈی ہے، کئی نہیں</li>
+                <li><span class="num">9</span> جالینوس کی غلطیاں درست کیں</li>
+                <li><span class="num">10</span> صرف طب پر 57 کتابیں لکھیں</li>
+                <li><span class="num">11</span> بقراط، جالینوس، ابن سینا کی کتابوں کی شرحیں لکھیں</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

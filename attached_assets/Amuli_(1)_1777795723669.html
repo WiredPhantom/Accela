@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمد بن محمود آملی - تعارف</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .dates {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+
+        /* Quick Facts Card */
+        .quick-facts {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #0ea5e9;
+        }
+
+        .quick-facts h2 {
+            color: #0ea5e9;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: #f0f9ff;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .fact-icon {
+            width: 40px;
+            height: 40px;
+            background: #0ea5e9;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2em;
+        }
+
+        .fact-text {
+            flex: 1;
+        }
+
+        .fact-label {
+            font-size: 0.85em;
+            color: #64748b;
+        }
+
+        .fact-value {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #0ea5e9, #06b6d4);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px dashed #e2e8f0;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+
+        .section h2 {
+            font-size: 1.25em;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .section p {
+            font-size: 1.05em;
+            color: #334155;
+            text-align: justify;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #ecfeff, #f0f9ff);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #06b6d4;
+        }
+
+        .key-point strong {
+            color: #0284c7;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7, #fef9c3);
+            padding: 18px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #f59e0b;
+}
+.highlight-box .icon {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+        }
+
+        /* Books Section */
+        .books-grid {
+            display: grid;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .book-card {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            padding: 18px;
+            border-radius: 15px;
+            border-right: 4px solid #10b981;
+        }
+
+        .book-name {
+            font-weight: 700;
+            color: #059669;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .book-desc {
+            color: #374151;
+            font-size: 0.95em;
+        }
+
+        /* Manuscripts Section */
+        .manuscripts {
+            background: linear-gradient(135deg, #fdf4ff, #faf5ff);
+            padding: 18px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .manuscripts h3 {
+            color: #a855f7;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .manuscript-list {
+            list-style: none;
+        }
+
+        .manuscript-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e9d5ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .manuscript-list li:last-child {
+            border-bottom: none;
+        }
+
+        .manuscript-list li::before {
+            content: '📚';
+            font-size: 1.2em;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #fef2f2, #fff1f2);
+            padding: 18px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #ef4444;
+        }
+
+.memory-tip h4 {
+            color: #dc2626;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: 18px;
+            top: 45px;
+            height: calc(100% + 20px);
+            width: 3px;
+            background: #e2e8f0;
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-date {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75em;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .summary-points {
+            display: grid;
+            gap: 10px;
+            text-align: right;
+        }
+
+        .summary-point {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-point span {
+            width: 25px;
+            height: 25px;
+            background: white;
+            color: #0ea5e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Accordion for mobile */
+        .accordion-header {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+}
+        .accordion-content.open {
+            max-height: 2000px;
+        }
+
+        .accordion-toggle {
+            width: 30px;
+            height: 30px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-toggle.rotated {
+            transform: rotate(180deg);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            .header h1 {
+                font-size: 2.2em;
+            }
+        }
+    </style>
+                
+</head>
+<body><div class="header">
+        <h1>محمد بن محمود آملی</h1>
+        <p class="subtitle">شمس الدین محمد بن محمود آملی شیرازی</p>
+        <div class="dates">📅 انتقال: 1352ء</div>
+    </div>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <h2>⚡ اہم معلومات</h2>
+            <div class="fact-item">
+                <div class="fact-icon">📖</div>
+                <div class="fact-text">
+                    <div class="fact-label">مشہور کتاب</div>
+                    <div class="fact-value">شرح الکلیات (القانون فی الطب کی شرح)</div>
+                </div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-icon">🏛️</div>
+                <div class="fact-text">
+                    <div class="fact-label">مقام</div>
+                    <div class="fact-value">شیراز، ایران</div>
+                </div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-icon">👑</div>
+                <div class="fact-text">
+                    <div class="fact-label">دور</div>
+                    <div class="fact-value">سلطان خدا بندہ کا عہد (1304-1316ء)</div>
+                </div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-icon">🕌</div>
+                <div class="fact-text">
+                    <div class="fact-label">مذہب</div>
+                    <div class="fact-value">شیعہ عالم</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- تعارف Section -->
+        <div class="section">
+            <div class="section-header accordion-header" onclick="toggleAccordion(this)">
+                <div class="section-icon">📜</div>
+                <h2>تعارف</h2>
+                <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content open">
+                <div class="highlight-box">
+                    <div class="icon">💡</div>
+                    <p><strong>ابن سینا</strong> (وفات: 1037ء) کی کتاب <strong>القانون فی الطب</strong> نے انہیں دنیا بھر میں مشہور کیا۔ یہ کتاب اتنی اہم تھی کہ بعد کے تمام طبیب اسی کو بنیاد مانتے رہے۔</p>
+                </div>
+
+                <div class="key-point">
+                    <p>📌 القانون فی الطب اتنی مقبول تھی کہ <strong>جس نے بھی اس کی شرح لکھی، خلاصہ بنایا یا حاشیہ لکھا</strong>، وہ بھی مشہور ہو گیا!</p>
+                </div>
+
+                <p><strong>حکیم محمد بن محمود آملی</strong> بھی انہی میں سے ایک ہیں جو <strong>شارح قانون</strong> (القانون کی شرح لکھنے والے) کے طور پر مشہور ہوئے۔</p>
+
+                <div class="memory-tip">
+                    <h4>💭 یاد رکھیں</h4>
+                    <p>آملی = آمل (ایران کا شہر) سے تعلق<br>شیرازی = شیراز میں رہائش</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- تعلیم و تربیت Section -->
+        <div class="section">
+            <div class="section-header accordion-header" onclick="toggleAccordion(this)">
+                <div class="section-icon">🎓</div>
+                <h2>تعلیم و تربیت</h2>
+                <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content open">
+                <div class="key-point">
+                    <p>📍 <strong>آبائی وطن:</strong> شیراز، ایران (علم و ادب کا گہوارہ)</p>
+                    <p>👨‍👩‍👧‍👦 <strong>خاندان:</strong> پڑھے لکھے اور علمی گھرانے سے تعلق</p>
+                </div>
+
+                <p><strong>تعلیم کے مراحل:</strong></p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1</div>
+                        <div class="timeline-content">
+                            <strong>دینی تعلیم</strong> - پہلے دین کی بنیادی تعلیم حاصل کی
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2</div>
+                        <div class="timeline-content">
+                            <strong>علوم عقلیہ</strong> - فلسفہ اور منطق سیکھی
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">3</div>
+                        <div class="timeline-content">
+                            <strong>فقہ</strong> - اسلامی قانون کی تعلیم
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">4</div>
+                        <div class="timeline-content">
+                            <strong>طب</strong> - طبی علوم میں مہارت حاصل کی
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>⭐ <strong>ابن سینا</strong> سے بہت متاثر تھے۔ اسی لگاؤ کی وجہ سے طب میں کامل مہارت حاصل کی۔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- فضل و کمال Section -->
+        <div class="section">
+<div class="section-header accordion-header" onclick="toggleAccordion(this)">
+                <div class="section-icon">🌟</div>
+                <h2>فضل و کمال (صلاحیتیں)</h2>
+                <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content open">
+                <p>محمد بن محمود آملی کئی میدانوں میں ماہر تھے:</p>
+                
+                <div class="books-grid">
+                    <div class="book-card">
+                        <div class="book-name">🩺 ماہر طبیب</div>
+                        <div class="book-desc">علاج معالجے میں مہارت رکھتے تھے</div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-name">✍️ عمدہ مصنف</div>
+                        <div class="book-desc">کتابیں لکھنے میں ماہر</div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-name">📚 بہترین شارح</div>
+                        <div class="book-desc">کتابوں کی وضاحت لکھنے میں ماہر</div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-name">🗣️ ماہر مناظر</div>
+                        <div class="book-desc">علمی بحث و مباحثے میں ماہر</div>
+                    </div>
+                </div>
+
+                <div class="key-point">
+                    <p>⚔️ <strong>مشہور مناظرہ:</strong> سنّی عالم <strong>قاضی عضد الایجی</strong> سے مذہبی مناظرے ہوئے (یہ ان کے ہم عصر تھے)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- بحیثیت طبیب Section -->
+        <div class="section">
+            <div class="section-header accordion-header" onclick="toggleAccordion(this)">
+                <div class="section-icon">⚕️</div>
+                <h2>بحیثیت طبیب (ڈاکٹر)</h2>
+                <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content open">
+                <div class="highlight-box">
+                    <p>👑 <strong>شیراز کے حکمران</strong> کے دربار میں بطور طبیب (شاہی ڈاکٹر) کام کرتے تھے۔</p>
+                </div>
+
+                <div class="key-point">
+                    <p>💡 <strong>اہم نکتہ:</strong> شاہی دربار میں طبیب کا عہدہ ملنا ان کی طبی مہارت کا بڑا ثبوت ہے۔ کیونکہ بادشاہ صرف بہترین طبیب کو ہی رکھتا ہے!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- بحیثیت مصنف Section -->
+        <div class="section">
+            <div class="section-header accordion-header" onclick="toggleAccordion(this)">
+                <div class="section-icon">📝</div>
+                <h2>بحیثیت مصنف (کتابیں)</h2>
+                <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content open">
+                <p>آملی نے طب پر تین اہم کتابیں لکھیں:</p>
+                
+                <div class="books-grid">
+                    <div class="book-card">
+                        <div class="book-name">1️⃣ شرح الکلیات</div>
+                        <div class="book-desc">القانون فی الطب کی شرح - یہ ان کی سب سے مشہور کتاب ہے</div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-name">2️⃣ شرح تشریح قانون</div>
+                        <div class="book-desc">القانون کی پہلی اور تیسری جلد میں موجود انسانی جسم کی ساخت کی معلومات کو یکجا کیا - یہ ایک منفرد کام تھا</div>
+                    </div>
+                    <div class="book-card">
+                        <div class="book-name">3️⃣ شرح ایلاقی</div>
+                        <div class="book-desc">حکیم ایلاقی (ابن سینا کے شاگرد) کی القانون کی تلخیص پر شرح</div>
+                    </div>
+                </div>
+
+                <div class="memory-tip">
+                    <h4>💭 یاد رکھنے کا طریقہ</h4>
+                    <p>تین شرحیں = <strong>ش ش ش</strong><br>
+                    <strong>ش</strong>رح الکلیات، <strong>ش</strong>رح تشریح، <strong>ش</strong>رح ایلاقی</p>
+                </div>
+
+                <div class="key-point">
+                    <p>⭐ ان کتابوں نے آملی کو <strong>اعلیٰ درجے کے طبی مصنفین</strong> کی صف میں شامل کر دیا۔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- بحیثیت شارح Section -->
+        <div class="section">
+            <div class="section-header accordion-header" onclick="toggleAccordion(this)">
+                <div class="section-icon">📖</div>
+                <h2>بحیثیت شارح (شرح لکھنے والا)</h2>
+                <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content open">
+                <div class="highlight-box">
+                    <p>📌 طبی دنیا میں آملی کی پہچان <strong>شارح</strong> کے طور پر ہے۔</p>
+                </div>
+
+                <div class="key-point">
+                    <p><strong>شرح الکلیات کی تفصیلات:</strong></p>
+                    <p>📅 <strong>تکمیل:</strong> 1352ء میں</p>
+                    <p>👑 <strong>انتساب:</strong> شیراز کے فرمانروا <strong>جمال الدین ابو اسحاق بن محمود شاہ</strong> (وفات: 1357ء) کے نام</p>
+                    <p>📚 <strong>بنیاد:</strong> قطب الدین شیرازی کی شرح کو بنیاد بنایا</p>
+                    <p>🔍 <strong>خصوصیت:</strong> ذاتی تحقیق سے کافی اضافے کیے</p>
+                </div>
+
+                <div class="memory-tip">
+                    <h4>💭 اہم بات</h4>
+                    <p>آملی نے 1352ء میں شرح الکلیات مکمل کی اور <strong>اسی سال ان کا انتقال</strong> ہو گیا۔ یہ ان کا آخری اور سب سے بڑا کارنامہ تھا!</p>
+                </div>
+
+                <div class="manuscripts">
+                    <h3>📚 مخطوطات (ہاتھ سے لکھے نسخے) کہاں ہیں؟</h3>
+                    <ul class="manuscript-list">
+                        <li>رامپور رضا لائبریری (انڈیا)</li>
+                        <li>خدا بخش لائبریری، پٹنہ (انڈیا)</li>
+                        <li>حکیم محمد سعید لائبریری، جامعہ ہمدرد (پاکستان)</li>
+                        <li>کتب خانہ سلیم آغا (ترکی)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- خلاصہ -->
+        <div class="summary-box">
+            <h3>📋 خلاصہ - اہم نکات</h3>
+            <div class="summary-points">
+                <div class="summary-point">
+                    <span>1</span>
+                    شیراز (ایران) کے علمی گھرانے سے تعلق
+                </div>
+                <div class="summary-point">
+                    <span>2</span>
+                    شیعہ عالم اور فاضل طبیب
+                </div>
+                <div class="summary-point">
+                    <span>3</span>
+                    سلطان خدا بندہ کے دور (1304-1316ء) کے مشہور طبیب
+                </div>
+                <div class="summary-point">
+                    <span>4</span>
+                    شاہی طبیب کے طور پر خدمات
+                </div>
+                <div class="summary-point">
+                    <span>5</span>
+                    تین طبی کتابیں: شرح الکلیات، شرح تشریح، شرح ایلاقی
+                </div>
+                <div class="summary-point">
+                    <span>6</span>
+                    قاضی عضد الایجی سے مناظرے
+                </div>
+                <div class="summary-point">
+                    <span>7</span>
+                    انتقال: 1352ء (شرح الکلیات مکمل کرنے کے بعد)
+                </div>
+            </div>
+</div>
+
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const toggle = header.querySelector('.accordion-toggle');
+            
+            content.classList.toggle('open');
+            toggle.classList.toggle('rotated');
+        }
+    </script>
+</body>
+</html>

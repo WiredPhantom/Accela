@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داؤد انطاکی - مشہور طبیب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .dates {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 1em;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        /* Key Points */
+        .key-points {
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .key-points h4 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .key-point {
+            background: white;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-right: 3px solid #667eea;
+            font-size: 1.05em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .key-point:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fff3cd 0%, #fff9e6 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .highlight-purple {
+            background: linear-gradient(120deg, #e8e0ff 0%, #f3f0ff 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        /* Book Section */
+        .book-card {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            border: 2px solid #ffc107;
+        }
+
+        .book-title {
+            font-size: 1.3em;
+            color: #856404;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .book-full-name {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            border: 1px dashed #ffc107;
+        }
+
+        /* Volume Cards */
+        .volumes {
+            display: grid;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .volume {
+            background: white;
+            padding: 18px;
+            border-radius: 15px;
+            border-top: 4px solid;
+        }
+
+        .volume:nth-child(1) { border-top-color: #667eea; }
+        .volume:nth-child(2) { border-top-color: #764ba2; }
+        .volume:nth-child(3) { border-top-color: #f093fb; }
+
+        .volume h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.15em;
+        }
+
+        .volume p {
+            font-size: 1em;
+            line-height: 2;
+        }
+
+        /* Memory Tips */
+        .memory-box {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px dashed #00bcd4;
+        }
+
+        .memory-box h4 {
+            color: #00838f;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .memory-box p {
+            font-size: 1.05em;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 5px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -24px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-item strong {
+            color: #667eea;
+        }
+
+        /* Translations */
+        .translations {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .translation-item {
+            background: #f8f9ff;
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (min-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .header {
+                padding: 40px 30px;
+                border-radius: 0 0 40px 40px;
+            }
+            
+            .header h1 {
+                font-size: 2.8em;
+            }
+            
+            .section {
+                padding: 30px 25px;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        .section, .book-card {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>داؤد انطاکی</h1>
+        <p class="english-name">Dawūd al-Antākī</p>
+        <div class="dates">📅 1541ء - 1599ء</div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">👤</span>
+                تعارف
+            </h2>
+            <p>
+                داؤد بن عمر انطاکی ایک <span class="highlight">بہت بڑے طبیب</span> گزرے ہیں۔
+            </p>
+            
+            <div class="key-points">
+                <h4>🔑 اہم نکات:</h4>
+                <div class="key-point">
+                    ✦ <strong>لقب:</strong> <span class="highlight-purple">الضریر (نابینا)</span> - کیونکہ وہ بچپن سے نابینا تھے
+                </div>
+                <div class="key-point">
+                    ✦ <strong>پیدائش:</strong> 1541ء میں <span class="highlight">انطاکیہ (Antioch)</span> میں
+                </div>
+                <div class="key-point">
+                    ✦ <strong>وفات:</strong> 1599ء میں <span class="highlight">مکہ مکرمہ</span> میں
+                </div>
+                <div class="key-point">
+                    ✦ <strong>عمر:</strong> تقریباً <span class="highlight-purple">58 سال</span>
+                </div>
+                <div class="key-point">
+                    ✦ <strong>خاص بات:</strong> نابینا ہونے کے باوجود غیر معمولی علمی بصیرت رکھتے تھے
+                </div>
+            </div>
+
+            <div class="memory-box">
+                <h4>💡 یاد رکھیں:</h4>
+                <p>انطاکیہ شہر کی وجہ سے "انطاکی" کہلائے</p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                تعلیم و تربیت
+            </h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>ابتدائی زندگی:</strong> فوعد (Fuad) شہر میں گزاری
+                </div>
+                <div class="timeline-item">
+                    <strong>بچپن:</strong> والد کے ساتھ انطاکیہ چلے گئے - یہاں پرورش اور ابتدائی تعلیم ہوئی
+                </div>
+                <div class="timeline-item">
+                    <strong>علمی سفر:</strong> اناطولیہ (Anatolia) ← دمشق (Damascus) ← قاہرہ (Cairo)
+                </div>
+                <div class="timeline-item">
+                    <strong>مستقل قیام:</strong> قاہرہ (مصر) میں
+                </div>
+            </div>
+
+            <div class="key-points">
+                <h4>📖 زبانیں اور اساتذہ:</h4>
+                <div class="key-point">
+                    ✦ <strong>استاد:</strong> <span class="highlight">محمد شریف</span> (ایرانی عالم)
+                </div>
+                <div class="key-point">
+                    ✦ <strong>سیکھی زبانیں:</strong> یونانی اور فارسی
+                </div>
+                <div class="key-point">
+                    ✦ <strong>یونانی کیوں سیکھی؟</strong> تاکہ یونانی طبی کتابیں براہ راست پڑھ سکیں
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال
+            </h2>
+            
+            <p>داؤد لسانی علوم اور علم طب میں ماہر تھے اور عملی طور پر بھی بہترین معالج تھے۔</p>
+
+            <div class="key-points">
+                <h4>🏥 بحیثیت معالج:</h4>
+                <div class="key-point">
+                    ✦ ان کا مطب ہمیشہ مریضوں سے بھرا رہتا تھا
+                </div>
+                <div class="key-point">
+                    ✦ <span class="highlight">نبض شناسی</span> میں بے مثال مہارت تھی
+                </div>
+                <div class="key-point">
+                    ✦ نبض دیکھ کر مریض کی پوری حالت بتا دیتے تھے
+                </div>
+                <div class="key-point">
+                    ✦ ان کے زمانے میں کوئی ان جیسا طبیب نہیں تھا
+                </div>
+            </div>
+
+            <div class="key-points">
+                <h4>🎓 عہدے:</h4>
+                <div class="key-point">
+                    ✦ <span class="highlight-purple">مدرسہ ظاہریہ (قاہرہ)</span> میں مدرس اعلیٰ
+                </div>
+                <div class="key-point">
+                    ✦ شفاخانے میں <span class="highlight-purple">افسر الاطباء</span> (چیف ڈاکٹر)
+                </div>
+            </div>
+
+            <div class="key-points">
+                <h4>💊 علم الادویہ:</h4>
+                <div class="key-point">
+                    ✦ دواؤں کی شناخت میں ماہر تھے
+                </div>
+                <div class="key-point">
+                    ✦ ادویہ کے فوائد اور خواص کا گہرا علم تھا
+                </div>
+            </div>
+        </section>
+
+        <!-- Author Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">✍️</span>
+                بحیثیت مصنف
+            </h2>
+            
+            <p>داؤد نے طب پر کئی اہم کتابیں لکھیں۔</p>
+
+            <div class="key-points">
+                <h4>📚 اہم تصانیف:</h4>
+                <div class="key-point">
+                    ✦ <span class="highlight">تذکرہ</span> - ادویہ مفردہ پر مشہور کتاب
+                </div>
+                <div class="key-point">
+                    ✦ <span class="highlight">مختصر القانون</span> - ابن سینا کی "القانون فی الطب" کا خلاصہ
+                </div>
+                <div class="key-point">
+                    ✦ <span class="highlight">منظوم شرح قانون</span> - قانون کی شاعری میں وضاحت
+                </div>
+                <div class="key-point">
+                    ✦ کلیات اور معالجات پر کتابیں
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">کل کتابیں</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">1712</span>
+                    <span class="stat-label">ادویہ (تذکرہ میں)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Tazkira -->
+        <div class="book-card">
+            <h2 class="book-title">📖 کتاب تذکرہ</h2>
+            
+            <div class="book-full-name">
+                <strong>پورا نام:</strong><br>
+                تذکرۃ اولی الالباب والجامع للعجب العجاب
+            </div>
+            
+            <p style="text-align: center; margin-bottom: 15px;">
+                مشہور نام: <span class="highlight">تذکرہ داؤد انطاکی</span>
+            </p>
+            
+            <p style="text-align: center;">
+                ادویہ مفردہ پر انتہائی اہم کتاب - تحقیق میں بطور ماخذ استعمال ہوتی ہے
+            </p>
+
+            <div class="volumes">
+                <div class="volume">
+                    <h4>📕 جلد اول - تین ابواب</h4>
+                    <p>
+                        <strong>باب 1:</strong> کلیات ادویہ<br>
+                        <strong>باب 2:</strong> قوانین مفردات و مرکبات<br>
+                        <strong>باب 3:</strong> ادویہ مفردہ پر تفصیلی بحث
+                    </p>
+                </div>
+                <div class="volume">
+                    <h4>📗 جلد دوم - چار ابواب</h4>
+                    <p>امراض، اصول علاج اور علاج</p>
+                </div>
+                <div class="volume">
+                    <h4>📘 جلد سوم</h4>
+                    <p>عمومی امراض کا ذکر</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Translations Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🌍</span>
+                تراجم
+            </h2>
+            
+            <p>کتاب تذکرہ کی افادیت کی وجہ سے کئی زبانوں میں ترجمے ہوئے:</p>
+            
+            <div class="translations">
+                <div class="translation-item">
+                    <span class="lang-badge">عربی</span>
+                    <span>کئی بار شائع ہو چکی ہے</span>
+                </div>
+                <div class="translation-item">
+                    <span class="lang-badge">ترکی</span>
+                    <span>ترکی زبان میں ترجمہ</span>
+                </div>
+                <div class="translation-item">
+                    <span class="lang-badge">لاطینی</span>
+                    <span>"The Memorial" کے نام سے مغرب میں مشہور</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Summary -->
+        <section class="section" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-right-color: #4caf50;">
+            <h2 class="section-title" style="color: #2e7d32;">
+                <span class="icon" style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);">✅</span>
+                خلاصہ یاد رکھیں
+            </h2>
+            
+            <div class="key-points" style="background: white;">
+                <div class="key-point">
+                    <strong>نام:</strong> داؤد بن عمر انطاکی (الضریر)
+                </div>
+                <div class="key-point">
+                    <strong>پیدائش:</strong> 1541ء - انطاکیہ
+                </div>
+                <div class="key-point">
+                    <strong>وفات:</strong> 1599ء - مکہ مکرمہ (عمر: 58 سال)
+                </div>
+                <div class="key-point">
+                    <strong>استاد:</strong> محمد شریف (ایرانی)
+                </div>
+                <div class="key-point">
+                    <strong>قیام:</strong> قاہرہ (مصر)
+                </div>
+                <div class="key-point">
+                    <strong>عہدے:</strong> مدرس اعلیٰ + افسر الاطباء
+                </div>
+                <div class="key-point">
+                    <strong>خاص مہارت:</strong> نبض شناسی
+                </div>
+                <div class="key-point">
+                    <strong>مشہور کتاب:</strong> تذکرہ (1712 ادویہ، 3 جلدیں)
+                </div>
+                <div class="key-point">
+                    <strong>کل کتابیں:</strong> تقریباً 15
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

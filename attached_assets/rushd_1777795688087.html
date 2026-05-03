@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن رشد - عظیم فلسفی و طبیب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .header .dates {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        /* Quick Facts Card */
+        .quick-facts {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-right: 5px solid #f59e0b;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .quick-facts h2 {
+            color: #92400e;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-facts ul {
+            list-style: none;
+        }
+
+        .quick-facts li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #d97706;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .quick-facts li:last-child {
+            border-bottom: none;
+        }
+
+        .quick-facts .icon {
+            font-size: 1.2em;
+            min-width: 30px;
+        }
+
+        /* Section Card */
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid #0f766e;
+        }
+
+        .section-card h2 {
+            color: #0f766e;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #d1fae5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-card h2 .emoji {
+            font-size: 1.3em;
+        }
+
+        .section-card p {
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .section-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-right: 4px solid #10b981;
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-right-color: #3b82f6;
+        }
+
+        .highlight-box.purple {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d5ff 100%);
+            border-right-color: #a855f7;
+        }
+
+        .highlight-box.orange {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            border-right-color: #f97316;
+        }
+
+        /* Memory Point */
+        .memory-point {
+            background: #fef2f2;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            border-right: 3px solid #ef4444;
+        }
+
+        .memory-point .icon {
+            font-size: 1.3em;
+        }
+
+        /* Book Card */
+        .book-card {
+            background: linear-gradient(135deg, #fdf4ff 0%, #f3e8ff 100%);
+            border-radius: 15px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            border: 2px solid #d8b4fe;
+        }
+
+        .book-card h2 {
+            color: #7c3aed;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .book-card h3 {
+            color: #6b21a8;
+            font-size: 1.2em;
+            margin: 20px 0 10px;
+        }
+
+        /* List Style */
+        .content-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-list li {
+            padding: 10px 15px;
+            margin: 8px 0;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .content-list .num {
+            background: #7c3aed;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        /* Role Cards */
+        .role-section {
+            margin-top: 15px;
+        }
+
+        .role-card {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 15px 0;
+            border-right: 4px solid #14b8a6;
+        }
+
+        .role-card.philosopher {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-right-color: #3b82f6;
+        }
+
+        .role-card.physician {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-right-color: #22c55e;
+        }
+
+        .role-card.author {
+            background: linear-gradient(135deg, #fefce8 0%, #fef08a 100%);
+            border-right-color: #eab308;
+        }
+
+        .role-card h4 {
+            font-size: 1.15em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .summary-box p {
+            opacity: 0.95;
+            line-height: 2;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section-card {
+                padding: 20px 15px;
+            }
+            
+            .section-card h2 {
+                font-size: 1.2em;
+            }
+        }
+
+        /* Animations */
+        .section-card, .quick-facts, .book-card {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Important Text */
+        .important {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .english {
+            font-family: Arial, sans-serif;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* Navigation */
+        .nav-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            padding: 15px;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-pill {
+            background: #f1f5f9;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #475569;
+            font-size: 0.85em;
+            transition: all 0.3s;
+        }
+
+        .nav-pill:hover, .nav-pill:active {
+            background: #0f766e;
+            color: white;
+        }
+
+        /* Accordion for mobile */
+        .accordion-header {
+            background: #0f766e;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .accordion-header:hover {
+            background: #115e59;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .accordion-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>📚 ابن رشد</h1>
+        <p class="subtitle"><span class="english">Ibn Rushd / Averroes</span></p>
+        <div class="dates">
+            🌟 پیدائش: <span class="english">1126 AD</span> قرطبہ &nbsp;|&nbsp; وفات: <span class="english">1198 AD</span> مراقش
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-pills">
+        <a href="#intro" class="nav-pill">تعارف</a>
+        <a href="#education" class="nav-pill">تعلیم</a>
+        <a href="#skills" class="nav-pill">فضل و کمال</a>
+        <a href="#book" class="nav-pill">کتاب الکلیات</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <h2>⚡ فوری معلومات</h2>
+            <ul>
+                <li>
+                    <span class="icon">👤</span>
+                    <span><strong>پورا نام:</strong> ابوالولید محمد ابن رشد</span>
+                </li>
+                <li>
+                    <span class="icon">📅</span>
+                    <span><strong>صدی:</strong> بارہویں صدی عیسوی <span class="english">(12th Century AD)</span></span>
+                </li>
+                <li>
+                    <span class="icon">🏠</span>
+                    <span><strong>جائے پیدائش:</strong> قرطبہ <span class="english">(Cordova)</span> - اندلس <span class="english">(Spain)</span></span>
+                </li>
+                <li>
+                    <span class="icon">⭐</span>
+                    <span><strong>شہرت:</strong> فلسفی اور طبیب</span>
+                </li>
+                <li>
+                    <span class="icon">📖</span>
+                    <span><strong>مشہور کتاب:</strong> کتاب الکلیات <span class="english">(Colliget)</span></span>
+                </li>
+                <li>
+                    <span class="icon">🏆</span>
+                    <span><strong>مغرب میں لقب:</strong> <span class="english">Averroes the Great</span></span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Introduction Section -->
+        <section id="intro" class="section-card">
+            <h2><span class="emoji">📜</span> تعارف</h2>
+            
+            <p>ابن رشد بارہویں صدی کا ایک بہت مشہور <strong>فلسفی</strong> اور <strong>طبیب</strong> تھا۔ یہ <span class="english">1126 AD</span> میں <strong>قرطبہ</strong> <span class="english">(Cordova)</span> میں پیدا ہوا جو <strong>اندلس</strong> <span class="english">(Spain)</span> میں ہے۔</p>
+
+            <div class="highlight-box">
+                <strong>🌟 اہم بات:</strong> اندلس کے تمام طبیبوں میں ابن رشد کا نام سب سے اوپر ہے۔ اس کی وجہ اس کی مشہور کتاب <strong>"کتاب الکلیات"</strong> ہے۔
+            </div>
+
+            <p>ابن رشد کو اپنے فلسفے کی وجہ سے <strong>مشرق سے زیادہ مغرب میں شہرت</strong> ملی۔ مغرب والے اسے <strong>ارسطو سے بھی بڑا فلسفی</strong> مانتے ہیں۔</p>
+
+            <div class="memory-point">
+                <span class="icon">🧠</span>
+                <span><strong>یاد رکھیں:</strong> مغرب میں ابن رشد کو <span class="english">"Averroes the Great"</span> کہا جاتا ہے۔</span>
+            </div>
+
+            <p>یہ عظیم فلسفی <span class="english">1198 AD</span> میں <strong>مراقش</strong> <span class="english">(Morocco)</span> میں فوت ہوا۔</p>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section-card">
+            <h2><span class="emoji">🎓</span> تعلیم و تربیت</h2>
+
+            <div class="highlight-box blue">
+                <strong>👨‍👩‍👦 خاندانی پس منظر:</strong> ابن رشد کا تعلق قرطبہ کے <strong>علمی گھرانے</strong> سے تھا۔ اس کے <strong>دادا</strong> اور <strong>باپ</strong> دونوں قرطبہ کے <strong>قاضی</strong> تھے۔
+            </div>
+
+            <p>گھر کا ماحول خالص دینی تھا اس لیے ابن رشد کا رجحان فطری طور پر <strong>دینی علوم</strong> کی طرف تھا۔</p>
+
+            <div class="highlight-box">
+                <strong>📚 تعلیمی سفر:</strong>
+                <ul style="margin-top: 10px; padding-right: 20px;">
+                    <li>ابتدائی تعلیم <strong>گھر</strong> سے شروع ہوئی</li>
+                    <li>بعد میں <strong>لائق اساتذہ</strong> سے درس لیا</li>
+                    <li>ذہین تھا اس لیے جلدی <strong>حدیث و فقہ</strong> پر عبور حاصل کر لیا</li>
+                </ul>
+            </div>
+
+            <div class="memory-point">
+                <span class="icon">🧠</span>
+                <span><strong>یاد رکھیں:</strong> <strong>طب و فلسفہ</strong> کی تعلیم اس نے <strong>ابو جعفر ہارون</strong> سے حاصل کی۔</span>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section-card">
+            <h2><span class="emoji">🏆</span> فضل و کمال</h2>
+
+            <div class="highlight-box purple">
+                <strong>📖 علوم میں مہارت:</strong> ابن رشد ایک ساتھ کئی علوم کا عالم تھا:
+                <ul style="margin-top: 10px; padding-right: 20px;">
+                    <li>حدیث</li>
+                    <li>فقہ</li>
+                    <li>الٰہیات</li>
+                    <li>فلسفہ</li>
+                    <li>طب</li>
+                </ul>
+            </div>
+
+            <p>تین میدانوں میں ابن رشد کی خدمات بہت اہم ہیں: <strong>فلسفہ</strong>، <strong>الٰہیات و فقہ</strong>، اور <strong>طب</strong>۔ ان موضوعات پر اس کی تصنیفات موجود ہیں جو اس کے علم کی وسعت ظاہر کرتی ہیں۔</p>
+
+            <div class="role-section">
+                <div class="role-card philosopher">
+                    <h4>🧠 ابن رشد بحیثیت فلسفی</h4>
+                    <p>ابن رشد کو سب سے زیادہ شہرت <strong>بطور فلسفی</strong> ملی۔</p>
+                    <div class="highlight-box">
+                        <strong>اہم نکات:</strong>
+                        <ul style="padding-right: 20px; margin-top: 8px;">
+                            <li>فلسفہ میں اس کے شاگردوں میں <strong>یہودی</strong> <span class="english">(Jews)</span> بھی تھے</li>
+                            <li>یہودیوں کی وجہ سے اس کا فلسفہ <strong>یورپ میں بہت مقبول</strong> ہوا</li>
+                            <li>یورپ میں اس کے نام پر <strong>درسگاہیں</strong> قائم ہوئیں</li>
+                            <li>یورپ میں <span class="english"><strong>"Averroism"</strong></span> کی لہر دوڑ گئی</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="role-card physician">
+                    <h4>⚕️ ابن رشد بحیثیت طبیب</h4>
+                    <p>علمی اعتبار سے وہ <strong>اعلیٰ درجہ کا طبیب</strong> تھا۔</p>
+                    <div class="highlight-box">
+                        <strong>اہم نکات:</strong>
+                        <ul style="padding-right: 20px; margin-top: 8px;">
+                            <li>طب کی بنیاد <strong>ارسطو کے فلسفہ</strong> پر رکھتا تھا</li>
+                            <li>اس زمانے میں <strong>ابن سینا</strong> کے نظریات سے انکار کرنا مشکل تھا</li>
+                            <li>لیکن ابن رشد نے <strong>ابن سینا سے مختلف رائے</strong> قائم کی</li>
+                            <li>دین سے متعلق آزادانہ رائے رکھنے کی وجہ سے حاکم نے اسے ناپسند کیا</li>
+                            <li>نتیجہ: <strong>قاضی</strong> اور <strong>افسر الاطباء</strong> کے عہدے چھین لیے گئے</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="role-card author">
+                    <h4>✍️ ابن رشد بحیثیت مصنف</h4>
+                    <p>تصنیفی میدان میں بھی ابن رشد کی خدمات بہت اہم ہیں۔</p>
+                    <div class="highlight-box orange">
+                        <strong>اہم نکات:</strong>
+                        <ul style="padding-right: 20px; margin-top: 8px;">
+                            <li>صرف <strong>علم طب</strong> پر <strong>20 سے زیادہ</strong> کتابیں لکھیں</li>
+                            <li>سب سے مشہور کتاب: <strong>"کتاب الکلیات"</strong></li>
+                            <li><strong>جالینوس</strong> اور <strong>ابن سینا</strong> کی کتابوں پر شرح و تلخیصات لکھیں</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Section -->
+        <section id="book" class="book-card">
+            <h2>📕 کتاب الکلیات</h2>
+            
+            <p style="text-align: center; margin-bottom: 15px;">ابن رشد کی سب سے <strong>مشہور اور اہم</strong> تصنیف</p>
+
+            <div class="highlight-box purple">
+                <strong>📌 کتاب کا موضوع:</strong> طب کے بنیادی نظریات اور اصول و ضوابط
+            </div>
+
+            <div class="memory-point">
+                <span class="icon">🧠</span>
+                <span><strong>یاد رکھیں:</strong> مغرب میں یہ کتاب لاطینی نام <span class="english"><strong>"Colliget"</strong></span> سے مشہور ہوئی۔</span>
+            </div>
+
+            <h3>📐 کتاب کا فرق</h3>
+            <p>اس کتاب کا انداز طب کی دوسری کتابوں سے <strong>مختلف</strong> ہے:</p>
+            <ul style="padding-right: 25px; margin: 10px 0;">
+                <li>عام کتابیں <strong>امور طبیعیہ</strong> سے شروع ہوتی ہیں</li>
+                <li>یہ کتاب <strong>تشریح البدن</strong> سے شروع ہوتی ہے</li>
+            </ul>
+
+            <h3>📊 ضخامت</h3>
+            <div class="highlight-box">
+                <strong>1 مقدمہ + 7 ابواب = کل 8 حصے</strong>
+            </div>
+
+            <h3>📑 مندرجات (ابواب کی تفصیل)</h3>
+            <ul class="content-list">
+                <li>
+                    <span class="num">م</span>
+                    <span><strong>مقدمہ:</strong> کتاب کا تعارف</span>
+                </li>
+                <li>
+                    <span class="num">1</span>
+                    <span><strong>پہلا باب:</strong> تشریح البدن (جسم کی ساخت)</span>
+                </li>
+                <li>
+                    <span class="num">2</span>
+                    <span><strong>دوسرا باب:</strong> صحت سے متعلق امور</span>
+                </li>
+                <li>
+                    <span class="num">3</span>
+                    <span><strong>تیسرا باب:</strong> امراض و اعراض کا بیان</span>
+                </li>
+                <li>
+                    <span class="num">4</span>
+                    <span><strong>چوتھا باب:</strong> علامات (پہلے علامات صحت، پھر مزاج معتدل اور اعضاء کے مزاج)</span>
+                </li>
+                <li>
+                    <span class="num">5</span>
+                    <span><strong>پانچواں باب:</strong> ادویہ اور اغذیہ</span>
+                </li>
+                <li>
+                    <span class="num">6</span>
+                    <span><strong>چھٹا باب:</strong> حفظان صحت (صحت کی حفاظت کے اصول اور طریقے)</span>
+                </li>
+                <li>
+                    <span class="num">7</span>
+                    <span><strong>ساتواں باب:</strong> اصول علاج (سوء مزاج مادّی کے تحت استفراغ کی بحث)</span>
+                </li>
+            </ul>
+
+            <h3>🌟 کتاب کی شہرت کی وجہ</h3>
+            <div class="highlight-box orange">
+                <p>یہ کتاب نہ تو بہت موٹی ہے اور نہ ہی اس میں طب کے تمام پہلو ہیں۔ پھر بھی مشہور ہوئی کیونکہ:</p>
+                <ul style="padding-right: 25px; margin-top: 10px;">
+                    <li>ابن رشد نے <strong>جالینوس</strong> اور <strong>ابن سینا</strong> جیسے بڑے طبیبوں پر <strong>تنقید</strong> کی</li>
+                    <li>ان کے نظریات سے <strong>اختلاف</strong> کیا</li>
+                    <li>انہیں <strong>غلطی کا مرتکب</strong> قرار دیا</li>
+                </ul>
+            </div>
+
+            <div class="memory-point">
+                <span class="icon">💡</span>
+                <span>ابن رشد کے نظریات درست ہیں یا نہیں، یہ الگ بات ہے۔ لیکن اس کی <strong>سوچ کی انفرادیت</strong> اور <strong>جدت</strong> قابل تعریف ہے۔</span>
+            </div>
+
+            <h3>🇮🇳 ہندوستان میں اشاعت</h3>
+            <div class="highlight-box blue">
+                <ul style="padding-right: 20px;">
+                    <li><span class="english">CCRUM</span> (سی سی آر یو ایم) نے پہلی بار <strong>عربی متن</strong> شائع کیا</li>
+                    <li>بعد میں اسی ادارہ نے <strong>اردو ترجمہ</strong> بھی شائع کیا</li>
+                    <li>آج یہ کتاب <strong>آسانی سے دستیاب</strong> ہے</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <h3>📝 خلاصہ</h3>
+            <p>
+                ابن رشد (1126-1198 AD) قرطبہ کا عظیم فلسفی اور طبیب تھا۔ حدیث، فقہ، الٰہیات، فلسفہ اور طب کا عالم تھا۔ مغرب میں "Averroes the Great" کے نام سے مشہور۔ اس کی مشہور کتاب "کتاب الکلیات" ہے جو 7 ابواب پر مشتمل ہے۔
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-pill').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

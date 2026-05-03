@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابن ہیثم - عظیم مسلم سائنسداں</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .header .english-name {
+            font-size: 1em;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .dates {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(17, 153, 142, 0.3);
+        }
+
+        .dates-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .date-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 25px;
+            border-radius: 12px;
+        }
+
+        .date-item .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .date-item .value {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        /* Section Styles */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border-right: 5px solid;
+        }
+
+        .section.intro { border-color: #667eea; }
+        .section.education { border-color: #f093fb; }
+        .section.expertise { border-color: #4facfe; }
+        .section.physics { border-color: #43e97b; }
+        .section.medicine { border-color: #fa709a; }
+        .section.author { border-color: #a8edea; }
+        .section.book { border-color: #ffecd2; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed #e2e8f0;
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #2d3748;
+            font-weight: bold;
+        }
+
+        .section-icon {
+            font-size: 2em;
+            margin-left: auto;
+        }
+
+        .content {
+            text-align: justify;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-right: 4px solid #ffc107;
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-color: #2196f3;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-color: #4caf50;
+        }
+
+        .highlight-box.purple {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-color: #9c27b0;
+        }
+
+        .highlight-box.pink {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            border-color: #e91e63;
+        }
+
+        /* Key Points */
+        .key-points {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            background: #f8fafc;
+            padding: 12px 20px 12px 20px;
+            padding-right: 45px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: block;
+            position: relative;
+            text-align: right;
+            line-height: 2.2;
+        }
+
+        .key-points li::before {
+            content: "✦";
+            color: #667eea;
+            font-size: 1.2em;
+            position: absolute;
+            right: 15px;
+            top: 12px;
+        }
+
+        /* Discovery Cards */
+        .discovery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .discovery-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .discovery-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .discovery-card .title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        /* Book Details */
+        .book-details {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .book-details h4 {
+            color: #c0392b;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Summary Section */
+        .summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .summary h3 {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 20px 12px 20px;
+            padding-right: 50px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: block;
+            position: relative;
+            text-align: right;
+            line-height: 2.2;
+        }
+
+        .summary-list li::before {
+            content: "✓";
+            background: #38ef7d;
+            color: #1a1a2e;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                font-size: 16px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px 15px;
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+
+            .dates-grid {
+                flex-direction: column;
+            }
+        }
+
+        /* Animation */
+        .section {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>🔬 ابن ہیثم</h1>
+        <div class="subtitle">عظیم مسلم سائنسداں اور ماہر بصر</div>
+        <div class="english-name">Ibn Haitham / Hazen</div>
+    </div>
+
+    <div class="container">
+        <!-- Dates -->
+        <div class="dates">
+            <div class="dates-grid">
+                <div class="date-item">
+                    <div class="label">📅 پیدائش</div>
+                    <div class="value">965ء - بصرہ</div>
+                </div>
+                <div class="date-item">
+                    <div class="label">📅 وفات</div>
+                    <div class="value">1039ء - مصر</div>
+                </div>
+                <div class="date-item">
+                    <div class="label">⏳ عمر</div>
+                    <div class="value">74 سال</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <div class="section intro">
+            <div class="section-header">
+                <div class="section-number">۱</div>
+                <div class="section-title">تعارف</div>
+                <div class="section-icon">📖</div>
+            </div>
+            <div class="content">
+                <p>ابو الحسن بن حسین ابن ہیثم طبی دنیا میں <strong>ماہر بصر (Vision Expert)</strong> کے طور پر مشہور ہے۔</p>
+                
+                <div class="highlight-box">
+                    <strong>اہم کام:</strong> اس نے علم طبیعیات (Physics) کے تحت <strong>روشنی</strong> اور <strong>فلسفۂ نظر (Philosophy of Vision)</strong> سے متعلق بہت سے انکشافات کئے اور متعدد ایجادات بھی کیں۔
+                </div>
+
+                <div class="highlight-box blue">
+                    <strong>مشہور کتاب:</strong> "کتاب المناظر" - اس کتاب کی بدولت ابن ہیثم مشرق و مغرب میں یکساں طور پر مشہور ہوا۔
+                </div>
+
+                <div class="highlight-box purple">
+                    <strong>مغربی نام:</strong> ابن ہیثم کو مغرب میں <strong>Hazen</strong> کے نام سے جانا جاتا ہے۔
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Education -->
+        <div class="section education">
+            <div class="section-header">
+                <div class="section-number">۲</div>
+                <div class="section-title">تعلیم و تربیت</div>
+                <div class="section-icon">🎓</div>
+            </div>
+            <div class="content">
+                <ul class="key-points">
+                    <li>ابتدائی تعلیم و تربیت کی تفصیل موجود نہیں</li>
+                    <li>بصرہ میں اتنی قابلیت پیدا کی کہ شہرت مصر کے خلیفہ <strong>الحاکم</strong> تک پہنچی</li>
+                    <li>خلیفہ نے متاثر ہو کر مصر آنے کی دعوت دی</li>
+                    <li>مصر پہنچ کر خلیفہ کے دربار سے منسلک ہو گیا</li>
+                    <li>مشہور دار العلوم <strong>جامع الازہر</strong> سے مزید تعلیم حاصل کی</li>
+                    <li>مختلف علوم میں کمال حاصل کیا</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3: Expertise -->
+        <div class="section expertise">
+            <div class="section-header">
+                <div class="section-number">۳</div>
+                <div class="section-title">فضل و کمال</div>
+                <div class="section-icon">⭐</div>
+            </div>
+            <div class="content">
+                <p>ابن ہیثم درج ذیل علوم میں غیر معمولی مہارت رکھتا تھا:</p>
+                
+                <div class="discovery-grid">
+                    <div class="discovery-card">
+                        <div class="icon">⚡</div>
+                        <div class="title">طبیعیات (Physics)</div>
+                    </div>
+                    <div class="discovery-card">
+                        <div class="icon">🔢</div>
+                        <div class="title">ریاضیات (Mathematics)</div>
+                    </div>
+                    <div class="discovery-card">
+                        <div class="icon">💭</div>
+                        <div class="title">فلسفہ (Philosophy)</div>
+                    </div>
+                    <div class="discovery-card">
+                        <div class="icon">🌟</div>
+                        <div class="title">علم ہیئت (Astronomy)</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box green" style="margin-top: 20px;">
+                    <strong>خاص مہارت:</strong> علم طبیعیات میں بالخصوص <strong>علم المناظر (Optics)</strong> میں گراں قدر خدمات انجام دیں۔ وہ اپنے نظریات و مشاہدات کو قلمبند بھی کرتا تھا۔
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: As Physicist -->
+        <div class="section physics">
+            <div class="section-header">
+                <div class="section-number">۴</div>
+                <div class="section-title">بحیثیت ماہر طبیعیات</div>
+                <div class="section-icon">💡</div>
+            </div>
+            <div class="content">
+                <p>علم طبیعیات کے تحت ابن ہیثم نے <strong>روشنی (Light)</strong> کو اپنا میدان خاص بنایا۔</p>
+
+                <h4 style="margin: 20px 0 15px; color: #43e97b;">🔍 اہم دریافتیں:</h4>
+                
+                <ul class="key-points">
+                    <li>مختلف قسم کے <strong>عدسات (Lenses)</strong> پر تحقیق کی</li>
+                    <li><strong>عدسہ محدب (Convex Lens)</strong> سے چیزیں بڑی نظر آتی ہیں</li>
+                    <li>کسی <strong>جسم زجاجی (Transparent Body)</strong> سے گزرنے کے دوران روشنی اپنا زاویہ بدل لیتی ہے</li>
+                    <li>روشنی کے <strong>انعکاس (Reflection)</strong> کا مشاہدہ کیا</li>
+                    <li>روشنی کے <strong>انعطاف (Refraction)</strong> کا مشاہدہ کیا</li>
+                    <li>روشنی میں <strong>مختلف رنگ</strong> پائے جانے کا راز کھولا</li>
+                    <li><strong>قوس قزح (Rainbow)</strong> کی وضاحت کی</li>
+                    <li><strong>ہالہ (Halo)</strong> پر روشنی ڈالی</li>
+                    <li><strong>سورج گرہن</strong> اور <strong>چاند گرہن</strong> کی تفصیل پیش کی</li>
+                    <li>سورج طلوع اور غروب کے وقت بڑا کیوں نظر آتا ہے - اس کی وضاحت کی</li>
+                </ul>
+
+                <div class="highlight-box green">
+                    <strong>اہمیت:</strong> یہ تمام تحقیقات وہ ہیں کہ جن پر آج کے جدید علم المناظر کے بہت سے اصول مبنی ہیں۔
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: As Physician -->
+        <div class="section medicine">
+            <div class="section-header">
+                <div class="section-number">۵</div>
+                <div class="section-title">بحیثیت طبیب</div>
+                <div class="section-icon">👁️</div>
+            </div>
+            <div class="content">
+                <h4 style="margin-bottom: 15px; color: #fa709a;">🔬 نظر کے بارے میں تحقیق:</h4>
+                
+                <div class="highlight-box pink">
+                    <strong>ابن ہیثم کا نظریہ:</strong> خارجی چیزوں کا عکس آنکھ کی پتلی پر پڑتا ہے جسے دماغ سے نکلنے والا ایک عصب محسوس کرتا ہے۔ اس عمل کے لئے روشنی کی موجودگی ضروری ہے۔
+                </div>
+
+                <div class="highlight-box">
+                    <strong>پرانا غلط نظریہ:</strong> اس سے قبل نظریہ یہ تھا کہ آنکھ روشن ہے اور آنکھ سے روشنی نکل کر چیزوں کو دیکھتی ہے۔
+                </div>
+
+                <div class="highlight-box green">
+                    <strong>اعزاز:</strong> اس اعتبار سے ابن ہیثم کو <strong>علم المناظر کا بانی</strong> تسلیم کیا جاتا ہے۔
+                </div>
+
+                <h4 style="margin: 20px 0 15px; color: #fa709a;">📚 طبی مطالعہ:</h4>
+                
+                <ul class="key-points">
+                    <li>طب کے تعلق سے وسیع مطالعہ کیا</li>
+                    <li><strong>جالینوس</strong> کی کتب کا عمیق مطالعہ کیا</li>
+                    <li>علم تشریح پر جالینوس کے حوالے سے کتابیں لکھیں</li>
+                    <li>منافع الاعضاء پر کتابیں لکھیں</li>
+                    <li>کلیات پر کتابیں لکھیں</li>
+                    <li>حفظان صحت پر کتابیں لکھیں</li>
+                    <li>معالجات پر کتابیں لکھیں</li>
+                    <li>حمیات پر کتابیں لکھیں</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 6: As Author -->
+        <div class="section author">
+            <div class="section-header">
+                <div class="section-number">۶</div>
+                <div class="section-title">بحیثیت مصنف</div>
+                <div class="section-icon">✍️</div>
+            </div>
+            <div class="content">
+                <div class="highlight-box blue">
+                    <strong>کل کتابیں:</strong> تقریباً <strong>200 (دو سو)</strong> کتابیں اس کے نام سے درج ہیں۔
+                </div>
+
+                <h4 style="margin: 20px 0 15px; color: #4facfe;">📚 جن موضوعات پر کتابیں لکھیں:</h4>
+                
+                <div class="discovery-grid">
+                    <div class="discovery-card">
+                        <div class="icon">🕌</div>
+                        <div class="title">الٰہیات</div>
+                    </div>
+                    <div class="discovery-card">
+                        <div class="icon">⚡</div>
+                        <div class="title">طبیعیات</div>
+                    </div>
+                    <div class="discovery-card">
+                        <div class="icon">🔢</div>
+                        <div class="title">ریاضیات</div>
+                    </div>
+                    <div class="discovery-card">
+                        <div class="icon">💊</div>
+                        <div class="title">طب</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <strong>طبی کتابیں:</strong> خالص طب کے موضوع پر <strong>2 (دو)</strong> کتابوں کا ذکر ملتا ہے۔
+                </div>
+
+                <div class="highlight-box purple">
+                    <strong>مشہور کتاب:</strong> "کتاب المناظر" میں بینائی سے متعلق غیر معمولی تحقیق پر مبنی معلومات درج ہیں۔ اس لحاظ سے اس کتاب کو بھی طبی فہرست میں داخل کیا جا سکتا ہے۔
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Kitab al-Manazir -->
+        <div class="section book">
+            <div class="section-header">
+                <div class="section-number">۷</div>
+                <div class="section-title">کتاب المناظر</div>
+                <div class="section-icon">📕</div>
+            </div>
+            <div class="content">
+                <p>ابن ہیثم کی مشہور و معروف تصنیف جس میں پہلی بار <strong>فلسفۂ نظر (Theory of Vision)</strong> کی وضاحت کی گئی ہے۔</p>
+
+                <div class="highlight-box blue">
+                    <strong>مغربی نام:</strong> یہ کتاب مغرب میں <strong>"Optic"</strong> کے نام سے مشہور ہے۔
+                </div>
+
+                <div class="book-details">
+                    <h4>📖 ضخامت:</h4>
+                    <p>یہ کتاب <strong>دو حصوں</strong> پر مشتمل ہے:</p>
+                    <ul class="key-points" style="margin-top: 10px;">
+                        <li><strong>پہلا حصہ:</strong> تین مقالات</li>
+                        <li><strong>دوسرا حصہ:</strong> چار مقالات</li>
+                    </ul>
+                </div>
+
+                <div class="book-details" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); margin-top: 15px;">
+                    <h4 style="color: #2e7d32;">📝 مندرجات:</h4>
+                    <ul class="key-points" style="margin-top: 10px;">
+                        <li><strong>پہلا حصہ:</strong> اشراق اضواء اور رویت مبصرات سے بحث</li>
+                        <li><strong>دوسرا حصہ:</strong> رویتوں کے ذریعہ مبصرات کے ادراک اور اجسام کا تذکرہ</li>
+                    </ul>
+                </div>
+
+                <h4 style="margin: 20px 0 15px; color: #e65100;">🔬 کتاب میں شامل موضوعات:</h4>
+                
+                <ul class="key-points">
+                    <li>تصاویر کی تشکیل</li>
+                    <li>تاروں کی ضیاء</li>
+                    <li>عدسہ - اس کی اقسام مع صفات</li>
+                    <li>دھنک (قوس قزح) کی حقیقت</li>
+                    <li>ہالہ کا وجود</li>
+                    <li>انعکاس و انعطاف</li>
+                    <li>عدسہ سے تصویر کا الٹا نظر آنا</li>
+                    <li>روشنی کے رنگ</li>
+                </ul>
+
+                <div class="highlight-box green">
+                    <strong>ترجمہ:</strong> اس کتاب کا <strong>لاطینی ترجمہ</strong> بعنوان <strong>"Optic"</strong> سن <strong>1582ء</strong> میں شائع ہو چکا ہے۔
+                </div>
+
+                <div class="highlight-box purple">
+                    <strong>اہمیت:</strong> بیشک طب اور سائنس کے تعلق سے ابن ہیثم کی کتاب المناظر ایک ایسا نادر تحفہ ہے کہ جس پر جتنا ناز کیا جائے کم ہے۔
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary">
+            <h3>📋 خلاصہ - یاد رکھنے کے نکات</h3>
+            <ul class="summary-list">
+                <li>ابن ہیثم - ماہر بصر (Vision Expert) - مغرب میں Hazen</li>
+                <li>پیدائش: 965ء بصرہ | وفات: 1039ء مصر | عمر: 74 سال</li>
+                <li>جامع الازہر سے تعلیم حاصل کی</li>
+                <li>طبیعیات، ریاضیات، فلسفہ، علم ہیئت میں ماہر</li>
+                <li>روشنی (Light) پر خاص تحقیق - عدسات، انعکاس، انعطاف</li>
+                <li>علم المناظر (Optics) کا بانی</li>
+                <li>نظر کا صحیح نظریہ پیش کیا - عکس آنکھ پر پڑتا ہے</li>
+                <li>تقریباً 200 کتابیں لکھیں</li>
+                <li>مشہور کتاب: کتاب المناظر (دو حصے، سات مقالات)</li>
+                <li>لاطینی ترجمہ 1582ء میں شائع ہوا</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
