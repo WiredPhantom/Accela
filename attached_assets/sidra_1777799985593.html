@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم صدرا - مسیح الزماں</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: #f8fafc;
+            color: #2d3748;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 25px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .title-english {
+            font-size: 0.95em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: white;
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-right: 4px solid #667eea;
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            color: #667eea;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+        }
+
+        /* Key Points Box */
+        .key-points {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 12px 0;
+        }
+
+        .key-points h3 {
+            color: #c44536;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            padding: 6px 0;
+            border-bottom: 1px dashed rgba(196, 69, 54, 0.3);
+            position: relative;
+            padding-right: 22px;
+        }
+
+        .key-points li:last-child {
+            border-bottom: none;
+        }
+
+        .key-points li::before {
+            content: "✦";
+            position: absolute;
+            right: 0;
+            color: #c44536;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 28px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 6px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8f9ff;
+            border-radius: 10px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -24px;
+            top: 18px;
+            width: 10px;
+            height: 10px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .timeline-title {
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            margin: 15px 0;
+            border: 2px dashed #667eea;
+        }
+
+        .highlight-box .big-text {
+            font-size: 1.5em;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .highlight-box .label {
+            font-size: 0.9em;
+            color: #667eea;
+        }
+
+        /* Books Section */
+        .book-card {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 12px 0;
+        }
+
+        .book-title {
+            font-size: 1.2em;
+            color: #553c9a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-title::before {
+            content: "📚";
+        }
+
+        .book-details {
+            background: rgba(255,255,255,0.5);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 8px;
+        }
+
+        .book-details p {
+            margin-bottom: 6px;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: #fffbeb;
+            border: 2px solid #fbbf24;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 12px 0;
+        }
+
+        .memory-tip h4 {
+            color: #d97706;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .memory-tip h4::before {
+            content: "💡";
+        }
+
+        /* Summary Section */
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 18px;
+            padding: 22px;
+            margin: 20px 0;
+        }
+
+        .summary-box h3 {
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            text-align: center;
+        }
+
+        .summary-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 12px 8px;
+        }
+
+        .summary-item .icon {
+            font-size: 1.8em;
+            margin-bottom: 6px;
+        }
+
+        .summary-item .text {
+            font-size: 0.9em;
+        }
+
+        /* Story Box */
+        .story-box {
+            background: #fef3c7;
+            border-radius: 12px;
+            padding: 18px;
+            margin: 12px 0;
+            border-right: 4px solid #f59e0b;
+        }
+
+        .story-box h4 {
+            color: #b45309;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .story-box h4::before {
+            content: "📖";
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 25px;
+            border-radius: 18px 18px 0 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .info-card {
+                padding: 18px;
+            }
+
+            body {
+                line-height: 2;
+            }
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+
+        .badge.green {
+            background: #48bb78;
+        }
+
+        .badge.orange {
+            background: #ed8936;
+        }
+
+        .badge.purple {
+            background: #9f7aea;
+        }
+
+        /* Simple List */
+        .simple-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .simple-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .simple-list li:last-child {
+            border-bottom: none;
+        }
+
+        .list-number {
+            background: #667eea;
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            flex-shrink: 0;
+        }
+
+        /* Final Summary Card */
+        .final-summary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .final-summary .card-title {
+            color: white;
+        }
+
+        .final-summary .card-icon {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .summary-content {
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .summary-content p {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .summary-content p:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        /* Table */
+        .memory-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .memory-table td, .memory-table th {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: right;
+        }
+
+        .memory-table tr:nth-child(odd) {
+            background: rgba(102, 126, 234, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>حکیم صدرا</h1>
+        <div class="title-english">(Hakim Sadra)</div>
+        <div class="subtitle">مسیح الزماں</div>
+    </header>
+
+    <div class="container">
+        <!-- Quick Summary -->
+        <div class="summary-box">
+            <h3>⭐ ایک نظر میں ⭐</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="icon">👨‍⚕️</div>
+                    <div class="text">ماہر طبیب</div>
+                </div>
+                <div class="summary-item">
+                    <div class="icon">👨‍🏫</div>
+                    <div class="text">عمدہ استاد</div>
+                </div>
+                <div class="summary-item">
+                    <div class="icon">✍️</div>
+                    <div class="text">اچھا مصنف</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="info-card">
+            <div class="card-title">
+                <div class="card-icon">📜</div>
+                تعارف
+            </div>
+            
+            <p>حکیم صدرا <strong>مغل دور</strong> کے ایک مشہور طبیب تھے۔</p>
+            
+            <div class="key-points">
+                <h3>🔑 اہم نکات</h3>
+                <ul>
+                    <li>یہ <strong>چار مغل بادشاہوں</strong> کا دور دیکھا</li>
+                    <li><strong>جہانگیر</strong> کے طبیب خاص بنے</li>
+                    <li>جہانگیر نے <strong>"مسیح الزماں"</strong> کا خطاب دیا</li>
+                    <li><strong>تشخیص فارقہ</strong> میں ماہر تھے (بیماری پہچاننا)</li>
+                    <li>علاج عموماً <strong>شافی</strong> ہوتا تھا (مریض ٹھیک ہو جاتا)</li>
+                </ul>
+            </div>
+
+            <div class="memory-tip">
+                <h4>یاد رکھنے کا طریقہ</h4>
+                <p><strong>چار بادشاہ:</strong> اکبر، جہانگیر، شاہجہاں، اورنگ زیب</p>
+                <p>یاد رکھیں: <strong>"ا - ج - ش - ا"</strong> (اجازت شاہی)</p>
+            </div>
+        </div>
+
+        <!-- Timeline of Kings -->
+        <div class="info-card">
+            <div class="card-title">
+                <div class="card-icon">👑</div>
+                چار مغل بادشاہ
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">۱۔ اکبر</div>
+                    <p>صدرا کا ابتدائی دور</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">۲۔ جہانگیر ⭐</div>
+                    <p><strong>سنہری دور</strong> - طبیب خاص بنے، "مسیح الزماں" کا خطاب ملا</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">۳۔ شاہجہاں</div>
+                    <p>جہاں آرا بیگم کا علاج کیا</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">۴۔ اورنگ زیب</div>
+                    <p>"حفظ الصحۃ" کتاب اس کے نام منسوب کی</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- As a Doctor -->
+        <div class="info-card">
+            <div class="card-title">
+                <div class="card-icon">👨‍⚕️</div>
+                بحیثیت طبیب
+            </div>
+            
+            <ul class="simple-list">
+                <li>
+                    <span class="list-number">۱</span>
+                    <span>جہانگیر کے دور میں <strong>حاذق طبیب</strong> کی شہرت ملی</span>
+                </li>
+                <li>
+                    <span class="list-number">۲</span>
+                    <span>دربار شاہی میں <strong>اعلیٰ مقام</strong> پر فائز ہوئے</span>
+                </li>
+                <li>
+                    <span class="list-number">۳</span>
+                    <span><strong>تشخیص فارقہ</strong> میں یکتا تھے (بیماری پہچاننے میں ماہر)</span>
+                </li>
+                <li>
+                    <span class="list-number">۴</span>
+                    <span>جہانگیر نے <strong>"مسیح الزماں"</strong> کا خطاب دیا</span>
+                </li>
+                <li>
+                    <span class="list-number">۵</span>
+                    <span>شاہجہانی دور میں بھی <strong>طبی خدمات</strong> انجام دیں</span>
+                </li>
+            </ul>
+
+            <div class="highlight-box">
+                <div class="label">مشہور خطاب</div>
+                <div class="big-text">🏆 مسیح الزماں 🏆</div>
+                <div class="label">یعنی "زمانے کا عیسیٰ" - جو مردے کو زندہ کرے</div>
+            </div>
+
+            <div class="story-box">
+                <h4>مشہور واقعہ - جہاں آرا بیگم کا علاج</h4>
+                <p>• <strong>کون:</strong> شاہجہاں کی بیٹی جہاں آرا بیگم</p>
+                <p>• <strong>کیا ہوا:</strong> حادثے میں آگ سے بری طرح جل گئیں</p>
+                <p>• <strong>حالت:</strong> زندہ بچنے کی امید نہیں تھی</p>
+                <p>• <strong>صدرا کا کردار:</strong> کلیدی کردار ادا کیا</p>
+                <p>• <strong>نتیجہ:</strong> شاہزادی صحت یاب ہو گئیں</p>
+                <p style="margin-top: 10px; color: #b45309;">✅ <strong>سبق:</strong> صدرا مشکل علاج پر بھی قدرت رکھتے تھے</p>
+            </div>
+        </div>
+
+        <!-- As a Teacher -->
+        <div class="info-card">
+            <div class="card-title">
+                <div class="card-icon">👨‍🏫</div>
+                بحیثیت استاد
+            </div>
+            
+            <ul class="simple-list">
+                <li>
+                    <span class="list-number">۱</span>
+                    <span>صدرا کا <strong>خاندان</strong> طب کی تعلیم میں ماہر تھا</span>
+                </li>
+                <li>
+                    <span class="list-number">۲</span>
+                    <span>ان کے <strong>والد</strong> بھی مشہور استاد تھے</span>
+                </li>
+                <li>
+                    <span class="list-number">۳</span>
+                    <span>والد نے صدرا کو <strong>غیر معمولی طبیب</strong> بنایا</span>
+                </li>
+                <li>
+                    <span class="list-number">۴</span>
+                    <span>صدرا مطب کے علاوہ <strong>درس و تدریس</strong> کا وقت نکالتے تھے</span>
+                </li>
+                <li>
+                    <span class="list-number">۵</span>
+                    <span>ان کے <strong>شاگردوں کی طویل فہرست</strong> ہے</span>
+                </li>
+            </ul>
+
+            <div class="memory-tip">
+                <h4>یاد رکھیں</h4>
+                <p>صدرا کا خاندان = طب کی <strong>تعلیمی روایت</strong></p>
+                <p>باپ استاد ← بیٹا طبیب + استاد ← بہت شاگرد</p>
+            </div>
+        </div>
+
+        <!-- As an Author -->
+        <div class="info-card">
+            <div class="card-title">
+                <div class="card-icon">✍️</div>
+                بحیثیت مصنف
+            </div>
+            
+            <p>حکیم صدرا نے <strong>دو اہم کتابیں</strong> لکھیں:</p>
+
+            <!-- Book 1 -->
+            <div class="book-card">
+                <div class="book-title">۱۔ ہدایت الحکمت</div>
+                <div class="book-details">
+                    <p><span class="badge purple">زبان: فارسی</span></p>
+                    <p><strong>موضوعات:</strong></p>
+                    <p>• ہیئت (فلکیات)</p>
+                    <p>• منطق</p>
+                    <p>• فلسفہ</p>
+                    <p>• علوم عقلیہ پر بحث</p>
+                    <p>• تشخیص فارقہ پر اعلیٰ مواد</p>
+                    <p style="margin-top: 10px;"><span class="badge orange">منسوب: بادشاہ جہانگیر</span></p>
+                </div>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="book-card">
+                <div class="book-title">۲۔ حفظ الصحۃ</div>
+                <div class="book-details">
+                    <p><span class="badge purple">طبی اصطلاحات: عربی</span></p>
+                    <p><span class="badge green">ربط کی زبان: فارسی</span></p>
+                    <p><strong>ابواب:</strong> چھ فصلیں (۶ ابواب)</p>
+                    <p><strong>موضوعات:</strong></p>
+                    <p>• صحت کی تعریف</p>
+                    <p>• اسباب صحت و مرض</p>
+                    <p>• علاج بالتدبیر</p>
+                    <p><strong>ندرت:</strong> طبی اصطلاحات عربی میں، ربط فارسی میں</p>
+                    <p style="margin-top: 10px;"><span class="badge orange">منسوب: بادشاہ اورنگ زیب</span></p>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <h4>کتابیں یاد رکھنے کا آسان طریقہ</h4>
+                <table class="memory-table">
+                    <tr>
+                        <th>کتاب</th>
+                        <th>موضوع</th>
+                        <th>بادشاہ</th>
+                    </tr>
+                    <tr>
+                        <td>ہدایت الحکمت</td>
+                        <td>فلسفہ + تشخیص</td>
+                        <td>جہانگیر</td>
+                    </tr>
+                    <tr>
+                        <td>حفظ الصحۃ</td>
+                        <td>صحت + علاج (۶ فصل)</td>
+                        <td>اورنگ زیب</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 10px;"><strong>یاد رکھیں:</strong> "ہ - ج" (ہدایت - جہانگیر) اور "ح - ا" (حفظ - اورنگ زیب)</p>
+            </div>
+        </div>
+
+        <!-- Final Summary -->
+        <div class="info-card final-summary">
+            <div class="card-title">
+                <div class="card-icon">📝</div>
+                خلاصہ - امتحان کے لیے
+            </div>
+            
+            <div class="summary-content">
+                <p><strong>۱۔ کون تھے:</strong> مغل دور کے مشہور طبیب</p>
+                <p><strong>۲۔ چار بادشاہ:</strong> اکبر، جہانگیر، شاہجہاں، اورنگ زیب</p>
+                <p><strong>۳۔ سنہری دور:</strong> جہانگیر کا زمانہ</p>
+                <p><strong>۴۔ خطاب:</strong> مسیح الزماں (جہانگیر نے دیا)</p>
+                <p><strong>۵۔ خاص مہارت:</strong> تشخیص فارقہ (بیماری پہچاننا)</p>
+                <p><strong>۶۔ علاج:</strong> عموماً شافی ہوتا تھا</p>
+                <p><strong>۷۔ مشہور علاج:</strong> جہاں آرا بیگم (شاہجہاں کی بیٹی)</p>
+                <p><strong>۸۔ تین حیثیتیں:</strong> طبیب + استاد + مصنف</p>
+                <p><strong>۹۔ خاندان:</strong> طب کی تعلیمی روایت</p>
+                <p><strong>۱۰۔ شاگرد:</strong> طویل فہرست</p>
+                <p><strong>۱۱۔ کتاب ۱:</strong> ہدایت الحکمت (فارسی، فلسفہ، جہانگیر)</p>
+                <p><strong>۱۲۔ کتاب ۲:</strong> حفظ الصحۃ (۶ فصل، عربی+فارسی، اورنگ زیب)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

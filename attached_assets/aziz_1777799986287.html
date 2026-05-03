@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم عبدالعزیز - خاندان عزیزی کے بانی</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .info-card.highlight {
+            border-right-color: #48bb78;
+            background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+        }
+
+        .info-card.important {
+            border-right-color: #ed8936;
+            background: linear-gradient(135deg, #fffaf0 0%, #ffffff 100%);
+        }
+
+        .info-card.special {
+            border-right-color: #9f7aea;
+            background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .icon-purple { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .icon-green { background: linear-gradient(135deg, #48bb78, #38a169); color: white; }
+        .icon-orange { background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; }
+        .icon-blue { background: linear-gradient(135deg, #4299e1, #3182ce); color: white; }
+
+        .content {
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #ebf8ff 0%, #ffffff 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 10px 0;
+            border-right: 4px solid #4299e1;
+        }
+
+        .key-point-title {
+            font-weight: 700;
+            color: #2b6cb0;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .key-point-value {
+            font-size: 1.2rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -25px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .timeline-event {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        /* List Items */
+        .simple-list {
+            list-style: none;
+        }
+
+        .simple-list li {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            font-size: 1rem;
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .simple-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        /* Memory Box */
+        .memory-box {
+            background: linear-gradient(135deg, #fef5e7 0%, #fef9f3 100%);
+            border: 2px dashed #ed8936;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .memory-box .emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .memory-box .text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #c05621;
+        }
+
+        /* Names Grid */
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .name-badge {
+            background: linear-gradient(135deg, #e2e8f0 0%, #edf2f7 100%);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        /* Books Section */
+        .book-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
+            border-radius: 15px;
+            border-right: 4px solid #9f7aea;
+        }
+
+        .book-icon {
+            font-size: 1.5rem;
+        }
+
+        .book-name {
+            font-weight: 600;
+            color: #553c9a;
+            font-size: 1.1rem;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .summary-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-section ul {
+            list-style: none;
+        }
+
+        .summary-section li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 1rem;
+        }
+
+        .summary-section li:last-child {
+            border-bottom: none;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .fact-box {
+            background: white;
+            border-radius: 15px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .fact-label {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 8px;
+        }
+
+        .fact-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .fact-box.birth {
+            border-top: 4px solid #48bb78;
+        }
+
+        .fact-box.death {
+            border-top: 4px solid #e53e3e;
+        }
+
+        .fact-box.place {
+            border-top: 4px solid #4299e1;
+        }
+
+        .fact-box.school {
+            border-top: 4px solid #9f7aea;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .names-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-facts {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Animation */
+        .info-card {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Highlight Text */
+        .highlight-text {
+            background: linear-gradient(120deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>🌟 حکیم عبدالعزیز 🌟</h1>
+        <div class="subtitle">خاندان عزیزی کے بانی اور عظیم طبیب</div>
+    </div>
+
+    <div class="container">
+
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-box birth">
+                <div class="fact-label">📅 پیدائش</div>
+                <div class="fact-value">1855ء</div>
+            </div>
+            <div class="fact-box death">
+                <div class="fact-label">📅 وفات</div>
+                <div class="fact-value">1911ء</div>
+            </div>
+            <div class="fact-box place">
+                <div class="fact-label">📍 مقام</div>
+                <div class="fact-value">لکھنؤ</div>
+            </div>
+            <div class="fact-box school">
+                <div class="fact-label">🏫 درسگاہ</div>
+                <div class="fact-value">تکمیل الطب</div>
+            </div>
+        </div>
+
+        <!-- Memory Box 1 -->
+        <div class="memory-box">
+            <div class="emoji">💡</div>
+            <div class="text">یاد رکھیں: خاندان عزیزی کا نام حکیم عبدالعزیز کی وجہ سے ہے!</div>
+        </div>
+
+        <!-- Family Info -->
+        <div class="info-card">
+            <div class="section-title">
+                <span class="icon icon-purple">👨‍👩‍👦</span>
+                خاندان
+            </div>
+            <div class="content">
+                <div class="key-point">
+                    <div class="key-point-title">والد</div>
+                    <div class="key-point-value">حکیم محمد اسماعیل</div>
+                </div>
+                <div class="key-point">
+                    <div class="key-point-title">دادا</div>
+                    <div class="key-point-value">حکیم محمد یعقوب</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="info-card highlight">
+            <div class="section-title">
+                <span class="icon icon-green">📚</span>
+                تعلیم
+            </div>
+            <div class="content">
+                <p style="margin-bottom: 15px;">طب کی تعلیم دو لوگوں سے حاصل کی:</p>
+                <ul class="simple-list">
+                    <li>والد - حکیم محمد اسماعیل</li>
+                    <li>چچا - حکیم محمد ابراہیم</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Memory Box 2 -->
+        <div class="memory-box">
+            <div class="emoji">📖</div>
+            <div class="text">پسندیدہ کتاب: "القانون" (ابن سینا کی) - انہوں نے اس کی عبارات یاد کر لی تھیں!</div>
+        </div>
+
+        <!-- Muttab -->
+        <div class="info-card important">
+            <div class="section-title">
+                <span class="icon icon-orange">🏥</span>
+                مطب کا قیام
+            </div>
+            <div class="content">
+                <p>جب والد نے بیٹے کی طبی صلاحیت دیکھی تو:</p>
+                <div class="key-point">
+                    <div class="key-point-title">جگہ</div>
+                    <div class="key-point-value">محلہ جھوائی ٹولہ، لکھنؤ</div>
+                </div>
+                <p style="margin-top: 10px;">یہی عمارت بعد میں <span class="highlight-text">تکمیل الطب</span> درسگاہ بنی!</p>
+            </div>
+        </div>
+
+        <!-- Takmeelul Tib -->
+        <div class="info-card special">
+            <div class="section-title">
+                <span class="icon icon-blue">🎓</span>
+                تکمیل الطب - درسگاہ
+            </div>
+            <div class="content">
+                <div class="key-point">
+                    <div class="key-point-title">قیام کا سال</div>
+                    <div class="key-point-value">1902ء</div>
+                </div>
+                
+                <p style="margin: 15px 0; font-weight: 600;">داخلے کی شرط:</p>
+                <p>صرف وہ طلباء جو کسی معیاری درسگاہ سے <span class="highlight-text">عالم یا فاضل</span> ہوں</p>
+                
+                <p style="margin: 15px 0; font-weight: 600;">اساتذہ (خاندان عزیزی سے):</p>
+                <div class="names-grid">
+                    <div class="name-badge">حکیم عبدالحفیظ</div>
+                    <div class="name-badge">حکیم عبدالرشید</div>
+                    <div class="name-badge">حکیم عبدالحمید</div>
+                    <div class="name-badge">حکیم عبدالمجید</div>
+                    <div class="name-badge">حکیم عبدالمعید</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Special Features -->
+        <div class="info-card">
+            <div class="section-title">
+                <span class="icon icon-purple">⭐</span>
+                خاص خصوصیات
+            </div>
+            <div class="content">
+                <ul class="simple-list">
+                    <li>علم الجراحت کی تعلیم اور تربیت دی جاتی تھی</li>
+                    <li>مفرد ادویہ (ایک یا دو دوائیں) سے علاج پر زور</li>
+                    <li>مختلف المزاج ادویہ ملانے سے گریز</li>
+                    <li>بیرون ملک سے بھی طلباء آتے تھے</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Memory Box 3 -->
+        <div class="memory-box">
+            <div class="emoji">💊</div>
+            <div class="text">خاندان عزیزی کا طریقہ: کم سے کم دوائیں = بہترین علاج!</div>
+        </div>
+
+        <!-- Books -->
+        <div class="info-card">
+            <div class="section-title">
+                <span class="icon icon-green">📖</span>
+                تصنیفات
+            </div>
+            <div class="content">
+                <div class="book-item">
+                    <span class="book-icon">📕</span>
+                    <span class="book-name">رسالہ تحفہ عزیزی</span>
+                </div>
+                <div class="book-item">
+                    <span class="book-icon">📗</span>
+                    <span class="book-name">رسالہ فی ابطال</span>
+                </div>
+                <div class="book-item">
+                    <span class="book-icon">📘</span>
+                    <span class="book-name">حس جواہر الدماغ</span>
+                </div>
+                <div class="book-item">
+                    <span class="book-icon">📙</span>
+                    <span class="book-name">بیاض مجربات (قلمی)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notable Person -->
+        <div class="info-card highlight">
+            <div class="section-title">
+                <span class="icon icon-orange">🏅</span>
+                مشہور شخصیت
+            </div>
+            <div class="content">
+                <div class="key-point">
+                    <div class="key-point-title">نام</div>
+                    <div class="key-point-value">شفاء الملک حکیم عبداللطیف فلسفی</div>
+                </div>
+                <p style="margin-top: 10px;">خاندان عزیزی سے تعلق رکھنے والے، 20ویں صدی کے چوٹی کے اطباء میں شامل</p>
+            </div>
+        </div>
+
+        <!-- Current Status -->
+        <div class="info-card important">
+            <div class="section-title">
+                <span class="icon icon-blue">🏛️</span>
+                آج کی صورتحال
+            </div>
+            <div class="content">
+                <p>مدرسہ تکمیل الطب آج <span class="highlight-text">تکمیل الطب کالج لکھنؤ</span> کے نام سے مشہور ہے</p>
+                <p style="margin-top: 10px;">حکومت اتر پردیش کی زیر نگرانی چل رہا ہے</p>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="info-card">
+            <div class="section-title">
+                <span class="icon icon-purple">📅</span>
+                اہم تاریخیں
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1855ء</div>
+                    <div class="timeline-event">لکھنؤ میں پیدائش</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1902ء</div>
+                    <div class="timeline-event">تکمیل الطب درسگاہ کا قیام</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1911ء</div>
+                    <div class="timeline-event">لکھنؤ میں وفات</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-section">
+            <h3>🎯 یاد رکھنے کے نکات</h3>
+            <ul>
+                <li>✅ پیدائش: 1855ء، لکھنؤ</li>
+                <li>✅ وفات: 1911ء، لکھنؤ</li>
+                <li>✅ والد: حکیم محمد اسماعیل، دادا: حکیم محمد یعقوب</li>
+                <li>✅ تعلیم: والد اور چچا (حکیم ابراہیم) سے</li>
+                <li>✅ پسندیدہ کتاب: القانون (ابن سینا)</li>
+                <li>✅ مطب: جھوائی ٹولہ، لکھنؤ</li>
+                <li>✅ درسگاہ: تکمیل الطب (1902ء)</li>
+                <li>✅ خاص بات: مفرد ادویہ سے علاج</li>
+                <li>✅ تصنیفات: 4 کتابیں</li>
+                <li>✅ آج: تکمیل الطب کالج لکھنؤ</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

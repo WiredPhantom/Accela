@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم احمد حسین عثمانی - سوانح حیات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Info Card */
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-right: 4px solid #10b981;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .key-point:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .key-point .label {
+            font-weight: 600;
+            color: #10b981;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+
+        .key-point .value {
+            font-size: 1.05em;
+            color: #374151;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -24px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border-right: 4px solid #f59e0b;
+        }
+
+        .highlight-box .title {
+            font-weight: 700;
+            color: #b45309;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #3b82f6;
+        }
+
+        .memory-tip .tip-title {
+            font-weight: 700;
+            color: #1d4ed8;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* List Styles */
+        .custom-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .custom-list li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 12px;
+            padding: 10px 25px 10px 10px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .custom-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px dashed #10b981;
+        }
+
+        .summary-card h3 {
+            color: #059669;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .fact-item {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .fact-item .number {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .fact-item .label {
+            font-size: 0.9em;
+            color: #6b7280;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 15px 0;
+        }
+
+        .accordion-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .accordion-header {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #e2e8f0;
+        }
+
+        .accordion-header .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header .arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .quick-facts {
+                grid-template-columns: 1fr;
+            }
+
+            .info-card {
+                padding: 20px 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-card {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .info-card:nth-child(2) { animation-delay: 0.1s; }
+        .info-card:nth-child(3) { animation-delay: 0.2s; }
+        .info-card:nth-child(4) { animation-delay: 0.3s; }
+        .info-card:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>📚 حکیم احمد حسین عثمانی</h1>
+        <p class="subtitle">علامہ حکیم احمد حسین عثمانی کی سوانح حیات</p>
+    </header>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="info-card">
+            <div class="section-title">
+                <span class="icon">📋</span>
+                <span>اہم معلومات (ایک نظر میں)</span>
+            </div>
+            <div class="quick-facts">
+                <div class="fact-item">
+                    <div class="number">1859</div>
+                    <div class="label">سالِ پیدائش</div>
+                </div>
+                <div class="fact-item">
+                    <div class="number">1933</div>
+                    <div class="label">سالِ وفات</div>
+                </div>
+                <div class="fact-item">
+                    <div class="number">1904</div>
+                    <div class="label">مدرسہ طبیہ قیام</div>
+                </div>
+                <div class="fact-item">
+                    <div class="number">14</div>
+                    <div class="label">تاریخ ابن خلدون جلدیں</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="info-card">
+            <div class="section-title">
+                <span class="icon">👤</span>
+                <span>تعارف</span>
+            </div>
+            
+            <div class="key-point">
+                <div class="label">🏠 جائے پیدائش</div>
+                <div class="value">الٰہ آباد کے ایک مشہور اور امیر گھرانے میں پیدا ہوئے</div>
+            </div>
+            
+            <div class="key-point">
+                <div class="label">👨 والد کا نام</div>
+                <div class="value">مولوی بدرالدین</div>
+            </div>
+            
+            <div class="key-point">
+                <div class="label">📅 پیدائش</div>
+                <div class="value">1859 عیسوی</div>
+            </div>
+            
+            <div class="key-point">
+                <div class="label">📅 وفات</div>
+                <div class="value">30 جنوری 1933 عیسوی</div>
+            </div>
+
+            <div class="key-point">
+                <div class="label">🪦 مدفن</div>
+                <div class="value">اپنے قائم کردہ طبیہ کالج کے احاطے میں دفن ہوئے</div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">💡 یاد رکھنے کا طریقہ</div>
+                <p>1859 = 18+59 = وہ سال جب یہ عظیم طبیب پیدا ہوئے۔ وفات 1933 = 33 سال = 30 جنوری</p>
+            </div>
+        </div>
+
+        <!-- As a Physician -->
+        <div class="info-card">
+            <div class="section-title">
+                <span class="icon">⚕️</span>
+                <span>بحیثیت طبیب (ڈاکٹر)</span>
+            </div>
+
+            <p style="margin-bottom: 15px; font-size: 1.05em;">حکیم صاحب ایک ماہر اور نامور طبیب (ڈاکٹر) تھے۔</p>
+
+            <div class="highlight-box">
+                <div class="title">🕰️ مطب کا وقت</div>
+                <p>فجر کی نماز کے بعد سے ظہر تک</p>
+            </div>
+
+            <ul class="custom-list">
+                <li>ان کا مطب (کلینک) بہت با وقار تھا</li>
+                <li>مریضوں سے بہت اچھا سلوک کرتے تھے</li>
+                <li>طبی مہارت کی وجہ سے مطب ہمیشہ مریضوں سے بھرا رہتا</li>
+            </ul>
+
+            <div class="key-point" style="border-right-color: #ef4444;">
+                <div class="label" style="color: #ef4444;">⭐ خاص مہارت</div>
+                <div class="value"><strong>گردے اور مثانے کی پتھری</strong> کے علاج میں ماہر تھے</div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">💡 یاد رکھنے کا طریقہ</div>
+                <p>مطب کا وقت: فجر سے ظہر = صبح سویرے سے دوپہر تک = محنتی طبیب</p>
+            </div>
+        </div>
+
+        <!-- Services to Medicine -->
+        <div class="info-card">
+            <div class="section-title">
+                <span class="icon">🎓</span>
+                <span>طب کی خدمات</span>
+            </div>
+
+            <p style="margin-bottom: 15px;">حکیم صاحب ایک سرگرم اور سوچنے والے طبی کارکن تھے۔ انہوں نے طب کی ترقی کے لیے بہت کام کیے۔</p>
+
+            <div class="accordion">
+                <div class="accordion-item active">
+                    <div class="accordion-header">
+                        <span>🏫 مدرسہ طبیہ الٰہ آباد کا قیام</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-date">مسئلہ</span>
+                                <p>اُس وقت دہلی اور لکھنو میں طبی مدرسے تھے، لیکن الٰہ آباد میں کوئی نہیں تھا۔ یہ کمی حکیم صاحب کو ہمیشہ کھٹکتی تھی۔</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-date">1904 عیسوی</span>
+                                <p>اپنے ذاتی مکان (محلہ سبزی منڈی) میں مدرسہ قائم کیا</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-date">جمعیۃ النقبہ</span>
+                                <p>ایک جماعت بنائی جو مدرسہ کی نگرانی کرتی تھی</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-date">توسیع</span>
+                                <p>اپنی جیب سے زمین خریدی اور مدرسہ کو وہاں منتقل کیا</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-date">افسوس</span>
+                                <p>عمارت ابھی زیر تعمیر ہی تھی کہ حکیم صاحب وفات پا گئے</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>🖨️ پریس کا قیام</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="key-point">
+                            <div class="label">مقصد</div>
+                            <div class="value">طبی کتابوں کی اشاعت</div>
+                        </div>
+                        <div class="key-point" style="border-right-color: #8b5cf6;">
+                            <div class="label" style="color: #8b5cf6;">اہم کام</div>
+                            <div class="value">"تاریخ ابن خلدون" کا اردو ترجمہ شائع کیا<br>
+                            <strong>14 جلدوں</strong> پر مشتمل</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">💡 یاد رکھنے کا طریقہ</div>
+                <p>1904 = مدرسہ قیام | محلہ سبزی منڈی = پہلی جگہ | جمعیۃ النقبہ = نگران جماعت</p>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-card">
+            <h3>📝 خلاصہ - یاد رکھیں</h3>
+            <ul class="custom-list">
+                <li><strong>پیدائش:</strong> 1859 - الٰہ آباد - امیر گھرانہ</li>
+                <li><strong>والد:</strong> مولوی بدرالدین</li>
+                <li><strong>مہارت:</strong> گردے اور مثانے کی پتھری</li>
+                <li><strong>مطب:</strong> فجر سے ظہر تک</li>
+                <li><strong>مدرسہ:</strong> 1904 - محلہ سبزی منڈی</li>
+                <li><strong>جماعت:</strong> جمعیۃ النقبہ</li>
+                <li><strong>پریس:</strong> تاریخ ابن خلدون (14 جلدیں)</li>
+                <li><strong>وفات:</strong> 30 جنوری 1933</li>
+                <li><strong>مدفن:</strong> طبیہ کالج کا احاطہ</li>
+            </ul>
+        </div>
+
+        <!-- Test Yourself -->
+        <div class="info-card">
+            <div class="section-title">
+                <span class="icon">❓</span>
+                <span>خود کو جانچیں</span>
+            </div>
+            
+            <div id="quiz-container">
+                <div class="quiz-question" data-answer="1859">
+                    <p style="margin-bottom: 10px;"><strong>1۔ حکیم احمد حسین کب پیدا ہوئے؟</strong></p>
+                    <button class="quiz-btn" onclick="checkAnswer(this, '1859')">1859</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, '1859')">1869</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, '1859')">1879</button>
+                </div>
+                
+                <div class="quiz-question" data-answer="مولوی بدرالدین" style="margin-top: 15px;">
+                    <p style="margin-bottom: 10px;"><strong>2۔ والد کا نام کیا تھا؟</strong></p>
+                    <button class="quiz-btn" onclick="checkAnswer(this, 'مولوی بدرالدین')">مولوی نورالدین</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, 'مولوی بدرالدین')">مولوی بدرالدین</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, 'مولوی بدرالدین')">مولوی شمس الدین</button>
+                </div>
+
+                <div class="quiz-question" data-answer="1904" style="margin-top: 15px;">
+                    <p style="margin-bottom: 10px;"><strong>3۔ مدرسہ طبیہ کب قائم ہوا؟</strong></p>
+                    <button class="quiz-btn" onclick="checkAnswer(this, '1904')">1900</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, '1904')">1904</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, '1904')">1910</button>
+                </div>
+
+                <div class="quiz-question" data-answer="14" style="margin-top: 15px;">
+                    <p style="margin-bottom: 10px;"><strong>4۔ تاریخ ابن خلدون کتنی جلدوں میں شائع ہوئی؟</strong></p>
+                    <button class="quiz-btn" onclick="checkAnswer(this, '14')">10</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, '14')">14</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, '14')">18</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const item = this.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all accordion items
+                document.querySelectorAll('.accordion-item').forEach(accItem => {
+                    accItem.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Quiz functionality
+        function checkAnswer(btn, correctAnswer) {
+            const buttons = btn.parentElement.querySelectorAll('.quiz-btn');
+            buttons.forEach(b => {
+                b.disabled = true;
+                if (b.textContent === correctAnswer) {
+                    b.style.background = '#10b981';
+                    b.style.color = 'white';
+                } else {
+                    b.style.background = '#ef4444';
+                    b.style.color = 'white';
+                }
+            });
+        }
+
+        // Add quiz button styles dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            .quiz-btn {
+                display: block;
+                width: 100%;
+                padding: 12px;
+                margin: 8px 0;
+                border: 2px solid #e2e8f0;
+                border-radius: 10px;
+                background: white;
+                font-family: 'Noto Nastaliq Urdu', serif;
+                font-size: 1em;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .quiz-btn:hover:not(:disabled) {
+                background: #f8fafc;
+                border-color: #667eea;
+            }
+            .quiz-btn:disabled {
+                cursor: not-allowed;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

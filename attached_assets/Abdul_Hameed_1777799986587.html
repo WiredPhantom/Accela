@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم عبد الحمید لکھنوی - سوانح حیات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 0.9em;
+            opacity: 0.9;
+            font-family: Arial, sans-serif;
+        }
+
+        .header .dates {
+            margin-top: 15px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9em;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #764ba2;
+        }
+
+        .key-point-title {
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px dashed #ffc107;
+        }
+
+        .highlight-box .title {
+            color: #856404;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #28a745;
+        }
+
+        .memory-tip::before {
+            content: "💡 یاد رکھیں: ";
+            font-weight: 700;
+            color: #155724;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -24px;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            background: #764ba2;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-year {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        /* Lists */
+        .styled-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .styled-list li {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .styled-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+        }
+
+        .summary-box h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-box ul {
+            list-style: none;
+        }
+
+        .summary-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .summary-box li:last-child {
+            border-bottom: none;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .fact-card .label {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .fact-card .value {
+            font-size: 1.1em;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 1.6em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .quick-facts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Number Badge */
+        .number-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>حکیم عبد الحمید لکھنوی</h1>
+        <p class="english-name">Abdul Hameed Lukhnawi</p>
+        <div class="dates">📅 پیدائش: 1884ء &nbsp;|&nbsp; وفات: 1940ء</div>
+    </header>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-card">
+                <div class="label">پیدائش کا مقام</div>
+                <div class="value">لکھنو</div>
+            </div>
+            <div class="fact-card">
+                <div class="label">مشہور حیثیت</div>
+                <div class="value">ماہر جراح و طبیب</div>
+            </div>
+            <div class="fact-card">
+                <div class="label">والد</div>
+                <div class="value">حکیم عبد العزیز</div>
+            </div>
+            <div class="fact-card">
+                <div class="label">بھائی</div>
+                <div class="value">حکیم عبدالرشید</div>
+            </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                تعارف
+            </h2>
+            <p>
+                حکیم عبد الحمید لکھنو کے مشہور خاندان "عزیزی" سے تھے۔ ان کے والد <strong>حکیم عبد العزیز</strong> نے لکھنو میں ایک بڑی طبی درس گاہ <strong>"تکمیل الطب"</strong> بنائی تھی۔
+            </p>
+            
+            <div class="memory-tip">
+                عبد الحمید کے والد کا نام عبد العزیز تھا - دونوں نام "عبد" سے شروع ہوتے ہیں۔
+            </div>
+
+            <p>
+                حکیم عبد الحمید اپنے بڑے بھائی <strong>حکیم عبدالرشید</strong> سے چھوٹے تھے۔ یہ 1884ء میں لکھنو میں پیدا ہوئے۔
+            </p>
+
+            <div class="highlight-box">
+                <div class="title">⭐ سب سے اہم بات</div>
+                <p>حکیم عبد الحمید نے طب یونانی میں <strong>جراحت (سرجری)</strong> کو دوبارہ زندہ کیا۔ یہ اپنے بڑے بھائی سے بھی زیادہ ماہر جراح تھے!</p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                تعلیم و تربیت
+            </h2>
+            
+            <p>حکیم عبد الحمید کا خاندان علم والا خاندان تھا۔ انہوں نے اپنی تعلیم اس طرح حاصل کی:</p>
+
+            <ul class="styled-list">
+                <li><strong>ابتدائی تعلیم:</strong> اپنے والد کے شاگردوں سے پڑھی</li>
+                <li><strong>زبان اور دین:</strong> جلد ہی عربی، فارسی اور دینی علوم میں ماہر ہو گئے</li>
+                <li><strong>طبی تعلیم:</strong> اپنے والد اور دوسرے طبیبوں سے سیکھی</li>
+                <li><strong>سرجری کی تعلیم:</strong> ڈاکٹر انڈرسن سے سیکھی (جو لکھنو کے سول سرجن تھے اور ان کے والد کے دوست تھے)</li>
+            </ul>
+
+            <div class="memory-tip">
+                سرجری کے استاد کا نام یاد رکھیں: <strong>ڈاکٹر انڈرسن</strong> (انگریز ڈاکٹر)
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🏆</span>
+                فضل و کمال (خوبیاں)
+            </h2>
+            
+            <p>حکیم عبد الحمید کی چار بڑی خوبیاں تھیں:</p>
+
+            <div class="key-point">
+                <div class="key-point-title"><span class="number-badge">1</span> ماہر طبیب</div>
+                <p>خاندان عزیزی کا ہر شخص اپنے وقت کا بڑا طبیب ہوتا تھا۔ یہ بھی بہت اچھے طبیب تھے۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title"><span class="number-badge">2</span> ماہر جراح (سرجن)</div>
+                <p>انہوں نے طب یونانی میں جراحت (سرجری) کو دوبارہ زندہ کیا۔ ڈاکٹر انڈرسن کی مدد سے مختلف قسم کے آپریشن کرنا سیکھے۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title"><span class="number-badge">3</span> بہترین مدرس (استاد)</div>
+                <p>طلبہ کو بہت اچھے طریقے سے پڑھاتے تھے۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title"><span class="number-badge">4</span> منتظم اور مجدد</div>
+                <p>تکمیل الطب کو اچھی طرح چلایا اور طب کی تعلیم میں نئی نئی چیزیں شامل کیں۔</p>
+            </div>
+        </section>
+
+        <!-- Surgery Contribution -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🏥</span>
+                جراحت میں خدمات
+            </h2>
+
+            <p>حکیم عبد الحمید سمجھتے تھے کہ اگر جراحت (سرجری) کو بہتر بنانا ہے تو پہلے <strong>علم تشریح (Anatomy)</strong> کی تعلیم کو بہتر بنانا ہوگا۔</p>
+
+            <div class="highlight-box">
+                <div class="title">🔬 انہوں نے کیا کیا؟</div>
+                <ul class="styled-list" style="background: transparent; padding: 0;">
+                    <li><strong>حکیم ڈاکٹر سید عبد العلی حسنی</strong> کو بلایا جو میڈیکل کالج سے تشریح سیکھ چکے تھے</li>
+                    <li><strong>ڈسکشن ہال</strong> بنوایا جہاں اصلی انسانی جسم پر تشریح سکھائی جاتی تھی</li>
+                    <li>پہلے صرف کتابوں، ماڈل اور چارٹ سے پڑھاتے تھے - اب اصلی جسم پر سکھایا جانے لگا</li>
+                </ul>
+            </div>
+
+            <div class="memory-tip">
+                تشریح (Anatomy) = جسم کی بناوٹ کا علم
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📅</span>
+                اہم تاریخیں
+            </h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">1884ء</span>
+                    <p>لکھنو میں پیدا ہوئے</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1920ء</span>
+                    <p>بڑے بھائی حکیم عبدالرشید کا انتقال - تکمیل الطب کی ذمہ داری ان پر آئی</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1921ء</span>
+                    <p>نصاب تعلیم میں تبدیلی کی - طبی تعلیم کو جدید بنایا</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1940ء</span>
+                    <p>وفات ہوئی</p>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                84 میں پیدائش، 40 میں وفات (1884-1940) = 56 سال کی عمر
+            </div>
+        </section>
+
+        <!-- Educational Reforms -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">✨</span>
+                تعلیمی اصلاحات
+            </h2>
+
+            <p>1920ء میں بڑے بھائی کی وفات کے بعد تکمیل الطب کی پوری ذمہ داری ان پر آ گئی۔ انہوں نے کئی اصلاحات کیں:</p>
+
+            <ul class="styled-list">
+                <li><strong>علم کیمیاء:</strong> حکیم عبد اللطیف کو علم کیمیاء عملی طریقے سے سکھانے کا کام دیا</li>
+                <li><strong>جدید آلات:</strong> نئے آلات سے دوائیں بنانا شروع کیا</li>
+                <li><strong>نصاب میں تبدیلی:</strong> 1921ء میں نیا نصاب بنایا</li>
+                <li><strong>جدید تعلیم:</strong> پرانی طبی تعلیم کو جدید طریقے سے پڑھانا شروع کیا</li>
+            </ul>
+
+            <div class="highlight-box">
+                <div class="title">💡 نتیجہ</div>
+                <p>ان کی اصلاحات کی وجہ سے طلبہ ہر چیلنج کا مقابلہ کرنے کے قابل بن گئے!</p>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <h3>📌 خلاصہ - یاد رکھنے کی باتیں</h3>
+            <ul>
+                <li>✅ والد: حکیم عبد العزیز (تکمیل الطب کے بانی)</li>
+                <li>✅ بھائی: حکیم عبدالرشید (بڑے بھائی)</li>
+                <li>✅ پیدائش: 1884ء لکھنو | وفات: 1940ء</li>
+                <li>✅ سرجری کے استاد: ڈاکٹر انڈرسن (سول سرجن)</li>
+                <li>✅ بڑا کارنامہ: طب میں جراحت کو زندہ کیا</li>
+                <li>✅ ڈسکشن ہال بنوایا (اصلی جسم پر تشریح)</li>
+                <li>✅ 1920ء میں تکمیل الطب سنبھالی</li>
+                <li>✅ 1921ء میں نصاب بدلا</li>
+                <li>✅ چار خوبیاں: طبیب، جراح، مدرس، منتظم</li>
+            </ul>
+        </div>
+
+        <!-- Conclusion -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🌟</span>
+                آخری بات
+            </h2>
+            <p>
+                حکیم عبد الحمید نے اپنی پوری زندگی طب یونانی کی ترقی میں لگا دی۔ انہوں نے:
+            </p>
+            <ul class="styled-list">
+                <li>طبی تعلیم کا معیار بلند کیا</li>
+                <li>طبیہ کالجوں کو بہتر بنایا</li>
+                <li>نصاب میں ضروری تبدیلیاں کیں</li>
+                <li>جراحت کو دوبارہ زندہ کیا</li>
+            </ul>
+            <p style="margin-top: 15px; text-align: center; font-weight: 600; color: #667eea;">
+                طب یونانی کے اس علمبردار نے 1940ء میں وفات پائی۔
+            </p>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

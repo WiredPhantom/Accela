@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم عبد اللطیف فلسفی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 2.2;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* Basic Info Card */
+        .info-card {
+            background: white;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #1e40af;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.2em;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .info-item {
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .info-item.full {
+            grid-column: 1 / -1;
+        }
+
+        .info-label {
+            font-size: 0.85em;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.1em;
+            color: #1e293b;
+            font-weight: bold;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #3b82f6;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #eff6ff;
+            border-radius: 10px;
+            border-right: 4px solid #3b82f6;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -38px;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content {
+            color: #334155;
+        }
+
+        /* Key Points */
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #fefce8;
+            border-radius: 10px;
+            border-right: 4px solid #eab308;
+        }
+
+        .point-number {
+            background: #eab308;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .point-text {
+            flex: 1;
+        }
+
+        /* Books Section */
+        .book-card {
+            background: #ecfdf5;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-right: 4px solid #10b981;
+        }
+
+        .book-title {
+            color: #047857;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .book-desc {
+            color: #334155;
+            font-size: 0.95em;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%);
+            border: 2px solid #fecaca;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dashed #fca5a5;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-bullet {
+            color: #ef4444;
+            font-size: 1.2em;
+        }
+
+        /* Memory Tip */
+        .memory-tip {
+            background: #f5f3ff;
+            border: 2px dashed #a78bfa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .memory-tip-title {
+            color: #7c3aed;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .memory-tip-content {
+            color: #5b21b6;
+            font-size: 0.95em;
+        }
+
+        /* Highlight */
+        .highlight {
+            background: #fef08a;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>حکیم عبد اللطیف فلسفی</h1>
+            <div class="subtitle">لقب: لطیف فلسفی</div>
+        </div>
+
+        <!-- Basic Info -->
+        <div class="info-card">
+            <h2 class="section-title">
+                <span class="icon">📋</span>
+                بنیادی معلومات
+            </h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">پیدائش</div>
+                    <div class="info-value">1900ء</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">وفات</div>
+                    <div class="info-value">1970ء</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">عمر</div>
+                    <div class="info-value">70 سال</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">جائے پیدائش</div>
+                    <div class="info-value">لکھنؤ</div>
+                </div>
+                <div class="info-item full">
+                    <div class="info-label">پیشہ</div>
+                    <div class="info-value">طبیب، استاد، مصنف</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Career Timeline -->
+        <div class="info-card">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                طبی خدمات کا سفر
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">1921ء</span>
+                    <div class="timeline-content">
+                        تعلیم مکمل کی۔ اپنے آبائی مدرسہ <span class="highlight">"تکمیل الطب"</span> میں استاد بنے۔ ساتھ میں اپنا مطب (کلینک) بھی شروع کیا۔
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1927ء</span>
+                    <div class="timeline-content">
+                        علی گڑھ میں <span class="highlight">"اجمل خاں طبیہ کالج"</span> قائم ہوا۔ حکیم صاحب کو بطور استاد بلایا گیا۔ لکھنؤ چھوڑ کر علی گڑھ آ گئے۔ ترقی کر کے <span class="highlight">پرنسپل</span> بنے۔
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1961ء</span>
+                    <div class="timeline-content">
+                        دہلی تشریف لے گئے۔ حکیم محمد الیاس خاں کے مدرسہ <span class="highlight">"جامعہ طبیہ"</span> میں پڑھایا۔
+                    </div>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">
+                    💡 یاد رکھنے کا طریقہ
+                </div>
+                <div class="memory-tip-content">
+                    <strong>21 - 27 - 61</strong><br>
+                    فراغت (21) ← علی گڑھ (27) ← دہلی (61)
+                </div>
+            </div>
+        </div>
+
+        <!-- Treatment Style -->
+        <div class="info-card">
+            <h2 class="section-title">
+                <span class="icon">💊</span>
+                علاج کا طریقہ
+            </h2>
+            
+            <div class="key-point">
+                <div class="point-number">1</div>
+                <div class="point-text">
+                    <strong>مختصر تجویز:</strong> نسخے مختصر اور آسان لکھتے تھے
+                </div>
+            </div>
+            
+            <div class="key-point">
+                <div class="point-number">2</div>
+                <div class="point-text">
+                    <strong>آسان تدبیر:</strong> علاج کا طریقہ سادہ اور عملی ہوتا تھا
+                </div>
+            </div>
+            
+            <div class="key-point">
+                <div class="point-number">3</div>
+                <div class="point-text">
+                    <strong>طبیعت کی قوت:</strong> جسم کی قدرتی طاقت بڑھانے پر زور دیتے
+                </div>
+            </div>
+            
+            <div class="key-point">
+                <div class="point-number">4</div>
+                <div class="point-text">
+                    <strong>ورزش اور پہلوانی:</strong> جسم کی صحت کے لیے ضروری سمجھتے
+                </div>
+            </div>
+            
+            <div class="key-point">
+                <div class="point-number">5</div>
+                <div class="point-text">
+                    <strong>غذا پر توجہ:</strong> دوا سے زیادہ صحیح غذا کا مشورہ دیتے
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="memory-tip-title">
+                    💡 یاد رکھنے کا طریقہ
+                </div>
+                <div class="memory-tip-content">
+                    <strong>مختصر + آسان + قوت + ورزش + غذا</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Books -->
+        <div class="info-card">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                تصنیفات
+            </h2>
+            
+            <div class="book-card">
+                <div class="book-title">📗 کتاب النبض</div>
+                <div class="book-desc">
+                    نبض کے بارے میں کتاب۔ بہت مشہور ہوئی۔
+                </div>
+            </div>
+            
+            <div class="book-card">
+                <div class="book-title">📘 ادویہ قلبیہ (اردو ترجمہ)</div>
+                <div class="book-desc">
+                    ابن سینا کے رسالے کا اردو ترجمہ کیا۔ دل کی دواؤں کے بارے میں ہے۔ لوگوں نے بہت پسند کیا۔
+                </div>
+            </div>
+
+            <p style="margin-top: 15px; color: #64748b; font-size: 0.95em;">
+                ✍️ اس کے علاوہ مختلف مضامین لکھے جو مشہور رسالوں میں چھپتے رہے۔
+            </p>
+        </div>
+
+        <!-- Quick Summary -->
+        <div class="info-card">
+            <h2 class="section-title">
+                <span class="icon">⚡</span>
+                فوری خلاصہ
+            </h2>
+            
+            <div class="summary-box">
+                <div class="summary-item">
+                    <span class="summary-bullet">●</span>
+                    <span>لقب: <strong>لطیف فلسفی</strong></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-bullet">●</span>
+                    <span>پیدائش: <strong>1900ء لکھنؤ</strong></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-bullet">●</span>
+                    <span>وفات: <strong>1970ء (70 سال)</strong></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-bullet">●</span>
+                    <span>پہلا مدرسہ: <strong>تکمیل الطب</strong></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-bullet">●</span>
+                    <span>علی گڑھ: <strong>اجمل خاں طبیہ کالج (پرنسپل بنے)</strong></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-bullet">●</span>
+                    <span>دہلی: <strong>جامعہ طبیہ</strong></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-bullet">●</span>
+                    <span>مشہور کتاب: <strong>کتاب النبض</strong></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-bullet">●</span>
+                    <span>ترجمہ: <strong>ادویہ قلبیہ (ابن سینا)</strong></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-bullet">●</span>
+                    <span>علاج: <strong>مختصر، آسان، غذا پر زور</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

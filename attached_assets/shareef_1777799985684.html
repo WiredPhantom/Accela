@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم شریف خان - اشرف الحکماء</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .title-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Section Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            color: #4a5568;
+        }
+
+        .card p {
+            font-size: 1rem;
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 12px 0;
+            border-right: 4px solid #667eea;
+        }
+
+        .key-point-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        /* Books List */
+        .book-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-right: 4px solid #48bb78;
+        }
+
+        .book-title {
+            font-weight: bold;
+            color: #2d7a4e;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .book-title::before {
+            content: '📚';
+        }
+
+        /* Treatises */
+        .treatise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .treatise-item {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 5px solid #e53e3e;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 3rem;
+            color: #e53e3e;
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            opacity: 0.3;
+        }
+
+        .quote-author {
+            text-align: left;
+            font-weight: bold;
+            color: #c53030;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 15px 0;
+            border: 2px dashed #38b2ac;
+        }
+
+        /* Summary Points */
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 10px 15px;
+            margin: 8px 0;
+            background: #f0fff4;
+            border-radius: 10px;
+            border-right: 4px solid #48bb78;
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .summary-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 12px;
+            color: #48bb78;
+            font-weight: bold;
+        }
+
+        /* Teachers Section */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .teacher-card {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .teacher-card .role {
+            font-size: 0.8rem;
+            color: #5b21b6;
+            margin-top: 5px;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .memory-tip-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .treatise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .teachers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>حکیم شریف خان</h1>
+        <div class="english-name">Hakim Sharif Khan</div>
+        <div class="title-badge">🏆 اشرف الحکماء - شاہی طبیب</div>
+    </header>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="highlight-box">
+            <strong>🎯 یاد رکھیں:</strong> پیدائش 1725ء دہلی | وفات 1807ء | عمر 82 سال | مدفن: مہرولی
+        </div>
+
+        <!-- Introduction -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">👤</div>
+                <h2>تعارف - کون تھے؟</h2>
+            </div>
+            
+            <p>حکیم شریف خان مغل دور کے بہت بڑے طبیب (ڈاکٹر) تھے۔ ان کا خاندان "شریفی خاندان" کہلاتا ہے جو انہی کے نام پر ہے۔</p>
+            
+            <div class="key-point">
+                <div class="key-point-title">📌 اہم باتیں:</div>
+                <ul class="summary-list">
+                    <li>طب کا فن انہیں خاندان سے ملا</li>
+                    <li>اپنی محنت سے "طبیبِ وقت" کہلائے</li>
+                    <li>شاہی دربار کے طبیب بنے</li>
+                    <li>بادشاہ نے جاگیر اور "اشرف الحکماء" کا خطاب دیا</li>
+                </ul>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">1725ء</div>
+                    <div>دہلی میں پیدائش</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1759-1806ء</div>
+                    <div>شاہ عالم ثانی کے درباری طبیب رہے</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1807ء</div>
+                    <div>82 سال کی عمر میں دہلی میں وفات، مہرولی میں دفن</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📖</div>
+                <h2>تعلیم - کہاں سے پڑھا؟</h2>
+            </div>
+            
+            <p>علمی خاندان سے تعلق کی وجہ سے پڑھائی ہی ان کا شوق بنا۔</p>
+            
+            <div class="key-point">
+                <div class="key-point-title">📚 کیا پڑھا؟</div>
+                <p><strong>عربی و فارسی:</strong> شاہ عبد العزیز دہلوی کے مشہور مدرسہ سے</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">👨‍⚕️ طب کس سے سیکھی؟</div>
+                <div class="teachers-grid">
+                    <div class="teacher-card">
+                        <strong>حکیم عابد سرہندی</strong>
+                        <div class="role">کتابی علم</div>
+                    </div>
+                    <div class="teacher-card">
+                        <strong>حکیم اچھے خاں</strong>
+                        <div class="role">کتابی علم</div>
+                    </div>
+                    <div class="teacher-card">
+                        <strong>حکیم اکمل خاں</strong>
+                        <div class="role">والد - عملی تربیت</div>
+                    </div>
+                    <div class="teacher-card">
+                        <strong>حکیم اجمل خاں اوّل</strong>
+                        <div class="role">چچا - عملی تربیت</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-tip-icon">💡</span>
+                <div><strong>یاد کرنے کا طریقہ:</strong> "عابد اور اچھے سے پڑھا، اکمل اور اجمل سے سیکھا"</div>
+            </div>
+        </div>
+
+        <!-- Excellence -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">⭐</div>
+                <h2>فضل و کمال - کیا خوبیاں تھیں؟</h2>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">🏥 بطور طبیب:</div>
+                <ul class="summary-list">
+                    <li>خاندانی مطب (کلینک) کو بہتر بنایا</li>
+                    <li>شاہ عالم ثانی (1759-1806ء) کے درباری طبیب بنے</li>
+                    <li>ایسے کمالات دکھائے کہ ہر طرف نام ہوا</li>
+                    <li>اس زمانے کے تمام علماء ان سے متاثر تھے</li>
+                </ul>
+            </div>
+
+            <div class="quote-box">
+                <p>سرآمد حکماء روزگار حکیم شریف خاں جیسا کمالاتِ ظاہری و باطنی کا مالک آج تک نہیں آیا۔ جالینوس اور ارسطو بھی ان کے سامنے ایسے ہیں جیسے نقارخانے میں طوطی کی آواز۔ آج کل کے اکثر بڑے حکیم انہی کے شاگرد ہیں۔</p>
+                <div class="quote-author">— سر سید احمد خان</div>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">✍️ بطور مصنف:</div>
+                <p>تصنیف میں بہت اعلیٰ مقام تھا۔ ان کی لکھی کتابیں طب کا قیمتی سرمایہ ہیں۔ کئی کتابیں اور رسائل لکھے۔</p>
+            </div>
+        </div>
+
+        <!-- Books -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📚</div>
+                <h2>کتابیں - کیا لکھا؟</h2>
+            </div>
+
+            <div class="book-item">
+                <div class="book-title">علاج الامراض</div>
+                <p>یہ نسخوں کی کتاب ہے (قرابادین)۔ بیماریوں کے حساب سے مرکب دوائیوں کے بہترین نسخے اکٹھے کیے۔</p>
+            </div>
+
+            <div class="book-item">
+                <div class="book-title">تالیف شریفی</div>
+                <p>بہت اہم کتاب! ہندوستانی دوائیوں اور کھانوں پر لکھی۔ ہندی ناموں کے ساتھ فارسی نام بھی دیے۔</p>
+            </div>
+
+            <div class="book-item">
+                <div class="book-title">مطب شریف خاں</div>
+                <p>انمول بیاض! اپنے باپ دادا اور حکیم علوی خاں جیسے بڑے حکیموں کے آزمودہ نسخے جمع کیے۔</p>
+            </div>
+
+            <div class="book-item">
+                <div class="book-title">حاشیہ شرح اسباب</div>
+                <p>نفیس بن عوض کرمانی کی کتاب "شرح الاسباب والعلامات" پر تشریح لکھی۔</p>
+            </div>
+
+            <div class="book-item">
+                <div class="book-title">مدارک الحکم</div>
+                <p>کلیات نفیسی پر حاشیہ (وضاحتی نوٹس)۔</p>
+            </div>
+
+            <div class="book-item">
+                <div class="book-title">ترجمہ کلیات قانون</div>
+                <p>ابن سینا کی "القانون فی الطب" کا فارسی ترجمہ (صرف پہلی جلد)۔</p>
+            </div>
+
+            <div class="book-item">
+                <div class="book-title">حاشیہ قانون</div>
+                <p>القانون پر وضاحتی نوٹس۔</p>
+            </div>
+
+            <div class="book-item">
+                <div class="book-title">شرح موجز</div>
+                <p>موجز القانون کی شرح (تفصیلی وضاحت)۔</p>
+            </div>
+
+            <div class="book-item">
+                <div class="book-title">تحفہ شاہی</div>
+                <p>خواص الجواہر کا خلاصہ۔ بادشاہ کو پیش کیا اسی لیے شاہی نام رکھا۔</p>
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-tip-icon">💡</span>
+                <div><strong>یاد رکھیں:</strong> 9 کتابیں - علاج، تالیف، مطب، 2 حاشیے (اسباب، قانون)، مدارک، ترجمہ، شرح، تحفہ</div>
+            </div>
+        </div>
+
+        <!-- Treatises -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">📄</div>
+                <h2>رسائل - چھوٹی کتابیں</h2>
+            </div>
+            
+            <p>خاص موضوعات پر چار اہم رسالے لکھے جو اپنے موضوع پر مکمل معلومات دیتے ہیں:</p>
+            
+            <div class="treatise-grid">
+                <div class="treatise-item">
+                    <strong>رسالہ در علاج حمیات</strong>
+                    <br>بخاروں کا علاج
+                </div>
+                <div class="treatise-item">
+                    <strong>رسالہ چوب چینی</strong>
+                    <br>چوب چینی کے فوائد
+                </div>
+                <div class="treatise-item">
+                    <strong>رسالہ دستور الفصد</strong>
+                    <br>فصد (خون نکالنا) کے اصول
+                </div>
+                <div class="treatise-item">
+                    <strong>رسالہ قوت باہ</strong>
+                    <br>مردانہ طاقت
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <span class="memory-tip-icon">💡</span>
+                <div><strong>یاد کریں:</strong> "حُم چوب فصد باہ" (حمیات، چوب چینی، فصد، باہ)</div>
+            </div>
+        </div>
+
+        <!-- Final Summary -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🎓</div>
+                <h2>خلاصہ - یاد رکھنے والی باتیں</h2>
+            </div>
+
+            <div class="highlight-box">
+                <strong>حکیم شریف خان = اشرف الحکماء</strong>
+            </div>
+
+            <ul class="summary-list">
+                <li>1725ء دہلی میں پیدا، 1807ء میں وفات (82 سال)</li>
+                <li>خاندان شریفی انہی کے نام پر ہے</li>
+                <li>شاہ عالم ثانی کے درباری طبیب</li>
+                <li>بادشاہ سے جاگیر اور اشرف الحکماء کا خطاب ملا</li>
+                <li>اساتذہ: عابد سرہندی، اچھے خاں، اکمل خاں (والد)، اجمل خاں (چچا)</li>
+                <li>9 کتابیں + 4 رسالے لکھے</li>
+                <li>مشہور کتابیں: علاج الامراض، تالیف شریفی، مطب شریف خان</li>
+                <li>سر سید نے کہا: جالینوس اور ارسطو بھی ان کے سامنے کچھ نہیں</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

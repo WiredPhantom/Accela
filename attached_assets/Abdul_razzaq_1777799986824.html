@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم محمد عبد الرزاق - سوانح حیات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .header .english-name {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* Quick Facts Box */
+        .quick-facts {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            border-right: 5px solid #1e3a5f;
+        }
+
+        .quick-facts h2 {
+            color: #1e3a5f;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .fact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .fact-item:last-child {
+            border-bottom: none;
+        }
+
+        .fact-label {
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+
+        .fact-value {
+            color: #4a5568;
+            text-align: left;
+        }
+
+        /* Section Styles */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            color: #1e3a5f;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .section-content {
+            color: #4a5568;
+            text-align: justify;
+        }
+
+        .section-content p {
+            margin-bottom: 12px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #e6f3ff 0%, #f0f7ff 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #2d5a87;
+        }
+
+        .highlight-box.important {
+            background: linear-gradient(135deg, #fff5e6 0%, #fff9f0 100%);
+            border-right-color: #d69e2e;
+        }
+
+        .highlight-box.success {
+            background: linear-gradient(135deg, #e6ffed 0%, #f0fff4 100%);
+            border-right-color: #38a169;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #1e3a5f, #2d5a87);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #1e3a5f;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #1e3a5f;
+        }
+
+        .timeline-year {
+            background: #1e3a5f;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content {
+            color: #4a5568;
+        }
+
+        /* Achievement Cards */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #fff 100%);
+            border-radius: 15px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .achievement-card h4 {
+            color: #1e3a5f;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .achievement-card p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        .achievement-card .year-badge {
+            background: #e6f3ff;
+            color: #1e3a5f;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        /* Country Tags */
+        .country-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .country-tag {
+            background: linear-gradient(135deg, #e6f3ff 0%, #f0f7ff 100%);
+            color: #1e3a5f;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #bee3f8;
+        }
+
+        /* Book Items */
+        .book-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            border-right: 4px solid #2d5a87;
+        }
+
+        .book-item h4 {
+            color: #1e3a5f;
+            margin-bottom: 5px;
+        }
+
+        .book-item .english-title {
+            color: #718096;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .book-item .co-author {
+            color: #4a5568;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Memory Aid Section */
+        .memory-section {
+            background: linear-gradient(135deg, #fef5e7 0%, #fffbf5 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 25px 0;
+            border: 2px dashed #d69e2e;
+        }
+
+        .memory-section h3 {
+            color: #b7791f;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .memory-item {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .memory-item .year {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+
+        .memory-item .event {
+            font-size: 0.85rem;
+            color: #4a5568;
+            margin-top: 5px;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .summary-box p {
+            opacity: 0.95;
+            line-height: 2;
+        }
+
+        /* Key Points List */
+        .key-points {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .key-points li {
+            padding: 10px 15px;
+            margin: 8px 0;
+            background: #f8fafc;
+            border-radius: 10px;
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .key-points li::before {
+            content: '✓';
+            position: absolute;
+            right: 12px;
+            color: #38a169;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (min-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .memory-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .achievement-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .fact-item {
+                flex-direction: row;
+            }
+        }
+
+        /* Simple Styles */
+        .simple-text {
+            background: #f0fff4;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 10px 0;
+            border-right: 3px solid #38a169;
+            font-size: 0.95rem;
+        }
+
+        .note-box {
+            background: #fff5f5;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 10px 0;
+            border-right: 3px solid #e53e3e;
+        }
+
+        .abbr-box {
+            background: #e6f3ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .abbr-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #bee3f8;
+        }
+
+        .abbr-item:last-child {
+            border-bottom: none;
+        }
+
+        .abbr-short {
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+
+        .abbr-full {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>حکیم محمد عبد الرزاق</h1>
+        <div class="english-name">Muhammad Abdur Razzaque</div>
+        <div class="subtitle">بانی سی۔سی۔آر۔یو۔ایم (CCRUM)</div>
+    </header>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <h2>📋 اہم معلومات ایک نظر میں</h2>
+            <div class="fact-item">
+                <span class="fact-label">پیدائش:</span>
+                <span class="fact-value">1931ء، حیدرآباد دکن</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-label">وفات:</span>
+                <span class="fact-value">1992ء، دبئی (دل کا عارضہ)</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-label">مدفن:</span>
+                <span class="fact-value">قبرستان پنج پیران، نئی دہلی</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-label">تعلیم:</span>
+                <span class="fact-value">بی۔اے (پنجاب یونیورسٹی)</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-label">طبی تعلیم:</span>
+                <span class="fact-value">اے اینڈ یو طبیہ کالج، قرول باغ دہلی (1954ء)</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-label">سب سے بڑا کارنامہ:</span>
+                <span class="fact-value">CCRUM کا قیام (1979ء)</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">1</span>
+                <h2 class="section-title">تعارف</h2>
+            </div>
+            <div class="section-content">
+                <p>حکیم محمد عبد الرزاق بیسویں صدی کے بہت ہی ہوشیار اور محنتی طبیب تھے۔ وہ دور اندیش تھے یعنی آگے کی سوچتے تھے۔</p>
+                
+                <div class="simple-text">
+                    <strong>آسان الفاظ میں:</strong> یہ ایک ایسے ڈاکٹر تھے جنہوں نے یونانی طب (دیسی علاج) کو ترقی دینے کے لیے بہت کام کیا۔
+                </div>
+
+                <div class="highlight-box">
+                    <strong>🏆 سب سے بڑا کام:</strong> سی۔سی۔آر۔یو۔ایم (CCRUM) نامی ادارہ بنایا جو آج تک یونانی طب پر تحقیق کر رہا ہے۔
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Life Events -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">2</span>
+                <h2 class="section-title">زندگی کے اہم واقعات</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">1931ء</span>
+                        <div class="timeline-content">حیدرآباد دکن میں پیدا ہوئے</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1954ء</span>
+                        <div class="timeline-content">طبیہ کالج قرول باغ دہلی سے فارغ التحصیل ہوئے (پڑھائی مکمل کی)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1992ء</span>
+                        <div class="timeline-content">دبئی میں دل کی بیماری سے وفات پائی</div>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <strong>📍 آخری آرام گاہ:</strong> آپ کا جسم ہندوستان لایا گیا اور نئی دہلی کے قبرستان "پنج پیران" میں دفن ہوئے۔
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Education -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">3</span>
+                <h2 class="section-title">تعلیم و تربیت</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">ابتدائی تعلیم</span>
+                        <div class="timeline-content">حیدرآباد دکن میں حاصل کی</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">بی۔اے</span>
+                        <div class="timeline-content">پنجاب یونیورسٹی سے ڈگری حاصل کی</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">طبی تعلیم</span>
+                        <div class="timeline-content">آیورویدک اینڈ یونانی طبیہ کالج، قرول باغ دہلی سے حاصل کی</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1954ء</span>
+                        <div class="timeline-content">کامل طب و جراحت کی سند (ڈگری) ملی</div>
+                    </div>
+                </div>
+
+                <div class="simple-text">
+                    <strong>یاد رکھیں:</strong> پہلے عام تعلیم حیدرآباد میں، پھر بی۔اے پنجاب سے، اور طب کی پڑھائی دہلی سے۔
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Career -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">4</span>
+                <h2 class="section-title">ملازمت کا سفر</h2>
+            </div>
+            <div class="section-content">
+                <p>حکیم صاحب نے عام طبیب کی طرح صرف مریض نہیں دیکھے بلکہ یونانی طب کو ترقی دینے کا کام کیا۔</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">1954ء - 1965ء</span>
+                        <div class="timeline-content">
+                            <strong>ہمدرد وقف لیبارٹریز</strong><br>
+                            میڈیکل سپرنٹنڈنٹ (بڑے ڈاکٹر) کے طور پر کام کیا
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1965ء - 1985ء</span>
+                        <div class="timeline-content">
+                            <strong>وزارتِ صحت</strong><br>
+                            یونانی کے مشیر کے طور پر خدمات دیں
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1969ء</span>
+                        <div class="timeline-content">
+                            <strong>سینٹرل کونسل فار انڈین میڈیسن اینڈ ہومیو پیتھی</strong><br>
+                            یونانی تحقیق کے نگراں بنے
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1979ء</span>
+                        <div class="timeline-content">
+                            <strong>CCRUM کی بنیاد رکھی</strong><br>
+                            اس کے پہلے ڈائرکٹر بنے
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Main Achievements -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">5</span>
+                <h2 class="section-title">اہم کارنامے</h2>
+            </div>
+            <div class="section-content">
+                <div class="achievement-grid">
+                    <div class="achievement-card">
+                        <h4>🏛️ CCRUM کا قیام</h4>
+                        <p>یونانی طب پر تحقیق کے لیے سرکاری ادارہ بنوایا</p>
+                        <span class="year-badge">1979ء</span>
+                    </div>
+                    <div class="achievement-card">
+                        <h4>📜 CCIM ایکٹ</h4>
+                        <p>یونانی طب کے لیے قانون بنوایا</p>
+                        <span class="year-badge">1970ء</span>
+                    </div>
+                    <div class="achievement-card">
+                        <h4>🎓 پوسٹ گریجویٹ تعلیم</h4>
+                        <p>یونانی طب میں ایم۔ڈی کی پڑھائی شروع کروائی</p>
+                        <span class="year-badge">1973ء</span>
+                    </div>
+                    <div class="achievement-card">
+                        <h4>🏥 CGHS ڈسپنسریاں</h4>
+                        <p>سرکاری ملازمین کے لیے یونانی دواخانے کھلوائے</p>
+                        <span class="year-badge">1977ء</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: CCRUM Details -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">6</span>
+                <h2 class="section-title">CCRUM کی تفصیل</h2>
+            </div>
+            <div class="section-content">
+                <div class="abbr-box">
+                    <div class="abbr-item">
+                        <span class="abbr-short">CCRUM</span>
+                        <span class="abbr-full">Central Council for Research in Unani Medicine</span>
+                    </div>
+                    <div class="abbr-item">
+                        <span class="abbr-short">مطلب</span>
+                        <span class="abbr-full">یونانی طب میں تحقیق کی مرکزی کونسل</span>
+                    </div>
+                </div>
+
+                <p>جب حکیم صاحب 1969ء میں انڈین میڈیسن کی کونسل سے جڑے تو انہوں نے سوچا کہ یونانی طب کی ترقی کے لیے الگ سے ایک ادارہ ہونا چاہیے۔ انہوں نے حکومت کو منایا اور 1979ء میں CCRUM بن گیا۔</p>
+
+                <div class="highlight-box success">
+                    <strong>کونسل کے کام:</strong>
+                    <ul class="key-points">
+                        <li>پرانی طبی کتابوں کا ترجمہ اور چھپائی</li>
+                        <li>یونانی دواؤں کی پہچان اور جانچ</li>
+                        <li>مختلف بیماریوں کے علاج کی تحقیق</li>
+                        <li>نئے طریقوں سے دواؤں پر ریسرچ</li>
+                    </ul>
+                </div>
+
+                <div class="simple-text">
+                    <strong>دفاتر:</strong><br>
+                    • صدر دفتر: نئی دہلی<br>
+                    • علمی تحقیق کا شعبہ: تغلق آباد، نئی دہلی<br>
+                    • مرکزی ریسرچ ادارہ: حیدرآباد دکن
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: International Work -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">7</span>
+                <h2 class="section-title">بین الاقوامی خدمات</h2>
+            </div>
+            <div class="section-content">
+                <p>حکیم صاحب نے یونانی طب کو دنیا میں متعارف کرایا۔ انہوں نے بہت سے ملکوں میں جا کر یونانی طب پر مقالے پیش کیے۔</p>
+
+                <h4 style="margin: 15px 0 10px; color: #1e3a5f;">🌍 جن ملکوں کا دورہ کیا:</h4>
+                <div class="country-tags">
+                    <span class="country-tag">🇸🇦 سعودی عرب</span>
+                    <span class="country-tag">🇮🇷 ایران</span>
+                    <span class="country-tag">🇰🇼 کویت</span>
+                    <span class="country-tag">🇪🇬 مصر</span>
+                    <span class="country-tag">🇦🇪 متحدہ عرب امارات</span>
+                    <span class="country-tag">🇱🇾 لیبیا</span>
+                    <span class="country-tag">🇲🇾 ملیشیا</span>
+                    <span class="country-tag">🇩🇪 مغربی جرمنی</span>
+                    <span class="country-tag">🇫🇷 فرانس</span>
+                    <span class="country-tag">🇧🇩 بنگلہ دیش</span>
+                    <span class="country-tag">🇱🇰 سری لنکا</span>
+                </div>
+
+                <div class="simple-text">
+                    <strong>یاد رکھنے کا طریقہ:</strong> 11 ملک - عرب ممالک (5) + ایشیائی (3) + یورپی (2) + سری لنکا
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Books -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">8</span>
+                <h2 class="section-title">تصنیفات (کتابیں)</h2>
+            </div>
+            <div class="section-content">
+                <p>حکیم صاحب نے کتابیں بھی لکھیں اور کونسل کی کتابوں کے تعارف بھی لکھے۔</p>
+
+                <div class="book-item">
+                    <h4>📚 اے ہینڈ بک آف کامن ریمیڈیز ان یونانی سسٹم آف میڈیسن</h4>
+                    <div class="english-title">A Hand Book of Common Remedies in Unani System of Medicine</div>
+                    <div class="co-author">✍️ شریک مصنف: طبیبہ ام الفضل</div>
+                </div>
+
+                <div class="book-item">
+                    <h4>📚 حکیم اجمل خان: اے ورسٹائل جینئس</h4>
+                    <div class="english-title">Hakim Ajmal Khan: A Versatile Genius</div>
+                    <div class="co-author">حکیم اجمل خان کی سوانح حیات</div>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>اور کام:</strong> کونسل سے چھپنے والی بہت سی کتابوں کے تعارف لکھے اور یونانی طب پر کئی مقالے تحریر کیے۔
+                </div>
+            </div>
+        </section>
+
+        <!-- Abbreviations -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">9</span>
+                <h2 class="section-title">اہم مخففات (Short Forms)</h2>
+            </div>
+            <div class="section-content">
+                <div class="abbr-box">
+                    <div class="abbr-item">
+                        <span class="abbr-short">CCRUM</span>
+                        <span class="abbr-full">Central Council for Research in Unani Medicine</span>
+                    </div>
+                    <div class="abbr-item">
+                        <span class="abbr-short">CCIM</span>
+                        <span class="abbr-full">Central Council of Indian Medicine</span>
+                    </div>
+                    <div class="abbr-item">
+                        <span class="abbr-short">CGHS</span>
+                        <span class="abbr-full">Central Government Health Scheme</span>
+                    </div>
+                    <div class="abbr-item">
+                        <span class="abbr-short">A&U</span>
+                        <span class="abbr-full">Ayurvedic & Unani (طبیہ کالج)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memory Section -->
+        <div class="memory-section">
+            <h3>🧠 یاد کرنے کے لیے اہم تاریخیں</h3>
+            <div class="memory-grid">
+                <div class="memory-item">
+                    <div class="year">1931</div>
+                    <div class="event">پیدائش</div>
+                </div>
+                <div class="memory-item">
+                    <div class="year">1954</div>
+                    <div class="event">تعلیم مکمل</div>
+                </div>
+                <div class="memory-item">
+                    <div class="year">1969</div>
+                    <div class="event">نگراں تحقیق</div>
+                </div>
+                <div class="memory-item">
+                    <div class="year">1970</div>
+                    <div class="event">CCIM ایکٹ</div>
+                </div>
+                <div class="memory-item">
+                    <div class="year">1973</div>
+                    <div class="event">پوسٹ گریجویٹ</div>
+                </div>
+                <div class="memory-item">
+                    <div class="year">1977</div>
+                    <div class="event">CGHS ڈسپنسری</div>
+                </div>
+                <div class="memory-item">
+                    <div class="year">1979</div>
+                    <div class="event">CCRUM قیام</div>
+                </div>
+                <div class="memory-item">
+                    <div class="year">1992</div>
+                    <div class="event">وفات</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Points to Remember -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">10</span>
+                <h2 class="section-title">اہم نکات (یاد رکھیں)</h2>
+            </div>
+            <div class="section-content">
+                <ul class="key-points">
+                    <li>بیسویں صدی کے عظیم طبیب تھے</li>
+                    <li>حیدرآباد دکن میں پیدا ہوئے (1931ء)</li>
+                    <li>دہلی کے قرول باغ طبیہ کالج سے پڑھے</li>
+                    <li>CCRUM کے بانی اور پہلے ڈائرکٹر تھے</li>
+                    <li>یونانی طب میں پوسٹ گریجویٹ تعلیم شروع کروائی</li>
+                    <li>11 ملکوں میں یونانی طب کی تبلیغ کی</li>
+                    <li>دو اہم کتابیں لکھیں</li>
+                    <li>دبئی میں وفات ہوئی، دہلی میں دفن ہوئے</li>
+                    <li>آزاد ہندوستان میں یونانی طب کو مقام دلوایا</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <h3>📝 خلاصہ</h3>
+            <p>
+                حکیم محمد عبد الرزاق ایک عظیم طبی شخصیت تھے۔ انہوں نے آزاد ہندوستان میں یونانی طب کو اس کا صحیح مقام دلوانے کے لیے بہت محنت کی۔ CCRUM کا قیام ان کا سب سے بڑا کارنامہ ہے جو آج بھی کام کر رہا ہے۔ وہ بیسویں صدی کے طبی مجاہدوں میں سے تھے جو اپنے مقصد میں کافی حد تک کامیاب رہے۔
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

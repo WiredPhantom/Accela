@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم اجمل خاں - مسیح الملک</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .header .dates {
+            margin-top: 15px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Quick Facts Card */
+        .quick-facts {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(17, 153, 142, 0.3);
+        }
+
+        .quick-facts h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+
+        .fact-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 12px 0;
+            padding: 8px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+        }
+
+        .fact-icon {
+            font-size: 1.5rem;
+            margin-left: 12px;
+            min-width: 35px;
+        }
+
+        .fact-text {
+            font-size: 0.95rem;
+        }
+
+        /* Section Card */
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 20px;
+            margin: 20px 0;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-card:active {
+            transform: scale(0.98);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid;
+        }
+
+        .section-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-left: 12px;
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Color variations for sections */
+        .color-1 .section-header { border-color: #667eea; }
+        .color-1 .section-number { background: linear-gradient(135deg, #667eea, #764ba2); }
+
+        .color-2 .section-header { border-color: #f093fb; }
+        .color-2 .section-number { background: linear-gradient(135deg, #f093fb, #f5576c); }
+
+        .color-3 .section-header { border-color: #4facfe; }
+        .color-3 .section-number { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+
+        .color-4 .section-header { border-color: #43e97b; }
+        .color-4 .section-number { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+
+        .color-5 .section-header { border-color: #fa709a; }
+        .color-5 .section-number { background: linear-gradient(135deg, #fa709a, #fee140); }
+
+        .color-6 .section-header { border-color: #a8edea; }
+        .color-6 .section-number { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #333; }
+
+        .color-7 .section-header { border-color: #ff9a9e; }
+        .color-7 .section-number { background: linear-gradient(135deg, #ff9a9e, #fecfef); color: #333; }
+
+        .color-8 .section-header { border-color: #667eea; }
+        .color-8 .section-number { background: linear-gradient(135deg, #667eea, #764ba2); }
+
+        /* Content styling */
+        .content p {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 5px solid #f5576c;
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            border-right-color: #667eea;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            border-right-color: #43e97b;
+        }
+
+        /* Key Points List */
+        .key-points {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            padding: 12px 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-right: 4px solid #667eea;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .key-points li:nth-child(odd) {
+            border-right-color: #f5576c;
+        }
+
+        .key-points li:nth-child(3n) {
+            border-right-color: #43e97b;
+        }
+
+        .key-points li:active {
+            background: #e9ecef;
+        }
+
+        /* Story Box */
+        .story-box {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px dashed #667eea;
+        }
+
+        .story-box h4 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        /* Medicine Box */
+        .medicine-box {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .medicine-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .medicine-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px 0;
+            color: #f5576c;
+        }
+
+        /* Books List */
+        .books-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .book-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #667eea, #764ba2, #f5576c);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 4px solid #667eea;
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .summary-card h2 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .summary-card p {
+            font-size: 1.05rem;
+            line-height: 2;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .memory-tip::before {
+            content: '💡';
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .nav-menu h3 {
+            margin-bottom: 15px;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-link {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #2d3748;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-link:active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (min-width: 600px) {
+            .books-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>حکیم محمد اجمل خاں</h1>
+        <p class="subtitle">مسیح الملک</p>
+        <div class="dates">
+            <span>پیدائش: 1868ء دہلی</span> | <span>وفات: 1927ء رامپور</span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Quick Navigation -->
+        <nav class="nav-menu">
+            <h3>📚 فہرست مضامین</h3>
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">تعارف</a>
+                <a href="#education" class="nav-link">تعلیم</a>
+                <a href="#tabeeb" class="nav-link">بحیثیت طبیب</a>
+                <a href="#mujaddid" class="nav-link">مجدد طب</a>
+                <a href="#mujahid" class="nav-link">طبی مجاہد</a>
+                <a href="#institutions" class="nav-link">بانی ادارہ</a>
+                <a href="#freedom" class="nav-link">مجاہد آزادی</a>
+                <a href="#author" class="nav-link">مصنف</a>
+            </div>
+        </nav>
+
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <h2>⭐ اہم نکات یاد رکھیں</h2>
+            <div class="fact-item">
+                <span class="fact-icon">🏠</span>
+                <span class="fact-text"><strong>پیدائش:</strong> 1868ء میں دہلی کے شریف منزل میں</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-icon">👨‍👩‍👦</span>
+                <span class="fact-text"><strong>خاندان:</strong> خاندان شریفی (مشہور طبی خاندان)</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-icon">🎖️</span>
+                <span class="fact-text"><strong>خطابات:</strong> قیصر ہند، حاذق الملک (انگریزوں کے)، مسیح الملک (عوام کا)</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-icon">⏱️</span>
+                <span class="fact-text"><strong>عمر:</strong> 59 سال (40 سال ملک کی خدمت میں)</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <section id="intro" class="section-card color-1">
+            <div class="section-header">
+                <span class="section-number">۱</span>
+                <h2 class="section-title">تعارف</h2>
+            </div>
+            <div class="content">
+                <p>حکیم اجمل خاں ہندوستان کے سب سے مشہور طبیب تھے۔ وہ نہ صرف ایک بڑے طبیب تھے بلکہ ملک کی آزادی کی لڑائی میں بھی بڑھ چڑھ کر حصہ لیا۔</p>
+                
+                <div class="highlight-box">
+                    <strong>🏆 خطابات کی کہانی:</strong><br>
+                    انگریزوں نے ان کی طبی مہارت دیکھ کر "قیصر ہند" اور "حاذق الملک" کے خطابات دیے۔ لیکن جب آزادی کی تحریک چلی تو حکیم صاحب نے وطن کی محبت میں یہ خطابات واپس کر دیے!
+                </div>
+
+                <div class="highlight-box blue">
+                    <strong>💖 عوام کا پیار:</strong><br>
+                    حکیم صاحب سے متاثر ہو کر ہندوستان کے لوگوں نے انہیں "مسیح الملک" کا خطاب دیا جو آج بھی ان کی پہچان ہے۔
+                </div>
+
+                <div class="memory-tip">
+                    <strong>یاد رکھیں:</strong> مسیح = علاج کرنے والا، الملک = ملک کا۔ یعنی "ملک کا علاج کرنے والا"
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Education -->
+        <section id="education" class="section-card color-2">
+            <div class="section-header">
+                <span class="section-number">۲</span>
+                <h2 class="section-title">تعلیم و تربیت</h2>
+            </div>
+            <div class="content">
+                <p>حکیم اجمل خاں "خاندان شریفی" سے تھے جو دہلی کا مشہور طبی خاندان تھا۔ ان کے گھر میں علم عام بات تھی۔</p>
+
+                <div class="highlight-box green">
+                    <strong>📖 تعلیم کا سلسلہ:</strong>
+                </div>
+
+                <ul class="key-points">
+                    <li><strong>پہلے:</strong> گھر پر اردو سیکھی</li>
+                    <li><strong>پھر:</strong> قرآن پاک حفظ کیا</li>
+                    <li><strong>بعد میں:</strong> عربی، فارسی، منطق، فلسفہ، صرف ونحو پڑھی</li>
+                    <li><strong>طب کی تعلیم:</strong> والد حکیم محمود خاں اور بڑے بھائی حکیم عبدالمجید خاں سے سیکھی</li>
+                </ul>
+
+                <div class="memory-tip">
+                    <strong>آسان یاد:</strong> تعلیم کی ترتیب: اردو ← قرآن ← عربی/فارسی ← طب (گھر والوں سے)
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: As a Physician -->
+        <section id="tabeeb" class="section-card color-3">
+            <div class="section-header">
+                <span class="section-number">۳</span>
+                <h2 class="section-title">بحیثیت طبیب</h2>
+            </div>
+            <div class="content">
+                <p>حکیم صاحب طبی دنیا کے بے تاج بادشاہ تھے۔ ان کے مطب میں اتنی رونق ہوتی کہ شاہی دربار بھی مات ہو جائے!</p>
+
+                <ul class="key-points">
+                    <li><strong>نبض دیکھ کر</strong> بیماری پہچان لیتے</li>
+                    <li><strong>سستی اور مفید</strong> دوائیں دیتے</li>
+                    <li><strong>غریبوں کا علاج</strong> مفت کرتے</li>
+                    <li>امیر-غریب <strong>سب قطار میں</strong> کھڑے ہوتے</li>
+                    <li><strong>یورپ میں بھی</strong> طب یونانی کا نام روشن کیا</li>
+                </ul>
+
+                <div class="story-box">
+                    <h4>🏥 لندن کا مشہور واقعہ:</h4>
+                    <p>ایک دفعہ حکیم صاحب لندن کے چیئرنگ کراس اسپتال گئے۔ وہاں کے ماہر سرجن ڈاکٹر اسٹینلے بائڈ نے ایک مریض کو دیکھ کر کہا کہ اسے "ورم مرارہ" (پتے کی سوزش) ہے۔</p>
+                    <p>حکیم صاحب نے نبض دیکھی اور کہا: "نہیں، اسے قرحہ اثناء عشری (آنت کا زخم) ہے۔"</p>
+                    <p><strong>آخر میں جب آپریشن ہوا تو حکیم صاحب کی بات سچ نکلی!</strong></p>
+                </div>
+
+                <div class="memory-tip">
+                    <strong>یاد رکھیں:</strong> صرف نبض دیکھ کر انگریز ڈاکٹر سے بہتر تشخیص کی!
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Reformer of Medicine -->
+        <section id="mujaddid" class="section-card color-4">
+            <div class="section-header">
+                <span class="section-number">۴</span>
+                <h2 class="section-title">بحیثیت مجدد طب</h2>
+            </div>
+            <div class="content">
+                <p>حکیم صاحب نے سوچا کہ طب یونانی کے اصول پرانے ہیں۔ انہیں نئے زمانے کے علوم سے ملانا چاہیے۔</p>
+
+                <div class="highlight-box blue">
+                    <strong>📅 1926ء:</strong> "مجلس تحقیقات علمی" بنائی جس میں طبی ماہرین نے مل کر تحقیق کی۔
+                </div>
+
+                <div class="medicine-box">
+                    <h4>💊 اہم تحقیق</h4>
+                    <p>ڈاکٹر سلیم الزماں صدیقی سے "اسرول" پر تحقیق کروائی</p>
+                    <div class="medicine-name">اجملون</div>
+                    <p>اس سے تین اہم جوہر نکلے:</p>
+                    <p><strong>Ajmalin - Ajmalinin - Ajmalicin</strong></p>
+                    <p>آج یہ دوا "اجملون" نام سے ہائی بلڈ پریشر میں استعمال ہوتی ہے!</p>
+                </div>
+
+                <div class="highlight-box green">
+                    <strong>🏛️ اس تحقیق کو آگے بڑھانے والے:</strong><br>
+                    جامعہ ہمدرد اور CCRUM جیسے ادارے
+                </div>
+
+                <div class="memory-tip">
+                    <strong>یاد رکھیں:</strong> اجمل خاں ← اجملون (نام ان کے نام پر ہے!)
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Medical Fighter -->
+        <section id="mujahid" class="section-card color-5">
+            <div class="section-header">
+                <span class="section-number">۵</span>
+                <h2 class="section-title">بحیثیت طبی مجاہد</h2>
+            </div>
+            <div class="content">
+                <p>جب انگریزوں نے دیسی طبوں کے خلاف سازش شروع کی تو حکیم صاحب نے ان کا مقابلہ کیا۔</p>
+
+                <div class="highlight-box">
+                    <strong>🤝 اتحاد کی تحریک:</strong><br>
+                    حکیم صاحب نے حکیموں اور ویدوں کو ایک کیا!
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">1906ء</span>
+                        <p>"آل انڈیا ویدک اینڈ یونانی طبی کانفرنس" قائم کی</p>
+                        <p>حکیموں اور ویدوں نے مل کر انگریزوں کی سازشیں ناکام بنائیں</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box blue">
+                    <strong>📌 بعد میں:</strong><br>
+                    ویدوں نے اپنی الگ کانفرنس بنا لی۔ یہ کانفرنس "آل انڈیا یونانی طبی کانفرنس" کے نام سے مشہور ہوئی جو آج بھی کام کر رہی ہے۔
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Institution Builder -->
+        <section id="institutions" class="section-card color-6">
+            <div class="section-header">
+                <span class="section-number">۶</span>
+                <h2 class="section-title">بحیثیت بانی ادارہ</h2>
+            </div>
+            <div class="content">
+                <p>حکیم صاحب نے طب کی ترقی کے لیے کئی ادارے بنائے:</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">1903ء</span>
+                        <p><strong>ہندوستانی دواخانہ دہلی</strong> کا قیام</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1909ء</span>
+                        <p><strong>عورتوں کے لیے طبی درسگاہ و اسپتال</strong> چوری والان، دہلی (13 جنوری)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1916ء</span>
+                        <p><strong>محکمہ تالیف</strong> کا قیام</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1921ء</span>
+                        <p><strong>آیورویدک اینڈ یونانی طبیہ کالج دہلی</strong> (سب سے اہم یادگار!)</p>
+                    </div>
+                </div>
+
+                <div class="memory-tip">
+                    <strong>تاریخیں یاد رکھیں:</strong> 1903 → 1909 → 1916 → 1921
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Freedom Fighter -->
+        <section id="freedom" class="section-card color-7">
+            <div class="section-header">
+                <span class="section-number">۷</span>
+                <h2 class="section-title">بحیثیت مجاہد آزادی</h2>
+            </div>
+            <div class="content">
+                <p>حکیم صاحب نے ہندوستان کی آزادی کے لیے بھی بہت کام کیا۔</p>
+
+                <ul class="key-points">
+                    <li><strong>ہندو-مسلم اتحاد</strong> پیدا کیا (جو انگریزوں کو پسند نہ تھا)</li>
+                    <li><strong>مہاتما گاندھی</strong> اور <strong>موتی لال نہرو</strong> کا ساتھ دیا</li>
+                    <li><strong>انڈین نیشنل کانگریس</strong> میں شامل ہوئے</li>
+                    <li>انگریزوں کے دیے <strong>خطابات واپس</strong> کر دیے</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>🇮🇳 وطن کی محبت:</strong><br>
+                    خطابات سے زیادہ وطن عزیز تھا!
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: As Author -->
+        <section id="author" class="section-card color-8">
+            <div class="section-header">
+                <span class="section-number">۸</span>
+                <h2 class="section-title">بحیثیت مصنف</h2>
+            </div>
+            <div class="content">
+                <p>اتنی مصروفیات کے باوجود حکیم صاحب نے کتابیں بھی لکھیں۔ ان کے مضامین شائع ہوتے رہتے تھے۔</p>
+
+                <div class="highlight-box blue">
+                    <strong>✍️ خاص بات:</strong><br>
+                    مشہور طبی مصنف علامہ حکیم محمد کبیر الدین کو لکھنے کی ترغیب بھی حکیم اجمل خاں نے ہی دی تھی!
+                </div>
+
+                <h4 style="margin: 20px 0 10px;">📚 اہم کتابیں:</h4>
+                <div class="books-grid">
+                    <div class="book-item">الطاعون</div>
+                    <div class="book-item">التحفۃ الحامدیہ فی الصناعتہ</div>
+                    <div class="book-item">القول المرغوب فی الماء المشروب</div>
+                    <div class="book-item">مقدمہ اللغات الطبیہ</div>
+                </div>
+
+                <div class="memory-tip">
+                    <strong>افسوس:</strong> بہت سی طبی تحریریں چھپ نہ سکیں جو طب کا بڑا نقصان ہے۔
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <div class="summary-card">
+            <h2>🌟 خلاصہ</h2>
+            <p>مسیح الملک حکیم اجمل خاں ایک عظیم طبیب، مجدد طب، مجاہد آزادی اور مصنف تھے۔ انہوں نے 59 سال کی مختصر زندگی میں طب یونانی اور ملک کی بے مثال خدمت کی۔ آج طب یونانی زندہ ہے تو ان کی وجہ سے!</p>
+        </div>
+
+        <!-- Quick Revision Box -->
+        <div class="quick-facts" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">
+            <h2>📝 فوری دہرائی</h2>
+            <div class="fact-item">
+                <span class="fact-icon">1️⃣</span>
+                <span class="fact-text">پیدائش: 1868ء دہلی | وفات: 1927ء رامپور</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-icon">2️⃣</span>
+                <span class="fact-text">خاندان شریفی کے فرد</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-icon">3️⃣</span>
+                <span class="fact-text">خطاب: مسیح الملک (عوام کا دیا ہوا)</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-icon">4️⃣</span>
+                <span class="fact-text">1906ء میں آل انڈیا ویدک اینڈ یونانی طبی کانفرنس</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-icon">5️⃣</span>
+                <span class="fact-text">1921ء میں طبیہ کالج دہلی</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-icon">6️⃣</span>
+                <span class="fact-text">1926ء میں مجلس تحقیقات علمی</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-icon">7️⃣</span>
+                <span class="fact-text">اجملون دوا کی دریافت (ہائی بلڈ پریشر کے لیے)</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم محمد الیاس خان - سوانح حیات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 20px rgba(30, 58, 95, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .header .dates {
+            margin-top: 15px;
+            background: rgba(255,255,255,0.15);
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.95em;
+        }
+
+        /* Section Styles */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            border-right: 5px solid #1e3a5f;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1e3a5f, #2d5a87);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #e8f4fd 0%, #d4ecf9 100%);
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #2d5a87;
+        }
+
+        .key-point strong {
+            color: #1e3a5f;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #1e3a5f, #2d5a87);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            background: #1e3a5f;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #1e3a5f;
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: #1e3a5f;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+
+        /* Role Cards */
+        .role-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #bae6fd;
+        }
+
+        .role-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #0369a1;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .role-title .badge {
+            background: #0369a1;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+        }
+
+        /* Memory Boxes */
+        .memory-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #f59e0b;
+        }
+
+        .memory-box .label {
+            font-size: 0.85em;
+            color: #92400e;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-right: 4px solid #22c55e;
+            text-align: center;
+        }
+
+        /* Important Points List */
+        .important-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .important-list li {
+            padding: 12px 15px;
+            margin: 10px 0;
+            background: #f8fafc;
+            border-radius: 10px;
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .important-list li::before {
+            content: '✦';
+            position: absolute;
+            right: 12px;
+            color: #1e3a5f;
+            font-size: 1em;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .fact-card .label {
+            font-size: 0.8em;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .fact-card .value {
+            font-size: 1em;
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-style: italic;
+            border: 2px dashed #ec4899;
+        }
+
+        .quote-box .quote-mark {
+            font-size: 2em;
+            color: #ec4899;
+            line-height: 1;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #1e3a5f, #2d5a87);
+            color: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin: 25px 0;
+        }
+
+        .summary-section .section-title {
+            color: white;
+        }
+
+        .summary-section .icon {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .summary-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            gap: 10px;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list .num {
+            background: rgba(255,255,255,0.2);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.85em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Removed scroll-top and nav-pills styles */
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 1.6em;
+            }
+            
+            .section {
+                padding: 20px 15px;
+            }
+            
+            .quick-facts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        .section {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>حکیم محمد الیاس خان</h1>
+        <div class="english-name">Muhammad Iliyas Khan</div>
+        <div class="dates">۱۸۸۰ء - ۱۹۶۳ء</div>
+    </header>
+
+    <div class="container">
+
+        <!-- Navigation Removed -->
+
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-card">
+                <div class="label">پیدائش</div>
+                <div class="value">۱۸۸۰ء - سہاور</div>
+            </div>
+            <div class="fact-card">
+                <div class="label">وفات</div>
+                <div class="value">۱۹۶۳ء - دہلی</div>
+            </div>
+            <div class="fact-card">
+                <div class="label">ضلع</div>
+                <div class="value">ایٹہ (یوپی)</div>
+            </div>
+            <div class="fact-card">
+                <div class="label">قائم کردہ</div>
+                <div class="value">جامعہ طبیہ</div>
+            </div>
+        </div>
+
+        <!-- تعارف Section -->
+        <section class="section" id="intro">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                تعارف
+            </h2>
+            
+            <p>بیسویں صدی کے شروع میں جن اطباء نے طب یونانی کی حفاظت کے لیے اپنا سب کچھ لگا دیا، ان میں <strong>حکیم محمد الیاس خان</strong> کا نام بہت اہم ہے۔</p>
+
+            <div class="key-point">
+                <strong>🔹 پیدائش:</strong> ۱۸۸۰ء میں صوبہ یوپی کے ضلع ایٹہ کے قصبہ سہاور میں پیدا ہوئے۔
+            </div>
+
+            <div class="key-point">
+                <strong>🔹 مشکل وقت:</strong> آزادی سے پہلے ہندو اور مسلمانوں میں مذہبی اختلاف کی وجہ سے آیوروید اور طب یونانی میں بھی فرق آ گیا۔ اس سے طب یونانی کو کافی نقصان ہوا۔
+            </div>
+
+            <div class="key-point">
+                <strong>🔹 جدوجہد:</strong> ایسے مشکل وقت میں حکیم محمد الیاس خان نے طب یونانی کی حفاظت کے لیے بہت محنت کی۔
+            </div>
+
+            <div class="highlight-box">
+                <strong>وفات:</strong> اپنی ساری زندگی طبی خدمات میں گزارنے کے بعد ۱۹۶۳ء میں دہلی میں وفات پائی۔
+            </div>
+        </section>
+
+        <!-- تعلیم Section -->
+        <section class="section" id="education">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">ابتدائی تعلیم</span>
+                    <p>ابتدائی تعلیم گھر پر ہی حاصل کی۔</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">۱۵ سال کی عمر</span>
+                    <p>پڑھائی کے لیے دہلی آئے۔</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">مدرسہ امینیہ</span>
+                    <p>مدرسہ امینیہ سے فضیلت کی سند لی۔</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">مدرسہ طبیہ دہلی</span>
+                    <p><strong>حاذق الملک حکیم عبدالمجید</strong> (حکیم اجمل خان کے بڑے بھائی) کے مدرسہ طبیہ دہلی سے طب کی سند حاصل کی۔</p>
+                </div>
+            </div>
+
+            <div class="memory-box">
+                <div class="label">یاد رکھیں ✨</div>
+                حکیم عبدالمجید = حکیم اجمل خان کے بڑے بھائی
+            </div>
+        </section>
+
+        <!-- فضل و کمال Section -->
+        <section class="section" id="roles">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال - پانچ خصوصیات
+            </h2>
+
+            <p>حکیم محمد الیاس خان اپنے وقت کے:</p>
+
+            <ul class="important-list">
+                <li><strong>حاذق طبیب</strong> - ماہر ڈاکٹر</li>
+                <li><strong>بہترین مدرس</strong> - اچھے استاد</li>
+                <li><strong>بانیٔ مدرسہ</strong> - مدرسہ بنانے والے</li>
+                <li><strong>مجاہد طب</strong> - طب کے لیے لڑنے والے</li>
+                <li><strong>صاحب قلم</strong> - لکھاری</li>
+            </ul>
+        </section>
+
+        <!-- بحیثیت طبیب Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">💊</span>
+                بحیثیت طبیب
+            </h2>
+
+            <div class="role-card">
+                <p>دہلی سے طب کی سند لینے کے بعد اپنے گاؤں <strong>سہاور</strong> واپس گئے اور وہاں اپنا مطب (کلینک) کھولا۔</p>
+            </div>
+
+            <div class="key-point">
+                <strong>🔹 اہم موڑ:</strong> حکیم اجمل خان نے ان کی صلاحیتوں کو دیکھ کر دہلی آنے کا کہا اور طب کے مسائل حل کرنے کی ہدایت دی۔
+            </div>
+
+            <div class="highlight-box">
+                <strong>ایثار:</strong> انہوں نے اپنا مطب بند کیا، گھر چھوڑا اور دہلی آ گئے۔ زندگی بھر یہیں رہے۔
+            </div>
+        </section>
+
+        <!-- بحیثیت استاد Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">👨‍🏫</span>
+                بحیثیت استاد
+            </h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">پہلے</span>
+                    <p>حکیم اجمل خان کے طبیہ کالج قرول باغ، دہلی میں استاد بنے۔</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">۱۹۳۵ء</span>
+                    <p>قرول باغ کے قریب شیدی پورہ میں دہلی کی دوسری طبی درس گاہ <strong>"جامعہ طبیہ"</strong> قائم کی۔</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- جامعہ طبیہ Section -->
+        <section class="section" id="jamia">
+            <h2 class="section-title">
+                <span class="icon">🏫</span>
+                جامعہ طبیہ - بانیٔ مدرسہ
+            </h2>
+
+            <div class="memory-box">
+                <div class="label">اہم معلومات 📌</div>
+                <strong>قیام:</strong> ۱۹۳۵ء<br>
+                <strong>جگہ:</strong> شیدی پورہ چوراہا، قرول باغ کے قریب<br>
+                <strong>خصوصیت:</strong> دہلی کی دوسری طبی درس گاہ
+            </div>
+
+            <div class="key-point">
+                <strong>🔹 ساتھی اساتذہ:</strong>
+                <br>• حکیم فضل الرحمٰن
+                <br>• حکیم محمد کبیر الدین
+            </div>
+
+            <p>ان بڑے اطباء کی وجہ سے جامعہ طبیہ جلد ترقی کرنے لگا اور پڑھائی کے معیار کی وجہ سے مشہور ہو گیا۔</p>
+
+            <div class="quote-box">
+                <div class="quote-mark">"</div>
+                جب نظام حیدرآباد نے ۱۹۳۸ء میں نظامیہ طبیہ کالج بنایا اور بڑی تنخواہ پر بلایا، تو حکیم صاحب نے کہا:
+                <br><br>
+                <strong>"میں چلتے ہوئے مدرسہ کو بند کرکے کسی قیمت پر حیدرآباد نہیں جاؤں گا"</strong>
+                <div class="quote-mark">"</div>
+            </div>
+
+            <div class="role-card">
+                <div class="role-title">
+                    <span class="badge">۱۹۴۷ء</span>
+                    مشکل وقت
+                </div>
+                <p>آزادی کے فسادات میں جامعہ طبیہ کا سامان اور ریکارڈ تباہ ہو گیا۔ اساتذہ اور طلبہ بھی بکھر گئے۔</p>
+            </div>
+
+            <div class="highlight-box">
+                <strong>مثالی کردار:</strong> ایسے مشکل وقت میں بھی حکیم صاحب ڈٹے رہے۔ پیسوں کی اتنی کمی ہوئی کہ چپراسی بھی نہیں رکھ سکتے تھے۔ خود اپنے مدرسہ میں جھاڑو لگاتے دیکھے گئے!
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">آزادی کے بعد</span>
+                    <p>ان کی محنت سے مدرسہ پھر چلنے لگا۔ گلی قاسم جان دہلی میں اچھے طریقے سے کام کرتا رہا۔</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">بعد میں</span>
+                    <p>یہ مدرسہ <strong>حکیم عبدالحمید</strong> (ہمدرد کے بانی) کی سرپرستی میں آیا اور <strong>ہمدرد طبی کالج</strong> کہلایا۔</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">۱۹۷۹ء</span>
+                    <p>گلی قاسم جان سے <strong>تغلق آباد نئی دہلی</strong> منتقل ہوا۔</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">آج</span>
+                    <p><strong>جامعہ ہمدرد کی فیکلٹی آف میڈیسن</strong> کے نام سے مشہور ہے۔</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- مجاہد طب Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">⚔️</span>
+                بحیثیت مجاہد طب
+            </h2>
+
+            <div class="key-point">
+                <strong>🔹 دہلی آنے کی اصل وجہ:</strong> حکیم اجمل خان نے انہیں اس لیے بھی بلایا تھا کہ وہ "آل انڈیا ویدک اینڈ یونانی طبی کانفرنس" سے جڑ جائیں۔
+            </div>
+
+            <div class="role-card">
+                <div class="role-title">
+                    <span class="badge">مقصد</span>
+                </div>
+                <p>دیسی طبوں کے خلاف حکومت کی پالیسیوں کو ناکام بنانے میں مدد کریں۔</p>
+            </div>
+
+            <div class="highlight-box">
+                <strong>جاری جدوجہد:</strong> حکیم اجمل خان کی وفات کے بعد بھی طبی سپہ سالار کی حیثیت سے زندگی بھر طب یونانی کی بقاء اور ترقی کے لیے لڑتے رہے۔
+            </div>
+        </section>
+
+        <!-- صاحب قلم Section -->
+        <section class="section" id="writings">
+            <h2 class="section-title">
+                <span class="icon">✍️</span>
+                بحیثیت صاحب قلم
+            </h2>
+
+            <div class="key-point">
+                <strong>🔹 اعتراف:</strong> حکیم اجمل خان نے ان کی علمی صلاحیتوں کو مان کر انہیں اپنی <strong>"مجلس تحقیقاتِ علمی"</strong> کا رکن بنایا۔
+            </div>
+
+            <div class="memory-box">
+                <div class="label">اہم کتاب 📚</div>
+                <strong>قانون عصری</strong><br>
+                اس تنظیم کی ساری روداد (کام کاج کی تفصیل) اس کتاب میں لکھی۔ یہ ان کی اہم تصنیف ہے۔
+            </div>
+        </section>
+
+        <!-- خلاصہ Section -->
+        <section class="summary-section" id="summary">
+            <h2 class="section-title">
+                <span class="icon">📋</span>
+                یاد رکھنے کے اہم نکات
+            </h2>
+
+            <ul class="summary-list">
+                <li>
+                    <span class="num">۱</span>
+                    <span><strong>پیدائش:</strong> ۱۸۸۰ء، سہاور (ضلع ایٹہ، یوپی)</span>
+                </li>
+                <li>
+                    <span class="num">۲</span>
+                    <span><strong>وفات:</strong> ۱۹۶۳ء، دہلی</span>
+                </li>
+                <li>
+                    <span class="num">۳</span>
+                    <span><strong>تعلیم:</strong> مدرسہ امینیہ (فضیلت) + مدرسہ طبیہ دہلی (طب)</span>
+                </li>
+                <li>
+                    <span class="num">۴</span>
+                    <span><strong>استاد:</strong> حکیم عبدالمجید (حکیم اجمل خان کے بڑے بھائی)</span>
+                </li>
+                <li>
+                    <span class="num">۵</span>
+                    <span><strong>پانچ خصوصیات:</strong> طبیب، مدرس، بانیٔ مدرسہ، مجاہد طب، صاحب قلم</span>
+                </li>
+                <li>
+                    <span class="num">۶</span>
+                    <span><strong>جامعہ طبیہ:</strong> ۱۹۳۵ء میں شیدی پورہ میں قائم کیا</span>
+                </li>
+                <li>
+                    <span class="num">۷</span>
+                    <span><strong>ساتھی:</strong> حکیم فضل الرحمٰن، حکیم محمد کبیر الدین</span>
+                </li>
+                <li>
+                    <span class="num">۸</span>
+                    <span><strong>کتاب:</strong> قانون عصری</span>
+                </li>
+                <li>
+                    <span class="num">۹</span>
+                    <span><strong>تنظیم:</strong> آل انڈیا ویدک اینڈ یونانی طبی کانفرنس</span>
+                </li>
+                <li>
+                    <span class="num">۱۰</span>
+                    <span><strong>جامعہ طبیہ آج:</strong> جامعہ ہمدرد کی فیکلٹی آف میڈیسن (تغلق آباد)</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Final Quote -->
+        <div class="highlight-box">
+            <p>بلاشبہ حکیم محمد الیاس خان کو بیسویں صدی میں طب یونانی کی ترقی کے لیے ہمیشہ یاد کیا جائے گا۔</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <!-- Scroll Button Removed -->
+
+    <script>
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Scroll button removed
+
+        // Add smooth reveal animation on scroll
+        const sections = document.querySelectorAll('.section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم عبدالحمید دہلوی - سوانح حیات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 16px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .dates-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px dashed #e2e8f0;
+        }
+
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #4a5568;
+        }
+
+        .section-content {
+            font-size: 1em;
+            text-align: justify;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 12px 0;
+            border-right: 4px solid #48bb78;
+        }
+
+        .key-point-label {
+            color: #48bb78;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+
+        /* Highlights */
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 12px 0;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+
+        .highlight-box.purple {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+        }
+
+        /* Products List */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .product-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Quotes Section */
+        .quote-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .quote-number {
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: #764ba2;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            font-weight: 700;
+        }
+
+        .quote-text {
+            font-size: 1.05em;
+            font-weight: 500;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: #fffbeb;
+            border: 2px dashed #f59e0b;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        .memory-tip-header {
+            color: #d97706;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .summary-box h4 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 5px 0;
+            padding-right: 20px;
+            position: relative;
+        }
+
+        .summary-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>🏥 حکیم عبدالحمید دہلوی</h1>
+        <p class="subtitle">محسنِ طب یونانی</p>
+        <div class="dates-badge">
+            📅 پیدائش: 14 ستمبر 1908ء | وفات: 22 جولائی 1999ء
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Introduction Section -->
+        <section class="section" id="intro">
+            <div class="section-header">
+                <div class="section-icon">📖</div>
+                <h2 class="section-title">تعارف</h2>
+            </div>
+            <div class="section-content">
+                <p>بیسویں صدی کے عظیم اور یادگار طبیبوں میں حکیم عبدالحمید دہلوی کا نام بہت اہم ہے۔</p>
+                
+                <div class="key-point">
+                    <div class="key-point-label">📌 اہم نکتہ</div>
+                    یہ <strong>حکیم حافظ عبدالمجید</strong> کے بیٹے تھے اور <strong>دہلی</strong> میں پیدا ہوئے۔
+                </div>
+
+                <div class="highlight-box blue">
+                    <strong>⚠️ مشکل وقت:</strong> بچپن میں ہی والد کا سایہ سر سے اٹھ گیا۔ لیکن انہوں نے ہمت نہیں ہاری!
+                </div>
+
+                <div class="highlight-box green">
+                    <strong>✨ کامیابی:</strong> والد کے چھوٹے سے دواخانے کو محنت سے <strong>ہمدرد (وقف) لیبارٹریز</strong> میں بدل دیا۔
+                </div>
+
+                <div class="memory-tip">
+                    <div class="memory-tip-header">💡 یاد رکھنے کا طریقہ</div>
+                    <strong>1908 - 1999</strong> = تقریباً <strong>91 سال</strong> کی عمر پائی
+                </div>
+
+                <h4 style="margin: 15px 0 10px;">🏭 ہمدرد کی مشہور مصنوعات:</h4>
+                <div class="products-grid">
+                    <div class="product-item">🥤 روح افزا</div>
+                    <div class="product-item">💊 صافی</div>
+                    <div class="product-item">🍶 سنکارا</div>
+                    <div class="product-item">👶 گرائپ واٹر</div>
+                </div>
+
+                <div class="summary-box">
+                    <h4>📝 خلاصہ یاد رکھیں:</h4>
+                    <ul class="summary-list">
+                        <li>چھوٹے دواخانے کو بڑی لیبارٹری بنایا</li>
+                        <li>کمائی کا بڑا حصہ طب یونانی پر خرچ کیا</li>
+                        <li>محسنِ طب کا لقب ملا</li>
+                        <li>آخری سانس تک لوگوں کی خدمت کی</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section" id="education">
+            <div class="section-header">
+                <div class="section-icon">📚</div>
+                <h2 class="section-title">تعلیم و تربیت</h2>
+            </div>
+            <div class="section-content">
+                <div class="highlight-box purple">
+                    حکیم صاحب نے <strong>دینی اور ابتدائی تعلیم</strong> اپنے والد <strong>حکیم حافظ عبدالمجید</strong> کی نگرانی میں حاصل کی۔
+                </div>
+
+                <div class="memory-tip">
+                    <div class="memory-tip-header">💡 یاد رکھیں</div>
+                    والد = استاد (گھر میں ہی تعلیم)
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <div class="section-header">
+                <div class="section-icon">⭐</div>
+                <h2 class="section-title">فضل و کمال</h2>
+            </div>
+            <div class="section-content">
+                <p>حکیم صاحب میں بہت سی خوبیاں جمع تھیں۔ وہ بیک وقت:</p>
+                
+                <div class="products-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 15px;">
+                    <div class="product-item" style="font-size: 0.85em;">👨‍⚕️ طبیب</div>
+                    <div class="product-item" style="font-size: 0.85em;">🔬 موجد</div>
+                    <div class="product-item" style="font-size: 0.85em;">📊 محقق</div>
+                    <div class="product-item" style="font-size: 0.85em;">🧠 مفکر</div>
+                    <div class="product-item" style="font-size: 0.85em;">🏭 صنعت کار</div>
+                    <div class="product-item" style="font-size: 0.85em;">🏛️ بانی ادارہ</div>
+                </div>
+
+                <div class="memory-tip">
+                    <div class="memory-tip-header">💡 یاد کرنے کا فارمولا</div>
+                    <strong>ط + م + م + م + ص + ب</strong> = 6 خوبیاں<br>
+                    (طبیب، موجد، محقق، مفکر، صنعت کار، بانی)
+                </div>
+            </div>
+        </section>
+
+        <!-- As Physician Section -->
+        <section class="section" id="physician">
+            <div class="section-header">
+                <div class="section-icon">👨‍⚕️</div>
+                <h2 class="section-title">بحیثیت طبیب</h2>
+            </div>
+            <div class="section-content">
+                <div class="highlight-box green">
+                    حکیم صاحب اپنے وقت کے <strong>"مسیحا"</strong> تھے - یعنی ان کے ہاتھ میں شفا تھی۔
+                </div>
+
+                <div class="key-point">
+                    <div class="key-point-label">📍 مطب کے مقامات (دہلی میں)</div>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>📌 لال کنواں</li>
+                        <li>📌 آصف علی روڈ</li>
+                        <li>📌 تغلق آباد</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>📊 روزانہ مریض:</strong> اوسطاً <strong>150 سے زیادہ</strong> مریض دیکھتے تھے!
+                </div>
+
+                <div class="key-point">
+                    <div class="key-point-label">👥 مریضوں کی قسم</div>
+                    غریب سے لے کر امیر تک - سب آتے تھے
+                </div>
+
+                <div class="highlight-box purple">
+                    <strong>💝 خاص بات:</strong> مریضوں سے بہت محبت اور اچھے اخلاق سے پیش آتے تھے۔ ان سے ملتے ہی مریض کی آدھی تکلیف دور ہو جاتی!
+                </div>
+
+                <div class="summary-box">
+                    <h4>🎯 الہامی حکیم کا لقب</h4>
+                    مریض کے بارے میں ایسی باتیں بتا دیتے جو کوئی نہیں جانتا تھا - اس لیے لوگ انہیں "الہامی حکیم" کہتے تھے۔
+                </div>
+            </div>
+        </section>
+
+        <!-- As Inventor Section -->
+        <section class="section" id="inventor">
+            <div class="section-header">
+                <div class="section-icon">🔬</div>
+                <h2 class="section-title">بحیثیت موجد و محقق</h2>
+            </div>
+            <div class="section-content">
+                <p>انہوں نے طب یونانی میں نئی تحقیق اور ایجاد کو فروغ دیا۔</p>
+
+                <div class="key-point">
+                    <div class="key-point-label">🩺 جن بیماریوں کے لیے نئے نسخے بنائے:</div>
+                    <div class="products-grid" style="margin-top: 10px;">
+                        <div class="product-item" style="font-size: 0.85em;">🍬 ذیابیطس (شوگر)</div>
+                        <div class="product-item" style="font-size: 0.85em;">💓 بلڈ پریشر</div>
+                        <div class="product-item" style="font-size: 0.85em;">💗 خفقان (دل کی دھڑکن)</div>
+                        <div class="product-item" style="font-size: 0.85em;">🫀 ضعف جگر</div>
+                        <div class="product-item" style="font-size: 0.85em; grid-column: span 2;">🪨 سنگ گردہ (پتھری)</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box green">
+                    <strong>✨ خاص بات:</strong> صرف نسخے نہیں بنائے بلکہ جدید طریقے سے <strong>Clinical Trials</strong> بھی کروائے اور پھر عام کیا!
+                </div>
+            </div>
+        </section>
+
+        <!-- As Thinker Section -->
+        <section class="section" id="thinker">
+            <div class="section-header">
+                <div class="section-icon">🧠</div>
+                <h2 class="section-title">بحیثیت مفکر</h2>
+            </div>
+            <div class="section-content">
+                <div class="highlight-box">
+                    <strong>🤔 ان کی سوچ:</strong> زمانہ تیزی سے بدل رہا ہے۔ پرانے علوم کو نئے طریقے سے پیش نہ کیا تو ختم ہو جائیں گے۔
+                </div>
+
+                <div class="key-point">
+                    <div class="key-point-label">🏛️ IHMMR کا قیام (1962ء)</div>
+                    <strong>انسٹی ٹیوٹ آف ہسٹری آف میڈیسن اینڈ میڈیکل ریسرچ</strong><br>
+                    📍 مقام: تغلق آباد، نئی دہلی<br>
+                    📌 مقصد: پرانی یونانی کتابوں اور دواؤں پر تحقیق
+                </div>
+
+                <div class="highlight-box green">
+                    <strong>📚 بڑا کام:</strong> بوعلی سینا کی مشہور کتاب <strong>"القانون فی الطب"</strong> کی پانچوں جلدوں کا انگریزی ترجمہ کیا گیا۔
+                </div>
+
+                <div class="key-point">
+                    <div class="key-point-label">🏢 آل انڈیا یونانی طبی کانفرنس</div>
+                    یہ تنظیم <strong>حکیم اجمل خاں</strong> نے آزادی سے پہلے بنائی تھی۔<br>
+                    حکیم عبدالحمید نے <strong>1953-1999ء</strong> تک اس کی سرپرستی کی اور صدر رہے۔
+                </div>
+
+                <div class="memory-tip">
+                    <div class="memory-tip-header">💡 یاد رکھیں</div>
+                    IHMMR = 1962ء (تحقیقی مرکز)<br>
+                    کانفرنس صدارت = تقریباً 46 سال
+                </div>
+            </div>
+        </section>
+
+        <!-- As Industrialist Section -->
+        <section class="section" id="industrialist">
+            <div class="section-header">
+                <div class="section-icon">🏭</div>
+                <h2 class="section-title">بحیثیت صنعت کار</h2>
+            </div>
+            <div class="section-content">
+                <div class="highlight-box">
+                    <strong>💡 ان کی سوچ:</strong> کوئی بھی اچھا کام کرنے کے لیے پیسے اور وسائل ضروری ہیں۔
+                </div>
+
+                <div class="key-point">
+                    <div class="key-point-label">🏪 ← 🏭 چھوٹے سے بڑے تک</div>
+                    والد کا چھوٹا <strong>ہمدرد دواخانہ</strong> ← بڑا <strong>صنعتی ادارہ</strong>
+                </div>
+
+                <div class="summary-box">
+                    <h4>📊 اس آمدنی سے کیا کیا؟</h4>
+                    <ul class="summary-list">
+                        <li>تعلیمی اور تحقیقی ادارے بنائے</li>
+                        <li>یونانی دوائیں بنائیں جن سے چھوٹے حکیموں کے مطب بھی چلے</li>
+                        <li>طب یونانی کو زندہ رکھا</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- As Founder Section -->
+        <section class="section" id="founder">
+            <div class="section-header">
+                <div class="section-icon">🏛️</div>
+                <h2 class="section-title">بحیثیت بانی ادارہ</h2>
+            </div>
+            <div class="section-content">
+                <p>حکیم صاحب نے کئی طبی، دینی، تعلیمی اور ثقافتی ادارے قائم کیے۔</p>
+
+                <h4 style="margin: 15px 0 10px;">🏥 طبی ادارے:</h4>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">1963ء</span>
+                        <div><strong>سیفیہ حمیدیہ طبی کالج</strong> - برہان پور</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1965ء</span>
+                        <div><strong>ہمدرد ریسرچ کلینک اینڈ نرسنگ ہوم</strong> - نئی دہلی</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1973ء</span>
+                        <div><strong>ہمدرد طبی کالج</strong> - دہلی</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1984ء</span>
+                        <div><strong>رفیدہ نرسنگ اسکول</strong> - نئی دہلی</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1989ء</span>
+                        <div><strong>مجیدیہ ہسپتال</strong> - نئی دہلی</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1989ء</span>
+                        <div><strong>جامعہ ہمدرد</strong> - نئی دہلی ⭐ (خوابوں کی تعبیر)</div>
+                    </div>
+                </div>
+
+                <div class="memory-tip">
+                    <div class="memory-tip-header">💡 یاد کرنے کا طریقہ</div>
+                    <strong>63 - 65 - 73 - 84 - 89 - 89</strong><br>
+                    (برہان پور، کلینک، طبی کالج، نرسنگ، ہسپتال، جامعہ)
+                </div>
+            </div>
+        </section>
+
+        <!-- Jamia Hamdard Section -->
+        <section class="section" id="jamia">
+            <div class="section-header">
+                <div class="section-icon">🎓</div>
+                <h2 class="section-title">جامعہ ہمدرد نئی دہلی</h2>
+            </div>
+            <div class="section-content">
+                <div class="highlight-box purple">
+                    <strong>📅 قیام:</strong> 1989ء<br>
+                    <strong>📍 مقام:</strong> تغلق آباد کے قلعے کے قریب، نئی دہلی
+                </div>
+
+                <div class="key-point">
+                    <div class="key-point-label">🎯 بنیادی مقصد</div>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>📌 طب یونانی کی تعلیم کا معیار بلند کرنا</li>
+                        <li>📌 تحقیق اور تجدید کو فروغ دینا</li>
+                    </ul>
+                </div>
+
+                <div class="summary-box">
+                    <h4>🏫 فیکلٹی آف یونانی میڈیسن کی خصوصیات:</h4>
+                    <ul class="summary-list">
+                        <li>انڈر گریجویٹ اور پوسٹ گریجویٹ تعلیم</li>
+                        <li>حکومت سے منظور شدہ تحقیقی پروجیکٹس</li>
+                        <li>اساتذہ کی لکھی نصابی کتب</li>
+                    </ul>
+                </div>
+
+                <div class="key-point">
+                    <div class="key-point-label">🏥 مجیدیہ ہسپتال (فیکلٹی سے ملحق)</div>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>📌 علیحدہ یونانی OPD اور IPD</li>
+                        <li>📌 طلباء کی عملی تربیت</li>
+                        <li>📌 یونانی دواؤں کی دستیابی</li>
+                        <li>📌 غریبوں کے لیے مفت ڈسپنسری</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box green">
+                    <strong>⚰️ مدفن:</strong> حکیم صاحب کی قبر بھی جامعہ ہمدرد کے احاطے میں ہے۔
+                </div>
+            </div>
+        </section>
+
+        <!-- Quotes Section -->
+        <section class="section" id="quotes">
+            <div class="section-header">
+                <div class="section-icon">💬</div>
+                <h2 class="section-title">اقوال زریں</h2>
+            </div>
+            <div class="section-content">
+                <p style="margin-bottom: 15px;">حکیم صاحب کی قبر کے پتھروں پر اردو، ہندی اور انگریزی میں یہ اقوال کندہ ہیں:</p>
+
+                <div class="quote-card">
+                    <span class="quote-number">1</span>
+                    <p class="quote-text">میں اپنے خدا کے سامنے مالدار کی حیثیت سے پیش نہیں ہونا چاہتا۔</p>
+                </div>
+
+                <div class="quote-card" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);">
+                    <span class="quote-number">2</span>
+                    <p class="quote-text">خدا نے ہمیں کچھ دینے کے لیے بھیجا ہے، کچھ لینے کے لیے نہیں۔</p>
+                </div>
+
+                <div class="quote-card" style="background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);">
+                    <span class="quote-number">3</span>
+                    <p class="quote-text">خطابات اور اعزازات معلوم نہیں کیوں ہمیشہ میری روح کے منافی رہے ہیں۔</p>
+                </div>
+
+                <div class="quote-card" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);">
+                    <span class="quote-number">4</span>
+                    <p class="quote-text">ابوالتقریر، ابوالبیان اور ابواللسان تو اللہ کے فضل سے بہت پیدا ہوئے، کوئی ابوالعمل بھی تو ہونا چاہیے۔</p>
+                </div>
+
+                <div class="quote-card">
+                    <span class="quote-number">5</span>
+                    <p class="quote-text">میرے کام ہی میرے اقوال ہیں۔</p>
+                </div>
+
+                <div class="quote-card" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);">
+                    <span class="quote-number">6</span>
+                    <p class="quote-text">تصوف میری گھٹی میں معلوم نہیں کہاں سے پڑ گیا، لیکن وہ قیل و قال میں نہیں، عمل میں ظاہر ہوا۔</p>
+                </div>
+
+                <div class="memory-tip">
+                    <div class="memory-tip-header">💡 اقوال کا خلاصہ</div>
+                    <strong>عمل > قول</strong> (کام کرو، باتیں کم کرو)<br>
+                    <strong>دینا > لینا</strong> (خدمت کرو)<br>
+                    <strong>سادگی > شہرت</strong> (اعزازات سے دوری)
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Summary -->
+        <section class="section" style="border-right-color: #48bb78;">
+            <div class="section-header">
+                <div class="section-icon" style="background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);">📝</div>
+                <h2 class="section-title">مکمل خلاصہ</h2>
+            </div>
+            <div class="section-content">
+                <div class="summary-box" style="background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);">
+                    <ul class="summary-list">
+                        <li><strong>نام:</strong> حکیم عبدالحمید دہلوی</li>
+                        <li><strong>والد:</strong> حکیم حافظ عبدالمجید</li>
+                        <li><strong>پیدائش:</strong> 14 ستمبر 1908ء، دہلی</li>
+                        <li><strong>وفات:</strong> 22 جولائی 1999ء</li>
+                        <li><strong>لقب:</strong> محسنِ طب، الہامی حکیم</li>
+                        <li><strong>بڑا کارنامہ:</strong> ہمدرد لیبارٹریز</li>
+                        <li><strong>مشہور مصنوعات:</strong> روح افزا، صافی، سنکارا، گرائپ واٹر</li>
+                        <li><strong>بڑا ادارہ:</strong> جامعہ ہمدرد (1989ء)</li>
+                        <li><strong>6 خوبیاں:</strong> طبیب، موجد، محقق، مفکر، صنعت کار، بانی</li>
+                        <li><strong>روزانہ مریض:</strong> 150+</li>
+                        <li><strong>IHMMR:</strong> 1962ء</li>
+                        <li><strong>القانون کا ترجمہ:</strong> 5 جلدیں انگریزی میں</li>
+                        <li><strong>مطب کے مقامات:</strong> لال کنواں، آصف علی روڈ، تغلق آباد</li>
+                        <li><strong>5 بیماریوں کے نسخے:</strong> ذیابیطس، بلڈ پریشر، خفقان، ضعف جگر، سنگ گردہ</li>
+                        <li><strong>کانفرنس صدارت:</strong> 1953-1999ء (46 سال)</li>
+                        <li><strong>ادارے:</strong> 1963، 1965، 1973، 1984، 1989، 1989</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

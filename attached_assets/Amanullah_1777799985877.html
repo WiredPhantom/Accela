@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم امان اللہ خان - مغل دور کے نامور طبیب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf3 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-bottom: 25px;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        /* Quick Info Card */
+        .quick-info {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+        
+        .quick-info h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .info-item {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            padding: 12px 15px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .info-label {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .info-value {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4em;
+        }
+        
+        .icon-intro { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .icon-education { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .icon-skills { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .icon-book1 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .icon-book2 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        
+        .section h2 {
+            color: #333;
+            font-size: 1.3em;
+        }
+        
+        .section-content {
+            font-size: 1.05em;
+            color: #444;
+        }
+        
+        .section-content p {
+            margin-bottom: 12px;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #ffc107;
+        }
+        
+        .highlight-box.green {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-right-color: #4caf50;
+        }
+        
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-right-color: #2196f3;
+        }
+        
+        .highlight-box.purple {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-right-color: #9c27b0;
+        }
+        
+        /* Key Points */
+        .key-points {
+            margin: 15px 0;
+        }
+        
+        .key-point {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .key-point-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            flex-shrink: 0;
+        }
+        
+        /* Books List */
+        .books-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .book-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.1em;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 4em;
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            opacity: 0.2;
+        }
+        
+        .quote-box p {
+            font-size: 1em;
+            line-height: 2;
+        }
+        
+        /* Sub Section */
+        .sub-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+        
+        .sub-section h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        /* Parts List */
+        .parts-list {
+            margin: 15px 0;
+        }
+        
+        .part-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+        
+        .part-title {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        
+        /* Memory Tips */
+        .memory-card {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .memory-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .memory-tip {
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .summary-box h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .summary-item {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        
+        /* Reference Books */
+        .ref-books {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .ref-book {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.95em;
+        }
+        
+        /* Timeline */
+        .timeline {
+            margin: 20px 0;
+            position: relative;
+            padding-right: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #667eea;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+        
+        .timeline-date {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        
+        /* Lists */
+        ul {
+            margin: 10px 0;
+            padding-right: 25px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 30px 30px 0 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .quote-box::before {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🏥 حکیم امان اللہ خان</h1>
+        <div class="subtitle">مغل دور کا عظیم طبیب اور جنگجو</div>
+    </header>
+    
+    <div class="container">
+        <!-- Quick Info -->
+        <div class="quick-info">
+            <h2>📋 مختصر تعارف</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">خطاب:</span>
+                    <span class="info-value">خان زامن</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">نام:</span>
+                    <span class="info-value">فیروز جنگ</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">والد:</span>
+                    <span class="info-value">مہابت خان (سپہ سالار مغل فوج)</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">دور:</span>
+                    <span class="info-value">بادشاہ جہانگیر کا زمانہ</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">خاص بات:</span>
+                    <span class="info-value">طبیب بھی + جنگجو بھی 🗡️</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Introduction -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon icon-intro">📖</div>
+                <h2>تعارف - کون تھے امان اللہ خان؟</h2>
+            </div>
+            <div class="section-content">
+                <div class="highlight-box">
+                    <strong>آسان الفاظ میں:</strong> یہ ایک ایسے ڈاکٹر تھے جو تلوار بھی چلاتے تھے اور کتابیں بھی لکھتے تھے!
+                </div>
+                
+                <p>امان اللہ خان مغل بادشاہ جہانگیر کے دور کے مشہور طبیب (ڈاکٹر) تھے۔ ان کے والد مہابت خان مغل فوج کے سپہ سالار (جنرل) تھے۔</p>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <span class="key-point-number">١</span>
+                        <span>یہ ایک نادر مثال ہیں - جو قلم (لکھنا) اور تلوار (لڑنا) دونوں میں ماہر تھے</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="key-point-number">٢</span>
+                        <span>انہوں نے طب (میڈیکل) پر اہم کتابیں لکھیں</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="key-point-number">٣</span>
+                        <span>ہندوستان میں یونانی طب کو فروغ دیا</span>
+                    </div>
+                </div>
+                
+                <h3 style="margin: 15px 0 10px; color: #667eea;">ان کی مشہور تین کتابیں:</h3>
+                <div class="books-list">
+                    <div class="book-item">📚 گنج بادآورد</div>
+                    <div class="book-item">📚 دستور الہنود</div>
+                    <div class="book-item">📚 ام العلاج</div>
+                </div>
+                
+                <div class="highlight-box green">
+                    <strong>اہمیت:</strong> ان کی کتابوں نے یونانی طب کو ہندوستانی لوگوں کے لیے آسان اور مؤثر بنایا۔
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon icon-education">🎓</div>
+                <h2>تعلیم و تربیت</h2>
+            </div>
+            <div class="section-content">
+                <div class="key-points">
+                    <div class="key-point">
+                        <span class="key-point-number">🗡️</span>
+                        <span><strong>جنگی تربیت:</strong> اپنے والد مہابت خان سے سیکھی جو مغل فوج کے سپہ سالار تھے</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="key-point-number">💊</span>
+                        <span><strong>طبی تعلیم:</strong> اپنے زمانے کے بڑے حکماء اور ویدوں سے حاصل کی</span>
+                    </div>
+                </div>
+                
+                <div class="highlight-box blue">
+                    <strong>نوٹ:</strong> انہوں نے اپنی کتاب "دستور الہنود" کے پیش لفظ میں خود اپنی تعلیم کا ذکر کیا ہے۔
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon icon-skills">⭐</div>
+                <h2>فضل و کمال - ان کی خوبیاں</h2>
+            </div>
+            <div class="section-content">
+                <div class="sub-section">
+                    <h4>🏥 بحیثیت طبیب (ڈاکٹر)</h4>
+                    <p>ان کی طبی مہارت ان کی کتابوں سے ظاہر ہے۔ خاص طور پر علم الادویہ (دواؤں کا علم) میں بہت ماہر تھے۔</p>
+                </div>
+                
+                <div class="sub-section">
+                    <h4>✍️ بحیثیت مصنف</h4>
+                    <p>طبی کتابیں لکھنے میں ان کی خدمات بہت بڑی ہیں۔ خاص بات یہ ہے کہ:</p>
+                    <ul>
+                        <li>یونانی طب کا مطالعہ کیا</li>
+                        <li>آیوروید (ہندو طب) کا بھی مطالعہ کیا</li>
+                        <li>دونوں کو ملا کر کتابیں لکھیں</li>
+                    </ul>
+                </div>
+                
+                <div class="memory-card">
+                    <h3>🧠 یاد رکھیں</h3>
+                    <div class="memory-tip">امان اللہ = طبیب + جنگجو + مصنف</div>
+                    <div class="memory-tip">یونانی طب + آیوروید = دونوں کے ماہر</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Book 1: Ganj Badaward -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon icon-book1">📗</div>
+                <h2>کتاب: گنج بادآورد</h2>
+            </div>
+            <div class="section-content">
+                <div class="highlight-box purple">
+                    <strong>مکمل نام:</strong> گنج بادآورد صاحب قرانی
+                </div>
+                
+                <p><strong>آسان الفاظ میں:</strong> یہ ایک بڑی میڈیکل انسائیکلوپیڈیا ہے جس میں بہت ساری دواؤں کے نسخے ہیں۔</p>
+                
+                <div class="highlight-box">
+                    <strong>اہم بات:</strong> اس میں مغل دور تک کی تمام قرابادین (نسخوں کی کتابوں) کو جمع کیا گیا ہے۔
+                </div>
+                
+                <h3 style="margin: 20px 0 10px; color: #667eea;">کتاب کے تین حصے (گنج):</h3>
+                <div class="parts-list">
+                    <div class="part-item">
+                        <div class="part-title">گنج ١: تمہید</div>
+                        <p>کتاب کا آغاز اور بنیادی باتیں</p>
+                    </div>
+                    <div class="part-item">
+                        <div class="part-title">گنج ٢: متن (ہندوستانی ادویہ)</div>
+                        <p>اس میں شامل ہیں:</p>
+                        <ul>
+                            <li>ہندی دواؤں کے فوائد</li>
+                            <li>ہندوستانی اطباء کی دوائیں</li>
+                            <li>زہر اور اس کا فائدہ</li>
+                            <li>رس اور رسائن (خاص مرکبات)</li>
+                        </ul>
+                    </div>
+                    <div class="part-item">
+                        <div class="part-title">گنج ٣: طلسم (اختتامیہ)</div>
+                        <p>دھاتوں سے کشتہ بنانا اور حیرت انگیز نتائج - جادو جیسا لگتا ہے اس لیے "طلسم" نام رکھا</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box green">
+                    <strong>خاص بات:</strong> اس کتاب میں عربی، فارسی اور سنسکرت کتابوں کی فہرست ہے۔ یہ ثابت کرتی ہے کہ یونانی طب کو ہندوستانی طب میں ڈھالا گیا۔
+                </div>
+                
+                <h3 style="margin: 20px 0 10px; color: #667eea;">استعمال شدہ ہندی کتابیں:</h3>
+                <div class="ref-books">
+                    <span class="ref-book">سشرت سمہتا</span>
+                    <span class="ref-book">طب بھوج راج</span>
+                    <span class="ref-book">طب راج نارند</span>
+                    <span class="ref-book">طب جوگ رتناولی</span>
+                    <span class="ref-book">کام شاستر</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Book 2: Dastoor ul Hinood -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon icon-book2">📙</div>
+                <h2>کتاب: دستور الہنود</h2>
+            </div>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-date">1375ء</span>
+                        <p>راجہ مدن پال نے سنسکرت میں "مدن ونود" لکھی</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date">1635ء</span>
+                        <p>امان اللہ خان نے اس کا فارسی ترجمہ کیا اور نام رکھا "دستور الہنود"</p>
+                    </div>
+                </div>
+                
+                <div class="quote-box">
+                    <p><strong>امان اللہ خان کا کہنا:</strong></p>
+                    <p>"اللہ نے ہر ملک میں وہاں کے لوگوں کے مزاج کے مطابق دوائیں پیدا کی ہیں۔ اس لیے ہندوستان میں علاج کے لیے یہاں کی دواؤں کو جاننا ضروری ہے۔ میں نے ہندی زبان اور طب سیکھی اور یہ کتاب ترجمہ کی۔"</p>
+                </div>
+                
+                <h3 style="margin: 20px 0 10px; color: #667eea;">کتاب کے تین حصے:</h3>
+                <div class="parts-list">
+                    <div class="part-item">
+                        <div class="part-title">١. مقدمہ</div>
+                        <ul>
+                            <li>آیوروید کی اصطلاحات اور نظریات</li>
+                            <li>تری دوش (آیوروید) اور اخلاط (یونانی) کا موازنہ</li>
+                        </ul>
+                    </div>
+                    <div class="part-item">
+                        <div class="part-title">٢. متن (تین ذیلی حصے)</div>
+                        <ul>
+                            <li>پہلا: مفرد ادویہ (سادہ دوائیں)</li>
+                            <li>دوسرا: کھانے پینے کی چیزیں</li>
+                            <li>تیسرا: مرکبات (ملی جلی دوائیں)</li>
+                        </ul>
+                    </div>
+                    <div class="part-item">
+                        <div class="part-title">٣. اختتامیہ</div>
+                        <p>کتاب کا آخری حصہ</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <strong>یاد رکھیں:</strong> اس کتاب میں 700 ہندی دواؤں کا ذکر ہے!
+                </div>
+                
+                <div class="highlight-box blue">
+                    <strong>اہم نکتہ:</strong> کتاب میں لکھا ہے کہ بیماری میں خراب مواد کو نکالنا چاہیے، نہ کہ اخلاط کو۔ یہ ہندوستان میں طب یونانی کی ترقی کا ثبوت ہے۔
+                </div>
+                
+                <div class="highlight-box green">
+                    <strong>نسخہ:</strong> کتاب کا ایک نسخہ حکیم محمد سعید سینٹرل لائبریری، جامعہ ہمدرد، نئی دہلی میں موجود ہے (نمبر 9864، 19 صفحات)
+                </div>
+            </div>
+        </section>
+        
+        <!-- Summary -->
+        <div class="summary-box">
+            <h3>📝 خلاصہ - یاد رکھنے کی باتیں</h3>
+            <div class="summary-item">
+                <strong>کون:</strong> حکیم امان اللہ خان، خطاب خان زامن، نام فیروز جنگ
+            </div>
+            <div class="summary-item">
+                <strong>دور:</strong> مغل بادشاہ جہانگیر کا زمانہ
+            </div>
+            <div class="summary-item">
+                <strong>والد:</strong> مہابت خان (سپہ سالار مغل فوج)
+            </div>
+            <div class="summary-item">
+                <strong>خاص بات:</strong> طبیب + جنگجو + مصنف - تینوں ایک ساتھ
+            </div>
+            <div class="summary-item">
+                <strong>تین کتابیں:</strong> گنج بادآورد، دستور الہنود، ام العلاج
+            </div>
+            <div class="summary-item">
+                <strong>علم:</strong> یونانی طب + آیوروید دونوں
+            </div>
+            <div class="summary-item">
+                <strong>گنج بادآورد:</strong> طبی انسائیکلوپیڈیا (تین حصے: تمہید، متن، طلسم)
+            </div>
+            <div class="summary-item">
+                <strong>دستور الہنود:</strong> مدن ونود کا فارسی ترجمہ (1635ء) - 700 ہندی دوائیں
+            </div>
+            <div class="summary-item">
+                <strong>خدمات:</strong> یونانی طب کو ہندوستان کے لیے موزوں بنایا
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+    
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم عبدالحلیم لکھنوی - تعارف</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .header .english-name {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-family: Arial, sans-serif;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* Section Card */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-right: 4px solid #667eea;
+        }
+
+        .key-point-title {
+            color: #764ba2;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .key-point p {
+            font-size: 1rem;
+            color: #4a5568;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px dashed #e53e3e;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+            border-color: #38a169;
+        }
+
+        .highlight-box.blue {
+            background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+            border-color: #3182ce;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -24px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        /* Skills/Achievements */
+        .skill-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+        }
+
+        .skill-number {
+            min-width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }
+
+        .skill-content h4 {
+            color: #667eea;
+            margin-bottom: 5px;
+            font-size: 1.05rem;
+        }
+
+        .skill-content p {
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .summary-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .summary-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-box li {
+            padding: 8px 0;
+            padding-right: 25px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .summary-box li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-box li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: #90cdf4;
+            font-weight: bold;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-bottom: 15px;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            padding: 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+        }
+
+        .accordion-header .arrow {
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .accordion-header.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 15px;
+        }
+
+        .accordion-content.show {
+            max-height: 1000px;
+            padding: 15px;
+            background: white;
+            border: 2px solid #f0f4ff;
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .section {
+                padding: 20px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Memory Aid */
+        .memory-aid {
+            background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .memory-aid-title {
+            color: #d97706;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 3px;
+        }
+
+        .tag.green {
+            background: #38a169;
+        }
+
+        .tag.purple {
+            background: #805ad5;
+        }
+
+        .tag.orange {
+            background: #dd6b20;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>حکیم عبدالحلیم لکھنوی</h1>
+        <p class="english-name">Abdul Haleem Lukhnawi</p>
+        <p class="subtitle">خاندان عزیزی کے ماہر طبیب و جراح</p>
+    </header>
+
+    <div class="container">
+        <!-- تعارف Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                تعارف
+            </h2>
+
+            <div class="key-point">
+                <div class="key-point-title">🏠 خاندان</div>
+                <p>حکیم عبدالحلیم <strong>خاندان عزیزی</strong> سے تھے۔ یہ ہندوستان کا مشہور طبی خاندان ہے۔</p>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">👨‍👧‍👦 رشتے</div>
+                <p>آپ حکیم <strong>عبدالعزیز</strong> کے <strong>چوتھے بیٹے</strong> تھے۔ آپ کے بڑے بھائی <strong>حکیم عبدالرشید</strong> تھے جو بہت مشہور تھے۔</p>
+            </div>
+
+            <div class="highlight-box blue">
+                <strong>📅 پیدائش:</strong> 1905ء میں لکھنو میں پیدا ہوئے۔
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-title">⭐ خاص بات</div>
+                <p>آپ نے <strong>طب</strong> (علاج) اور <strong>جراحت</strong> (آپریشن) میں مہارت حاصل کی۔ آپ اور آپ کے بھائی کی وجہ سے <strong>جراحت کا شعبہ بہت مضبوط</strong> ہوا۔</p>
+            </div>
+
+            <div class="memory-aid">
+                <div class="memory-aid-title">💡 یاد رکھیں</div>
+                <p>عبدالحلیم = عبدالعزیز کے <strong>چوتھے</strong> بیٹے = <strong>جراح</strong> + <strong>طبیب</strong></p>
+            </div>
+        </section>
+
+        <!-- تعلیم Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">پہلا مرحلہ</span>
+                    <h4 style="color: #667eea; margin-bottom: 5px;">گھر میں دینی تعلیم</h4>
+                    <p>آپ کا خاندان دینی اور طبی علوم کا مرکز تھا۔ پہلے گھر میں دین سیکھا۔</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-date">دوسرا مرحلہ</span>
+                    <h4 style="color: #667eea; margin-bottom: 5px;">ندوۃ العلماء لکھنو</h4>
+                    <p>باضابطہ دینی تعلیم کے لیے <strong>ندوۃ العلماء</strong> سے <strong>درس نظامی</strong> مکمل کیا۔</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-date">تیسرا مرحلہ</span>
+                    <h4 style="color: #667eea; margin-bottom: 5px;">تکمیل الطب کالج</h4>
+                    <p>اپنے والد کے بنائے ہوئے <strong>تکمیل الطب کالج</strong> میں داخلہ لیا اور <strong>3 سال</strong> میں طب کی سند حاصل کی۔</p>
+                </div>
+            </div>
+
+            <div class="highlight-box green">
+                <strong>😢 اہم واقعہ:</strong> والد کا سایہ جلدی اٹھ گیا تھا اس لیے <strong>بڑے بھائی حکیم عبدالرشید</strong> نے پرورش کی۔
+            </div>
+
+            <div class="memory-aid">
+                <div class="memory-aid-title">💡 یاد رکھنے کا طریقہ</div>
+                <div>
+                    <span class="tag">گھر - دین</span>
+                    <span class="tag green">ندوہ - درس نظامی</span>
+                    <span class="tag purple">تکمیل الطب - طب</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- بحیثیت طبیب Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">💊</span>
+                حکیم عبدالحلیم بحیثیت طبیب
+            </h2>
+
+            <div class="summary-box">
+                <h3>⭐ خلاصہ</h3>
+                <ul>
+                    <li>علاج میں بہت دلچسپی تھی</li>
+                    <li>ماہر طبیب اور ماہر جراح بنے</li>
+                    <li>تکمیل الطب میں استاد تھے</li>
+                    <li>معالجات اور علم الادویہ پڑھاتے تھے</li>
+                </ul>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>📝 نسخہ نویسی میں مہارت</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="skill-card">
+                        <div class="skill-number">1</div>
+                        <div class="skill-content">
+                            <h4>دواؤں کا علم</h4>
+                            <p>آپ کو دواؤں کے بارے میں غیر معمولی معلومات تھیں۔ ہر دوا کیسے کام کرتی ہے یہ آپ کو معلوم تھا۔</p>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-number">2</div>
+                        <div class="skill-content">
+                            <h4>نسخہ لکھنے میں کمال</h4>
+                            <p>نسخہ لکھنے میں آپ کو بہت مہارت تھی۔ آپ کے نسخے بہت خوبصورت اور منظم ہوتے تھے۔</p>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-number">3</div>
+                        <div class="skill-content">
+                            <h4>فنی حسن</h4>
+                            <p>اگر نسخے میں زیادہ دوائیں ہوتیں تو سب ایک ہی قسم کی ہوتیں:
+                            <br>• یا سب <strong>پھول</strong> (گل) ہوتے
+                            <br>• یا سب <strong>پتے</strong> (برگ) ہوتے
+                            <br>• یا سب <strong>بیج</strong> (تخم) ہوتے</p>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-number">4</div>
+                        <div class="skill-content">
+                            <h4>درجات ادویہ کا خیال</h4>
+                            <p>نسخہ بناتے وقت دواؤں کے درجات کا خیال رکھتے تاکہ دوا کا نقصان کم سے کم ہو۔</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>🌟 خاص بات:</strong> حکیم صاحب کے اکثر نسخے <strong>نوادرات</strong> (بہت خاص اور نایاب) میں شمار کیے جاتے ہیں!
+            </div>
+        </section>
+
+        <!-- بحیثیت جراح Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🏥</span>
+                حکیم عبدالحلیم بحیثیت جراح
+            </h2>
+
+            <div class="key-point">
+                <div class="key-point-title">🎯 خاندان کا مقصد</div>
+                <p>خاندان عزیزی نے <strong>جراحت</strong> (آپریشن کا فن) کو فروغ دینا اپنا خاص کام بنایا تھا۔</p>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>📜 والد کی کوشش</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p><strong>حکیم عبدالعزیز</strong> نے محسوس کیا کہ جراحت کا شعبہ کمزور ہو گیا ہے۔ اس لیے:</p>
+                    <div class="skill-card" style="margin-top: 10px;">
+                        <div class="skill-number">1</div>
+                        <div class="skill-content">
+                            <p>اس موضوع پر مضامین لکھے</p>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-number">2</div>
+                        <div class="skill-content">
+                            <p>تکمیل الطب کالج میں جراحت کی تعلیم بہتر بنائی</p>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-number">3</div>
+                        <div class="skill-content">
+                            <p>بیٹوں عبدالرشید اور عبدالحلیم کو <strong>انگریزی</strong> پڑھوائی</p>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-number">4</div>
+                        <div class="skill-content">
+                            <p><strong>لفٹینینٹ کرنل جے انڈرسن</strong> (سول سرجن لکھنو) سے <strong>تشریح البدن</strong> اور <strong>جراحت</strong> کی تعلیم دلوائی</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box green">
+                <strong>🏆 خاص کارنامہ:</strong> یہ جراحت کی تعلیم کا انتظام اس وقت کسی اور طبیہ کالج میں نہیں تھا!
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>🔧 جراحت میں کام</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>حکیم عبدالحلیم نے جراحت میں کیا کیا:</p>
+                    
+                    <div class="skill-card" style="margin-top: 10px;">
+                        <div class="skill-number">1</div>
+                        <div class="skill-content">
+                            <h4>جدید آپریشن</h4>
+                            <p>نئے طریقے سے آپریشن کرتے تھے</p>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-number">2</div>
+                        <div class="skill-content">
+                            <h4>روایتی طریقے</h4>
+                            <p>طب کے پرانے طریقے بھی استعمال کیے:</p>
+                            <div style="margin-top: 8px;">
+                                <span class="tag">فصد (خون نکالنا)</span>
+                                <span class="tag green">قے</span>
+                                <span class="tag purple">تعلیق (جونک لگانا)</span>
+                                <span class="tag orange">حجامہ (سینگی لگانا)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-number">3</div>
+                        <div class="skill-content">
+                            <h4>جراحت کے بعد کی دوائیں</h4>
+                            <p>آپریشن کے بعد استعمال ہونے والی دواؤں میں نئے طریقے لائے:
+                            <br>• <strong>مرہم</strong>
+                            <br>• <strong>حابس قابض دوائیں</strong> (خون روکنے والی)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- خلاصہ Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📋</span>
+                مکمل خلاصہ
+            </h2>
+
+            <div class="summary-box">
+                <h3>📌 اہم نکات یاد رکھیں</h3>
+                <ul>
+                    <li>خاندان عزیزی کے فرد</li>
+                    <li>حکیم عبدالعزیز کے چوتھے بیٹے</li>
+                    <li>حکیم عبدالرشید کے چھوٹے بھائی</li>
+                    <li>1905ء میں لکھنو میں پیدائش</li>
+                    <li>ندوۃ العلماء سے درس نظامی</li>
+                    <li>تکمیل الطب سے 3 سال میں سند</li>
+                    <li>ماہر طبیب + ماہر جراح</li>
+                    <li>نسخہ نویسی میں کمال</li>
+                    <li>جراحت کو فروغ دیا</li>
+                    <li>انگریز سرجن سے جراحت سیکھی</li>
+                </ul>
+            </div>
+
+            <div class="memory-aid">
+                <div class="memory-aid-title">💡 آسان یاداشت</div>
+                <p style="font-size: 1.1rem; text-align: center;">
+                    <strong>عزیزی → عزیز → رشید + حلیم</strong>
+                    <br>
+                    <strong>طب + جراحت = مکمل طبیب</strong>
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Accordion functionality
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.classList.remove('show');
+            });
+            
+            // Open clicked one if it was closed
+            if (!isActive) {
+                header.classList.add('active');
+                content.classList.add('show');
+            }
+        }
+
+        // Smooth scroll for better UX on mobile
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

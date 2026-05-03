@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم اعظم خاں - تعارف</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #fef3c7 0%, #ffffff 50%, #ecfdf5 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            font-size: 18px;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-name {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .header .dates {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 1.1em;
+        }
+
+        /* Quick Facts Card */
+        .quick-facts {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-right: 5px solid #f59e0b;
+        }
+
+        .quick-facts h3 {
+            color: #f59e0b;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .fact-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+
+        .fact-item:last-child {
+            border-bottom: none;
+        }
+
+        .fact-label {
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .fact-value {
+            color: #1f2937;
+            font-weight: 700;
+        }
+
+        /* Section Styles */
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.2em;
+        }
+
+        /* Color variants */
+        .section.green {
+            border-right: 5px solid #10b981;
+        }
+        .section.green .section-title {
+            color: #10b981;
+            border-bottom-color: #10b981;
+        }
+
+        .section.blue {
+            border-right: 5px solid #3b82f6;
+        }
+        .section.blue .section-title {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+        }
+
+        .section.purple {
+            border-right: 5px solid #8b5cf6;
+        }
+        .section.purple .section-title {
+            color: #8b5cf6;
+            border-bottom-color: #8b5cf6;
+        }
+
+        .section.teal {
+            border-right: 5px solid #14b8a6;
+        }
+        .section.teal .section-title {
+            color: #14b8a6;
+            border-bottom-color: #14b8a6;
+        }
+
+        .section.orange {
+            border-right: 5px solid #f97316;
+        }
+        .section.orange .section-title {
+            color: #f97316;
+            border-bottom-color: #f97316;
+        }
+
+        .section.rose {
+            border-right: 5px solid #f43f5e;
+        }
+        .section.rose .section-title {
+            color: #f43f5e;
+            border-bottom-color: #f43f5e;
+        }
+
+        .section.amber {
+            border-right: 5px solid #f59e0b;
+        }
+        .section.amber .section-title {
+            color: #f59e0b;
+            border-bottom-color: #f59e0b;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-right: 4px solid #f59e0b;
+        }
+
+        .highlight-box.green-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-right-color: #10b981;
+        }
+
+        .highlight-box.blue-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-right-color: #3b82f6;
+        }
+
+        .highlight-box.purple-box {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            border-right-color: #8b5cf6;
+        }
+
+        /* Lists */
+        .styled-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .styled-list li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: #f9fafb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .styled-list li .num {
+            background: #f59e0b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        /* Teacher Cards */
+        .teacher-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .teacher-card .subject {
+            color: #3b82f6;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .teacher-card .name {
+            color: #1e40af;
+            font-size: 1.1em;
+        }
+
+        /* Book Cards */
+        .book-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #f59e0b;
+        }
+
+        .book-card h4 {
+            color: #d97706;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .book-card .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .book-card .stat-item {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .book-card .stat-item .label {
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+
+        .book-card .stat-item .value {
+            color: #d97706;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-section li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .summary-section li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-section li::before {
+            content: "✓";
+            background: white;
+            color: #10b981;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Remember Section */
+        .remember-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+            border-radius: 15px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            border: 2px dashed #f59e0b;
+        }
+
+        .remember-section h3 {
+            color: #d97706;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .remember-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .remember-item .emoji {
+            font-size: 1.5em;
+        }
+
+        .remember-item .text {
+            flex: 1;
+        }
+
+        .remember-item .key {
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+
+        .remember-item .value {
+            color: #1f2937;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            border-radius: 15px 15px 0 0;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+
+            .book-card .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>حکیم اعظم خاں</h1>
+            <div class="english-name">Hakim A'zam Khan</div>
+            <div class="dates">📅 1813ء - 1902ء</div>
+        </div>
+
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <h3>⚡ مختصر معلومات</h3>
+            <div class="fact-item">
+                <span class="fact-label">📍 جائے پیدائش</span>
+                <span class="fact-value">رامپور، ہندوستان</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-label">📅 سال پیدائش</span>
+                <span class="fact-value">1813ء کے آس پاس</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-label">💀 وفات</span>
+                <span class="fact-value">1902ء، اندور</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-label">👨‍⚕️ پیشہ</span>
+                <span class="fact-value">طبیب / حکیم</span>
+            </div>
+            <div class="fact-item">
+                <span class="fact-label">📚 مشہور کتابیں</span>
+                <span class="fact-value">اکسیر اعظم، محیط اعظم</span>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="section green">
+            <h3 class="section-title">
+                <span class="icon">📖</span>
+                تعارف
+            </h3>
+            <p>
+                ہندوستان کے مشہور اور نامور طبیبوں میں حکیم اعظم خاں کا نام بہت نمایاں ہے۔ یہ اپنی دو کتابوں <strong>محیط اعظم</strong> اور <strong>اکسیر اعظم</strong> کی وجہ سے طب کی تاریخ میں ہمیشہ زندہ رہیں گے۔
+            </p>
+            <div class="highlight-box green-box">
+                <strong>🏠 پیدائش:</strong> رامپور (ہندوستان) میں 1813ء کے قریب پیدا ہوئے۔
+            </div>
+            <p>
+                اپنی طبی مہارت کی وجہ سے ملک کے مختلف حصوں میں بطور طبیب بلائے جاتے تھے۔ قیام کے سلسلے میں اندور بھی گئے اور وہیں 1902ء میں انتقال فرمایا۔
+            </p>
+        </div>
+
+        <!-- Education -->
+        <div class="section blue">
+            <h3 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h3>
+            <p>
+                حکیم اعظم خاں کو علم اور طب وراثت میں ملے۔ ان کے والد <strong>شاہ اعظم خاں</strong> اپنے زمانے کے مشہور طبیب تھے۔ خاندان کے دوسرے لوگ بھی علم و دانش میں نام رکھتے تھے۔
+            </p>
+            <div class="highlight-box blue-box">
+                <strong>📚 ابتدائی تعلیم:</strong> گھر میں علمی ماحول ہونے کی وجہ سے تعلیم گھر سے شروع ہوئی۔ تقریباً <strong>14 سال</strong> کی عمر میں دینی تعلیم اور دوسرے علوم میں مہارت حاصل کر لی۔
+            </div>
+            
+            <h4 style="color: #3b82f6; margin: 20px 0 15px;">👨‍🏫 اساتذہ</h4>
+            <div class="teacher-card">
+                <div class="subject">📿 دینیات</div>
+                <div class="name">مفتی شرف الدین</div>
+            </div>
+            <div class="teacher-card">
+                <div class="subject">📝 صرف، نحو اور منطق</div>
+                <div class="name">مولوی عبدالحمید خاں</div>
+            </div>
+        </div>
+
+        <!-- Excellence -->
+        <div class="section purple">
+            <h3 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال
+            </h3>
+            <p>
+                حکیم اعظم خاں اپنے زمانے کے نامور اور ماہر طبیب تھے۔ اس کے علاوہ کتابیں لکھنے میں بھی ان کی خدمات بہت اہم اور ناقابل فراموش ہیں۔
+            </p>
+        </div>
+
+        <!-- As Physician -->
+        <div class="section teal">
+            <h3 class="section-title">
+                <span class="icon">👨‍⚕️</span>
+                بحیثیت طبیب
+            </h3>
+            <p>
+                حکیم اعظم خاں علاج میں بہت ماہر تھے۔ بیماری کی تشخیص اور علاج تجویز کرنے میں ان کا کوئی ثانی نہیں تھا۔
+            </p>
+            
+            <div class="highlight-box purple-box">
+                <strong>🔬 خصوصیات:</strong>
+                <ul style="margin-top: 10px; padding-right: 20px;">
+                    <li>علم الادویہ (دواؤں کا علم) پر مکمل عبور</li>
+                    <li>دواؤں کے فائدے اور خواص کے ماہر</li>
+                    <li>تریاقی ادویہ (زہر کی ادویہ) کی غیر معمولی جانکاری</li>
+                </ul>
+            </div>
+
+            <p>
+                اپنی معالجاتی شہرت کی وجہ سے ہندوستان کی مختلف ریاستوں جیسے <strong>بھوپال</strong> اور <strong>اندور</strong> میں بطور طبیب بلائے گئے۔ راجاؤں اور نوابوں کے خاص طبیب رہے۔
+            </p>
+
+            <div class="highlight-box">
+                <strong>👑 نواب واجد علی شاہ:</strong> ان کے زمانے میں لکھنؤ بھی گئے۔ نواب نے ملازمت کی پیشکش کی لیکن حکیم صاحب نے قبول نہیں کی۔
+            </div>
+        </div>
+
+        <!-- As Author -->
+        <div class="section orange">
+            <h3 class="section-title">
+                <span class="icon">✍️</span>
+                بحیثیت مصنف
+            </h3>
+            <p>
+                ہندوستانی طبیبوں میں حکیم اعظم خاں جیسا لکھنے والا کوئی اور نہیں۔ اگرچہ ان کی کتابوں کی تعداد زیادہ نہیں، لیکن یہ چند کتابیں معیار اور مقدار میں ہزاروں کتابوں سے بڑھ کر ہیں۔
+            </p>
+            <div class="highlight-box">
+                <strong>📝 زبان:</strong> تمام کتابیں فارسی زبان میں ہیں اور ہندوستان کی طبی تصنیف کا مرکز ہیں۔
+            </div>
+
+            <h4 style="color: #f97316; margin: 20px 0 15px;">📚 کتابوں کی فہرست (7 کتابیں)</h4>
+            <ul class="styled-list">
+                <li><span class="num">1</span> اکسیر اعظم</li>
+                <li><span class="num">2</span> محیط اعظم</li>
+                <li><span class="num">3</span> رموز اعظم</li>
+                <li><span class="num">4</span> رکن اعظم</li>
+                <li><span class="num">5</span> قرابادین اعظم</li>
+                <li><span class="num">6</span> نیر اعظم</li>
+                <li><span class="num">7</span> لغات طبیہ</li>
+            </ul>
+        </div>
+
+        <!-- Famous Books -->
+        <div class="section rose">
+            <h3 class="section-title">
+                <span class="icon">📕</span>
+                دو اہم کتابیں
+            </h3>
+            <p>
+                اکسیر اعظم اور محیط اعظم دو ایسی کتابیں ہیں جو اپنی مثال آپ ہیں۔ دونوں بہت موٹی ہیں اور چار چار جلدوں پر مشتمل ہیں۔
+            </p>
+            <div class="highlight-box">
+                <strong>📐 صفحے کا سائز:</strong> 25cm x 31cm (عام صفحے سے بہت بڑا)
+            </div>
+
+            <!-- Book 1 -->
+            <div class="book-card">
+                <h4>📗 اکسیر اعظم</h4>
+                <p style="text-align: center;">یہ کتاب <strong>علاج</strong> پر ہے</p>
+                <p>
+                    اس میں عام اور خاص بیماریوں کی نوعیت، علامات، تشخیص اور علاج تفصیل سے لکھا ہے۔ اس کتاب میں پرانے طبیبوں کے تجربات کا نچوڑ بھی ہے۔
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="label">📄 صفحات</div>
+                        <div class="value">7255</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="label">📚 جلدیں</div>
+                        <div class="value">4</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="book-card">
+                <h4>📘 محیط اعظم</h4>
+                <p style="text-align: center;">یہ کتاب <strong>علم الادویہ</strong> پر ہے</p>
+                <p>
+                    اس کتاب کا مقدمہ اتنا مفصل ہے کہ پڑھ کر دواؤں کے ہر پہلو سے واقفیت ہو جاتی ہے۔ یونان سے ہندوستان تک کی معلومات اکٹھی کی گئی ہیں۔ یہ علم الادویہ کا <strong>انسائیکلوپیڈیا</strong> ہے۔
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="label">📄 صفحات</div>
+                        <div class="value">1144</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="label">📚 جلدیں</div>
+                        <div class="value">4</div>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                ان کی دوسری کتابیں <strong>رموز اعظم</strong>، <strong>قرابادین اعظم</strong> اور <strong>نیر اعظم</strong> بھی طبی علم میں بیش قیمت ہیں اور عام و خاص میں مقبول ہیں۔
+            </p>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-section">
+            <h3>📋 خلاصہ</h3>
+            <ul>
+                <li>حکیم اعظم خاں ہندوستان کے مشہور طبیب تھے</li>
+                <li>رامپور میں 1813ء میں پیدا ہوئے، اندور میں 1902ء میں وفات پائی</li>
+                <li>والد شاہ اعظم خاں بھی مشہور طبیب تھے</li>
+                <li>14 سال کی عمر میں علوم میں مہارت حاصل کی</li>
+                <li>راجاؤں اور نوابوں کے طبیب خاص رہے</li>
+                <li>7 کتابیں لکھیں، سب فارسی میں</li>
+                <li>اکسیر اعظم (علاج) اور محیط اعظم (ادویہ) سب سے مشہور</li>
+                <li>طب کی عہد ساز شخصیت تھے</li>
+            </ul>
+        </div>
+
+        <!-- Remember Section -->
+        <div class="remember-section">
+            <h3>🧠 یاد رکھیں</h3>
+            
+            <div class="remember-item">
+                <span class="emoji">📍</span>
+                <div class="text">
+                    <div class="key">پیدائش</div>
+                    <div class="value">رامپور، 1813ء</div>
+                </div>
+            </div>
+
+            <div class="remember-item">
+                <span class="emoji">💀</span>
+                <div class="text">
+                    <div class="key">وفات</div>
+                    <div class="value">اندور، 1902ء</div>
+                </div>
+            </div>
+
+            <div class="remember-item">
+                <span class="emoji">👨‍👦</span>
+                <div class="text">
+                    <div class="key">والد</div>
+                    <div class="value">شاہ اعظم خاں (مشہور طبیب)</div>
+                </div>
+            </div>
+
+            <div class="remember-item">
+                <span class="emoji">🎓</span>
+                <div class="text">
+                    <div class="key">تعلیم مکمل</div>
+                    <div class="value">14 سال کی عمر میں</div>
+                </div>
+            </div>
+
+            <div class="remember-item">
+                <span class="emoji">👨‍🏫</span>
+                <div class="text">
+                    <div class="key">اساتذہ</div>
+                    <div class="value">مفتی شرف الدین (دینیات) | مولوی عبدالحمید (صرف، نحو، منطق)</div>
+                </div>
+            </div>
+
+            <div class="remember-item">
+                <span class="emoji">📚</span>
+                <div class="text">
+                    <div class="key">کتابیں</div>
+                    <div class="value">7 کتابیں (فارسی میں)</div>
+                </div>
+            </div>
+
+            <div class="remember-item">
+                <span class="emoji">⭐</span>
+                <div class="text">
+                    <div class="key">مشہور کتابیں</div>
+                    <div class="value">اکسیر اعظم (علاج) + محیط اعظم (ادویہ)</div>
+                </div>
+            </div>
+
+            <div class="remember-item">
+                <span class="emoji">📄</span>
+                <div class="text">
+                    <div class="key">صفحات</div>
+                    <div class="value">اکسیر: 7255 | محیط: 1144</div>
+                </div>
+            </div>
+
+            <div class="remember-item">
+                <span class="emoji">👑</span>
+                <div class="text">
+                    <div class="key">خاص بات</div>
+                    <div class="value">نواب واجد علی شاہ کی ملازمت ٹھکرائی</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© <span id="year"></span> Accela. All rights reserved</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

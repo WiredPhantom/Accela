@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمد کبیر الدین - مجاہد طب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            direction: rtl;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a5f4a 0%, #2d8f6f 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 40px rgba(26, 95, 74, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        .header .english-name {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Life Dates Banner */
+        .life-banner {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: -15px auto 25px;
+            padding: 0 15px;
+            flex-wrap: wrap;
+        }
+
+        .life-badge {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            flex: 1;
+            max-width: 160px;
+        }
+
+        .life-badge .label {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+
+        .life-badge .value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1a5f4a;
+        }
+
+        /* Section Card */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border-right: 5px solid #1a5f4a;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #1a5f4a;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #1a5f4a, #2d8f6f);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin: 15px 0;
+            border-right: 4px solid #22c55e;
+        }
+
+        .highlight-box.important {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-right-color: #f59e0b;
+        }
+
+        .highlight-box.info {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-right-color: #0ea5e9;
+        }
+
+        /* Key Points */
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .key-point .number {
+            background: #1a5f4a;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Colleges List */
+        .college-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .college-item {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .college-item .icon {
+            font-size: 1.5rem;
+        }
+
+        .college-item .name {
+            font-weight: 600;
+            color: #0369a1;
+        }
+
+        /* Books List */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .book-item {
+            background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+            padding: 12px 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            color: #86198f;
+            font-size: 0.95rem;
+            box-shadow: 0 3px 10px rgba(134, 25, 143, 0.1);
+        }
+
+        /* Role Cards */
+        .role-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid;
+        }
+
+        .role-card.doctor {
+            border-top-color: #ef4444;
+        }
+
+        .role-card.teacher {
+            border-top-color: #3b82f6;
+        }
+
+        .role-card.author {
+            border-top-color: #8b5cf6;
+        }
+
+        .role-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px dashed #facc15;
+        }
+
+        .memory-tip .title {
+            font-weight: 700;
+            color: #a16207;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Quote */
+        .quote {
+            background: linear-gradient(135deg, #1a5f4a 0%, #2d8f6f 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.15rem;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            opacity: 0.3;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .summary-box h3 {
+            color: #065f46;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 10px 15px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-list li::before {
+            content: '✓';
+            background: #10b981;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .books-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1a5f4a;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>محمد کبیر الدین</h1>
+        <div class="subtitle">مجاہد طب</div>
+        <div class="english-name">Muhammad Kabiruddin</div>
+    </header>
+
+    <div class="life-banner">
+        <div class="life-badge">
+            <div class="label">📅 پیدائش</div>
+            <div class="value">1894ء</div>
+        </div>
+        <div class="life-badge">
+            <div class="label">📍 جائے پیدائش</div>
+            <div class="value">شیخوپورہ، مونگیر، بہار</div>
+        </div>
+        <div class="life-badge">
+            <div class="label">🕊️ وفات</div>
+            <div class="value">1976ء (82 سال)</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                تعارف
+            </h2>
+            
+            <div class="highlight-box important">
+                <strong>🌟 مجاہد طب کیوں؟</strong>
+                <p>محمد کبیر الدین نے طب یونانی کی کتابوں کو عربی اور فارسی سے اردو میں ترجمہ کیا۔ اگر یہ کام نہ ہوتا تو طب یونانی شاید آج ختم ہو چکی ہوتی!</p>
+            </div>
+
+            <div class="key-point">
+                <span class="number">1</span>
+                <span>بیسویں صدی کے شروع میں طب یونانی کو بچانے کے لیے انہوں نے "علمی جہاد" شروع کیا۔</span>
+            </div>
+
+            <div class="key-point">
+                <span class="number">2</span>
+                <span>عربی زبان میں طبی مضامین لکھے اور اہم کتابوں کے اردو تراجم کیے۔</span>
+            </div>
+
+            <div class="key-point">
+                <span class="number">3</span>
+                <span>آج طب یونانی کے نصاب میں زیادہ تر کتابیں انہی کی لکھی ہوئی ہیں۔</span>
+            </div>
+
+            <div class="memory-tip">
+                <div class="title">💡 یاد رکھیں</div>
+                <p>پیدائش: 1894 (مونگیر، بہار) | وفات: 1976 (82 سال) | لقب: مجاہد طب</p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🎓</span>
+                تعلیم و تربیت
+            </h2>
+
+            <div class="highlight-box info">
+                <strong>👨‍👩‍👦 خاندانی پس منظر:</strong> علمی گھرانے سے تعلق تھا
+            </div>
+
+            <div class="key-point">
+                <span class="number">1</span>
+                <span><strong>ابتدائی تعلیم:</strong> گھر پر - دینی تعلیم اور زبانیں سیکھیں</span>
+            </div>
+
+            <div class="key-point">
+                <span class="number">2</span>
+                <span><strong>اعلیٰ تعلیم:</strong> گھر چھوڑ کر لکھنؤ، کانپور اور دہلی گئے</span>
+            </div>
+
+            <div class="key-point">
+                <span class="number">3</span>
+                <span><strong>مضامین:</strong> طب یونانی اور عربی زبان</span>
+            </div>
+
+            <div class="key-point">
+                <span class="number">4</span>
+                <span><strong>اضافی مہارت:</strong> خطاطی (خوشخطی) میں بھی ماہر ہوئے</span>
+            </div>
+
+            <div class="memory-tip">
+                <div class="title">💡 آسان یاد</div>
+                <p>گھر ← لکھنؤ ← کانپور ← دہلی (تعلیم کا سفر)</p>
+            </div>
+        </section>
+
+        <!-- Qualities Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                فضل و کمال (خوبیاں)
+            </h2>
+
+            <p>کبیر الدین ایک وقت میں تین کام بہترین طریقے سے کرتے تھے:</p>
+
+            <div class="highlight-box">
+                <p>✅ فاضل طبیب (ماہر ڈاکٹر)</p>
+                <p>✅ بہترین استاد (عمدہ ٹیچر)</p>
+                <p>✅ جلیل القدر مصنف و مترجم (عظیم لکھاری اور ترجمہ کرنے والے)</p>
+            </div>
+        </section>
+
+        <!-- As Doctor Section -->
+        <section class="section">
+            <div class="role-card doctor">
+                <h3>🩺 کبیر الدین بحیثیت طبیب</h3>
+                
+                <div class="key-point">
+                    <span class="number">1</span>
+                    <span>طب کے ہر پہلو کا گہرا علم رکھتے تھے</span>
+                </div>
+
+                <div class="key-point">
+                    <span class="number">2</span>
+                    <span>چاہتے تو مشہور ڈاکٹر بن سکتے تھے</span>
+                </div>
+
+                <div class="highlight-box important">
+                    <strong>⚡ اہم موڑ:</strong>
+                    <p>اپنے استاد <strong>حکیم اجمل خاں</strong> کی نصیحت پر طبابت چھوڑ کر پڑھانے اور کتابیں لکھنے کو اپنایا۔</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- As Teacher Section -->
+        <section class="section">
+            <div class="role-card teacher">
+                <h3>👨‍🏫 کبیر الدین بحیثیت استاد</h3>
+                
+                <p>طب یونانی پر مکمل عبور کی وجہ سے بڑے بڑے کالجوں میں پڑھایا:</p>
+
+                <div class="college-list">
+                    <div class="college-item">
+                        <span class="icon">🏛️</span>
+                        <span class="name">آیوروید اینڈ یونانی طبیہ کالج، قرول باغ، نئی دہلی</span>
+                    </div>
+                    <div class="college-item">
+                        <span class="icon">🏛️</span>
+                        <span class="name">جامعہ طبیہ، گلی قاسم جان، دہلی</span>
+                    </div>
+                    <div class="college-item">
+                        <span class="icon">🏛️</span>
+                        <span class="name">نظامیہ طبیہ کالج، حیدرآباد</span>
+                    </div>
+                    <div class="college-item">
+                        <span class="icon">🏛️</span>
+                        <span class="name">اجمل خاں طبیہ کالج، علی گڑھ</span>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p>✨ یہ چاروں کالج آج بھی طب یونانی کے سب سے بڑے تعلیمی ادارے ہیں!</p>
+                    <p>✨ ان کی شاگردی باعث فخر سمجھی جاتی تھی۔</p>
+                </div>
+
+                <div class="memory-tip">
+                    <div class="title">💡 چار کالج یاد رکھیں</div>
+                    <p>قرول باغ | گلی قاسم جان | حیدرآباد | علی گڑھ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- As Author Section -->
+        <section class="section">
+            <div class="role-card author">
+                <h3>✍️ کبیر الدین بحیثیت مصنف</h3>
+
+                <div class="quote">
+                    شاید اللہ نے ان سے طب یونانی کی کتابیں لکھوانے کا فیصلہ پہلے سے کر رکھا تھا - یہی کام طب کی بقا کا سبب بنا!
+                </div>
+
+                <div class="highlight-box info">
+                    <strong>📚 کہانی:</strong>
+                    <p>جب کبیر الدین نے گلی قاسم جان، دہلی سے تعلیم مکمل کی تو ان کے استاد <strong>حکیم اجمل خاں</strong> نے ان کی ذہانت دیکھ کر کہا: "کتابیں لکھنا تمہارا خاص کام ہونا چاہیے۔"</p>
+                </div>
+
+                <h4 style="margin: 20px 0 10px; color: #1a5f4a;">🔍 مسئلہ کیا تھا؟</h4>
+                <div class="key-point">
+                    <span class="number">❌</span>
+                    <span>طب یونانی کی کتابیں عربی اور فارسی میں تھیں</span>
+                </div>
+                <div class="key-point">
+                    <span class="number">❌</span>
+                    <span>عام طالب علم ان زبانوں کو نہیں سمجھتا تھا</span>
+                </div>
+                <div class="key-point">
+                    <span class="number">❌</span>
+                    <span>طب یونانی ختم ہونے کا خطرہ تھا</span>
+                </div>
+
+                <h4 style="margin: 20px 0 10px; color: #1a5f4a;">✅ کبیر الدین نے کیا کیا؟</h4>
+                <div class="key-point">
+                    <span class="number">1</span>
+                    <span>تن من دھن سے ترجمے کے کام میں لگ گئے</span>
+                </div>
+                <div class="key-point">
+                    <span class="number">2</span>
+                    <span>اہم طبی کتابوں کے اردو تراجم کیے</span>
+                </div>
+                <div class="key-point">
+                    <span class="number">3</span>
+                    <span>مشکل مسائل کی آسان تشریح لکھی</span>
+                </div>
+                <div class="key-point">
+                    <span class="number">4</span>
+                    <span>اپنی ماہرانہ رائے بھی شامل کی</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Books Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                اہم کتابیں (نصاب میں شامل)
+            </h2>
+
+            <div class="books-grid">
+                <div class="book-item">کلیات قانون اول</div>
+                <div class="book-item">کلیات قانون دوم</div>
+                <div class="book-item">ترجمہ کبیر اول</div>
+                <div class="book-item">ترجمہ کبیر دوم</div>
+                <div class="book-item">ترجمہ کبیر سوم</div>
+                <div class="book-item">ترجمہ کبیر چہارم</div>
+                <div class="book-item">افادۂ کبیر اول</div>
+                <div class="book-item">افادۂ کبیر دوم</div>
+                <div class="book-item">بیاض کبیر اول</div>
+                <div class="book-item">بیاض کبیر دوم</div>
+                <div class="book-item">کلیات نفیسی اول</div>
+                <div class="book-item">کلیات نفیسی دوم</div>
+                <div class="book-item">تشریح کبیر اول</div>
+                <div class="book-item">تشریح کبیر دوم</div>
+                <div class="book-item">کتاب الادویہ</div>
+                <div class="book-item">کتاب الصیدلہ</div>
+                <div class="book-item">التکلیس</div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 20px;">
+                <strong>📰 جریدہ "المسیح":</strong>
+                <p>حیدرآباد سے نکلنے والے طبی رسالے "المسیح" کے مدیر اعلیٰ بھی رہے۔</p>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <div class="summary-box">
+            <h3>📝 خلاصہ (جلدی یاد کریں)</h3>
+            <ul class="summary-list">
+                <li>نام: محمد کبیر الدین انصاری، لقب: مجاہد طب</li>
+                <li>پیدائش: 1894ء، شیخوپورہ، مونگیر، بہار</li>
+                <li>وفات: 1976ء (عمر 82 سال)</li>
+                <li>تعلیم: لکھنؤ، کانپور، دہلی سے طب اور عربی</li>
+                <li>استاد: حکیم اجمل خاں</li>
+                <li>کام: طبی کتابوں کا عربی/فارسی سے اردو ترجمہ</li>
+                <li>چار بڑے کالجوں میں پڑھایا</li>
+                <li>17+ کتابیں نصاب میں شامل</li>
+                <li>طبی رسالہ "المسیح" کے مدیر</li>
+                <li>بیسویں صدی کے طب کے سپہ سالار</li>
+            </ul>
+        </div>
+
+        <div class="quote">
+            بیسویں صدی میں طب کے علمی سفر کا سپہ سالار حکیم کبیر الدین کے علاوہ اور کوئی نہیں!
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Add smooth scroll animation for sections
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

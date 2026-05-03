@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم غلام حسنین کنتوری - عظیم طبیب و مترجم</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Nastaliq Urdu', serif; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); color: #1e293b; line-height: 2.2; min-height: 100vh; }
+        .container { max-width: 800px; margin: 0 auto; padding: 15px; }
+        .header { background: linear-gradient(135deg, #0f766e 0%, #115e59 100%); color: white; text-align: center; padding: 30px 20px; border-radius: 0 0 30px 30px; box-shadow: 0 10px 40px rgba(15, 118, 110, 0.3); margin-bottom: 25px; }
+        .header h1 { font-size: 1.8em; margin-bottom: 8px; font-weight: 700; }
+        .header .english-name { font-size: 1em; opacity: 0.9; font-family: Arial, sans-serif; direction: ltr; }
+        .header .dates { margin-top: 15px; background: rgba(255,255,255,0.2); display: inline-block; padding: 8px 25px; border-radius: 25px; font-size: 0.95em; }
+        .card { background: white; border-radius: 20px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-right: 5px solid #0f766e; animation: fadeInUp 0.5s ease-out; }
+        .card-title { font-size: 1.4em; color: #0f766e; margin-bottom: 15px; display: flex; align-items: center; gap: 12px; }
+        .card-title .icon { width: 45px; height: 45px; background: linear-gradient(135deg, #0f766e 0%, #115e59 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3em; flex-shrink: 0; }
+        .key-point { background: #f0fdfa; padding: 15px 20px; border-radius: 15px; margin: 12px 0; border-right: 4px solid #14b8a6; }
+        .key-point-label { color: #0f766e; font-weight: 600; font-size: 0.95em; margin-bottom: 5px; }
+        .key-point-value { font-size: 1.05em; }
+        .simple-list { list-style: none; }
+        .simple-list li { padding: 12px 15px; background: #f8fafc; margin: 10px 0; border-radius: 12px; position: relative; padding-right: 35px; }
+        .simple-list li::before { content: "✦"; position: absolute; right: 12px; top: 12px; color: #0f766e; font-size: 0.9em; }
+        .highlight-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 15px; margin: 15px 0; border-right: 5px solid #f59e0b; }
+        .highlight-box .title { color: #92400e; font-weight: 700; margin-bottom: 8px; font-size: 1.1em; }
+        .memory-tip { background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); padding: 18px; border-radius: 15px; margin: 15px 0; border-right: 5px solid #8b5cf6; }
+        .memory-tip .tip-label { color: #6d28d9; font-weight: 700; margin-bottom: 8px; font-size: 1em; }
+        .book-item { background: #ecfdf5; padding: 15px 20px; border-radius: 12px; margin: 10px 0; display: flex; align-items: center; gap: 12px; }
+        .book-item .book-icon { font-size: 1.5em; flex-shrink: 0; }
+        .book-item .book-name { font-weight: 600; color: #065f46; }
+        .book-item .book-desc { font-size: 0.9em; color: #047857; margin-top: 3px; }
+        .timeline { position: relative; padding-right: 30px; }
+        .timeline::before { content: ""; position: absolute; right: 8px; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, #0f766e, #14b8a6); border-radius: 3px; }
+        .timeline-item { position: relative; margin-bottom: 20px; padding: 15px; background: #f0fdfa; border-radius: 15px; }
+        .timeline-item::before { content: ""; position: absolute; right: -26px; top: 20px; width: 14px; height: 14px; background: #0f766e; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .timeline-year { font-family: Arial, sans-serif; direction: ltr; display: inline-block; background: #0f766e; color: white; padding: 3px 12px; border-radius: 20px; font-size: 0.85em; margin-bottom: 8px; }
+        .facts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 15px; }
+        .fact-card { background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); padding: 15px; border-radius: 15px; text-align: center; }
+        .fact-card .fact-icon { font-size: 1.8em; margin-bottom: 8px; }
+        .fact-card .fact-label { font-size: 0.85em; color: #0f766e; margin-bottom: 5px; }
+        .fact-card .fact-value { font-weight: 600; font-size: 0.95em; }
+        .summary-box { background: linear-gradient(135deg, #0f766e 0%, #115e59 100%); color: white; padding: 25px; border-radius: 20px; margin: 20px 0; }
+        .summary-box h3 { margin-bottom: 15px; font-size: 1.2em; }
+        .summary-box ul { list-style: none; }
+        .summary-box ul li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .summary-box ul li:last-child { border-bottom: none; }
+        .summary-box ul li::before { content: "✓ "; color: #5eead4; }
+        .footer { background: #2d3748; color: white; text-align: center; padding: 20px; font-size: 0.9em; margin-top: 30px; border-radius: 20px 20px 0 0; }
+        @media (max-width: 480px) { .header h1 { font-size: 1.5em; } .card { padding: 20px; } .card-title { font-size: 1.2em; } .facts-grid { grid-template-columns: 1fr; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>حکیم غلام حسنین کنتوری</h1>
+        <p class="english-name">Hakim Ghulam Husnain Kantoori</p>
+        <div class="dates">پیدائش: 1829ء | وفات: 1918ء</div>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📋</span>اہم معلومات (ایک نظر میں)</h2>
+            <div class="facts-grid">
+                <div class="fact-card"><div class="fact-icon">📍</div><div class="fact-label">جائے پیدائش</div><div class="fact-value">کثور، بارہ بنکی (اتر پردیش)</div></div>
+                <div class="fact-card"><div class="fact-icon">🎓</div><div class="fact-label">تعلیم</div><div class="fact-value">مدرسہ شاہی، لکھنؤ</div></div>
+                <div class="fact-card"><div class="fact-icon">💼</div><div class="fact-label">پیشہ</div><div class="fact-value">طبیب، مترجم، کیمیا داں</div></div>
+                <div class="fact-card"><div class="fact-icon">🕌</div><div class="fact-label">جائے وفات و تدفین</div><div class="fact-value">وفات فیض آباد، دفن کثور</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title"><span class="icon">👤</span>تعارف</h2>
+            <p>حکیم صاحب ان اطباء میں سے ہیں جنہوں نے طب یونانی کو اردو زبان سے جوڑا۔ انہوں نے عربی اور فارسی کی مشہور طبی کتابوں کا اردو میں ترجمہ کیا تاکہ عام لوگ بھی سمجھ سکیں۔</p>
+            <div class="key-point">
+                <div class="key-point-label">کنتوری کیوں کہلائے؟</div>
+                <div class="key-point-value">کیونکہ آپ "کثور" نامی قصبہ میں پیدا ہوئے جو بارہ بنکی (اتر پردیش) کے قریب ہے۔</div>
+            </div>
+            <div class="highlight-box">
+                <div class="title">⭐ خاص بات</div>
+                <p>آپ بیک وقت دو علوم کے ماہر تھے:</p>
+                <p>۱۔ <strong>علم دین</strong> (مذہبی علم)</p>
+                <p>۲۔ <strong>علم بدن</strong> (طب کا علم)</p>
+            </div>
+            <div class="memory-tip">
+                <div class="tip-label">💡 یاد رکھیں</div>
+                <p>دین کی خدمت مفت کرتے تھے، اور روزی کمانے کے لیے طبابت کرتے تھے۔</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📅</span>زندگی کے اہم واقعات</h2>
+            <div class="timeline">
+                <div class="timeline-item"><span class="timeline-year">1829ء</span><p>کثور (بارہ بنکی) میں پیدائش</p></div>
+                <div class="timeline-item"><span class="timeline-year">ابتدائی دور</span><p>لکھنؤ کے مدرسہ شاہی سے تعلیم حاصل کی</p></div>
+                <div class="timeline-item"><span class="timeline-year">1886ء - 1900ء</span><p>القانون فی الطب کا اردو ترجمہ منشی نول کشور لکھنؤ سے شائع ہوا</p></div>
+                <div class="timeline-item"><span class="timeline-year">1918ء</span><p>فیض آباد میں وفات، لیکن دفن اپنے وطن کثور میں ہوئے</p></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title"><span class="icon">🎓</span>تعلیم و تربیت</h2>
+            <div class="key-point"><div class="key-point-label">ادارہ</div><div class="key-point-value">مدرسہ شاہی، لکھنؤ</div></div>
+            <p style="margin-top: 15px;"><strong>کیا پڑھا؟</strong></p>
+            <ul class="simple-list">
+                <li>دینی تعلیم</li><li>عربی زبان</li><li>فارسی زبان</li><li>ادب</li><li>منطق و فلسفہ</li>
+            </ul>
+            <div class="memory-tip"><div class="tip-label">💡 یاد رکھیں</div><p>پہلے دینی تعلیم مکمل کی، پھر طب سیکھی اور ماہر ہو گئے۔</p></div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title"><span class="icon">⭐</span>فضل و کمال (مہارتیں)</h2>
+            <p>آپ تین چیزوں میں ماہر تھے:</p>
+            <div class="facts-grid">
+                <div class="fact-card"><div class="fact-icon">🩺</div><div class="fact-value">عمدہ طبیب</div></div>
+                <div class="fact-card"><div class="fact-icon">📝</div><div class="fact-value">مترجم و مصنف</div></div>
+                <div class="fact-card"><div class="fact-icon">⚗️</div><div class="fact-value">کیمیا داں</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title"><span class="icon">🩺</span>بحیثیت طبیب</h2>
+            <p>طبابت کو ذریعہ معاش بنایا اور بہت محنت سے سیکھا۔ کم عمری میں ہی مشہور ہو گئے۔</p>
+            <div class="key-point"><div class="key-point-label">خاص مہارت</div><div class="key-point-value">امراض مزمنہ (پرانی بیماریاں) اور امراض خبیثہ (سنگین بیماریاں) کے علاج میں کامل تھے۔</div></div>
+            <div class="highlight-box"><div class="title">🏰 شہرت</div><p>نواب اور امراء (امیر لوگ) آپ کو علاج کے لیے بلاتے تھے۔ اسی وجہ سے زندگی کا بڑا حصہ سفر میں گزرا۔</p></div>
+            <div class="key-point"><div class="key-point-label">سفر</div><div class="key-point-value">پنجاب میں جالندھر اور لاہور تک گئے۔ جہاں جاتے، وہیں مطب جم جاتا (یعنی مریض آنے لگتے)۔</div></div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📚</span>بحیثیت مترجم و مصنف</h2>
+            <div class="highlight-box"><div class="title">❓ ترجمے کیوں کیے؟</div><p>دینی کام سے پیسے لینا پسند نہیں تھا۔ طبابت میں غریب مریضوں سے فیس نہیں لیتے تھے۔ اس لیے کمائی کے لیے کتابوں کے ترجمے کیے۔</p></div>
+            <p style="margin-top: 15px;"><strong>اہم تراجم:</strong></p>
+            <div class="book-item"><span class="book-icon">📕</span><div><div class="book-name">القانون فی الطب</div><div class="book-desc">ابن سینا کی مشہور کتاب - پانچوں جلدوں کا ترجمہ</div></div></div>
+            <div class="book-item"><span class="book-icon">📗</span><div><div class="book-name">کامل الصناعۃ</div><div class="book-desc">عربی طبی کتاب کا اردو ترجمہ</div></div></div>
+            <div class="book-item"><span class="book-icon">📘</span><div><div class="book-name">قانونچہ</div><div class="book-desc">عربی طبی کتاب کا اردو ترجمہ</div></div></div>
+            <div class="book-item"><span class="book-icon">📙</span><div><div class="book-name">فصول بقراطیہ</div><div class="book-desc">عربی طبی کتاب کا اردو ترجمہ</div></div></div>
+            <div class="book-item"><span class="book-icon">📔</span><div><div class="book-name">ذخیرہ خوارزم شاہی</div><div class="book-desc">فارسی طبی کتاب کا اردو ترجمہ</div></div></div>
+            <div class="memory-tip"><div class="tip-label">💡 اہم ترین کام</div><p><strong>القانون فی الطب</strong> کی پانچوں جلدوں کا ترجمہ صرف کنتوری صاحب نے کیا۔ دوسرے مترجمین نے صرف پہلی جلد کا ترجمہ کیا تھا۔</p></div>
+            <div class="key-point"><div class="key-point-label">اشاعت</div><div class="key-point-value">القانون کا ترجمہ 1886ء سے 1900ء کے درمیان مطبع منشی نول کشور لکھنؤ سے شائع ہوا۔</div></div>
+            <div class="highlight-box"><div class="title">📖 آج بھی کارآمد</div><p>یہ تراجم آج بھی ان طلباء اور اسکالرز کے لیے بہت مفید ہیں جو عربی اور فارسی نہیں جانتے۔</p></div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title"><span class="icon">⚗️</span>بحیثیت کیمیا داں</h2>
+            <p>آپ جانتے تھے کہ صحیح علاج تبھی ممکن ہے جب دوا درست ہو۔</p>
+            <div class="key-point"><div class="key-point-label">کیمیا کیوں سیکھی؟</div><div class="key-point-value">زہریلی دواؤں (سمّی ادویہ) کو صاف کرنے اور استعمال کے قابل بنانے کے لیے۔ (اسے "تدبیر کرنا" کہتے ہیں)</div></div>
+            <div class="book-item"><span class="book-icon">📓</span><div><div class="book-name">مفتاح الاسرار</div><div class="book-desc">کیمیا کے موضوع پر آپ کی اپنی تصنیف</div></div></div>
+        </div>
+
+        <div class="summary-box">
+            <h3>📝 خلاصہ (یاد کرنے کے لیے)</h3>
+            <ul>
+                <li>پیدائش 1829ء کثور (بارہ بنکی) میں</li>
+                <li>تعلیم مدرسہ شاہی لکھنؤ سے</li>
+                <li>علم دین اور علم طب دونوں میں ماہر</li>
+                <li>دین کی خدمت مفت، روزی طبابت سے</li>
+                <li>القانون فی الطب کی 5 جلدوں کا ترجمہ</li>
+                <li>امراض مزمنہ اور خبیثہ کے ماہر</li>
+                <li>مفتاح الاسرار (کیمیا پر کتاب) لکھی</li>
+                <li>وفات 1918ء فیض آباد، دفن کثور</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title"><span class="icon">📚</span>تراجم کی فہرست</h2>
+            <p><strong>عربی سے اردو:</strong></p>
+            <ul class="simple-list">
+                <li>القانون فی الطب (ابن سینا) - 5 جلدیں</li><li>کامل الصناعۃ</li><li>قانونچہ</li><li>فصول بقراطیہ</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>فارسی سے اردو:</strong></p>
+            <ul class="simple-list"><li>ذخیرہ خوارزم شاہی</li></ul>
+            <p style="margin-top: 15px;"><strong>اپنی تصنیف:</strong></p>
+            <ul class="simple-list"><li>مفتاح الاسرار (کیمیا پر)</li></ul>
+        </div>
+
+        <div class="card" style="border-right-color: #f59e0b; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);">
+            <h2 class="card-title" style="color: #92400e;">
+                <span class="icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">🏆</span>
+                آخری بات
+            </h2>
+            <p>حکیم غلام حسنین کنتوری ایک عظیم طبیب تھے۔ انہوں نے علم طب کو عام لوگوں تک پہنچایا۔ ان کی خدمات علمی اور عملی دونوں میدانوں میں لازوال ہیں۔</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
