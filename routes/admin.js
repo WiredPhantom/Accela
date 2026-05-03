@@ -530,7 +530,7 @@ module.exports = (User, Flashcard, Note) => {
         topicIndex,
         topicName,
         noteTitle,
-        htmlContent: sanitizeNoteHtml(htmlContent),
+        htmlContent,
         isPremium: isPremium === 'on' || isPremium === 'true' || isPremium === true
       });
 
