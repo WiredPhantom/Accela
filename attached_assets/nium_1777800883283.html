@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نیشنل انسٹی ٹیوٹ آف یونانی میڈیسن - NIUM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #2dd4bf 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 40px rgba(13, 148, 136, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-icon svg {
+            width: 45px;
+            height: 45px;
+            fill: white;
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .header .english-title {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            font-weight: 500;
+            letter-spacing: 1px;
+            direction: ltr;
+        }
+
+        .header .abbr {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            padding: 5px 20px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed #e2e8f0;
+        }
+
+        .card-title-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-title-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .card-title h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .bg-teal { background: linear-gradient(135deg, #0d9488, #14b8a6); }
+        .bg-purple { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
+        .bg-orange { background: linear-gradient(135deg, #ea580c, #f97316); }
+        .bg-blue { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            border-right: 4px solid #14b8a6;
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .key-point:active {
+            transform: scale(0.98);
+        }
+
+        .key-point-label {
+            font-size: 0.85rem;
+            color: #0d9488;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-point-label .num {
+            background: #0d9488;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .key-point-text {
+            font-size: 1.05rem;
+            color: #134e4a;
+            font-weight: 500;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #14b8a6, #7c3aed);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 18px;
+            background: #faf5ff;
+            border-radius: 15px;
+            border: 1px solid #e9d5ff;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 22px;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border: 3px solid #7c3aed;
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: white;
+            padding: 3px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+            color: #581c87;
+            line-height: 2;
+        }
+
+        /* Feature List */
+        .feature-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border-radius: 12px;
+            border-right: 3px solid #f97316;
+        }
+
+        .feature-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
+
+        .feature-text {
+            font-size: 1rem;
+            color: #9a3412;
+            font-weight: 500;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .highlight-box .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box .text {
+            font-size: 1.1rem;
+            color: #1e40af;
+            font-weight: 600;
+        }
+
+        /* Summary Section */
+        .summary {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            border: 2px solid #10b981;
+        }
+
+        .summary-title {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #047857;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .summary-item {
+            background: white;
+            padding: 15px 12px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .summary-item .label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+
+        .summary-item .value {
+            font-size: 1rem;
+            color: #047857;
+            font-weight: 700;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .fact-chip {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 1px solid #86efac;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #166534;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card, .summary {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .key-point-text, .timeline-text, .feature-text {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            
+            .header {
+                padding: 40px 30px;
+                border-radius: 0 0 50px 50px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 35px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h1>نیشنل انسٹی ٹیوٹ آف یونانی میڈیسن</h1>
+        <p class="english-title">National Institute of Unani Medicine</p>
+        <span class="abbr">NIUM</span>
+    </header>
+
+    <div class="container">
+
+        <!-- Key Points Summary -->
+        <div class="summary">
+            <h2 class="summary-title">
+                <span>📌</span>
+                اہم نکات یاد رکھیں
+            </h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="label">مطالبہ کا سال</div>
+                    <div class="value">1972ء</div>
+                </div>
+                <div class="summary-item">
+                    <div class="label">قیام کا سال</div>
+                    <div class="value">2003ء</div>
+                </div>
+                <div class="summary-item">
+                    <div class="label">مقام</div>
+                    <div class="value">بنگلور</div>
+                </div>
+                <div class="summary-item">
+                    <div class="label">تعلیم کا آغاز</div>
+                    <div class="value">2004-2005ء</div>
+                </div>
+            </div>
+            <div class="quick-facts">
+                <span class="fact-chip">🎓 پوسٹ گریجویٹ تعلیم</span>
+                <span class="fact-chip">🏥 ہسپتال موجود</span>
+                <span class="fact-chip">📚 تحقیق و تجدید</span>
+            </div>
+        </div>
+
+        <!-- Historical Background -->
+        <div class="card">
+            <div class="card-title">
+                <div class="card-title-icon bg-teal">
+                    <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h2>تاریخی پس منظر</h2>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-label">
+                    <span class="num">1</span>
+                    مطالبہ کب اور کہاں؟
+                </div>
+                <div class="key-point-text">
+                    1972ء میں آل انڈیا یونانی طبی کانفرنس نے بنگلور میں اپنے سالانہ اجلاس میں یہ مطالبہ کیا
+                </div>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-label">
+                    <span class="num">2</span>
+                    مہمان خصوصی کون تھیں؟
+                </div>
+                <div class="key-point-text">
+                    وزیر اعظم ہند مسز اندرا گاندھی کو مہمان خصوصی کے طور پر بلایا گیا
+                </div>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-label">
+                    <span class="num">3</span>
+                    مطالبہ کس نے رکھا؟
+                </div>
+                <div class="key-point-text">
+                    کانفرنس کے صدر حکیم عبدالحمید (متولی ہمدرد دواخانہ دہلی) نے اپنے صدارتی خطبہ میں یہ مطالبہ رکھا
+                </div>
+            </div>
+
+            <div class="key-point">
+                <div class="key-point-label">
+                    <span class="num">4</span>
+                    دلیل کیا دی؟
+                </div>
+                <div class="key-point-text">
+                    جیسے آیوروید کا قومی ادارہ جے پور میں ہے، ویسے ہی یونانی طب کا بھی ہونا چاہیے تاکہ عوام کو فائدہ ہو
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Card -->
+        <div class="card">
+            <div class="card-title">
+                <div class="card-title-icon bg-purple">
+                    <svg viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+                <h2>قیام کی کہانی</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">1972ء</span>
+                    <p class="timeline-text">مطالبہ پیش ہوا - حکومت نے فوری منظوری دی</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">پہلا منصوبہ</span>
+                    <p class="timeline-text">حکومت نے کہا: بنگلور کے موجودہ طبیہ کالج کو ہی بڑا کر دیں</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">اطباء کا موقف</span>
+                    <p class="timeline-text">اطباء نے کہا: نہیں! ہمیں الگ نیا ادارہ چاہیے</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">25 سال</span>
+                    <p class="timeline-text">حکومت کو منانے میں پورے 25 سال لگ گئے!</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">2003ء</span>
+                    <p class="timeline-text">آخرکار بنگلور میں وسیع رقبے پر الگ ادارہ قائم ہوا</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">2004-05ء</span>
+                    <p class="timeline-text">تعلیمی سرگرمیوں کا باقاعدہ آغاز ہوا</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Objectives Card -->
+        <div class="card">
+            <div class="card-title">
+                <div class="card-title-icon bg-orange">
+                    <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h2>اغراض و مقاصد</h2>
+            </div>
+
+            <div class="highlight-box" style="margin-bottom: 20px;">
+                <div class="emoji">👨‍⚕️</div>
+                <div class="text">
+                    پہلے ڈائریکٹر: پروفیسر ملک محمد وامق امین
+                    <br>
+                    <small style="opacity: 0.8;">CCIM نے براہ راست پوسٹ گریجویٹ تعلیم کی اجازت دی</small>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.1rem; color: #ea580c; margin-bottom: 15px; font-weight: 600;">📚 ابتدائی شعبہ جات:</h3>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                    </div>
+                    <span class="feature-text">علم الادویہ (دوائیوں کا علم)</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    </div>
+                    <span class="feature-text">معالجات (علاج کے طریقے)</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+                    </div>
+                    <span class="feature-text">امراض نسواں و قبالہ (خواتین کی بیماریاں)</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                    </div>
+                    <span class="feature-text">علاج بالتدبیر (طرز زندگی سے علاج)</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <span class="feature-text">حفظان صحت (صحت کی حفاظت)</span>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.1rem; color: #ea580c; margin: 25px 0 15px; font-weight: 600;">📖 بعد میں شامل شعبے:</h3>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
+                    <span class="feature-text">کلیات (بنیادی اصول)</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                    </div>
+                    <span class="feature-text">امور طبیعیہ (فطری عوامل)</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                    </div>
+                    <span class="feature-text">علم الصیدلہ (دوا سازی)</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/></svg>
+                    </div>
+                    <span class="feature-text">علم الجراحت (سرجری)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hospital & Research Card -->
+        <div class="card">
+            <div class="card-title">
+                <div class="card-title-icon bg-blue">
+                    <svg viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                </div>
+                <h2>ہسپتال اور تحقیق</h2>
+            </div>
+
+            <div class="highlight-box" style="margin-bottom: 20px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: #3b82f6;">
+                <div class="emoji">🏥</div>
+                <div class="text" style="color: #1e40af;">
+                    ادارے میں مکمل ہسپتال موجود ہے
+                    <br>
+                    <small style="opacity: 0.8;">ان ڈور اور آؤٹ ڈور دونوں سہولیات</small>
+                </div>
+            </div>
+
+            <div class="key-point" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: #3b82f6;">
+                <div class="key-point-label" style="color: #2563eb;">
+                    <span class="num" style="background: #2563eb;">✓</span>
+                    علاج کا نتیجہ
+                </div>
+                <div class="key-point-text" style="color: #1e40af;">
+                    یونانی طریقہ علاج سے ہزاروں مریض شفایاب ہو رہے ہیں
+                </div>
+            </div>
+
+            <div class="key-point" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: #3b82f6;">
+                <div class="key-point-label" style="color: #2563eb;">
+                    <span class="num" style="background: #2563eb;">✓</span>
+                    تحقیقی کام
+                </div>
+                <div class="key-point-text" style="color: #1e40af;">
+                    مختلف موضوعات پر تحقیق جاری ہے جو معیاری طبی جرائد میں شائع ہوتی رہتی ہے
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Summary -->
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div style="text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">🎯</div>
+                <h2 style="color: #92400e; font-size: 1.3rem; margin-bottom: 15px;">آسان خلاصہ</h2>
+                <p style="color: #78350f; font-size: 1.05rem; line-height: 2.2;">
+                    یہ ادارہ <strong>تعلیم</strong>، <strong>تحقیق</strong> اور <strong>علاج</strong> تینوں کام کر رہا ہے۔
+                    <br>
+                    یونانی طب کی ترقی اور عوام کی صحت کی حفاظت اس کا بنیادی مقصد ہے۔
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

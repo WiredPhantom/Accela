@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ضابطہ اخلاق برائے طبیب - CCIM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .english-title {
+            font-size: 0.9em;
+            opacity: 0.9;
+            font-family: Arial, sans-serif;
+        }
+
+        .header .subtitle {
+            font-size: 0.85em;
+            margin-top: 10px;
+            opacity: 0.95;
+        }
+
+        /* Introduction Card */
+        .intro-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .intro-card h2 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-card p {
+            font-size: 1em;
+            color: #4a5568;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 18px 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header .icon {
+            font-size: 1.3em;
+        }
+
+        .section-content {
+            padding: 20px;
+        }
+
+        /* Point Cards */
+        .point-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-right: 4px solid #667eea;
+        }
+
+        .point-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .point-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.9em;
+            font-weight: 700;
+            margin-left: 12px;
+            flex-shrink: 0;
+        }
+
+        .point-content {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .point-text {
+            flex: 1;
+        }
+
+        .point-title {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 1.05em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .point-title .emoji {
+            font-size: 1.2em;
+        }
+
+        .point-description {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 2.4;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-top: 12px;
+            border-right: 3px solid #f59e0b;
+        }
+
+        .highlight-box p {
+            color: #92400e;
+            font-size: 0.9em;
+        }
+
+        /* Character Section Special Style */
+        .character-section .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .character-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .character-item {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8ecf7 100%);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-right: 3px solid #667eea;
+        }
+
+        .character-icon {
+            font-size: 1.5em;
+        }
+
+        .character-text {
+            font-size: 1em;
+            color: #4a5568;
+        }
+
+        /* Quick Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .memory-tip .bulb {
+            font-size: 1.3em;
+        }
+
+        .memory-tip p {
+            color: #0369a1;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .point-card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>📜 ضابطہ اخلاق برائے طبیب</h1>
+        <p class="english-title">Ethical Code for Physicians - CCIM</p>
+        <p class="subtitle">سینٹرل کونسل آف انڈین میڈیسن کے مرتب کردہ اصول</p>
+    </header>
+
+    <div class="container">
+        <!-- Introduction -->
+        <div class="intro-card" id="intro">
+            <h2>📖 تعارف</h2>
+            <p>
+                سینٹرل کونسل آف انڈین میڈیسن (CCIM) نے طبیبوں کے لیے کچھ اہم اصول بنائے ہیں۔ یہ اصول بتاتے ہیں کہ طبیب کو مریضوں کے ساتھ کیسے پیش آنا چاہیے۔ ہر طبیب کو ان اصولوں پر عمل کرنا ضروری ہے تاکہ طب کا پیشہ معزز رہے۔
+            </p>
+            <div class="memory-tip">
+                <span class="bulb">💡</span>
+                <p>یاد رکھیں: CCIM = مرکزی کونسل برائے ہندوستانی طب</p>
+            </div>
+        </div>
+
+        <!-- Character Section -->
+        <section class="section character-section" id="character">
+            <div class="section-header">
+                <span class="icon">👨‍⚕️</span>
+                <span>طبیب کا کردار</span>
+            </div>
+            <div class="section-content">
+                <p style="margin-bottom: 15px; color: #4a5568;">
+                    طب کا اصل مقصد انسانوں کی خدمت ہے۔ جو شخص طبیب بنے، اسے اپنے آپ کو اس کے مطابق ڈھالنا چاہیے۔ طبیب میں یہ صفات ہونی چاہیے:
+                </p>
+                
+                <div class="character-list">
+                    <div class="character-item">
+                        <span class="character-icon">✨</span>
+                        <span class="character-text"><strong>پاکدامن:</strong> اچھے کردار کا مالک ہو</span>
+                    </div>
+                    <div class="character-item">
+                        <span class="character-icon">😊</span>
+                        <span class="character-text"><strong>خوش اخلاق:</strong> سنجیدہ لیکن ملنسار ہو</span>
+                    </div>
+                    <div class="character-item">
+                        <span class="character-icon">💪</span>
+                        <span class="character-text"><strong>صبر والا:</strong> برداشت کرنے والا ہو</span>
+                    </div>
+                    <div class="character-item">
+                        <span class="character-icon">⚡</span>
+                        <span class="character-text"><strong>چست:</strong> علاج میں ہمیشہ تیار رہے</span>
+                    </div>
+                    <div class="character-item">
+                        <span class="character-icon">🧠</span>
+                        <span class="character-text"><strong>مضبوط اعصاب:</strong> گھبرائے نہیں</span>
+                    </div>
+                    <div class="character-item">
+                        <span class="character-icon">❤️</span>
+                        <span class="character-text"><strong>مخلص:</strong> اخلاص، ایثار اور خدا کا خوف رکھے</span>
+                    </div>
+                </div>
+
+                <div class="memory-tip">
+                    <span class="bulb">💡</span>
+                    <p>یاد کرنے کا طریقہ: پاکدامن + خوش اخلاق + صبر + چستی + مضبوط اعصاب + اخلاص = کامل طبیب</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Duties Section -->
+        <section class="section" id="duties">
+            <div class="section-header">
+                <span class="icon">📋</span>
+                <span>مریضوں کے لیے طبیب کے فرائض (۱۰ نکات)</span>
+            </div>
+            <div class="section-content">
+                
+                <!-- Point 1 -->
+                <div class="point-card">
+                    <div class="point-content">
+                        <span class="point-number">۱</span>
+                        <div class="point-text">
+                            <div class="point-title">
+                                <span class="emoji">🚨</span>
+                                <span>ہمیشہ تیار رہنا</span>
+                            </div>
+                            <p class="point-description">
+                                طبیب کو مریضوں کی خدمت کے لیے ہر وقت تیار رہنا چاہیے۔ ایمرجنسی میں دن ہو یا رات، فوراً جانا چاہیے۔ البتہ عام حالات میں ہر مریض کا علاج کرنا ضروری نہیں۔
+                            </p>
+                            <div class="highlight-box">
+                                <p>✅ خلاصہ: ایمرجنسی میں فوراً جاؤ، عام حالات میں انتخاب کر سکتے ہو</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 2 -->
+                <div class="point-card">
+                    <div class="point-content">
+                        <span class="point-number">۲</span>
+                        <div class="point-text">
+                            <div class="point-title">
+                                <span class="emoji">🤝</span>
+                                <span>سب کے ساتھ برابری</span>
+                            </div>
+                            <p class="point-description">
+                                ہر مریض کا علاج کرو، چاہے کوئی بھی مذہب، ذات، پیشہ، مرد یا عورت، امیر یا غریب ہو۔ سب کے ساتھ یکساں سلوک کرو۔
+                            </p>
+                            <div class="highlight-box">
+                                <p>✅ خلاصہ: کوئی امتیاز نہیں - سب مریض برابر ہیں</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 3 -->
+                <div class="point-card">
+                    <div class="point-content">
+                        <span class="point-number">۳</span>
+                        <div class="point-text">
+                            <div class="point-title">
+                                <span class="emoji">🔍</span>
+                                <span>غور سے معائنہ اور اعتماد</span>
+                            </div>
+                            <p class="point-description">
+                                مریض کا اچھی طرح معائنہ کرو۔ اس کا اعتماد حاصل کرو۔ اپنا علم بڑھاتے رہو۔ دوسرے طبیبوں سے تجربات شیئر کرو تاکہ سب کو فائدہ ہو۔
+                            </p>
+                            <div class="highlight-box">
+                                <p>✅ خلاصہ: اچھا معائنہ + مسلسل سیکھنا + تجربات شیئر کرنا</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4 -->
+                <div class="point-card">
+                    <div class="point-content">
+                        <span class="point-number">۴</span>
+                        <div class="point-text">
+                            <div class="point-title">
+                                <span class="emoji">🤫</span>
+                                <span>راز رکھنا</span>
+                            </div>
+                            <p class="point-description">
+                                مریض کی بیماری اور ذاتی باتیں کسی کو نہ بتاؤ۔ یہ راز ہے۔ البتہ اگر متعدی بیماری ہو جس سے گھر والوں کو خطرہ ہو، تو انہیں بتانا ضروری ہے۔
+                            </p>
+                            <div class="highlight-box">
+                                <p>✅ خلاصہ: بیماری راز ہے، لیکن متعدی مرض میں گھر والوں کو خبردار کرو</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 5 -->
+                <div class="point-card">
+                    <div class="point-content">
+                        <span class="point-number">۵</span>
+                        <div class="point-text">
+                            <div class="point-title">
+                                <span class="emoji">💬</span>
+                                <span>صاف بات کرنا</span>
+                            </div>
+                            <p class="point-description">
+                                مریض کی حالت کا صحیح اندازہ لگاؤ۔ اپنی صلاحیت جانچو۔ علاج شروع کرنے سے پہلے رشتہ داروں کو بتاؤ کہ تم پوری کوشش کرو گے، لیکن شفا اللہ کے ہاتھ میں ہے۔
+                            </p>
+                            <div class="highlight-box">
+                                <p>✅ خلاصہ: سچ بتاؤ + پوری کوشش کرو + اللہ پر بھروسہ رکھو</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 6 -->
+                <div class="point-card">
+                    <div class="point-content">
+                        <span class="point-number">۶</span>
+                        <div class="point-text">
+                            <div class="point-title">
+                                <span class="emoji">🔄</span>
+                                <span>علاج مکمل کرنا</span>
+                            </div>
+                            <p class="point-description">
+                                تم کسی مریض کا علاج کرنے سے انکار کر سکتے ہو۔ لیکن ایک بار علاج شروع کر دیا تو لاپروائی نہ کرو اور بیچ میں نہ چھوڑو۔ اگر مجبوری ہو تو دوسرے اچھے طبیب کا انتظام کرو۔
+                            </p>
+                            <div class="highlight-box">
+                                <p>✅ خلاصہ: شروع کیا تو مکمل کرو، نہیں تو متبادل کا بندوبست کرو</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 7 -->
+                <div class="point-card">
+                    <div class="point-content">
+                        <span class="point-number">۷</span>
+                        <div class="point-text">
+                            <div class="point-title">
+                                <span class="emoji">🤰</span>
+                                <span>حاملہ کی نگہداشت</span>
+                            </div>
+                            <p class="point-description">
+                                اگر حاملہ عورت کا علاج کر رہے ہو تو بچے کی پیدائش کے وقت موجود رہو۔ اگر کہیں اور ایمرجنسی ہو تو دوسرا طبیب بھیجو۔ جو طبیب وضع حمل کرائے، اجرت اسی کی ہوگی۔
+                            </p>
+                            <div class="highlight-box">
+                                <p>✅ خلاصہ: پیدائش کے وقت موجود رہو، نہیں تو متبادل بھیجو</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 8 -->
+                <div class="point-card">
+                    <div class="point-content">
+                        <span class="point-number">۸</span>
+                        <div class="point-text">
+                            <div class="point-title">
+                                <span class="emoji">🌍</span>
+                                <span>سماجی صحت کا کام</span>
+                            </div>
+                            <p class="point-description">
+                                ماحولیاتی صحت کی سرگرمیوں میں حصہ لو۔ لوگوں کو صحت کی معلومات دو۔ صحت کے سرکاری افسروں سے رابطہ رکھو اور ان کی ہدایات پر عمل کرو۔
+                            </p>
+                            <div class="highlight-box">
+                                <p>✅ خلاصہ: عوامی صحت میں شامل رہو + حکومت سے تعاون کرو</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 9 -->
+                <div class="point-card">
+                    <div class="point-content">
+                        <span class="point-number">۹</span>
+                        <div class="point-text">
+                            <div class="point-title">
+                                <span class="emoji">🦠</span>
+                                <span>وبائی بیماریوں کی اطلاع</span>
+                            </div>
+                            <p class="point-description">
+                                متعدی اور وبائی بیماریوں میں حکومت کی مدد کرو۔ اگر کوئی ایسا مریض آئے جس سے وبا پھیل سکتی ہے، تو فوراً سرکاری محکمہ کو اطلاع دو۔
+                            </p>
+                            <div class="highlight-box">
+                                <p>✅ خلاصہ: وبائی مریض = فوری سرکاری اطلاع</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 10 -->
+                <div class="point-card">
+                    <div class="point-content">
+                        <span class="point-number">۱۰</span>
+                        <div class="point-text">
+                            <div class="point-title">
+                                <span class="emoji">🦸</span>
+                                <span>وبا میں بہادری</span>
+                            </div>
+                            <p class="point-description">
+                                اگر وبا پھیل جائے تو دل و جان سے مریضوں کا علاج کرو۔ یہ نہ سوچو کہ تمہیں بھی بیماری ہو سکتی ہے۔ اپنی حفاظت کا پہلے سے انتظام کرو اور کام کرتے رہو۔
+                            </p>
+                            <div class="highlight-box">
+                                <p>✅ خلاصہ: وبا میں ڈرو نہیں، حفاظتی انتظام کرو اور خدمت کرو</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Quick Summary Card -->
+        <div class="section">
+            <div class="section-header" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                <span class="icon">📝</span>
+                <span>فوری خلاصہ - ۱۰ نکات</span>
+            </div>
+            <div class="section-content">
+                <div style="display: grid; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fef3c7; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #92400e;">۱</span>
+                        <span style="color: #92400e;">ایمرجنسی میں ہمیشہ تیار</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fef3c7; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #92400e;">۲</span>
+                        <span style="color: #92400e;">سب مریضوں کے ساتھ برابری</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fef3c7; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #92400e;">۳</span>
+                        <span style="color: #92400e;">اچھا معائنہ + علم بڑھانا</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fef3c7; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #92400e;">۴</span>
+                        <span style="color: #92400e;">بیماری راز ہے</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fef3c7; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #92400e;">۵</span>
+                        <span style="color: #92400e;">صاف بات + اللہ پر بھروسہ</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fef3c7; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #92400e;">۶</span>
+                        <span style="color: #92400e;">علاج شروع کیا تو مکمل کرو</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fef3c7; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #92400e;">۷</span>
+                        <span style="color: #92400e;">پیدائش کے وقت موجود رہو</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fef3c7; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #92400e;">۸</span>
+                        <span style="color: #92400e;">سماجی صحت میں شامل رہو</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fef3c7; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #92400e;">۹</span>
+                        <span style="color: #92400e;">وبائی مریض کی فوری اطلاع</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fef3c7; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #92400e;">۱۰</span>
+                        <span style="color: #92400e;">وبا میں بہادری سے خدمت</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

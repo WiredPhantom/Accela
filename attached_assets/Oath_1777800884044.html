@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معاہدہ بقراطیہ - Hippocratic Oath</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #9333ea 100%);
+            padding: 2rem 1.25rem;
+            text-align: center;
+            border-radius: 0 0 1.5rem 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.125rem;
+            font-style: italic;
+            font-family: Georgia, serif;
+            direction: ltr;
+        }
+
+        /* Container */
+        .container {
+            max-width: 48rem;
+            margin: 0 auto;
+            padding: 0 1rem 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .card-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .icon-purple { background: linear-gradient(135deg, #6366f1, #9333ea); }
+        .icon-teal { background: linear-gradient(135deg, #22d3d8, #14b8a6); }
+        .icon-pink { background: linear-gradient(135deg, #f472b6, #f43f5e); }
+        .icon-green { background: linear-gradient(135deg, #4ade80, #10b981); }
+        .icon-orange { background: linear-gradient(135deg, #fb923c, #f59e0b); }
+        .icon-violet { background: linear-gradient(135deg, #a78bfa, #9333ea); }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .card-content {
+            color: #4b5563;
+            font-size: 1.125rem;
+            text-align: justify;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(to left, #eef2ff, #f3e8ff);
+            border-right: 4px solid #6366f1;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            border-radius: 0 0.75rem 0.75rem 0;
+        }
+
+        .highlight-box .label {
+            font-weight: bold;
+            color: #4f46e5;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Important Box */
+        .important-box {
+            background: linear-gradient(to left, #fefce8, #fef3c7);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            border: 2px solid #fbbf24;
+        }
+
+        .important-box .emoji {
+            font-size: 1.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #6366f1, #9333ea);
+            border-radius: 9999px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1rem 1.5rem 1rem 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 1.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: white;
+            border: 4px solid #6366f1;
+            border-radius: 50%;
+        }
+
+        .timeline-content {
+            background: #eef2ff;
+            border-radius: 0.75rem;
+            padding: 1rem;
+        }
+
+        /* Summary Section */
+        .summary {
+            background: linear-gradient(135deg, #6366f1 0%, #9333ea 100%);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            color: white;
+        }
+
+        .summary h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .summary-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .summary-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .summary-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: white;
+            color: #4f46e5;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.875rem;
+            margin-left: 0.75rem;
+        }
+
+        /* Memorization Tips */
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            background: #ecfdf5;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tip-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-emoji {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Strong text */
+        strong {
+            color: #1f2937;
+        }
+
+        .text-red {
+            color: #dc2626;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            font-family: Georgia, serif;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>📜 معاہدہ بقراطیہ</h1>
+        <div class="subtitle">Hippocratic Oath</div>
+    </div>
+
+    <div class="container">
+        <!-- Card 1: Introduction -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon icon-purple">📖</div>
+                <div class="card-title">تعارف - یہ کیا ہے؟</div>
+            </div>
+            <div class="card-content">
+                <p>معاہدہ بقراطیہ ایک <strong>وعدہ نامہ</strong> ہے۔</p>
+                
+                <div class="highlight-box">
+                    <div class="label">🔹 اس کے دوسرے نام:</div>
+                    <p>• عہد نامہ بقراط<br>• حلف نامہ بقراط</p>
+                </div>
+                
+                <div class="important-box">
+                    <div class="emoji">👨‍⚕️</div>
+                    <p><strong>بقراط</strong> (460-377 قبل مسیح) نے یہ عہد نامہ خود بنایا تھا۔ اس میں <strong>طبی اخلاقیات</strong> (Medical Ethics) کے اصول ہیں - یعنی ڈاکٹروں کو کیسا برتاؤ کرنا چاہیے۔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Background -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon icon-teal">🏛️</div>
+                <div class="card-title">پس منظر - کہانی کی شروعات</div>
+            </div>
+            <div class="card-content">
+                <p style="margin-bottom: 1rem;">پرانے یونانی لوگوں کا یہ عقیدہ تھا:</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <strong>🔮 الہام:</strong> ان کے دیوتا <strong>اسقلی بیوس</strong> (Asclepius) کو علمِ طب الہام سے ملا۔
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <strong>👨‍👩‍👧‍👦 وراثت:</strong> یہ علم صرف اسقلی بیوس کے خاندان میں ہی وراثتاً منتقل ہوتا رہا۔
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <strong>🔒 خفیہ:</strong> یہ علم صرف ایک خاندان تک محدود رہ گیا۔
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Why Secret -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon icon-pink">🤔</div>
+                <div class="card-title">خفیہ کیوں رکھا؟</div>
+            </div>
+            <div class="card-content">
+                <p style="margin-bottom: 1rem;">غیر لوگوں کو یہ علم اس لیے نہیں سکھاتے تھے:</p>
+                
+                <div class="highlight-box">
+                    <div class="label">🔹 پہلی وجہ:</div>
+                    <p>یہ علم <strong>مقدس</strong> سمجھا جاتا تھا کیونکہ دیوتا سے ملا تھا۔</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <div class="label">🔹 دوسری وجہ:</div>
+                    <p>اس علم کا تعلق انسان کی <strong>جان، زندگی اور موت</strong> سے ہے۔ ذرا سی غلطی سے قیمتی جان ضائع ہو سکتی ہے۔</p>
+                </div>
+                
+                <div class="important-box">
+                    <div class="emoji">⚠️</div>
+                    <p><strong>نتیجہ:</strong> ہر کسی کو طب کی تعلیم کا اہل نہیں سمجھا جاتا تھا!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: Hippocrates Decision -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon icon-green">💡</div>
+                <div class="card-title">بقراط کا فیصلہ</div>
+            </div>
+            <div class="card-content">
+                <p style="margin-bottom: 1rem;"><strong>بقراط</strong> اسقلی بیوس کی <strong>16ویں نسل</strong> میں پیدا ہوا۔</p>
+                
+                <div class="important-box">
+                    <div class="emoji">😟</div>
+                    <p><strong>مسئلہ:</strong> اس وقت تک خاندان کے بہت کم لوگ بچے تھے جن کے پاس یہ علم تھا۔</p>
+                </div>
+                
+                <p style="margin-bottom: 0.75rem;"><strong>بقراط کی سوچ:</strong></p>
+                <div class="highlight-box">
+                    <p>
+                        ✅ طب کی بقاء اور ترقی کے لیے ضروری ہے کہ یہ علم صرف ایک خاندان تک محدود نہ رہے۔<br><br>
+                        ✅ یہ ایک <strong>نیک اور شریف فن</strong> ہے۔<br><br>
+                        ✅ نیکی ہر شخص سے کرنی چاہیے - چاہے اپنا ہو یا غیر!
+                    </p>
+                </div>
+                
+                <div class="important-box">
+                    <div class="emoji">🎓</div>
+                    <p><strong>عمل:</strong> بقراط نے خاندان کے علاوہ غیر لوگوں کو بھی شاگرد بنایا اور طب سکھائی۔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: Concern -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon icon-orange">😰</div>
+                <div class="card-title">بقراط کی فکر</div>
+            </div>
+            <div class="card-content">
+                <p style="margin-bottom: 1rem;">یہ نیک کام کرتے وقت بقراط کو <strong>ایک خدشہ</strong> ہوا:</p>
+                
+                <div class="highlight-box">
+                    <p>
+                        ❓ کیا ہوگا اگر کوئی شاگرد یہ مقدس علم حاصل کرنے کے بعد:<br><br>
+                        • نا اہل ثابت ہو؟<br>
+                        • فن کا حق ادا نہ کر پائے؟<br>
+                        • اپنے کام میں کوتاہی کرے؟<br><br>
+                        <strong class="text-red">⚠️ اس سے فنِ طب بدنام ہو جائے گا!</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6: Solution - The Oath -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon icon-violet">📜</div>
+                <div class="card-title">حل - معاہدہ بقراطیہ</div>
+            </div>
+            <div class="card-content">
+                <p style="margin-bottom: 1rem;">اس فکر کے حل کے لیے بقراط نے یہ <strong>عہد نامہ تیار کیا</strong>۔</p>
+                
+                <div class="highlight-box">
+                    <div class="label">📋 طریقہ کار:</div>
+                    <p>
+                        ۱۔ جب شاگرد تعلیم مکمل کرتے<br><br>
+                        ۲۔ میدان عمل میں اترنے سے پہلے<br><br>
+                        ۳۔ بقراط یہ عہد نامہ پڑھواتا<br><br>
+                        ۴۔ شاگرد خدا کو حاضر ناظر جان کر حلف اٹھاتے<br><br>
+                        ۵۔ وعدہ کرتے کہ اس عہد نامے کے مطابق کام کریں گے
+                    </p>
+                </div>
+                
+                <div class="important-box">
+                    <div class="emoji">🤝</div>
+                    <p><strong>مقصد:</strong> فنِ طب کی عزت اور عظمت کو برقرار رکھنا!<br>
+                    یہ استاد اور شاگرد کے درمیان ایک <strong>پکا معاہدہ</strong> تھا۔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary">
+            <h3>📝 خلاصہ - آسان پوائنٹس</h3>
+            
+            <div class="summary-item">
+                <span class="summary-number">۱</span>
+                <strong>معاہدہ بقراطیہ</strong> = طبی اخلاقیات کا عہد نامہ
+            </div>
+            
+            <div class="summary-item">
+                <span class="summary-number">۲</span>
+                <strong>بنانے والا:</strong> بقراط (460-377 قبل مسیح)
+            </div>
+            
+            <div class="summary-item">
+                <span class="summary-number">۳</span>
+                <strong>پہلے:</strong> علم طب صرف اسقلی بیوس کے خاندان میں تھا (دیوتا سے الہام)
+            </div>
+            
+            <div class="summary-item">
+                <span class="summary-number">۴</span>
+                <strong>مسئلہ:</strong> خاندان کم ہو گیا - علم ختم ہونے کا خطرہ
+            </div>
+            
+            <div class="summary-item">
+                <span class="summary-number">۵</span>
+                <strong>بقراط کا فیصلہ:</strong> غیروں کو بھی طب سکھانا
+            </div>
+            
+            <div class="summary-item">
+                <span class="summary-number">۶</span>
+                <strong>فکر:</strong> شاگرد نا اہل نکلا تو؟
+            </div>
+            
+            <div class="summary-item">
+                <span class="summary-number">۷</span>
+                <strong>حل:</strong> معاہدہ بقراطیہ - شاگردوں سے حلف لینا
+            </div>
+            
+            <div class="summary-item">
+                <span class="summary-number">۸</span>
+                <strong>مقصد:</strong> فن طب کی عزت برقرار رکھنا
+            </div>
+        </div>
+
+        <!-- Memorization Tips -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon icon-green">🧠</div>
+                <div class="card-title">یاد کرنے کا آسان طریقہ</div>
+            </div>
+            <div class="card-content">
+                <div class="tip-item">
+                    <div class="tip-emoji">💭</div>
+                    <div>
+                        <strong>کہانی یاد کریں:</strong> دیوتا ← خاندان ← خاندان کم ہوا ← بقراط ← غیروں کو سکھایا ← فکر ہوئی ← حلف نامہ بنایا
+                    </div>
+                </div>
+                
+                <div class="tip-item">
+                    <div class="tip-emoji">🔢</div>
+                    <div>
+                        <strong>نمبر یاد کریں:</strong> 16ویں نسل + 460-377 قبل مسیح
+                    </div>
+                </div>
+                
+                <div class="tip-item">
+                    <div class="tip-emoji">📌</div>
+                    <div>
+                        <strong>اہم لفظ:</strong> اسقلی بیوس (دیوتا) + بقراط (ڈاکٹر)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

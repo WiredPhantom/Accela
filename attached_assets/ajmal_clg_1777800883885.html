@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اجمل خان طبیہ کالج، علی گڑھ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .english-name {
+            font-size: 0.9em;
+            opacity: 0.9;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .header .year-badge {
+            background: #48bb78;
+            color: white;
+            padding: 8px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-right: 5px solid #3182ce;
+        }
+
+        .card.green-border {
+            border-right-color: #48bb78;
+        }
+
+        .card.purple-border {
+            border-right-color: #805ad5;
+        }
+
+        .card.orange-border {
+            border-right-color: #ed8936;
+        }
+
+        .card.red-border {
+            border-right-color: #e53e3e;
+        }
+
+        .card.teal-border {
+            border-right-color: #319795;
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            color: #1a365d;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title .icon {
+            font-size: 1.5em;
+        }
+
+        .card p {
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        /* Highlight boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-right: 4px solid #3182ce;
+        }
+
+        .highlight-box.yellow {
+            background: linear-gradient(135deg, #fffff0 0%, #fefcbf 100%);
+            border-right-color: #d69e2e;
+        }
+
+        .highlight-box.green {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border-right-color: #48bb78;
+        }
+
+        .highlight-box.purple {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+            border-right-color: #805ad5;
+        }
+
+        /* Year badge inline */
+        .year {
+            background: #3182ce;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .year.green {
+            background: #48bb78;
+        }
+
+        .year.orange {
+            background: #ed8936;
+        }
+
+        .year.purple {
+            background: #805ad5;
+        }
+
+        .year.red {
+            background: #e53e3e;
+        }
+
+        /* Teachers list */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .teacher-item {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 12px 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.95em;
+            border: 1px solid #e2e8f0;
+        }
+
+        .teacher-item .number {
+            background: #3182ce;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            margin-left: 8px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #3182ce, #48bb78, #805ad5, #ed8936);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            background: white;
+            padding: 18px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            background: #3182ce;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-item.green::before {
+            background: #48bb78;
+        }
+
+        .timeline-item.purple::before {
+            background: #805ad5;
+        }
+
+        .timeline-item.orange::before {
+            background: #ed8936;
+        }
+
+        .timeline-item.red::before {
+            background: #e53e3e;
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        /* Quick revision cards */
+        .revision-section {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .revision-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .revision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .revision-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .revision-card .label {
+            font-size: 0.85em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .revision-card .value {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .revision-card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Locations section */
+        .location-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .location-icon {
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+
+        .location-info h4 {
+            color: #2c5282;
+            margin-bottom: 5px;
+        }
+
+        /* Important points */
+        .important-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .point-bullet {
+            background: #48bb78;
+            color: white;
+            min-width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .teachers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .revision-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .revision-card.full-width {
+                grid-column: 1;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card, .timeline-item {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Section divider */
+        .section-divider {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .section-divider span {
+            background: #e2e8f0;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>🏛️ اجمل خان طبیہ کالج</h1>
+        <p class="english-name">Ajmal Khan Tibbia College, Aligarh</p>
+        <span class="year-badge">قیام: 1927ء</span>
+    </header>
+
+    <div class="container">
+        
+        <!-- Introduction Card -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📜</span>
+                <span>کالج کی شروعات کیسے ہوئی؟</span>
+            </div>
+            
+            <div class="highlight-box yellow">
+                <strong>پہلے یہ سمجھیں:</strong> <span class="year">1926ء</span> میں حکومت نے لکھنؤ میں "بورڈ آف انڈین میڈیسن" بنایا۔ اس بورڈ کا کام یہ تھا کہ دیسی علاج (آیوروید اور یونانی طب) کو منظم کرے۔
+            </div>
+            
+            <p>بورڈ بننے کے بعد حکومت نے فیصلہ کیا کہ تین ادارے کھولے جائیں:</p>
+            
+            <div class="important-point">
+                <span class="point-bullet">1</span>
+                <span>ایک آیورویدک کالج (ہندو طریقہ علاج)</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">2</span>
+                <span>ایک طبی (یونانی) کالج (مسلم طریقہ علاج)</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">3</span>
+                <span>ایک اسکول</span>
+            </div>
+        </div>
+
+        <!-- Conference Card -->
+        <div class="card green-border">
+            <div class="card-title">
+                <span class="icon">🎤</span>
+                <span>اہم کانفرنس - 8 مارچ 1926ء</span>
+            </div>
+            
+            <p>اسی سال <span class="year green">8 مارچ 1926ء</span> کو دہلی میں ایک بڑا اجلاس ہوا۔ یہ اجلاس حکیم اجمل خان کی بنائی ہوئی تنظیم <strong>"آل انڈیا ویدک اینڈ یونانی طبی کانفرنس"</strong> کا تھا۔</p>
+            
+            <div class="highlight-box green">
+                <strong>صدارت:</strong> جناب وید گنیش دت نے کی
+            </div>
+            
+            <p><strong>کیا تجویز رکھی گئی؟</strong></p>
+            <div class="important-point">
+                <span class="point-bullet">✓</span>
+                <span><strong>یونانی طبی کالج</strong> → علی گڑھ مسلم یونیورسٹی میں بنے</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">✓</span>
+                <span><strong>آیورویدک کالج</strong> → بنارس ہندو یونیورسٹی میں بنے</span>
+            </div>
+        </div>
+
+        <!-- Establishment Card -->
+        <div class="card purple-border">
+            <div class="card-title">
+                <span class="icon">🎓</span>
+                <span>کالج کا قیام - 1927ء</span>
+            </div>
+            
+            <p><strong>حکیم محمد الیاس خان</strong> (جو اس کانفرنس کے سرگرم رکن تھے) نے یہ تجویز علی گڑھ مسلم یونیورسٹی کی اکیڈمک کونسل میں پیش کی۔</p>
+            
+            <div class="highlight-box purple">
+                <strong>نتیجہ:</strong> تجویز منظور ہو گئی اور <span class="year purple">1927ء</span> میں <strong>"اجمل خان طبیہ کالج"</strong> علی گڑھ مسلم یونیورسٹی میں قائم ہو گیا!
+            </div>
+        </div>
+
+        <div class="section-divider">
+            <span>👥 قیادت اور اساتذہ</span>
+        </div>
+
+        <!-- Leadership Card -->
+        <div class="card orange-border">
+            <div class="card-title">
+                <span class="icon">👨‍💼</span>
+                <span>پہلی قیادت</span>
+            </div>
+            
+            <div class="location-box">
+                <span class="location-icon">🎖️</span>
+                <div class="location-info">
+                    <h4>پرنسپل</h4>
+                    <p><strong>ڈاکٹر عطاء اللہ بٹ</strong></p>
+                    <p style="font-size: 0.9em; color: #718096;">(یہ ماڈرن میڈیسن کے ماہر تھے)</p>
+                </div>
+            </div>
+            
+            <div class="location-box">
+                <span class="location-icon">🏅</span>
+                <div class="location-info">
+                    <h4>وائس پرنسپل</h4>
+                    <p><strong>حکیم عبد اللطیف فلسفی</strong></p>
+                    <p style="font-size: 0.9em; color: #718096;">(خاندانِ عزیزی لکھنؤ کے ماہر طبیب)</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box yellow">
+                <strong>⚠️ ایک مسئلہ:</strong> چونکہ ڈاکٹر عطاء اللہ بٹ ماڈرن میڈیسن کے آدمی تھے اور یونانی طب سے واقف نہ تھے، اس لیے نصاب میں جدید مضامین زیادہ ہو گئے۔ دوسرے اساتذہ نے وائس چانسلر کو بتایا۔ پھر ایک کمیٹی بنی جس نے قدیم اور جدید طب میں توازن پیدا کیا۔
+            </div>
+        </div>
+
+        <!-- Teachers Card -->
+        <div class="card teal-border">
+            <div class="card-title">
+                <span class="icon">👨‍🏫</span>
+                <span>ابتدائی اساتذہ (8 نام یاد رکھیں)</span>
+            </div>
+            
+            <div class="teachers-grid">
+                <div class="teacher-item">
+                    <span class="number">1</span>
+                    ڈاکٹر عطاء اللہ بٹ
+                </div>
+                <div class="teacher-item">
+                    <span class="number">2</span>
+                    حکیم عبد اللطیف فلسفی
+                </div>
+                <div class="teacher-item">
+                    <span class="number">3</span>
+                    حکیم عبد اللہ خاں نصر
+                </div>
+                <div class="teacher-item">
+                    <span class="number">4</span>
+                    حکیم ظہیر الدین خاں
+                </div>
+                <div class="teacher-item">
+                    <span class="number">5</span>
+                    شاہ اولیس
+                </div>
+                <div class="teacher-item">
+                    <span class="number">6</span>
+                    ڈاکٹر عنایت اللہ
+                </div>
+                <div class="teacher-item">
+                    <span class="number">7</span>
+                    ڈاکٹر قیوم پاشا
+                </div>
+                <div class="teacher-item">
+                    <span class="number">8</span>
+                    ڈاکٹر منصور
+                </div>
+            </div>
+            
+            <p style="margin-top: 15px; text-align: center; color: #4a5568;">ان سب کی محنت سے کالج جلد مشہور ہو گیا</p>
+        </div>
+
+        <!-- Initial Locations -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📍</span>
+                <span>شروع میں کہاں تھا؟</span>
+            </div>
+            
+            <div class="location-box">
+                <span class="location-icon">📚</span>
+                <div class="location-info">
+                    <h4>کلاسیں</h4>
+                    <p><strong>سلطان جہاں منزل</strong></p>
+                    <p style="font-size: 0.9em; color: #718096;">(اب شمشاد مارکیٹ کہلاتا ہے)</p>
+                </div>
+            </div>
+            
+            <div class="location-box">
+                <span class="location-icon">🏥</span>
+                <div class="location-info">
+                    <h4>مطب اور ہسپتال</h4>
+                    <p><strong>صاحب باغ</strong></p>
+                    <p style="font-size: 0.9em; color: #718096;">(اب سلیمان ہال کہلاتا ہے)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider">
+            <span>📅 اہم تاریخیں</span>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1926ء</div>
+                <p>بورڈ آف انڈین میڈیسن لکھنؤ میں قائم ہوا۔ 8 مارچ کو دہلی میں کانفرنس ہوئی۔</p>
+            </div>
+            
+            <div class="timeline-item green">
+                <div class="timeline-year">1927ء</div>
+                <p>اجمل خان طبیہ کالج علی گڑھ مسلم یونیورسٹی میں قائم ہوا۔</p>
+            </div>
+            
+            <div class="timeline-item purple">
+                <div class="timeline-year">1932ء</div>
+                <p>پہلا بیچ فارغ ہوا (5 سال کی تعلیم کے بعد)۔ <strong>D.I.M.S</strong> کی ڈگری ملی۔</p>
+            </div>
+            
+            <div class="timeline-item orange">
+                <div class="timeline-year">1937ء</div>
+                <p>نئی عمارت کا سنگِ بنیاد رکھا گیا۔ <strong>ولی عہدِ معظم جاہ</strong> (حیدرآباد دکن) نے سنگِ بنیاد رکھا۔</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">1940ء</div>
+                <p>کالج مکمل طور پر یونیورسٹی سے الحاق ہو گیا۔ یو پی بورڈ سے علیحدہ ہو کر تمام امور مسلم یونیورسٹی کے تحت آ گئے۔</p>
+            </div>
+            
+            <div class="timeline-item green">
+                <div class="timeline-year">1944ء</div>
+                <p>نئی عمارت تیار ہوئی۔ کالج سلطان جہاں منزل اور صاحب باغ سے نئی عمارت میں منتقل ہوا۔</p>
+            </div>
+            
+            <div class="timeline-item purple">
+                <div class="timeline-year">1945ء</div>
+                <p>ڈگری کا نام بدلا: <strong>D.I.M.S</strong> سے <strong>B.U.T.S</strong> ہو گیا۔ کالج کا نام "ڈگری طبیہ کالج" ہوا۔</p>
+            </div>
+            
+            <div class="timeline-item red">
+                <div class="timeline-year">1949ء</div>
+                <p>ڈاکٹر عطاء اللہ بٹ ریٹائر ہوئے۔ <strong>حکیم عبد اللطیف</strong> پرنسپل بنے۔</p>
+            </div>
+        </div>
+
+        <!-- Hakim Abdul Latif Era -->
+        <div class="card red-border">
+            <div class="card-title">
+                <span class="icon">⭐</span>
+                <span>حکیم عبد اللطیف کا دور</span>
+            </div>
+            
+            <p><span class="year red">1949ء</span> میں جب حکیم عبد اللطیف پرنسپل بنے تو انہوں نے:</p>
+            
+            <div class="important-point">
+                <span class="point-bullet">✓</span>
+                <span>یونانی طب کی شناخت پر خاص توجہ دی</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">✓</span>
+                <span>بہترین اطباء تیار کیے</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">✓</span>
+                <span>کالج کو دہلی اور لکھنؤ کے طبیہ کالجوں کے برابر لا کھڑا کیا</span>
+            </div>
+            
+            <div class="highlight-box green">
+                <strong>آج کی صورتحال:</strong> آزادی کے بعد یہ کالج بہت ترقی کر چکا ہے۔ آج بھی یہ یونانی طب کی تعلیم میں مصروف ہے اور طبی ترقی کے نئے باب رقم کر رہا ہے۔
+            </div>
+        </div>
+
+        <!-- Quick Revision Section -->
+        <div class="revision-section">
+            <h2>📝 جلدی یاد کریں</h2>
+            
+            <div class="revision-grid">
+                <div class="revision-card">
+                    <div class="label">بورڈ کا قیام</div>
+                    <div class="value">1926ء</div>
+                </div>
+                <div class="revision-card">
+                    <div class="label">کالج کا قیام</div>
+                    <div class="value">1927ء</div>
+                </div>
+                <div class="revision-card">
+                    <div class="label">پہلا بیچ فارغ</div>
+                    <div class="value">1932ء</div>
+                </div>
+                <div class="revision-card">
+                    <div class="label">نئی عمارت کا سنگِ بنیاد</div>
+                    <div class="value">1937ء</div>
+                </div>
+                <div class="revision-card">
+                    <div class="label">یونیورسٹی سے الحاق</div>
+                    <div class="value">1940ء</div>
+                </div>
+                <div class="revision-card">
+                    <div class="label">نئی عمارت میں منتقلی</div>
+                    <div class="value">1944ء</div>
+                </div>
+                <div class="revision-card">
+                    <div class="label">ڈگری کا نام بدلا</div>
+                    <div class="value">1945ء</div>
+                </div>
+                <div class="revision-card">
+                    <div class="label">حکیم لطیف پرنسپل بنے</div>
+                    <div class="value">1949ء</div>
+                </div>
+                <div class="revision-card full-width">
+                    <div class="label">پہلے پرنسپل</div>
+                    <div class="value">ڈاکٹر عطاء اللہ بٹ</div>
+                </div>
+                <div class="revision-card full-width">
+                    <div class="label">پہلے وائس پرنسپل</div>
+                    <div class="value">حکیم عبد اللطیف فلسفی</div>
+                </div>
+                <div class="revision-card full-width">
+                    <div class="label">پہلی ڈگری</div>
+                    <div class="value">D.I.M.S → B.U.T.S</div>
+                </div>
+                <div class="revision-card full-width">
+                    <div class="label">کل اساتذہ (شروع میں)</div>
+                    <div class="value">8 اطباء</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Points -->
+        <div class="card green-border">
+            <div class="card-title">
+                <span class="icon">💡</span>
+                <span>اہم نکات خلاصہ</span>
+            </div>
+            
+            <div class="important-point">
+                <span class="point-bullet">1</span>
+                <span>1926ء میں بورڈ آف انڈین میڈیسن لکھنؤ میں بنا</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">2</span>
+                <span>8 مارچ 1926ء کو دہلی میں کانفرنس ہوئی</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">3</span>
+                <span>حکیم محمد الیاس خان نے تجویز پیش کی</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">4</span>
+                <span>1927ء میں کالج قائم ہوا</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">5</span>
+                <span>پہلے پرنسپل ماڈرن میڈیسن کے تھے</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">6</span>
+                <span>1932ء میں پہلے طلبہ فارغ ہوئے</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">7</span>
+                <span>1944ء میں نئی عمارت تیار ہوئی</span>
+            </div>
+            <div class="important-point">
+                <span class="point-bullet">8</span>
+                <span>1949ء میں حکیم عبد اللطیف پرنسپل بنے</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

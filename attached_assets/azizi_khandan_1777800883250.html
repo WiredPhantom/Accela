@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خاندان عزیزی - مشہور اطباء</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #333;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e5f3e 0%, #2d8f5f 100%);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 15px rgba(30, 95, 62, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-right: 5px solid #1e5f3e;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #1e5f3e 0%, #2d8f5f 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 15px;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.4em;
+        }
+
+        /* Hakeem List */
+        .hakeem-list {
+            list-style: none;
+        }
+
+        .hakeem-item {
+            background: linear-gradient(135deg, #f8faf9 0%, #e8f5e9 100%);
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border-right: 4px solid #2d8f5f;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hakeem-item:active {
+            transform: scale(0.98);
+        }
+
+        .hakeem-item.founder {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-right-color: #f9a825;
+        }
+
+        .hakeem-item.founder .hakeem-name {
+            color: #f57f17;
+        }
+
+        .hakeem-name {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #1e5f3e;
+            margin-bottom: 5px;
+        }
+
+        .hakeem-note {
+            font-size: 0.9em;
+            color: #666;
+            background: rgba(255,255,255,0.7);
+            padding: 5px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        /* Services Section */
+        .service-item {
+            background: white;
+            border: 2px solid #e8f5e9;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .service-number {
+            position: absolute;
+            top: -12px;
+            right: 15px;
+            background: linear-gradient(135deg, #1e5f3e 0%, #2d8f5f 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1em;
+            box-shadow: 0 3px 10px rgba(30, 95, 62, 0.3);
+        }
+
+        .service-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #1e5f3e;
+            margin-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .service-desc {
+            color: #555;
+            font-size: 1em;
+            line-height: 2.4;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 12px;
+            border-right: 4px solid #1976d2;
+        }
+
+        .highlight-box strong {
+            color: #1565c0;
+        }
+
+        /* Book Names */
+        .book-name {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 8px 15px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 5px;
+            font-weight: 600;
+            color: #e65100;
+            border: 1px solid #ffcc80;
+        }
+
+        /* Key Points Box */
+        .key-point {
+            background: #f1f8e9;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            border-right: 3px solid #7cb342;
+        }
+
+        .key-point strong {
+            color: #558b2f;
+        }
+
+        /* Year Badge */
+        .year-badge {
+            background: linear-gradient(135deg, #7c4dff 0%, #651fff 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #1e5f3e 0%, #2d8f5f 100%);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+
+        .summary-title {
+            font-size: 1.4em;
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .summary-item {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .summary-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-card {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 700px;
+                margin: 0 auto;
+                padding: 25px;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .section-card {
+                padding: 30px;
+            }
+        }
+
+        /* Quick Memory Cards */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .memory-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .memory-card .label {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .memory-card .value {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #1e5f3e;
+        }
+
+        /* Institution badge */
+        .institution-tag {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🏥 خاندان عزیزی</h1>
+        <p>طب یونانی کے مشہور اطباء کا خاندان</p>
+    </header>
+
+    <div class="container">
+        <!-- Section 1: Famous Hakeems -->
+        <div class="section-card">
+            <div class="section-title">
+                <span class="icon">👨‍⚕️</span>
+                <span>مشہور اطباء کی فہرست</span>
+            </div>
+
+            <ul class="hakeem-list">
+                <li class="hakeem-item founder">
+                    <div class="hakeem-name">حکیم محمد یعقوب</div>
+                    <span class="hakeem-note">🌟 خاندان کے مورثِ اعلیٰ (سب سے پہلے بزرگ)</span>
+                </li>
+                <li class="hakeem-item founder">
+                    <div class="hakeem-name">حکیم عبدالعزیز</div>
+                    <span class="hakeem-note">⭐ انہی کے نام پر خاندان "عزیزی" کہلایا</span>
+                </li>
+                <li class="hakeem-item">
+                    <div class="hakeem-name">حکیم محمد اسماعیل</div>
+                </li>
+                <li class="hakeem-item">
+                    <div class="hakeem-name">حکیم عبد العلی</div>
+                </li>
+                <li class="hakeem-item">
+                    <div class="hakeem-name">حکیم عبدالولی</div>
+                </li>
+                <li class="hakeem-item">
+                    <div class="hakeem-name">حکیم عبد الوحید</div>
+                </li>
+                <li class="hakeem-item">
+                    <div class="hakeem-name">حکیم عبد الرشید</div>
+                </li>
+                <li class="hakeem-item">
+                    <div class="hakeem-name">حکیم عبد الحمید</div>
+                </li>
+                <li class="hakeem-item">
+                    <div class="hakeem-name">حکیم عبد المعید</div>
+                </li>
+                <li class="hakeem-item founder">
+                    <div class="hakeem-name">حکیم عبداللطیف فلسفی</div>
+                    <span class="hakeem-note">📚 مشہور مصنف اور مترجم</span>
+                </li>
+            </ul>
+
+            <!-- Memory Tip -->
+            <div class="highlight-box">
+                <strong>یاد رکھنے کا آسان طریقہ:</strong><br>
+                ✅ "یعقوب" سب سے پہلے بزرگ<br>
+                ✅ "عزیز" کے نام پر خاندان کا نام<br>
+                ✅ زیادہ تر نام "عبد" سے شروع ہوتے ہیں
+            </div>
+        </div>
+
+        <!-- Section 2: Services -->
+        <div class="section-card">
+            <div class="section-title">
+                <span class="icon">⚕️</span>
+                <span>خاندان کی خدمات</span>
+            </div>
+
+            <!-- Service 1 -->
+            <div class="service-item">
+                <div class="service-number">۱</div>
+                <div class="service-title">تکمیل الطب کا قیام</div>
+                <div class="service-desc">
+                    حکیم عبدالعزیز نے <span class="year-badge">1902ء</span> میں لکھنؤ میں مدرسہ <strong>"تکمیل الطب"</strong> کی بنیاد رکھی۔
+                </div>
+                <div class="key-point">
+                    <strong>سادہ الفاظ میں:</strong> یہ ایک طب کا سکول ہے جہاں ڈاکٹر بنتے ہیں۔ آج بھی حکومت کے تحت چل رہا ہے۔
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-item">
+                <div class="service-number">۲</div>
+                <div class="service-title">مفرد ادویہ سے علاج</div>
+                <div class="service-desc">
+                    یہ خاندان <strong>مفرد ادویہ</strong> (ایک قسم کی دوا) سے علاج کرتا تھا، نہ کہ ملی جلی دواؤں سے۔
+                </div>
+                <div class="key-point">
+                    <strong>سادہ الفاظ میں:</strong> جیسے بخار ہو تو صرف ایک دوا دینا، 10 دوائیں ملا کر نہیں دینا۔ کم دوا، جلدی اثر!
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-item">
+                <div class="service-number">۳</div>
+                <div class="service-title">جراحت (سرجری) کی تعلیم</div>
+                <div class="service-desc">
+                    تکمیل الطب میں دوا کے ساتھ <strong>سرجری</strong> بھی سکھائی جاتی تھی۔
+                </div>
+                <div class="key-point">
+                    <strong>سادہ الفاظ میں:</strong> یہاں صرف دوا دینا نہیں سکھاتے تھے، آپریشن کرنا بھی سکھاتے تھے۔ دوسرے سکولوں میں یہ نہیں ہوتا تھا۔
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-item">
+                <div class="service-number">۴</div>
+                <div class="service-title">تدریسی خدمات (پڑھانے کا کام)</div>
+                <div class="service-desc">
+                    اس خاندان کے حکیموں نے بڑے بڑے اداروں میں پڑھایا:
+                </div>
+                <div style="margin-top: 10px;">
+                    <span class="institution-tag">تکمیل الطب، لکھنؤ</span>
+                    <span class="institution-tag">اجمل خاں طبیہ کالج، علی گڑھ</span>
+                    <span class="institution-tag">جامعہ طبیہ، دہلی</span>
+                </div>
+                <div class="key-point">
+                    <strong>سادہ الفاظ میں:</strong> یہ لوگ استاد اور پرنسپل بن کر کئی شہروں میں گئے اور نئے ڈاکٹر تیار کیے۔
+                </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-item">
+                <div class="service-number">۵</div>
+                <div class="service-title">کتابیں لکھیں</div>
+                <div class="service-desc">
+                    <strong>حکیم عبدالعزیز کی کتابیں:</strong>
+                    <div style="margin: 10px 0;">
+                        <span class="book-name">📖 تحفہ عزیزی</span>
+                        <span class="book-name">📖 جواہر الدماغ</span>
+                    </div>
+                    <strong>حکیم عبداللطیف فلسفی کی کتابیں:</strong>
+                    <div style="margin: 10px 0;">
+                        <span class="book-name">📖 کتاب النبض</span>
+                        <span class="book-name">📖 ابن سینا کی کتب کے اردو ترجمے</span>
+                    </div>
+                </div>
+                <div class="key-point">
+                    <strong>یاد رکھیں:</strong> عزیز = تحفہ عزیزی + جواہر الدماغ | لطیف = کتاب النبض + ترجمے
+                </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="service-item">
+                <div class="service-number">۶</div>
+                <div class="service-title">علاج کا طریقہ</div>
+                <div class="service-desc">
+                    یہ حکیم دوا سے زیادہ تین چیزوں پر زور دیتے تھے:
+                </div>
+                <div class="memory-grid">
+                    <div class="memory-card">
+                        <div class="value">🍎</div>
+                        <div class="label">صحیح غذا</div>
+                    </div>
+                    <div class="memory-card">
+                        <div class="value">🚫</div>
+                        <div class="label">پرہیز</div>
+                    </div>
+                    <div class="memory-card">
+                        <div class="value">🏃</div>
+                        <div class="label">ورزش (کسرت)</div>
+                    </div>
+                    <div class="memory-card">
+                        <div class="value">💊</div>
+                        <div class="label">کم دوا</div>
+                    </div>
+                </div>
+                <div class="key-point">
+                    <strong>سادہ الفاظ میں:</strong> پہلے غذا، پرہیز اور ورزش۔ دوا آخری حل ہے!
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Summary -->
+        <div class="summary-section">
+            <div class="summary-title">📝 فوری خلاصہ (یاد کرنے کے لیے)</div>
+            
+            <div class="summary-item">
+                <strong>🏠 خاندان کا نام کیوں؟</strong><br>
+                حکیم عبدالعزیز کے نام پر
+            </div>
+            
+            <div class="summary-item">
+                <strong>👴 سب سے پہلے بزرگ؟</strong><br>
+                حکیم محمد یعقوب
+            </div>
+            
+            <div class="summary-item">
+                <strong>🏫 کون سا ادارہ بنایا؟</strong><br>
+                تکمیل الطب (1902ء، لکھنؤ)
+            </div>
+            
+            <div class="summary-item">
+                <strong>💊 علاج کا خاص طریقہ؟</strong><br>
+                مفرد ادویہ (ایک دوا) + سرجری
+            </div>
+            
+            <div class="summary-item">
+                <strong>📚 مشہور کتابیں؟</strong><br>
+                تحفہ عزیزی، جواہر الدماغ، کتاب النبض
+            </div>
+            
+            <div class="summary-item">
+                <strong>🍏 صحت کا فارمولا؟</strong><br>
+                غذا + پرہیز + ورزش = صحت
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        
+        // Add smooth scroll and interactive effects
+        document.querySelectorAll('.hakeem-item, .service-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فن طب کی عظمت و شرافت</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .english-title {
+            font-size: 0.9em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        /* Main Content Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #2c5282;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .card-title {
+            background: linear-gradient(135deg, #2c5282, #4299e1);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title .icon {
+            font-size: 1.3em;
+        }
+
+        .card-content {
+            font-size: 1.1em;
+            text-align: justify;
+            padding: 10px 5px;
+        }
+
+        /* Key Points Box */
+        .key-point {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #3182ce;
+        }
+
+        .key-point-title {
+            color: #2b6cb0;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #805ad5;
+            text-align: center;
+        }
+
+        .highlight-box .arabic {
+            font-size: 1.3em;
+            color: #553c9a;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .highlight-box .translation {
+            color: #6b46c1;
+            font-size: 1em;
+        }
+
+        /* Simple List */
+        .simple-list {
+            list-style: none;
+            padding: 10px 0;
+        }
+
+        .simple-list li {
+            background: #f7fafc;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border-right: 3px solid #48bb78;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .simple-list li .bullet {
+            color: #38a169;
+            font-size: 1.2em;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .summary-title {
+            color: #276749;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* History Card */
+        .history-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff5f5;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .history-flag {
+            font-size: 1.5em;
+        }
+
+        /* Warning/Important Box */
+        .important-box {
+            background: linear-gradient(135deg, #fffaf0 0%, #feebc8 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #dd6b20;
+        }
+
+        .important-title {
+            color: #c05621;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 3em;
+            color: #a0aec0;
+            position: absolute;
+            top: 5px;
+            right: 15px;
+        }
+
+        .quote-box .author {
+            color: #4a5568;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+
+        /* Number Badge */
+        .number-badge {
+            background: #2c5282;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        /* Conclusion Card */
+        .conclusion-card {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .conclusion-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border-radius: 12px;
+            padding: 12px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-right: 3px solid #319795;
+        }
+
+        .memory-tip .tip-icon {
+            font-size: 1.5em;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .card-content {
+                font-size: 1em;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-icon">⚕️</div>
+        <h1>فن طب کی عظمت و شرافت</h1>
+        <p class="english-title">Greatness and Nobility of Medical Profession</p>
+    </header>
+
+    <div class="container">
+        <!-- Section 1: علم کی عظمت -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📚</span>
+                علم کی عظمت
+            </div>
+            <div class="card-content">
+                <div class="key-point">
+                    <div class="key-point-title">
+                        <span>💡</span> اہم نکتہ
+                    </div>
+                    علم سے کوئی انکار نہیں کرسکتا۔ انسان پیدائشی طور پر ایک حیوان جیسا ہوتا ہے لیکن تعلیم و تربیت سے وہ اچھا انسان بنتا ہے۔
+                </div>
+
+                <div class="memory-tip">
+                    <span class="tip-icon">🧠</span>
+                    <span><strong>یاد رکھیں:</strong> جتنا زیادہ اور اچھا علم، اتنی زیادہ عظمت!</span>
+                </div>
+
+                <p style="margin-top: 15px;">جس انسان کے پاس جتنا زیادہ اور اچھا علم ہوتا ہے، وہ اتنا ہی بڑا اور عزت والا انسان بنتا ہے۔</p>
+            </div>
+        </div>
+
+        <!-- Section 2: سب سے اعلیٰ علم -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🏆</span>
+                سب سے اعلیٰ علم کون سا ہے؟
+            </div>
+            <div class="card-content">
+                <ul class="simple-list">
+                    <li>
+                        <span class="number-badge">1</span>
+                        <span><strong>علم دین:</strong> سب سے اعلیٰ علم۔ اس سے انسان اللہ کو پہچانتا ہے، اس کی بڑائی جانتا ہے، اور اپنے مقام کو سمجھتا ہے۔</span>
+                    </li>
+                    <li>
+                        <span class="number-badge">2</span>
+                        <span><strong>علم طب:</strong> دوسرے نمبر پر۔ کیونکہ اس کا تعلق انسان کے جسم سے ہے جو اللہ کی بہترین تخلیق (شاہکار) ہے۔</span>
+                    </li>
+                </ul>
+
+                <div class="highlight-box">
+                    <div class="arabic">"العلم علمان، علم الادیان و علم الابدان"</div>
+                    <div class="translation">
+                        <strong>امام غزالی کا قول:</strong><br>
+                        "علم دو ہیں: علم دین اور علم بدن (طب)"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: علم طب کیوں اہم ہے؟ -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">❓</span>
+                علم طب کیوں اتنا اہم ہے؟
+            </div>
+            <div class="card-content">
+                <ul class="simple-list">
+                    <li>
+                        <span class="bullet">✅</span>
+                        <span>انسان کا جسم اللہ کا شاہکار (Master Piece) ہے</span>
+                    </li>
+                    <li>
+                        <span class="bullet">✅</span>
+                        <span>طب میں انسانی جسم کی ساخت اور کام کا مطالعہ ہوتا ہے</span>
+                    </li>
+                    <li>
+                        <span class="bullet">✅</span>
+                        <span>اس کا مقصد انسان کو بیماری سے بچانا ہے</span>
+                    </li>
+                    <li>
+                        <span class="bullet">✅</span>
+                        <span>اللہ کے بندوں کی تکلیف دور کرنا عبادت ہے</span>
+                    </li>
+                </ul>
+
+                <div class="important-box">
+                    <div class="important-title">
+                        <span>⭐</span> یاد رکھیں
+                    </div>
+                    جو شخص طبیب بنتا ہے، وہ گویا عبادت میں مشغول ہے کیونکہ وہ اللہ کے بندوں کی خدمت کرتا ہے!
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: تاریخی حوالے -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📜</span>
+                تاریخی حوالے
+            </div>
+            <div class="card-content">
+                <div class="key-point">
+                    <div class="key-point-title">
+                        <span>🕰️</span> پرانے زمانے میں
+                    </div>
+                    قدیم تہذیبوں میں علم طب کو بہت اونچا مقام حاصل تھا
+                </div>
+
+                <p style="margin: 15px 0; font-weight: bold;">ان ممالک میں طب دین کا حصہ تھی:</p>
+                
+                <div class="history-item">
+                    <span class="history-flag">🏛️</span>
+                    <span><strong>بابل</strong> (Babylon)</span>
+                </div>
+                <div class="history-item">
+                    <span class="history-flag">🏺</span>
+                    <span><strong>مصر</strong> (Egypt)</span>
+                </div>
+                <div class="history-item">
+                    <span class="history-flag">🕌</span>
+                    <span><strong>ہندوستان</strong> (India)</span>
+                </div>
+                <div class="history-item">
+                    <span class="history-flag">🏛️</span>
+                    <span><strong>یونان</strong> (Greece)</span>
+                </div>
+
+                <div class="memory-tip">
+                    <span class="tip-icon">💭</span>
+                    <span><strong>دلچسپ بات:</strong> کہا جاتا ہے کہ یہ علم اللہ نے نبیوں کو دیا (الہامی علم)</span>
+                </div>
+
+                <ul class="simple-list" style="margin-top: 15px;">
+                    <li>
+                        <span class="bullet">🏥</span>
+                        <span>پہلے مذہبی پیشوا ہی علاج کرتے تھے</span>
+                    </li>
+                    <li>
+                        <span class="bullet">🏥</span>
+                        <span>مریضوں کا علاج مندروں اور عبادت خانوں میں ہوتا تھا</span>
+                    </li>
+                    <li>
+                        <span class="bullet">🏥</span>
+                        <span>بہت اچھے طبیبوں کو دیوتا مان کر پوجا جاتا تھا</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 5: طب الگ علم بنا -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📈</span>
+                طب کی ترقی
+            </div>
+            <div class="card-content">
+                <div class="key-point">
+                    <div class="key-point-title">
+                        <span>🔄</span> تبدیلی
+                    </div>
+                    وقت کے ساتھ طب علم دین سے الگ ہوکر ایک مستقل فن بن گیا، لیکن اس کی عظمت برقرار رہی۔
+                </div>
+
+                <div class="important-box">
+                    <div class="important-title">
+                        <span>🔑</span> اہم عقیدہ
+                    </div>
+                    <ul class="simple-list">
+                        <li>
+                            <span class="bullet">•</span>
+                            <span>طبیب کا کام صرف <strong>کوشش</strong> کرنا ہے</span>
+                        </li>
+                        <li>
+                            <span class="bullet">•</span>
+                            <span>اصل شفا دینے والا <strong>اللہ تعالیٰ</strong> ہے (حکیم کامل)</span>
+                        </li>
+                        <li>
+                            <span class="bullet">•</span>
+                            <span>طبیب کا <strong>نیک</strong> ہونا ضروری ہے تاکہ اس کی کوشش اللہ قبول کرے</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: فن شریف -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">👨‍⚕️</span>
+                طب کو "فن شریف" کیوں کہتے ہیں؟
+            </div>
+            <div class="card-content">
+                <div class="highlight-box">
+                    <div style="font-size: 1.2em; color: #553c9a;">
+                        کیونکہ اس پیشے سے جڑے لوگ <strong>شریف</strong> اور <strong>نیک</strong> ہوتے ہیں!
+                    </div>
+                </div>
+
+                <p style="margin: 15px 0;">ہر زمانے میں یہ خیال رکھا گیا کہ طبیب:</p>
+                
+                <ul class="simple-list">
+                    <li>
+                        <span class="bullet">✓</span>
+                        <span>نیک اور شریف انسان ہو</span>
+                    </li>
+                    <li>
+                        <span class="bullet">✓</span>
+                        <span>اخلاق اور کردار اعلیٰ ہو</span>
+                    </li>
+                </ul>
+
+                <div class="key-point">
+                    <div class="key-point-title">
+                        <span>📋</span> طبی عہد نامے (معاہدے)
+                    </div>
+                    طبیبوں کو پابند کرنے کے لیے عہد نامے بنائے گئے:
+                    <ul class="simple-list" style="margin-top: 10px;">
+                        <li>
+                            <span class="bullet">📜</span>
+                            <span><strong>ضابطۂ ہمورابی</strong> - بابلی طب میں</span>
+                        </li>
+                        <li>
+                            <span class="bullet">📜</span>
+                            <span><strong>عہد نامہ بقراطیہ</strong> - یونانی طب میں</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: ابو سہل مسیحی کا قول -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">💬</span>
+                مشہور طبیب کا قول
+            </div>
+            <div class="card-content">
+                <div class="quote-box">
+                    <p style="font-size: 1.1em; padding-top: 20px;">
+                        "مجھے تمام علوم میں علم طب اس لئے پسند ہے کیونکہ یہ انسانی صحت کی حفاظت، بیماریوں کو دور کرنے اور نسل انسانی کی بقا سے تعلق رکھتا ہے۔ اور خدمت خلق سے بہتر کوئی عبادت نہیں۔"
+                    </p>
+                    <div class="author">— <strong>ابو سہل مسیحی</strong> (مشہور قدیم طبیب)</div>
+                </div>
+
+                <div class="memory-tip">
+                    <span class="tip-icon">💡</span>
+                    <span><strong>خلاصہ:</strong> خدمت خلق = سب سے بڑی عبادت</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: عوام کا نظریہ -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">👥</span>
+                عوام کا نظریہ
+            </div>
+            <div class="card-content">
+                <div class="highlight-box">
+                    <div style="font-size: 1.2em; color: #553c9a;">
+                        عوام نے طبیب کو <strong>"فرشتہ صفت انسان"</strong> کہا ہے
+                    </div>
+                </div>
+
+                <p style="margin-top: 15px;">کیونکہ طبیب رات دن لوگوں کی بے لوث خدمت میں لگا رہتا ہے۔</p>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <div class="summary-title">
+                <span>📝</span>
+                خلاصہ - آسان نکات
+            </div>
+            <ul class="simple-list" style="text-align: right;">
+                <li>
+                    <span class="number-badge">1</span>
+                    <span>علم انسان کو عظیم بناتا ہے</span>
+                </li>
+                <li>
+                    <span class="number-badge">2</span>
+                    <span>سب سے اعلیٰ علم = علم دین</span>
+                </li>
+                <li>
+                    <span class="number-badge">3</span>
+                    <span>دوسرے نمبر پر = علم طب</span>
+                </li>
+                <li>
+                    <span class="number-badge">4</span>
+                    <span>طب کا مقصد = انسان کو بیماری سے بچانا</span>
+                </li>
+                <li>
+                    <span class="number-badge">5</span>
+                    <span>طبیب بننا = عبادت کرنا</span>
+                </li>
+                <li>
+                    <span class="number-badge">6</span>
+                    <span>پرانے زمانے میں طب دین کا حصہ تھی</span>
+                </li>
+                <li>
+                    <span class="number-badge">7</span>
+                    <span>اصل شفا دینے والا اللہ ہے</span>
+                </li>
+                <li>
+                    <span class="number-badge">8</span>
+                    <span>طبیب کا نیک ہونا ضروری ہے</span>
+                </li>
+                <li>
+                    <span class="number-badge">9</span>
+                    <span>طبی عہد نامے بنائے گئے (ہمورابی، بقراط)</span>
+                </li>
+                <li>
+                    <span class="number-badge">10</span>
+                    <span>خدمت خلق سے بڑی کوئی عبادت نہیں</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="conclusion-card">
+            <h3>⚕️ طبیب کا فرض</h3>
+            <p style="line-height: 2;">
+                ہر طبیب کو چاہیے کہ وہ اپنے پیشے کی عظمت و شرافت کو یاد رکھے، اپنے فرائض اچھی طرح ادا کرے، اور علم طب کی عزت کو قائم رکھے۔
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

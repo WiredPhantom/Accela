@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تکمیل الطب کالج، لکھنؤ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 2.2;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .english {
+            font-size: 16px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .year-badge {
+            display: inline-block;
+            background: #fbbf24;
+            color: #1e3a5f;
+            padding: 8px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 18px;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-right: 5px solid #3b82f6;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 16px;
+        }
+
+        .section h2 {
+            color: #1e3a5f;
+            font-size: 22px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        /* Different Section Colors */
+        .section.green { border-right-color: #10b981; }
+        .section.green .section-number { background: #10b981; }
+
+        .section.purple { border-right-color: #8b5cf6; }
+        .section.purple .section-number { background: #8b5cf6; }
+
+        .section.orange { border-right-color: #f59e0b; }
+        .section.orange .section-number { background: #f59e0b; }
+
+        .section.red { border-right-color: #ef4444; }
+        .section.red .section-number { background: #ef4444; }
+
+        .section.teal { border-right-color: #14b8a6; }
+        .section.teal .section-number { background: #14b8a6; }
+
+        .section.pink { border-right-color: #ec4899; }
+        .section.pink .section-number { background: #ec4899; }
+
+        /* Highlight Boxes */
+        .highlight {
+            background: #ecfdf5;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #10b981;
+        }
+
+        .highlight.yellow {
+            background: #fefce8;
+            border-right-color: #eab308;
+        }
+
+        .highlight.blue {
+            background: #eff6ff;
+            border-right-color: #3b82f6;
+        }
+
+        .highlight.orange {
+            background: #fff7ed;
+            border-right-color: #f97316;
+        }
+
+        .highlight-title {
+            font-weight: bold;
+            color: #065f46;
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .highlight.yellow .highlight-title { color: #854d0e; }
+        .highlight.blue .highlight-title { color: #1e40af; }
+        .highlight.orange .highlight-title { color: #c2410c; }
+
+        /* Lists */
+        .name-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .name-list li {
+            background: #f1f5f9;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .name-list li::before {
+            content: "✦";
+            position: absolute;
+            right: 12px;
+            color: #3b82f6;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .summary-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            background: rgba(255,255,255,0.1);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .summary-icon {
+            margin-left: 10px;
+            font-size: 20px;
+        }
+
+        /* Emoji Markers */
+        .emoji-marker {
+            font-size: 24px;
+            margin-left: 8px;
+        }
+
+        /* Important Text */
+        .important {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        .date-highlight {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* Divider */
+        .divider {
+            height: 2px;
+            background: linear-gradient(to left, transparent, #cbd5e1, transparent);
+            margin: 30px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>🏛️ تکمیل الطب کالج، لکھنؤ</h1>
+        <div class="english">Takmeeluttib College, Lucknow</div>
+        <div class="year-badge">📅 قیام: ۱۹۰۲ء</div>
+    </div>
+
+    <div class="container">
+
+        <!-- Section 1: Introduction -->
+        <div class="section">
+            <h2>
+                <span class="section-number">۱</span>
+                بانی کا تعارف
+            </h2>
+            <p>
+                <span class="emoji-marker">👤</span>
+                <strong>حکیم عبدالعزیز</strong> لکھنؤ کے مشہور طبیب تھے۔
+            </p>
+            <p>
+                وہ طب یونانی کے بہت بڑے ماہر تھے اور لوگ ان پر بھروسہ کرتے تھے۔
+            </p>
+
+            <div class="highlight">
+                <div class="highlight-title">✅ آسان الفاظ میں:</div>
+                حکیم صاحب ہمیشہ یونانی طب کو بچانے اور آگے بڑھانے کے لیے کام کرتے رہتے تھے۔
+            </div>
+
+            <div class="highlight yellow">
+                <div class="highlight-title">💡 یاد رکھیں:</div>
+                ان کا محلہ <strong>"جھوائی ٹولہ"</strong> طب کا مرکز بن گیا تھا۔
+            </div>
+        </div>
+
+        <!-- Section 2: Vision -->
+        <div class="section green">
+            <h2>
+                <span class="section-number">۲</span>
+                حکیم صاحب کا خیال
+            </h2>
+            <p>
+                اس وقت دہلی میں <strong>مدرسہ طبیہ</strong> پہلے سے موجود تھا جو حکیم محمد اجمل خاں چلا رہے تھے۔
+            </p>
+
+            <div class="highlight orange">
+                <div class="highlight-title">⚠️ فرق:</div>
+                لیکن حکیم عبدالعزیز چاہتے تھے کہ:
+                <ul style="margin-top: 10px; padding-right: 20px;">
+                    <li>طب یونانی اپنی اصلی شکل میں رہے</li>
+                    <li>اس پر مغربی طب کا اثر نہ ہو</li>
+                    <li>خالص یونانی طریقے سے پڑھائی ہو</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3: Dream -->
+        <div class="section purple">
+            <h2>
+                <span class="section-number">۳</span>
+                خواب کا واقعہ
+            </h2>
+            <p>
+                <span class="emoji-marker">🌙</span>
+                ایک رات حکیم صاحب نے خواب دیکھا۔
+            </p>
+            <p>
+                خواب میں ان کے پیر و مرشد <strong>مولانا فضل الرحمن گنج مراد آبادی</strong> نظر آئے۔
+            </p>
+
+            <div class="highlight blue">
+                <div class="highlight-title">💬 پیر صاحب نے کہا:</div>
+                <p style="font-size: 20px; text-align: center; margin: 10px 0;">
+                    "عبدالعزیز! مدرسہ قائم کر دو اور میری طرف سے ایک اشرفی (سونے کا سکہ) چندے میں شامل کر دو۔"
+                </p>
+            </div>
+
+            <div class="highlight yellow">
+                <div class="highlight-title">💡 یاد رکھیں:</div>
+                یہ خواب ہی مدرسہ بنانے کی وجہ بنا!
+            </div>
+        </div>
+
+        <!-- Section 4: Family Meeting -->
+        <div class="section orange">
+            <h2>
+                <span class="section-number">۴</span>
+                خاندان سے مشورہ
+            </h2>
+            <p>
+                <span class="emoji-marker">☀️</span>
+                صبح ہوتے ہی حکیم صاحب نے اپنے خاندان کو بلایا:
+            </p>
+
+            <ul class="name-list">
+                <li><strong>حکیم عبدالحفیظ</strong> - چھوٹے بھائی</li>
+                <li><strong>حکیم عبدالرشید</strong> - بیٹا</li>
+                <li><strong>حکیم عبدالحمید</strong> - بیٹا</li>
+                <li><strong>حکیم حافظ عبدالمجید</strong> - بھتیجا</li>
+                <li><strong>حکیم عبدالمعید</strong> - بھتیجا</li>
+            </ul>
+
+            <div class="highlight">
+                <div class="highlight-title">✅ نتیجہ:</div>
+                سب نے مل کر <strong>مجلس شوریٰ</strong> (مشاورتی کمیٹی) بنائی۔
+            </div>
+        </div>
+
+        <!-- Section 5: Meeting -->
+        <div class="section teal">
+            <h2>
+                <span class="section-number">۵</span>
+                اہم جلسہ
+            </h2>
+
+            <div class="highlight orange">
+                <div class="highlight-title">📅 تاریخ:</div>
+                <span class="date-highlight">۲ مارچ ۱۹۰۲ء</span>
+            </div>
+
+            <p>
+                اس جلسے میں حکیم صاحب نے اپنا خواب اور منصوبہ سب کو بتایا۔
+            </p>
+            <p>
+                <span class="emoji-marker">🤝</span>
+                <strong>سب لوگوں نے پورا تعاون کا وعدہ کیا۔</strong>
+            </p>
+        </div>
+
+        <!-- Section 6: Surgery Department -->
+        <div class="section red">
+            <h2>
+                <span class="section-number">۶</span>
+                جراحت (سرجری) کا شعبہ
+            </h2>
+            <p>
+                حکیم صاحب چاہتے تھے کہ مدرسے میں آپریشن بھی ہوں۔
+            </p>
+
+            <div class="highlight blue">
+                <div class="highlight-title">🏥 اس کے لیے ضرورت تھی:</div>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li>جراحی کے آلات (باہر سے منگوانے تھے)</li>
+                    <li>پیسوں کی ضرورت تھی</li>
+                    <li>ماہر ڈاکٹر کی مدد چاہیے تھی</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <div class="highlight-title">👨‍⚕️ مددگار:</div>
+                <strong>ڈاکٹر جے اینڈرسن</strong> (لکھنؤ کے سول سرجن) نے ہر قدم پر مدد کی۔
+                <br>
+                انہوں نے حکیم صاحب کے بیٹوں کو سرجری سکھائی۔
+            </div>
+        </div>
+
+        <!-- Section 7: Establishment -->
+        <div class="section pink">
+            <h2>
+                <span class="section-number">۷</span>
+                مدرسہ کا قیام
+            </h2>
+
+            <div class="highlight orange">
+                <div class="highlight-title">🎉 بڑی خبر:</div>
+                <span class="date-highlight">۱۹۰۲ء</span> میں محلہ <strong>جھوائی ٹولہ</strong> میں
+                <br>
+                <span style="font-size: 22px; color: #1e3a5f;">مدرسہ تکمیل الطب قائم ہو گیا!</span>
+            </div>
+
+            <div class="highlight yellow">
+                <div class="highlight-title">💡 خاص باتیں:</div>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li>خاندان کے اطباء <strong>مفت</strong> پڑھاتے تھے</li>
+                    <li>طلبہ سے <strong>کوئی فیس نہیں</strong> لی جاتی تھی</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 8: Teachers -->
+        <div class="section">
+            <h2>
+                <span class="section-number">۸</span>
+                اساتذہ کی فہرست
+            </h2>
+            <p>یہ ماہر اطباء مدرسے میں پڑھاتے تھے:</p>
+
+            <ul class="name-list">
+                <li><strong>حکیم عبدالعزیز</strong> - بانی</li>
+                <li><strong>حکیم عبدالحفیظ</strong> - چھوٹے بھائی</li>
+                <li><strong>حکیم عبدالرشید</strong> - پہلے پرنسپل</li>
+                <li><strong>حکیم حافظ عبدالمعید</strong> - بھتیجا</li>
+            </ul>
+        </div>
+
+        <!-- Section 9: Admission Requirements -->
+        <div class="section green">
+            <h2>
+                <span class="section-number">۹</span>
+                داخلے کی شرائط
+            </h2>
+            <p>داخلے کے لیے طالب علم کے پاس یہ ہونا ضروری تھا:</p>
+
+            <div class="highlight">
+                <div class="highlight-title">📜 ضروری باتیں:</div>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li>کسی مدرسے کی سند یا استاد کی تحریر</li>
+                    <li><strong>عربی اور فارسی</strong> زبان پر عبور</li>
+                </ul>
+            </div>
+
+            <div class="highlight blue">
+                <div class="highlight-title">📚 پہلے سے پڑھی ہوئی کتابیں:</div>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li><strong>منطق:</strong> ملا حسن</li>
+                    <li><strong>فلسفہ:</strong> میبذی</li>
+                    <li><strong>ہیئت:</strong> تصریح</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 10: Surgery Stats -->
+        <div class="section purple">
+            <h2>
+                <span class="section-number">۱۰</span>
+                آپریشنز کا آغاز
+            </h2>
+            <p>
+                حکیم عبدالرشید اور حکیم عبدالحمید نے زور شور سے آپریشن شروع کیے۔
+            </p>
+
+            <div class="highlight orange">
+                <div class="highlight-title">📅 جولائی ۱۹۰۲ء سے دسمبر ۱۹۰۲ء تک:</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">۱۰۵</span>
+                    <span class="stat-label">کل آپریشن</span>
+                </div>
+                <div class="stat-box" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                    <span class="stat-number">۱۸</span>
+                    <span class="stat-label">موتیا بند</span>
+                </div>
+                <div class="stat-box" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                    <span class="stat-number">۵۸</span>
+                    <span class="stat-label">آنکھوں کے امراض</span>
+                </div>
+                <div class="stat-box" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                    <span class="stat-number">۱۹</span>
+                    <span class="stat-label">جنرل سرجری</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 11: Plague -->
+        <div class="section red">
+            <h2>
+                <span class="section-number">۱۱</span>
+                طاعون کی وبا
+            </h2>
+
+            <div class="highlight orange">
+                <div class="highlight-title">📅 سال:</div>
+                <span class="date-highlight">۱۹۰۳ء</span>
+            </div>
+
+            <p>
+                <span class="emoji-marker">⚠️</span>
+                پورے ملک میں طاعون کی وبا پھیل گئی۔ لکھنؤ بھی متاثر ہوا۔
+            </p>
+
+            <div class="highlight">
+                <div class="highlight-title">✅ تکمیل الطب کی خدمات:</div>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li>طبی علاج کیا گیا</li>
+                    <li>طاعون کی گلٹیاں چاک کی گئیں (سرجری سے)</li>
+                    <li>نئے سرجری شعبے نے بہت مدد کی</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 12: Language -->
+        <div class="section teal">
+            <h2>
+                <span class="section-number">۱۲</span>
+                تعلیم کی زبان
+            </h2>
+
+            <div class="highlight blue">
+                <div class="highlight-title">📖 تکمیل الطب میں:</div>
+                <p>قدیم طبی مضامین <strong>عربی زبان</strong> میں پڑھائے جاتے تھے۔</p>
+            </div>
+
+            <div class="highlight yellow">
+                <div class="highlight-title">📖 دہلی میں:</div>
+                <p>اردو زبان میں پڑھائی ہوتی تھی۔</p>
+            </div>
+
+            <div class="highlight">
+                <div class="highlight-title">✅ فائدہ:</div>
+                عربی میں پڑھنے والے طلبہ کا معیار بہت اونچا ہوتا تھا!
+            </div>
+        </div>
+
+        <!-- Section 13: Famous Graduates -->
+        <div class="section orange">
+            <h2>
+                <span class="section-number">۱۳</span>
+                مشہور فارغ التحصیل
+            </h2>
+            <p>
+                <span class="emoji-marker">⭐</span>
+                یہاں سے پڑھ کر نکلنے والے طب کے آسمان پر ستارے بن کر چمکے:
+            </p>
+
+            <ul class="name-list">
+                <li>حکیم علی احمد نیر واسطی</li>
+                <li>حکیم رشید احمد ندوی</li>
+                <li>حکیم سید احمد عثمانی جالندھری</li>
+                <li>حکیم محمد کبیر الدین</li>
+                <li>حکیم ابوالکلام گورکھ پوری</li>
+                <li>حکیم تبارک کریم تکمیلی</li>
+            </ul>
+        </div>
+
+        <!-- Section 14: Present Day -->
+        <div class="section pink">
+            <h2>
+                <span class="section-number">۱۴</span>
+                آج کا تکمیل الطب
+            </h2>
+            <p>
+                <span class="emoji-marker">🏛️</span>
+                آج بھی یہ کالج اپنی روشن روایات کو برقرار رکھے ہوئے ہے۔
+            </p>
+
+            <div class="highlight">
+                <div class="highlight-title">✅ موجودہ حیثیت:</div>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li>طب یونانی کی تعلیم و تربیت کا اہم مرکز</li>
+                    <li>ترقی اور فروغ جاری ہے</li>
+                    <li>نئی تاریخ رقم کر رہا ہے</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Timeline -->
+        <div class="section">
+            <h2 style="justify-content: center;">
+                📅 اہم تاریخیں
+            </h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">۲ مارچ ۱۹۰۲ء</span>
+                    <p>پہلا جلسہ - منصوبے پر بات چیت</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">۱۹۰۲ء</span>
+                    <p>مدرسہ تکمیل الطب کا قیام</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">جولائی - دسمبر ۱۹۰۲ء</span>
+                    <p>۱۰۵ آپریشن مکمل</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">۱۹۰۳ء</span>
+                    <p>طاعون کی وبا میں خدمات</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box">
+            <h2>📝 مکمل خلاصہ</h2>
+
+            <div class="summary-item">
+                <span class="summary-icon">👤</span>
+                <span><strong>بانی:</strong> حکیم عبدالعزیز (لکھنؤ)</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-icon">📍</span>
+                <span><strong>مقام:</strong> محلہ جھوائی ٹولہ، لکھنؤ</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-icon">📅</span>
+                <span><strong>قیام:</strong> ۱۹۰۲ء</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-icon">🌙</span>
+                <span><strong>وجہ:</strong> پیر صاحب کا خواب</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-icon">👨‍⚕️</span>
+                <span><strong>مددگار:</strong> ڈاکٹر جے اینڈرسن</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-icon">📖</span>
+                <span><strong>زبان:</strong> عربی میں تعلیم</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-icon">💰</span>
+                <span><strong>فیس:</strong> مفت تعلیم</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-icon">🎯</span>
+                <span><strong>مقصد:</strong> خالص یونانی طب کا فروغ</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

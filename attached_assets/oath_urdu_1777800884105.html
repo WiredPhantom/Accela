@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معاہدہ بقراط - طبی عہد نامہ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        header {
+            text-align: center;
+            padding: 25px 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .intro-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            border-right: 5px solid #667eea;
+        }
+
+        .intro-card h2 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-card p {
+            font-size: 1.1em;
+            color: #4a5568;
+        }
+
+        .oath-section {
+            margin-bottom: 15px;
+        }
+
+        .oath-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-right: 4px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .oath-card:active {
+            transform: scale(0.98);
+        }
+
+        .oath-card::before {
+            content: attr(data-number);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .oath-card:nth-child(1) { border-color: #48bb78; }
+        .oath-card:nth-child(2) { border-color: #ed8936; }
+        .oath-card:nth-child(3) { border-color: #4299e1; }
+        .oath-card:nth-child(4) { border-color: #9f7aea; }
+        .oath-card:nth-child(5) { border-color: #f56565; }
+        .oath-card:nth-child(6) { border-color: #38b2ac; }
+        .oath-card:nth-child(7) { border-color: #ed64a6; }
+        .oath-card:nth-child(8) { border-color: #667eea; }
+
+        .oath-title {
+            font-size: 1.15em;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-weight: bold;
+            padding-left: 40px;
+        }
+
+        .oath-detail {
+            font-size: 1em;
+            color: #718096;
+            padding: 12px;
+            background: #f7fafc;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+
+        .icon {
+            font-size: 1.5em;
+            margin-left: 8px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px dashed #d97706;
+        }
+
+        .highlight-box h3 {
+            color: #92400e;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box p {
+            color: #78350f;
+            font-size: 1.05em;
+        }
+
+        .summary-section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .summary-section h2 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: linear-gradient(to left, #f0fff4, #c6f6d5);
+            border-radius: 12px;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-list li::before {
+            content: "✓";
+            background: #48bb78;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.8em;
+        }
+
+        .memorize-tip {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .memorize-tip h3 {
+            color: #4338ca;
+            margin-bottom: 10px;
+        }
+
+        .memorize-tip p {
+            color: #3730a3;
+            font-size: 1em;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 400px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+            .oath-title {
+                font-size: 1.05em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📜 معاہدہ بقراط</h1>
+        <p>طبی اخلاقیات کا پہلا عہد نامہ</p>
+    </header>
+
+    <div class="container">
+        <!-- Introduction -->
+        <div class="intro-card">
+            <h2><span class="icon">🏥</span> قسم کا آغاز</h2>
+            <p>میں قسم کھاتا ہوں اس رب کی جو زندگی اور موت کا مالک ہے، صحت دینے والا ہے، شفاء کا خالق اور علاج پیدا کرنے والا ہے۔</p>
+        </div>
+
+        <!-- Important Notice -->
+        <div class="highlight-box">
+            <h3>⚠️ اہم نوٹ</h3>
+            <p>اصل عہد میں یونانی دیوتاؤں کا ذکر تھا جو ایمان کے خلاف ہے۔ ہم صرف اللہ تعالیٰ کی قسم کھاتے ہیں۔</p>
+        </div>
+
+        <!-- Oath Points -->
+        <div class="oath-section">
+            <div class="oath-card" data-number="۱">
+                <div class="oath-title"><span class="icon">👨‍🏫</span> استاد کا احترام</div>
+                <div class="oath-detail">
+                    اپنے استاد کو باپ کی طرح مانوں گا، ان کی خدمت کروں گا، اور روزی میں ان کا حصہ رکھوں گا۔
+                </div>
+            </div>
+
+            <div class="oath-card" data-number="۲">
+                <div class="oath-title"><span class="icon">👨‍👦‍👦</span> استاد کی اولاد</div>
+                <div class="oath-detail">
+                    اساتذہ کی اولاد کو بھائی سمجھوں گا۔ اگر وہ طب سیکھنا چاہیں تو مفت میں سکھاؤں گا۔
+                </div>
+            </div>
+
+            <div class="oath-card" data-number="۳">
+                <div class="oath-title"><span class="icon">❤️</span> مریض کا فائدہ</div>
+                <div class="oath-detail">
+                    مریضوں کا فائدہ میرا سب سے پہلا فرض ہوگا۔ ہر کام مریض کی بھلائی کے لیے کروں گا۔
+                </div>
+            </div>
+
+            <div class="oath-card" data-number="۴">
+                <div class="oath-title"><span class="icon">🚫</span> نقصان دہ چیزوں سے پرہیز</div>
+                <div class="oath-detail">
+                    نقصان دہ چیزیں استعمال نہیں کروں گا چاہے کوئی کتنا بھی زور دے۔ کسی کو مہلک دوا نہیں بتاؤں گا۔
+                </div>
+            </div>
+
+            <div class="oath-card" data-number="۵">
+                <div class="oath-title"><span class="icon">🤰</span> اسقاط حمل</div>
+                <div class="oath-detail">
+                    عورتوں کو حمل گرانے کی دوا ہرگز نہیں دوں گا۔
+                </div>
+            </div>
+
+            <div class="oath-card" data-number="۶">
+                <div class="oath-title"><span class="icon">✨</span> پاکیزگی</div>
+                <div class="oath-detail">
+                    میں اپنے پیشے میں پاک دامن رہوں گا۔ ہر برائی سے بچوں گا۔
+                </div>
+            </div>
+
+            <div class="oath-card" data-number="۷">
+                <div class="oath-title"><span class="icon">🔪</span> جراحت ماہر کے پاس</div>
+                <div class="oath-detail">
+                    اگر مریض کے مثانے میں پتھری ہو تو خود آپریشن نہیں کروں گا بلکہ ماہر سرجن کے پاس بھیجوں گا۔
+                </div>
+            </div>
+
+            <div class="oath-card" data-number="۸">
+                <div class="oath-title"><span class="icon">🤫</span> راز داری</div>
+                <div class="oath-detail">
+                    مریضوں کے راز ہرگز کسی کو نہیں بتاؤں گا۔ جہاں بھی جاؤں گا مریضوں کی بھلائی کے لیے کام کروں گا۔
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Summary for Memorization -->
+        <div class="summary-section">
+            <h2>📝 یاد رکھنے کے لیے خلاصہ</h2>
+            <ul class="summary-list">
+                <li>استاد = باپ جیسا احترام</li>
+                <li>استاد کی اولاد = بھائی</li>
+                <li>مریض کا فائدہ = پہلا فرض</li>
+                <li>نقصان دہ دوا = ہرگز نہیں</li>
+                <li>اسقاط حمل = منع</li>
+                <li>پاک دامنی = لازمی</li>
+                <li>سرجری = ماہر کے پاس</li>
+                <li>مریض کے راز = محفوظ</li>
+            </ul>
+        </div>
+
+        <!-- Memorization Tip -->
+        <div class="memorize-tip">
+            <h3>💡 یاد کرنے کا طریقہ</h3>
+            <p>الفاظ یاد کریں: <strong>استاد، اولاد، فائدہ، نقصان، اسقاط، پاکیزگی، جراحت، راز</strong></p>
+        </div>
+
+        <!-- Importance -->
+        <div class="intro-card">
+            <h2><span class="icon">🏛️</span> اہمیت</h2>
+            <p>بقراط کا یہ عہد نامہ طبی اخلاقیات کی بہترین مثال ہے۔ یہ دنیا بھر کی طبی درسگاہوں میں پتھر پر کندہ ہے اور عزت و احترام کی نگاہ سے دیکھا جاتا ہے۔</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Add tap animation for cards
+        document.querySelectorAll('.oath-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>

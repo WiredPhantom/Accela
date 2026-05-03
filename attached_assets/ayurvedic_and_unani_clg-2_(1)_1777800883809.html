@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آیورویدک اینڈ یونانی طبیہ کالج، دہلی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e6f5c 0%, #289672 100%);
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 8px 25px rgba(30, 111, 92, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-title {
+            font-size: 0.9em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-right: 5px solid #1e6f5c;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-card:active {
+            transform: scale(0.98);
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #1e6f5c;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1e6f5c 0%, #289672 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            flex-shrink: 0;
+            font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+            line-height: 1;
+        }
+
+        .section-content {
+            font-size: 1.05em;
+            text-align: justify;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f6 100%);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 12px 0;
+            border-right: 4px solid #4caf50;
+        }
+
+        .key-point strong {
+            color: #1e6f5c;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #1e6f5c 0%, #289672 100%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -32px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: #1e6f5c;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #1e6f5c;
+        }
+
+        .timeline-date {
+            background: linear-gradient(135deg, #1e6f5c 0%, #289672 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff8e1 0%, #fffde7 100%);
+            border: 2px solid #ffc107;
+            border-radius: 15px;
+            padding: 15px 15px 15px 15px;
+            margin: 15px 0;
+        }
+
+        .highlight-box::before {
+            content: '💡 ';
+            font-size: 1em;
+        }
+
+        /* Important Fact */
+        .important-fact {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 12px 0;
+            border-right: 4px solid #2196f3;
+        }
+
+        /* Names List */
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .name-tag {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.95em;
+            border-right: 3px solid #9c27b0;
+        }
+
+        /* Money Box */
+        .money-box {
+            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .money-amount {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1b5e20;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #1e6f5c 0%, #289672 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .summary-box h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            gap: 10px;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list li::before {
+            content: '✓';
+            background: white;
+            color: #1e6f5c;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .quiz-title {
+            font-size: 1.3em;
+            color: #1e6f5c;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .quiz-item {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .quiz-answer {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: none;
+            margin-top: 10px;
+            border-right: 3px solid #4caf50;
+        }
+
+        .show-answer-btn {
+            background: linear-gradient(135deg, #1e6f5c 0%, #289672 100%);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 0.9em;
+            transition: transform 0.2s;
+        }
+
+        .show-answer-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .names-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.4em;
+            }
+            
+            .section-content {
+                font-size: 1em;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>آیورویدک اینڈ یونانی طبیہ کالج</h1>
+        <p class="english-title">Ayurvedic and Unani Tibbia College, Delhi</p>
+    </header>
+
+    <div class="container">
+        <!-- Introduction -->
+        <div class="section-card fade-in">
+            <div class="section-title">
+                <span class="section-icon">📖</span>
+                تعارف
+            </div>
+            <div class="section-content">
+                <div class="highlight-box">
+                    <strong>ہندوستان کی سر زمین پر یہ پہلا ادارہ تھا</strong> جہاں آیوروید اور طب یونانی دونوں ہندوستانی طریقہ علاج کی معیاری تعلیم و تربیت کے لئے منصوبہ بندی عمل میں آئی۔
+                </div>
+            </div>
+        </div>
+
+        <!-- Hakim Ajmal Khan Section -->
+        <div class="section-card fade-in">
+            <div class="section-title">
+                <span class="section-icon">👤</span>
+                حکیم محمد اجمل خاں
+            </div>
+            <div class="section-content">
+                <div class="key-point">
+                    <strong>یورپ کا سفر:</strong> حکیم اجمل خاں نے یورپ کے سفر میں مغرب میں طبی تعلیم کا اعلیٰ معیار دیکھا۔ اس سے وہ بہت متاثر ہوئے۔
+                </div>
+                <div class="key-point">
+                    <strong>ارادہ:</strong> انہوں نے اپنے بھائی <strong>حکیم عبدالمجید خاں</strong> کے ذریعہ <strong>1883ء</strong> میں قائم کردہ مدرسہ طبیہ کو نئے سرے سے ترقی دینے کا ارادہ کیا۔
+                </div>
+                <div class="important-fact">
+                    مدرسہ طبیہ <strong>انجمن طبیہ</strong> کے تحت چلتا تھا۔ حکیم صاحب نے انجمن کے تمام اراکین کو اپنے ارادے سے آگاہ کیا۔ سب نے ان کی بات مانی۔
+                </div>
+            </div>
+        </div>
+
+        <!-- Land Issue -->
+        <div class="section-card fade-in">
+            <div class="section-title">
+                <span class="section-icon">🏗️</span>
+                زمین کا مسئلہ
+            </div>
+            <div class="section-content">
+                <div class="key-point">
+                    <strong>مسئلہ:</strong> پرانی جگہ چھوٹی تھی۔ نئے کالج کے لیے <strong>قرول باغ، دہلی</strong> میں زمین پسند کی گئی مگر قیمت بہت زیادہ تھی۔
+                </div>
+                <div class="highlight-box">
+                    <strong>خوش قسمتی:</strong> ایک گارڈن پارٹی میں <strong>لارڈ ہارڈنگ</strong> (وائسرائے) نے حکیم صاحب سے پوچھا کہ زمین کا معاملہ طے ہوا؟ حکیم صاحب نے کہا کہ قیمت زیادہ ہے۔
+                </div>
+                <div class="important-fact">
+                    لارڈ ہارڈنگ حکیم اجمل خاں کی شخصیت سے بہت متاثر تھے۔ انہوں نے فوراً <strong>چیف کمشنر</strong> کو حکم دیا کہ زمین حکیم صاحب کی مرضی کے مطابق دے دی جائے۔ <strong>زمین بہت کم قیمت میں مل گئی!</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="section-card fade-in">
+            <div class="section-title">
+                <span class="section-icon">📅</span>
+                اہم تاریخیں
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">1883ء</span>
+                    <p>حکیم عبدالمجید خاں نے <strong>مدرسہ طبیہ</strong> قائم کیا</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1903ء</span>
+                    <p>حکیم اجمل خاں نے بلیماران، دہلی میں <strong>ہندوستانی دواخانہ</strong> قائم کیا (اسی کی آمدنی سے کالج چلتا تھا)</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">29 مارچ 1916ء</span>
+                    <p><strong>لارڈ ہارڈنگ</strong> نے قرول باغ میں کالج کا <strong>سنگِ بنیاد</strong> رکھا</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1918ء</span>
+                    <p>حکیم اجمل خاں نے <strong>بورڈ آف ٹرسٹیز</strong> قائم کیا (ہر مذہب کو نمائندگی دی گئی)</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1918ء - 1921ء</span>
+                    <p>کالج کی تعمیر <strong>3 سال</strong> میں مکمل ہوئی</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1921ء</span>
+                    <p><strong>مہاتما گاندھی</strong> نے کالج کا افتتاح کیا</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gandhi Connection -->
+        <div class="section-card fade-in">
+            <div class="section-title">
+                <span class="section-icon">🇮🇳</span>
+                گاندھی جی سے تعلق
+            </div>
+            <div class="section-content">
+                <div class="important-fact">
+                    جب کالج تعمیر ہو رہا تھا، اسی وقت <strong>گاندھی جی کی قیادت میں آزادی کی تحریک</strong> بھی چل رہی تھی۔
+                </div>
+                <div class="highlight-box">
+                    حکیم اجمل خاں کے مفادات برطانوی حکومت سے جڑے تھے۔ مگر انہوں نے <strong>ملک کے مفادات کو ذاتی مفادات پر ترجیح</strong> دی اور گاندھی جی سے ہاتھ ملا کر <strong>کانگریس</strong> میں شامل ہو گئے۔
+                </div>
+                <div class="key-point">
+                    <strong>دلچسپ بات:</strong> سنگِ بنیاد تو <strong>لارڈ ہارڈنگ</strong> (انگریز) نے رکھا تھا مگر افتتاح <strong>مہاتما گاندھی</strong> (انگریزوں کے مخالف) نے کیا!
+                </div>
+            </div>
+        </div>
+
+        <!-- College Details -->
+        <div class="section-card fade-in">
+            <div class="section-title">
+                <span class="section-icon">🏛️</span>
+                کالج کی تفصیلات
+            </div>
+            <div class="section-content">
+                <div class="key-point">
+                    <strong>عمارات:</strong> لیکچر ہال، تھیٹر، لیبارٹری (معمل)، ہاسٹل، دفاتر اور اسٹاف کوارٹرز
+                </div>
+                <div class="money-box">
+                    <p>کالج کی تعمیر پر خرچ:</p>
+                    <p class="money-amount">2,71,405 روپے</p>
+                </div>
+                <div class="important-fact">
+                    <strong>تعلیم کی مدت:</strong> 3 سال<br>
+                    <strong>ڈگری کا نام:</strong> اکمل الحکماء
+                </div>
+            </div>
+        </div>
+
+        <!-- Modernization -->
+        <div class="section-card fade-in">
+            <div class="section-title">
+                <span class="section-icon">🔬</span>
+                جدید کاری
+            </div>
+            <div class="section-content">
+                <div class="key-point">
+                    حکیم اجمل خاں طب یونانی کو <strong>جدید میڈیکل سائنس</strong> سے ہم آہنگ کرنا چاہتے تھے۔
+                </div>
+                <div class="highlight-box">
+                    انہوں نے <strong>ریسرچ ڈیپارٹمنٹ</strong> قائم کیا اور تمام شعبوں کو <strong>جدید طبی آلات</strong> سے آراستہ کیا۔
+                </div>
+                <div class="important-fact">
+                    <strong>جدید انداز میں پڑھائے جانے والے مضامین:</strong><br>
+                    تشریحِ بدن، منافع الاعضاء، فارماکولوجی، امراضِ نسواں و اطفال، امراضِ چشم، امراضِ جلد، متعدی امراض، سرجری
+                </div>
+            </div>
+        </div>
+
+        <!-- Teachers -->
+        <div class="section-card fade-in">
+            <div class="section-title">
+                <span class="section-icon">👨‍🏫</span>
+                مشہور اساتذہ
+            </div>
+            <div class="names-grid">
+                <div class="name-tag">حکیم پیر جی عبدالرزاق</div>
+                <div class="name-tag">حکیم محمد الیاس خاں</div>
+                <div class="name-tag">حکیم محمد کبیر الدین</div>
+                <div class="name-tag">حکیم فضل الرحمٰن</div>
+                <div class="name-tag">حکیم خواجہ محمد رضوان احمد</div>
+                <div class="name-tag">حکیم فرید احمد عباسی</div>
+                <div class="name-tag">حکیم عبدالرحمن</div>
+                <div class="name-tag">حکیم عبدالحفیظ</div>
+                <div class="name-tag">حکیم محمد امین</div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box fade-in">
+            <h3>📝 خلاصہ (یاد رکھیں)</h3>
+            <ul class="summary-list">
+                <li>حکیم اجمل خاں یورپ میں طبی تعلیم کا معیار دیکھ کر متاثر ہوئے</li>
+                <li>مدرسہ طبیہ 1883ء میں حکیم عبدالمجید خاں نے قائم کیا</li>
+                <li>ہندوستانی دواخانہ 1903ء میں بلیماران میں قائم ہوا</li>
+                <li>سنگِ بنیاد: 29 مارچ 1916ء - لارڈ ہارڈنگ</li>
+                <li>افتتاح: 1921ء - مہاتما گاندھی</li>
+                <li>تعمیر: 3 سال میں مکمل (1918-1921)</li>
+                <li>خرچ: 2,71,405 روپے</li>
+                <li>ڈگری: اکمل الحکماء (3 سال)</li>
+                <li>ہندوستان کا پہلا آیوروید و طب یونانی کالج</li>
+            </ul>
+        </div>
+
+
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Toggle quiz answers
+        function toggleAnswer(btn) {
+            const answer = btn.nextElementSibling;
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                btn.textContent = 'جواب دیکھیں';
+            } else {
+                answer.style.display = 'block';
+                btn.textContent = 'جواب چھپائیں';
+            }
+        }
+
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Initial visibility check
+        setTimeout(() => {
+            fadeElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 100);
+    </script>
+</body>
+</html>

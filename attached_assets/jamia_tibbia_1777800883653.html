@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جامعہ طبیہ دہلی - تاریخ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 50%, #34ce57 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-title {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            margin-top: 10px;
+            opacity: 0.85;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #28a745, #1e7e34);
+            border-radius: 2px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+            margin-right: 35px;
+            border-right: 4px solid #28a745;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .section::after {
+            content: '';
+            position: absolute;
+            right: -45px;
+            top: 25px;
+            width: 16px;
+            height: 16px;
+            background: #28a745;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e7e34;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #28a745;
+        }
+
+        .name-highlight {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            color: #e65100;
+            display: inline;
+        }
+
+        .key-point {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .key-point .bullet {
+            width: 25px;
+            height: 25px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #2196f3;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 40px;
+            color: #2196f3;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            opacity: 0.5;
+        }
+
+        .memory-card {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .memory-card h3 {
+            color: #c2185b;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .memory-item {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .memory-item .label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .memory-item .value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #c2185b;
+        }
+
+        .transformation-arrow {
+            text-align: center;
+            padding: 20px;
+            font-size: 40px;
+            color: #28a745;
+        }
+
+        .final-box {
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .final-box h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .services-list {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .services-list li {
+            list-style: none;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .services-list li:last-child {
+            border-bottom: none;
+        }
+
+        .intro-text {
+            font-size: 17px;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .summary-section h3 {
+            color: #f57c00;
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Accordion Style */
+        .accordion {
+            margin-bottom: 15px;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .accordion-header .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            background: white;
+            border-radius: 0 0 10px 10px;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .accordion-content.active {
+            padding: 20px;
+            max-height: 2000px;
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+            }
+            
+            body {
+                font-size: 16px;
+            }
+            
+            .memory-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🏛️ جامعہ طبیہ، دہلی</h1>
+        <div class="english-title">Jamia Tibbia, Delhi</div>
+        <div class="subtitle">طب یونانی کی عظیم درس گاہ کی تاریخ</div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Introduction -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📖</span>
+                تعارف
+            </div>
+            <p class="intro-text">
+                بیسویں صدی کے شروع میں کچھ بڑے حکیموں نے <strong>طب یونانی</strong> (یونانی طریقہ علاج) کو بچانے کے لیے بہت محنت کی۔ ان میں سب سے نمایاں نام <span class="name-highlight">حکیم محمد الیاس خاں</span> کا ہے۔
+            </p>
+        </div>
+
+        <!-- Timeline Section 1 -->
+        <div class="timeline">
+            <div class="section">
+                <div class="date-badge">1932ء سے پہلے</div>
+                <div class="section-title">
+                    <span class="icon">🏫</span>
+                    طبیہ کالج قرول باغ
+                </div>
+                <div class="highlight-box">
+                    <span class="name-highlight">حکیم محمد الیاس خاں</span> طبیہ کالج قرول باغ، دہلی میں <strong>استاد</strong> تھے۔
+                </div>
+                <div class="key-point">
+                    <span class="bullet">👥</span>
+                    <span>ان کے ساتھ <span class="name-highlight">حکیم فضل الرحمن</span> اور <span class="name-highlight">حکیم محمد کبیر الدین</span> بھی تھے۔</span>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">⚠️</span>
+                    <span>کچھ وجوہات کی بنا پر تینوں کا کالج سے رشتہ ختم ہو گیا۔</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="date-badge">1932ء</div>
+                <div class="section-title">
+                    <span class="icon">🌟</span>
+                    جامعہ طبیہ کا قیام
+                </div>
+                <div class="highlight-box">
+                    حکیم محمد الیاس خاں نے <strong>شیدی پورہ چوراہے</strong> (قرول باغ کے قریب) پر دہلی کا <strong>دوسرا طبی مدرسہ</strong> قائم کیا۔
+                </div>
+                <div class="key-point">
+                    <span class="bullet">📛</span>
+                    <span>اس کا نام <strong>"جامعہ طبیہ"</strong> رکھا گیا</span>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">👨‍⚕️</span>
+                    <span>تین بڑے حکیم (الیاس خاں، فضل الرحمن، کبیر الدین) یہاں پڑھاتے تھے</span>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">📈</span>
+                    <span>ان عظیم اساتذہ کی وجہ سے مدرسہ بہت جلد مشہور ہو گیا</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="date-badge">1938ء</div>
+                <div class="section-title">
+                    <span class="icon">🏰</span>
+                    حیدرآباد کی پیشکش
+                </div>
+                <p>نظام حیدرآباد نے <strong>نظامیہ طبیہ کالج</strong> بنایا اور ہندوستان کے بہترین حکیموں کو بلایا۔</p>
+                <div class="quote-box">
+                    حکیم الیاس خاں نے کہا: "میں کسی بھی قیمت پر چلتے ہوئے مدرسہ کو بند کر کے حیدرآباد نہیں جاؤں گا۔"
+                </div>
+                <div class="key-point">
+                    <span class="bullet">💪</span>
+                    <span>یہ ان کی <strong>وفاداری</strong> اور <strong>قربانی</strong> کی مثال ہے</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="date-badge">1947ء</div>
+                <div class="section-title">
+                    <span class="icon">🌪️</span>
+                    آزادی اور فسادات
+                </div>
+                <p>ملک کی تقسیم کے وقت فسادات ہوئے جن سے:</p>
+                <div class="key-point">
+                    <span class="bullet">💔</span>
+                    <span>جامعہ طبیہ کی عمارت اور کاغذات کو نقصان پہنچا</span>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">😢</span>
+                    <span>اساتذہ اور طلبہ بکھر گئے</span>
+                </div>
+                <div class="highlight-box">
+                    <strong>لیکن حکیم الیاس خاں نے ہمت نہیں ہاری!</strong>
+                    <br><br>
+                    حالات اتنے خراب ہوئے کہ چپراسی رکھنے کی بھی طاقت نہیں تھی۔ حکیم صاحب خود اپنے مدرسے میں <strong>جھاڑو لگاتے</strong> تھے۔
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="date-badge">آزادی کے بعد</div>
+                <div class="section-title">
+                    <span class="icon">🌸</span>
+                    دوبارہ ترقی
+                </div>
+                <div class="key-point">
+                    <span class="bullet">📍</span>
+                    <span>مدرسہ <strong>گلی قاسم جان، دہلی</strong> میں منتقل ہوا</span>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">✨</span>
+                    <span>حکیم صاحب کی محنت سے پھر ترقی ہوئی</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education System -->
+        <div class="memory-card">
+            <h3>📚 تعلیمی نظام</h3>
+            <div class="memory-grid">
+                <div class="memory-item">
+                    <div class="label">نصاب</div>
+                    <div class="value">دہلی و لکھنؤ جیسا</div>
+                </div>
+                <div class="memory-item">
+                    <div class="label">زبانیں</div>
+                    <div class="value">عربی، فارسی، اردو</div>
+                </div>
+                <div class="memory-item">
+                    <div class="label">مدت تعلیم</div>
+                    <div class="value">3 سال</div>
+                </div>
+                <div class="memory-item">
+                    <div class="label">ڈگری</div>
+                    <div class="value">اکمل الحکماء</div>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-size: 14px;">بعد میں یہ <strong>دہلی بورڈ</strong> سے منسلک ہو گیا</p>
+        </div>
+
+        <!-- Transformation -->
+        <div class="transformation-arrow">⬇️</div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">🔄</span>
+                بڑی تبدیلی
+            </div>
+            <div class="highlight-box">
+                یہی مدرسہ بعد میں <span class="name-highlight">حکیم عبدالحمید</span> (بیسویں صدی کے عظیم محسنِ طب) کی سرپرستی میں آ گیا۔
+            </div>
+            <div class="key-point">
+                <span class="bullet">🏷️</span>
+                <span>نیا نام: <strong>ہمدرد طبی کالج</strong></span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="date-badge">1979ء</div>
+            <div class="section-title">
+                <span class="icon">🚚</span>
+                نئی جگہ
+            </div>
+            <div class="key-point">
+                <span class="bullet">📍</span>
+                <span>گلی قاسم جان سے <strong>تغلق آباد، نئی دہلی</strong> منتقل ہوا</span>
+            </div>
+        </div>
+
+        <!-- Current Status -->
+        <div class="final-box">
+            <h3>🎓 آج کی صورتحال</h3>
+            <p style="margin-bottom: 15px;">آج یہ <strong>جامعہ ہمدرد کی فیکلٹی آف میڈیسن</strong> کے نام سے ایک بڑا طبی مرکز ہے</p>
+            <ul class="services-list">
+                <li>📜 فن دواسازی کا ڈپلومہ</li>
+                <li>🎓 ماہر طب (ایم ڈی) تک تعلیم</li>
+                <li>🏥 مجیدیہ ہسپتال (یونانی علاج)</li>
+                <li>🔬 علاج بالتدبیر کا جدید شعبہ</li>
+            </ul>
+        </div>
+
+        <!-- Special Treatments -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">💉</span>
+                خاص علاج
+            </div>
+            <p>یہاں ان طریقوں سے مشکل بیماریوں کا علاج اور تحقیق ہوتی ہے:</p>
+            <div class="key-point">
+                <span class="bullet">🩸</span>
+                <span><strong>فصد</strong> - رگ سے خون نکالنا</span>
+            </div>
+            <div class="key-point">
+                <span class="bullet">🐛</span>
+                <span><strong>تعلیق</strong> - جونک لگانا</span>
+            </div>
+            <div class="key-point">
+                <span class="bullet">🔴</span>
+                <span><strong>حجامہ</strong> - سینگی لگانا (کپنگ)</span>
+            </div>
+        </div>
+
+        <!-- Summary for Memory -->
+        <div class="summary-section">
+            <h3>📝 یاد رکھنے کے لیے خلاصہ</h3>
+            
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    اہم شخصیات
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="key-point">
+                        <span class="bullet">1</span>
+                        <span><strong>حکیم محمد الیاس خاں</strong> - جامعہ طبیہ کے بانی</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">2</span>
+                        <span><strong>حکیم فضل الرحمن</strong> - ساتھی استاد</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">3</span>
+                        <span><strong>حکیم محمد کبیر الدین</strong> - ساتھی استاد</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">4</span>
+                        <span><strong>حکیم عبدالحمید</strong> - ہمدرد کے بانی، بعد میں سرپرست</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    اہم تاریخیں
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="key-point">
+                        <span class="bullet">📅</span>
+                        <span><strong>1932ء</strong> - جامعہ طبیہ کا قیام</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">📅</span>
+                        <span><strong>1938ء</strong> - نظامیہ طبیہ کالج حیدرآباد کا قیام</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">📅</span>
+                        <span><strong>1947ء</strong> - فسادات سے نقصان</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">📅</span>
+                        <span><strong>1979ء</strong> - تغلق آباد منتقلی</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    اہم مقامات
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="key-point">
+                        <span class="bullet">📍</span>
+                        <span><strong>شیدی پورہ چوراہا</strong> - پہلی جگہ (1932)</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">📍</span>
+                        <span><strong>گلی قاسم جان</strong> - دوسری جگہ (آزادی کے بعد)</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">📍</span>
+                        <span><strong>تغلق آباد</strong> - موجودہ جگہ (1979 سے)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    نام کی تبدیلی
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="key-point">
+                        <span class="bullet">1</span>
+                        <span>جامعہ طبیہ (1932)</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">2</span>
+                        <span>ہمدرد طبی کالج</span>
+                    </div>
+                    <div class="key-point">
+                        <span class="bullet">3</span>
+                        <span>فیکلٹی آف میڈیسن، جامعہ ہمدرد (آج)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Facts -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">⚡</span>
+                فوری حقائق
+            </div>
+            <div class="key-point">
+                <span class="bullet">✅</span>
+                <span>دہلی کا <strong>دوسرا</strong> طبی مدرسہ تھا</span>
+            </div>
+            <div class="key-point">
+                <span class="bullet">✅</span>
+                <span>ابتدائی ڈگری: <strong>اکمل الحکماء</strong></span>
+            </div>
+            <div class="key-point">
+                <span class="bullet">✅</span>
+                <span>آج: <strong>جامعہ ہمدرد</strong> کا حصہ</span>
+            </div>
+            <div class="key-point">
+                <span class="bullet">✅</span>
+                <span>ہسپتال: <strong>مجیدیہ ہسپتال</strong></span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.accordion-header').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked one if it wasn't active
+            if (!isActive) {
+                content.classList.add('active');
+                header.classList.add('active');
+            }
+        }
+
+        // Open first accordion by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstHeader = document.querySelector('.accordion-header');
+            if (firstHeader) {
+                toggleAccordion(firstHeader);
+            }
+        });
+    </script>
+</body>
+</html>

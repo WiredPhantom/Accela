@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خاندان شریفی - طب یونانی کے محافظ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1em;
+            opacity: 0.95;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Section Title */
+        .section-title {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 20px 0 15px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
+        }
+
+        .section-title span {
+            display: block;
+            font-size: 0.75em;
+            opacity: 0.9;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        /* Info Card */
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            border-right: 5px solid #28a745;
+        }
+
+        .info-card p {
+            font-size: 1em;
+            line-height: 2.4;
+            text-align: justify;
+        }
+
+        /* Physicians List */
+        .physicians-list {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .physician-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e8f5e9;
+            transition: background 0.3s ease;
+        }
+
+        .physician-item:last-child {
+            border-bottom: none;
+        }
+
+        .physician-item:hover {
+            background: #f8fff8;
+        }
+
+        .physician-number {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+
+        .physician-info {
+            flex: 1;
+        }
+
+        .physician-name {
+            font-size: 1.05em;
+            font-weight: 600;
+            color: #1e7e34;
+        }
+
+        .physician-desc {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        /* Contributions Section */
+        .contribution-card {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            border-right: 4px solid #28a745;
+        }
+
+        .contribution-header {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 12px 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s ease;
+        }
+
+        .contribution-header:hover {
+            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+        }
+
+        .contribution-title {
+            font-size: 1em;
+            font-weight: 600;
+            color: #1e7e34;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contribution-icon {
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+        }
+
+        .contribution-year {
+            background: #28a745;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .contribution-body {
+            padding: 15px 18px;
+            background: #fafffe;
+            border-top: 1px dashed #c8e6c9;
+        }
+
+        .contribution-body p {
+            font-size: 0.95em;
+            line-height: 2.3;
+            color: #444;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-top: 10px;
+            border-right: 3px solid #ffc107;
+        }
+
+        .key-point-label {
+            font-size: 0.8em;
+            color: #856404;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .key-point-text {
+            font-size: 0.9em;
+            color: #664d03;
+            font-weight: 500;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px dashed #28a745;
+        }
+
+        .summary-box h3 {
+            color: #155724;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .summary-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .summary-item {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .summary-item .number {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #28a745;
+        }
+
+        .summary-item .label {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-year {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 15px;
+            white-space: nowrap;
+            height: fit-content;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-right: 15px;
+            border-right: 3px solid #c8e6c9;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #1e7e34;
+            font-size: 0.95em;
+        }
+
+        .timeline-desc {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .section-title {
+                font-size: 1.1em;
+            }
+            
+            .summary-items {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(120deg, #a8e6cf 0%, #88d8b0 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>🏥 خاندان شریفی</h1>
+        <p>طب یونانی کے محافظ اور فروغ دینے والے</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Introduction -->
+        <div class="info-card animate">
+            <p>
+                <strong>خاندان شریفی</strong> ہندوستان کا وہ مشہور طبی خاندان ہے جس نے <span class="highlight">طب یونانی</span> کی حفاظت اور ترقی میں بڑا کردار ادا کیا، خاص طور پر انگریزوں کے دور میں۔
+            </p>
+        </div>
+
+        <!-- Famous Physicians Section -->
+        <div class="section-title">
+            👨‍⚕️ مشہور اطباء (حکیم)
+            <span>Famous Physicians of Khandan-e-Shareefi</span>
+        </div>
+
+        <div class="physicians-list animate">
+            <div class="physician-item">
+                <div class="physician-number">۱</div>
+                <div class="physician-info">
+                    <div class="physician-name">حکیم فاضل خاں</div>
+                    <div class="physician-desc">خاندان میں طبابت کا آغاز کرنے والے (بانی)</div>
+                </div>
+            </div>
+            <div class="physician-item">
+                <div class="physician-number">۲</div>
+                <div class="physician-info">
+                    <div class="physician-name">حکیم محمد شریف خاں</div>
+                    <div class="physician-desc">اشرف الحکماء کا لقب ملا</div>
+                </div>
+            </div>
+            <div class="physician-item">
+                <div class="physician-number">۳</div>
+                <div class="physician-info">
+                    <div class="physician-name">حکیم محمد صادق علی خاں</div>
+                    <div class="physician-desc">ماہر طبیب</div>
+                </div>
+            </div>
+            <div class="physician-item">
+                <div class="physician-number">۴</div>
+                <div class="physician-info">
+                    <div class="physician-name">حکیم غلام محمود خان</div>
+                    <div class="physician-desc">ماہر طبیب</div>
+                </div>
+            </div>
+            <div class="physician-item">
+                <div class="physician-number">۵</div>
+                <div class="physician-info">
+                    <div class="physician-name">حکیم محمد عبد المجید خاں</div>
+                    <div class="physician-desc">حاذق الملک کا لقب ملا - مدرسہ طبیہ کے بانی</div>
+                </div>
+            </div>
+            <div class="physician-item">
+                <div class="physician-number">۶</div>
+                <div class="physician-info">
+                    <div class="physician-name">حکیم محمد واصل خاں</div>
+                    <div class="physician-desc">ماہر طبیب</div>
+                </div>
+            </div>
+            <div class="physician-item">
+                <div class="physician-number">۷</div>
+                <div class="physician-info">
+                    <div class="physician-name">حکیم محمد اجمل خاں</div>
+                    <div class="physician-desc">مسیح الملک کا لقب ملا - سب سے مشہور حکیم</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Memory Tip -->
+        <div class="summary-box">
+            <h3>📚 یاد رکھیں</h3>
+            <div class="summary-items">
+                <div class="summary-item">
+                    <div class="number">۷</div>
+                    <div class="label">مشہور حکیم</div>
+                </div>
+                <div class="summary-item">
+                    <div class="number">۷</div>
+                    <div class="label">اہم خدمات</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contributions Section -->
+        <div class="section-title">
+            ⭐ نمایاں خدمات
+            <span>Contributions of Khandan-e-Shareefi</span>
+        </div>
+
+        <!-- Contribution 1 -->
+        <div class="contribution-card animate">
+            <div class="contribution-header">
+                <div class="contribution-title">
+                    <span class="contribution-icon">🛡️</span>
+                    طب کا تحفظ
+                </div>
+            </div>
+            <div class="contribution-body">
+                <p>
+                    انگریز چاہتے تھے کہ دیسی علاج ختم ہو جائے، لیکن اس خاندان نے <strong>طب یونانی کو بچایا</strong> اور اسے زندہ رکھا۔
+                </p>
+                <div class="key-point">
+                    <div class="key-point-label">🔑 یاد رکھیں:</div>
+                    <div class="key-point-text">انگریزوں کی مخالفت کے باوجود طب کا پرچم بلند رکھا</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contribution 2 -->
+        <div class="contribution-card animate">
+            <div class="contribution-header">
+                <div class="contribution-title">
+                    <span class="contribution-icon">🏫</span>
+                    مدرسہ طبیہ کا قیام
+                </div>
+                <span class="contribution-year">1889ء</span>
+            </div>
+            <div class="contribution-body">
+                <p>
+                    <strong>حکیم عبدالمجید خان</strong> نے دہلی میں پہلا باقاعدہ <strong>طبی مدرسہ</strong> قائم کیا جہاں طب کی تعلیم دی جاتی تھی۔
+                </p>
+                <div class="key-point">
+                    <div class="key-point-label">🔑 یاد رکھیں:</div>
+                    <div class="key-point-text">1889 = مدرسہ طبیہ = حکیم عبدالمجید خان = دہلی</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contribution 3 -->
+        <div class="contribution-card animate">
+            <div class="contribution-header">
+                <div class="contribution-title">
+                    <span class="contribution-icon">🏪</span>
+                    ہندوستانی دواخانہ
+                </div>
+                <span class="contribution-year">1903ء</span>
+            </div>
+            <div class="contribution-body">
+                <p>
+                    <strong>حکیم اجمل خاں</strong> نے یہ دواخانہ قائم کیا۔ اس کی آمدنی سے طب کی ترقی اور لوگوں کی مدد کی جاتی تھی۔
+                </p>
+                <div class="key-point">
+                    <div class="key-point-label">🔑 یاد رکھیں:</div>
+                    <div class="key-point-text">1903 = دواخانہ = حکیم اجمل خان = آمدنی سے طب کی خدمت</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contribution 4 -->
+        <div class="contribution-card animate">
+            <div class="contribution-header">
+                <div class="contribution-title">
+                    <span class="contribution-icon">🤝</span>
+                    آل انڈیا طبی کانفرنس
+                </div>
+                <span class="contribution-year">1906ء</span>
+            </div>
+            <div class="contribution-body">
+                <p>
+                    <strong>ویدک اور یونانی</strong> طب کی کانفرنس منعقد کی۔ انگریزوں کا مقابلہ کرنے کے لیے <strong>ویدوں اور حکیموں</strong> کو ایک پلیٹ فارم پر اکٹھا کیا۔
+                </p>
+                <div class="key-point">
+                    <div class="key-point-label">🔑 یاد رکھیں:</div>
+                    <div class="key-point-text">1906 = کانفرنس = وید + حکیم = اتحاد</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contribution 5 -->
+        <div class="contribution-card animate">
+            <div class="contribution-header">
+                <div class="contribution-title">
+                    <span class="contribution-icon">👩‍⚕️</span>
+                    مدرسہ طبیہ زنانہ و شفا خانہ
+                </div>
+                <span class="contribution-year">1909ء</span>
+            </div>
+            <div class="contribution-body">
+                <p>
+                    <strong>خواتین</strong> کے لیے خصوصی طبی مدرسہ اور شفا خانہ قائم کیا تاکہ وہ بھی طب سیکھ سکیں۔
+                </p>
+                <div class="key-point">
+                    <div class="key-point-label">🔑 یاد رکھیں:</div>
+                    <div class="key-point-text">1909 = خواتین = طب کی تعلیم + علاج</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contribution 6 -->
+        <div class="contribution-card animate">
+            <div class="contribution-header">
+                <div class="contribution-title">
+                    <span class="contribution-icon">🎓</span>
+                    آیورویدک یونانی طبیہ کالج
+                </div>
+                <span class="contribution-year">1921ء</span>
+            </div>
+            <div class="contribution-body">
+                <p>
+                    پرانے مدرسے کو بڑا کر کے <strong>قرول باغ، دہلی</strong> میں ایک بڑا کالج بنایا۔ <strong>آج بھی یہ کالج کام کر رہا ہے!</strong>
+                </p>
+                <div class="key-point">
+                    <div class="key-point-label">🔑 یاد رکھیں:</div>
+                    <div class="key-point-text">1921 = کالج = قرول باغ = آج بھی فعال</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contribution 7 -->
+        <div class="contribution-card animate">
+            <div class="contribution-header">
+                <div class="contribution-title">
+                    <span class="contribution-icon">🔬</span>
+                    مجلس تحقیقات علمی
+                </div>
+                <span class="contribution-year">1926ء</span>
+            </div>
+            <div class="contribution-body">
+                <p>
+                    <strong>تحقیق (Research)</strong> کے لیے مجلس قائم کی۔ طبی نصاب کو <strong>جدید دور</strong> کے مطابق بنایا۔
+                </p>
+                <div class="key-point">
+                    <div class="key-point-label">🔑 یاد رکھیں:</div>
+                    <div class="key-point-text">1926 = ریسرچ = جدید نصاب</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Summary -->
+        <div class="section-title">
+            📅 سالوں کی ترتیب (یاد کریں)
+        </div>
+
+        <div class="timeline animate">
+            <div class="timeline-item">
+                <div class="timeline-year">1889ء</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">مدرسہ طبیہ</div>
+                    <div class="timeline-desc">حکیم عبدالمجید خان - دہلی</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1903ء</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">ہندوستانی دواخانہ</div>
+                    <div class="timeline-desc">حکیم اجمل خان</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1906ء</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">طبی کانفرنس</div>
+                    <div class="timeline-desc">ویدوں اور حکیموں کا اتحاد</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1909ء</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">خواتین کا مدرسہ</div>
+                    <div class="timeline-desc">زنانہ طبیہ و شفاخانہ</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1921ء</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">طبیہ کالج</div>
+                    <div class="timeline-desc">قرول باغ - آج بھی فعال</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1926ء</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">تحقیقی مجلس</div>
+                    <div class="timeline-desc">جدید ریسرچ اور نصاب</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Summary -->
+        <div class="summary-box" style="margin-top: 25px;">
+            <h3>✨ خلاصہ</h3>
+            <p style="font-size: 0.95em; line-height: 2.2; text-align: right; margin-top: 10px;">
+                خاندان شریفی نے انگریزوں کے دور میں <strong>طب یونانی</strong> کو بچایا، مدارس، کالج، دواخانے اور تحقیقی ادارے قائم کیے۔ <strong>حکیم عبدالمجید خان</strong> اور <strong>حکیم اجمل خان</strong> اس خاندان کے سب سے مشہور حکیم ہیں۔
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.contribution-card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>

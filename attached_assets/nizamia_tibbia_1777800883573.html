@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظامیہ طبیہ کالج حیدرآباد - تاریخ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 25px;
+            width: 16px;
+            height: 16px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title .icon {
+            font-size: 1.5em;
+        }
+
+        .card-content {
+            font-size: 1.1em;
+            color: #4a5568;
+        }
+
+        /* Date Badge */
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        /* Key Points */
+        .key-points {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            border-right: 4px solid #667eea;
+        }
+
+        .key-point:last-child {
+            margin-bottom: 0;
+        }
+
+        .key-point .bullet {
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        /* Names List */
+        .names-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .name-tag {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 0.95em;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 4em;
+            color: rgba(0,0,0,0.1);
+            font-family: serif;
+        }
+
+        .quote-box p {
+            font-size: 1.05em;
+            color: #744210;
+        }
+
+        .quote-author {
+            margin-top: 15px;
+            font-weight: 600;
+            color: #7b341e;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .highlight-box h3 {
+            color: #285e61;
+            margin-bottom: 10px;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .summary-section h2 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .summary-section p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        /* Memory Tips */
+        .memory-tips {
+            background: #fffaf0;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px dashed #ed8936;
+        }
+
+        .memory-tips h3 {
+            color: #c05621;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .tip-number {
+            background: #ed8936;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            .card-title {
+                font-size: 1.15em;
+            }
+            
+            .card-content {
+                font-size: 1em;
+            }
+
+            .timeline {
+                padding-right: 25px;
+            }
+
+            .card::before {
+                right: -21px;
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .fact-box {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .fact-number {
+            font-size: 1.8em;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .fact-label {
+            font-size: 0.9em;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 400px) {
+            .quick-facts {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>🏛️ نظامیہ طبیہ کالج حیدرآباد</h1>
+        <p class="subtitle">جنوبی ہندوستان میں طب یونانی کا عظیم مرکز</p>
+    </div>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-box">
+                <div class="fact-number">1902ء</div>
+                <div class="fact-label">اعلان قیام</div>
+            </div>
+            <div class="fact-box">
+                <div class="fact-number">1939ء</div>
+                <div class="fact-label">افتتاح</div>
+            </div>
+            <div class="fact-box">
+                <div class="fact-number">3 لاکھ</div>
+                <div class="fact-label">تعمیری بجٹ (روپے)</div>
+            </div>
+            <div class="fact-box">
+                <div class="fact-number">13</div>
+                <div class="fact-label">ابتدائی اساتذہ</div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline">
+            <!-- Card 1: Introduction -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">📍</span>
+                    حیدرآباد کا تعارف
+                </div>
+                <div class="card-content">
+                    <p>حیدرآباد دکن پہلے سے ہی طب یونانی کا ایک پرانا مرکز تھا۔ لیکن یہاں باقاعدہ طبی تعلیم کا ادارہ 19ویں صدی کے آخر میں بنا۔</p>
+                    
+                    <div class="key-points">
+                        <div class="key-point">
+                            <span class="bullet">◆</span>
+                            <span><strong>1891ء:</strong> حیدرآباد میں مدرسہ طبیہ قائم ہوا</span>
+                        </div>
+                        <div class="key-point">
+                            <span class="bullet">◆</span>
+                            <span><strong>1918ء:</strong> یونانی شفاخانے اور طبی اسکول بنائے گئے</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Foundation -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">🏗️</span>
+                    کالج کی بنیاد
+                </div>
+                <div class="card-content">
+                    <span class="date-badge">1902ء</span>
+                    <p>نظام آصف جاہ ہشتم نے طب یونانی کالج بنانے کا اعلان کیا۔</p>
+                    
+                    <div class="highlight-box">
+                        <h3>📌 عمارت کی خصوصیات:</h3>
+                        <p>• <strong>جگہ:</strong> چار مینار کے پاس، مکہ مسجد کے سامنے</p>
+                        <p>• <strong>سنگ بنیاد:</strong> 1937ء میں خود نظام نے رکھا</p>
+                        <p>• <strong>تعمیری بجٹ:</strong> 3 لاکھ روپے</p>
+                        <p>• <strong>شفاخانہ:</strong> کالج کے ساتھ ہسپتال بھی بنا</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Opening -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">🎉</span>
+                    کالج کا افتتاح
+                </div>
+                <div class="card-content">
+                    <span class="date-badge">1939ء</span>
+                    <p>نظام نے بہت شاندار طریقے سے کالج کا افتتاح کیا۔ افتتاح سے پہلے ہی سب انتظامات مکمل تھے:</p>
+                    
+                    <div class="key-points">
+                        <div class="key-point">
+                            <span class="bullet">✓</span>
+                            <span>شعبہ جات قائم</span>
+                        </div>
+                        <div class="key-point">
+                            <span class="bullet">✓</span>
+                            <span>اساتذہ کا انتخاب</span>
+                        </div>
+                        <div class="key-point">
+                            <span class="bullet">✓</span>
+                            <span>سامان کا انتظام</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Advisory Committee -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">👥</span>
+                    مجلس مشاورت
+                </div>
+                <div class="card-content">
+                    <p>کالج کے لیے ایک مشاورتی کمیٹی بنائی گئی جس میں بڑے اطباء شامل تھے:</p>
+                    
+                    <div class="names-list">
+                        <span class="name-tag">حکیم عبدالحمید</span>
+                        <span class="name-tag">حکیم محمد حسن قرشی (لاہور)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Principal and Teachers -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">👨‍🏫</span>
+                    پرنسپل اور اساتذہ
+                </div>
+                <div class="card-content">
+                    <div class="highlight-box">
+                        <h3>🎓 پہلے پرنسپل (صدر):</h3>
+                        <p style="font-size: 1.2em; font-weight: 600; color: #285e61;">حکیم مقصود یار جنگ علی خاں</p>
+                    </div>
+                    
+                    <p style="margin-top: 15px;">ابتدائی 13 اساتذہ میں سے اہم نام:</p>
+                    <div class="names-list">
+                        <span class="name-tag">حکیم فضل الرحمن</span>
+                        <span class="name-tag">حکیم محمد کبیر الدین</span>
+                        <span class="name-tag">حکیم معین الدین جھجاوری</span>
+                        <span class="name-tag">حکیم حسب اللہ</span>
+                        <span class="name-tag">حکیم حافظ محمد رضا لکھنؤی</span>
+                        <span class="name-tag">حکیم الیاس الدین</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Nizam's Speech -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">🎤</span>
+                    نظام کا خطاب
+                </div>
+                <div class="card-content">
+                    <div class="quote-box">
+                        <p>"میری خواہش تھی کہ میرے دارالحکومت میں ایک یونانی ہسپتال بنے جو عثمانیہ ہسپتال جیسا ہو۔ جہاں غریب مریضوں کا علاج ہو، اچھے طبیب ہوں اور خالص دوائیں ملیں۔ الحمدللہ یہ خواہش پوری ہوئی۔"</p>
+                        <p class="quote-author">— نظام دکن</p>
+                    </div>
+                    
+                    <div class="key-points">
+                        <div class="key-point">
+                            <span class="bullet">📊</span>
+                            <span>ابتدائی گنجائش: 50 مریض</span>
+                        </div>
+                        <div class="key-point">
+                            <span class="bullet">🎯</span>
+                            <span>مستقبل کا ہدف: 200-300 مریض</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7: Curriculum Debate -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">📚</span>
+                    نصاب کا مسئلہ
+                </div>
+                <div class="card-content">
+                    <p>اس وقت ایک بڑا سوال تھا: کیا طب یونانی میں جدید میڈیکل مضامین شامل ہوں؟</p>
+                    
+                    <div class="highlight-box">
+                        <h3>دو مکاتب فکر:</h3>
+                        <p><strong>دہلی اسکول:</strong> جدید مضامین شامل کرنے کے حق میں ✓</p>
+                        <p><strong>لکھنؤ اسکول:</strong> جدید مضامین کی مخالف ✗</p>
+                    </div>
+                    
+                    <div class="key-points" style="background: #e6fffa;">
+                        <div class="key-point" style="border-right-color: #38b2ac;">
+                            <span class="bullet" style="color: #38b2ac;">✔</span>
+                            <span><strong>فیصلہ:</strong> دہلی اسکول کا نصاب اپنایا گیا</span>
+                        </div>
+                        <div class="key-point" style="border-right-color: #38b2ac;">
+                            <span class="bullet" style="color: #38b2ac;">📝</span>
+                            <span><strong>تعلیم کی زبان:</strong> اردو اور عربی</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8: Degrees -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">🎓</span>
+                    ڈگریاں
+                </div>
+                <div class="card-content">
+                    <div class="quick-facts" style="margin: 0;">
+                        <div class="fact-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <div style="font-size: 1.1em; font-weight: 600;">اردو میں</div>
+                            <div style="margin-top: 8px;">کامل طب و جراحت</div>
+                        </div>
+                        <div class="fact-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                            <div style="font-size: 1.1em; font-weight: 600;">عربی میں</div>
+                            <div style="margin-top: 8px;">فاضل الطب و الجراحت</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9: Post Graduation -->
+            <div class="card">
+                <div class="card-title">
+                    <span class="icon">🔬</span>
+                    اعلیٰ تعلیم (پوسٹ گریجویشن)
+                </div>
+                <div class="card-content">
+                    <span class="date-badge">1947ء - 1950ء</span>
+                    <p>یہ کالج طب یونانی میں اعلیٰ تعلیم شروع کرنے والا پہلا ادارہ تھا!</p>
+                    
+                    <div class="key-points">
+                        <div class="key-point">
+                            <span class="bullet">📖</span>
+                            <span>مزید 2 سال کی تعلیم</span>
+                        </div>
+                        <div class="key-point">
+                            <span class="bullet">🔍</span>
+                            <span>ریسرچ پروجیکٹ مکمل کرنا ضروری</span>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3>📜 اہم تحقیق:</h3>
+                        <p><strong>حکیم علی حسین</strong> نے ابو سہل مسیحی کی کتاب <strong>"کتاب المائۃ"</strong> پر تحقیقی مقالہ لکھا۔</p>
+                        <p style="margin-top: 8px;">یہ نسخہ جامعہ ہمدرد کی <strong>محمد سعید سینٹرل لائبریری</strong> میں محفوظ ہے۔</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-section">
+            <h2>✨ خلاصہ</h2>
+            <p>نظامیہ طبیہ کالج نے جنوبی ہندوستان میں طب یونانی کے فروغ میں بنیادی کردار ادا کیا۔ یہ کالج آج بھی طب یونانی کی ایک عظیم درسگاہ کے طور پر مشہور ہے۔</p>
+        </div>
+
+        <!-- Memory Tips -->
+        <div class="memory-tips">
+            <h3>💡 یاد رکھنے کے آسان طریقے:</h3>
+            <div class="tip-item">
+                <span class="tip-number">1</span>
+                <span><strong>تاریخیں:</strong> 1891 → 1902 → 1918 → 1937 → 1939 → 1947</span>
+            </div>
+            <div class="tip-item">
+                <span class="tip-number">2</span>
+                <span><strong>جگہ:</strong> چار مینار + مکہ مسجد = نظامیہ کالج</span>
+            </div>
+            <div class="tip-item">
+                <span class="tip-number">3</span>
+                <span><strong>پہلے پرنسپل:</strong> مقصود یار جنگ علی خاں (صدر)</span>
+            </div>
+            <div class="tip-item">
+                <span class="tip-number">4</span>
+                <span><strong>نصاب:</strong> دہلی = جدید ✓ | لکھنؤ = روایتی (دہلی اپنایا)</span>
+            </div>
+            <div class="tip-item">
+                <span class="tip-number">5</span>
+                <span><strong>ڈگری:</strong> اردو = کامل | عربی = فاضل</span>
+            </div>
+            <div class="tip-item">
+                <span class="tip-number">6</span>
+                <span><strong>خاص بات:</strong> پہلی پوسٹ گریجویشن 1947ء میں</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

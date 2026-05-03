@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرکزی کونسل برائے تحقیق طب یونانی - CCRUM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            font-size: 18px;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a5f2a 0%, #2d8a3e 100%);
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 15px rgba(26, 95, 42, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-title {
+            font-size: 0.85em;
+            opacity: 0.9;
+            font-family: Arial, sans-serif;
+            direction: ltr;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ffd700;
+            color: #1a5f2a;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid #1a5f2a;
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            color: #1a5f2a;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title .icon {
+            font-size: 1.5em;
+        }
+
+        /* Introduction */
+        .intro-text {
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .medicine-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .medicine-tag {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #1a5f2a, #4caf50);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8fdf9;
+            border-radius: 15px;
+            border: 1px solid #c8e6c9;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: #1a5f2a;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: #1a5f2a;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Achievements */
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-radius: 15px;
+            margin-bottom: 12px;
+            border-right: 4px solid #ffc107;
+        }
+
+        .achievement-icon {
+            font-size: 1.8em;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .achievement-text {
+            flex: 1;
+        }
+
+        /* Memory Points */
+        .memory-card {
+            border-right-color: #9c27b0;
+        }
+
+        .memory-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .memory-number {
+            background: #9c27b0;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Current Status */
+        .status-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #64b5f6;
+        }
+
+        .status-box .ministry {
+            font-size: 1.1em;
+            color: #1565c0;
+            margin-top: 10px;
+        }
+
+        /* Conclusion */
+        .conclusion-card {
+            background: linear-gradient(135deg, #1a5f2a 0%, #2d8a3e 100%);
+            color: white;
+            border-right: 5px solid #ffd700;
+        }
+
+        .conclusion-card .card-title {
+            color: #ffd700;
+            border-bottom-color: rgba(255,255,255,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(135deg, #fff59d 0%, #ffee58 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+            color: #333;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            body {
+                font-size: 20px;
+            }
+
+            .header {
+                border-radius: 0 0 40px 40px;
+                margin: 0 -20px 20px -20px;
+                padding: 35px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>مرکزی کونسل برائے تحقیق طب یونانی</h1>
+        <div class="english-title">Central Council for Research in Unani Medicine</div>
+        <div class="badge">CCRUM</div>
+    </div>
+
+    <div class="container">
+        <!-- تعارف -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📖</span>
+                <span>تعارف</span>
+            </div>
+            <p class="intro-text">
+                جب ہندوستان آزاد ہوا تو حکومت نے دیسی طریقہ علاج کو ترقی دینے کا فیصلہ کیا۔ یہ پانچ طریقے ہیں:
+            </p>
+            <div class="medicine-types">
+                <span class="medicine-tag">آیوروید</span>
+                <span class="medicine-tag">سدھا</span>
+                <span class="medicine-tag">یونانی</span>
+                <span class="medicine-tag">ہومیو پیتھی</span>
+                <span class="medicine-tag">یوگا و نیچروپیتھی</span>
+            </div>
+        </div>
+
+        <!-- تاریخی پس منظر -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📅</span>
+                <span>تاریخی پس منظر</span>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1969ء</div>
+                    <p>حکومت نے <span class="highlight">CCRIMH</span> بنائی۔ اس کا کام تھا دیسی طریقہ علاج میں تحقیق کرنا۔</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">30 مارچ 1978ء</div>
+                    <p><span class="highlight">Societies Registration Act 1860</span> کے تحت رجسٹریشن ہوئی۔</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1979ء</div>
+                    <p>CCRIMH کو توڑ کر <span class="highlight">چار الگ الگ کونسلیں</span> بنا دی گئیں۔ طب یونانی کے لیے <span class="highlight">CCRUM</span> قائم ہوئی۔</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- موجودہ حیثیت -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🏛️</span>
+                <span>موجودہ حیثیت</span>
+            </div>
+            <div class="status-box">
+                <p><strong>CCRUM ایک خود مختار ادارہ ہے</strong></p>
+                <p class="ministry">وزارت صحت و خاندانی بہبود، حکومت ہند کے تحت کام کرتی ہے</p>
+            </div>
+        </div>
+
+        <!-- اہم کامیابیاں -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🏆</span>
+                <span>اہم کامیابیاں</span>
+            </div>
+            
+            <div class="achievement-item">
+                <span class="achievement-icon">💊</span>
+                <div class="achievement-text">
+                    <strong>مشکل بیماریوں کا علاج:</strong> برس، وجع المفاصل (جوڑوں کا درد)، ملیریا، فائیلیریا، ورم جگر وغیرہ
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <span class="achievement-icon">⚗️</span>
+                <div class="achievement-text">
+                    <strong>ادویہ کی معیار بندی:</strong> مفرد اور مرکب دوائیوں کا معیار طے کیا گیا
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <span class="achievement-icon">🌿</span>
+                <div class="achievement-text">
+                    <strong>جڑی بوٹیوں کی کاشت:</strong> مفید اور نایاب دوائی پودوں کو اگایا گیا
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <span class="achievement-icon">📚</span>
+                <div class="achievement-text">
+                    <strong>کتابوں کا ترجمہ:</strong> عربی اور فارسی طبی کتابوں کو اردو اور انگریزی میں ترجمہ کیا گیا
+                </div>
+            </div>
+
+            <div class="achievement-item">
+                <span class="achievement-icon">👨‍👩‍👧‍👦</span>
+                <div class="achievement-text">
+                    <strong>خاندانی منصوبہ بندی:</strong> آبادی کنٹرول کے لیے یونانی ادویہ پر تحقیق جاری ہے
+                </div>
+            </div>
+        </div>
+
+        <!-- یاد رکھنے کے نکات -->
+        <div class="card memory-card">
+            <div class="card-title">
+                <span class="icon">🧠</span>
+                <span>یاد رکھنے کے نکات</span>
+            </div>
+
+            <div class="memory-point">
+                <span class="memory-number">۱</span>
+                <span><strong>1969ء</strong> میں CCRIMH بنی (سب طریقوں کے لیے ایک)</span>
+            </div>
+
+            <div class="memory-point">
+                <span class="memory-number">۲</span>
+                <span><strong>1978ء</strong> میں رجسٹریشن ہوئی</span>
+            </div>
+
+            <div class="memory-point">
+                <span class="memory-number">۳</span>
+                <span><strong>1979ء</strong> میں CCRUM الگ بنی (صرف یونانی کے لیے)</span>
+            </div>
+
+            <div class="memory-point">
+                <span class="memory-number">۴</span>
+                <span>یہ <strong>خود مختار</strong> ادارہ ہے</span>
+            </div>
+
+            <div class="memory-point">
+                <span class="memory-number">۵</span>
+                <span><strong>وزارت صحت</strong> کے تحت کام کرتی ہے</span>
+            </div>
+
+            <div class="memory-point">
+                <span class="memory-number">۶</span>
+                <span>سارا خرچہ <strong>حکومت ہند</strong> اٹھاتی ہے</span>
+            </div>
+        </div>
+
+        <!-- خلاصہ -->
+        <div class="card conclusion-card">
+            <div class="card-title">
+                <span class="icon">✨</span>
+                <span>خلاصہ</span>
+            </div>
+            <p>CCRUM کا قیام طب یونانی میں نئی روح پھونکنے کے برابر ہے۔ حکومت ہند اس کی مکمل مالی مدد کرتی ہے، اس لیے حکومت مبارکباد کی مستحق ہے۔</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

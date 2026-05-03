@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گورنمنٹ طبیہ کالج پٹنہ - تاریخ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(30, 58, 95, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header .english-title {
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            opacity: 0.9;
+            direction: ltr;
+        }
+
+        .header .tagline {
+            font-size: 1rem;
+            margin-top: 15px;
+            opacity: 0.85;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-right: 5px solid #2c5282;
+        }
+
+        .section-card h2 {
+            color: #1e3a5f;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-card h2 .icon {
+            background: linear-gradient(135deg, #2c5282 0%, #4299e1 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .section-card p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            text-align: justify;
+        }
+
+        /* Key Points */
+        .key-points {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .key-point:last-child {
+            border-bottom: none;
+        }
+
+        .key-point .bullet {
+            background: #48bb78;
+            color: white;
+            min-width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .key-point p {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #2c5282, #48bb78);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 15px 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 22px;
+            width: 16px;
+            height: 16px;
+            background: #2c5282;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(44, 82, 130, 0.4);
+        }
+
+        .timeline-date {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 1rem;
+            display: inline-block;
+            margin-bottom: 8px;
+            font-family: Arial, sans-serif;
+            direction: ltr;
+        }
+
+        .timeline-content {
+            background: #f0fff4;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1rem;
+        }
+
+        /* Names Grid */
+        .names-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .name-card {
+            background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #bee3f8;
+        }
+
+        .name-card .name {
+            font-size: 1.1rem;
+            color: #2c5282;
+            font-weight: 600;
+        }
+
+        .name-card .role {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fefcbf 0%, #faf089 100%);
+            border: 2px solid #ecc94b;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .highlight-box .big-date {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #744210;
+            font-family: Arial, sans-serif;
+            direction: ltr;
+        }
+
+        .highlight-box p {
+            font-size: 1.1rem;
+            color: #744210;
+            margin-top: 10px;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-section h2 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list li::before {
+            content: '✓';
+            background: #48bb78;
+            color: white;
+            min-width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        /* Location Cards */
+        .location-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .location-item {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .location-item::after {
+            content: '↓';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: #2c5282;
+        }
+
+        .location-item:last-child::after {
+            display: none;
+        }
+
+        .location-item.final {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            border-color: #48bb78;
+        }
+
+        .location-item .place {
+            font-size: 1.1rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .location-item .year {
+            font-size: 0.9rem;
+            color: #718096;
+            font-family: Arial, sans-serif;
+            direction: ltr;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Responsive */
+        @media (min-width: 600px) {
+            .names-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+    <!-- Header -->
+    <header class="header">
+        <h1>گورنمنٹ طبیہ کالج، پٹنہ</h1>
+        <div class="english-title">Government Tibbia College, Patna</div>
+        <div class="tagline">📚 بہار میں طبِ یونانی کا مرکز</div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction -->
+        <div class="section-card">
+            <h2>
+                <span class="icon">📖</span>
+                تعارف
+            </h2>
+            <p>
+                بہار ہندوستان کا ایک اہم صوبہ ہے جہاں طبِ یونانی ہمیشہ مقبول رہی۔ یہاں سے بہت سے بڑے طبیب (ڈاکٹر) نکلے جنہوں نے اس فن کو آگے بڑھایا۔ لیکن بہار میں طب کی باقاعدہ تعلیم کا کوئی اچھا انتظام نہیں تھا۔
+            </p>
+        </div>
+
+        <!-- First Attempt -->
+        <div class="section-card">
+            <h2>
+                <span class="icon">🔍</span>
+                پہلی کوشش
+            </h2>
+            <p>
+                1923ء میں حکیم سید محمد ابراہیم نے گیا شہر میں ایک طبی مدرسہ بنایا تھا۔ لیکن یہ مدرسہ زیادہ دن نہیں چل سکا اور بند ہو گیا۔
+            </p>
+            <div class="key-points">
+                <div class="key-point">
+                    <span class="bullet">1</span>
+                    <p><strong>کب:</strong> 1923ء</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">2</span>
+                    <p><strong>کہاں:</strong> گیا (بہار)</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">3</span>
+                    <p><strong>کس نے:</strong> حکیم سید محمد ابراہیم</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">4</span>
+                    <p><strong>نتیجہ:</strong> بعد میں بند ہو گیا</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Movement Start -->
+        <div class="section-card">
+            <h2>
+                <span class="icon">🚀</span>
+                تحریک کا آغاز (1925-26ء)
+            </h2>
+            <p>
+                1925ء میں یوپی کی طرح بہار میں بھی طبی اسکول بنانے کی مہم شروع ہوئی۔ اس کے لیے ایک سرکاری کمیٹی بنائی گئی۔
+            </p>
+            <p style="margin-top: 15px;">
+                1926ء میں دہلی میں آل انڈیا ویدک و طبی کانفرنس ہوئی۔ اس میں شفاء الملک حکیم عبدالمجید نے تجویز دی کہ بہار حکومت سے بات کی جائے۔ یہ تجویز منظور ہو گئی۔
+            </p>
+        </div>
+
+        <!-- Meeting Details -->
+        <div class="section-card">
+            <h2>
+                <span class="icon">🤝</span>
+                پہلی میٹنگ
+            </h2>
+            <p>
+                اسی سال (1926ء) پٹنہ ڈویژن کے کمشنر کے دفتر میں پہلی میٹنگ ہوئی۔
+            </p>
+            
+            <div class="names-grid">
+                <div class="name-card">
+                    <div class="name">مسٹر ڈبلیو بی ہیکوک</div>
+                    <div class="role">چیئرمین (پٹنہ کمشنر)</div>
+                </div>
+                <div class="name-card">
+                    <div class="name">ایس نور الہدیٰ</div>
+                    <div class="role">ممبر</div>
+                </div>
+                <div class="name-card">
+                    <div class="name">حکیم محمد ادریس</div>
+                    <div class="role">ممبر</div>
+                </div>
+                <div class="name-card">
+                    <div class="name">خاں بہادر محمد اسماعیل</div>
+                    <div class="role">ممبر</div>
+                </div>
+                <div class="name-card">
+                    <div class="name">حکیم سید مظاہر احمد</div>
+                    <div class="role">ممبر</div>
+                </div>
+                <div class="name-card">
+                    <div class="name">حکیم عبدالکریم</div>
+                    <div class="role">ممبر</div>
+                </div>
+            </div>
+            
+            <div class="key-points" style="margin-top: 20px;">
+                <div class="key-point">
+                    <span class="bullet">⭐</span>
+                    <p><strong>خاص شخصیت:</strong> حکیم محمد اجمل خاں نے بھی بڑی محنت اور لگن سے کام کیا</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Government Approval -->
+        <div class="highlight-box">
+            <div class="big-date">26 جون 1926ء</div>
+            <p>طبی اسکول کا قیام ہوا!</p>
+        </div>
+
+        <div class="section-card">
+            <h2>
+                <span class="icon">✅</span>
+                حکومت کی منظوری
+            </h2>
+            <p>
+                حکومت نے فیصلہ کیا کہ اسلامی مدارس کے طلبہ سے فیس نہیں لی جائے گی۔ اس شرط کے ساتھ کالج بنانے کی اجازت دے دی گئی۔
+            </p>
+            <div class="key-points">
+                <div class="key-point">
+                    <span class="bullet">💰</span>
+                    <p><strong>بجٹ:</strong> 1927-28ء میں 15,164 روپے منظور ہوئے</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">📍</span>
+                    <p><strong>پہلا پتہ:</strong> محلہ بھکنا پہاڑی، مکان نمبر 40</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- First Officials -->
+        <div class="section-card">
+            <h2>
+                <span class="icon">👨‍🏫</span>
+                پہلے عہدیدار
+            </h2>
+            <div class="names-grid">
+                <div class="name-card" style="background: linear-gradient(135deg, #fed7e2 0%, #fbb6ce 100%); border-color: #ed64a6;">
+                    <div class="name">حکیم محمد ادریس</div>
+                    <div class="role">پہلے پرنسپل</div>
+                </div>
+                <div class="name-card" style="background: linear-gradient(135deg, #e9d8fd 0%, #d6bcfa 100%); border-color: #9f7aea;">
+                    <div class="name">حکیم خواجہ رضوان</div>
+                    <div class="role">پروفیسر</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location Changes -->
+        <div class="section-card">
+            <h2>
+                <span class="icon">🏛️</span>
+                جگہوں کی تبدیلی
+            </h2>
+            <p>
+                کالج مختلف جگہوں پر منتقل ہوتا رہا:
+            </p>
+            <div class="location-flow">
+                <div class="location-item">
+                    <div class="place">بھکنا پہاڑی</div>
+                    <div class="year">1926ء - پہلی جگہ</div>
+                </div>
+                <div class="location-item">
+                    <div class="place">رمنہ روڈ</div>
+                    <div class="year">بعد میں</div>
+                </div>
+                <div class="location-item final">
+                    <div class="place">قدم کنواں ✓</div>
+                    <div class="year">1934ء - مستقل جگہ</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Important Timeline -->
+        <div class="section-card">
+            <h2>
+                <span class="icon">📅</span>
+                اہم تاریخیں
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">1923ء</span>
+                    <div class="timeline-content">
+                        حکیم سید محمد ابراہیم نے گیا میں پہلا طبی مدرسہ قائم کیا (بعد میں بند ہو گیا)
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1925ء</span>
+                    <div class="timeline-content">
+                        طبی اسکول بنانے کی تحریک شروع ہوئی
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1926ء</span>
+                    <div class="timeline-content">
+                        دہلی کانفرنس میں فیصلہ ہوا، پہلی میٹنگ ہوئی، طبی اسکول قائم ہوا (26 جون)
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1927-28ء</span>
+                    <div class="timeline-content">
+                        15,164 روپے کا بجٹ منظور ہوا
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1934ء</span>
+                    <div class="timeline-content">
+                        قدم کنواں میں مستقل جگہ ملی
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1943ء</span>
+                    <div class="timeline-content">
+                        طبی اسکول سے طبی کالج بن گیا
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Curriculum -->
+        <div class="section-card">
+            <h2>
+                <span class="icon">📝</span>
+                نصاب اور تعلیم
+            </h2>
+            <p>
+                شروع سے آزادی تک یہاں کا نصاب، پڑھائی کا وقت اور تدریسی طریقے - سب کچھ دہلی اور لکھنؤ کے طبی مدارس جیسے تھے۔
+            </p>
+            <div class="key-points">
+                <div class="key-point">
+                    <span class="bullet">📚</span>
+                    <p>دہلی اور لکھنؤ کا نصاب اپنایا گیا</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">🎯</span>
+                    <p>آزادی کے بعد بھی طبِ یونانی کی ترقی جاری رہی</p>
+                </div>
+                <div class="key-point">
+                    <span class="bullet">⭐</span>
+                    <p>آج بھی یہ کالج خدمات دے رہا ہے</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Summary -->
+        <div class="summary-section">
+            <h2>📌 یاد رکھنے کے نکات</h2>
+            <ul class="summary-list">
+                <li>بہار میں طبِ یونانی بہت مقبول تھی</li>
+                <li>1923ء - حکیم سید محمد ابراہیم نے گیا میں پہلا مدرسہ بنایا (بند ہو گیا)</li>
+                <li>1925ء - طبی اسکول کی تحریک شروع</li>
+                <li>1926ء - دہلی کانفرنس میں شفاء الملک حکیم عبدالمجید کی تجویز</li>
+                <li>26 جون 1926ء - طبی اسکول کا قیام (بھکنا پہاڑی)</li>
+                <li>پہلے پرنسپل: حکیم محمد ادریس</li>
+                <li>پہلے پروفیسر: حکیم خواجہ رضوان</li>
+                <li>1934ء - قدم کنواں میں منتقلی (مستقل جگہ)</li>
+                <li>1943ء - اسکول سے کالج میں تبدیلی</li>
+                <li>حکیم محمد اجمل خاں نے بھی اہم کردار ادا کیا</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+    </div>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

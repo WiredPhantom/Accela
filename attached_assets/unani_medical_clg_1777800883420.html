@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>یونانی میڈیکل کالج، الہ آباد</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #1e293b;
+            line-height: 2.2;
+            font-size: 18px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .english-title {
+            font-size: 0.9em;
+            opacity: 0.9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        .intro-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-right: 5px solid #10b981;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .intro-box h2 {
+            color: #047857;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            color: #0f766e;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #99f6e4;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.2em;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-right: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .highlight-box .label {
+            color: #b45309;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #14b8a6, #0d9488);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f0fdfa;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: #14b8a6;
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(20, 184, 166, 0.4);
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .info-card .number {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #0d9488;
+            font-family: Arial, sans-serif;
+        }
+
+        .info-card .label {
+            font-size: 0.85em;
+            color: #475569;
+            margin-top: 5px;
+        }
+
+        .degree-list {
+            list-style: none;
+        }
+
+        .degree-list li {
+            background: #f8fafc;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-right: 4px solid #14b8a6;
+        }
+
+        .degree-list .year {
+            display: inline-block;
+            background: #0d9488;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-left: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .degree-list .name {
+            font-weight: 600;
+            color: #0f766e;
+        }
+
+        .family-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .family-card {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .family-card .icon {
+            font-size: 2em;
+        }
+
+        .family-card .city {
+            font-weight: 700;
+            color: #0369a1;
+        }
+
+        .family-card .name {
+            color: #475569;
+            font-size: 0.95em;
+        }
+
+        .person-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .person-box .emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .person-box .name {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #92400e;
+        }
+
+        .person-box .dates {
+            font-family: Arial, sans-serif;
+            color: #b45309;
+            margin-top: 5px;
+        }
+
+        .person-box .title {
+            color: #78350f;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .summary-box h3 {
+            color: #3730a3;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #a5b4fc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list .key {
+            color: #4338ca;
+        }
+
+        .summary-list .value {
+            font-weight: 600;
+            color: #1e1b4b;
+        }
+
+        .locations-list {
+            list-style: none;
+            counter-reset: location;
+        }
+
+        .locations-list li {
+            position: relative;
+            padding: 15px;
+            padding-right: 50px;
+            background: #f0fdfa;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            counter-increment: location;
+        }
+
+        .locations-list li::before {
+            content: counter(location);
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: #14b8a6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .note-box {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border-right: 4px solid #ec4899;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .note-box .label {
+            color: #be185d;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .buildings-grid {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .building-item {
+            background: #f0fdfa;
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .building-item .icon {
+            font-size: 1.5em;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            font-family: Arial, sans-serif;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>یونانی میڈیکل کالج، الہ آباد</h1>
+        <p class="english-title">Unani Medical College, Allahabad</p>
+    </header>
+
+    <main class="container">
+        <!-- تعارف -->
+        <div class="intro-box">
+            <h2>📚 مختصر تعارف</h2>
+            <p>الہ آباد میں طب یونانی کو فروغ دینے کا کام <strong>خاندان عثمانی</strong> نے کیا۔ جس طرح دہلی میں خاندان شریفی اور لکھنؤ میں خاندان عزیزی نے طب یونانی کی خدمت کی، اسی طرح الہ آباد میں یہ کام خاندان عثمانی نے انجام دیا۔</p>
+        </div>
+
+        <!-- طبی خاندان -->
+        <section class="section">
+            <h2 class="section-title"><span class="icon">👨‍👩‍👦</span> تین بڑے طبی خاندان</h2>
+            <div class="family-grid">
+                <div class="family-card">
+                    <span class="icon">🏛️</span>
+                    <div>
+                        <div class="city">دہلی</div>
+                        <div class="name">خاندان شریفی</div>
+                    </div>
+                </div>
+                <div class="family-card">
+                    <span class="icon">🕌</span>
+                    <div>
+                        <div class="city">لکھنؤ</div>
+                        <div class="name">خاندان عزیزی</div>
+                    </div>
+                </div>
+                <div class="family-card">
+                    <span class="icon">🏰</span>
+                    <div>
+                        <div class="city">الہ آباد</div>
+                        <div class="name">خاندان عثمانی</div>
+                    </div>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <div class="label">💡 یاد رکھیں:</div>
+                <p>دہلی = شریفی | لکھنؤ = عزیزی | الہ آباد = عثمانی</p>
+            </div>
+        </section>
+
+        <!-- بانی -->
+        <section class="section">
+            <h2 class="section-title"><span class="icon">👤</span> بانی ادارہ</h2>
+            <div class="person-box">
+                <div class="emoji">🎓</div>
+                <div class="name">علامہ حکیم احمد حسین عثمانی</div>
+                <div class="dates">1859ء - 1933ء</div>
+                <div class="title">خاندان عثمانی کے سرخیل اور طبیب اول</div>
+            </div>
+            <div class="highlight-box">
+                <div class="label">💡 یاد رکھیں:</div>
+                <p>حکیم صاحب کی پیدائش 1859ء میں ہوئی اور 1933ء میں وفات پائی۔ کل عمر تقریباً 74 سال۔</p>
+            </div>
+        </section>
+
+        <!-- ٹائم لائن -->
+        <section class="section">
+            <h2 class="section-title"><span class="icon">📅</span> اہم واقعات کی ٹائم لائن</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">1904ء</span>
+                    <p><strong>'الکلیۃ الطبیہ'</strong> کے نام سے درس گاہ قائم ہوئی۔ جگہ: <strong>محلہ سبزی منڈی</strong>، حکیم صاحب کا اپنا مکان۔ حکیم صاحب اپنے مطب کے بعد پڑھاتے تھے۔</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1914ء</span>
+                    <p>طلبہ بڑھنے پر کالج کو <strong>سبزی منڈی میں ہی کرایے کے مکان</strong> میں منتقل کیا گیا۔</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1924ء</span>
+                    <p><strong>مسیح الملک حکیم محمد اجمل خاں</strong> نے کالج کا دورہ کیا اور اطمینان کا اظہار کیا۔</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1925ء</span>
+                    <p>کالج کو <strong>سوسائٹی کے حوالے</strong> کر دیا گیا۔ دو شرطیں: (1) اقلیتی کردار برقرار رہے (2) طلبہ سے فیس نہ لی جائے۔</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1927ء</span>
+                    <p><strong>انقلابی سال!</strong> جسٹس گوکرن ناتھ مشرا کی کمیٹی نے معائنہ کیا۔ کالج <strong>بورڈ آف انڈین میڈیسن یوپی لکھنؤ</strong> سے ملحق ہوا۔ نام: <strong>'یونانی میڈیکل اسکول الہ آباد'</strong>۔ کالج <strong>محلہ ہمت گنج</strong> کے باغ میں منتقل ہوا۔</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1931ء</span>
+                    <p>بانی کی کوششوں سے <strong>8000 روپے</strong> میں ہمت گنج میں زمین خریدی گئی جو <strong>مستقل مسکن</strong> بنی۔</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1932ء</span>
+                    <p><strong>عمارتوں کی تعمیر</strong> شروع ہوئی۔</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1950ء</span>
+                    <p>آزادی کے بعد <strong>ہسپتال</strong> قائم ہوا۔ نام: <strong>'حکیم احمد حسین ریپبلک ڈے میموریل اسپتال'</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- نصاب تعلیم -->
+        <section class="section">
+            <h2 class="section-title"><span class="icon">📖</span> نصاب تعلیم</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="number">4</div>
+                    <div class="label">سال کی تعلیم</div>
+                </div>
+                <div class="info-card">
+                    <div class="number">2</div>
+                    <div class="label">زبانوں میں</div>
+                </div>
+            </div>
+            <p>بانی نے ارباب فن سے مشورہ کرکے نصاب بنایا۔ اس وقت عربی کم ہو رہی تھی اور اردو عام ہو رہی تھی، اس لیے دونوں زبانوں میں تعلیم کا انتظام کیا۔</p>
+            
+            <div class="highlight-box">
+                <div class="label">💡 دو ڈگریاں:</div>
+                <p><strong>عربی:</strong> ماہر الطب والجراحت<br>
+                <strong>اردو:</strong> معتمد الطب والجراحت</p>
+            </div>
+            
+            <div class="note-box">
+                <div class="label">📝 امتحانی ادارہ:</div>
+                <p><strong>'جمعیۃ النقبیہ'</strong> - یہ الکلیۃ الطبیہ کی اگزامننگ باڈی تھی۔</p>
+            </div>
+        </section>
+
+        <!-- جگہوں کی منتقلی -->
+        <section class="section">
+            <h2 class="section-title"><span class="icon">🏠</span> کالج کی منتقلی</h2>
+            <ol class="locations-list">
+                <li><strong>1904ء:</strong> حکیم صاحب کا ذاتی مکان، محلہ سبزی منڈی</li>
+                <li><strong>1914ء:</strong> کرایے کا مکان، محلہ سبزی منڈی</li>
+                <li><strong>1927ء:</strong> باغ، محلہ ہمت گنج</li>
+                <li><strong>1931ء:</strong> اپنی زمین، محلہ ہمت گنج (مستقل)</li>
+            </ol>
+            <div class="highlight-box">
+                <div class="label">💡 یاد رکھیں:</div>
+                <p>سبزی منڈی → سبزی منڈی (کرایہ) → ہمت گنج (باغ) → ہمت گنج (اپنی زمین)</p>
+            </div>
+        </section>
+
+        <!-- تعمیرات -->
+        <section class="section">
+            <h2 class="section-title"><span class="icon">🏗️</span> 1932ء کی تعمیرات</h2>
+            <div class="buildings-grid">
+                <div class="building-item">
+                    <span class="icon">🔬</span>
+                    <span>شعبہ تشریح مع ڈسکشن ہال</span>
+                </div>
+                <div class="building-item">
+                    <span class="icon">🏛️</span>
+                    <span>میوزیم</span>
+                </div>
+                <div class="building-item">
+                    <span class="icon">🎤</span>
+                    <span>لیکچر ہال</span>
+                </div>
+                <div class="building-item">
+                    <span class="icon">🧬</span>
+                    <span>شعبہ منافع الاعضا</span>
+                </div>
+                <div class="building-item">
+                    <span class="icon">⚗️</span>
+                    <span>کیمسٹری لیبارٹری</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ڈگریوں کا ارتقاء -->
+        <section class="section">
+            <h2 class="section-title"><span class="icon">🎓</span> ڈگریوں کا ارتقاء</h2>
+            <ul class="degree-list">
+                <li>
+                    <span class="year">1946ء سے قبل</span><br>
+                    <span class="name">معتمد الطب و جراحت (MUMS)</span><br>
+                    <span class="name">ڈپلوما ان انڈیجینس میڈیسن اینڈ سرجری (DIMS)</span>
+                </li>
+                <li>
+                    <span class="year">1957ء کے بعد</span><br>
+                    <span class="name">فاضل الطب - بیچلر آف انڈین میڈیسن اینڈ سرجری (FMBS)</span>
+                </li>
+                <li>
+                    <span class="year">1972ء سے</span><br>
+                    <span class="name">بیچلر آف یونانی میڈیسن اینڈ سرجری (BUMS)</span>
+                </li>
+            </ul>
+            <div class="highlight-box">
+                <div class="label">💡 ترتیب یاد رکھیں:</div>
+                <p>MUMS/DIMS → FMBS → BUMS</p>
+            </div>
+        </section>
+
+        <!-- اہم شخصیات -->
+        <section class="section">
+            <h2 class="section-title"><span class="icon">⭐</span> اہم شخصیات</h2>
+            <div class="family-grid">
+                <div class="family-card">
+                    <span class="icon">👨‍⚕️</span>
+                    <div>
+                        <div class="city">بانی</div>
+                        <div class="name">حکیم احمد حسین عثمانی</div>
+                    </div>
+                </div>
+                <div class="family-card">
+                    <span class="icon">🌟</span>
+                    <div>
+                        <div class="city">1924ء کا دورہ</div>
+                        <div class="name">مسیح الملک حکیم محمد اجمل خاں</div>
+                    </div>
+                </div>
+                <div class="family-card">
+                    <span class="icon">⚖️</span>
+                    <div>
+                        <div class="city">1927ء کمیٹی سربراہ</div>
+                        <div class="name">جسٹس گوکرن ناتھ مشرا</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- فوری خلاصہ -->
+        <div class="summary-box">
+            <h3>📋 فوری خلاصہ</h3>
+            <ul class="summary-list">
+                <li><span class="key">قیام</span> <span class="value">1904ء</span></li>
+                <li><span class="key">بانی</span> <span class="value">حکیم احمد حسین عثمانی</span></li>
+                <li><span class="key">اصل نام</span> <span class="value">الکلیۃ الطبیہ</span></li>
+                <li><span class="key">نصاب مدت</span> <span class="value">4 سال</span></li>
+                <li><span class="key">زبانیں</span> <span class="value">عربی اور اردو</span></li>
+                <li><span class="key">بورڈ الحاق</span> <span class="value">1927ء</span></li>
+                <li><span class="key">زمین خریدی</span> <span class="value">1931ء (8000 روپے)</span></li>
+                <li><span class="key">ہسپتال</span> <span class="value">1950ء</span></li>
+                <li><span class="key">موجودہ ڈگری</span> <span class="value">BUMS (1972ء سے)</span></li>
+            </ul>
+        </div>
+
+        <!-- ناموں کا ارتقاء -->
+        <section class="section">
+            <h2 class="section-title"><span class="icon">📝</span> ناموں کا ارتقاء</h2>
+            <ol class="locations-list">
+                <li><strong>1904ء:</strong> الکلیۃ الطبیہ</li>
+                <li><strong>1927ء:</strong> یونانی میڈیکل اسکول الہ آباد</li>
+                <li><strong>بعد میں:</strong> یونانی میڈیکل کالج الہ آباد</li>
+            </ol>
+        </section>
+
+        <!-- اختتام -->
+        <section class="section">
+            <h2 class="section-title"><span class="icon">🏆</span> اختتامی بات</h2>
+            <p>یہ کالج آج بھی اپنی سابقہ شان و شوکت کا امین ہے اور طب یونانی کی تعلیم و تدریس میں اہم کردار ادا کر رہا ہے۔ یہ تمام تبدیلیاں کالج کی فعالیت اور ترقی کی دلیل ہیں۔</p>
+        </section>
+    </main>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

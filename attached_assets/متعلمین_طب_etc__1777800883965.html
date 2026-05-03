@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متعلمین طب کے اوصاف اور اطباء کے فرائض</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c7a7b 0%, #285e61 100%);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(44, 122, 123, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 0.95em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .header .intro {
+            font-size: 0.85em;
+            margin-top: 15px;
+            opacity: 0.85;
+            line-height: 2;
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: #f8f9fa;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            flex: 1;
+        }
+
+        .section-title h2 {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .section-title .english {
+            font-size: 0.75em;
+            color: #718096;
+            font-family: Arial, sans-serif;
+            direction: ltr;
+            text-align: right;
+        }
+
+        .toggle-icon {
+            font-size: 1.2em;
+            color: #718096;
+            transition: transform 0.3s ease;
+        }
+
+        .section.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .section.active .section-content {
+            max-height: 2000px;
+        }
+
+        .content-inner {
+            padding: 0 20px 20px;
+        }
+
+        /* Points */
+        .point {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-right: 4px solid;
+            position: relative;
+        }
+
+        .point-number {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .point-text {
+            font-size: 0.95em;
+            padding-right: 15px;
+        }
+
+        /* Color Themes */
+        .physical .section-icon { background: linear-gradient(135deg, #48bb78, #38a169); }
+        .physical .point { border-color: #48bb78; background: #f0fff4; }
+        .physical .point-number { background: #48bb78; }
+
+        .mental .section-icon { background: linear-gradient(135deg, #4299e1, #3182ce); }
+        .mental .point { border-color: #4299e1; background: #ebf8ff; }
+        .mental .point-number { background: #4299e1; }
+
+        .spiritual .section-icon { background: linear-gradient(135deg, #9f7aea, #805ad5); }
+        .spiritual .point { border-color: #9f7aea; background: #faf5ff; }
+        .spiritual .point-number { background: #9f7aea; }
+
+        .moral .section-icon { background: linear-gradient(135deg, #ed8936, #dd6b20); }
+        .moral .point { border-color: #ed8936; background: #fffaf0; }
+        .moral .point-number { background: #ed8936; }
+
+        .duties .section-icon { background: linear-gradient(135deg, #e53e3e, #c53030); }
+        .duties .point { border-color: #e53e3e; background: #fff5f5; }
+        .duties .point-number { background: #e53e3e; }
+
+        /* Main Sections Divider */
+        .main-section-title {
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            color: white;
+            text-align: center;
+            padding: 18px 20px;
+            border-radius: 15px;
+            margin: 25px 0 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* Quick Summary */
+        .summary-box {
+            background: linear-gradient(135deg, #faf089, #f6e05e);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            font-size: 1.1em;
+            color: #744210;
+            margin-bottom: 15px;
+        }
+
+        .summary-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .tag {
+            background: white;
+            color: #744210;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.3em;
+            }
+            
+            .section-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .section-title h2 {
+                font-size: 1em;
+            }
+            
+            .point-text {
+                font-size: 0.9em;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🩺 متعلمین طب کے اوصاف اور اطباء کے فرائض</h1>
+        <div class="subtitle">Characteristics of Medical Students & Duties of Physicians</div>
+        <div class="intro">
+            یہاں اطباء قدیم کی نصیحتوں اور اسلامی تعلیمات کی روشنی میں طب کے طالب علم کے اوصاف اور طبیب کے فرائض آسان الفاظ میں بیان کیے گئے ہیں۔
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Quick Summary -->
+        <div class="summary-box">
+            <h3>🌟 چار بنیادی اوصاف یاد رکھیں</h3>
+            <div class="summary-tags">
+                <span class="tag">💪 جسمانی</span>
+                <span class="tag">🧠 نفسانی</span>
+                <span class="tag">🤲 روحانی</span>
+                <span class="tag">💝 اخلاقی</span>
+            </div>
+        </div>
+
+        <div class="main-section-title">📚 متعلمین طب کے اوصاف</div>
+
+        <!-- Physical Properties -->
+        <div class="section physical">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon">💪</div>
+                <div class="section-title">
+                    <h2>جسمانی اوصاف</h2>
+                    <div class="english">Physical Properties</div>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="content-inner">
+                    <div class="point">
+                        <span class="point-number">1</span>
+                        <div class="point-text"><strong>عمر:</strong> بالغ ہو اور جوان ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">2</span>
+                        <div class="point-text"><strong>صحت:</strong> تندرست ہو، بیمار نہ ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">3</span>
+                        <div class="point-text"><strong>جسم:</strong> جثہ معتدل ہو، درمیانہ قد ہو، اعضاء مناسب ہوں</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">4</span>
+                        <div class="point-text"><strong>کان:</strong> سماعت درست ہو، اچھی طرح سن سکے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">5</span>
+                        <div class="point-text"><strong>ہاتھ:</strong> ملائم ہوں، خاص طور پر انگلیوں کے پورے نرم اور حساس ہوں</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">6</span>
+                        <div class="point-text"><strong>بال:</strong> بکھرے ہوئے نہ ہوں، صاف اور ستھرے ہوں</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">7</span>
+                        <div class="point-text"><strong>ناخن:</strong> بڑے نہ ہوں، کٹے ہوئے ہوں</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">8</span>
+                        <div class="point-text"><strong>چال:</strong> سلیقے سے چلے، نہ زیادہ تیز اور نہ زیادہ آہستہ</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">9</span>
+                        <div class="point-text"><strong>لباس:</strong> صاف ستھرا ہو، ہلکے رنگ کا ہو، سفید ہو تو بہتر ہے</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mental Properties -->
+        <div class="section mental">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon">🧠</div>
+                <div class="section-title">
+                    <h2>نفسانی اوصاف</h2>
+                    <div class="english">Mental Properties</div>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="content-inner">
+                    <div class="point">
+                        <span class="point-number">1</span>
+                        <div class="point-text"><strong>ذہانت:</strong> ذہین ہو، تیز دماغ ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">2</span>
+                        <div class="point-text"><strong>مشاہدہ:</strong> اچھا مشاہدہ کرنے والا ہو، باریک بینی سے دیکھے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">3</span>
+                        <div class="point-text"><strong>علم:</strong> طبابت میں ماہر اور قابل اعتبار ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">4</span>
+                        <div class="point-text"><strong>بہادری:</strong> بہادر اور باہمت ہو، ڈرپوک نہ ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">5</span>
+                        <div class="point-text"><strong>صبر:</strong> غصے پر قابو ہو، برداشت کا مادہ ہو</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spiritual Properties -->
+        <div class="section spiritual">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon">🤲</div>
+                <div class="section-title">
+                    <h2>روحانی اوصاف</h2>
+                    <div class="english">Spiritual Properties</div>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="content-inner">
+                    <div class="point">
+                        <span class="point-number">1</span>
+                        <div class="point-text"><strong>دینداری:</strong> دیندار اور ایماندار ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">2</span>
+                        <div class="point-text"><strong>نیکی:</strong> نیک اور شریف النفس ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">3</span>
+                        <div class="point-text"><strong>ہمت:</strong> باہمت ہو، حوصلہ مند ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">4</span>
+                        <div class="point-text"><strong>جوابدہی:</strong> اللہ کے سامنے جوابدہی کا احساس ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">5</span>
+                        <div class="point-text"><strong>نیت:</strong> نیک کام کو اللہ کی رضا اور نجات کا ذریعہ سمجھے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">6</span>
+                        <div class="point-text"><strong>پاکیزگی:</strong> حسد سے پاک ہو، کسی سے جلن نہ ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">7</span>
+                        <div class="point-text"><strong>رحم:</strong> ہمدرد اور رحم دل ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">8</span>
+                        <div class="point-text"><strong>غریب پروری:</strong> غریبوں کا خیال رکھنے والا ہو</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Moral Properties -->
+        <div class="section moral">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon">💝</div>
+                <div class="section-title">
+                    <h2>اخلاقی اوصاف</h2>
+                    <div class="english">Moral Properties</div>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="content-inner">
+                    <div class="point">
+                        <span class="point-number">1</span>
+                        <div class="point-text"><strong>گفتگو:</strong> نرم گفتار ہو، میٹھا بولنے والا ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">2</span>
+                        <div class="point-text"><strong>عاجزی:</strong> عاجزی اور انکساری کا پیکر ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">3</span>
+                        <div class="point-text"><strong>ملنساری:</strong> ملنسار ہو، لوگوں سے اچھے سے ملے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">4</span>
+                        <div class="point-text"><strong>مساوات:</strong> چھوٹے بڑے میں فرق نہ سمجھے، سب کو برابر سمجھے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">5</span>
+                        <div class="point-text"><strong>احترام:</strong> بزرگوں کا احترام کرے اور چھوٹوں سے محبت کرے</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-section-title">⚕️ طبیب کے فرائض</div>
+
+        <!-- Duties of Physician -->
+        <div class="section duties">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon">📋</div>
+                <div class="section-title">
+                    <h2>طبیب کے اہم فرائض</h2>
+                    <div class="english">Duties of Physician</div>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="content-inner">
+                    <div class="point">
+                        <span class="point-number">1</span>
+                        <div class="point-text"><strong>علم:</strong> اپنے علم میں کامل ہو اور فن میں ماہر ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">2</span>
+                        <div class="point-text"><strong>تیاری:</strong> ہر وقت علاج کے لیے تیار رہے، رات کو بھی بلائیں تو کاہلی نہ کرے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">3</span>
+                        <div class="point-text"><strong>آلات:</strong> اپنے طبی آلات کو ہمیشہ درست حالت میں رکھے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">4</span>
+                        <div class="point-text"><strong>وقت:</strong> مطب میں وقت کی پابندی کرے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">5</span>
+                        <div class="point-text"><strong>سننا:</strong> ہر مریض کی تکلیف غور سے اور تسلی سے سنے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">6</span>
+                        <div class="point-text"><strong>معائنہ:</strong> جلدی نہ کرے، مریض کا معائنہ احتیاط اور اطمینان سے کرے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">7</span>
+                        <div class="point-text"><strong>حوصلہ:</strong> اگر بیماری خطرناک بھی ہو تو مریض کو شفا کی امید دلائے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">8</span>
+                        <div class="point-text"><strong>نسخہ:</strong> جہاں تک ہو سکے آسان نسخہ لکھے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">9</span>
+                        <div class="point-text"><strong>دوائی:</strong> بغیر شدید ضرورت کے مہنگی دوا نہ دے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">10</span>
+                        <div class="point-text"><strong>حرام ادویہ:</strong> حرام ادویات کے استعمال سے بچے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">11</span>
+                        <div class="point-text"><strong>نقصاندہ دوا:</strong> مضر دواؤں کا استعمال کم سے کم کرے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">12</span>
+                        <div class="point-text"><strong>اجرت:</strong> مریض سے صرف اتنی اجرت لے جو پیشے کو چلانے کے لیے کافی ہو</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">13</span>
+                        <div class="point-text"><strong>مفت علاج:</strong> ممکن ہو تو غریبوں اور مسکینوں کو مفت دوا دے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">14</span>
+                        <div class="point-text"><strong>خواتین:</strong> عورتوں کے علاج اور معائنے میں ان کی حرمت کا خیال رکھے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">15</span>
+                        <div class="point-text"><strong>نرس:</strong> بہتر ہے کہ عورتوں کے معائنے میں نرس کی مدد لے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">16</span>
+                        <div class="point-text"><strong>اسقاط حمل:</strong> بغیر کسی طبی پیچیدگی کے اسقاط حمل کا مشورہ نہ دے اور نہ کرے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">17</span>
+                        <div class="point-text"><strong>ماہر سے مشورہ:</strong> اگر کوئی مرض سمجھ میں نہ آئے تو کسی دوسرے ماہر کے پاس بھیج دے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">18</span>
+                        <div class="point-text"><strong>جراحی:</strong> سرجری میں ہمیشہ احتیاط کرے، اگر قدرت نہ ہو تو کوشش نہ کرے</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">19</span>
+                        <div class="point-text"><strong>تجربہ:</strong> کسی نئے علاج یا انجانی دوا کا تجربہ مریض پر نہ کرے کیونکہ انسانی جان کا کوئی بدل نہیں</div>
+                    </div>
+                    <div class="point">
+                        <span class="point-number">20</span>
+                        <div class="point-text"><strong>غیر جانبداری:</strong> اپنے فرض کو تعلقات سے بالاتر رکھے، دشمن بھی مدد مانگے تو نیک نیتی سے علاج کرے</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Tips -->
+        <div class="summary-box" style="background: linear-gradient(135deg, #c6f6d5, #9ae6b4);">
+            <h3>💡 یاد رکھنے کا آسان طریقہ</h3>
+            <div style="text-align: right; font-size: 0.9em; margin-top: 10px;">
+                <p><strong>متعلم طب = جسم + دماغ + روح + اخلاق</strong></p>
+                <p style="margin-top: 8px;"><strong>طبیب = علم + احتیاط + رحم + فرض</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Toggle sections
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('active');
+        }
+
+        // Open first section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSections = document.querySelectorAll('.section');
+            if (firstSections.length > 0) {
+                firstSections[0].classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

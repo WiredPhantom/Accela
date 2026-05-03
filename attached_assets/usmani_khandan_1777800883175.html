@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خاندان عثمانی - طب یونانی کے عظیم خادم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            line-height: 2.2;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1em;
+            opacity: 0.95;
+        }
+
+        /* Section Title */
+        .section-title {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 15px;
+            margin: 25px 0 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        .section-title .icon {
+            font-size: 1.3em;
+        }
+
+        /* Physician Cards */
+        .physician-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .physician-card {
+            background: white;
+            border-radius: 15px;
+            padding: 18px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-right: 5px solid #28a745;
+            transition: transform 0.2s ease;
+        }
+
+        .physician-card:active {
+            transform: scale(0.98);
+        }
+
+        .physician-card .number {
+            background: #28a745;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .physician-card .name {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #1e7e34;
+        }
+
+        .physician-card .note {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .service-card .service-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px dashed #e0e0e0;
+        }
+
+        .service-card .service-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+
+        .service-card .service-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .service-card .service-content {
+            font-size: 0.95em;
+            line-height: 2.4;
+        }
+
+        /* Different colors for service icons */
+        .icon-institution { background: linear-gradient(135deg, #ff6b6b, #ee5a5a); color: white; }
+        .icon-books { background: linear-gradient(135deg, #4ecdc4, #45b7aa); color: white; }
+        .icon-medical { background: linear-gradient(135deg, #a855f7, #9333ea); color: white; }
+        .icon-organization { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+
+        /* Highlight text */
+        .highlight {
+            background: linear-gradient(120deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .date-badge {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .important {
+            color: #d32f2f;
+            font-weight: 600;
+        }
+
+        /* Key Points Box */
+        .key-point {
+            background: #fff3e0;
+            border-right: 4px solid #ff9800;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-top: 12px;
+            font-size: 0.9em;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .summary-box ul {
+            list-style: none;
+            text-align: right;
+        }
+
+        .summary-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .summary-box li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-box li::before {
+            content: "✓ ";
+            color: #90ee90;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px dashed #4caf50;
+        }
+
+        .memory-tip-title {
+            color: #2e7d32;
+            font-weight: 700;
+            font-size: 1em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bullet-list {
+            padding-right: 20px;
+        }
+
+        .bullet-list li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .bullet-list li::marker {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>🌿 خاندان عثمانی</h1>
+        <p>طب یونانی کے عظیم خادم</p>
+    </div>
+
+    <div class="container">
+        <!-- Section 1: Famous Physicians -->
+        <div class="section-title">
+            <span class="icon">👨‍⚕️</span>
+            <span>مشہور اطباء کی فہرست</span>
+        </div>
+
+        <div class="physician-list">
+            <div class="physician-card">
+                <span class="number">۱</span>
+                <span class="name">علامہ حکیم احمد حسین عثمانی</span>
+                <div class="note">خاندان کے بانی - مدرسہ طبیہ کے قائم کرنے والے</div>
+            </div>
+            
+            <div class="physician-card">
+                <span class="number">۲</span>
+                <span class="name">شفاء الملک حکیم احمد عثمانی</span>
+                <div class="note">"شفاء الملک" کا لقب ملا - سرکاری عہدے ٹھکرائے</div>
+            </div>
+            
+            <div class="physician-card">
+                <span class="number">۳</span>
+                <span class="name">حکیم حماد عثمانی</span>
+                <div class="note">نصابی کتابوں کے مصنف - عثمانیہ اکیڈمی کے بانی</div>
+            </div>
+            
+            <div class="physician-card">
+                <span class="number">۴</span>
+                <span class="name">حکیم سعد عثمانی</span>
+                <div class="note">موجودہ جانشین - خاندان کی روایت جاری</div>
+            </div>
+        </div>
+
+        <!-- Memory Tip -->
+        <div class="memory-tip">
+            <div class="memory-tip-title">💡 یاد رکھنے کا آسان طریقہ</div>
+            <p><strong>احمد حسین ← احمد ← حماد ← سعد</strong></p>
+            <p style="font-size: 0.9em; margin-top: 8px;">باپ سے بیٹے کی ترتیب یاد رکھیں!</p>
+        </div>
+
+        <!-- Section 2: Services -->
+        <div class="section-title">
+            <span class="icon">⭐</span>
+            <span>خاندان عثمانی کی نمایاں خدمات</span>
+        </div>
+
+        <!-- Service 1: Medical Institutions -->
+        <div class="service-card">
+            <div class="service-header">
+                <div class="service-icon icon-institution">🏥</div>
+                <div class="service-title">طبی اداروں کا قیام</div>
+            </div>
+            <div class="service-content">
+                <ul class="bullet-list">
+                    <li>حکیم احمد حسین نے <span class="date-badge">1904ء</span> میں الہ آباد میں <span class="highlight">"مدرسہ طبیہ"</span> کی بنیاد رکھی</li>
+                    <li>بعد میں جانشینوں نے اسے <span class="important">یونانی میڈیکل کالج</span> میں بدل دیا</li>
+                    <li>عمارت اور معیار کو بلند کیا</li>
+                </ul>
+            </div>
+            <div class="key-point">
+                🔑 <strong>یاد رکھیں:</strong> 1904ء + الہ آباد + مدرسہ طبیہ
+            </div>
+        </div>
+
+        <!-- Service 2: Books and Publishing -->
+        <div class="service-card">
+            <div class="service-header">
+                <div class="service-icon icon-books">📚</div>
+                <div class="service-title">تصنیف و تالیف اور اشاعت</div>
+            </div>
+            <div class="service-content">
+                <ul class="bullet-list">
+                    <li>طبی کتابوں کی چھپائی کے لیے <span class="highlight">پریس</span> قائم کیا</li>
+                    <li>مشہور کتاب <span class="highlight">"تاریخ ابن خلدون"</span> کا اردو ترجمہ شائع کیا</li>
+                    <li>حکیم حماد عثمانی نے طلباء کے لیے اہم نصابی کتابیں لکھیں:
+                        <br>• <span class="important">طب القانون</span>
+                        <br>• <span class="important">علم سموم</span> (زہروں کا علم)
+                        <br>• <span class="important">کتاب الجراحت</span>
+                    </li>
+                    <li><span class="date-badge">1966ء</span> میں <span class="highlight">"عثمانیہ اکیڈمی"</span> قائم کی</li>
+                </ul>
+            </div>
+            <div class="key-point">
+                🔑 <strong>یاد رکھیں:</strong> 3 کتابیں = طب القانون + علم سموم + کتاب الجراحت
+            </div>
+        </div>
+
+        <!-- Service 3: Medical Practice -->
+        <div class="service-card">
+            <div class="service-header">
+                <div class="service-icon icon-medical">💊</div>
+                <div class="service-title">فن طب اور عوامی خدمت</div>
+            </div>
+            <div class="service-content">
+                <ul class="bullet-list">
+                    <li>یہ خاندان <span class="highlight">نبض شناسی</span> میں ماہر تھا (نبض دیکھ کر بیماری بتانا)</li>
+                    <li><span class="important">گردہ و مثانہ</span> کے علاج میں خاص مہارت</li>
+                    <li>حکیم احمد عثمانی نے طب یونانی کی خدمت کے لیے <span class="highlight">بڑے سرکاری عہدے ٹھکرا دیے</span></li>
+                    <li>مغربی تعلیم چھوڑ کر <span class="important">مشرقی طب</span> کو اپنایا</li>
+                </ul>
+            </div>
+            <div class="key-point">
+                🔑 <strong>یاد رکھیں:</strong> 2 مہارت = نبض شناسی + گردہ/مثانہ
+            </div>
+        </div>
+
+        <!-- Service 4: Organizational Services -->
+        <div class="service-card">
+            <div class="service-header">
+                <div class="service-icon icon-organization">🏛️</div>
+                <div class="service-title">تنظیمی خدمات</div>
+            </div>
+            <div class="service-content">
+                <ul class="bullet-list">
+                    <li><span class="highlight">آل انڈیا طبی کانفرنس</span> میں اہم کردار</li>
+                    <li><span class="highlight">بورڈ آف انڈین میڈیسن</span> میں خدمات</li>
+                    <li><span class="highlight">CCRUM</span> (سنٹرل کونسل فار ریسرچ ان یونانی میڈیسن) میں اہم عہدے</li>
+                    <li>ان اداروں میں رہ کر طب یونانی کی ترقی میں <span class="important">کلیدی کردار</span> ادا کیا</li>
+                </ul>
+            </div>
+            <div class="key-point">
+                🔑 <strong>یاد رکھیں:</strong> 3 ادارے = آل انڈیا کانفرنس + بورڈ + CCRUM
+            </div>
+        </div>
+
+        <!-- Quick Summary -->
+        <div class="summary-box">
+            <h3>📋 فوری خلاصہ</h3>
+            <ul>
+                <li>4 مشہور اطباء: احمد حسین، احمد، حماد، سعد</li>
+                <li>1904ء میں مدرسہ طبیہ الہ آباد</li>
+                <li>1966ء میں عثمانیہ اکیڈمی</li>
+                <li>3 نصابی کتابیں: طب القانون، علم سموم، کتاب الجراحت</li>
+                <li>2 مہارت: نبض شناسی، گردہ و مثانہ</li>
+                <li>3 ادارے: آل انڈیا کانفرنس، بورڈ، CCRUM</li>
+            </ul>
+        </div>
+
+        <!-- Final Memory Tip -->
+        <div class="memory-tip">
+            <div class="memory-tip-title">🧠 آخری یاد داشت</div>
+            <p style="font-size: 0.95em;">
+                <strong>4-4 فارمولا:</strong><br>
+                4 اطباء + 4 بڑی خدمات<br>
+                (ادارے، کتابیں، علاج، تنظیمیں)
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
