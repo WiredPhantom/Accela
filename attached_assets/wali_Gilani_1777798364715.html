@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ولی گیلانی - Wali Gilani</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            color: #2d3748;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .hero .english-name {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-family: Arial, sans-serif;
+        }
+
+        .hero .subtitle {
+            font-size: 1rem;
+            margin-top: 10px;
+            opacity: 0.95;
+        }
+
+        /* Section Styles */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.5rem;
+        }
+
+        /* Memory Cards */
+        .memory-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            border-right: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .memory-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .memory-card .label {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .memory-card p {
+            font-size: 1.1rem;
+        }
+
+        /* Key Point Box */
+        .key-point {
+            background: #fff3cd;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #ffc107;
+        }
+
+        .key-point .emoji {
+            font-size: 1.3rem;
+        }
+
+        /* Timeline */
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .timeline-dot {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: #f8f9ff;
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        /* Books Section */
+        .book-item {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-right: 4px solid #4caf50;
+        }
+
+        .book-item .book-number {
+            background: #4caf50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            font-size: 0.9rem;
+        }
+
+        .book-item .book-name {
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 1.1rem;
+        }
+
+        .book-item .book-desc {
+            font-size: 0.95rem;
+            margin-top: 5px;
+            color: #555;
+        }
+
+        /* Role Cards */
+        .role-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .role-card:active {
+            transform: scale(0.98);
+            border-color: #667eea;
+        }
+
+        .role-title {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .role-card p {
+            font-size: 1.05rem;
+            color: #444;
+        }
+
+        /* Highlight Text */
+        .highlight {
+            background: linear-gradient(120deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .fact-box {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .fact-box .fact-label {
+            font-size: 0.85rem;
+            color: #764ba2;
+        }
+
+        .fact-box .fact-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .summary-box ul {
+            list-style: none;
+            text-align: right;
+        }
+
+        .summary-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 1.05rem;
+        }
+
+        .summary-box li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-box li::before {
+            content: "✓ ";
+            margin-left: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            font-family: Arial, sans-serif;
+            margin-top: 30px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .quick-facts {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>حکیم ولی گیلانی</h1>
+        <div class="english-name">Hakim Wali Gilani</div>
+        <div class="subtitle">دکن کے مشہور طبیب اور مصنف</div>
+    </div>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📋</span>
+                اہم معلومات (ایک نظر میں)
+            </div>
+            <div class="quick-facts">
+                <div class="fact-box">
+                    <div class="fact-label">دور</div>
+                    <div class="fact-value">1508ء - 1553ء</div>
+                </div>
+                <div class="fact-box">
+                    <div class="fact-label">بادشاہ</div>
+                    <div class="fact-value">برہان نظام شاہ</div>
+                </div>
+                <div class="fact-box">
+                    <div class="fact-label">اصل وطن</div>
+                    <div class="fact-value">گیلان (ایران)</div>
+                </div>
+                <div class="fact-box">
+                    <div class="fact-label">کتابیں</div>
+                    <div class="fact-value">3 تصانیف</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Life History Section -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📖</span>
+                حیات و زندگی
+            </div>
+
+            <div class="memory-card">
+                <div class="label">🏛️ دربار میں مقام:</div>
+                <p>ولی گیلانی <span class="highlight">بادشاہ برہان نظام شاہ</span> کے دربار کا معتبر اور علم والا طبیب تھا۔</p>
+            </div>
+
+            <div class="memory-card">
+                <div class="label">👑 بادشاہ کی خوبی:</div>
+                <p>بادشاہ <span class="highlight">علم پسند</span> تھا اور ولی گیلانی کو <span class="highlight">لکھنے کا شوق</span> تھا، اس لیے وہاں بہت کام کرنے کا موقع ملا۔</p>
+            </div>
+
+            <div class="key-point">
+                <span class="emoji">💡</span> <strong>یاد رکھیں:</strong> بادشاہ علم پسند + طبیب کو لکھنے کا شوق = زیادہ کتابیں لکھیں!
+            </div>
+        </div>
+
+        <!-- Family & Education -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">👨‍👩‍👦</span>
+                خاندان اور تعلیم
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot">🌍</div>
+                <div class="timeline-content">
+                    <strong>اصل وطن:</strong> آباء و اجداد <span class="highlight">ایران کے شہر گیلان</span> سے ہندوستان آئے۔
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot">💊</div>
+                <div class="timeline-content">
+                    <strong>پیشہ:</strong> ہندوستان آ کر <span class="highlight">طبابت کا پیشہ</span> اختیار کیا۔
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot">📚</div>
+                <div class="timeline-content">
+                    <strong>تعلیم:</strong>
+                    <br>• عقلی علوم = <span class="highlight">چچا علاء الدین علی</span> سے
+                    <br>• طب کی تعلیم = <span class="highlight">والد علاء الدین محمد</span> سے
+                </div>
+            </div>
+
+            <div class="key-point">
+                <span class="emoji">💡</span> <strong>آسان طریقہ:</strong> چچا سے عقل، باپ سے طب!
+            </div>
+        </div>
+
+        <!-- Contributions -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">⭐</span>
+                خدمات و کارنامے
+            </div>
+
+            <div class="role-card">
+                <div class="role-title">
+                    <span>🩺</span>
+                    بحیثیت طبیب (ڈاکٹر)
+                </div>
+                <p>بادشاہ کا <span class="highlight">درباری طبیب</span> تھا۔ یہ بات ثابت کرتی ہے کہ وہ عام ڈاکٹر نہیں بلکہ <span class="highlight">اپنے فن میں ماہر</span> تھا۔</p>
+            </div>
+
+            <div class="role-card">
+                <div class="role-title">
+                    <span>📝</span>
+                    بحیثیت مترجم
+                </div>
+                <p>مشہور طبیب <span class="highlight">ابن جزلہ</span> کی عربی کتاب <span class="highlight">"تقویم الابدان"</span> کا فارسی ترجمہ کیا۔</p>
+                <p style="color: #e53e3e; font-size: 0.95rem; margin-top: 8px;">⚠️ افسوس! اس کتاب کا کوئی نسخہ آج موجود نہیں۔</p>
+            </div>
+
+            <div class="role-card">
+                <div class="role-title">
+                    <span>✍️</span>
+                    بحیثیت مصنف
+                </div>
+                <p>دو طبی کتابیں <span class="highlight">فارسی زبان</span> میں لکھیں:</p>
+                <p>1. رسالہ حفظ صحت</p>
+                <p>2. تقویم الامراض</p>
+            </div>
+        </div>
+
+        <!-- Books Section -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📚</span>
+                تصانیف (کتابیں)
+            </div>
+
+            <div class="book-item">
+                <span class="book-number">1</span>
+                <span class="book-name">تقویم الابدان</span>
+                <div class="book-desc">ابن جزلہ کی عربی کتاب کا فارسی ترجمہ (نسخہ موجود نہیں)</div>
+            </div>
+
+            <div class="book-item">
+                <span class="book-number">2</span>
+                <span class="book-name">رسالہ حفظ صحت</span>
+                <div class="book-desc">صحت کی حفاظت کے بارے میں کتاب</div>
+            </div>
+
+            <div class="book-item">
+                <span class="book-number">3</span>
+                <span class="book-name">تقویم الامراض</span>
+                <div class="book-desc">بیماریوں کے بارے میں کتاب</div>
+            </div>
+
+            <div class="key-point">
+                <span class="emoji">📍</span> <strong>کتابوں کا مقام:</strong>
+                <br>• سالار جنگ میوزیم، حیدرآباد
+                <br>• نیشنل پبلک لائبریری، حیدرآباد
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="section">
+            <div class="summary-box">
+                <h3>🎯 خلاصہ - یاد رکھیں</h3>
+                <ul>
+                    <li>دکن کا درباری طبیب (برہان نظام شاہ کے دور میں)</li>
+                    <li>اصل وطن: گیلان، ایران</li>
+                    <li>چچا سے عقلی علوم، باپ سے طب سیکھی</li>
+                    <li>تین کتابیں لکھیں (ایک ترجمہ + دو اصل)</li>
+                    <li>کتابیں حیدرآباد کے میوزیم میں موجود ہیں</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Add touch feedback for cards
+        document.querySelectorAll('.role-card, .book-item, .memory-card').forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Intersection Observer for fade-in animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.5s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

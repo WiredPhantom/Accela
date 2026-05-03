@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حکیم شفائی خاں - حالاتِ زندگی اور خدمات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            line-height: 2.2;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(13, 148, 136, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-right: 5px solid #14b8a6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-card:active {
+            transform: scale(0.98);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0d9488;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* Key Points */
+        .key-point {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            border-radius: 15px;
+            padding: 15px 18px;
+            margin-bottom: 12px;
+            border-right: 4px solid #14b8a6;
+        }
+
+        .key-point .label {
+            font-weight: 700;
+            color: #0f766e;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .key-point .value {
+            color: #134e4a;
+            font-size: 1.05rem;
+        }
+
+        /* List Items */
+        .list-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .list-item .bullet {
+            width: 28px;
+            height: 28px;
+            background: #14b8a6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .list-item .text {
+            flex: 1;
+        }
+
+        /* Book Cards */
+        .book-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-right: 4px solid #f59e0b;
+        }
+
+        .book-card .book-name {
+            font-weight: 700;
+            color: #92400e;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .book-card .book-desc {
+            color: #78350f;
+            font-size: 0.95rem;
+        }
+
+        /* Disease Cards */
+        .disease-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .disease-card {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .disease-card .urdu {
+            font-weight: 700;
+            color: #5b21b6;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .disease-card .english {
+            color: #7c3aed;
+            font-size: 0.8rem;
+            font-family: Arial, sans-serif;
+            direction: ltr;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border-right: 4px solid #3b82f6;
+        }
+
+        .highlight-box .title {
+            font-weight: 700;
+            color: #1e40af;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box .content {
+            color: #1e3a8a;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin: 25px 0;
+        }
+
+        .summary-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .summary-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+        }
+
+        .summary-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #14b8a6 0%, #0d9488 100%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f0fdfa;
+            border-radius: 12px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            background: #14b8a6;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .timeline-item .step {
+            font-weight: 700;
+            color: #0f766e;
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .disease-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Memory Aids */
+        .memory-tip {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #ec4899;
+        }
+
+        .memory-tip .tip-title {
+            font-weight: 700;
+            color: #be185d;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .memory-tip .tip-content {
+            color: #9d174d;
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .fact-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .fact-card .fact-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .fact-card .fact-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .fact-card .fact-value {
+            font-weight: 700;
+            color: #0d9488;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>📚 حکیم شفائی خاں</h1>
+        <div class="subtitle">حالاتِ زندگی، خدمات اور تصانیف</div>
+    </div>
+
+    <div class="container">
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-card">
+                <div class="fact-icon">👤</div>
+                <div class="fact-label">اصل نام</div>
+                <div class="fact-value">فضل علی</div>
+            </div>
+            <div class="fact-card">
+                <div class="fact-icon">🏠</div>
+                <div class="fact-label">آبائی وطن</div>
+                <div class="fact-value">شاہجہاں پور</div>
+            </div>
+            <div class="fact-card">
+                <div class="fact-icon">🏛️</div>
+                <div class="fact-label">خدمت گزار</div>
+                <div class="fact-value">حیدرآباد دکن</div>
+            </div>
+            <div class="fact-card">
+                <div class="fact-icon">🎖️</div>
+                <div class="fact-label">خطاب</div>
+                <div class="fact-value">معتمد الملوک</div>
+            </div>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <div class="section-card">
+            <div class="section-title">
+                <span class="icon">📖</span>
+                <span>تعارف</span>
+            </div>
+            
+            <div class="key-point">
+                <div class="label">کون تھے؟</div>
+                <div class="value">حیدرآباد دکن کے مشہور طبیب جو آصف جاہی دور میں گزرے۔</div>
+            </div>
+
+            <div class="key-point">
+                <div class="label">کس دور میں؟</div>
+                <div class="value">سکندر جاہ آصف جاہ ثالث کے دورِ حکومت میں۔</div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">💡 یاد رکھیں</div>
+                <div class="tip-content">شفائی خاں = فضل علی (اصل نام) + شاہجہاں پور (وطن)</div>
+            </div>
+        </div>
+
+        <!-- Section 2: Education Journey -->
+        <div class="section-card">
+            <div class="section-title">
+                <span class="icon">🎓</span>
+                <span>تعلیم کا سفر</span>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="step">پہلا مرحلہ</div>
+                    <div>شاہجہاں پور میں ابتدائی تعلیم حاصل کی۔</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="step">دوسرا مرحلہ</div>
+                    <div>لسانی اور دینی تعلیم مکمل کی۔</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="step">تیسرا مرحلہ</div>
+                    <div>طب کو اپنا خاص مضمون بنایا۔</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="step">چوتھا مرحلہ</div>
+                    <div>حکیم خاں صاحب سے طب کی تعلیم حاصل کی۔</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="title">🏆 خاص بات</div>
+                <div class="content">علمی اور فنی دونوں اعتبار سے طب میں مہارت حاصل کی۔</div>
+            </div>
+        </div>
+
+        <!-- Section 3: Career -->
+        <div class="section-card">
+            <div class="section-title">
+                <span class="icon">💼</span>
+                <span>ملازمت اور کیریئر</span>
+            </div>
+
+            <div class="list-item">
+                <span class="bullet">١</span>
+                <span class="text">شاہجہاں پور سے حیدرآباد دکن منتقل ہوئے۔</span>
+            </div>
+
+            <div class="list-item">
+                <span class="bullet">٢</span>
+                <span class="text">مہاراجہ چندولعل کے ہاں ملازمت اختیار کی۔</span>
+            </div>
+
+            <div class="list-item">
+                <span class="bullet">٣</span>
+                <span class="text">لیاقت اور خدمات کی وجہ سے "معتمد الملوک" کا خطاب ملا۔</span>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">💡 یاد رکھیں</div>
+                <div class="tip-content">شاہجہاں پور ← حیدرآباد ← مہاراجہ چندولعل ← معتمد الملوک</div>
+            </div>
+        </div>
+
+        <!-- Section 4: Medical Services -->
+        <div class="section-card">
+            <div class="section-title">
+                <span class="icon">🏥</span>
+                <span>طبی خدمات</span>
+            </div>
+
+            <div class="key-point">
+                <div class="label">دوہری خدمت</div>
+                <div class="value">دربارِ شاہی سے وابستہ تھے + عام لوگوں کا مطب بھی کرتے تھے۔</div>
+            </div>
+
+            <div class="key-point">
+                <div class="label">مقبولیت کی وجہ</div>
+                <div class="value">تشخیص اور تجویز پر غیر معمولی عبور - مطب میں مریضوں کا ہجوم رہتا۔</div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="title">⭐ علاج کی خاص بات</div>
+                <div class="content">
+                    <strong>۱۔</strong> نسخہ مختصر ہوتا تھا<br>
+                    <strong>۲۔</strong> سستی دوائیں استعمال کرتے تھے<br>
+                    <strong>۳۔</strong> مفرد ادویہ سے علاج کرتے تھے
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">💡 علاج کا طریقہ یاد کریں</div>
+                <div class="tip-content">"کم + سستا + مفرد" = شفائی خاں کا نسخہ</div>
+            </div>
+        </div>
+
+        <!-- Section 5: Books -->
+        <div class="section-card">
+            <div class="section-title">
+                <span class="icon">📚</span>
+                <span>تصانیف (کتابیں)</span>
+            </div>
+
+            <p style="margin-bottom: 15px; color: #64748b;">مطب کی مصروفیات کے باوجود کئی کتابیں لکھیں:</p>
+
+            <div class="book-card">
+                <div class="book-name">١۔ علاج الاطفال</div>
+                <div class="book-desc">بچوں کے علاج پر سب سے مشہور کتاب</div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-name">٢۔ میزان المزاج</div>
+                <div class="book-desc">مزاج کے توازن پر کتاب</div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-name">٣۔ رسالہ چوب چینی</div>
+                <div class="book-desc">چوب چینی کے فوائد پر رسالہ</div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-name">٤۔ مجربات در بیان حمیات</div>
+                <div class="book-desc">بخاروں کے آزمودہ علاج پر کتاب</div>
+            </div>
+
+            <div class="book-card">
+                <div class="book-name">٥۔ معالجاتِ چندولعل</div>
+                <div class="book-desc">مہاراجہ چندولعل کے نام سے منسوب کتاب</div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">💡 پانچ کتابیں یاد کریں</div>
+                <div class="tip-content">"عم رمم" = علاج الاطفال، میزان المزاج، رسالہ چوب چینی، مجربات، معالجات</div>
+            </div>
+        </div>
+
+        <!-- Section 6: Ilaj ul Atfal -->
+        <div class="section-card">
+            <div class="section-title">
+                <span class="icon">👶</span>
+                <span>علاج الاطفال (تفصیل)</span>
+            </div>
+
+            <div class="key-point">
+                <div class="label">کیا ہے؟</div>
+                <div class="value">بچوں کے علاج پر شفائی خاں کی سب سے مشہور کتاب۔</div>
+            </div>
+
+            <div class="key-point">
+                <div class="label">اہمیت کیوں؟</div>
+                <div class="value">اس موضوع پر طبی کتابوں کی کمی کی وجہ سے بہت قیمتی ہے۔</div>
+            </div>
+
+            <div class="key-point">
+                <div class="label">کیا لکھا؟</div>
+                <div class="value">بچوں کی عمومی اور خصوصی بیماریوں کا تفصیلی بیان۔</div>
+            </div>
+
+            <div class="key-point">
+                <div class="label">محفوظ کہاں؟</div>
+                <div class="value">کتب خانہ آصفیہ (حیدرآباد دکن) میں مخطوطہ محفوظ ہے۔</div>
+            </div>
+
+            <h4 style="margin: 20px 0 10px; color: #5b21b6; font-size: 1.1rem;">📋 کتاب میں شامل بیماریاں:</h4>
+
+            <div class="disease-grid">
+                <div class="disease-card">
+                    <div class="urdu">ام الصبیان</div>
+                    <div class="english">Child Epilepsy</div>
+                </div>
+                <div class="disease-card">
+                    <div class="urdu">کزاز</div>
+                    <div class="english">Tetanus</div>
+                </div>
+                <div class="disease-card">
+                    <div class="urdu">خسرہ</div>
+                    <div class="english">Measles</div>
+                </div>
+                <div class="disease-card">
+                    <div class="urdu">چیچک</div>
+                    <div class="english">Chickenpox</div>
+                </div>
+                <div class="disease-card">
+                    <div class="urdu">اسہال</div>
+                    <div class="english">Diarrhoea</div>
+                </div>
+                <div class="disease-card">
+                    <div class="urdu">آشوبِ چشم</div>
+                    <div class="english">Conjunctivitis</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="title">🍼 اضافی معلومات</div>
+                <div class="content">بچوں کی غذا کے بارے میں بھی سیر حاصل بحث موجود ہے۔</div>
+            </div>
+
+            <div class="memory-tip">
+                <div class="tip-title">💡 بیماریاں یاد کریں</div>
+                <div class="tip-content">"اُکَخَچَاَآ" = ام الصبیان، کزاز، خسرہ، چیچک، اسہال، آشوب چشم</div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h3>📝 خلاصہ - جلدی یاد کریں</h3>
+            
+            <div class="summary-item">
+                <strong>نام:</strong> فضل علی (تخلص: شفائی خاں)
+            </div>
+            <div class="summary-item">
+                <strong>وطن:</strong> شاہجہاں پور
+            </div>
+            <div class="summary-item">
+                <strong>استاد:</strong> حکیم خاں صاحب
+            </div>
+            <div class="summary-item">
+                <strong>ملازمت:</strong> مہاراجہ چندولعل (حیدرآباد دکن)
+            </div>
+            <div class="summary-item">
+                <strong>خطاب:</strong> معتمد الملوک
+            </div>
+            <div class="summary-item">
+                <strong>دور:</strong> سکندر جاہ آصف جاہ ثالث
+            </div>
+            <div class="summary-item">
+                <strong>علاج کا طریقہ:</strong> کم، سستا، مفرد ادویہ
+            </div>
+            <div class="summary-item">
+                <strong>مشہور کتاب:</strong> علاج الاطفال
+            </div>
+            <div class="summary-item">
+                <strong>کل کتابیں:</strong> 5 (علاج الاطفال، میزان المزاج، رسالہ چوب چینی، مجربات در بیان حمیات، معالجاتِ چندولعل)
+            </div>
+        </div>
+
+        <!-- Final Memory Card -->
+        <div class="section-card" style="border-right-color: #ec4899;">
+            <div class="section-title" style="color: #be185d;">
+                <span class="icon" style="background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);">🧠</span>
+                <span>امتحان کے لیے یاد رکھیں</span>
+            </div>
+
+            <div class="list-item">
+                <span class="bullet" style="background: #ec4899;">✓</span>
+                <span class="text">شفائی خاں حاذق طبیب بھی تھے اور مصنف بھی۔</span>
+            </div>
+
+            <div class="list-item">
+                <span class="bullet" style="background: #ec4899;">✓</span>
+                <span class="text">آصف جاہی دور حیدرآباد کے نامور اطباء میں سے تھے۔</span>
+            </div>
+
+            <div class="list-item">
+                <span class="bullet" style="background: #ec4899;">✓</span>
+                <span class="text">علاج الاطفال ان کی سب سے مشہور کتاب ہے۔</span>
+            </div>
+
+            <div class="list-item">
+                <span class="bullet" style="background: #ec4899;">✓</span>
+                <span class="text">مخطوطہ کتب خانہ آصفیہ میں محفوظ ہے۔</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

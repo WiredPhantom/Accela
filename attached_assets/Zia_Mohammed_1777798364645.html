@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ضیاء محمد مسعود رشید زنگی | مجموعہ ضیائی</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 50%, #fff7ed 100%);
+            color: #44403c;
+            line-height: 2.2;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #b45309 0%, #c2410c 100%);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(180, 83, 9, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Section Styling */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #fde68a;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #b45309;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #fbbf24;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1em;
+        }
+
+        /* Key Points Box */
+        .key-box {
+            background: linear-gradient(135deg, #fef3c7, #fef9c3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border-right: 5px solid #f59e0b;
+        }
+
+        .key-box h3 {
+            color: #b45309;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        /* Bullet Points */
+        .points {
+            list-style: none;
+            padding: 0;
+        }
+
+        .points li {
+            padding: 12px 15px;
+            margin: 10px 0;
+            background: linear-gradient(to left, #fffbeb, white);
+            border-radius: 12px;
+            border-right: 4px solid #f59e0b;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .points li:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+        }
+
+        .points li::before {
+            content: "◆";
+            color: #f59e0b;
+            margin-left: 10px;
+            font-size: 0.8em;
+        }
+
+        /* Important Highlight */
+        .highlight {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+            color: #92400e;
+        }
+
+        /* Number Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            color: white;
+            padding: 15px 10px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .stat-card .number {
+            font-size: 1.5em;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-card .label {
+            font-size: 0.75em;
+            opacity: 0.95;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #f59e0b, #ea580c);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #fffbeb;
+            border-radius: 12px;
+            border: 1px solid #fde68a;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 5px;
+        }
+
+        /* Book Display */
+        .book-display {
+            background: linear-gradient(135deg, #78350f, #92400e);
+            border-radius: 15px;
+            padding: 30px 20px;
+            margin: 20px 0;
+            text-align: center;
+            color: #fef3c7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-display::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            border-radius: 10px;
+        }
+
+        .book-display h2 {
+            font-size: 2em;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+
+        .book-display p {
+            opacity: 0.9;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #fde68a;
+            text-align: center;
+        }
+
+        .info-card .icon-wrap {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #b45309;
+            font-size: 1.2em;
+        }
+
+        .info-card h4 {
+            color: #b45309;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+
+        .info-card p {
+            font-size: 0.85em;
+            color: #78716c;
+        }
+
+        /* Related Books */
+        .related-books {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .related-book {
+            background: linear-gradient(135deg, #fef3c7, white);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #fde68a;
+        }
+
+        .related-book h5 {
+            color: #b45309;
+            font-size: 0.95em;
+            margin-bottom: 3px;
+        }
+
+        .related-book p {
+            font-size: 0.8em;
+            color: #78716c;
+        }
+
+        /* Memory Tips */
+        .memory-tip {
+            background: linear-gradient(135deg, #dcfce7, #d1fae5);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 5px solid #22c55e;
+        }
+
+        .memory-tip h4 {
+            color: #166534;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .memory-tip p {
+            color: #15803d;
+            font-size: 0.95em;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border-right: 5px solid #3b82f6;
+        }
+
+        .summary-box h4 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+
+        /* Paragraph styling */
+        .para {
+            text-align: justify;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #fefce8;
+            border-radius: 10px;
+        }
+
+        /* Quick Recall Section */
+        .recall-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .recall-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #fde68a;
+        }
+
+        .recall-item .q {
+            background: #f59e0b;
+            color: white;
+            min-width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .recall-item .answer {
+            flex: 1;
+        }
+
+        .recall-item .answer strong {
+            color: #b45309;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .related-books {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>ضیاء محمد مسعود رشید زنگی</h1>
+        <p>عہدِ تغلق کے ممتاز طبیب</p>
+    </header>
+
+    <div class="container">
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="number">1325-1351ء</span>
+                <span class="label">دورِ حکومت</span>
+            </div>
+            <div class="stat-card">
+                <span class="number">250</span>
+                <span class="label">صفحات</span>
+            </div>
+            <div class="stat-card">
+                <span class="number">20</span>
+                <span class="label">کتابوں سے ماخوذ</span>
+            </div>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📋</span>
+                تعارف
+            </h2>
+
+            <div class="key-box">
+                <h3>🔑 پورا نام:</h3>
+                <p><span class="highlight">ضیاء محمد مسعود رشید زنگی عمر غزنوی</span></p>
+            </div>
+
+            <ul class="points">
+                <li>یہ <span class="highlight">سلطان محمد بن تغلق</span> کا درباری طبیب تھا</li>
+                <li>سلطان کا دورِ حکومت <span class="highlight">1325ء سے 1351ء</span> تک تھا</li>
+                <li>یہ <span class="highlight">طبِ یونانی</span> میں ماہر تھا</li>
+                <li>اس کے ساتھ <span class="highlight">آیوروید</span> (ہندوستانی طب) میں بھی مہارت رکھتا تھا</li>
+                <li>یہ بیرونِ ہند سے بادشاہ کے ساتھ ہندوستان آیا</li>
+            </ul>
+
+            <div class="memory-tip">
+                <h4>💡 یاد رکھیں:</h4>
+                <p>"زنگی" نام کتاب کے مقدمے میں درج ہے</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Why Ayurveda -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🔍</span>
+                آیوروید کیوں سیکھا؟
+            </h2>
+
+            <div class="para">
+                جب یہ طبیب ہندوستان آیا تو اس نے دیکھا کہ یہاں کے لوگوں کا مزاج اس کے ملک سے مختلف ہے۔ اس کی وجہ یہاں کی آب و ہوا ہے۔
+            </div>
+
+            <ul class="points">
+                <li>ہندوستانیوں کا <span class="highlight">مزاج مختلف</span> تھا</li>
+                <li><span class="highlight">آب و ہوا</span> کا فرق تھا</li>
+                <li>یہاں کے <span class="highlight">امراض کی نوعیت الگ</span> تھی</li>
+                <li>علاج میں <span class="highlight">رد و بدل ضروری</span> تھا</li>
+            </ul>
+
+            <div class="key-box">
+                <h3>👨‍👦 چچا کی ترغیب:</h3>
+                <ul class="points">
+                    <li>چچا کا نام: <span class="highlight">حکیم شمس الدین مستوفی</span></li>
+                    <li>چچا کی کتاب: <span class="highlight">مجموعہ شمسی</span></li>
+                    <li>چچا نے یونانی اور آیوروید کے <span class="highlight">اشتراک کی بنیاد</span> ڈالی</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>📝 خلاصہ:</h4>
+                <p>چچا کی کتاب سے ترغیب پا کر اس نے <span class="highlight">سنسکرت زبان</span> سیکھی تاکہ آیوروید کی کتابیں براہِ راست پڑھ سکے۔</p>
+            </div>
+        </section>
+
+        <!-- Section 3: Contributions -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>
+                خدمات
+            </h2>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="icon-wrap">📚</div>
+                    <h4>سنسکرت سیکھی</h4>
+                    <p>آیوروید سمجھنے کے لیے</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-wrap">🔄</div>
+                    <h4>ترجمہ کیا</h4>
+                    <p>سنسکرت سے عربی میں</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-wrap">👥</div>
+                    <h4>فائدہ پہنچایا</h4>
+                    <p>یونانی اطباء کو آیوروید سے واقف کروایا</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-wrap">✍️</div>
+                    <h4>کتابیں لکھیں</h4>
+                    <p>سب سے مشہور: مجموعہ ضیائی</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Majmooa Ziyai -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📖</span>
+                مجموعہ ضیائی
+            </h2>
+
+            <div class="book-display">
+                <h2>مجموعہ ضیائی</h2>
+                <p>ضیاء محمد مسعود رشید زنگی کی مشہور تالیف</p>
+            </div>
+
+            <div class="key-box">
+                <h3>📊 کتاب کی معلومات:</h3>
+                <ul class="points">
+                    <li><span class="highlight">250 صفحات</span> بڑے سائز کے</li>
+                    <li><span class="highlight">20 کتابوں</span> سے مواد لیا گیا (یونانی + آیوروید)</li>
+                    <li>نسخہ موجود ہے: <span class="highlight">جامعہ ہمدرد، دہلی</span></li>
+                    <li>حکیم محمد سعید سینٹرل لائبریری میں</li>
+                </ul>
+            </div>
+
+            <div class="memory-tip">
+                <h4>💡 یاد رکھیں:</h4>
+                <p>مجموعہ ضیائی = ہندوستان میں طب کے فروغ کا <span class="highlight">سنگِ میل</span></p>
+            </div>
+        </section>
+
+        <!-- Section 5: Contents -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📑</span>
+                کتاب میں کیا ہے؟
+            </h2>
+
+            <ul class="points">
+                <li>ہندوستانی باشندوں کے <span class="highlight">مزاج</span> کی تفصیل</li>
+                <li>یہاں کے <span class="highlight">امراض</span> کی معلومات</li>
+                <li>امراض کے <span class="highlight">علاج</span> کی تفصیل</li>
+                <li>طبِ یونانی اور آیوروید کا <span class="highlight">امتزاج</span></li>
+            </ul>
+
+            <div class="summary-box">
+                <h4>📝 فرق:</h4>
+                <p>پرانی کتابوں (فردوس الحکمت وغیرہ) میں صرف آیوروید کے <span class="highlight">بنیادی نظریات</span> تھے۔ مجموعہ ضیائی میں <span class="highlight">تفصیلی علاج</span> ہے۔</p>
+            </div>
+        </section>
+
+        <!-- Section 6: Historical Importance -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🏆</span>
+                تاریخی اہمیت
+            </h2>
+
+            <div class="para">
+                اس کتاب کے ذریعے طبِ یونانی اور آیوروید باہم مخلوط ہو گئے۔ طبِ یونانی صرف یونانی نہ رہی بلکہ ہندوستان کے تعلق سے <span class="highlight">دیسی طب</span> ہوگئی۔
+            </div>
+
+            <ul class="points">
+                <li>یونانی اور آیوروید کا <span class="highlight">امتزاج</span> ہوا</li>
+                <li>مقامی <span class="highlight">آب و ہوا</span> کو مدنظر رکھا</li>
+                <li>ہندوستانی <span class="highlight">ادویہ</span> کا انتخاب کیا</li>
+                <li>ہندوستانیوں کے <span class="highlight">مزاج کے موافق</span> بنایا</li>
+            </ul>
+
+            <div class="key-box">
+                <h3>⭐ نتیجہ:</h3>
+                <p>مجموعہ ضیائی طبی نقطہ نظر سے <span class="highlight">اولین اور اہم کتابوں</span> میں سے ایک ہے جو مقامی لین دین کے نتیجے میں لکھی گئی۔</p>
+            </div>
+        </section>
+
+        <!-- Section 7: Related Books -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">📚</span>
+                متعلقہ قدیم کتابیں
+            </h2>
+
+            <div class="related-books">
+                <div class="related-book">
+                    <h5>فردوس الحکمت</h5>
+                    <p>ربن طبری</p>
+                </div>
+                <div class="related-book">
+                    <h5>کامل الصناعۃ</h5>
+                    <p>علی ابن عباس مجوسی</p>
+                </div>
+                <div class="related-book">
+                    <h5>کتاب التصریف</h5>
+                    <p>ابوالقاسم زہراوی</p>
+                </div>
+                <div class="related-book">
+                    <h5>مجموعہ شمسی</h5>
+                    <p>حکیم شمس الدین مستوفی (چچا)</p>
+                </div>
+            </div>
+
+            <div class="memory-tip">
+                <h4>💡 نوٹ:</h4>
+                <p>ان کتابوں میں صرف آیوروید کے بنیادی نظریات ہیں، تفصیلی علاج نہیں</p>
+            </div>
+        </section>
+
+        <!-- Section 8: Quick Recall -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">🧠</span>
+                یاد کرنے کے لیے
+            </h2>
+
+            <div class="recall-grid">
+                <div class="recall-item">
+                    <span class="q">1</span>
+                    <div class="answer"><strong>پورا نام:</strong> ضیاء محمد مسعود رشید زنگی عمر غزنوی</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">2</span>
+                    <div class="answer"><strong>بادشاہ:</strong> سلطان محمد بن تغلق</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">3</span>
+                    <div class="answer"><strong>دورِ حکومت:</strong> 1325ء - 1351ء</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">4</span>
+                    <div class="answer"><strong>مہارت:</strong> طبِ یونانی + آیوروید</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">5</span>
+                    <div class="answer"><strong>سیکھی زبان:</strong> سنسکرت</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">6</span>
+                    <div class="answer"><strong>ترجمہ:</strong> سنسکرت سے عربی میں</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">7</span>
+                    <div class="answer"><strong>چچا:</strong> حکیم شمس الدین مستوفی</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">8</span>
+                    <div class="answer"><strong>چچا کی کتاب:</strong> مجموعہ شمسی</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">9</span>
+                    <div class="answer"><strong>مشہور کتاب:</strong> مجموعہ ضیائی</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">10</span>
+                    <div class="answer"><strong>صفحات:</strong> 250 بڑے صفحات</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">11</span>
+                    <div class="answer"><strong>ماخذ:</strong> 20 کتابوں سے مواد</div>
+                </div>
+                <div class="recall-item">
+                    <span class="q">12</span>
+                    <div class="answer"><strong>نسخہ:</strong> جامعہ ہمدرد، دہلی</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">⏰</span>
+                ٹائم لائن
+            </h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">1325ء سے پہلے</span>
+                    <div class="timeline-title">ابتدائی تعلیم</div>
+                    <p>طبِ یونانی میں مہارت حاصل کی</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1325ء</span>
+                    <div class="timeline-title">ہندوستان آمد</div>
+                    <p>سلطان محمد بن تغلق کے ساتھ آیا، درباری طبیب مقرر ہوا</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1325-1330ء</span>
+                    <div class="timeline-title">طبی مشاہدات</div>
+                    <p>ہندوستانیوں کے مزاج اور مقامی امراض کا مطالعہ</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1330ء کے بعد</span>
+                    <div class="timeline-title">سنسکرت سیکھی</div>
+                    <p>آیوروید سمجھنے کے لیے سنسکرت زبان سیکھی</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1335-1345ء</span>
+                    <div class="timeline-title">مجموعہ ضیائی کی تالیف</div>
+                    <p>یونانی اور آیورویدک طب کو ملا کر اہم کتاب لکھی</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">1351ء</span>
+                    <div class="timeline-title">دورِ تغلق کا اختتام</div>
+                    <p>سلطان محمد بن تغلق کی وفات</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Summary -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="icon">✅</span>
+                آخری خلاصہ
+            </h2>
+
+            <div class="key-box">
+                <p>
+                    <span class="highlight">ضیاء محمد مسعود رشید زنگی</span> سلطان محمد بن تغلق کا درباری طبیب تھا۔ یہ طبِ یونانی اور آیوروید دونوں میں ماہر تھا۔ اپنے چچا <span class="highlight">حکیم شمس الدین مستوفی</span> سے ترغیب پا کر سنسکرت سیکھی اور آیوروید کا مواد عربی میں ترجمہ کیا۔
+                </p>
+                <br>
+                <p>
+                    اس کی مشہور تصنیف <span class="highlight">مجموعہ ضیائی</span> 250 صفحات پر مشتمل ہے جس میں 20 کتابوں سے مواد لیا گیا۔ یہ کتاب ہندوستان میں طبِ یونانی اور آیوروید کے امتزاج کا <span class="highlight">سنگِ میل</span> ہے۔ اس کا نسخہ جامعہ ہمدرد، دہلی میں موجود ہے۔
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© <span id="year"></span> Accela. All rights reserved</p>
+    </div>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
