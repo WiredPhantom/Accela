@@ -1407,3 +1407,10 @@ app.listen(port, "0.0.0.0", () => {
   console.log(`🚀 Server running on port ${port}`);
   console.log(`🌐 Server accessible at http://0.0.0.0:${port}`);
 });
+
+// --------- 13. MONTHLY BACKUP SCHEDULER ---------
+try {
+  require("./monthly-backup");
+} catch (err) {
+  console.error("⚠️  Monthly backup scheduler failed to load:", err.message);
+}
